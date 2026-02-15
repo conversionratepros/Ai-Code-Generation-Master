@@ -1,0 +1,83 @@
+---
+description: AB test code structure and CSS conventions — follow CodeStructure.txt and AB Test Code Examples
+globs: "**/variant.js", "**/variant.css", "**/CodeStructure.txt"
+alwaysApply: true
+---
+
+# AB Test Conventions
+
+When building or editing any AB test in this repo, **always** follow the code structure in `CodeStructure.txt` and the CSS structure used in `AB Test Code Examples/`.
+
+## JavaScript (variant.js) — CodeStructure.txt
+
+### Structure (required order)
+
+1. **IIFE + try/catch**
+   - Wrap all code in `(function () { try { ... } catch (e) { if (debug) console.log(e, "error in Test" + variation_name); } })();`
+
+2. **Main variables**
+   - `var debug = 0;`
+   - `var variation_name = "";` (set to the body class for this variant, e.g. `"cro-t-53"`)
+
+3. **Helper functions only from CodeStructure**
+   Use **only** these helpers (copy from `CodeStructure.txt` when needed):
+   - `waitForElement(selector, trigger)` — poll until selector exists (50ms interval, 15s timeout), then run trigger
+   - `live(selector, event, callback, context)` — delegated events (use for dynamic elements)
+   - `insertHtml(selector, content, position)` — position: "afterend" (default), "beforeend", etc.
+   - `innerHTMLContent(selector, content)`
+   - `innerChildContent(selector, childNumber, content)`
+   - `addClass(el, cls)` — el is a selector string
+   - `toggleClass(el, cls)`
+   - `removeClass(el, cls)`
+   - `scroll(click, selector)` — smooth scroll to selector on click
+   - `waitForSwiper(trigger)` — only if test uses Swiper
+   - `addScript()` — only if loading Swiper
+   - `initializeSwiper()` — only if test uses Swiper (customize selectors per test)
+
+4. **init()**
+   - Call `addClass("body", variation_name);` first.
+   - Then run variation logic (e.g. waitForElement + DOM changes, insertHtml, etc.).
+
+5. **Event handler**
+   - Use a single function (e.g. `croEventHandkler()` or `eventHandler()`) that registers all `live(...)` listeners. Use `live()` for any click/hover on variant UI so it works for dynamically inserted elements.
+
+6. **Guard and bootstrap**
+   - `if (!window.cro_<unique>) { croEventHandkler(); window.cro_<unique> = true; }`
+   - `waitForElement('<entry-selector>', init);` — use the selector that must exist before init (e.g. `'body'` or a page-specific selector).
+
+Do **not** introduce new helper libraries or different patterns; use only the helpers above. Add a `listener()` for `locationchange` only if the test must re-run on SPA navigation (see CRO-54/CRO-89 examples).
+
+---
+
+## CSS (variant.css) — AB Test Code Examples
+
+### Scoping
+
+- **Scope all variant styles** with `html body.<variation-class>` so they apply only when the variant is active.
+- Add page context when the test is page-specific, e.g. `html body.cro-t-53.catalog-category-view` or `html body.catalog-category-view.cro-blank_canvas`.
+
+### Naming
+
+- **Variation class on body**: kebab-case, prefixed with `cro-`, e.g. `cro-t-53`, `cro-blank_canvas` (underscore allowed for readability).
+- **Custom component classes**: prefix with the test id and a hyphen, e.g. `cro-t-53-card-icon`, `cro-t-53-card-icon-wrapper`, `cro-blank_canvas` for body, `.cro-heartIcon`, `.cro-display-viewRoom`. Use kebab-case (or camelCase only where existing examples use it, e.g. `.cro-heartIcon`).
+
+### Selector style (from AB Test Code Examples)
+
+- **Override existing site elements**: use full, high-specificity selectors, e.g.  
+  `html body.cro-t-53.catalog-category-view .column.main .products.product-items li.item.product-item .product-item-details .product-item-actions { ... }`
+- **Variant-only elements**: `html body.cro-t-53 .cro-t-53-card-icon-wrapper { ... }`
+- **Hide existing elements**: `display: none;` (or `display: none !important;` when needed).
+
+### Layout
+
+- One rule per block; keep related rules together (e.g. all card icon rules, then all button rules).
+- Put **media queries** at the bottom of the file (see CRO-93, CRO-89).
+- Use comments sparingly for section breaks (e.g. `/* Override product actions */`).
+
+### Reference files
+
+- **CRO-54**: simple PLP card icon variant; body class `cro-t-53`; classes like `.cro-t-53-card-icon`, `.cro-t-53-card-icon-wrapper`.
+- **CRO-93**: PLP with body class `cro-blank_canvas`; long override selectors; media queries at bottom.
+- **CRO-89**: body-scoped `html body .crp54-*`; modal and filter UI; responsive blocks in media queries.
+
+When in doubt, match the selector and naming style from `AB Test Code Examples` for the closest test type (PLP card, filters, PDP, etc.).

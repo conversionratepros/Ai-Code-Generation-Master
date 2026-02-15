@@ -1,0 +1,49 @@
+html body.cro213 .modal-header .modal-title.title-qty {
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+html body.cro213 .modal-header .modal-title.title-qty:after {
+    content: "Added to cart. Click ‘View my cart’ to adjust quantities.";
+    color: #333;
+    font-family: 'Source Sans Pro';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+@media (max-width:768px) {
+    html body.cro213 .modal-header h1.modal-title {
+        font-size: 0 !important;
+        padding-right: 22px;
+        line-height: 0 !important;
+    }
+
+    html body.cro213 .modal-header h1.modal-title:after {
+        content: "Added to cart. Click ‘View my cart’ to adjust quantities.";
+        color: #333;
+        font-family: 'Source Sans Pro';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+}
+
+html body.cro213 ._show[data-type="popup"] .modal-header {
+    background: #F2F2F2 !important;
+    margin-bottom: 16px;
+}
+
+@media (max-width:1239px) {
+    html body.cro213 ._show[data-type="popup"] .modal-header {
+        padding: 16px !important;
+    }
+}
+
+@media (min-width:1240px) {
+    html body.cro213 ._show[data-type="popup"] .modal-header {
+        padding: 16px 24px 16px !important;
+    }
+}
