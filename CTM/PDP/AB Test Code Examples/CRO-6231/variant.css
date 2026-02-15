@@ -1,0 +1,33 @@
+/* Hide the Mario popup widget */
+html body.cro-ctm-hide-mario-popup #marioPopup {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Alternative targeting in case the popup has different class structure */
+html body.cro-ctm-hide-mario-popup .mario-popup,
+html body.cro-ctm-hide-mario-popup [id*="mario"],
+html body.cro-ctm-hide-mario-popup [class*="mario"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Hide any fade-in animation container that might be related */
+html body.cro-ctm-hide-mario-popup .fade-in {
+    display: none !important;
+}
+
+/* Ensure the popup container doesn't take up space */
+html body.cro-ctm-hide-mario-popup div[id="marioPopup"] {
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}

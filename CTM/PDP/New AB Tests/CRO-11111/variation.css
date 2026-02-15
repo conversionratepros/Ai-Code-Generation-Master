@@ -1,0 +1,24 @@
+/* styles.css */
+
+.cro-11111-video-widget {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.cro-11111-video-widget .cro-11111-video-thumbnail {
+  width: 100%;
+  height: auto;
+}
+
+.cro-11111-video-widget .cro-11111-video-thumbnail img {
+  width: 100%;
+  display: block;
+}
+
+.cro-11111-video-widget .cro-11111-video-footer { padding: 10px; font-size: 12px; }

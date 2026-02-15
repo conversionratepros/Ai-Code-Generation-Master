@@ -1,0 +1,267 @@
+html body.recipe94 .product-info-main #product_addtocart_form .calculator .calc-container {
+    position: relative;
+    flex-direction: column;
+    gap: 10px;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calculator .calc-container .qty-input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .box-quantity {
+    position: relative;
+    width: 165px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #d9d9d9;
+    order: 3;
+    margin-right: 15px;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .box-quantity > .dec {
+    display: none;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .box-quantity > .inc {
+    display: none;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group #qty-box {
+    position: static;
+    color: #404040;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 126%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    width: 100%;
+    max-width: 65px;
+    background: #d9d9d9;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .input-measure {
+    position: static;
+    color: #404040;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 126%;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty {
+    position: relative;
+    width: 165px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    order: 1;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .dec {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: auto;
+    width: 29.44px;
+    height: 26px;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .dec span {
+    bottom: 0;
+    right: 0;
+    top: 0px;
+    left: 8.5px;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .inc {
+    position: absolute;
+    bottom: auto;
+    right: 0;
+    top: 0;
+    width: 29.44px;
+    height: 26px;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .inc span {
+    bottom: 0;
+    right: 0;
+    top: 0px;
+    left: 8.5px;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group #area_to_cover {
+    position: static;
+    color: #404040;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 126%;
+    max-width: 80px;
+    margin: 0;
+    padding: 0;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group label[for="area_to_cover"] {
+    position: static;
+    color: #404040;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 126%;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .select-text {
+    position: static;
+    order: 2;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .qty-input-group .select-text p {
+    margin: 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    width: -moz-fit-content;
+    width: fit-content;
+    line-height: 126%;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .qty-input-group .select-text span {
+    margin: 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 126%;
+    color: #404040;
+}
+html body.recipe94 .croTotalPrice {
+    order: 4;
+}
+html body.recipe94 .croTotalPrice-wrapper {
+    margin: 0;
+}
+html body.recipe94 .croTotalPrice-wrapper .total-Price {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #404040;
+}
+html body.recipe94 .croTotalPrice-wrapper .croPrice {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 39px;
+    color: #404040;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .box-tocart .calc-output-and-quote .base-amount-display {
+    display: none !important;
+}
+html body.recipe94 .product-info-main #product_addtocart_form .calculator #calc_btn span {
+    text-decoration: none;
+    stroke: none;
+}
+@media screen and (max-width: 880px) and (min-width: 840px) {
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .box-quantity {
+        width: 150px;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty {
+        width: 150px;
+    }
+}
+@media screen and (max-width: 767px) {
+    html body.recipe94 .product-info-main #product_addtocart_form .calculator .calc-container .qty-input-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .box-quantity {
+        width: 100%;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .select-text {
+        width: 100%;
+        margin: 2rem auto;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 4rem !important;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group #area_to_cover{
+          position: relative !important;
+          right: -15px;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group label[for="area_to_cover"] span {
+          position: relative;
+          right: -35px;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .qty-input-group .select-text p {
+        margin: 0 auto;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty {
+        width: 100%;
+        justify-content: center;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .dec {
+        bottom: auto;
+        right: auto;
+        left: 0;
+        top: 0;
+        width: 65px;
+        height: 56px;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .dec span {
+        bottom: 0;
+        right: 0;
+        top: 1.3rem;
+        left: 2.5rem;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .inc {
+        bottom: auto;
+        right: 0;
+        left: auto;
+        top: 0;
+        width: 65px;
+        height: 56px;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calc-container .qty-input-group .ctm-input-qty > .inc span {
+        bottom: 0;
+        right: 0;
+        top: 1.3rem;
+        left: 2.5rem;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calculator #calc_btn {
+        position: absolute;
+        top: 4rem;
+        right: 0;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calculator #calc_btn span {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 126%;
+        /* or 18px */
+        display: flex;
+        align-items: center;
+        text-decoration-line: underline;
+        text-transform: capitalize;
+        stroke: none;
+    }
+    html body.recipe94 .product-info-main #product_addtocart_form .calculator #calc_btn span:before {
+        background-size: 20px;
+        padding-right: 25px;
+        height: 20px;
+        width: 20px;
+        top: 0px;
+    }
+}
+@media screen and (max-width: 480px) {
+    html body.recipe94 .product-info-main #product_addtocart_form .calculator #calc_btn {
+        position: absolute;
+        top: 6rem;
+        right: 0;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+}
