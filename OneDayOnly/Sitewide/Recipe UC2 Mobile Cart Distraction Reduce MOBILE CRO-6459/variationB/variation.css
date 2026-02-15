@@ -1,0 +1,29 @@
+
+@media (max-width: 767px) {
+    html body.cro-uc2-cartDrawer footer+div.active{
+        width: 100%;
+    }
+
+    html[pagepath="checkout?step=cart"] body.cro-uc2-cartDrawer #__next .active{
+        width: 100%;
+    }
+
+    html[pagepath="checkout?step=cart"] body.cro-uc2-cartDrawer #__next h1+div[font-size="0.95rem,1.2rem,2"]{
+        display: none;
+    }
+
+    html[pagepath="checkout?step=cart"] body.cro-uc2-cartDrawer #__next h1{
+        font-size: 0;
+    }
+
+    html[pagepath="checkout?step=cart"] body.cro-uc2-cartDrawer #__next h1::after{
+        content: 'Cart Summary';
+        color: #444;
+        font-family: Montserrat;
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px; /* 119.048% */
+    }
+
+}
