@@ -1,0 +1,140 @@
+html body.croki51 .croki51-new-banner-inner {
+    position: absolute;
+    bottom: -40px;
+    width: 608px;
+    right: 75px;
+    /* margin-bottom: 16px; */
+    /* display: none; */
+}
+
+html body.croki51 img.croki51_image {
+    width: 100%;
+}
+
+html body.croki51 .cro_Control-Banner {
+    display: none;
+}
+
+html body.croki51 .navbar .overlay {
+    width: 320px;
+}
+
+html body.croki51 .register-hld.otpscreen .croki51-new-banner.desktop {
+    display: none;
+}
+
+@media (max-width:1399px) and (min-width:1280px) {
+    html body.croki51 .croki51-new-banner-inner {
+        width: 500px;
+        right: 60px;
+    }
+}
+
+@media (max-width:1279px) and (min-width:1200px) {
+    html body.croki51 .croki51-new-banner-inner {
+        width: 500px;
+        right: 40px;
+    }
+
+    html body.croki51 #divIdNumber> :not(.register-btn) {
+        width: 62.666667%;
+    }
+
+    html body.croki51 #bgcontrol .page-caption {
+        font-size: 42px;
+    }
+
+    html body.croki51 #bgcontrol .page-text {
+        font-size: 46px;
+    }
+
+    html body.croki51 #bgcontrol {
+        width: 100%;
+        max-width: 90%;
+    }
+}
+
+@media (max-width:1199px) and (min-width:1024px) {
+    html body.croki51 .croki51-new-banner-inner {
+        width: 450px;
+        right: -17px;
+    }
+
+    html body.croki51 #divIdNumber> :not(.register-btn) {
+        width: 58.666667%;
+    }
+
+    html body.croki51 #bgcontrol .page-caption {
+        font-size: 38px;
+    }
+
+    html body.croki51 #bgcontrol .page-text {
+        font-size: 42px;
+    }
+
+    html body.croki51 #bgcontrol {
+        width: 100%;
+        max-width: 80%;
+    }
+}
+
+@media (max-width:1023px) and (min-width:992px) {
+    html body.croki51 .croki51-new-banner-inner {
+        width: 450px;
+        right: -15px;
+    }
+
+    html body.croki51 #divIdNumber> :not(.register-btn) {
+        width: 55.666667%;
+    }
+
+    html body.croki51 #bgcontrol .page-caption {
+        font-size: 36px;
+    }
+
+    html body.croki51 #bgcontrol .page-text {
+        font-size: 38px;
+    }
+
+    html body.croki51 #bgcontrol {
+        width: 100%;
+        max-width: 78%;
+    }
+}
+
+@media (max-width:991px) {
+    html body.croki51 .croki51-new-banner.desktop {
+        display: none;
+    }
+
+    html body.croki51 .croki51-new-banner.mobile {
+        display: block !important;
+    }
+
+    html body.croki51 .phone1and2img-mobile-div {
+        display: none !important;
+    }
+
+    html body.croki51 #bgcontrol+.d-flex {
+        justify-content: center !important;
+    }
+
+    html body.croki51 .croki51-new-banner-inner {
+        position: relative;
+        bottom: -40px;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        right: 0;
+    }
+}
+
+@media (max-width:767px) {
+    html body.croki51 .croki51-new-banner-inner {
+        /* position: relative; */
+        bottom: 0px;
+        width: 97%;
+        /* max-width: 600px; */
+        margin: 0 auto;
+    }
+}

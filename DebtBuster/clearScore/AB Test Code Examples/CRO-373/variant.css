@@ -1,0 +1,82 @@
+html body.cro-Recipe-i1.recipe-t-66-68 h2.cro-form-leftText-title::after{
+    content: "Complete your application with DebtBusters";
+    font-size: 40px;
+    line-height: 48.41px;
+    max-width: 524px;
+    display: inline-block;
+    width: 100%;
+    font-family: Inter, Metropolis, Helvetica, Arial, sans-serif;
+    color: #263648;
+    font-weight: 700;
+}
+
+html body.cro-Recipe-i1.recipe-t-66-68 h2.cro-form-leftText-title{
+    font-size: 0;
+}
+
+html body.cro-Recipe-i1.recipe-t-66-68 .cro-form-leftText{
+    width: 53%;
+    margin-right: 32px;
+}
+
+html body.cro-Recipe-i1.recipe-t-66-68 .hbspt-form{
+    width: 44%;
+}
+
+html body.cro-Recipe-i1 .cro-form-leftTextTitle.leftText-title{
+    max-width: 524px;
+}
+
+html body.cro-Recipe-i1 span.cro-t-66_68-btn-content {
+    width: 100%;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    padding: 12px 24px;
+    border-radius: 5px;
+}
+
+html body.cro-Recipe-i1 .cro-t-66_68-btn-wrapper {
+    background-color: #0f81a3;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+html body.cro-Recipe-i1 .hbspt-form .actions .hs-button{
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    html body.cro-Recipe-i1.recipe-t-66-68 h2.cro-form-leftText-title::after{
+        font-size: 29px;
+        line-height: 38px;
+    }
+}
+
+@media (max-width: 767px) {
+    html body.cro-Recipe-i1.recipe-t-66-68 .cro-form-leftText{
+        width: 100%;
+    }
+
+    html body.cro-Recipe-i1.recipe-t-66-68 .hbspt-form{
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    html body.cro-Recipe-i1.recipe-t-66-68 h2.cro-form-leftText-title::after{
+        font-size: 25px;
+        line-height: 30.26px;
+        margin-top: 20px;
+    }
+    
+}
+
+@media (max-width: 362px){
+    html body.cro-Recipe-i1.recipe-t-66-68 h2.cro-form-leftText-title::after{
+        font-size: 21px;
+        line-height: 29px;
+    }
+}

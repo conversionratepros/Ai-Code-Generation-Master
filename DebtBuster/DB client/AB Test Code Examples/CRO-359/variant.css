@@ -1,0 +1,254 @@
+html body.cro-t-43_42 li.upper-list-element {
+  list-style: none;
+  padding: 7px;
+  color: #282828;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 23px;
+  font-family: Open Sans;
+}
+
+html body.cro-t-43_42 .cro-t-43-new-list-part .upper-list-group {
+  padding-left: 0;
+}
+
+html body.cro-t-43_42 .topcap h1.page-caption {
+  font-size: 0;
+}
+
+html body.cro-t-43_42 .topcap h1.page-caption::after {
+  content: 'Need a credit check fast?';
+  color: #282828;
+  font-size: 46px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  line-height: 1.2;
+  font-family: Open Sans;
+}
+
+html body.cro-t-43_42 .topcap p.page-text {
+  font-size: 0;
+  line-height: 0;
+}
+
+html body.cro-t-43_42 .topcap p.page-text::after {
+  content: 'Let’s get you sorted.';
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 55px;
+  color: #282828;
+  font-family: Open Sans;
+}
+
+html body.cro-t-43_42 #genregister .upper-list-group {
+  display: none;
+}
+
+html body.cro-t-43_42 .cro-t-43_42-top-secure-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* icon-text */
+
+html body.cro-t-43_42 .cro-t-43_42-top-secure-text {
+  font-size: 18px;
+  line-height: normal;
+  text-align: left;
+  color: #919191;
+  margin-left: 9px;
+  font-family: Open Sans;
+}
+
+html body.cro-t-43_42 .cro-t-43_42-top-secure-wrapper {
+  display: flex;
+  /* margin-bottom: 13px; */
+  align-items: center;
+  margin-top: 12px;
+}
+
+html body.cro-t-43_42 .bottom-section .bottom-div2::after {
+  content: "Easily view your credit score and stats";
+  font-size: 18px;
+  line-height: normal;
+  color: #000000;
+  font-weight: 700;
+  position: absolute;
+  top: -30px;
+  left: 9%;
+  font-family: Open Sans;
+
+}
+
+html body.cro-t-43_42 #divIdNumber {
+  margin-bottom: 0px;
+}
+
+html body.cro-t-43_42 .cro-t-top-secure-mob {
+  display: none;
+}
+
+html body.cro-t-43_42 section.mb-4 .bottom-section {
+  margin-top: 85px;
+}
+
+@media (min-width: 768px) {
+  html body.cro-t-43_42 .cro-t-43-new-list-part:not(.cro-list-part-mobile) {
+      display: none;
+  }
+}
+
+@media (min-width:1200px) {
+  html body.cro-t-43_42 .bottom-section .bottom-div2::after {
+      left: 9%;
+  }
+}
+
+@media (min-width:1500px) {
+  html body.cro-t-43_42 .bottom-section .bottom-div2::after {
+      left: 21%;
+  }
+}
+
+@media (min-width:1900px) {
+  html body.cro-t-43_42 .bottom-section .bottom-div2::after {
+      top: -30px;
+      left: 28%;
+  }
+}
+
+@media (min-width:992px) {
+  html body.cro-t-43_42 .cro-t-43_42-top-secure-wrapper{
+      margin-bottom: 5px;
+  }
+}
+
+@media (max-width:991px) {
+  html body.cro-t-43_42 .cro-t-43_42-top-secure {
+      display: none;
+  }
+
+  html body.cro-t-43_42 .cro-t-top-secure-mob {
+      display: block;
+  }
+
+  html body.cro-t-43_42 .cro-t-43_42-top-secure-wrapper {
+      /* margin-top: 0; */
+      margin-bottom: 15px;
+      margin-top: 5px;
+  }
+
+  html body.cro-t-43_42 #divIdNumber .col-lg-8 {
+      margin-bottom: 10px;
+  }
+
+  html body.cro-t-43_42 .topcap+div #genregister .custom-row.margin-tab {
+      display: block;
+      height: 0;
+  }
+
+  html body.cro-t-43_42 .topcap.topbanmobsecondstep+div #genregister .custom-row.margin-tab {
+    display: block;
+    height: auto;
+
+  }
+
+  html body.cro-t-43_42 #genregister .register-btn {
+      margin-bottom: 21px;
+  }
+
+  html body.cro-t-43_42 .topcap h1.page-caption::after {
+      color: #282828;
+      font-size: 30px;
+      line-height: normal;
+  }
+
+  html body.cro-t-43_42 .topcap p.page-text::after {
+      font-size: 30px;
+      line-height: normal;
+  }
+
+  html body.cro-t-43_42 .topcap p.page-text {
+      margin-bottom: 7px;
+  }
+
+  html body.cro-t-43_42 .topcap h1.page-caption {
+      margin-bottom: 0;
+  }
+
+  html body.cro-t-43_42 li.upper-list-element {
+      list-style: none;
+      padding: 7px;
+      color: #282828;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 23px;
+  }
+
+  html body.cro-t-43_42 section.mb-4 .bottom-div1 {
+      margin-bottom: 35px;
+  }
+
+  section.mb-4 .bottom-div2 .mobile-two {
+      margin-top: 31px;
+  }
+
+  html body.cro-t-43_42 .bottom-section .bottom-div2::after {
+      left: auto;
+      width: 100%;
+      /* max-width: 310px; */
+      text-align: center;
+  }
+
+  html body.cro-t-43_42 section.mb-4 .bottom-section {
+      margin-top: 24px;
+  }
+
+  .cro-t-43_42-top-secure-icon {
+    max-width: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cro-t-43_42-top-secure-icon svg {
+      width: 100%;
+  }
+
+  html body.cro-t-43_42 .cro-t-43_42-top-secure-text{
+    font-size: 16px;
+  }
+
+  .cro-t-43_42-top-secure-icon svg {
+    max-width: 15px;
+  }
+}
+
+@media (max-width:767px) {
+  html body.cro-t-43_42 .cro-list-part-mobile {
+      display: block;
+  }
+
+  html body.cro-t-43_42 .cro-t-43-new-list-part:not(.cro-list-part-mobile) {
+      display: none;
+  }
+
+  html body.cro-t-43_42 .registerholder .topcap {
+      padding-right: 1rem !important;
+  }
+}
+
+html body.cro-t-43_42 .phone1and2img-desktop-div.phone1and2img-desktop{
+  right: 0;
+}
+
+@media (max-width:500px) {
+  html body.cro-t-43_42 .bottom-section .bottom-div2::after {
+      width: 100%;
+      max-width: 310px;
+  } 
+}

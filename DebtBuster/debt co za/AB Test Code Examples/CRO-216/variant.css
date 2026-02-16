@@ -1,0 +1,892 @@
+html body.cro-t-9 .cro-stopDebt {
+    background-color: #F2F2F2;
+    height: 100%;
+    min-height: 308px;
+}
+
+html body.cro-t-9 .pt-10.pb-0 .hidden.redirect-msg {
+    padding-top: 20px;
+}
+
+html body.cro-t-9 .cro-stopDebt-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    /* padding: 100px 10px; */
+    margin-top: 50px;
+    padding-top: 65px;
+}
+
+html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-img {
+    width: 55%;
+    position: absolute;
+    /* top: -200px; */
+    width: 100%;
+    max-width: 580px;
+    left: -80px;
+}
+
+html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-text {
+    width: 50%;
+    /* padding: 15px; */
+    margin-left: auto;
+}
+
+html body.cro-t-9 .stopDebt-content-textTitle {
+    max-width: 415px;
+}
+
+html body.cro-t-9 h2.stopDebt-content-text-title {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 33px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #414141;
+    margin: 0;
+}
+
+html body.cro-t-9 .stopDebt-content-texPara {
+    max-width: 495px;
+    /* padding-top: 5px; */
+}
+
+/* html body.cro-t-9 p.stopDebt-content-text-para {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #263648;
+} */
+
+html body.cro-t-9 .pt-10 .new-cro-form-heading {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 21.09px;
+    text-align: left;
+    padding-bottom: 26px;
+    padding-left: 0;
+    color: #414141;
+    padding-top: 0;
+}
+
+@media (min-width:1342px) {
+    html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-img {
+        left: -30px;
+        bottom: -92px;
+    }
+
+}
+
+@media (max-width:1341px) {
+    html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-img {
+        left: -80px;
+        bottom: -70px;
+        max-width: 540px;
+    }
+
+}
+
+@media (max-width:1089px) {
+    html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-img {
+        max-width: 500px;
+        left: -80px;
+        bottom: -48px;
+
+    }
+}
+
+/* ------from-Design---- */
+
+html body.cro-t-9 .border h2:not(.new-cro-form-heading) {
+    display: none;
+}
+
+html body.cro-t-9 h2.new-cro-form-heading {
+    display: block;
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+html body.cro-t-9 .pt-10 .border {
+    /* border: 15px solid #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0px 40px 46px 1px #2636485E; */
+    border: 10px solid #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0px 40px 46px 1px #2636485E;
+    background-color: #f1f1f1;
+    width: 100%;
+    max-width: 460px;
+}
+
+html body.cro-t-9 .border form.py-5 {
+    box-shadow: 1px -2px 7px 0px #2636485E inset;
+    border-radius: 10px;
+}
+
+@media (max-width:1023px) {
+    html body.cro-t-9 .border .grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 0px !important;
+    }
+
+}
+
+html body.cro-t-9 section.py-5.lg\:py-10.bg-gray {
+    display: none;
+}
+
+
+html body.cro-t-9 .cro-t-9-solve-new-part-wrapper {
+    /* background-color: #fff; */
+    background-color: rgba(242, 242, 242, 1);
+
+}
+
+/* @media (min-width: 1024px) {
+    .container {
+        width: 75%;
+    }
+} */
+html body.cro-t-9 .cro-t-9-icon-text-all-parts {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* padding-bottom: 80px; */
+    padding-bottom: 67px;
+}
+
+html body.cro-t-9 .cro-container-all {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+html body.cro-t-9 img.cro-t-9-icon-first {
+    width: 100%;
+    max-width: 59px;
+    margin-bottom: 15px;
+}
+
+html body.cro-t-9 p.cro-t-9-icon-text-header {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.09px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+    color: #0E70AB;
+}
+
+html body.cro-t-9 p.cro-t-9-icon-sub-header-text {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.75px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #424242;
+    max-width: 220px;
+}
+
+html body.cro-t-9 img.cro-t-9-icon-second {
+    width: 100%;
+    max-width: 45px;
+    padding-bottom: 15px;
+    /* padding-top: 30px; */
+}
+
+html body.cro-t-9 img.cro-t-9-icon-third {
+    width: 100%;
+    max-width: 50px;
+    padding-bottom: 15px;
+}
+
+p.cro-t-9-solve-title-part-text {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 37px;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: rgba(65, 65, 65, 1);
+    margin: 0;
+    padding-top: 40px;
+    /* padding-bottom: 65px; */
+    padding-bottom: 80px;
+
+}
+
+@media (max-width: 1023px) {
+    html body.cro-t-9 .cro-t-9-icon-text-all-parts {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    html body.cro-t-9 img.cro-t-9-icon-second {
+        padding-top: 50px;
+    }
+
+    html body.cro-t-9 img.cro-t-9-icon-third {
+        padding-top: 50px;
+    }
+
+    p.cro-t-9-solve-title-part-text {
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 32.81px;
+        text-align: center;
+        max-width: 300px;
+        padding-bottom: 55px;
+        margin: 0 auto;
+
+    }
+
+    html body.cro-t-9 .cro-t-9-icon-text-all-parts {
+        padding-bottom: 40px;
+    }
+}
+
+html body.cro-t-9 .cro-stopDebt {
+    background: rgba(242, 242, 242, 1);
+}
+
+html body.cro-t-9 .cro-stopDebt-wrapper {
+    padding: 70px 10px 70px 10px;
+    position: relative;
+    margin-top: 62px;
+}
+
+html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-img {
+    /* width: 55%; */
+    position: absolute;
+    width: 100%;
+    max-width: 516px;
+    /* left: -90px; */
+    bottom: 0;
+}
+
+html body.cro-t-9 img.stopDebt-content-img {
+    width: 100%;
+}
+
+html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-text {
+    width: 47%;
+    margin-left: auto;
+}
+
+html body.cro-t-9 .stopDebt-content-textTitle {
+    max-width: 491px;
+}
+
+html body.cro-t-9 h2.stopDebt-content-text-title {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 32.81px;
+    text-align: left;
+    color: rgba(65, 65, 65, 1);
+    width: 100%;
+    margin: 0;
+}
+
+html body.cro-t-9 p.stopDebt-content-text-para.cro-header-1 {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22.4px;
+    text-align: left;
+    margin-top: 9px;
+    margin-bottom: 0;
+    color: #424242;
+}
+
+html body.cro-t-9 p.stopDebt-content-text-para.crosubheader-1 {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+    text-align: left;
+    color: #424242;
+    margin: 0;
+}
+
+html body.cro-t-9 p.stopDebt-content-text-para.cro-header-2 {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22.4px;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: #424242;
+}
+
+html body.cro-t-9 p.stopDebt-content-text-para.crosubheader-2 {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+    text-align: left;
+    margin: 0;
+    color: #424242;
+}
+
+html body.cro-t-9 .cro-ourScore-details {
+    background: rgba(242, 242, 242, 1);
+    padding-top: 42px;
+    padding-bottom: 42px;
+}
+
+html body.cro-t-9 .pt-10 h1 {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    text-align: left;
+    margin-bottom: 50px;
+    color: #414141;
+
+}
+
+html body.cro-t-9 .pt-10 h1>span {
+    color: #414141;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+html body.cro-t-9 .decorated {
+    max-width: 420px;
+}
+
+html body.cro-t-9 .pt-10.pb-0>.grid>div>p:not(.lead) {
+    /* display: none; */
+    color: #424242;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin-bottom: 43px;
+    width: 100%;
+    max-width: 432px;
+}
+
+html body.cro-t-9 .pt-10.pb-0 .lead.mb-10::before {
+    content: " There are just 3 simple steps to clearing your debt burden:";
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25.2px;
+    text-align: left;
+    color: #424242;
+
+}
+
+html body.cro-t-9 .pt-10.pb-0 .lead.mb-10 {
+    font-size: 0;
+    margin-bottom: 43px;
+}
+
+html body.cro-t-9 section.bg-gray {
+    display: none;
+}
+
+html body.cro-t-9 .pt-10.pb-0>.grid>div h1:not(.cro-t-9-text) {
+    display: none;
+}
+
+/* html body.cro-t-9 .cro-t-9-banner-header-wrapper {
+    max-width: 340px;
+} */
+
+html body.cro-t-9 .decorated>:nth-child(1) span:not(.bullet)::after {
+    content: 'Answer a few short questions about your current debt situation.';
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20.4px;
+    text-align: left;
+    color: #424242;
+}
+
+html body.cro-t-9 .decorated>:nth-child(1) span:not(.bullet) {
+    font-size: 0;
+}
+
+html body.cro-t-9 .decorated>:nth-child(2) span:not(.bullet)::after {
+    content: 'Use our free calculator to find the best solution customised to your financial needs.';
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20.4px;
+    text-align: left;
+    color: #424242;
+}
+
+html body.cro-t-9 .decorated>:nth-child(2) span:not(.bullet) {
+    font-size: 0;
+}
+
+html body.cro-t-9 .decorated>:nth-child(3) span:not(.bullet)::after {
+    content: 'We will pick the best solution for your specific situation.';
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20.4px;
+    text-align: left;
+    color: #424242;
+}
+
+html body.cro-t-9 .decorated>:nth-child(3) span:not(.bullet) {
+    font-size: 0;
+}
+
+html body.cro-t-9 p.lead.mb-10 {
+    max-width: 420px;
+}
+
+html body.cro-t-9 ol.decorated li {
+    align-items: center !important;
+    margin-bottom: 25px;
+}
+
+html body.cro-t-9 .pt-10.pb-0 #main-form {
+    display: flex;
+    flex-direction: column;
+    padding: 27px 31px 41px;
+}
+
+html body.cro-t-9 .cro-from-name-parent {
+    order: 1;
+}
+
+html body.cro-t-9 .cro-from-number-parent {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+html body.cro-t-9 .cro-from-id-number-parent {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+html body.cro-t-9 .cro-from-button-parent {
+    order: 4;
+    margin-top: 14px;
+    margin-bottom: 13px;
+}
+
+html body.cro-t-9 .cro-From-tnc {
+    order: 5;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.06px;
+    text-align: left;
+    color: #414141;
+    margin: 0;
+
+}
+
+html body.cro-t-9 .cro-From-tnc a {
+    text-decoration: underline;
+}
+
+html body.cro-t-9 .cro-from-button-parent #Callback,
+#Online {
+    margin: 0;
+}
+
+
+/* html body.cro-t-9 .cro-Sanlam-logo {
+    display: none;
+}
+
+html body.cro-t-9 .cro-Fincheck-logo {
+    display: none;
+} */
+
+/* html body.cro-t-9 .cro-DebtBusters-logo {
+    width: 100%;
+    max-width: 112px;
+}
+
+html body.cro-t-9 .cro-JustMoney-logo {
+    width: 100%;
+    max-width: 190px;
+}
+
+html body.cro-t-9 .cro-IDM-logo {
+    width: 100%;
+    max-width: 138px;
+} */
+
+/* html body.cro-t-9 .cro-icon-parent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+html body.cro-t-9 section .container h2.text-center {
+    display: none;
+}
+
+html body.cro-t-9 .cro-from-name-parent p,
+html body.cro-t-9 .cro-from-number-parent p,
+html body.cro-t-9 .cro-from-id-number-parent p,
+html body.cro-t-9 .cro-from-button-parent p {
+    margin-bottom: 12px;
+}
+
+
+html body.cro-t-9 [type='text'],
+input:where(:not([type])),
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+    border: 1px solid #C6C6C6;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.41px;
+    text-align: left;
+    padding: 11px 12px 12px 12px !important;
+    /* color: #949494; */
+}
+
+html body.cro-t-9 .mb-1 {
+    margin-bottom: 8px;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.41px;
+    text-align: left;
+    color: #000000;
+}
+
+html body.cro-t-9 .cro-from-button-parent #Callback,
+#Online {
+    margin: 0;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18.75px;
+    text-align: center;
+    padding: 11px 0px 10.61px 0px;
+    border: none;
+}
+
+
+@media (min-width: 1024px) {
+    html body.cro-t-9 .cro-ourScore {
+        display: none;
+    }
+
+    html body.cro-t-9 .pt-10 .border {
+        margin-top: 30px;
+    }
+
+    html body.cro-t-9 .lg\:items-center {
+        align-items: baseline;
+    }
+
+
+}
+
+@media (min-width:1101px) {
+    html body.cro-t-9 .container {
+        max-width: 1024px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1023px) {
+    html body.cro-t-9 .cro-stopDebt {
+        display: none;
+    }
+
+    html body.cro-t-9 .pt-10 h1 {
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 32px;
+        text-align: left;
+        margin-bottom: 22px;
+    }
+
+    html body.cro-t-9 section.pt-10.pb-0 {
+        padding-top: 34px;
+    }
+
+    html body.cro-t-9 .pt-10 h1>span {
+        margin-bottom: 9px;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 32.81px;
+        text-align: left;
+    }
+
+    /* html body.cro-t-9 .cro-DebtBusters-logo {
+        max-width: 70px;
+    }
+
+    html body.cro-t-9 .cro-JustMoney-logo {
+        max-width: 119px;
+    }
+
+    html body.cro-t-9 .cro-IDM-logo {
+        max-width: 87px;
+    } */
+
+    html body.cro-t-9 .pt-10.pb-0 .lead.mb-10 {
+        margin-bottom: 30px;
+    }
+
+    html body.cro-t-9 .pt-10 .new-cro-form-heading {
+        padding: 0;
+        padding-bottom: 18px;
+        font-size: 18px;
+    }
+
+    html body.cro-t-9 .cro-from-button-parent p {
+        margin-bottom: 15.5px;
+    }
+
+    html body.cro-t-9 .cro-from-button-parent #Callback,
+    #Online {
+        padding: 13px 0px 13.57px 0px;
+    }
+
+}
+
+
+/* ---------New---Update-----  */
+
+
+
+
+
+
+@media (max-width:1200px) {}
+
+
+@media (min-width:1024px) {
+    html body.cro-t-9 section.pt-10>div {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    html body.cro-t-9 .cro-t-9-banner-header {
+        margin-top: 40px;
+    }
+
+    html body.cro-t-9 ol.decorated li .bullet {
+        margin-right: 15px;
+    }
+
+    html body.cro-t-9 section.cro-icon-section-parent {
+        padding: 51px 0px;
+    }
+
+    html body.cro-t-9 .cro-stopDebt-content.stopDebt-content-img {
+        left: -55px;
+
+    }
+}
+
+
+@media (min-width:1024px) and (max-width:1100px) {
+    html body.cro-t-9 .container {
+        width: 100%;
+        max-width: 900px;
+    }
+}
+
+@media (max-width:1023px) {
+    html body.cro-t-9 .pt-10.pb-0>.grid>div>p:not(.lead) {
+        display: none;
+    }
+
+    html body.cro-t-9 .decorated {
+        display: none;
+    }
+
+    html body.cro-t-9 .pt-10 h1 {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    html body.cro-t-9 ol.cro-decorated li .bullet {
+        margin-right: 19px;
+        flex-shrink: 0;
+        border-radius: 9999px;
+        --tw-bg-opacity: 1;
+        background-color: rgb(128 175 59 / var(--tw-bg-opacity));
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        font-weight: 700;
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+    }
+
+    html body.cro-t-9 p.cro-t-9-mobile-decorated-top-text {
+        color: #424242;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+        margin-bottom: 30px;
+    }
+
+    .cro-decorated li span:not(.bullet) {
+        color: #424242;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+        /* 19.2px */
+    }
+
+    html body.cro-t-9 ol.cro-decorated li {
+        align-items: center !important;
+        /* margin-bottom: 25px; */
+        display: flex;
+    }
+
+    html body.cro-t-9 .pt-10.pb-0 #main-form {
+        padding: 30px 11.5px 35px;
+    }
+
+    html body.cro-t-dcz-153.cro-t-9 section.pb-0>.gap-5 {
+        gap: 21px;
+    }
+
+    html body.cro-t-9 .cro-t-9-banner-header-wrapper {
+        max-width: 100%;
+    }
+
+    html body.cro-t-9 #main-form .cro-from-button-parent {
+        gap: 15.43px !important;
+        margin-bottom: 15.43px;
+    }
+
+    html body.cro-t-9 .cro-t-9-mobile-bullet-point {
+        display: block !important;
+    }
+
+    html body.cro-t-9 .cro-t-9-mobile-bullet-point-wrapper {
+        margin-top: 25px
+    }
+
+    html body.cro-t-9 section.pb-0 ol.cro-decorated {
+        display: block !important;
+        margin-bottom: 0;
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        justify-content: flex-start;
+    }
+
+    html body.cro-t-9 .cro-153-mobileAtf {
+        display: none;
+    }
+
+    html body.cro-t-9 section.cro-icon-section-parent {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    html body.cro-t-9 p.cro-t-9-solve-title-part-text {
+        padding-top: 46px;
+        padding-bottom: 55px;
+    }
+
+    html body.cro-t-9 p.cro-t-9-icon-sub-header-text {
+        margin-bottom: 0;
+    }
+
+    html body.cro-t-9 .cro-t-9-icon-text-all-parts {
+        padding-bottom: 63px;
+    }
+
+    html body.cro-t-9 p.stopDebt-content-text-para.cro-header-1 {
+        margin-top: 20px;
+    }
+
+    html body.cro-t-9 p.stopDebt-content-text-para.cro-header-2 {
+        margin-top: 24px;
+    }
+
+    html body.cro-t-9 section.pb-0 ol.decorated {
+        display: none !important;
+    }
+
+    html body.cro-t-9 .pt-10 .border {
+        max-width: 100%;
+    }
+
+    html body.cro-t-9 .mb-1 {
+        color: #424242;
+    }
+
+    html body.cro-t-9 .cro-ourScore-img-inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    html body.cro-t-9 img.stopDebt-content-img {
+        width: 462px;
+        height: 398px;
+        object-fit: contain;
+        max-width: unset;
+        object-position: center center;
+    }
+}
+
+@media (max-width:389px) {
+    html body.cro-t-9 ol.cro-decorated li {
+        align-items: flex-start;
+    }
+}

@@ -1,0 +1,646 @@
+/* normal */
+/* html body.register-body.cro-t-rec-2 .footr {
+    display: none;
+} */
+html body.register-body.cro-t-rec-2 .getfeatures {
+    display: none;
+}
+html body.register-body.cro-t-rec-2 .rightscorepnl {
+    display: none;
+}
+html body.register-body.cro-t-rec-2 img.overlay{
+    max-width: 250px;
+}
+html body.register-body.cro-t-rec-2 .needflex >.px-0{
+    max-width: 48%;
+}
+html body.register-body.cro-t-rec-2 .registerholder{
+    padding-top: 45px;
+    padding-bottom: 0;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    min-height: auto;
+}
+html body.register-body.cro-t-rec-2 .btn-responsive.login-button{
+    padding-bottom: 44px;
+}
+/* html body.register-body.cro-t-rec-2 .register-hld.register {
+    display: none;
+} */
+/* Credit Master */
+html body.register-body.cro-t-rec-2 section.cro-credit-master {
+    background-color: #FFFFFF;
+}
+html body.register-body.cro-t-rec-2 .cro-credit-master-leftImg {
+    max-width: 680px;
+}
+html body.register-body.cro-t-rec-2 img.cro-credit-master-left-img-desktop {
+    width: 100%;
+    display: block;
+}
+html body.register-body.cro-t-rec-2 img.cro-credit-master-left-img-mobile {
+    display: none;
+}
+html body.register-body.cro-t-rec-2 .cro-right-bottom-pointsImg {
+    max-width: 20px;
+    margin-right: 13px;
+}
+html body.register-body.cro-t-rec-2 img.cro-right-bottom-points-img {
+    width: 100%;
+}
+html body.register-body.cro-t-rec-2 .cro-credit-master-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    padding-right: 0;
+    padding-left: 0;
+}
+html body.register-body.cro-t-rec-2 .cro-credit-master-left {
+    margin-right: 50px;
+}
+html body.register-body.cro-t-rec-2 .cro-right-bottom-points {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+html body.register-body.cro-t-rec-2 .cro-right-bottom-points.right-bottom-points-two {
+    margin: 23px 0;
+}
+html body.register-body.cro-t-rec-2 .cro-right-bottom-points.right-bottom-points-three {
+    margin-bottom: 23px;
+}
+html body.register-body.cro-t-rec-2 .cro-right-bottom-points.right-bottom-points-one {
+    margin-top: 28px;
+}
+html body.register-body.cro-t-rec-2 h3.cro-credit-master-right-top-heading {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 57px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #282828;
+}
+html body.register-body.cro-t-rec-2 .cro-credit-master-right-topHeader {
+    max-width: 700px;
+}
+html body.register-body.cro-t-rec-2 .cro-right-bottom-points-text {
+    letter-spacing: 0em;
+    font-family: "Open Sans";
+    color: #282828;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 23px;
+    text-align: left;
+}
+@media (max-width: 1023px) {
+    html body.register-body.cro-t-rec-2 img.cro-credit-master-left-img-desktop {
+        display: none;
+    }
+    html body.register-body.cro-t-rec-2 img.cro-credit-master-left-img-mobile {
+        display: block;
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .cro-credit-master-wrapper {
+        flex-direction: column-reverse;
+    }
+    html body.register-body.cro-t-rec-2 .cro-credit-master-left {
+        margin-right: 0;
+    }
+    html body.register-body.cro-t-rec-2 h3.cro-credit-master-right-top-heading {
+        font-size: 30px;
+        line-height: 41px;
+    }
+}
+/* section-footer */
+html body.register-body.cro-t-rec-2 .new-section-footer {
+    background-color: #F2F2F2;
+    padding: 45px 0px;
+}
+html body.register-body.cro-t-rec-2 .cro-footer-text {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #282828;
+    margin-bottom: 0;
+}
+html body.register-body.cro-t-rec-2 .cro-t-2-footer-part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+/* html body.register-body.cro-t-rec-2 .cro-t-2-text-part {
+    margin-right: 27px;
+} */
+html body.register-body.cro-t-rec-2 .cro-button-style {
+    background-color: rgba(246, 130, 27, 1);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24.51px;
+    padding: 0px 30px;
+    height: 55px;
+}
+html body.register-body.cro-t-rec-2 .cro-button-style:hover {
+    background-color: white;
+    color: rgba(246, 130, 27, 1);
+}
+html body.register-body.cro-t-rec-2 .cro-form-control {
+    height: 55px;
+}
+@media (max-width:1023px) {
+    html body.register-body.cro-t-rec-2 .cro-t-2-footer-part {
+        display: flex;
+        flex-direction: column;
+    }
+    html body.register-body.cro-t-rec-2 .cro-footer-text {
+        font-size: 24px;
+        line-height: 33px;
+    }
+    html body.register-body.cro-t-rec-2 .cro-t-2-text-part {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+/* Banner */
+html body.register-body.cro-t-rec-2 section.cro-new-banner {
+    background-color: #F2F2F2;
+}
+html body.register-body.cro-t-rec-2 .cro-banner-bullet {
+    list-style: none;
+    padding: 0;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #282828;
+}
+html body.register-body.cro-t-rec-2 .cro-banner-bullet li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 30px;
+    line-height: 1.5;
+    font-size: 20px;
+    line-height: 23px;
+}
+html body.register-body.cro-t-rec-2 .cro-banner-bullet li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #61A644;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+html body.register-body.cro-t-rec-2 .cro-banner-rightImg {
+    max-width: 500px;
+}
+html body.register-body.cro-t-rec-2 img.cro-new-banner-right-img {
+    width: 100%;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: 115px;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner-right {
+    width: 50%;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner-left {
+    width: 50%;
+    margin-right: 50px;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner .page-caption {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 63px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #282828;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner .page-text {
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 63px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #282828;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner-leftText {
+    max-width: 380px;
+}
+html body.register-body.cro-t-rec-2 p.cro-new-banner-left-para {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #282828;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner .spacetop {
+    background-color: #F6821B;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: #FFFFFF;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner .login-button.pr-1 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: -0.05em;
+    text-align: left;
+    color: #282828;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner .cro-login-link {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: -0.05em;
+    text-align: left;
+    color: #61A644;
+}
+html body.register-body.cro-t-rec-2 .cro-new-banner .frmhold {
+    margin-bottom: 30px;
+}
+html body.register-body.cro-t-rec-2 .cro-custome {
+    margin-top: 18px;
+}
+html body.register-body.cro-t-rec-2 {
+    padding-bottom: 0;
+}
+@media (max-width:1023px) {
+    html body.register-body.cro-t-rec-2 .cro-new-banner-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    html body.register-body.cro-t-rec-2 .cro-new-banner .page-caption {
+        font-size: 30px;
+        line-height: 41px;
+    }
+    html body.register-body.cro-t-rec-2 .cro-new-banner .page-text {
+        font-size: 30px;
+        line-height: 41px;
+    }
+    html body.register-body.cro-t-rec-2 .cro-col {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .cro-col.cro-col-two {
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-right: 15px;
+    }
+    html body.register-body.cro-t-rec-2 .cro-col.cro-col-two button#btn-partical-register {
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .cro-new-banner-left {
+        margin-right: 0;
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .cro-new-banner-right {
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .cro-new-banner-wrapper {
+        margin-top: 25px;
+    }
+    html body.register-body.cro-t-rec-2 .cro-banner-bullet li {
+        font-size: 16px;
+        padding-left: 15px;
+    }
+    html body.register-body.cro-t-rec-2 .cro-br {
+        display: none !important;
+    }
+    html body.register-body.cro-t-rec-2 #cro-one-btn-partical-register {
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 #cro-two-btn-partical-register {
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .cro-banner-rightImg {
+        margin: 0 auto;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    html body.register-body.cro-t-rec-2 div#divIdNumber .cro-divIdNumber {
+        max-width: 500px;
+    }
+}
+html body.register-body.cro-t-rec-2 #cro-one-btn-partical-register:hover {
+    background-color: white;
+    color: rgba(246, 130, 27, 1);
+}
+html body.register-body.cro-t-rec-2 #btn-partical-register::after {
+  content: ' Get credit score';
+  font-size: 20px;
+  font-weight: 700;
+}
+html body.register-body.cro-t-rec-2 #btn-partical-register{
+    font-size: 0;
+    border-radius: 5px;
+    height: 55px;
+    margin-top: 0;
+}
+html body.register-body.cro-t-rec-2 .register.register-hld{
+    background-color: #F2F2F2;
+    min-height: auto !important;
+}
+@media (max-width:1023px) {
+    html body.register-body.cro-t-rec-2 .mobilebgreg[_ngcontent-wxd-c2]{
+        background: none;
+        background-color: #F2F2F2;
+        box-shadow: none;
+    }
+    html body.register-body.cro-t-rec-2 .login-button .login-button{
+        color: #282828 !important;
+    }
+    html body.register-body.cro-t-rec-2 .login-button .login-link{
+        color: #61A644 !important;
+    }
+    html body.register-body.cro-t-rec-2 #cro-two-btn-partical-register2{
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 #btn-partical-register{
+        height: fit-content;
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 #divIdNumber .col- {
+        padding: 0 9px;
+    }
+}
+@media (max-width:767px){
+    
+    html body.register-body.cro-t-rec-2 img.overlay{
+        max-width: 200px;
+    }
+    html body.register-body.cro-t-rec-2 .topcap{
+        padding-right: 15px !important;
+    }
+    html body.register-body.cro-t-rec-2 .cro-newImg img{
+        padding: 0 15px;
+    }
+    html body.register-body.cro-t-rec-2 section.cro-credit-master{
+        padding-left: 1rem;
+    }
+    html body.register-body.cro-t-rec-2 .btn-responsive.login-button{
+        padding-bottom: 10px;
+    }
+}
+html body.register-body.cro-t-rec-2 .cro-newImg {
+    width: 48%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+html body.register-body.cro-t-rec-2 .cro-newImg img {
+    width: 100%;
+    height: auto;
+    /* max-height: 462px; */
+    /* object-fit: contain; */
+}
+@media (min-width: 991px) and (max-width: 1200px) {
+    html body.register-body.cro-t-rec-2 .needflex{
+        align-items: normal;
+    }
+}
+@media (max-width:990px){
+    html body.register-body.cro-t-rec-2 .needflex{
+        flex-direction: column;
+    }
+    html body.register-body.cro-t-rec-2 .needflex >.px-0{
+        max-width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .registerholder{
+        padding-right: 0 !important;
+        padding-top: 0;
+    }
+    html body.register-body.cro-t-rec-2 .needflex >.px-0{
+        max-width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .cro-newImg{
+        width: 100%;
+    }
+    html body.register-body.cro-t-rec-2 .mobilebgreg {
+        background: none;
+        box-shadow: none;
+    }
+    html body.register-body.cro-t-rec-2 .frmhold{
+        margin-top: 10px;
+    }
+    html body.register-body.cro-t-rec-2 #divIdNumber{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (min-width: 1024px) and (max-width: 1200px) {
+    html body.register-body.cro-t-rec-2 .cro-credit-master-left{
+        margin-right: 20px;
+    }
+    html body.register-body.cro-t-rec-2 h3.cro-credit-master-right-top-heading{
+        line-height: 45px;
+    }
+    html body.register-body.cro-t-rec-2 .cro-right-bottom-points.right-bottom-points-two{
+        margin: 15px 0;
+    }
+    
+    html body.register-body.cro-t-rec-2 .cro-right-bottom-points.right-bottom-points-three{
+        margin-bottom: 15px;
+    }
+}
+@media (min-width: 768px) and (max-width: 990px) {
+    html body.register-body.cro-t-rec-2 .cro-newImg img{
+        width: 75%;
+        margin: 0 auto;
+    }
+}
+/*  */
+html body.register-body.cro-t-rec-2 p.cro-t-2-footer-validText {
+    color: red;
+    font-size: 12.8px;
+    font-weight: 400;
+    line-height: 19.2px;
+    margin-top: 5px;
+}
+html body.register-body.cro-t-rec-2 .cro-display{
+    display: block !important;
+}
+html body.register-body.cro-t-rec-2 .cro-hide{
+    display: none !important;
+}
+html body.register-body.cro-t-rec-2 .cro-bottom{
+    padding-bottom: 40px;
+}
+html body.register-body.cro-t-rec-2 .dbc-verify-no.cro-display{
+    display: flex !important;
+}
+html body.register-body.cro-t-rec-2 .dbc-verify-yes.cro-display{
+    display: flex !important;
+}
+@media (min-width: 991px) and (max-width: 1200px) {
+    html body.register-body.cro-t-rec-2 .cro-newImg{
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    html body.register-body.cro-t-rec-2 .cro-newImg img{
+        /* min-height: 450px; */
+    }
+    html body.register-body.cro-t-rec-2 .cro-right-bottom-points-text{
+        font-size: 18px;
+    }
+}
+@media (min-width: 320px) and (max-width: 468px) {
+    html body.register-body.cro-t-rec-2 .cro-right-bottom-points-text{
+        font-size: 11px;
+    }
+}
+html body.register-body.cro-t-rec-2 .cro-col-one {
+    display: none;
+}
+html body.register-body.cro-t-rec-2 .cro-col-two {
+    margin-top: 20px;
+}
+html body.register-body.cro-t-rec-2.cro-register-body .cro-newImg {
+    align-items: end;
+    justify-content: center;
+}
+html body.register-body.cro-t-rec-2.cro-register-body .btn-responsive.login-button {
+    display: none !important;
+}
+html body.register-body.cro-t-rec-2.cro-register-body #btn-register {
+    margin-top: 20px;
+}
+html body.register-body.cro-t-rec-2.cro-register-body .register.register-hld {
+    padding-top: 40px;
+    padding-bottom: 0;
+    background-color: #F2F2F2 !important;
+    background: none;
+}
+@media (max-width:767px){
+    html body.register-body.cro-t-rec-2.cro-register-body .topcap.topbanmobsecondstep {
+        background: none;
+        min-height: auto;
+        box-shadow: none;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    html body.register-body.cro-t-rec-2.cro-register-body #genregister {
+        margin-top: 20px;
+    }
+    html body.register-body.cro-t-rec-2.cro-register-body .login-button .login-button{
+        display: block !important;
+    }
+    html body.register-body.cro-t-rec-2.cro-register-body .custom-row.row:nth-child(6) .col{
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    html body.register-body.cro-t-rec-2.cro-register-body .btn-responsive.login-button{
+        display: flex !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 990px) {
+    html body.register-body.cro-t-rec-2 .register.register-hld{
+        padding-top: 40px;
+    }
+}
+html body.register-body.cro-t-rec-2.cro-register-body #btn-register {
+    font-size: 20px;
+    border-radius: 5px;
+    height: 55px;
+    margin-top: 0;
+}
+@media (max-width:767px){
+    html body.register-body.cro-t-rec-2 .cro-newImg img{
+        /* max-height: 550px; */
+    }
+}
+html body.register-body.cro-t-rec-2 .new-section-footer{
+    display: none;
+}
+
+html body.register-body.cro-t-rec-2 .form-control{
+    border: 1px solid #B9B9B9;
+}
+
+html body.register-body.cro-t-rec-2 .register .slider{
+    border: 2px solid #F6821B
+}
+
+html body.cro-register-body.cro-t-rec-2 .cond-text.pl-2 {
+    color: #282828 !important;
+}
+
+html body.cro-register-body.cro-t-rec-2 .cond-text.pl-2 .text-underline {
+    color: #282828 !important;
+}
+
+/* Updated code */
+html body.register-body.cro-t-rec-2 .register .slider::before {
+    left: 2px;
+    /* right: 50%; */
+    top: 0px;
+    /* bottom: 50%; */
+}
+
+html body.register-body.cro-t-rec-2 div#divIdNumber {
+    margin-bottom: 0;
+}
+
+html body.register-body.cro-t-rec-2.cro-register-body #bgcontrol .btn-responsive{
+    display: none;
+}
+
+html body.register-body.cro-t-rec-2 .btn-responsive.login-button{
+    padding: 0;
+}
+
+html body.register-body.cro-t-rec-2.cro-register-body  .cro-banner-bullet {
+    padding-bottom: 44px;
+}
+
+
+@media (min-width: 1400px){
+    html body.register-body.cro-t-rec-2 #genregister .custom-row:not(.required) .col {
+        /* display: flex; */
+        flex-direction: column;
+        justify-content: left !important;
+        align-items: flex-start !important;
+    }
+}
+
+@media (min-width: 1024px){
+    html body.register-body.cro-t-rec-2 section.cro-credit-master{
+        padding-bottom: 115px;
+    }
+    
+    html body.register-body.cro-t-rec-2 #bgcontrol {
+        margin-bottom: 2rem !important;
+    }
+}
+
+
+@media (max-width: 1023px){
+    html body.register-body.cro-t-rec-2 section.cro-credit-master{
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 767px){
+    html body.register-body.cro-t-rec-2 section.cro-credit-master{
+        padding-bottom: 1rem;
+    }
+}

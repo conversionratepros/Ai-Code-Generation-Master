@@ -1,0 +1,17 @@
+html body.cro-t-74 h2.cro-t-74-Heading {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #263648;
+    font-weight: bold;
+    padding-top: 65px;
+}
+
+html body.cro-t-74 .hs_cos_wrapper_widget > .container > .cro-t-74-Heading + .blurb {
+    margin-top: 0;
+}
+
+@media (max-width: 767px){
+    html body.cro-t-74 h2.cro-t-74-Heading {
+        font-size: 24px;
+    }
+}

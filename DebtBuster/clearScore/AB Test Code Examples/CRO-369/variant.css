@@ -1,0 +1,43 @@
+html body.cro-t-75_76 #form-embed-placeholder {
+  background-color: #F5F5F5 !important;
+  padding: 35px 25px;
+}
+
+html body.cro-t-75_76 #form-embed-placeholder:before {
+    content: 'Once you fill in your details, our debt counsellors will use them to contact you and discuss your debt situation.';
+    font-size: 16px;
+    color: #757575;
+    display: block;
+    margin-bottom: 15px;
+}
+
+html body.cro-t-75_76 .hs_id_number.hs-id_number {
+  display: flex;
+  flex-direction: column;
+}
+
+.cro-75_79-idNumber img {
+  /* width: 100%; */
+  /* max-width: 14px; */
+  height: 16px;
+}
+
+.cro-75_79-idNumber {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 15px;
+  /* margin-bottom: 15px; */
+  order: 4;
+}
+
+.cro-75_79-idNumber span {
+  font-size: 12px;
+  color: #757575;
+}
+
+@media(max-width: 767px) {
+  .cro-75_79-idNumber {
+    align-items: flex-start;
+  }
+}

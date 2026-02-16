@@ -1,0 +1,236 @@
+html body.cro-t-85 .logos.container [alt="ClearScore logo"] {
+    width: 168px;
+    margin-left: 0;
+}
+
+html body.cro-t-85 .logos.container [alt="DebtBusters logo"] {
+    width: 138px;
+}
+
+html body.cro-t-85 .row-fluid-wrapper .logos-wrapper .logos {
+    justify-content: flex-start;
+}
+
+/* ------Navbar code My section------ */
+
+html body.cro-t-85 .cro-t-85-active-users {
+    width: 100%;
+    margin: auto;
+}
+
+html body.cro-t-85 .cro-t-85-active-users-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+html body.cro-t-85 .cro-t-85-active-users-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-t-85 .cro-t-85-active-users-left,
+html body.cro-t-85 .cro-t-85-active-users-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-t-85 .cro-t-85-active-users-left-icon {
+    width: 100%;
+    max-width: 26.86px;
+    margin-right: 14px;
+}
+
+html body.cro-t-85 .cro-t-85-active-users-right-icon {
+    width: 100%;
+    max-width: 30px;
+    margin-right: 14px;
+}
+
+html body.cro-t-85 .cro-user-icon,
+html body.cro-t-85 .cro-results-icon {
+    width: 100%;
+}
+
+
+html body.cro-t-85 .cro-t-85-active-users-header-text {
+    font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17.78px;
+    text-align: left;
+    color: #ACF1F0;
+}
+
+html body.cro-t-85 .cro-t-85-active-users-subheader-text {
+    font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+    color: #fff;
+
+}
+
+html body.cro-t-85 .cro-t-85-active-users-subheader-text span {
+    font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.94px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.cro-t-85-active-users hr {
+    width: 1px;
+    height: 30px;
+    /* color: #ACF1F0; */
+    margin-left: 19px;
+    margin-right: 22px;
+    border: 1px solid #ACF1F0;
+}
+
+html body.cro-t-85 .cro-t-85-active-users-mob {
+    display: none;
+}
+
+@media (max-width:1023px) {
+
+    .cro-t-85-active-users hr {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users svg {
+        margin-right: 8px;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro-t-85 .cro-t-85-active-users {
+        display: none;
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-mob {
+        background-color: #152334;
+        display: block;
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-wrapper-mob {
+        height: 100%;
+        min-height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.cro-t-85 .logos.container [alt="ClearScore logo"] {
+        width: 122.25px;
+        margin: 0;
+    }
+
+    html body.cro-t-85 .logos.container [alt="DebtBusters logo"] {
+        width: 83.08px;
+        margin: 0;
+    }
+
+    html body.cro-t-85 .row-fluid-wrapper .logos-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60px;
+    }
+
+    html body.cro-t-85 .row-fluid-wrapper .logos-wrapper .logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-header-text-mob {
+        font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+        text-align: left;
+        color: #ACF1F0;
+
+
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-header-text-mob span {
+        font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 15px;
+        text-align: left;
+        color: #ACF1F0;
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-subheader-text-mob {
+        font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 15px;
+        text-align: left;
+        color: #fff;
+
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-subheader-text-mob span {
+        font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 15px;
+        text-align: left;
+        color: #fff;
+
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-right-mob,
+    html body.cro-t-85 .cro-t-85-active-users-left-mob {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-inner-mob {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cro-t-85-active-users-left-icon-mob {
+        width: 100%;
+        max-width: 26.86px;
+        margin-right: 9.14px;
+    }
+
+    .cro-t-85-active-users-right-icon-mob {
+        width: 100%;
+        max-width: 30px;
+        margin-right: 5px;
+    }
+
+    html body.cro-t-85 .cro-user-icon-mob,
+    html body.cro-t-85 .cro-results-icon-mob {
+        width: 100%;
+    }
+
+    html body.cro-t-85 .cro-results-icon-mob {
+        width: 100%;
+        margin-right: 5px;
+    }
+
+    html body.cro-t-85 .cro-t-85-active-users-mob hr {
+        width: 1px;
+        height: 30px;
+        margin-left: 53px;
+        margin-right: 15px;
+        /* color: #ACF1F0; */
+        border: 1px solid #ACF1F0;
+    }
+}

@@ -1,0 +1,241 @@
+.hideMobile { display: block; }
+.hideDesktop { display: none; }
+
+.clientSnapshot {
+    background: url(https://crp-clients-images.s3.af-south-1.amazonaws.com/DebtBusters/desktop.png) center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #fff;
+    position: relative;
+    padding-top: 50px;
+    /*padding-left: 130px;
+    padding-right: 130px;*/
+    border: none !important;
+}
+
+.floatLeft {
+    width: 50%;
+    float: left; 
+}
+
+.floatRight {
+    width: 50%;
+    float: right; 
+}
+
+.clientSnapshot img {
+    /*width: 407px;*/
+    width: 82% !important;
+}
+
+.imgLeft {
+    float: left;
+    margin-left: -5% !important;
+}
+
+.imgRight {
+    float: right;
+    margin-right: -5% !important;
+}
+}
+
+.clearfix { clear: both; margin-bottom: 50px; }
+
+.text h3 {
+    color: #282828;
+    font-family: "Open Sans";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 123%; /* 44.28px */
+}
+
+.text h4 {
+    color: #5BAC43;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 15p;
+    margin-bottom: 30px;
+    line-height: 23px; /* 115% */
+}
+
+.text p {
+    color: #282828;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px; /* 143.75% */
+}
+
+.image { width: 40% !important; }
+.text { width: 60% !important; }
+
+.registerButton, .registerButton:active {
+    border-radius: 5px;
+    background: #F6821B;
+    border: none;
+    width: 20%;
+    height: 52px;
+    flex-shrink: 0;
+    text-align: center;
+    color: #FFF;
+    text-align: center;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.9px;
+    margin-left: 40%;
+    margin-top: -2%;
+    letter-spacing:  normal !important;
+}
+
+.registerButton:hover {
+    background: #fff;
+    color: #F6821B;
+}
+
+
+.footerRegistration {
+    bottom: -150px !important;
+}
+
+.containerOne .text { margin-top: 9%; }
+.containerTwo .text { margin-top: 9%; }
+.containerThree .text { margin-top: 9%; }
+
+@media only screen and (min-width: 768px) {
+    .clientContainer { max-width: 720px !important;  }
+}
+
+@media only screen and (min-width: 992px) {
+    .clientContainer { max-width: 960px !important;  }
+}
+
+@media only screen and (min-width: 1200) {
+    .clientContainer { max-width: 1140px !important;  }
+}
+
+@media only screen and (min-width: 1400px) {
+    .clientContainer { max-width: 1320px !important;  }
+}
+
+@media only screen and (max-width: 992px) {
+   
+   .imgLeft { margin-left: 0px !important; }
+   .imgRight { margin-right: 0px !important; }
+.clientSnapshot img { width: 100% !important; }
+
+.containerOne .text { margin-top: 0% !important; }
+.containerTwo .text { margin-top: 0% !important; }
+.containerThree .text { margin-top: 0% !important; }
+
+.containerOne { margin-left: 0px !important; }
+
+  .clientSnapshot {
+    background: url(https://crp-clients-images.s3.af-south-1.amazonaws.com/DebtBusters/mobile.png) center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #fff;
+    padding: 0px !important;
+  }
+  .text { width: 100% !important }
+  .image { width: 100% !important; }
+
+   .text h3 {
+    color: #282828;
+    font-family: "Open Sans";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 123%; 
+    align-self: stretch;
+    padding-left: 4%;
+    width: 86%;
+   }
+
+    .text h4 {
+        color: #5BAC43;
+        font-family: "Open Sans";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 23px;
+        align-self: stretch;
+        padding-left: 4%;
+    width: 85%;
+    }
+
+    .text p {
+        color: #282828;
+font-family: "Open Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 23px; /* 143.75% */
+align-self: stretch;
+padding-top: 2%;
+padding-left: 5%;
+padding-right: 5%;
+    }
+
+    .containerOne { padding-top: 18%; }
+
+    .containerTwo .floatLeft { float: right !important; }
+    .containerTwo .floatRight { float:left !important;}
+
+    .image { margin-bottom: 10%; margin-top: 2%; }
+    .image img { width: 102% !important; }
+
+    .registerButton {
+        color: #FFF;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    text-align: center;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.9px;
+    width: 60% !important;
+    margin-left: 20% !important;
+    position: absolute;
+    bottom: 20px;
+    }
+
+    .hideDesktop { display: block; }
+    .hideMobile { display: none; }
+
+    .footerRegistration {
+        bottom: -50px !important;
+    }
+
+    #idBottom {
+        bottom: -16px;
+     }
+
+     .register-bg { background-image: none !important; background-color: #fff !important; }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .registerButton { z-index: 999 !important; bottom: 30px !important; }
+    .footerRegistration { bottom: -140px !important; }
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+    .text { width: 50% !important; }
+    .imgLeft { margin-left: 0px !important; }
+    .imgRight { margin-right: 0px !important; }
+    .clientSnapshot img { width: 100% !important; }
+    .registerButton { width: 30% !important; margin-left: 35% !important; }
+    .register-bg { background-image: none !important; background-color: #fff !important; }
+}

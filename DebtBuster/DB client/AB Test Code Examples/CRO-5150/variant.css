@@ -1,0 +1,240 @@
+html body.croKI152 .cro152-credibility-logos-left {
+    width: 171px;
+    height: 68.84px;
+    padding: 4.075px 14.615px 4.489px 4.244px;
+    border-right: 1px solid #CECECE;
+}
+
+html body.croKI152 .cro152-credibility-logos-left img {
+    width: 100%;
+    height: 100%;
+}
+
+html body.croKI152 .cro152-credibility-logos-right-ncr {
+    width: 108.524px;
+    height: 60.346px;
+}
+
+html body.croKI152 .cro152-credibility-logos-right-ncr img {
+    width: 100%;
+}
+
+html body.croKI152 .cro152-credibility-right-DEBT-text {
+    color: #6C757D;
+    font-family: "Open Sans";
+    font-size: 9.338px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 10.187px;
+    /* 109.091% */
+    width: 82px;
+}
+
+html body.croKI152 .cro152-credibility-right-DEBT-num-text span {
+    color: #6C757D;
+    font-family: "Open Sans";
+    font-size: 7.64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: flex;
+}
+
+html body.croKI152 .cro152-credibility-logos-right-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6.5px;
+}
+
+html body.croKI152 .cro152-credibility-logos-inner {
+    display: flex;
+    width: 392px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10.19px;
+}
+
+html body.croKI152 .cro152-credibility-logos-wrapper {
+    width: fit-content;
+    padding-top: 8px;
+    margin-top: 21px;
+    border-top: 1px solid #CECECE;
+    width: 100%;
+}
+
+html body.croKI152 .cro152-credibility-logos-right {
+    padding: 4.244px 6.791px;
+    width: 210px;
+    height: 68.84px;
+}
+
+html body.croKI152 .cro152-credibility-logos {
+    width: fit-content;
+}
+
+html body.croKI152 .cro152-credibility-right-DEBT-num-text {
+    padding-top: 1.2px;
+}
+
+@media (max-width:767px) {
+    html body.croKI152 .cro152-credibility-logos.mobile {
+        display: block !important;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    html body.croKI152 .cro152-credibility-logos:not(.mobile) {
+        display: none;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-left {
+        width: 163px;
+        height: 65px;
+        border: 0;
+        padding: 0;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right-ncr {
+        width: 115px;
+        height: 64px;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-wrapper {
+        border-bottom: 1px solid #DCDCDC;
+        border-top: 0;
+        padding: 26px 16px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8.2px;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-left {
+        width: 163px;
+        height: 65px;
+        border: 0;
+        padding: 0;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right {
+        padding: 0;
+        width: 172px;
+        height: 100%;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right-ncr {
+        width: 115px;
+        height: 64px;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-text {
+        color: #000;
+        text-align: center;
+        font-family: "Open Sans";
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        width: 100%;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-num-text {
+        /* padding-top: 1.2px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-num-text span {
+        color: #000;
+        font-family: "Open Sans";
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    html body.croKI152 section.register-hld.otpscreen+.cro152-credibility-logos.mobile {
+        display: none !important;
+    }
+
+    html body.croKI152 .mobile .cro152-credibility-logos-inner {
+        gap: 15px;
+    }
+}
+
+@media (max-width:374px) {
+    html body.croKI152 .cro152-credibility-logos-lefto {
+        width: 135px;
+        height: 53px;
+
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right {
+        padding: 0;
+        width: 140px;
+        height: 100%;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right-ncr {
+        width: 105px;
+        height: 56px;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-text {
+        font-size: 9px;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-num-text {
+        gap: 5px;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-num-text span {
+        font-size: 7px;
+    }
+}
+
+@media (max-width:345px) {
+    html body.croKI152 .cro152-credibility-logos-left {
+        width: 125px;
+        height: 100%;
+    }
+
+    html body.croKI152 .cro152-credibility-logos-right-ncr {
+        width: 90px;
+        height: 100%;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-text {
+        font-size: 8px;
+    }
+
+    html body.croKI152 .cro152-credibility-right-DEBT-num-text span {
+        font-size: 6px;
+    }
+}

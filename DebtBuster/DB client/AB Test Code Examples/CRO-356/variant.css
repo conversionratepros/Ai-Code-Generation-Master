@@ -1,0 +1,51 @@
+html body.register-body.croAddTitle h1.page-caption:before {
+    content: 'Get your free credit check';
+    color: #282828;
+    font-weight: 700;
+    font-size: 50px;
+    display: block;
+    max-width: 650px;
+    width: 100%;
+}
+
+html body.register-body.croAddTitle h1.page-caption {
+    font-size: 0 !important;
+}
+
+html body.register-body.croAddTitle .page-text:before {
+    content: 'In under 1 minute';
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 55px;
+    color: #202020;
+}
+
+html body.register-body.croAddTitle p.page-text {
+    font-size: 0 !important;
+}
+
+@media (min-width: 768px) and (max-width: 1160px) {
+    html body.register-body.croAddTitle h1.page-caption:before {
+        max-width: 550px;
+    }
+}
+
+@media (max-width: 767px) {
+    html body.register-body.croAddTitle h1.page-caption:before{
+        font-size: 26px;
+        padding-top: 15px;
+    }
+
+    html body.register-body.croAddTitle .page-text:before {
+        content: 'In under 1';
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    html body.register-body.croAddTitle .page-text:after {
+        content: 'minute';
+        font-size: 26px;
+        color: #202020;
+        line-height: 11px;
+    }
+}

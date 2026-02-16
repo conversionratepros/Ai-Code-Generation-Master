@@ -1,0 +1,185 @@
+/* Credit Score Section */
+html body.cro-t-ki_112 .cro-112-creditScore {
+    width: 100%;
+    padding: 48px 0;
+    background-color: #ffffff;
+    background: #F8F8F8;
+}
+
+html body.cro-t-ki_112 .cro-112-creditScore-inner {
+    width: 100%;
+}
+
+/* Header Section */
+html body.cro-t-ki_112 .cro-112-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+html body.cro-t-ki_112 .cro-112-title {
+    /* font-size: 32px; */
+    /* font-weight: bold; */
+    /* color: #333333; */
+    margin: 0 0 23px 0;
+    /* line-height: 1.2; */
+    color: #000;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro-t-ki_112 .cro-112-description {
+    /* font-size: 16px; */
+    /* color: #333333; */
+    margin: 0;
+    /* line-height: 1.5; */
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+
+/* Comparison Section */
+html body.cro-t-ki_112 .cro-112-comparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    max-width: 850px;
+    margin: 0 auto 40px;
+}
+
+html body.cro-t-ki_112 .cro-112-gauge-wrapper {
+    flex: 1;
+    text-align: center;
+}
+
+html body.cro-t-ki_112 .cro-112-gauge-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-t-ki_112 .cro-112-gauge-svg {
+    width: 100%;
+    display: block;
+}
+
+/* Arrow Container */
+html body.cro-t-ki_112 .cro-112-arrow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+html body.cro-t-ki_112 .cro-112-arrow {
+    /* width: 60px; */
+    height: auto;
+    display: block;
+}
+
+/* Summary Section */
+html body.cro-t-ki_112 .cro-112-summary {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid rgba(98, 167, 68, 0.20);
+    background: #FAFFF8;
+}
+
+html body.cro-t-ki_112 .cro-112-summary-icon {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+html body.cro-t-ki_112 .cro-112-summary-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+html body.cro-t-ki_112 .cro-112-summary-text {
+    margin: 0 auto;
+    line-height: 1.5;
+    max-width: 447px;
+    color: #114502;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    html body.cro-t-ki_112 .cro-112-creditScore {
+        padding: 48px 0;
+    }
+    
+    html body.cro-t-ki_112 .cro-112-title {
+        text-align: center;
+        font-size: 24px;
+    }
+    
+    html body.cro-t-ki_112 .cro-112-description {
+        font-size: 16px;
+    }
+    
+    html body.cro-t-ki_112 .cro-112-comparison {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    
+    html body.cro-t-ki_112 .cro-112-gauge-wrapper {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+    }
+    
+    html body.cro-t-ki_112 .cro-112-arrow-container {
+        transform: rotate(90deg);
+        padding: 10px 0;
+        margin-top: 0;
+    }
+    
+    html body.cro-t-ki_112 .cro-112-summary {
+        max-width: 100%;
+    }
+
+    html body.cro-t-ki_112 .cro-112-header{
+        margin-bottom: 24px;
+    }
+}
+
+@media (min-width: 550px) and (max-width: 768px) {
+    html body.cro-t-ki_112 .cro-112-gauge-svg{
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    
+    html body.cro-t-ki_112 .cro-112-gauge-svg {
+        /* max-width: 280px; */
+        /* height: auto; */
+        height: 250px;
+    }
+}

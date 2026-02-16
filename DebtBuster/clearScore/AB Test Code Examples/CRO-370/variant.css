@@ -1,0 +1,475 @@
+.cro-cards {
+    display: flex;
+}
+.cro-card {
+    position: relative;
+}
+.logo-section .logo-img {
+    width: 100%;
+    max-width: 200px;
+}
+.cro-client-say {
+    padding: 60px 0;
+    background-color: rgba(15, 129, 163, 0.27);
+}
+html body.cro-Recipe-i1 .cro-card-one {
+    background-color: rgba(255, 255, 255, 0.56);
+    padding: 0px 20px 20px 20px;
+    position: relative;
+}
+.cro-card-two {
+    background-color: rgba(255, 255, 255, 0.56);
+    margin: 0px 20px;
+    padding: 0px 20px 20px 20px;
+    position: relative;
+}
+.cro-card-three {
+    background-color: rgba(255, 255, 255, 0.56);
+    margin-right: 20px;
+    padding: 0px 20px 20px 20px;
+    position: relative;
+}
+.cro-card-four {
+    background-color: rgba(255, 255, 255, 0.56);
+    padding: 0px 20px 20px 20px;
+    position: relative;
+}
+.card-image {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.cro-cards {
+    padding: 25px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-image .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid #fff;
+}
+.card-text-first {
+    font-size: 16px;
+    line-height: 23px;
+    padding-bottom: 15px;
+    padding-top: 60px;
+    color: #263648;
+}
+.client-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(38, 54, 72, 1);
+}
+.cro-img-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -50px;
+}
+.bottom-part {
+    background-color: rgba(38, 54, 72, 1);
+    width: 100%;
+}
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+html body.cro-Recipe-i1 .logo-section .last-text {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding-left: 8px;
+}
+div#hs_cos_wrapper_widget_1667549865077_ {
+    display: none;
+}
+html body.cro-Recipe-i1 .croCliCard {
+    width: 25%;
+    height: 373px;
+    border-radius: 4px;
+    border: 0px solid #FFF;
+    background: rgba(255, 255, 255, 0.56);
+    box-shadow: 0px -1px 47px 2px rgba(23, 32, 109, 0.25);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+/* form */
+html body.cro-Recipe-i1 .hbspt-form .hs-form-private {
+    display: block;
+    background-color: #F1F1F1;
+    padding: 40px 30px;
+    border-radius: 10px;
+    margin-bottom: 0;
+    box-shadow: inset 0px 0px 9px 9px #bfc4c95e;
+    border: 10px;
+}
+html body.cro-Recipe-i1 .blurb .hs_cos_wrapper.hs_cos_wrapper_widget {
+    display: none;
+}
+html body.cro-Recipe-i1 #form-embed-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+html body.cro-Recipe-i1 .cro-form-leftText {
+    width: 50%;
+}
+html body.cro-Recipe-i1 .hbspt-form {
+    width: 50%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 30px 46px 1px #2636485E;
+    padding: 10px;
+    border: 2px solid #F1F1F1;
+}
+html body.cro-Recipe-i1 h2.cro-form-leftText-title {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #263648;
+    width: 100%;
+}
+html body.cro-Recipe-i1 .cro-form-leftTextTitle.leftText-title {
+    max-width: 450px;
+}
+html body.cro-Recipe-i1 .cro-form-leftTextSubTitle.leftText-subTitle {
+    max-width: 450px;
+}
+html body.cro-Recipe-i1 p.cro-form-leftText-subTitle {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #263648;
+    padding-top: 5px;
+}
+html body.cro-Recipe-i1 .actions .hs-button {
+    width: 100%;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+html body.cro-Recipe-i1 h3.leftText-point-textPara {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #263648;
+    margin-left: 15px;
+}
+html body.cro-Recipe-i1 .cro-form-leftTextPoints.leftText-points {
+    margin-top: 32px;
+}
+html body.cro-Recipe-i1 .cro-form-leftText-point {
+    display: flex;
+    align-items: flex-start;
+}
+html body.cro-Recipe-i1 .leftText-point-img {
+    max-width: 25px;
+    max-height: 25px;
+}
+html body.cro-Recipe-i1 img.leftText-point-imgImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+html body.cro-Recipe-i1 .leftText-point-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+html body.cro-Recipe-i1 .cro-form-leftText-point.point-two {
+    margin: 18px 0;
+}
+html body.cro-Recipe-i1 .cro-form-leftText-point.point-four {
+    margin-top: 18px;
+}
+html body.cro-Recipe-i1 .hs-form .hs-error-msg {
+    color: #F90000;
+}
+/* Stop Debt */
+html body.cro-Recipe-i1 .cro-stopDebt {
+    background-color: #F1F1F1;
+}
+html body.cro-Recipe-i1 .cro-stopDebt-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 100px 10px;
+}
+html body.cro-Recipe-i1 .cro-stopDebt-content.stopDebt-content-img {
+    width: 55%;
+    position: absolute;
+    top: -200px;
+    width: 100%;
+    max-width: 580px;
+    left: -80px;
+}
+html body.cro-Recipe-i1 .cro-stopDebt-content.stopDebt-content-text {
+    width: 45%;
+    padding: 15px;
+    margin-left: auto;
+}
+html body.cro-Recipe-i1 .stopDebt-content-textTitle {
+    max-width: 415px;
+}
+html body.cro-Recipe-i1 h2.stopDebt-content-text-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #263648;
+    width: 100%;
+}
+html body.cro-Recipe-i1 .stopDebt-content-texPara {
+    max-width: 450px;
+}
+html body.cro-Recipe-i1 p.stopDebt-content-text-para {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #263648;
+    margin-top: 5px;
+    /* padding-top: 15px; */
+}
+html body.cro-Recipe-i1 .cro-client-say-header {
+    background-color: #F1F1F1;
+}
+html body.cro-Recipe-i1 .client-header-title {
+    color: #263648;
+    font-size: 26px;
+    font-weight: 700;
+    padding: 20px 20px 12px 20px;
+    inline-size: fit-content;
+    /* margin-left: 200px; */
+    background-color: #45a6c345;
+    border-radius: 5px 5px 0px 0px;
+    margin-left: 20px;
+}
+/* ------media query------ */
+@media (min-width:768px) {}
+@media (max-width:767px) {
+    html body.cro-Recipe-i1 #form-embed-placeholder {
+        flex-direction: column;
+        padding-top: 5px;
+    }
+    .cro-stopDebt {
+        max-height: 570px;
+    }
+    html body.cro-Recipe-i1 p.stopDebt-content-text-para {
+        padding-top: 15px;
+    }
+    html body.cro-Recipe-i1 h2.cro-form-leftText-title {
+        font-size: 28px;
+        line-height: 33px;
+    }
+    html body.cro-Recipe-i1 p.cro-form-leftText-subTitle {
+        padding-top: 15px;
+    }
+    html body.cro-Recipe-i1 .hbspt-form {
+        width: 100%;
+        margin-top: 20px;
+        /* padding-left: 10px;
+        padding-right: 10px; */
+    }
+    html body.cro-Recipe-i1 .cro-form-leftText {
+        width: 100%;
+        /* padding-left: 7px; */
+        /* padding-left: 10px;
+        padding-right: 10px; */
+    }
+    html body.cro-Recipe-i1 .widget-type-widget_container .hs_cos_wrapper>.container {
+        padding-left: 18px;
+        padding-right: 18px;
+        margin-bottom: 165px;
+    }
+    html body.cro-Recipe-i1 .cro-stopDebt-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+    }
+    html body.cro-Recipe-i1 .cro-stopDebt-content.stopDebt-content-img {
+        position: relative;
+        /* padding-top: 160px; */
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    html body.cro-Recipe-i1 .cro-stopDebt-content.stopDebt-content-text {
+        width: 100%;
+        /* padding: 8px; */
+        margin-left: auto;
+        padding: 10px 18px;
+        margin-left: auto;
+        position: absolute;
+        /* padding-top: 200px; */
+        margin-top: 90px;
+        margin-bottom: 30px;
+    }
+    html body.cro-Recipe-i1 .cro-stopDebt {
+        background-color: #fff;
+    }
+    html body.cro-Recipe-i1 .croCliCard {
+        width: 90%;
+        /* height: 373px; */
+    }
+    html body.cro-Recipe-i1 .cro-client-say-header {
+        background-color: #fff;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    html body.cro-Recipe-i1 .client-header-title {
+        color: #263648;
+        font-size: 26px;
+        font-weight: 700;
+        padding: 10px;
+        inline-size: fit-content;
+        background-color: rgba(15, 129, 163, 0.27);
+        border-radius: 5px 5px 0px 0px;
+        margin: 0 auto;
+    }
+    html body.cro-Recipe-i1 .cro-client-say {
+        padding: 50px 0;
+        background-color: rgba(15, 129, 163, 0.27);
+    }
+    html body.cro-Recipe-i1 .logo-section.container {
+        flex-direction: column;
+    }
+    html body.cro-Recipe-i1 .last-text {
+        text-align: center;
+        width: 90%;
+    }
+    html body.cro-Recipe-i1 .bottom-part .last-text {
+        margin-bottom: 30px;
+    }
+    html body.cro-Recipe-i1 .bottom-part .logo-img {
+        margin: 20px;
+    }
+}
+@media (max-width:767px) and (min-width:600px) {
+    html body.cro-Recipe-i1 .cro-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    html body.cro-Recipe-i1 .croCliCard {
+        width: 90%;
+        margin: 0 auto;
+    }
+    html body.cro-Recipe-i1 .cro-card-one {
+        background-color: rgba(255, 255, 255, 0.56);
+        padding: 0px 20px 20px 20px;
+        position: relative;
+        margin-top: 40px;
+    }
+    html body.cro-Recipe-i1 .cro-card-two {
+        background-color: rgba(255, 255, 255, 0.56);
+        /* margin: 0px 0px; */
+        padding: 0px 20px 20px 20px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 40px;
+    }
+    html body.cro-Recipe-i1 .cro-card-three {
+        background-color: rgba(255, 255, 255, 0.56);
+        /* margin-right: 20px; */
+        padding: 0px 20px 20px 20px;
+        position: relative;
+        margin-top: 100px;
+    }
+    html body.cro-Recipe-i1 .cro-card-four {
+        margin-top: 0px;
+        margin-top: 100px;
+        margin-left: auto;
+    }
+}
+@media (max-width:600px) {
+    html body.cro-Recipe-i1 .cro-cards {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 25px;
+    }
+    html body.cro-Recipe-i1 .croCliCard {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 245px;
+    }
+    html body.cro-Recipe-i1 .cro-card-two {
+        margin: 100px auto;
+        ;
+    }
+    html body.cro-Recipe-i1 .cro-card-four {
+        margin-top: 100px;
+    }
+}
+@media (max-width:1023px) and (min-width:768px) {
+    html body.cro-Recipe-i1 .cro-stopDebt-content.stopDebt-content-img {
+        top: -170px;
+        max-width: 500px;
+        left: -65px;
+    }
+    html body.cro-Recipe-i1 .cro-form-leftText {
+        margin-right: 10px;
+    }
+    .cro-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    html body.cro-Recipe-i1 .croCliCard {
+        width: 95%;
+    }
+    html body.cro-Recipe-i1 .cro-card-one {
+        margin-right: 15px;
+        margin-top: 15px;
+    }
+    html body.cro-Recipe-i1 .cro-card-two {
+        margin: 0;
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+    html body.cro-Recipe-i1 .cro-card-three {
+        margin-top: 100px;
+        margin-right: 15px;
+    }
+    html body.cro-Recipe-i1 .cro-card-four {
+        margin-top: 100px;
+        margin-left: 15px;
+    }
+}
+@media (min-width:768px) {
+    html body.cro-Recipe-i1 h2.cro-form-leftText-title {
+        margin-bottom: 5px;
+    }
+    html body.cro-Recipe-i1 #form-embed-placeholder {
+        min-height: 612px;
+    }
+}
+
+html body.cro-Recipe-i1 .hbspt-form .hs-form-private .hs-form-field input {
+    border-color: #C2D3D8;
+}

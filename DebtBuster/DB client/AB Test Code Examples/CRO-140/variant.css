@@ -1,0 +1,18 @@
+@media (max-width:767px) {
+    html body.cro-t-48 .registerholder .mobile-text.page-subtext {
+        display: none;
+    }
+
+    html body.cro-t-48 .registerholder #frmAutoRegister .custom-row.row.margin-tab {
+        display: none;
+    }
+
+    html body.cro-t-48 .registerholder p.page-text {
+        margin-bottom: 39px;
+    }
+
+    html body.cro-t-48 .registerholder .topbanmobsecondstep {
+        min-height: 0;
+        padding-bottom: 1px;
+    }
+}

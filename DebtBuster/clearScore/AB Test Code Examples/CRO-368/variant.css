@@ -1,0 +1,94 @@
+html body.cro-recipe-78 .container .blurb:first-child {
+    display: none;
+}
+
+html body.cro-recipe-78 .cro-recipe-78-new-part {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 40px;
+}
+
+html body.cro-recipe-78 .cro-recipe-78-image-part {
+    width: 100%;
+    max-width: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-recipe-78 .cro-recipe-78-text-icon-part {
+    width: 100%;
+    min-width: 236px;
+    background-color: #263648;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 5px 7px 5px 0px;
+    border-radius: 0px 35px 0px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+html body.cro-recipe-78 .cro-recipe-text {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+    padding-right: 15px;
+    color: #fff;
+}
+
+html body.cro-recipe-78 .cro-recipe-78-text-left-part strong {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+html body.cro-recipe-78 .cro-recipe-78-text-left-part span {
+    color: #48A57E;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+@media (max-width:767px) {
+    html body.cro-recipe-78 .cro-recipe-78-text-icon-part {
+        width: 100%;
+        min-width: 186px;
+        padding: 5px 6px 5px 0px;
+        border-radius: 0px 25px 0px;
+    }
+
+    html body.cro-recipe-78 .cro-recipe-78-image-part {
+        width: 100%;
+        max-width: 40px;
+    }
+
+    html body.cro-recipe-78 .cro-recipe-text {
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 17px;
+
+    }
+
+    html body.cro-recipe-78 .cro-recipe-78-text-left-part strong {
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 17px;
+    }
+
+    html body.cro-recipe-78 .cro-recipe-78-text-left-part span {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 17px;
+
+    }
+
+    html body.cro-recipe-78 .cro-recipe-78-new-part {
+        margin-top: 8px;
+        margin-bottom: 34px;
+    }
+}

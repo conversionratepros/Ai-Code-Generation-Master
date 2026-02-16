@@ -1,0 +1,64 @@
+html body.register-body.cro-t-44_45_21-CTAChange .dial .graph-hld img {
+    display: none;
+}
+
+html body.register-body.cro-t-44_45_21-CTAChange .cro-44_45_21-ctaimg-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.register-body.cro-t-44_45_21-CTAChange #btn-partical-register {
+    color: #FFF;
+    text-align: center;
+    /* font-family: "Arial","Open Sans";
+    font-size: 18px; */
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.9px;
+    max-height: 52px;
+    height: 100%;
+    margin-top: 0;
+    border-radius: 5px;
+}
+
+html body.register-body.cro-t-44_45_21-CTAChange #btn-partical-register:hover {
+    color: #F6821B;
+}
+
+html body.register-body.cro-t-44_45_21-CTAChange #IdNumber {
+    max-height: 52px;
+}
+
+/* html body.register-body.cro-t-44_45_21-CTAChange .dial {
+    max-width: 438px;
+    margin: 0 auto;
+} */
+
+@media (max-width: 767px) {
+    html body.register-body.cro-t-44_45_21-CTAChange #divIdNumber {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    html body.register-body.cro-t-44_45_21-CTAChange #btn-partical-register{
+       /* padding-left: 16px; */
+       max-height: 43px;
+       width: 100%;
+       padding: 14px 0;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+
+    html body.register-body.cro-t-44_45_21-CTAChange .cro-t-44_45_21 {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    html body.register-body.cro-t-44_45_21-CTAChange .cro-t-44_45_21-IdNumber {
+        margin-bottom: 5px !important;
+    }
+}
