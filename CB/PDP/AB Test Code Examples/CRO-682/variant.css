@@ -1,0 +1,41 @@
+html body.cro-t-120 .product-static-text .tab-CB-accordion #rd1+.tab-CB-accordion-label {
+    font-size: 0;
+}
+
+html body.cro-t-120 .product-static-text .tab-CB-accordion #rd1+.tab-CB-accordion-label::before {
+    content: "Nationwide shipping";
+    font-size: 13px;
+    line-height: normal;
+    padding: 13px;
+    font-family: Poppins;
+}
+
+html body.cro-t-120 .product-static-text .tab-CB-accordion #rd3+.tab-CB-accordion-label {
+    font-size: 0;
+}
+
+html body.cro-t-120 .product-static-text .tab-CB-accordion #rd3+.tab-CB-accordion-label::before {
+    content: "Hassle-free 30 day returns";
+    font-size: 13px;
+    line-height: normal;
+    padding: 13px;
+    font-family: Poppins;
+
+}
+
+html body.cro-t-120 .product-static-text .tab-CB-accordion #rd4+.tab-CB-accordion-label {
+    font-size: 0;
+}
+
+html body.cro-t-120 .product-static-text .tab-CB-accordion #rd4+.tab-CB-accordion-label::before {
+    content: "Safe and secure browsing";
+    font-size: 13px;
+    line-height: normal;
+    padding: 13px;
+    font-family: Poppins;
+
+}
+
+html body.cro-t-120 .product-static-text .tabs-CB-accordion .tab-CB-accordion:nth-child(2) {
+    display: none;
+}

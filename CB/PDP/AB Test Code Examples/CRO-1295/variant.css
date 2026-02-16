@@ -1,0 +1,257 @@
+html body.cro-t-120 .cro-120-new-top-icon {
+    max-width: 97px;
+}
+
+html body.cro-t-120 .cro-120-new-part-icon-text-inner {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #CBCBCB;
+    border-top: 1px solid #CBCBCB;
+    margin-top: 32px;
+}
+
+html body.cro-t-120 .cro-120-new-top-icon-text.cro-secend {
+    margin: 0 38px;
+}
+
+html body.cro-t-120 .cro-120-new-top-icon-text.cro-Three {
+    margin: 0;
+    margin-right: 38px;
+}
+
+html body.cro-t-120 .cro-120-new-top-icon-text {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-t-120 .cro-120-new-top-icon img {
+    transition: transform 0.3s ease;
+    width: 100%;
+    object-fit: contain;
+}
+
+html body.cro-t-120 .cro-120-new-top-icon:hover img {
+    transform: scale(1.1);
+
+}
+
+html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-secend {
+    margin: 0 38px;
+}
+
+html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-Three {
+    margin-right: 38px;
+}
+
+html body.catalog-product-view.cro-t-newPDP.cro-t-120 .tab-CB-accordion:nth-child(2) {
+    display: block;
+}
+
+/* html body.cro-t-120 .cro-cb-120-lightBox {
+    
+  } */
+html body.cro-t-120.cro-cb-120-modalShow .cro-cb-120-lightBox {
+    display: block;
+}
+
+html body.cro-t-120 .cro-cb-120-lightBox {
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 999992;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    display: none;
+}
+
+html body.cro-t-120 .cro-cb-120-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    height: 520px;
+    min-height: 100%;
+}
+
+html body.cro-t-120 .cro-cb-120-modal {
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    width: 100%;
+    max-width: 650px;
+    text-align: left;
+    overflow: visible;
+    box-sizing: border-box !important;
+    margin: auto !important;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.26);
+}
+
+html body.cro-t-120 .cro-recipe-cb-120-model-open {
+    height: auto;
+    /* overflow-y: scroll; */
+    /* max-height: 673px; */
+    /* box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.26); */
+    padding-bottom: 30px;
+}
+
+html body.cro-t-120 img.cro-cb-120-cross-img {
+    max-height: 25px;
+    max-width: 25px;
+    padding-top: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+html body.cro-t-120 .cro-cb-120-cross {
+    z-index: 99;
+    position: relative;
+    display: flex;
+    height: 30px;
+    line-height: 20px;
+    text-align: center;
+    /* cursor: pointer; */
+    justify-content: flex-end;
+    width: 100%;
+    background-color: #fff;
+}
+
+html body.cro-t-120.cro-cb-120-modalShow {
+    overflow: hidden;
+    height: auto !important;
+}
+
+html body.cro-t-120 .cro-recipe-cb-120-modal-top-part {
+    padding: 30px;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+html body.cro-t-120 .tabs-CB-accordion {
+    display: none;
+}
+
+html body.cro-t-120 .cro-recipe-cb-120-modal-content #instalmentCalc {
+    display: none !important;
+}
+
+html body.cro-t-120 .cro-recipe-cb-120-modal-content .fevertree-credit-text {
+    display: none;
+}
+
+html body.cro-t-120 .cro-recipe-cb-120-modal-content .fever-credit-img {
+    display: none;
+}
+
+html body.cro-t-120.cro-t-120-first-clicked .cro-recipe-cb-120-modal-content ul.cro-t-120-ul {
+    display: none;
+}
+
+@media (min-width: 1024px) and (max-width: 1125px) {
+    html body.cro-t-120 .cro-120-new-part-icon-text-inner {
+        flex-wrap: wrap;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-secend {
+        margin: 0 10px;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-Three {
+        margin: 0 10px 0 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-secend {
+        margin: 0 5px;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-Three {
+        margin: 0 5px 0 0;
+    }
+}
+
+@media (max-width: 767px) {
+    html body.cro-t-120 .cro-120-new-part-icon-text-inner {
+        flex-wrap: wrap;
+        padding-top: 32px;
+        width: 100%;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon-text {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-secend {
+        margin: 0;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-Three {
+        margin: 0;
+        margin-top: 37px;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon-text.cro-120-Four {
+        margin-top: 37px;
+    }
+
+    html body.cro-t-120 .cro-120-new-top-icon {
+        max-width: 95px;
+    }
+
+    html.cro-cb-120-modalShow-overflow {
+        overflow: hidden !important;
+    }
+
+    html body.cro-t-120 .cro-cb-120-modal {
+        max-width: 350px;
+    }
+}
+
+
+@media (max-width: 355px) {
+    html body.cro-t-120 .cro-cb-120-modal {
+        max-width: 270px;
+    }
+}
+
+.cro-cb-120-modal div#instalmentCalc {
+    padding: 0 2.5em 15px 2.5em !important;
+}
+
+.cro-cb-120-modal span.fevertree-credit-text {
+    width: 100%;
+    padding: 0 2.5em;
+}
+
+.cro-cb-120-modal img.fever-credit-img {
+    padding: 0 2.5em;
+}
+
+.cro-recipe-cb-120-modal-content>p+p+ul~ul {
+    display: none;
+}
+
+html body.catalog-product-view.cro-t-newPDP.cro-t-120 .cro-mobicred,
+html body.catalog-product-view.cro-t-newPDP.cro-t-120 .cro-carrolBoyes,
+html body.catalog-product-view.cro-t-newPDP.cro-t-120 .cro-pay,
+html body.catalog-product-view.cro-t-newPDP.cro-t-120 .cro-payFlex {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: 50%;
+}

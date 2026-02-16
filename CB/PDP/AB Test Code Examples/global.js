@@ -401,7 +401,7 @@
                 }
             }, test_Recipe_50_51_53_Deals_page_updates() {
                 var pageUrl = window.location.href;
-                if (pageUrl.includes("za/deals.html")) {
+                if (pageUrl.includes("/za/deals.html")) {
                     window.crotest_Recipe_50_51_53_Deals_page_updates = 1;
                     window._conv_q = window._conv_q || [];
                     window._conv_q.push(["executeExperiment", "100498753"]);
@@ -414,10 +414,6 @@
 
                         if (document.querySelector('.cro-test-50_51_53_larryDesign')) {
                             document.querySelector('body').classList.remove('cro-test-50_51_53_larryDesign')
-                        }
-
-                        if(window.sessionStorage.getItem('croIndex')){
-                           window.sessionStorage.removeItem('croIndex') 
                         }
                     }, 400)
                 }

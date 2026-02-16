@@ -1,0 +1,54 @@
+/* https://carrolboyes.com/za/deals/pen-revolution.html */
+
+html body.cro-cb-70_71 .stock.available:before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Recipe+70.71/cro_cb_70_71.svg") no-repeat center;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 3px;
+    padding-right: 5px;
+}
+
+html body.cro-cb-70_71 .stock.available span::after{
+    content: "Currently In Stock";
+    color: #000;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+html body.cro-cb-70_71 .stock.available span{
+    font-size: 0;
+}
+
+@media only screen and (max-width: 767px) {
+    html body.cro-cb-70_71 .product-info-main .stock.available {
+        float: left;
+        margin: 14px 0 0;
+        padding-left: 3%;
+    }
+
+    html body.cro-cb-70_71 .product-info-price {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    html body.cro-cb-70_71 .product-info-main .price-box{
+        margin-bottom: 0px;
+    }
+
+    html body.cro-cb-70_71 .stock.available:before{
+        margin-right: 0px;
+    }
+
+    html body.cro-cb-70_71 #payment-widgets-accordion h3{
+        margin-top: 20px !important;
+    }
+}

@@ -1,0 +1,972 @@
+/* ------------------------ 70.71 --------------------------------------- */
+.stock.available:before {
+    background-image: url(https://crpimagebucket.s3.af-south-1.amazonaws.com/white-check.png);
+    width: 20px;
+    height: 20px;
+    display: inherit;
+    font-size: 0 !important;
+    content: "" !important;
+    background-size: 18px;
+    background-repeat: no-repeat;
+    padding-right: 5px !important;
+}
+
+.stock.available span {
+    color: #fff;
+}
+
+.stock.available {
+    padding: 5px 10px;
+    background-color: rgba(0, 100, 0, 0.65);
+    border-radius: 17px;
+    text-transform: capitalize !important;
+}
+
+@media only screen and (max-width: 767px) {
+    html body.cro-t-newPDP .stock.available {
+        display: flex !important;
+        width: 110px !important;
+        float: none !important;
+        margin-top: 10px !important;
+    }
+    .product-info-main .stock.available {
+        font-weight: 700 !important;
+        margin-left: 10px;
+    }
+
+    html body.catalog-product-view.cro-t-newPDP img.cro-payFlex-top-crossImg {
+        max-width: 25px;
+        max-height: 50px;
+    }
+
+    html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-text {
+        width: 60%;
+    }
+    html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails {
+        align-items: flex-start !important;
+    }
+}
+
+/* -------------------------------- 68 -------------------------------------- */
+body.Test-68 #rd2 ~ .tab-CB-accordion-content ul:nth-child(5) {
+    display: none;
+}
+
+body.Test-68 #rd2 ~ .tab-CB-accordion-content img.fever-credit-img {
+    margin-bottom: 0;
+}
+
+body.Test-68 #rd2 ~ .tab-CB-accordion-content #instalmentCalc {
+    padding: 0 2.5em 15px 2.5em !important;
+}
+
+body.Test-68 #rd2 ~ .tab-CB-accordion-content span.fevertree-credit-text {
+    padding: 0 2.5em;
+}
+
+body.Test-68 #rd2 ~ .tab-CB-accordion-content img.fever-credit-img {
+    padding: 0 2.5em;
+}
+
+body.Test-68 #rd2 ~ .tab-CB-accordion-content div#instalmentCalc img {
+    position: relative;
+    left: -4px;
+}
+
+/* New CSS */
+
+html body.catalog-product-view.cro-t-newPDP .product-info-main .product-reviews-summary .rating-summary .rating-result > span:before {
+    color: #deb700 !important;
+}
+
+html body.catalog-product-view.cro-t-newPDP .mdl-progress > .progressbar {
+    background-color: #deb700 !important;
+}
+
+html body.catalog-product-view.cro-t-newPDP .rating-summary .rating-result > span:before {
+    color: #deb700 !important;
+}
+
+html body.catalog-product-view.cro-t-newPDP .review-items .rating-summary .rating-result > span:before {
+    color: #deb700 !important;
+}
+
+/*previous review text */
+html body.catalog-product-view.cro-t-newPDP #review-form > div:not(.cro-reviewText):not(.field-recaptcha):not(.review-form-actions) {
+    display: none;
+}
+
+/*previous review icon */
+html body.catalog-product-view.cro-t-newPDP .message.info > :first-child:before {
+    display: none;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-reviewText-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+html body.catalog-product-view.cro-t-newPDP p.cro-reviewText-para {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-reviewText-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+html body.catalog-product-view.cro-t-newPDP .mdl-progress > .bufferbar {
+    background-color: #d7d7d7;
+}
+
+/* html body.catalog-product-view.cro-t-newPDP a.cro-reviewText-link {
+  text-decoration: none;
+  } */
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-imgIcon {
+    height: 18px;
+    cursor: pointer;
+}
+
+html body.catalog-product-view.cro-t-newPDP img.cro-buyNow-imgPlus,
+html body.catalog-product-view.cro-t-newPDP img.cro-buyNow-imgMinus {
+    max-height: 100%;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    padding: 10px 15px;
+    border-top: 1px solid #cfcfcf;
+    border-bottom: 1px solid #cfcfcf;
+    cursor: pointer;
+}
+
+html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-para {
+    margin-bottom: 0;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000;
+}
+
+html body.catalog-product-view.cro-t-newPDP span.cro-buyNow-span {
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+    color: #586e85;
+    margin-left: 5px;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow {
+    margin: 15px 0px;
+    border-bottom: 1px solid #cfcfcf;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-bottomDetails-textPara {
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 0;
+}
+
+html body.catalog-product-view.cro-t-newPDP span.cro-buyNow-bottomDetails-textPriceOne {
+    font-weight: 700;
+}
+
+html body.catalog-product-view.cro-t-newPDP span.cro-buyNow-bottomDetails-textPriceTwo {
+    font-weight: 700;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottom {
+    background-color: #f4f4f4;
+    padding: 20px 15px;
+    display: none;
+}
+
+.cro-buyNow-imgIcon.buyNow-imgTwo {
+    display: none;
+}
+
+.croShow {
+    display: block !important;
+}
+
+.croHide {
+    display: none;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails.bottomDetailsTwo {
+    margin: 7px 0;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails.bottomDetailsFour {
+    margin: 7px 0;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-img {
+    height: 22px;
+    width: 73px;
+    display: flex;
+    margin: 0 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.catalog-product-view.cro-t-newPDP img.cro-buyNow-bottomDetails-imgIcon {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+html body.catalog-product-view.cro-t-newPDP span.cro-buyNow-bottomDetails-lastText-icon {
+    font-family: Poppins;
+    font-size: 10px;
+    font-weight: 500;
+    /* line-height: 18px; */
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-lastText {
+    height: 13px;
+    background-color: #586e85;
+    width: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+}
+
+/* Modal */
+.cro-modalSection {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    margin: auto;
+    background-color: #161616;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cro-modalSection-wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 2%;
+    width: 50%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+body .cro-modalSection {
+    display: none;
+}
+
+body.croModal-show .cro-modalSection {
+    display: block !important;
+}
+
+/* modal content */
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex {
+    max-width: 569px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10%;
+    width: 100%;
+    height: auto;
+    z-index: 99999;
+}
+
+body.croModal-show .cro-payFlex {
+    display: block !important;
+}
+
+body .cro-payFlex {
+    display: none;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-top-cross {
+    cursor: pointer;
+    float: right;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-top-logo {
+    margin: 10px auto;
+    width: 180px;
+    /* height: 61px; */
+}
+
+html body.catalog-product-view.cro-t-newPDP img.cro-payFlex-top-crossImg {
+    height: 100%;
+    width: 100%;
+    max-width: 18px;
+}
+
+html body.catalog-product-view.cro-t-newPDP img.cro-payFlex-top-logoImg {
+    height: 100%;
+    width: 100%;
+}
+
+html body.catalog-product-view.cro-t-newPDP h2.cro-payFlex-bottom-title {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #6467a6;
+}
+
+html body.catalog-product-view.cro-t-newPDP p.cro-payFlex-bottom-para {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+
+/* html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-accTop {
+  max-width: 37px;
+  max-height: 37px;
+  border-radius: 50%;
+  background-color: #012650;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  } */
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-accTop {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background-color: #012650;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-accTop-num.accTop-numOne {
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 18px;
+    /* height: 100%; */
+    letter-spacing: 0em;
+    text-align: center;
+    color: #ffffff;
+    padding: 5px;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-acc-des {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-accBot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-account.bottom-accountOne {
+  }
+  
+  .cro-payFlex-bottom-account.bottom-accountOne {
+  
+  } */
+
+html body.catalog-product-view.cro-t-newPDP h2.cro-payFlex-bottom-acc-btnBtn {
+    max-width: 270px;
+    padding: 10px;
+    text-align: center;
+    background-color: #6467a6;
+    color: #ffffff;
+    margin: 15px auto;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #747474;
+}
+
+html body.catalog-product-view.cro-t-newPDP h3.cro-payFlex-bottom-accBot-text {
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #000000;
+    margin-top: 10px;
+}
+
+html body.catalog-product-view.cro-t-newPDP p.cro-payFlex-bottom-lastPara-one {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #747474;
+    margin-top: 25px;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-lastPara-two {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #747474;
+}
+
+.croModal-open {
+    overflow: hidden;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-wrapper {
+    padding: 30px 20px;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    max-height: 510px;
+    box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.26);
+}
+
+/* ****** */
+html body.catalog-product-view.cro-t-newPDP .cro-mobicred {
+    max-width: 569px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10%;
+    width: 100%;
+    height: auto;
+    z-index: 99999;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-mobicred h2.cro-payFlex-bottom-title {
+    color: #1d98ba;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-mobicred h2.cro-payFlex-bottom-acc-btnBtn {
+    background-color: #1d98ba;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+body .cro-mobicred {
+    display: none;
+}
+
+body.croModal-show2 .cro-mobicred {
+    display: block !important;
+}
+
+body.croModal-show2 .cro-modalSection {
+    display: block !important;
+}
+
+.croModal-open2 {
+    overflow: hidden;
+}
+
+/* **** */
+html body.catalog-product-view.cro-t-newPDP .cro-carrolBoyes {
+    max-width: 569px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10%;
+    width: 100%;
+    height: auto;
+    z-index: 99999;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-carrolBoyes h2.cro-payFlex-bottom-title {
+    color: #46576a;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-carrolBoyes h2.cro-payFlex-bottom-acc-btnBtn {
+    background-color: #46576a;
+    color: #ffffff;
+}
+
+body .cro-carrolBoyes {
+    display: none;
+}
+
+body.croModal-show3 .cro-carrolBoyes {
+    display: block !important;
+}
+
+body.croModal-show3 .cro-modalSection {
+    display: block !important;
+}
+
+.croModal-open3 {
+    overflow: hidden;
+}
+
+/* **** */
+html body.catalog-product-view.cro-t-newPDP .cro-pay {
+    max-width: 569px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10%;
+    width: 100%;
+    height: auto;
+    z-index: 99999;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-pay h2.cro-payFlex-bottom-title {
+    color: #009edd;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-pay h2.cro-payFlex-bottom-acc-btnBtn {
+    background-color: #009edd;
+}
+
+body .cro-pay {
+    display: none;
+}
+
+body.croModal-show4 .cro-pay {
+    display: block !important;
+}
+
+body.croModal-show4 .cro-modalSection {
+    display: block !important;
+}
+
+.croModal-open4 {
+    overflow: hidden;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-pay .cro-payFlex-bottom-accTop {
+    background-color: #ff5c75;
+}
+
+html body.catalog-product-view.cro-t-newPDP h2.cro-payFlex-bottom-acc-btnBtn a {
+    color: #ffffff;
+}
+
+html body.catalog-product-view.cro-t-newPDP h2.cro-payFlex-bottom-acc-btnBtn a {
+    color: #ffffff;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-mobicred .cro-payFlex-bottom-accTop {
+    background-color: #343434;
+}
+
+html body.catalog-product-view.cro-t-newPDP span.cro-viewBtn-span {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #0072b1;
+    cursor: pointer;
+}
+
+html body.catalog-product-view.cro-t-newPDP .product-social-links {
+    border-top: none;
+}
+
+.cro-viewBtn {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    html body.catalog-product-view.cro-t-newPDP .cro-payFlex,
+    html body.catalog-product-view.cro-t-newPDP .cro-mobicred,
+    html body.catalog-product-view.cro-t-newPDP .cro-carrolBoyes,
+    html body.catalog-product-view.cro-t-newPDP .cro-pay {
+        width: 90%;
+        top: 15%;
+    }
+    html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-acc-des {
+        flex-direction: column;
+    }
+    html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-img {
+        /* height: 15px; */
+        width: 65px;
+    }
+    html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-lastText {
+        height: 20px;
+        width: 20px;
+    }
+    html body.catalog-product-view.cro-t-newPDP span.cro-buyNow-bottomDetails-lastText-icon {
+        font-size: 13px;
+        line-height: 16px;
+    }
+    html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-para {
+        max-width: 180px;
+    }
+    html body.catalog-product-view.cro-t-newPDP span.cro-buyNow-span {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 869px) {
+    html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-bottomDetails-textPara {
+        font-size: 10px;
+        line-height: 16px;
+    }
+}
+
+/* width */
+.cro-payFlex-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.cro-payFlex-wrapper::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 5px;
+}
+
+/* Handle */
+.cro-payFlex-wrapper::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+}
+.cro-buyNow-wrapper.croSHOW .cro-buyNow-bottom {
+    display: block !important;
+}
+
+.cro-buyNow-wrapper.croSHOW .buyNow-imgOne {
+    display: none;
+}
+
+.cro-buyNow-wrapper.croSHOW .buyNow-imgTwo {
+    display: block;
+    width: 23px;
+}
+
+html body.cro-t-newPDP #partPayCalculatorWidget1 {
+    display: none;
+}
+
+html body.CRO_Test33.cro-t-newPDP .product-social-links {
+    border-top: none;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-payFlex-top-cross {
+    height: 18px;
+}
+
+html body.catalog-product-view.cro-t-newPDP .product-info-main .box-tocart .actions button span {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+}
+
+/* @media (min-width: 320px) and (max-width: 368px) {
+  html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-bottomDetails-textPara{
+    font-size: 7px;
+    line-height: 16px;
+  }
+  } */
+
+@media (min-width: 369px) and (max-width: 767px) {
+    /* html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-bottomDetails-textPara{
+    font-size: 11px;
+    line-height: 15px;
+  } */
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-carrolBoyes .cro-payFlex-bottom-accTop {
+    background-color: #46576a;
+}
+
+@media (min-width: 767px) {
+    html body.catalog-product-view.cro-t-newPDP .cro-payFlex-bottom-account.bottom-accountOne {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        height: 115px;
+        padding: 0 8px;
+    }
+}
+
+html body.recipe-30 .cro-30day-return {
+    position: relative;
+    /* top: 5px;
+  left: 15px; */
+    padding: 5px 7px;
+    background: #46576a;
+    border-radius: 24px;
+    max-width: 210px;
+    margin-top: 10px;
+}
+html body.recipe-30 .cro-30day-return .cro30-wrapper {
+    display: flex;
+    gap: 7px;
+    width: 100%;
+}
+html body.recipe-30 .cro30-right .cro30-return-icon {
+    width: 34px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+html body.recipe-30 .cro30-left {
+    padding-left: 32px;
+    padding-right: 10px;
+}
+html body.recipe-30 .cro30-left .cro30-left-top .cro30-bold {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    color: #fcfcfc;
+}
+html body.recipe-30 .cro30-left .cro30-left-top .cro30-normal {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    color: #fcfcfc;
+}
+html body.recipe-30 .cro30-left .cro30-left-bottom {
+    color: #fcfcfc;
+}
+html body.recipe-30 .cro30-left .cro30-left-bottom .cro30-tooltip {
+    width: -moz-fit-content;
+    width: fit-content;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: -15px;
+}
+html body.recipe-30 .cro30-left .cro30-left-bottom .cro30-tooltip-inner {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.35;
+    color: #000000;
+    padding: 20px 10px 16px 14px;
+    width: 191px;
+    /* box-shadow: 0px 1px 5px 0px #0000006B; */
+}
+html body.recipe-30 .cro30-left .cro30-left-bottom .cro30-tooltip-content {
+    visibility: hidden;
+    display: block;
+    background: #f4f4f4;
+    border: 1px solid #ebebeb;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.42);
+    -webkit-clip-path: polygon(50% 0%, 55% 5%, 100% 5%, 100% 100%, 0 100%, 0 5%, 45% 5%);
+    clip-path: polygon(50% 0%, 55% 5%, 100% 5%, 100% 100%, 0 100%, 0 5%, 45% 5%);
+    position: absolute;
+    left: -30px;
+    top: 20px;
+    z-index: 19;
+}
+html body.recipe-30 .cro30-left .cro30-left-bottom .cro30-tooltip:hover .cro30-tooltip-content {
+    visibility: visible;
+}
+
+html body.recipe-30 .croHover {
+    overflow: visible !important;
+}
+html body.recipe-30 .cro30-left .cro30-left-bottom .cro30-tooltip-text {
+    text-decoration: underline;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+}
+@media screen and (max-width: 767px) {
+    /* html body.recipe-30 .cro-30day-return {
+        top: -30px;
+        left: 0;
+        margin-bottom: 30px;
+    } */
+}
+
+.cro-buyNow-bottom.croSHOW {
+    display: block !important;
+}
+
+.cro-payFlex-bottom-lastPara-two a {
+    color: #1d98ba;
+}
+
+@media screen and (max-width: 343px) {
+    html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-bottomDetails-textPara {
+        font-size: 10px;
+    }
+    html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-img {
+        margin: 0 10px;
+    }
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottom-wrapper {
+    display: flex !important;
+    flex-direction: column;
+}
+
+html body.catalog-product-view.cro-t-newPDP .bottomDetailsTwo {
+    order: 3;
+}
+
+html body.catalog-product-view.cro-t-newPDP .bottomDetailsThree {
+    order: 4;
+}
+
+html body.catalog-product-view.cro-t-newPDP .bottomDetailsFour {
+    order: 2;
+}
+
+html body.catalog-product-view.cro-t-newPDP .tab-CB-accordion:nth-child(2) {
+    display: none;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-text {
+    flex: 1;
+}
+
+html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-para {
+    max-width: 180px;
+}
+
+html body.catalog-product-view.cro-t-newPDP p.cro-buyNow-bottomDetails-textPara {
+    margin-right: 5px;
+}
+
+@media (min-width: 903px) {
+    html body.catalog-product-view.cro-t-newPDP .cro-buyNow-bottomDetails-text {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+
+@media (min-width: 767px) {
+    html body.catalog-product-view.cro-t-newPDP span.cro-buyNow-span {
+        margin-left: 0;
+    }
+}
+
+/* --------------NEW-------------- */
+@media only screen and (min-width: 767px) {
+    html body.CRO_Test33.product-view-style-03 .product-info-main .box-tocart .actions button {
+        width: 100%;
+        max-width: 430px;
+    }
+
+    html body.CRO_Test33.product-view-style-03 .product-info-main .box-tocart .fieldset:last-child {
+        display: flex !important;
+    }
+
+    html body.catalog-product-view.cro-t-newPDP .cro-buyNow {
+        max-width: 568px;
+    }
+}
+.cro-buyNow-wrapper:not(.croSHOW) .cro-buyNow-top {
+    border-bottom: 0 !important;
+}
+
+/* width */
+.cro-payFlex-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.cro-payFlex-wrapper::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 5px;
+}
+
+/* Handle */
+.cro-payFlex-wrapper::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+}
+
+/* .cro-buyNow-span { display: none !important;} */
+
+.bottomDetailsTwo {
+    /* display: none !important; */
+}
+
+/* .bottomDetailsThree { display: none !important;} */
+span.cro-payFlex-bottom-Newpara {
+    display: block;
+    width: 100%;
+    font-weight: 700;
+    font-size: 14px;
+}
+span.cro-playflex-bottom-3pay {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+}

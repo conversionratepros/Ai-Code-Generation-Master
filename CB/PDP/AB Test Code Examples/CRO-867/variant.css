@@ -1,0 +1,85 @@
+html body.cro-t-138 .product-info-main .reviews-actions .action.add {
+    display: none;
+}
+
+html body.cro-t-138 .product-info-main .product-right .reviews-actions {
+    display: none;
+}
+
+html body.cro-t-138 .product-info-main .product-right .product-reviews-summary {
+    margin: -2% 0 13px !important;
+    left: 10px;
+}
+
+html body.cro-t-138 .product-info-main .product-right .product-reviews-summary:not(.cro-review) {
+    display: none;
+}
+
+html body.cro-t-138 .product-info-main .product-right .product-reviews-summary .cro-rating-summary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    max-height: 20px;
+}
+
+html body.cro-t-138 .cro-review-text {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 43px;
+    text-align: left;
+    color: #586E85;
+}
+
+html body.cro-t-138 .cro-review-text span {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 43px;
+    text-align: left;
+    color: #586E85;
+}
+
+html body.cro-t-138 .product-info-main .product-right .rating-result>span {
+    width: 100%;
+}
+
+html body.cro-t-138.cro-hide .product-info-main .cro-review {
+    display: none;
+}
+
+html body.cro-t-138:not(.cro-hide) .product-main-top {
+    padding-top: 25px;
+}
+
+html body.cro-t-138:not(.cro-hide) .cro-rating-summary .rating-result>span::before {
+    color: #f9c400 !important;
+}
+
+html body.cro-t-138 .cro-rating-summary .rating-result::before {
+    letter-spacing: 5px;
+}
+
+html body.cro-t-138 .cro-rating-summary .rating-result>span::before {
+    letter-spacing: 5px;
+}
+
+html body.cro-t-138:not(.cro-hide) .product-right h1.page-title {
+    padding-top: 10px;
+}
+
+@media (max-width:767px) {
+    html body.cro-t-138 .product-info-main .product-right .product-reviews-summary {
+        margin: 0% 0 -15px !important;
+        left: 0px;
+    }
+
+    html body.cro-t-138 .product-info-main .product-reviews-summary {
+        padding-left: 0%;
+    }
+
+    html body.cro-t-138:not(.cro-hide) .cro-rating-summary .rating-result {
+        margin-right: 2px;
+    }
+}

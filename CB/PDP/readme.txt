@@ -49,7 +49,7 @@ Repository structure and file meanings.
 4.2 ALways ask the person to include the user story if there is not none in the new ab test sub folder. If there is a user story in the sub folder, you do not need to ask
 4.3 Always ask the develoeprs if ther are any technical details they would like to add before building the test. If they say yes, include these in the build. If they say no, you can proceed to buid the ab test
 
- 
+
 5. Technical.
 5.1 a large amount of our tests need the waitForElement function. This waits for an element to load on the page so the changes can be applied. Before building the test, ask if there needs to be a wait for elment. If yes, this needs to be supplied and the wait for element function should be used in the code
 5.2 Do not genearte empty css classes
