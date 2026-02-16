@@ -1,0 +1,310 @@
+html body.cro-review-test-1 section.new-sec {
+    background-color: #FAEBD5;
+    padding-top: 50px;
+}
+html body.cro-review-test-1 .top-header {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 60px;
+    margin-bottom: 9px;
+}
+html body.cro-review-test-1 p.sec-frst-text {
+    font-size: 18px;
+    font-weight: 400;
+    margin-right: 8px;
+}
+html body.cro-review-test-1 p.sec-sec-text {
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 8px;
+}
+html body.cro-review-test-1 .sec-header-part {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+html body.cro-review-test-1 .sec-part {
+    text-align: center;
+    padding-bottom: 40px;
+}
+html body.cro-review-test-1 img.top-icon {
+    width: 100px;
+    height: 20px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 4px;
+}
+/* --------Card--------- */
+html body.cro-review-test-1 .cards-part {
+    display: flex;
+    justify-content: center;
+}
+html body.cro-review-test-1 .first-card {
+    width: 100%;
+    max-width: 300px;
+}
+html body.cro-review-test-1 .back-part {
+    background-color: #fff;
+    border: 1px solid #CDBBA1;
+    padding: 20px 20px;
+    height: 100%;
+    min-height: 390px;
+}
+html body.cro-review-test-1 .sec-card {
+    max-width: 300px;
+    margin: 0px 20px;
+}
+html body.cro-review-test-1 .third-card {
+    max-width: 300px;
+    margin-right: 20px;
+}
+html body.cro-review-test-1 .four-card {
+    max-width: 300px;
+}
+html body.cro-review-test-1 .card-header {
+    font-size: 20px;
+    font-weight: 700;
+}
+html body.cro-review-test-1 p.under-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    width: 100%;
+    max-width: 90%;
+    margin-bottom: 30px;
+}
+html body.cro-review-test-1 p.clint-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #D9A937;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.cards-part>div {
+    min-height: 390px;
+}
+html body.cro-review-test-1 img.card-img-1 {
+    width: 100%;
+    max-width: 90px;
+}
+section#second-call-to-action {
+    background-color: white;
+}
+/* ---Header--part--- */
+html body.cro-review-test-1 .img-icon {
+    width: 28px;
+    height: 28px;
+    max-width: 100%;
+    max-height: 100%;
+}
+html body.cro-review-test-1 .main-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 6px;
+}
+html body.cro-review-test-1 .top-button {
+    width: 254px;
+    max-height: 67px;
+    background-color: #4AAEAC;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+html body.cro-review-test-1 .btn-first-text {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    color: white;
+    line-height: 19.36px;
+}
+html body.cro-review-test-1 p.btn-sec-text {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+    padding-right: 6px;
+    line-height: 18px;
+}
+html body.cro-review-test-1 p.btn-last-text {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    color: #ACF1F0;
+    line-height: 18px;
+    letter-spacing: 0em;
+}
+html body.cro-review-test-1 .btn-sec-part {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    /* padding: 1px 0px; */
+}
+html body.cro-review-test-1 img.btn-star-sec {
+    width: 91px;
+    height: 19px;
+    max-width: 100%;
+    max-height: 100%;
+}
+html body.cro-review-test-1 .cro-header-tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+html body.cro-review-test-1 .cro-header-tag>.items-start {
+    width: 80%;
+    column-gap: 0;
+}
+.cro-top-button-sec {
+    position: relative;
+    z-index: 999;
+}
+section.dark {
+    --tw-bg-opacity: 1;
+    background-color: #EEEEEE;
+}
+/* ------media query------ */
+@media (max-width:1279px) {
+    html body.cro-review-test-1 .cards-part {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    html body.cro-review-test-1 .first-card {
+        width: 100%;
+        margin: auto;
+        max-width: 300px;
+        margin-right: 15px;
+    }
+    html body.cro-review-test-1 .sec-card {
+        width: 100%;
+        margin: auto;
+        max-width: 300px;
+        margin-left: 15px;
+    }
+    html body.cro-review-test-1 .third-card {
+        width: 100%;
+        margin: auto;
+        max-width: 300px;
+        /* margin-top: 30px; */
+        margin-right: 15px;
+    }
+    html body.cro-review-test-1 .four-card {
+        width: 100%;
+        max-width: 300px;
+        margin: auto;
+        margin-top: 30px;
+        margin-left: 15px;
+    }
+}
+@media (max-width: 1023px) {
+    html body.cro-review-test-1 .cards-part {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    html body.cro-review-test-1 .first-card {
+        width: 90%;
+        margin: auto;
+        margin-right: 10px;
+    }
+    html body.cro-review-test-1 .sec-card {
+        width: 90%;
+        margin: auto;
+        margin-left: 10px;
+    }
+    html body.cro-review-test-1 .third-card {
+        width: 90%;
+        margin: auto;
+        margin-right: 10px;
+        margin-top: 20px;
+    }
+    html body.cro-review-test-1 .four-card {
+        width: 90%;
+        margin: auto;
+        margin-left: 10px;
+        margin-top: 20px;
+    }
+    html body.cro-review-test-1 .sec-header-part {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    html body.cro-review-test-1 p.sec-frst-text {
+        margin-bottom: 0;
+    }
+    html body.cro-review-test-1 .top-header {
+        margin-top: 0;
+    }
+    html body.cro-review-test-1 section.new-sec {
+        padding-top: 25px;
+    }
+}
+html body .cro-top-button-sec-mobile {
+    display: none;
+}
+@media (max-width: 767px) {
+    html body.cro-review-test-1 .cro-top-button-sec {
+        display: none;
+    }
+    html body.cro-review-test-1 section#call-to-action-and-form {
+        overflow: visible;
+    }
+    .cro-top-button-sec-mobile {
+        position: relative;
+        z-index: 99;
+        display: flex !important;
+        justify-content: center;
+        top: -95px;
+    }
+    html body.cro-review-test-1 .cro-header-tag>.items-start {
+        width: 100%;
+    }
+    .cro-sticky .cro-top-button-sec-mobile {
+        position: fixed;
+        z-index: 99999;
+        top: 10px;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+}
+@media (max-width: 767px) {
+    html body.cro-review-test-1 .cards-part {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    html body.cro-review-test-1 .first-card {
+        width: 100%;
+        margin: auto;
+        max-width: 300px;
+    }
+    html body.cro-review-test-1 .sec-card {
+        width: 100%;
+        margin: auto;
+        max-width: 300px;
+        margin-top: 30px;
+    }
+    html body.cro-review-test-1 .third-card {
+        width: 100%;
+        margin: auto;
+        max-width: 300px;
+        margin-top: 30px;
+    }
+    html body.cro-review-test-1 .four-card {
+        width: 100%;
+        max-width: 300px;
+        margin: auto;
+        margin-top: 20px;
+        margin-top: 30px;
+    }
+    html body.cro-review-test-1 .sec-part {
+        padding-bottom: 30px;
+    }
+}

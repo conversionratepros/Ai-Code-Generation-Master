@@ -1,0 +1,152 @@
+html body.cro46 #call-to-action-and-form .relative .grid>div:nth-child(2)>:not(.cro46-heading-subheading) {
+    display: none;
+}
+
+html body.cro46 .cro46-heading-text {
+    color: #3C3C3C;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro46 .cro46-heading-text span {
+    color: #EB9E36;
+}
+
+html body.cro46 .cro46-sub_heading-text {
+    color: #3C3C3C;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro46 .cro46-sub_heading-text span {
+    font-weight: 700;
+}
+
+html body.cro46 .cro46-heading-subheading-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+html body.cro46 #call-to-action-and-form .relative .grid>div:nth-child(2) {
+    padding-left: 0;
+    padding-bottom: 0;
+
+}
+
+@media (min-width:1281px) {
+    html body.cro46 #call-to-action-and-form .relative .grid>div:nth-child(2) {
+        padding-top: 50px;
+    }
+}
+
+@media (min-width:1024px) {
+    html body.cro46 #call-to-action-and-form .relative .grid>div:nth-child(1) {
+        display: none;
+    }
+
+    html body.cro46 #call-to-action-and-form .relative .grid {
+        grid-template-columns: 1fr !important;
+        width: 800px;
+        margin-left: auto;
+        row-gap: 32px;
+    }
+    html body.cro46.cro-formHeader #call-to-action-and-form .relative .grid {
+        padding-bottom: 50px;
+    }
+
+    html body.cro46 #call-to-action-and-form .relative .grid>div:nth-child(3) {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 20px;
+    }
+
+    html body.cro46.cro-twoPartForm-t-1 form[method="POST"] {
+        margin-bottom: 0 !important;
+    }
+
+    html body.cro46.cro-formHeader3 #call-to-action-and-form .relative .grid>div:nth-child(3) form[method="POST"] {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        column-gap: 27px;
+    }
+
+    html body.cro46.cro-formHeader3 #call-to-action-and-form .relative .grid>div:nth-child(3) form[method="POST"] .cro-step2:not(.notice) {
+        width: 365px;
+        margin-bottom: 27px;
+    }
+
+    html body.cro46.cro-formHeader3 #call-to-action-and-form .relative .grid>div:nth-child(3) form[method="POST"] .cro-step1 {
+        display: none;
+    }
+
+    html body.cro46.cro-formHeader3 #call-to-action-and-form .relative .grid>div:nth-child(3) form[method="POST"] .cro-step2.notice {
+        width: 100%;
+        margin-bottom: 27px
+    }
+
+    html body.cro46.cro-formHeader #call-to-action-and-form h4 {
+        margin-bottom: 27px;
+    }
+
+    html body.cro46.cro-formHeader #call-to-action-and-form .cro-33_34-btnId {
+        margin-top: 27px;
+    }
+
+    html body.cro46.cro-twoPartForm-t-1.cro-formHeader3.cro-33_34-firstFold-t-2 .cro-jm-39-newHeader-inner {
+        margin-top: 0;
+        margin-bottom: 27px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+    html body.cro46 #call-to-action-and-form .relative .grid {
+        width: 600px;
+    }
+
+    html body.cro46.cro-formHeader3 #call-to-action-and-form .relative .grid>div:nth-child(3) form[method="POST"] .cro-step2:not(.notice) {
+        width: 265px;
+    }
+}
+
+@media (max-width:1023px) {
+    html body.cro46 .cro46-heading-text {
+        font-size: 30px;
+        line-height: normal;
+    }
+
+    html body.cro46 .cro46-sub_heading-text {
+        font-size: 18px;
+        line-height: normal;
+    }
+
+    html body.cro46 .cro46-heading-subheading-inner {
+        gap: 41px;
+        width: 100%;
+        max-width: 440px;
+    }
+
+    html body.cro46 #call-to-action-and-form .relative .grid {
+        row-gap: 32px;
+    }
+
+    html body.cro46 #call-to-action-and-form .relative .grid>div:nth-child(2) {
+        padding-left: 0;
+        /* padding-bottom: 0; */
+        /* padding-top: 72px; */
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro46 #call-to-action-and-form .relative .grid>div:nth-child(2) {
+        padding-top: 72px;
+    }
+}

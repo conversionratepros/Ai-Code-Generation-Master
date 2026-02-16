@@ -1,0 +1,194 @@
+html body.cro56 #landing-page-justmoney-logo-white-header-global-section .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+}
+
+html body.cro56 #landing-page-justmoney-logo-white-header-global-section .grid>div.grid-column {
+    padding: 0;
+}
+
+html body.cro56 #landing-page-justmoney-logo-white-header-global-section .grid>div.grid-column [alt="JustMoney logo"] {
+    width: 100%;
+    max-width: 194px;
+}
+
+html body.cro56 .cro-right-icon-text-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+}
+
+html body.cro56 .cro-debt_buster-img {
+    width: 100%;
+    max-width: 148px;
+}
+
+html body.cro56 .cro-right-text {
+    color: #61A644;
+    text-align: right;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+html body.cro56 .cro-top-button-sec {
+    display: none;
+}
+
+/* ---Desktop--Design---- */
+html body.cro56 .cro-bottom-nav-left-icon-parent {
+    width: 49px;
+    height: 49px;
+    background-color: #fff;
+    border-radius: 50%;
+    /* margin: 0 auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro56 .cro-bottom-nav-new-wrapper {
+    background: #4AAEAC;
+}
+
+html body.cro56 img.cro-cup-icon {
+    width: 28px;
+    height: 28px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+html body.cro56 .cro-bottom-nav-left-rated-text {
+    color: #FFF;
+    text-align: left;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 11px;
+    margin-right: 5px;
+}
+
+html body.cro56 .cro-bottom-nav-left-rated-text span {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+html body.cro56 .cro-bottom-nav-left-star-icon {
+    width: 91px;
+    height: 19px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+html body.cro56 .cro-bottom-nav-left-Hellopeter-text {
+    color: #ACF1F0;
+    text-align: left;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 5px;
+    margin-right: 39px;
+}
+
+html body.cro56 .cro-bottom-nav-right-clock-icon {
+    width: 51px;
+    height: 51px;
+    margin-left: 29px;
+    margin-right: 17px;
+}
+
+html body.cro56 img.cro-clock-icon {
+    width: 100%;
+}
+
+html body.cro56 .cro-bottom-nav-right-text {
+    color: #FFF;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    /* 22.4px */
+}
+
+html body.cro56 .cro-bottom-nav-right-text span {
+    font-weight: 700;
+}
+
+html body.cro56 .cro-bottom-nav-new-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+}
+
+html body.cro56 .cro-bottom-nav-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro56 .cro-bottom-nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #2D7472;
+}
+
+html body.cro56 .cro-right-icon-text-inner a.cro-debt_buster-img-link {
+    pointer-events: none;
+}
+
+@media (max-width:1023px) and (min-width:768px) {
+    html body.cro56 #landing-page-justmoney-logo-white-header-global-section .grid {
+        column-gap: 1.5rem;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro56 #landing-page-justmoney-logo-white-header-global-section .grid>div.grid-column [alt="JustMoney logo"] {
+        max-width: 146px;
+    }
+
+    html body.cro56 .cro-right-text {
+        display: none;
+    }
+
+    html body.cro56 .cro-right-text-Mobile {
+        display: block !important;
+        color: #65A849;
+        text-align: center;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        position: absolute;
+        bottom: -5px;
+        left: 34px;
+    }
+
+    html body.cro56 .cro-debt_buster-img {
+        width: 100%;
+        max-width: 99px;
+        position: relative;
+    }
+
+    html body.cro56 .cro-bottom-nav-new {
+        display: none;
+    }
+}
+
+@media (max-width:343px) {
+    html body.cro-review-test-1.cro-t-58-widget.cro56 .cro-top-button-inner-left-mob .btn-sec-text {
+        font-size: 12px;
+    }
+}

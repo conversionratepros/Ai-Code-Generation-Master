@@ -1,0 +1,331 @@
+html body.cro71 .registerholder h1.topcaption {
+    display: none;
+}
+
+html body.cro71 .cro71-hero-Banner-text {
+    color: #38404E;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro71 .cro71-hero-Banner-text.Sub_heading {
+    font-weight: 400;
+}
+
+html body.cro71 .cro71-hero-Banner-heading {
+    margin-bottom: 40px;
+}
+
+html body.cro71 .registerform h3.rgstertext {
+    font-size: 0;
+    line-height: 0;
+}
+
+html body.cro71 .registerform h3.rgstertext:after {
+    content: 'To view your full offer, register today.';
+    color: #000;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro71 .registerform #btn_userJourney_registrationStart_registration {
+    font-size: 0;
+    line-height: 0;
+    height: 45px;
+    padding: 0;
+    width: 149px !important;
+    /* border-radius: 24px; */
+}
+
+html body.cro71 input#IdNumber.form-control {
+    height: 45px;
+}
+
+html body.cro71 .registerform #btn_userJourney_registrationStart_registration:after {
+    content: 'See my offer!';
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro71 .cro71-hero-Banner-text.heading span {
+    color: #E59A2C;
+    filter: blur(6px);
+}
+
+/* ---Hero Section Bottom------ */
+
+
+
+html body.cro71 .loginbgholder {
+    background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/JustMoney/Recipe_71/cro-jm-71-1.png");
+    background-repeat: no-repeat;
+    background-position: 320px -21px;
+    /* background-size: 600px; */
+    min-height: 700px;
+    background-size: 758px;
+}
+
+html body.cro71 .registerform #id-number-form button.btn-custom {
+    font-size: 0;
+    padding: 7px 16px;
+    padding: 0;
+}
+
+html body.cro71 .registerform #id-number-form button.btn-custom::after {
+    content: 'See my offer!';
+    color: #FFF;
+    text-align: center;
+    /* font-family: Inter; */
+    font-size: 18px;
+    /* font-style: normal;
+    font-weight: 700; */
+    /* line-height: normal; */
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+    html body.cro71 .loginbgholder {
+        min-height: 570px;
+        background-size: 620px;
+        background-position: 328px -20px;
+    }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+    html body.cro71 .registerform #id-number-form>:nth-child(1) {
+        width: 73%;
+    }
+
+    html body.cro71 .registerform #id-number-form>:nth-child(2) {
+        width: 27%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    html body.cro71 .loginbgholder {
+        background-position: 195px -20px;
+        /* background-size: 600px; */
+        min-height: 600px;
+        background-size: 650px;
+    }
+
+    /* html body.cro71 .loginbgholder {
+        background-position: 225px top;
+    } */
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    html body.cro71 .registerform #id-number-form>:nth-child(1) {
+        width: 70%;
+    }
+
+    html body.cro71 .registerform #id-number-form>:nth-child(2) {
+        width: 30%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    html body.cro71 .loginbgholder {
+        background-position: 208px -20px;
+    }
+
+    html body.cro71 .registerform #id-number-form>:nth-child(1) {
+        width: 73%;
+    }
+
+    html body.cro71 .registerform #id-number-form>:nth-child(2) {
+        width: 27%;
+    }
+}
+
+@media (min-width: 1400px) {
+    html body.cro71 .registerform #id-number-form>:nth-child(1) {
+        width: 80% !important;
+    }
+
+    html body.cro71 .registerform #id-number-form>:nth-child(2) {
+        width: 20% !important;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro71 .loginbgholder {
+        background-position: right -8px !important;
+        min-height: 490px;
+        background-size: 360px;
+    }
+
+    html body.cro71 .registerform {
+        margin-bottom: 30px !important;
+    }
+
+    html body.cro71 .registerform h3.rgstertext:after {
+        font-size: 18px;
+        line-height: normal;
+    }
+
+    html body.cro71 .cro71-hero-Banner-text.Sub_heading {
+        font-size: 20px;
+        line-height: 120%;
+    }
+
+    html body.cro71 .cro71-hero-Banner-inner {
+        padding-bottom: 14px;
+        padding-top: 8px;
+    }
+}
+
+@media (max-width:575px) {
+    html body.cro71 .loginbgholder {
+        background-position: 245px -8px !important;
+        min-height: 430px;
+        background-size: 380px;
+    }
+
+    html body.cro71 .loginbgholder .sm-devicetop {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width:500px) {
+    html body.cro71 .loginbgholder {
+        background-position: 190px -8px !important;
+    }
+}
+
+@media (max-width:400px) {
+    html body.cro71 .loginbgholder {
+        /* background-size: 255px;
+        min-height: 415px;
+        padding-bottom: 10px; */
+        /* background-position: 100px top; */
+        background-position: 150px -8px !important;
+    }
+
+    html body.cro71 .loginbgholder .sm-devicetop {
+        margin-top: 100px;
+    }
+}
+
+/* -------New--Benefits---- */
+
+html body.cro71 .cro-loginbottompart {
+    background: #D9D9D9;
+    padding: 15px 25px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #00000080;
+    width: 264px;
+    padding: 32px 22px;
+}
+
+html body.cro71 h3.cro71-benefits-title {
+    color: #38404E;
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 24px;
+}
+
+html body.cro71 ul.cro71-benefits-list {
+    padding-left: 18px;
+    margin-bottom: 0;
+}
+
+html body.cro71 .loginbottompart {
+    display: none;
+}
+
+html body.cro71 ul.cro71-benefits-list li {
+    color: #38404E;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro71 ul.cro71-benefits-list li:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+@media (min-width:992px) {
+    html body.cro71 .registerholder .col-lg-6 {
+        width: 52%;
+    }
+}
+
+@media (min-width:1400px) {
+    html body.cro71 .registerholder #id-number-form>div.dbc-verify-no {
+        width: 80%;
+    }
+
+    html body.cro71 .registerholder #id-number-form>div.custom-row {
+        width: 20%;
+    }
+}
+
+@media (min-width:1200px) {
+    html body.cro71 .registerholder #id-number-form>div.dbc-verify-no {
+        width: 77%;
+    }
+
+    html body.cro71 .registerholder #id-number-form>div.custom-row {
+        width: 23%;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro71 .cro-loginbottompart {
+        padding: 19.832px 13.83px;
+        width: 177px;
+    }
+
+    html body.cro71 h3.cro71-benefits-title {
+        font-size: 16px;
+        line-height: normal;
+        margin-bottom: 14px;
+    }
+
+    html body.cro71 ul.cro71-benefits-list li {
+        font-size: 10px;
+        line-height: normal;
+    }
+
+    html body.cro71 ul.cro71-benefits-list li:not(:last-child) {
+        margin-bottom: 5px;
+    }
+
+    html body.cro71 ul.cro71-benefits-list {
+        padding-left: 15px;
+        margin-bottom: 0;
+    }
+
+    html body.cro71 .registerform #btn_userJourney_registrationStart_registration {
+        width: 100% !important;
+    }
+
+    html body.cro71 .cro71-hero-Banner-text {
+        font-size: 22px;
+        line-height: 120%;
+    }
+
+    html body.cro71 .cro71-hero-Banner-text.heading span {
+        filter: blur(4.5px);
+    }
+
+}

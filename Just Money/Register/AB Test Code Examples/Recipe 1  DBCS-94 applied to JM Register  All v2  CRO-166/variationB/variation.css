@@ -1,0 +1,842 @@
+html body.cro166 .registerholder .loginbgholder {
+    overflow: hidden;
+    height: 0;
+    min-height: 0;
+}
+
+html body.cro166 section.testimonials{
+    display: none;
+}
+
+html body.cro166 .register-hld{
+    height: 100%;
+    min-height: fit-content !important;
+}
+
+
+html body.cro166 .registerform {
+    box-shadow: none !important;
+    border-radius: 10px !important;
+}
+
+
+html body.cro166 .registerform .frmhold {
+    margin: 0 !important;
+    padding: 25px 20px 30px !important;
+}   
+
+
+html body.cro166 .cro-hero-banner-flex .registerform {
+    margin: 0 !important;
+    border-radius: 10px !important;
+    border: 10px solid #FFF !important;
+    background: #F1F1F1 !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15),
+        inset 0 0 9px 9px rgba(38, 40, 72, 0.15) !important;
+}
+
+
+html body.cro166 .cro166-from-parent {
+    padding: 0 !important;
+    width: 100%;
+    max-width: 510px;
+    max-width: 571px;
+}
+
+
+html body.cro166 .cro166-banner-left{
+    width: 50%;
+    max-width: 325px;
+    margin: 0 !important;
+}
+
+
+html body.cro166 .cro166-banner-left > div{
+    margin: 0 !important;
+    width: 100%;
+}
+
+
+html body.cro166 input#IdNumber {
+    border-radius: 3px;
+    border: 1px solid #C2D3D8;
+    height: 45px;
+}
+
+
+html body.cro166 #registerForm .custom-row input#FirstName,
+html body.cro166 #registerForm .custom-row input#Surname,
+html body.cro166 #registerForm .custom-row input#PhoneNumber,
+html body.cro166 #registerForm .custom-row input#Email,
+html body.cro166 #registerForm .custom-row input#Password,
+html body.cro166 #registerForm .custom-row input#ConfirmPassword {
+    border-radius: 3px;
+    border: 1px solid #C2D3D8;
+    height: 45px;
+}
+
+
+html body.cro166 #registerForm .custom-row span.text-white{
+    color: #22222C;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+html body.cro166 #registerForm .dbc-verify-no > div,
+html body.cro166 #registerForm .dbc-verify-yes > div{
+    margin-bottom: 12px;
+}
+
+
+html body.cro166 #id-number-form .dbc-verify-no {
+    width: 100%;
+}
+
+
+html body.cro166 .cro-1-2_button-parent > div.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+html body.cro166 .cro-1-2_button-parent {
+    padding: 0 !important;
+}
+
+
+html body.cro166 .cro-1-2_button-parent .registerbtn {
+    color: #333 !important;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    margin: 0;
+}
+
+
+html body.cro166 .cro-1-2_button-parent .registerbtn a{
+    color: #E59A2C !important;
+}
+
+
+html body.cro166 #registerForm #btn_userJourney_registrationSubmit_registration {
+    font-size: 0;
+    width: 100%;
+    background: #E59A2C;
+    background: #A4A4A4;
+    height: 45px;
+    border: none;
+}
+
+
+html body.cro166.active #registerForm #btn_userJourney_registrationSubmit_registration {
+    background: #E59A2C;
+}
+
+
+html body.cro166 #registerForm #btn_userJourney_registrationSubmit_registration:after {
+    content: 'Sign up';
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+html body.cro166 .cro-hero-banner-flex {
+    gap: 40px;
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: center !important;
+}
+
+html body.cro166 h1.topcaption {
+    color: #000 !important;
+    font-size: 24px !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: normal;
+}
+
+
+html body.cro166 #id-number-form .custom-row.reg-mobile {
+    width: 100%;
+}
+
+
+html body.cro166 #id-number-form .custom-row.reg-mobile > div{
+    padding: 0 !important;
+}
+
+
+html body.cro166 h3.rgstertext {
+    color: #2A2A2A !important;
+    font-family: Roboto, sans-serif;
+    font-size: 18px !important;
+    font-style: normal;
+    font-weight: 700 !important;
+    line-height: normal !important;
+    text-align: left !important;
+    margin-bottom: 20px !important;
+}
+
+
+html body.cro166 .registerholder {
+    padding-top: 45px !important;
+    padding-bottom: 45px !important;
+    background: #FFF;
+}
+
+
+html body.cro166 .cro166-need-help-wrapper {
+    margin-top: 20px;
+}
+
+
+html body.cro166 .cro166-need-help-left-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+html body.cro166 .cro166-need-help-inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+
+html body.cro166 .cro166-need-help-right-icon {
+    width: 37px;
+    height: 37px;
+    border-radius: 37px;
+    border: 1px solid #E59A2C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+html body.cro166 span.cro166-need-help-left-text {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+html body.cro166 span.cro166-need-help-left-text.call {
+    font-size: 14px;
+    color: #E59A2C;
+    cursor: pointer;
+}
+
+/* ----creditScore--section---- */
+
+html body.cro166 .cro-t-1-personal-loan-img-text {
+    background-color: #F1F1F1;
+    position: relative;
+    background: #FDF3E6;
+}
+
+html body.cro166 .cro-t-1-personal-loan-img-text-wrapper {
+    width: 100%;
+    max-width: 980px;
+    /* margin: 0 auto; */
+    height: 248px !important;
+}
+
+html body.cro166 .cro-t-1-personal-loan-img-text-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+}
+
+html body.cro166 .cro-t-1-personal-loan-main-img {
+    width: 37%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 379px;
+    margin-left: 0 !important;
+}
+
+html body.cro166 .cro-t-1-personal-img {
+    background: url(registrationbg.ce2761211190336d.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 400px;
+    background-size: 282px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    max-width: 350px;
+    /* left: 0; */
+}
+
+html body.cro166 .cro-t-1-personal-loan-text-icon-wrapper {
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro166 .cro-t-1-personal-loan-text {
+    width: 100%;
+    max-width: 268px;
+    margin-right: 16px;
+}
+
+html body.cro166 .cro-t-1-personal-loan-text h3 {
+    color: #333 !important;
+    font-family: Roboto, sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 12px;
+}
+
+html body.cro166 .cro-t-1-personal-loan-subheading {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro166 .cro-t-1-personal-loan-icon-score {
+    width: 100%;
+    position: relative;
+    /* top: -20px; */
+    max-width: 276px;
+}
+
+html body.cro166 img.cro-icon-score {
+    width: 100%;
+}
+
+
+/* ------Reviews--Cards--- */
+
+html body.cro166 section.new-sec {
+    background-color: #FFF;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+html body.cro166 h2.top-header {
+    margin-top: 48px;
+    margin-bottom: 9px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    color: #22222C;
+}
+
+html body.cro166 .sec-part {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+html body.cro166 .sec-header-part {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+html body.cro166 p.sec-frst-text {
+    margin-right: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    color: #000;
+}
+
+html body.cro166 img.top-icon {
+    width: 100px;
+    height: 20px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+html body.cro166 p.sec-sec-text {
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    color: #000;
+}
+
+html body.cro166 .cro-1-review-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 930px;
+    margin: 0 auto;
+}
+
+html body.cro166 .cro-1-review-card {
+    background: #ffffff;
+    padding: 22px;
+    box-shadow: 0 -1px 47px 2px rgba(23, 32, 109, 0.25);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+html body.cro166 .cro-1-review-card h3 {
+  color: #333;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 22.4px */
+  margin-bottom: 12px;
+  font-family: Roboto, sans-serif;
+}
+
+html body.cro166 .cro-1-review-card .cro-1-review-text {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+    margin-bottom: 16px;
+    font-family: Roboto, sans-serif;}
+
+html body.cro166 .cro-1-review-card .author {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 22.4px */
+    font-family: Roboto, sans-serif;
+}
+
+html body.cro166 .cro-1-login-text {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro166 .cro-1-login {
+    padding-top: 30px;
+}
+
+html body.cro166 .cro-1-login-text span {
+    color: #E59A2C;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    cursor: pointer;
+}
+
+html body.cro166 form#id-number-form {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro166 #btn_userJourney_registrationStart_registration{
+    background: #E59A2C;
+    border:none;
+    height:45px;
+    font-size:0;
+}
+
+html body.cro166 #btn_userJourney_registrationStart_registration:after{
+    content:'Continue';
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* html body.cro166 .cro-hero-banner-flex .cro166-from-parent + div{
+    display: none;
+} */
+
+html body.cro166 .cro-hero-banner-flex .cro166-from-parent + div{
+    overflow: hidden;
+    height: 0;
+}
+
+
+/* Tablet */
+@media (max-width: 1023px) {
+  html body.cro166 .cro-1-review-card {
+    flex: 1 1 calc(50% - 24px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .cro-1-review-card {
+    flex: 1 1 100%;
+  }
+}
+
+
+html body.cro166 .cro-1-tnc-button-left {
+    width: 50%;
+    cursor: pointer;
+}
+
+html body.cro166 .cro-1-tnc-button-right {
+    width: 50%;
+    cursor: pointer;
+}
+
+html body.cro166 .cro-1-tnc-button-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 77.426px;
+    height: 30px;
+    padding: 3px 4px;
+    border-radius: 28px;
+    background: #333;
+}
+
+html body.cro166 .cro-1-tnc-button-left-text {
+    color: #495057;
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.85);
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro166.active .cro-1-tnc-button-left-text{
+    visibility:hidden;
+}
+
+html body.cro166.active .cro-1-tnc-button-right-text {
+    color: #495057;
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.85);
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro166:not(.active)  .cro-1-tnc-button-right-text{
+    visibility:hidden;
+}
+
+html body.cro166.active .cro-1-tnc-button-inner{
+    background: #E59A2C;
+}
+
+html body.cro166 span.cro-1-tnc-text {
+    color: #22222C;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro166 span.cro-1-tnc-text a {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    color: #E59A2C;
+}
+
+html body.cro166 .cro-1-tnc-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+html body.cro166 .custom-row .cro-1-From-tnc {
+    display: none !important;
+}
+
+html body.cro166 .cro-1-tnc-button {
+    margin-bottom: 0 !important;
+}
+
+html body.cro166 .custom-row.cro-1-From-tnc-parent{
+     margin-bottom: 8px !important;
+}
+
+html body.cro166 .cro166-need-help.mobile {
+    display: none;
+}
+
+html body.cro166 .cro-t-1-personal-loan-img-text.cro-mobile-part {
+    display: none;
+}
+
+html body.cro166 .cro-t-1-personal-loan-img-text-mobile {
+    display: none;
+}
+
+@media (max-width:1023px) {
+
+html body.cro166 .cro-hero-banner-flex {
+    /* flex-direction: column; */
+    gap: 30px;
+}
+
+html body.cro166 .cro-t-1-personal-loan-img-text{
+    display: none;
+}
+
+html body.cro166 .cro166-from-parent {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+html body.cro166 .cro166-banner-left {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto !important;
+}
+
+html body.cro166 h1.topcaption {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+html body.cro166 #registerForm .dbc-verify-no {
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+html body.cro166 #registerForm .dbc-verify-no > div, 
+html body.cro166 #registerForm .dbc-verify-yes > div {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+html body.cro166 .cro166-need-help.mobile {
+    display: block !important;
+    padding-top: 40px;
+}
+
+html body.cro166 .cro166-need-help:not(.mobile){
+    display: none;
+}
+
+/* html body.cro166 .cro-t-1-personal-loan-img-text.cro-mobile-part {
+    display: block;
+} */
+
+html body.cro166 .cro-t-1-personal-loan-img-text-mobile {
+    display: block;
+       position: relative;
+    margin-top: 15px;
+}
+
+html body.cro166 .cro-t-1-personal-loan-img-text-mobile-wrapper {
+        width: 100%;
+    }
+
+html body.cro166 .cro-t-1-personal-loan-main-img-mobile {
+    height: 100%;
+    width: 290px;
+    margin: 0 auto;
+}
+
+html body.cro166 .cro-t-1-personal-img-mobile {
+    background: url(registrationbg.ce2761211190336d.webp);
+    min-height: 400px;
+    background-size: 284px;
+    background-position: 0px top;
+    background-repeat: no-repeat;
+}
+
+html body.cro166 .cro-t-1-personal-loan-text-icon-mobile {
+    background: #FDF3E6;
+}
+
+html body.cro166 .cro-t-1-personal-loan-text-icon-mobile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 19px 30px 26px;
+    gap: 18px;
+}
+
+html body.cro166 .cro-t-1-personal-loan-text-mobile {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+html body.cro166 .cro-t-1-personal-loan-icon-score-mobile {
+    width: 100%;
+    position: relative;
+    top: -20px;
+    padding-top: 15px;
+}
+
+html body.cro166 .cro-t-1-personal-loan-text-mobile h3 {
+    color: #333 !important;
+    font-family: Roboto, sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+
+html body.cro166 .custom-row.cro-1-From-tnc-parent {
+    margin-bottom: 0 !important;
+}
+
+html body.cro166 .custom-row.cro-1-password-input {
+    margin-bottom: 0;
+}
+
+html body.cro166 #registerForm #btn_userJourney_registrationSubmit_registration{
+    margin-bottom: 0 !important;
+}
+
+html body.cro166 .registerholder {
+    padding-bottom: 0px !important;
+}
+
+
+}
+
+@media (max-width:767px) {
+    html body.cro166 .cro166-from-parent {
+    padding: 0 16px !important;
+}
+
+html body.cro166 .sec-header-part {
+    align-items: center;
+    flex-direction: column;
+}
+
+html body.cro166 img.top-icon {
+    margin: 6px 0;
+}
+
+html body.cro166 p.sec-frst-text {
+    margin: 0;
+}
+
+html body.cro166 p.sec-sec-text {
+    margin: 0;
+}
+
+html body.cro166 h2.top-header {
+    margin-top: 48px;
+    margin-bottom: 14px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
+}
+html body.cro166 .cro-1-2_button-parent > div.col{
+    margin-top: 0 !important;
+}
+}
+
+@media (max-width: 1023px) {
+    html body.cro166 .cro-1-review-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    html body.cro166 .cro-1-review-card {
+    height: 100%;
+    min-height: 250px;
+}
+}
+
+@media (max-width:767px) {
+    html body.cro166 .cro-1-review-card {
+        height: 100%;
+        min-height: 300px;
+    }
+    html body.cro166 .cro-1-2_button-parent .registerbtn{
+        text-align: left;
+    }
+    html body.cro166 div#divIdNumber {
+    margin-bottom: 30px;
+}
+
+html body.cro166 #id-number-form .custom-row.reg-mobile {
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+}
+}
+
+@media (max-width: 640px) {
+    html body.cro166 .cro-1-review-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    html body.cro166 .cro-1-review-card {
+        height: 100%;
+        min-height: 265px;
+    }
+}

@@ -1,0 +1,132 @@
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-inner {
+    padding: 46px 0 50px;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-brandingCreditSav h3.cro-partnerLogos-t-57-header {
+    font-family: 'Roboto', sans-serif;
+    color: #22222C;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28.13px;
+    text-align: center;
+    margin: 0 0 34px;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-two {
+    margin: 0 20px;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-three {
+    margin-right: 20px;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-one img {
+    max-width: 145px;
+    width: 100%;
+    max-height: 67px;
+    height: 100%;
+    object-fit: contain;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-two img {
+    max-width: 145px;
+    width: 100%;
+    max-height: 35px;
+    height: 100%;
+    object-fit: contain;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-three img {
+    max-width: 145px;
+    width: 100%;
+    max-height: 36px;
+    height: 100%;
+    object-fit: contain;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-four img {
+    max-width: 145px;
+    width: 100%;
+    max-height: 57px;
+    height: 100%;
+    object-fit: contain;
+}
+
+html body.cro-brandingCreditSav .cro-partnerLogos-t-57 {
+    background-color: #fff;
+}
+
+
+@media (max-width:1023px) and (min-width:992px) {
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-images {
+        width: 100%;
+        max-width: 75%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1023px) {
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img {
+        width: 50%;
+    }
+
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-one {
+        order: 1;
+        margin-bottom: 30px;
+    }
+
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-two {
+        margin: 0;
+        order: 3;
+    }
+
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-three {
+        margin: 0;
+        order: 4;
+    }
+
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img.cro-partnerLogos-t-57-four {
+        order: 2;
+        margin-bottom: 30px;
+    }
+
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img svg {
+        width: 100%;
+        object-fit: contain;
+        transform: scale(1.2);
+    }
+}
+
+@media (max-width: 767px) {
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img svg {
+        transform: scale(1);
+    }
+
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-inner {
+        padding: 36px 0;
+    }
+}
+
+@media (max-width: 350px) {
+    html body.cro-brandingCreditSav .cro-partnerLogos-t-57-img svg {
+        transform: scale(0.9);
+    }
+}

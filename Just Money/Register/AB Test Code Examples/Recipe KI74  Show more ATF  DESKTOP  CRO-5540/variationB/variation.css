@@ -1,0 +1,352 @@
+@media (min-width: 1024px) {
+    html body.croki74 .croki74-credit-score-heading h2 {
+        color: #38404e;
+        font-family: Roboto, sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0;
+    }
+
+    html body.croki74 .croki74-credit-score-heading h2 span {
+        font-weight: 700;
+    }
+
+    html body.croki74 p.croki74-sub-heading-text {
+        color: #333;
+        font-family: Roboto, sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin: 0;
+    }
+
+    html body.croki74 .croki74-benefits-list-text {
+        color: #333;
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    html body.croki74 .croki74-benefits-list-img {
+        width: 24px;
+        height: 24px;
+    }
+
+    html body.croki74 .croki74-benefits-list {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    html body.croki74 .croki74-sub-heading {
+        margin-bottom: 16px;
+    }
+
+    html body.croki74 .croki74-credit-score-heading {
+        margin-bottom: 32px;
+    }
+
+    html body.croki74 .croki74-benefits-list.list-4 {
+        margin-bottom: 0;
+    }
+
+    html body.croki74 .registerholder {
+        padding-top: 0 !important;
+    }
+
+    /* ---form--- */
+    html body.croki74 .register-hld .mobilespce {
+        padding: 0 !important;
+        width: 100%;
+        padding-top: 0 !important;
+    }
+
+    html body.croki74 .register-hld .registerform {
+        margin: 0 !important;
+        box-shadow: none;
+    }
+
+    html body.croki74 .register-hld .frmhold {
+        padding: 24px !important;
+        margin-top: 0;
+    }
+
+    html body.croki74 .register-hld #id-number-form .dbc-verify-no,
+    html body.croki74 .register-hld #id-number-form .reg-mobile {
+        width: 100%;
+    }
+
+    html body.croki74 .register-hld #id-number-form div#divIdNumber {
+        margin-bottom: 16px;
+    }
+
+    html body.croki74 .register-hld #id-number-form .reg-mobile > div {
+        padding-left: 0 !important;
+    }
+
+    html body.croki74 .croki74-credit-score-wrapper {
+        padding-top: 0;
+    }
+
+    html body.croki74 .cro-credit-score-control {
+        display: none;
+    }
+
+    html body.croki74 .cro-hero-banner-bottom {
+        display: none;
+    }
+
+    html body.croki74 .register-hld .registerholder > div > div.d-flex {
+        display: grid !important;
+        width: 100%;
+        gap: 40px;
+        grid-template-columns: 393px 505px;
+        align-items: start;
+        height: -moz-fit-content;
+        height: fit-content;
+        margin: auto 0;
+    }
+
+    html body.croki74 .croki74-new-banner-image-parent {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    html body.croki74 .cro-google-play-icon {
+        width: 100%;
+        max-width: 203px;
+    }
+
+    html body.croki74 .croki74-help-icon-text {
+        color: #22222c;
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    html body.croki74 .croki74-help-icon-text-2 {
+        color: #e59a2c;
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    html body.croki74 .cro-need-help-icon-parent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    html body.croki74 .cro-need-help {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 11px;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+
+    html body.croki74 .croki74-form-bottom-icon-innerr {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 24px;
+    }
+
+    html body.croki74 .croki74-form-bottom-icon-wrapper {
+        padding-top: 24px;
+        padding-bottom: 15px;
+    }
+
+    html body.croki74 #registerForm .cro-from-name-parent > div,
+    html body.croki74 #registerForm .cro-from-number-parent > div,
+    html body.croki74 #registerForm .cro-from-Password-parent > div,
+    html body.croki74 #registerForm .cro-from-tmc-parent {
+        margin-bottom: 15px;
+    }
+
+    html body.croki74 #registerForm .cro-from-button-parent {
+        padding-bottom: 0 !important;
+    }
+
+    html body.croki74 #registerForm .cro-from-tmc-parent > div:not(.termerror) > span {
+        width: 100%;
+        color: #fff;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    html body.croki74 #registerForm .cro-from-button-parent > div {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    html body.croki74.cro_step_2 .register-hld .mobilespce {
+        padding-top: 0 !important;
+    }
+
+    html body.croki74.cro_step_2 #registerForm .cro-from-button-parent .registerbtn {
+        color: #fff !important;
+        text-align: right;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0;
+    }
+
+    html body.croki74.cro_step_2 .cro-from-button-parent .registerbtn #btn_LoginRedirect_Register-3 {
+        padding-left: 2px !important;
+    }
+
+    html body.croki74.cro_step_2 .cro-from-tmc-parent .termerror {
+        padding-left: 12px;
+    }
+
+    html body.croki74 .croki74-help-icon-text-2 {
+        cursor: pointer;
+    }
+
+    html body.croki74 .cro-from-name-parent > .mobilefeldspace,
+    html body.croki74 .cro-from-number-parent > .mobilefeldspace,
+    html body.croki74 .cro-from-Password-parent > .mobilefeldspace {
+        padding-right: 6px;
+    }
+
+    html body.croki74 .cro-from-name-parent > .rightspace,
+    html body.croki74 .cro-from-number-parent > .rightspace,
+    html body.croki74 .cro-from-Password-parent > .rightspace {
+        padding-left: 6px;
+    }
+
+    html body.croki74.cro_step_2 .cro-from-Password-parent .psb #strength {
+        line-height: 1;
+        margin: 0 !important;
+    }
+
+    html body.croki74 button#btn_userJourney_registrationStart_registration {
+        font-size: 0;
+        line-height: 0;
+        /* padding: 9.5px 50px; */
+    }
+
+    html body.croki74 button#btn_userJourney_registrationStart_registration:after {
+        content: "Check Credit Score";
+        font-size: 18px;
+        line-height: normal;
+        font-family: inherit;
+    }
+
+    html body.croki74 .registerform .rgstertext {
+        color: #000;
+    }
+
+    html body.croki74 .croki74-credit-score-section {
+        display: block !important;
+        /* padding-bottom: 34px; */
+    }
+
+    html body.croki74 .croki74-new-banner-image {
+        display: block !important;
+        min-width: 383px;
+    }
+
+    html body.croki74 .croki74-form-bottom-icon {
+        display: block !important;
+    }
+
+    html body.croki74 .croki74-new-banner-image-parent img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: contain;
+        object-fit: contain;
+        -o-object-position: bottom;
+        object-position: bottom;
+    }
+
+    html body.croki74 .registerholder .container {
+        max-width: 1440px;
+        padding-right: 80px;
+        padding-left: 19.5px;
+        padding-top: 62.5px;
+        display: flex;
+        gap: 19.5px;
+        flex-direction: row-reverse;
+    }
+
+    html body.croki74 .croki74-new-banner-image-wrapper {
+        height: 100%;
+    }
+
+    html body.croki74 button#btn_userJourney_registrationSubmit_registration {
+        padding: 7px 24px;
+        min-width: 239px;
+    }
+}
+
+@media (max-width: 1439px) and (min-width: 1024px) {
+    html body.croki74 .croki74-new-banner-image {
+        min-width: 265.632px;
+        max-width: 383px;
+        width: 100%;
+    }
+
+    html body.croki74 .register-hld .registerholder > div > div.d-flex {
+        grid-template-columns: minmax(243px, 393px) minmax(414px, 505px);
+        gap: 24px;
+        align-items: flex-start;
+    }
+
+    html body.croki74 .registerholder .container {
+        padding-top: 38px;
+        gap: 0;
+    }
+
+    html body.croki74 .croki74-credit-score-heading h2 {
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    html body.croki74 #registerForm .cro-from-button-parent > div {
+        flex-wrap: nowrap !important;
+        gap: 24px;
+    }
+
+    html body.croki74 .croki74-form-bottom-icon-innerr {
+        gap: 10px;
+    }
+
+    html body.croki74 .croki74-credit-score-section {
+        padding-bottom: 34px;
+        padding-top: 15px;
+    }
+}
+
+@media (max-width: 1439px) and (min-width: 1300px) {
+    html body.croki74 .croki74-credit-score-heading h2 {
+        font-size: 29px;
+    }
+}
+@media (max-width: 1299px) and (min-width: 1024px) {
+    html body.croki74 .croki74-credit-score-heading h2 {
+        font-size: 24px;
+    }
+}

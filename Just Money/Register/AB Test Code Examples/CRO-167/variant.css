@@ -1,0 +1,108 @@
+html body.cro53_55 .loginbgholder {
+    background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/JustMoney/Recipe+53.55+%7C+Copy-Imagery+update+%7C+ALL+%7C+CRO-167/cro-jm-53-55-1+(1).png");
+    background-repeat: no-repeat;
+    background-position: 270px top;
+    /* background-size: 600px; */
+    min-height: 700px;
+    background-size: 530px;
+}
+
+html body.cro53_55 .registerform #id-number-form button.btn-custom {
+    font-size: 0;
+    padding: 7px 16px;
+}
+
+html body.cro53_55 .registerform #id-number-form button.btn-custom::after {
+    content: 'Check Credit Score';
+    color: #FFF;
+    text-align: center;
+    /* font-family: Inter; */
+    font-size: 14px;
+    /* font-style: normal;
+    font-weight: 700; */
+    /* line-height: normal; */
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+    html body.cro53_55 .loginbgholder {
+        min-height: 570px;
+        background-size: 430px;
+        background-position: 275px top;
+    }
+}
+
+/* .registerform #id-number-form>:nth-child(2) */
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+    html body.cro53_55 .registerform #id-number-form>:nth-child(1) {
+        width: 73%;
+    }
+
+    html body.cro53_55 .registerform #id-number-form>:nth-child(2) {
+        width: 27%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+    html body.cro53_55 .loginbgholder {
+        background-position: 145px top;
+        /* background-size: 600px; */
+        min-height: 600px;
+        background-size: 456px;
+    }
+
+    /* html body.cro53_55 .loginbgholder {
+        background-position: 225px top;
+    } */
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    html body.cro53_55 .registerform #id-number-form>:nth-child(1) {
+        width: 67%;
+    }
+
+    html body.cro53_55 .registerform #id-number-form>:nth-child(2) {
+        width: 33%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    html body.cro53_55 .loginbgholder {
+        background-position: 140px top;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro53_55 .loginbgholder {
+       background-position: right top !important;
+        min-height: 490px;
+        background-size: 310px;
+    }
+
+    html body.cro53_55 .registerform {
+        margin-bottom: 30px !important;
+    }
+}
+
+@media (max-width:575px) {
+    html body.cro53_55 .loginbgholder {
+        /* background-position: 180px top; */
+        min-height: 490px;
+        background-size: 310px;
+    }
+}
+
+@media (max-width:500px) {
+    html body.cro53_55 .loginbgholder {
+        /* background-position: 125px top; */
+    }
+}
+
+@media (max-width:400px) {
+    html body.cro53_55 .loginbgholder {
+        background-size: 255px;
+        min-height: 415px;
+        padding-bottom: 10px;
+        /* background-position: 100px top; */
+    }
+}

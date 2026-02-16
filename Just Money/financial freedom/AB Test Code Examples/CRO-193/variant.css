@@ -1,0 +1,325 @@
+html body.cro-t-3_20 #call-to-action-and-form .absolute:first-child {
+    display: none;
+}
+
+
+html body.cro-t-3_20 section#call-to-action-and-form .grid>div:nth-child(1) {
+    display: none !important;
+}
+
+html body.cro-t-3_20 section#call-to-action-and-form h1:not(.cro-header-text) {
+    display: none;
+}
+
+html body.cro-t-3_20 section#call-to-action-and-form .body-text.lead {
+    display: none;
+}
+
+html body.cro-t-3_20 section#call-to-action-and-form h2 {
+    display: none;
+}
+
+html body.cro-t-3_20 section .opacity-lightest.bg-black {
+    --tw-bg-opacity: 1;
+    background-color: #FAEBD5 !important;
+    opacity: inherit !important;
+}
+
+html body.cro-t-3_20 .cro-header-text {
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #222223;
+}
+
+html body.cro-t-3_20 .cro-header-sub-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #222223;
+}
+
+html body.cro-t-3_20 .cro-header-sub-text-section {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 18px;
+    color: #222223;
+}
+
+html body.cro-t-3_20 .cro-top-header-part {
+    max-width: 480px;
+}
+
+html body.cro-t-3_20 .cro-brn-first-parent {
+    max-width: 660px;
+    margin-left: auto;
+}
+
+html body.cro-justMoney-test-01.cro-t-3_20 a.btn.primary {
+    background-color: rgb(229 154 44 / var(--tw-bg-opacity));
+}
+
+html body.cro-t-3_20 #icons {
+    display: none !important;
+}
+
+html body.cro-t-3_20 .cro-cash-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    max-height: 20px;
+    margin-right: 10px;
+}
+
+html body.cro-t-3_20 .cro-icon-text {
+    font-size: 20px;
+    font-weight: 400;
+    color: #222223;
+    margin-bottom: 0;
+}
+
+html body.cro-t-3_20 .cro-first-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+html body.cro-t-3_20 .cro-intant-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    margin-right: 10px;
+}
+
+
+html body.cro-t-3_20 .cro-icon-text {
+    font-size: 20px;
+    font-weight: 400;
+    color: #222223;
+}
+
+html body.cro-t-3_20 .cro-secend-icon {
+    display: flex;
+    align-items: center;
+}
+
+html body.cro-t-3_20 .cro-pay-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    margin-right: 10px;
+}
+
+html body.cro-t-3_20 .cro-third-icon {
+    display: flex;
+    margin-top: 20px;
+}
+
+html body.cro-t-3_20 .cro-Secure-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    margin-right: 10px;
+}
+
+html body.cro-t-3_20 .cro-fourth-icon {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+html body.cro-t-3_20 .cro-sec-header-text {
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 54px;
+    margin-bottom: 20px;
+}
+
+html body.cro-t-3_20 .cro-header-sec-sub-text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    line-height: 24px;
+}
+
+html body.cro-t-3_20 .cro-secend-banner {
+    padding: 20px;
+    padding-top: 50px;
+    background: #FECC52;
+}
+
+html body.cro-t-3_20 .cro-icon-section {
+    display: flex;
+}
+
+html body.cro-t-3_20 .cro-icon-right {
+    width: 100%;
+    height: 100%;
+    max-width: 25px;
+    max-height: 24px;
+    margin-right: 10px;
+
+}
+
+html body.cro-t-3_20 .Cro-top-banner-parts {
+    padding: 20px;
+    padding-left: 0px;
+}
+
+/* html body.cro-t-3_20 .notice::before {
+    content: "We will your ID for your custom assessment";
+    font-size: 14px;
+    font-weight: 400;
+} */
+
+
+
+
+@media (min-width: 1024px) {
+    
+.grid .grid-column.padding-thinner {
+    width: 100%;
+    max-width: 450px;
+    margin-left: auto;
+}
+    html body.cro-t-3_20 .xl\:grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    html body.cro-t-3_20 .cro-t-3_20-mobileImg {
+        display: none;
+    }
+}
+
+@media (max-width: 1023px) {
+    .form-field.cro-idNbr:after{
+        font-size: 14px;
+    }
+    .form-field.notice{
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    html body.cro-t-3_20 .cro-secend-banner picture {
+        display: none;
+    }
+
+    html body.cro-t-3_20 .cro-t-3_20-mobileImg {
+        display: block;
+    }
+
+    html body.cro-t-3_20 .cro-secend-banner {
+        padding: 0;
+    }
+
+    html body.cro-t-3_20 .cro-bnr-sec.relative.container {
+        padding-top: 20px;
+    }
+
+    html body.cro-t-3_20 .cro-header-text {
+        font-size: 30px;
+    }
+
+    html body.cro-t-3_20 .cro-t-3_20-leftSection {
+        padding: 0 !important;
+    }
+
+    html body.cro-t-3_20 .Cro-top-banner-parts {
+        padding-top: 0;
+    }
+
+    html body.cro-t-3_20 .cro-sec-header-text {
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    html body.cro-t-3_20 .cro-header-sec-sub-text {
+        margin-bottom: 30px;
+
+    }
+
+    html body.cro-t-3_20 .cro-bnr-header-sec .cro-header-sec-sub-text {
+        text-align: center;
+    }
+
+    html body.cro-t-3_20 .cro-icon-text {
+        font-size: 18px;
+    }
+
+    html body.cro-t-3_20 .cro-brn-first-parent {
+        margin-left: 0;
+    }
+}
+
+form.w-full {
+    display: flex;
+    flex-direction: column;
+}
+
+form.w-full > div.form-field:nth-of-type(1) {
+    order: 1;
+}
+
+form.w-full > div.form-field:nth-of-type(2) {
+    order: 2;
+}
+
+form.w-full > div.form-field:nth-of-type(3) {
+    order: 3;
+}
+
+form.w-full > div.form-field:nth-of-type(4) {
+    order: 5;
+}
+
+form.w-full > div.form-field:nth-of-type(5) {
+    order: 4;
+}
+
+form.w-full > button{
+    order: 6;
+}
+
+form.w-full > .form-field.notice{
+    order: 7
+}
+
+.form-field.cro-idNbr:after {
+    content: 'We will use your ID number for your custom assessment';
+    display: block;
+    margin-top: 15px;
+}
+
+.form-field.notice {
+    margin-top: 15px;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .grid .grid-column.padding-normal {
+        padding-left: 0 !important;
+    }
+}
+
+#landing-page-justmoney-logo-white-header-global-section .xl\:gap-normal.grid {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;;
+}
+
+#landing-page-justmoney-logo-white-header-global-section .xl\:gap-normal.grid .items-start {
+    max-width: 264px;
+}
+
+@media (max-width: 767px){
+    #landing-page-justmoney-logo-white-header-global-section .xl\:gap-normal.grid .items-start{
+        max-width: 135px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    #landing-page-justmoney-logo-white-header-global-section .xl\:gap-normal.grid{
+        height: 40px;
+    }
+}

@@ -1,0 +1,206 @@
+html body.cro-jm-ki75 .cro-ki75-topBar-title
+html body.cro-jm-ki75 .cro-ki75-topBar .sidebar {
+    width: 100%;
+    z-index: 50;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBar .sidebar #tertiary {
+    display: none;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.separator {
+    display: none;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBar-title span {
+    color: #000;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    /* 120% */
+    letter-spacing: -0.4px;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBar-title {
+    margin: 0 0 24px;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBar-inner {
+    margin: 12px 0;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1 {
+    padding: 16px 12px;
+    pointer-events: none;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1 a.border-white {
+    padding: 0;
+    font-weight: 500;
+    pointer-events: auto;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1 a.border-yellow {
+    background: #FAEBD5;
+    text-decoration: none;
+    border: navajowhite;
+    padding: 16px 12px;
+    font-weight: 600;
+}
+
+html body.cro-jm-ki75.cro-has-border-yellow .cro-ki75-topBarMain {
+    border-top: 1px solid #D2D2D2;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+html body.cro-jm-ki75.cro-has-border-yellow .cro-ki75-topBarMain .cro-ki75-topBar-title {
+    display: none;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1 a.border-white:hover {
+    --tw-text-opacity: 1;
+    color: rgb(229 154 44 / var(--tw-text-opacity));
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain {
+    /* display: block !important; */
+    text-align: center;
+    padding: 12px 80px;
+    position: sticky;
+    width: 100%;
+    top: 133px;
+    z-index: 30;
+    border-top: 1px solid #D2D2D2;
+    /* border-bottom: 1px solid #D2D2D2; */
+    background: #FFF;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBar {
+    display: flex;
+    flex-direction: column;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain ul {
+    display: flex;
+    justify-content: center;
+}
+
+html body.cro-jm-ki75.cro-has-border-yellow .cro-ki75-topBarMain {
+    border-top: 1px solid #D2D2D2;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+html body.cro-jm-ki75.cro-has-border-yellow .cro-ki75-topBarMain .cro-ki75-topBar-title {
+    display: none;
+}
+
+html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1.cro-ki75-empty-link {
+    display: none;
+}
+
+html body.cro-jm-ki75.cro-has-border-yellow header.z-40 {
+    box-shadow: none;
+}
+
+html body.cro-jm-ki75 main section {
+    scroll-margin-top: 18.5rem;
+}
+
+@media (max-width: 1023px) {
+
+    html body.cro-jm-ki75 .cro-ki75-topBarMain {
+        padding: 0;
+        border: none;
+        position: relative;
+        top: 0;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBar-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBarMain ul {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBar-title {
+        width: 100%;
+        text-align: left;
+        margin: 48px 0px 24px 0px;
+        padding-left: 16px;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBar-title span{
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBar-content {
+        width: 100%;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1 a.border-white{
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 700;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1 {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0;
+        border-top: 1px solid #E9E9E9;
+        border-bottom: 1px solid #E9E9E9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+        padding: 16px;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBarMain ul li.mb-1::after {
+        content: "";
+        display: inline-block;
+        /* or block depending on layout */
+        width: 24px;
+        /* adjust size */
+        height: 24px;
+        background-image: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/JustMoney/Recipe+KI75+/cro-jm-ki75-chevron+down.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        /* margin-left: 6px; */
+        /* add spacing if needed */
+        vertical-align: middle;
+    }
+
+    html body.cro-jm-ki75 .cro-ki75-topBarMain{
+        padding: 0;
+    }
+
+    html body.cro-jm-ki75 main section{
+        scroll-margin-top: 14.5rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1087px) {
+    html body.cro-jm-ki75 .cro-ki75-topBarMain {
+        padding: 12px 40px;
+    }
+}
+
+@media (min-width: 1024px) {
+        html body.cro-jm-ki75 .cro-ki75-topBar {
+        margin-top: 48px;
+    }
+}

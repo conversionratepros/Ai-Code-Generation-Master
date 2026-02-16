@@ -1,0 +1,71 @@
+@media (max-width: 767px) {
+    html body.cro_ki_72 .cro-ki_72_dropdown h2 {
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-bottom: 0;
+        color: #000;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        letter-spacing: -0.4px;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_dropdown .container:not(.cro-ki_72_header-wrapper) {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_dropdown .container:not(.cro-ki_72_header-wrapper).show {
+        max-height: 100%;
+        padding: 16px 1rem 0;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+        gap: 10px;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_header-arrow {
+        transition: transform 0.3s ease;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_header-arrow.up {
+        transform: rotate(180deg);
+    }
+
+    html body.cro_ki_72 .cro-ki-72-tertiary {
+        max-width: 100%;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    html body.cro_ki_72 .cro-ki-72-tertiary nav#tertiary {
+        display: none;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_dropdown {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        background: transparent;
+        border-top: 1px solid #E9E9E9;
+        border-bottom: 1px solid #E9E9E9;
+        margin: 0;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_dropdown .cro-ki_72_header-inner.up h2 {
+        color: #E59A2C;
+    }
+
+    html body.cro_ki_72 .cro-ki_72_header-arrow.up svg path {
+        stroke: #E59A2C;
+    }
+
+
+}

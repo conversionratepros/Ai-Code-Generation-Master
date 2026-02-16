@@ -1,0 +1,825 @@
+html body.croki69 .registerform .frmhold {
+    /* box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.25); */
+    padding: 18px 16px 16px 16px !important;
+}
+
+html body.croki69 .register-hld .registerform {
+    border-radius: 8px;
+    border-top: 6px solid #E59A2C;
+    background: var(--UI_Neutral-Grey_300, #F6F6F6);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+    margin-bottom: 83px !important;
+}
+
+html body.croki69 .registerform .rgstertext {
+    display: none;
+}
+
+html body.croki69 .croki69-new-heading-top-from-text {
+    color: #222223;
+    text-align: right;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    cursor: pointer;
+
+}
+
+html body.croki69 .croki69-new-heading-top-from {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+html body.croki69 form#id-number-form {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+html body.croki69 #id-number-form .dbc-verify-no {
+    width: 100%;
+}
+
+html body.croki69 form#id-number-form .custom-row .btn-custom {
+    display: flex;
+    width: 380px !important;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 100px;
+    background: #E59A2C;
+    color: var(--DB_White, #FFF);
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+}
+
+html body.croki69 #id-number-form .custom-row.reg-mobile>div {
+    padding: 0 !important;
+}
+
+html body.croki69 #divIdNumber.custom-row {
+    margin-bottom: 16px;
+}
+
+
+/* ------New--Modal---- */
+
+
+html body.croki69.croki69-hide .croki69-lightBox {
+    display: none !important;
+}
+
+html body.croki69 .croki69-lightBox {
+    display: block;
+}
+
+html body.croki69 .croki69-lightBox {
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 999992;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex !important;
+}
+
+html body.croki69 .croki69-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    height: 520px;
+    min-height: 100%;
+}
+
+html body.croki69 .croki69-modal {
+    border-radius: 6px;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    width: 100%;
+    max-width: 650px;
+    text-align: left;
+    overflow: visible;
+    box-sizing: border-box !important;
+    margin: auto !important;
+}
+
+html body.croki69 .croki69-model-open {
+    height: calc(100vh - 80px);
+    /* overflow-y: scroll; */
+    max-height: fit-content;
+    /* box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.26); */
+    padding: 10px;
+}
+
+html body.croki69 .croki69-cross-img {
+    /* max-height: 25px; */
+    /* max-width: 25px; */
+    /* padding-top: 15px; */
+    /* padding-right: 15px; */
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    max-width: 24px;
+    max-height: 24px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.croki69 .croki69-cross {
+    z-index: 99;
+    /* position: relative; */
+    /* display: flex; */
+    /* height: 30px; */
+    /* line-height: 20px; */
+    /* text-align: center; */
+    /* cursor: pointer; */
+    justify-content: flex-end;
+    /* width: 100%; */
+    /* background-color: #f8f8f8; */
+}
+
+html body.croki69:not(.croki69-hide) {
+    overflow: hidden;
+    height: auto !important;
+}
+
+html body.croki69 .croki69-modal-top-heading-text {
+    color: var(--JM_Primary-B, #222223);
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-bottom: 20px;
+    padding-top: 3px;
+}
+
+html body.croki69 .croki69-modal-top-subheading {
+    color: var(--JM_Primary-B, #222223);
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.croki69 .croki69-modal-top-heading-subheading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+}
+
+html body.croki69 .croki69-modal-top-subheading.text-1 {
+    padding-bottom: 20px;
+}
+
+html body.croki69 .croki69-modal-top-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+}
+
+
+/* ---Form--inpt--- */
+
+/* Floating label input styles */
+html body.croki69 .floating-label-input {
+    position: relative;
+    font-family: Roboto, sans-serif;
+    width: 100%;
+}
+
+html body.croki69 .floating-label-input input {
+    width: 100%;
+    padding: 12px 12px 12px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: white;
+}
+
+html body.croki69 .floating-label-input label {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    color: #888;
+    font-size: 16px;
+    pointer-events: none;
+    background: white;
+    padding: 0 4px;
+    transition: 0.2s ease all;
+}
+
+html body.croki69 .floating-label-input input:focus {
+    border-color: #007bff;
+}
+
+html body.croki69 .floating-label-input input:focus+label,
+/* .floating-label-input input:not(:placeholder-shown)+label, */
+html body.croki69 .floating-label-input input:valid+label {
+    top: -8px;
+    left: 8px;
+    font-size: 12px;
+    color: #007bff;
+}
+
+html body.croki69 .croki69-modal-top-input-button {
+    width: 100%;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+html body.croki69 .croki69-modal-input-btn {
+    border-radius: 100px;
+    background: #E59A2C;
+    display: flex;
+    width: 160px;
+    padding: 8px 12px;
+    align-items: center;
+    gap: 10px;
+    height: 32px;
+    margin-top: 27px;
+    cursor: pointer;
+    justify-content: center;
+}
+
+html body.croki69 .croki69-modal-input-btn span {
+    color: var(--DB_White, #FFF);
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.croki69 .croki69-modal-top-input-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+html body.croki69 .croki69-modal-top-input {
+    width: 100%;
+}
+
+html body.croki69 .cro-from-name-parent,
+html body.croki69 .cro-from-number-parent,
+html body.croki69 .cro-from-password-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+html body.croki69 #registerForm .cro-from-name-parent>div,
+html body.croki69 #registerForm .cro-from-number-parent>div,
+html body.croki69 #registerForm .cro-from-password-parent>div,
+html body.croki69 #registerForm .cro-from-checkbox-parent>div.termerror {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+html body.croki69 .cro-from-checkbox-parent span:not(.slider) {
+    color: #222223 !important;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    /* line-height: normal; */
+}
+
+html body.croki69 .cro-from-checkbox-parent #btn_TermsCondition_Register-2 {
+    color: #222223 !important;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 800 !important;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+/* #id-number-form.ng-invalid #IdNumber {
+        border: 1px solid #C72334;
+    } */
+
+html body.croki69 #id-number-form #IdNumber.ng-invalid.ng-touched {
+    border: 1px solid #C72334;
+}
+
+html body.croki69 form#registerForm .cro-from-name-parent input.ng-invalid.ng-touched,
+html body.croki69 form#registerForm .cro-from-number-parent input.ng-invalid.ng-touched,
+html body.croki69 form#registerForm .cro-from-password-parent input.ng-invalid.ng-touched {
+    border: 1px solid #C72334;
+}
+
+/* form#registerForm .cro-from-name-parent,
+    form#registerForm .cro-from-number-parent,
+    form#registerForm .cro-from-password-parent {
+        border: 1px solid #C72334;
+    } */
+
+html body.croki69 form#registerForm .invalid-feedback {
+    padding-left: 0;
+}
+
+html body.croki69 form#registerForm .cro-from-checkbox-parent .termerror {
+    padding-left: 48px;
+}
+
+html body.croki69 .croki69-new-from-new-login-text {
+    color: #222223;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.croki69 .croki69-new-from-new-login-text span {
+    color: #E59A2C;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    cursor: pointer;
+}
+
+html body.croki69 .croki69-new-from-bottom {
+    /* width: 100%; */
+    position: absolute;
+    /* top: 0; */
+    bottom: -56px;
+    left: 0;
+    right: 0;
+}
+
+html body.croki69 #registerForm .cro-from_2_Button-parent .registerbtn {
+    display: none;
+}
+
+html body.croki69 #registerForm .cro-from_2_Button-parent>div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column;
+}
+
+html body.croki69 .cro-from_2_Button-parent button.btn {
+    border-radius: 100px;
+    background: #E59A2C;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    height: 35px;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    color: var(--DB_White, #FFF);
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+}
+
+html body.croki69 .custom-row.cro-from-checkbox-parent {
+    margin-bottom: 0;
+}
+
+html body.croki69 .cro-from_2_Button-parent {
+    padding-bottom: 0 !important;
+}
+
+html body.croki69 .registerholder .topcaption {
+    display: none;
+}
+
+html body.croki69 .croki69-heading-text {
+    color: #38404E;
+    font-family: Roboto, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    /* 120% */
+    text-align: center;
+}
+
+html body.croki69 .croki69-sub_heading-text {
+    color: #38404E;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.croki69 .croki69-heading-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+html body.croki69 .croki69-sub_heading-new {
+    width: 100%;
+    max-width: 500px;
+}
+
+html body.croki69 .croki69-modal-top-subheading-parent {
+    padding: 20px 0;
+    border-top: 1px solid #D3D3D3;
+    border-bottom: 1px solid #D3D3D3;
+}
+
+/* 
+    form#registerForm .cro-from-password-parent>div.mobilefeldspace:has(input.ng-touched) {
+        margin-bottom: 25px;
+    } */
+
+html body.croki69 form#registerForm .cro-from-password-parent>div.mobilefeldspace:has(#strength) {
+    margin-bottom: 30px;
+}
+
+html body.croki69 form#registerForm .cro-from-password-parent>div.mobilefeldspace:has(input.ng-touched.ng-valid) {
+    margin-bottom: 35px !important;
+}
+
+html body.croki69 svg.croki69-cross-icon {
+    width: 100%;
+}
+
+html body.croki69 #id-number-form #IdNumber {
+    border: 1px solid var(--UI_Neutral-Grey_100, #D3D3D3);
+
+}
+
+/* -----New--Update---- */
+
+html body.croki69 #registerForm input#FirstName,
+html body.croki69 #registerForm input#Surname,
+html body.croki69 #registerForm input#PhoneNumber,
+html body.croki69 #registerForm input#Email,
+html body.croki69 #registerForm input#Password,
+html body.croki69 #registerForm input#ConfirmPassword {
+    border: 1px solid var(--UI_Neutral-Grey_100, #D3D3D3);
+}
+
+html body.croki69 .croki69-sub_heading-text span {
+    font-weight: 700;
+}
+
+html body.croki69 #id-number-form .custom-row:not(#divIdNumber) {
+    width: 100%;
+    max-width: 380px;
+}
+
+
+/* html body.croki69 input#FirstName:focus~label.d-none,
+html body.croki69 input#Surname:focus~label.d-none,
+html body.croki69 input#PhoneNumber:focus~label.d-none,
+html body.croki69 input#Email:focus~label.d-none,
+html body.croki69 input#Password:focus~label.d-none,
+html body.croki69 input#ConfirmPassword:focus~label.d-none,
+html body.croki69 #IdNumber:focus~label.d-none {
+    transform: translateY(-235%);
+    font-size: 12px;
+    padding-left: 0.8rem;
+    padding-right: 0.2rem;
+    display: block !important;
+    font-family: Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    color: rgba(34, 34, 35, 0.50);
+} */
+
+html body.croki69 input#FirstName:focus~label.d-none,
+html body.croki69 input#Surname:focus~label.d-none,
+html body.croki69 input#PhoneNumber:focus~label.d-none,
+html body.croki69 input#Email:focus~label.d-none,
+html body.croki69 input#Password:focus~label.d-none,
+html body.croki69 input#ConfirmPassword:focus~label.d-none,
+html body.croki69 #IdNumber:focus~label.d-none {
+    /* transform: translateY(-235%); */
+    font-size: 12px;
+    padding-left: 0.8rem;
+    padding-right: 0.2rem;
+    display: block !important;
+    /* color: #495057 !important; */
+    font-family: Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    color: rgba(34, 34, 35, 0.50);
+    position: absolute;
+    top: 5px;
+    /* position: fixed; */
+}
+
+html body.croki69 .cro-from-password-parent input#Password:focus+span.cro69_password {
+    font-size: 12px;
+    padding-left: 0.8rem;
+    padding-right: 0.2rem;
+    display: block !important;
+    font-family: Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    color: rgba(34, 34, 35, 0.50);
+    position: absolute;
+    top: 5px;
+}
+
+html body.croki69 .cro-from-password-parent input#ConfirmPassword:focus+span.cro69_Confirm_Password {
+    font-size: 12px;
+    padding-left: 0.8rem;
+    padding-right: 0.2rem;
+    display: block !important;
+    font-family: Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    color: rgba(34, 34, 35, 0.50);
+    position: absolute;
+    top: 5px;
+}
+
+html body.croki69 .cro-from-password-parent input#Password.ng-valid {
+    border: 1px solid #2D7411 !important;
+}
+
+
+html body.croki69 input#FirstName:focus::placeholder,
+html body.croki69 input#Surname:focus::placeholder,
+html body.croki69 input#PhoneNumber:focus::placeholder,
+html body.croki69 input#Email:focus::placeholder,
+html body.croki69 input#Password:focus::placeholder,
+html body.croki69 input#ConfirmPassword:focus::placeholder,
+html body.croki69 #IdNumber:focus::placeholder {
+    color: transparent !important;
+    /* padding-top: 20px; */
+}
+
+html body.croki69 input#FirstName:focus,
+html body.croki69 input#Surname:focus,
+html body.croki69 input#PhoneNumber:focus,
+html body.croki69 input#Email:focus,
+html body.croki69 input#Password:focus,
+html body.croki69 input#ConfirmPassword:focus,
+html body.croki69 #IdNumber:focus {
+    padding-top: 18px;
+}
+
+html body.croki69 #registerForm input#FirstName,
+html body.croki69 #registerForm input#Surname,
+html body.croki69 #registerForm input#PhoneNumber,
+html body.croki69 #registerForm input#Email,
+html body.croki69 #registerForm input#Password,
+html body.croki69 #registerForm input#ConfirmPassword,
+html body.croki69 #IdNumber {
+    height: 48px;
+}
+
+html body.croki69 .registerform .invalid-feedback {
+    color: #C72334;
+    text-align: left;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal !important;
+}
+
+html body.croki69 #id-number-form #divIdNumber div.invalid-feedback {
+    padding-left: 6px;
+}
+
+html body.croki69 input.form-control {
+    color: var(--Primary_B, #222223);
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* .cro-from-password-parent .success-msg {
+    font-size: 0;
+    line-height: 0;
+} */
+
+/* .cro-from-password-parent .success-msg:after {
+    content: "Requirements met";
+    color: #2D7411;
+    text-align: left;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+} */
+
+html body.croki69 #Password.ng-valid~.psc-msg #strength .success-msg:after {
+    /* content: 'requirement met';
+    font-size: 12px; */
+    content: "Requirements met";
+    color: #2D7411;
+    text-align: left;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.croki69 #Password.ng-invalid~.psc-msg #strength>span:not(.success-msg):after {
+    content: 'Requirements not met yet';
+    text-align: left;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.croki69 .cro-from-password-parent #strength {
+    padding-top: 0 !important;
+}
+
+
+html body.croki69 #Surname~.invalid-feedback .ng-star-inserted {
+    font-size: 0;
+    line-height: 0;
+}
+html body.croki69 #Surname~.invalid-feedback .ng-star-inserted:after {
+    content: "Last name is required";
+    font-size: 14px;
+    line-height: normal;
+}
+
+@media (min-width:768px) {
+    html body.croki69 .cro-from-checkbox-parent .switch {
+        width: 30px;
+    }
+}
+
+@media (max-width:767px) {
+    html body.croki69 .croki69-heading-wrapper {
+        margin-bottom: 24px;
+        margin-top: 8px;
+    }
+
+    html body.croki69 .croki69-heading-inner {
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    html body.croki69 .croki69-sub_heading-new {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    html body.croki69 .croki69-sub_heading-text,
+    html body.croki69 .croki69-heading-text {
+        text-align: left;
+    }
+
+    html body.croki69 .croki69-heading-text {
+        font-size: 24px;
+        line-height: normal;
+    }
+
+    html body.croki69 .croki69-sub_heading-text {
+        font-size: 16px;
+        line-height: normal;
+    }
+
+    html body.croki69 .cro-from-name-parent,
+    html body.croki69 .cro-from-number-parent,
+    html body.croki69 .cro-from-password-parent {
+        margin-bottom: 0 !important;
+    }
+
+    html body.croki69 .cro-from_2_Button-parent button.btn {
+        margin-bottom: 0 !important;
+    }
+
+    html body.croki69 .croki69-new-from-new-login-text {
+        font-size: 14px;
+    }
+
+    html body.croki69 .croki69-new-from-new-login-text span {
+        font-size: 14px;
+    }
+
+    html body.croki69 .registerform .invalid-feedback {
+        font-size: 14px;
+        line-height: normal;
+    }
+
+    html body.croki69 .register-hld .registerform {
+        margin-bottom: 60px !important;
+    }
+}
+
+html body.croki69 input#FirstName:focus~label.d-none {
+    font-size: 0;
+    line-height: 0;
+}
+
+html body.croki69 input#FirstName:focus~label.d-none::after {
+    content: "First name";
+    font-size: 12px;
+    line-height: normal;
+}
+
+html body.croki69 input#Surname:focus~label.d-none {
+    font-size: 0;
+    line-height: 0;
+}
+
+html body.croki69 input#Surname:focus~label.d-none::after {
+    content: "Last name";
+    font-size: 12px;
+    line-height: normal;
+}
+
+html body.croki69 input#PhoneNumber:focus~label.d-none {
+    font-size: 0;
+    line-height: 0;
+}
+
+html body.croki69 input#PhoneNumber:focus~label.d-none::after {
+    content: "Cell phone number";
+    font-size: 12px;
+    line-height: normal;
+}
+
+html body.croki69 input#Email:focus~label.d-none {
+    font-size: 0;
+    line-height: 0;
+}
+
+html body.croki69 input#Email:focus~label.d-none::after {
+    content: "Email address";
+    font-size: 12px;
+    line-height: normal;
+}
+
+html body.croki69 #Password.ng-invalid~.psc-msg #strength>span:not(.success-msg) {
+    font-size: 0;
+}
+
+html body.croki69 #Password.ng-valid~.psc-msg #strength .success-msg {
+    font-size: 0;
+}
+html body.croki69 #registerForm input#FirstName.ng-invalid.ng-touched, 
+html body.croki69 #registerForm input#Surname.ng-invalid.ng-touched, 
+html body.croki69 #registerForm input#PhoneNumber.ng-invalid.ng-touched,
+html body.croki69 #registerForm input#Email.ng-invalid.ng-touched, 
+html body.croki69 #registerForm input#Password.ng-invalid.ng-touched, 
+html body.croki69 #registerForm input#ConfirmPassword.ng-invalid.ng-touched {
+    border: 1px solid #C72334;
+}

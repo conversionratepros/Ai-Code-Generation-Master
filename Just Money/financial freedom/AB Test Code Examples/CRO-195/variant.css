@@ -1,0 +1,704 @@
+html body.cro-Recipe-3-18-41 section#icons {
+    display: none;
+}
+
+html body.cro-Recipe-3-18-41 section#call-to-action-and-form .grid>div:nth-child(2) {
+    display: none;
+}
+
+html body.cro-Recipe-3-18-41 section#call-to-action-and-form .grid>div:nth-child(4) .form-field.notice::after {
+    content: "We will use your ID number for your custom assessment";
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+html body.cro-Recipe-3-18-41 section#call-to-action-and-form .grid>div:nth-child(4) .form-field.notice {
+    font-size: 0;
+}
+
+html body.cro-Recipe-3-18-41 form .new-form-field {
+    /* margin-top: 0.75rem; */
+    margin-top: 20px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #909090;
+}
+
+html body.cro-Recipe-3-18-41 .grid .grid-column.padding-thinner {
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+html body.cro-Recipe-3-18-41 form .new-form-field a {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: .1s;
+}
+
+html body.cro-Recipe-3-18-41 form .form-field.notice {
+    margin-bottom: 21px;
+    margin-top: 8px;
+}
+
+html body.cro-Recipe-3-18-41 section#second-call-to-action h2::after {
+    content: "Regain control of your money!";
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+html body.cro-Recipe-3-18-41 section#second-call-to-action h2 {
+    font-size: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+html body.cro-Recipe-3-18-41 section#second-call-to-action .body-text.lead.columns-1 p::after {
+    content: "Complete the form to receive a FREE call-back, for a no-obligation assessment and credit check.";
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+html body.cro-Recipe-3-18-41 section#second-call-to-action .body-text.lead.columns-1 p {
+    font-size: 0;
+    margin-top: 32px;
+    margin-bottom: 35px;
+}
+
+/* -----top-Bannner-Css----- */
+
+html body.cro-Recipe-3-18-41 .cro-header-text {
+    font-family: Inter;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 58px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+html body.cro-Recipe-3-18-41 .cro-header-sub-text {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+    margin: 0;
+    /* max-width: 400px; */
+}
+
+html body.cro-Recipe-3-18-41 .cro-header-sub-text-section {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+    margin: 22px 0px 21px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-cash-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    max-height: 20px;
+    margin-right: 15px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-icon-text {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+    margin: 0;
+}
+
+html body.cro-Recipe-3-18-41 .cro-first-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-secend-icon {
+    display: flex;
+    align-items: center;
+}
+
+html body.cro-Recipe-3-18-41 .cro-third-icon {
+    display: flex;
+    margin-top: 20px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-fourth-icon {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-intant-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    margin-right: 15px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-pay-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    margin-right: 15px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-Secure-icon {
+    width: 100%;
+    height: 100%;
+    max-width: 30px;
+    margin-right: 15px;
+}
+
+html body.cro-Recipe-3-18-41 p.cro-header-sub-text-first {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+    margin: 19px 0px;
+}
+
+/* ------sec---part-css--- */
+/* html body.cro-Recipe-3-18-41 .cro-brn-first-parent {
+    max-width: 660px;
+    margin-right: auto;
+} */
+
+html body.cro-Recipe-3-18-41 .cro-sec-header-text {
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 54px;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+html body.cro-Recipe-3-18-41 .cro-header-sec-sub-text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    line-height: 24px;
+    color: #000000;
+}
+
+html body.cro-Recipe-3-18-41 .cro-icon-section {
+    display: flex;
+}
+
+html body.cro-Recipe-3-18-41 .cro-icon-right {
+    width: 100%;
+    height: 100%;
+    max-width: 27px;
+    margin-right: 18px;
+}
+
+html body.cro-Recipe-3-18-41 .cro-header-sec-sub-text {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    line-height: 24px;
+}
+
+html body.cro-Recipe-3-18-41 p.cro-header-sec-sub-text.cro-bullet-subText {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #222223;
+}
+
+@media (min-width: 1024px) {
+    html body.cro-Recipe-3-18-41 .cro-sec-header-text{
+        width: 621px;
+    }
+
+    html body.cro-Recipe-3-18-41 p.cro-header-sec-sub-text.cro-bullet-subText{
+        width: 735px;
+    }
+    html body.cro-Recipe-3-18-41 .cro-icon-section {
+        width: 588px;
+    }
+}
+
+@media (max-width: 1023px) {
+    html body.cro-Recipe-3-18-41 .cro-header-sec-sub-text {
+        margin-bottom: 30px;
+    }
+
+    html body.cro-Recipe-3-18-41 section#call-to-action-and-form .grid>div:nth-child(1) {
+        display: none;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-sec-header-text {
+        font-family: Inter;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 36px;
+        letter-spacing: 0em;
+        text-align: center;
+        margin-top: 0;
+        max-width: 318px;
+        margin: 0 auto;
+    }
+
+    html body.cro-Recipe-3-18-41 p.cro-header-sec-sub-text.cro-bullet-subText {
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: #222223;
+        width: 318px;
+        margin: 25px auto 57px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-header-sec-sub-text {
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        color: #000;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-header-text {
+        font-size: 30px;
+        line-height: 36.31px;
+    }
+
+    html body.cro-Recipe-3-18-41 p.cro-header-sub-text-first {
+        margin: 22px 0px 20px;
+        line-height: 24.2px;
+        width: 290px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-header-sub-text{
+        line-height: 24.2px;
+        width: 304px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-header-sub-text-section{
+        margin-top: 19px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-icon-right {
+        width: 100%;
+        height: 100%;
+        max-width: 25px;
+        margin-right: 10px;
+    }
+}
+
+/* Updated Code */
+html body.cro-Recipe-3-18-41 .cro-new-sec-first {
+    max-width: 463px;
+}
+
+html body.cro-Recipe-3-18-41 .grid .grid-column.padding-thinner h4{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.94px;
+    text-align: left;
+    color: #ffffff;
+    margin: 6px 0 24px;
+}
+
+html body.cro-review-test-1.cro-Recipe-3-18-41 section.new-sec{
+    display: none;
+}
+
+html body.cro-review-test-1.cro-Recipe-3-18-41 section#second-call-to-action{
+    background-color: #FAEBD5;
+    padding: 55px 0;
+}
+
+html body.cro-Recipe-3-18-41 .cro-brn-first-parent {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: relative;
+    /* max-width: 1200px; */
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+html body.cro-Recipe-3-18-41 .cro-bnr-sec {
+    position: relative;
+}
+
+html body.cro-Recipe-3-18-41 .cro-secend-banner {
+    background: #F4F4F4;
+    /* padding: 54px 0 0 61px; */
+}
+
+html body.cro-Recipe-3-18-41 .cro-brn-first {
+    padding: 54px 0 59px 0;
+    width: 50%;
+}
+
+html body.cro-Recipe-3-18-41 .cro-brn-first-img-part {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100%;
+    max-height: 1000px; */
+}
+
+html body.cro-Recipe-3-18-41 #footer .body-text h4:nth-of-type(1){
+    margin-bottom: 16px;
+}
+
+html body.cro-Recipe-3-18-41 #footer .body-text h4:nth-of-type(2){
+    margin-bottom: 37px;
+}
+
+html body.cro-Recipe-3-18-41 #footer .body-text h4{
+    font-family: Inter;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24.2px;
+    text-align: left;
+}
+
+
+html body.cro-Recipe-3-18-41 #footer .body-text p:nth-of-type(1){
+    margin-bottom: 50px;
+    margin: 0;
+}
+
+html body.cro-Recipe-3-18-41 #footer .body-text p{
+    font-family: Inter;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    text-align: left;
+}
+
+.body-text a:not(.btn), .content a:not(.btn){
+    border-color: #000000;
+}
+
+@media (min-width: 1530px) {
+    html body.cro-Recipe-3-18-41 .cro-large-img{
+        display: block;
+        object-fit: contain;
+        position: absolute;
+        /* top: 0; */
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1529px) {
+    html body.cro-Recipe-3-18-41 .cro-large-img{
+        width: 100%;
+        height: 100%;
+        object-fit: none;
+        min-height: 100%;
+        position: absolute;
+        right: 0;
+        left: unset;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-brn-first-img-part{
+        width: 50%;
+        display: block;
+        overflow: visible;
+    }
+
+    .cro-brn-first-img-part-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 783px;
+        height: 524px;
+        position: relative;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-brn-first-parent{
+        align-items: flex-end;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 auto;
+        height: 100%;
+        padding-right: 0;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-brn-first {
+        padding: 54px 0 43px 26px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-bnr-sec{
+        position: relative;
+        overflow: unset;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        z-index: 9;
+    }
+
+    html body.cro-Recipe-3-18-41 #second-call-to-action{
+        margin-top: -25px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+    html body.cro-Recipe-3-18-41 .cro-icon-section.cro-point-six {
+        width: 499px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-header-text{
+        font-size: 40px;
+    }
+    
+}
+
+@media (max-width: 1023px) {
+    html body.cro-Recipe-3-18-41 .cro-large-img{
+        object-fit: contain;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-brn-first-img-part{
+        width: 100%;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-brn-first{
+        padding: 39px 5px 41px;
+        width: 100%;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-brn-first-parent{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    html body.cro-Recipe-3-18-41 .cro-icon-text{
+        line-height: 21.78px;
+    }
+
+    html body.cro-Recipe-3-18-41 .grid .grid-column.padding-thinner h4{
+        font-size: 12px;
+        line-height: 14.52px;
+        margin-top: 4px;
+        margin-bottom: 21px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-brn-first-img-part-wrapper {
+        width: 100%;
+    }
+
+    html body.cro-review-test-1.cro-Recipe-3-18-41 section#second-call-to-action{
+        padding: 48px 5px 39px;
+    }
+
+    html body.cro-Recipe-3-18-41 section#second-call-to-action h2::after{
+        font-size: 24px;
+        line-height: 29.05px;
+    }
+
+    html body.cro-Recipe-3-18-41 section#second-call-to-action h2{
+        width: 316px;
+    }
+
+    html body.cro-Recipe-3-18-41 section#second-call-to-action .body-text.lead.columns-1 p{
+        margin-top: 20px;
+        margin-bottom: 25px;
+        width: 305px;
+    }
+
+    html body.cro-Recipe-3-18-41 #footer .body-text h4{
+        font-size: 18px;
+        line-height: 21.78px;
+    }
+
+    html body.cro-Recipe-3-18-41 #footer .body-text h4:nth-of-type(2){
+        margin: 39px 0 25px;
+    }
+
+    html body.cro-Recipe-3-18-41 #footer .body-text p{
+        font-size: 18px;
+        line-height: 25.2px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-point-one p.cro-header-sec-sub-text {
+        width: 278px;
+    }
+    
+    html body.cro-Recipe-3-18-41 .cro-point-two p.cro-header-sec-sub-text {
+        width: 282px;
+    }
+    
+    html body.cro-Recipe-3-18-41 .cro-point-three p.cro-header-sec-sub-text {
+        width: 282px;
+    }
+    
+    html body.cro-Recipe-3-18-41 .cro-point-four p.cro-header-sec-sub-text {
+        width: 281px;
+    }
+    
+    html body.cro-Recipe-3-18-41 .cro-point-five p.cro-header-sec-sub-text {
+        width: 280px;
+    }
+    
+    html body.cro-Recipe-3-18-41 .cro-point-six p.cro-header-sec-sub-text {
+        width: 281px;
+    }
+
+    html body.cro-Recipe-3-18-41 .cro-icon-section .cro-header-sec-sub-text {
+        margin-bottom: 41px;
+    }    
+
+    html body.cro-Recipe-3-18-41 .cro-icon-section{
+        justify-content: center;
+    }
+}
+
+/* latest update */
+
+@media (min-width: 1024px) {
+    html body.cro-review-test-1.cro-Recipe-3-18-41 .cro-header-tag{    
+        height: auto;
+        padding: 15px 0;
+    }
+
+    html body.cro-review-test-1.cro-Recipe-3-18-41 section.pb-thinnest{
+        padding: 0;
+    }
+}
+
+/* html body.cro-review-test-1.cro-Recipe-3-18-41 .cro-top-button-sec{
+    display: none;
+} */
+
+html body.cro-review-test-1.cro-Recipe-3-18-41 .cro-header-tag picture .logo{
+    max-width: 139px;
+    width: 100%;
+    min-width: 139px;
+}
+
+html body.cro-review-test-1.cro-Recipe-3-18-41 .cro-header-tag .items-start .items-start{
+    padding: 0;
+}
+
+/* html body.cro-review-test-1.cro-Recipe-3-18-41  .cro-top-button-sec-mobile{
+    display: none !important;
+} */
+
+@media (max-width: 767px) {
+    html body.cro-review-test-1.cro-Recipe-3-18-41 .cro-header-tag .items-start .items-start{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.cro-review-test-1.cro-Recipe-3-18-41  section#call-to-action-and-form{
+        padding-top: 1rex;
+    }
+}
+
+html body.cro-Recipe-3-18-41 form.w-full{
+    display: flex;
+    flex-direction: column;
+}
+
+html body.cro-Recipe-3-18-41 form.w-full .form-field.croFirstName{
+    order:1;
+}
+html body.cro-Recipe-3-18-41 form.w-full .form-field.croLasttName{
+    order:2;
+}
+
+html body.cro-Recipe-3-18-41 form.w-full .form-field.croEmail{
+    order:3;
+}
+
+html body.cro-Recipe-3-18-41 form.w-full .form-field.croid_number{
+    order:5;
+}
+
+html body.cro-Recipe-3-18-41 form.w-full .form-field.crophone{
+    order:4;
+}
+
+html body.cro-Recipe-3-18-41 form.w-full .form-field.notice{
+    order:6;
+}
+
+html body.cro-Recipe-3-18-41 form.w-full button.btn.primary{
+    order: 7;
+    max-width: 130px;
+    width: 100%;
+}
+
+html body.cro-Recipe-3-18-41 form .new-form-field{
+    order: 8;
+}
+
+
+/* Latest Update */
+
+@media (min-width: 1530px) {
+    html body.cro-Recipe-3-18-41 form.w-full{
+        position: relative;
+    }
+
+    html body.cro-Recipe-3-18-41 form.w-full .form-field.croFirstName{
+        width: 49%;
+    }
+
+    html body.cro-Recipe-3-18-41 form.w-full .form-field.croLasttName{
+        width: 49%;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    html body.cro-Recipe-3-18-41 .cro-top-button-sec-mobile {
+        top: -20px;
+    }
+}
