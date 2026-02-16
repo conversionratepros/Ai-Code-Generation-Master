@@ -1,0 +1,437 @@
+/* ==== CONTAINER ==== */
+html body.croki82_v2 .cro-container {
+    width: 100%;
+    max-width: 1296px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1330px) {
+    html body.croki82_v2 .cro-container {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    html body.croki82_v2 .cro-container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+/* .cro-t-KI82-HeroSection-ORTHO {
+    display: none;
+} */
+
+/* ==== HERO BANNER SECTION ==== */
+html body.croki82_v2 .croki82-hero-banner-section {
+    background-color: #F7F7F7;
+}
+
+html body.croki82_v2 .croki82-hero-banner-wrapper {
+    padding: 50px 0;
+}
+
+html body.croki82_v2 .croki82-hero-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ==== LEFT SIDE ==== */
+html body.croki82_v2 .croki82-hero-banner-left {
+    flex: 1 1 52%;
+}
+
+html body.croki82_v2 .croki82-hero-banner-left-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+html body.croki82_v2 h1.croki82-hero-banner-title-text {
+    font-family: "Poppins", Sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 48px;
+    color: #1E1A34;
+}
+
+/* subtitle */
+html body.croki82_v2 .croki82-hero-banner-subtitle {
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 26px;
+    letter-spacing: 3.6px;
+    color: #00A9E0;
+}
+
+/* rating */
+html body.croki82_v2 .croki82-hero-banner-rating-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--LDi-dark_blue, #1E1A34);
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+html body.croki82_v2 .croki82-hero-banner-rating-icon {
+    height: 16px;
+    display: inline-block;
+}
+
+/* title */
+html body.croki82_v2 .croki82-hero-banner-title-text {
+    font-family: Poppins, sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #111;
+    margin: 0;
+}
+
+html body.croki82_v2 .croki82-hero-banner-title-text span {
+    font-weight: 600;
+}
+
+/* description */
+html body.croki82_v2 .croki82-hero-banner-desc {
+    color: var(--LDi-dark_blue, #1E1A34);
+    font-family: "Poppins", Sans-serif;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+html body.croki82_v2 .croki82-hero-banner-desc.desc-1 {
+    margin-bottom: 16px;
+}
+
+html body.croki82_v2 .croki82-hero-banner-desc-parent {
+    margin-top: 30px;
+}
+
+/* buttons */
+html body.croki82_v2 .croki82-hero-banner-buttons {
+    margin-top: 35px;
+}
+
+html body.croki82_v2 .croki82-hero-banner-buttons-wrapper {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+html body.croki82_v2 .croki82-hero-banner-buttons-wrapper a.cro-btn {
+    width: 100%;
+    min-width: 263px;
+    max-width: 263px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+}
+
+html body.croki82_v2 .croki82-hero-banner-buttons-wrapper a.cro-btn span {
+    text-align: center;
+    font-family: "Poppins", Sans-serif;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+    width: 100%;
+    border-radius: 60px;
+}
+
+html body.croki82_v2 .cro-btn-primary {
+    color: var(--LDi-white, #FFF);
+    background: var(--LDi-sky_blue, #00A9E0);
+    padding: 20px 30px;
+}
+
+/* .cro-btn-primary {
+    background: #00A9E0;
+    color: #fff;
+} */
+
+html body.croki82_v2 .croki82-hero-banner-buttons-wrapper a.cro-btn:hover {
+    opacity: 50%;
+}
+
+html body.croki82_v2 .cro-btn-outline {
+    border: 2px solid #00A9E0;
+    background: transparent;
+    color: #00A9E0;
+    padding: 18px 28px
+}
+
+/* .cro-btn-outline:hover {
+    opacity: 50%;
+} */
+
+/* ==== RIGHT SIDE ==== */
+html body.croki82_v2 .croki82-hero-banner-right {
+    flex: 1 1 45%;
+    /* display: flex;
+    justify-content: center; */
+}
+
+html body.croki82_v2 .croki82-hero-banner-video {
+    position: relative;
+    max-width: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+html body.croki82_v2 .croki82-hero-banner-video img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+html body.croki82_v2 .croki82-play-icon {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+html body.croki82_v2 .croki82-high-quality-video-content {
+    position: relative;
+}
+
+html body.croki82_v2 .croki82-high-quality-video-main-img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+html body.croki82_v2 .croki82-high-quality-video-content.cro-t-180-hide .croki82-high-quality-video-main-img,
+html body.croki82_v2 .croki82-high-quality-video-content.cro-t-180-hide .croki82-play-icon {
+    display: none;
+}
+
+/* play button */
+/* .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+} */
+
+/* .play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+} */
+
+/* ==== RESPONSIVE ==== */
+html body.croki82_v2 .croki82-high-quality-video-content:not(.cro-t-180-hide) .cre_KI80_Video_container {
+    padding: 0 !important;
+}
+
+html body.croki82_v2 .croki82-high-quality-video-content.cro-t-180-hide iframe.cre_KI80_Video {
+    /* visibility: visible; */
+    display: block;
+    border-radius: 11.5px;
+}
+
+html body.croki82_v2 .cre_KI80_Video_container .fluid-width-video-wrapper {
+    position: static !important;
+    padding: 0 !important;
+}
+
+html body.croki82_v2 .croki82-hero-banner-title-text span br.mobile {
+    display: none;
+}
+
+html body.croki82_v2.cro-page-aesthetic h1.croki82-hero-banner-title-text {
+    max-width: 605px;
+}
+
+html body.croki82_v2.cro-page-implantology .croki82-hero-banner-left {
+    flex: 1 1 54%;
+}
+
+html body.croki82_v2.cro-page-implantology .croki82-hero-banner-right {
+    flex: 1 1 44%;
+}
+
+html body.croki82_v2 section.cro-t-KI82-HeroSection {
+    display: none;
+}
+
+html body.croki82_v2 .croki82-play-icon svg {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+html body.croki82_v2 .croki82-high-quality-video-main-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 11.5px;
+    object-fit: cover;
+    max-height: 334px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+html body.croki82_v2.cro-page-aesthetic .croki82-hero-banner-desc-parent {
+    width: 100%;
+    max-width: 615px;
+}
+
+@media (max-width:1024px) {
+    html body.croki82_v2 .croki82-high-quality-video-content.cro-t-180-hide iframe.cre_KI80_Video {
+        position: relative !important;
+    }
+
+    html body.croki82_v2 .croki82-high-quality-video-content.cro-t-180-hide .cre_KI80_Video_container {
+        padding: 0 !important;
+    }
+
+    html body.croki82_v2 h1.croki82-hero-banner-title-text {
+        font-size: 36px;
+        line-height: 48px;
+        text-align: left;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-subtitle {
+        font-size: 18px;
+        line-height: 26px;
+        text-align: left;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-desc {
+        text-align: left;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-inner {
+        gap: 50px;
+    }
+
+    html body.croki82_v2.cro-page-aesthetic h1.croki82-hero-banner-title-text {
+        max-width: 100%;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-buttons-wrapper a.cro-btn span {
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+
+}
+
+@media (min-width:1024px) and (max-width:1100px) {
+    html body.croki82_v2 .croki82-hero-banner-right {
+        flex: 1 1 40%;
+    }
+
+}
+
+@media (max-width:767px) {
+    html body.croki82_v2 .croki82-hero-banner-buttons-wrapper a.cro-btn {
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-buttons-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    html body.croki82_v2 h1.croki82-hero-banner-title-text {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-desc {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-subtitle {
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-rating-text {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-title-text span {
+        font-weight: 600;
+    }
+
+    html body.croki82_v2.cro-page-implantology .croki82-hero-banner-title-text span {
+        display: inline-block;
+        width: 100%;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-title-text span br:not(.mobile) {
+        display: none;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-title-text span br.mobile {
+        display: block;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-left-wrapper {
+        gap: 10px;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-buttons {
+        margin-top: 40px;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-wrapper {
+        padding: 30px 0;
+    }
+
+    html body.croki82_v2.cro-page-aesthetic .croki82-hero-banner-desc-parent {
+        width: 100%;
+        max-width: 100%;
+    }
+
+}
+
+
+@media (max-width: 991px) {
+    html body.croki82_v2 .croki82-hero-banner-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-buttons {
+        justify-content: center;
+    }
+
+    html body.croki82_v2 .croki82-hero-banner-right {
+        order: 2;
+    }
+}
+
+html body.croki82_v2 iframe.cre_KI80_Video {
+    /* visibility: hidden; */
+    display: none;
+}

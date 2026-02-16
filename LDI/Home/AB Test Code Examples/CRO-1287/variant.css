@@ -1,0 +1,258 @@
+html body.cro-t-21_32 .cro-container {
+    max-width: 1296px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1330px) {
+    html body.cro-t-21_32 .cro-container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+html body.cro-t-21_32 .cro-t-21-card-header-text {
+    color: #1E1A34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: center;
+}
+
+/* html body.cro-t-21_32 .cro-t-21-card-header {
+    padding: 67px 0px 75px;
+} */
+
+html body.cro-t-21_32 .cro-t-21-card-container-wrapper {
+    padding-top: 80px;
+}
+
+html body.cro-t-21_32 .cro-t-21-card {
+    border-radius: 4px;
+    background: #ECF1F1;
+    width: 100%;
+    max-width: 296px;
+    padding: 33px 20px 26px;
+    height: 100%;
+    min-height: 366px;
+}
+
+html body.cro-t-21_32 .cro-t-21-card-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 37px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+html body.cro-t-21_32 .cro-t-21-card-number {
+    border-radius: 37px;
+    background: #7AE1BF;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    text-align: center;
+    font-family: "Poppins", Sans-serif;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+}
+
+html body.cro-t-21_32 .cro-t-21-card-text {
+    color: #000;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    padding-top: 28px;
+}
+
+html body.cro-t-21_32 .cro-star {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%);
+    border-radius: 20%;
+    display: inline-block;
+    background-color: white;
+    position: relative;
+}
+
+html body.cro-t-21_32 .cro-t-21-card-bottom-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+html body.cro-t-21_32 .cro-t-21-card-inner {
+    padding-bottom: 80px;
+    padding-top: 75px;
+}
+
+html body.cro-t-21_32.cro-gb-user .cro-t-21-card-container:not(.cro-uk-based) {
+    display: none;
+}
+
+html body.cro-t-21_32 .cro-uk-based {
+    display: none;
+}
+
+html body.cro-t-21_32.cro-gb-user .cro-uk-based {
+    display: block;
+}
+
+html body.cro-t-21_32 .cro-t-21-card {
+    position: relative;
+}
+
+.cro-t-21-card:not(:last-child)::after {
+    content: "";
+    /* width: 4px;
+    height: calc(100% + -91%);
+    background: repeating-linear-gradient(180deg, #7AE1BF, #7AE1BF 4px, transparent 3px, transparent 6px);
+    position: absolute;
+    top: 186px;
+    right: -20px; */
+    /* border-radius: 7px; */
+    /* rotate: 90deg; */
+    width: 46px;
+    height: 4px;
+    top: 0;
+    margin: auto;
+    left: 100%;
+    border-top: 3px dashed #7AE1BF;
+    bottom: 0;
+    position: absolute;
+}
+
+html body.cro-t-21_32 section.cro-t-21-card-container:not(.cro-uk-based)+section {
+    padding-bottom: 80px !important;
+    background-color: #00000008;
+    margin-top: 0 !important;
+    padding-top: 80px !important;
+}
+
+html body.cro-t-21_32 section.cro-t-21-card-container:not(.cro-uk-based)+section+section {
+    margin-top: 0 !important;
+    background-color: #fff !important;
+    padding-top: 80px !important;
+}
+
+/* html body.cro-t-21_32 .cro-t-21-card-inner {
+    padding-bottom: 80px;
+} */
+
+@media (max-width:1170px) and (min-width:883px) {
+    html body.cro-t-21_32 .cro-t-21-card.card-3::after {
+        content: '';
+        width: 0;
+    }
+}
+
+@media (max-width:1024px) and (min-width:768px) {
+    html body.cro-t-21_32 .cro-container {
+        padding-left: 54px;
+        padding-right: 54px;
+    }
+}
+
+@media (max-width:664px) and (min-width:601px) {
+    /* html body.cro-t-21_32 .cro-t-21-card:not(:last-child)::after {
+        top: 160px !important;
+        height: calc(100% + -91%) !important;
+    } */
+}
+
+@media (max-width:931px) and (min-width:601px) {
+    html body.cro-t-21_32 .cro-t-21-card.card-2::after {
+        content: '';
+        width: 0;
+    }
+
+    html body.cro-t-21_32 .cro-t-21-card.card-3::after {
+        content: '';
+        width: 46px;
+    }
+
+    /* html body.cro-t-21_32 .cro-t-21-card:not(:last-child)::after {
+        top: 135px;
+        height: calc(100% + -88%);
+    } */
+}
+
+
+
+@media (max-width:1170px) {
+    html body.cro-t-21_32 .cro-t-21-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width:983px) {
+    html body.cro-t-21_32 .cro-t-21-card {
+        max-width: 100%;
+        min-height: 280px;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro-t-21_32 .cro-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+
+@media (max-width:600px) {
+    html body.cro-t-21_32 .cro-t-21-card-inner {
+        grid-template-columns: 1fr;
+    }
+
+    html body.cro-t-21_32 .cro-t-21-card-header-text {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
+    }
+
+    html body.cro-t-21_32 .cro-t-21-card-text {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px;
+    }
+
+    html body.cro-t-21_32 .cro-t-21-card:not(:last-child)::after {
+        content: "";
+        width: 4px;
+        height: calc(100% + -85%);
+        background: repeating-linear-gradient(180deg, #7AE1BF, #7AE1BF 4px, transparent 3px, transparent 6px);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        border-radius: 7px;
+        rotate: 0deg;
+        left: 0;
+        margin: 0 auto;
+    }
+
+    html body.cro-t-21_32 .cro-t-21-card-container-wrapper {
+        padding-top: 70px;
+    }
+}

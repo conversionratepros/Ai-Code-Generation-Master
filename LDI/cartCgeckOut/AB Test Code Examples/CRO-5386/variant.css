@@ -1,0 +1,252 @@
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-wrapper {
+    max-width: 1296px;
+    margin: 0 auto;
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0px 0px 0px 0px;
+    --e-column-margin-right: 0px;
+    --e-column-margin-left: 0px;
+    /* padding: 0% 20% 0% 0%; */
+    padding-right: 20px;
+    gap: 24px;
+}
+
+html body.cro-ki103-pdp section.cro-t-103-courseProspectus {
+        background-color: #00000008;
+    /* margin-top: 0px; */
+    /* margin-bottom: 0px; */
+    padding: 50px 0px 50px 0px;
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-img img {
+    width: 100%;
+}
+
+html body.cro-ki103-pdp .cro-t-103-Pricing {
+    margin-top: 0 !important;
+    background-color: #ffffff !important;
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner .elementor-widget-container a {
+        font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    fill: #00A9E0;
+    color: #00A9E0;
+    background-color: #00000000;
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: #00A9E0;
+    border-radius: 60px 60px 60px 60px;
+    padding: 18px 28px 18px 28px;
+    cursor: pointer;
+    border-radius: 60px;
+    background: var(--LDi-sky_blue, #00A9E0);
+    color: #fff;
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner .elementor-widget-container a:hover {
+    opacity: 50%;
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner h2.elementor-heading-title.elementor-size-default {
+    color: #1E1A34;
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px; /* 131.25% */
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner p.cro-t-103-subHeader{
+    color: var(--LDi-dark_blue, #1E1A34);
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    margin-bottom: 24px;
+}
+
+html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner p.cro-t-103-pointHeader{
+    color: #1E1A34;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 144.444% */
+    margin-bottom: 24px;
+}
+
+html body.cro-ki103-pdp .cro103-university-terms-right-icon-text-parent {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+html body.cro-ki103-pdp .cro103-university-terms-right-feedback-part {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+html body.cro-ki103-pdp .cro103-university-terms-right-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 6px;
+}
+
+html body.cro-ki103-pdp .cro103-university-terms-right-text {
+    color: var(--LDi-dark_blue, #1E1A34);
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 144.444% */
+}
+
+html body.cro-ki103-pdp section.cro-t-103-Accreditation {
+    margin-top: 0 !important;
+    padding-bottom: 80px !important;
+    background-color: #00000008;
+    padding-top: 80px !important;
+}
+
+html body.cro-ki103-pdp section#CourseReviews {
+    background-color: #fff !important;
+    margin-top: 0;
+}
+
+html body.cro-ki103-pdp section#CourseReviews .waf-site-review-slide-item {
+    background-color: #00000008;
+}
+
+@media screen and (max-width: 1330px) {
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-wrapper {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (min-width: 1025px) {
+    html body.cro-ki103-pdp img.cro-103-courseProspectus-mob {
+        display: none;
+    }
+
+    html body.cro-ki103-pdp img.cro-103-courseProspectus-des {
+        display: block;
+    }
+
+    html body.cro-ki103-pdp section.cro-t-103-courseProspectus{
+        margin-top: 40px;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-content{
+        padding-right: 64px;
+    }
+}
+
+@media (max-width: 1024px) {
+    html body.cro-ki103-pdp img.cro-103-courseProspectus-mob {
+        display: block;
+    }
+
+    html body.cro-ki103-pdp img.cro-103-courseProspectus-des {
+        display: none;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner{
+        margin: 0px 0px 0px 0px;
+        --e-column-margin-right: 0px;
+        --e-column-margin-left: 0px;
+        padding: 0px 0px 0px 0px;
+        /* flex-direction: column; */
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column-reverse;
+        gap: 50px;
+    }
+
+    html body.cro-ki103-pdp section.cro-t-103-courseProspectus{
+        margin-top: 80px;
+        margin-bottom: 0px;
+        padding: 50px 24px;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner h2.elementor-heading-title.elementor-size-default {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner p{
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 16px;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-content{
+        gap: 16px;
+        padding-right: 0;
+    }
+
+    html body.cro-ki103-pdp .cro103-university-terms-right-text{
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner p.cro-t-103-subHeader,
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner p.cro-t-103-pointHeader{
+        margin-bottom: 16px;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-inner p.cro-t-103-subHeader{
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-content .elementor-element.elementor-widget-button {
+        width: 100%;
+    }
+
+    html body.cro-ki103-pdp .cro-t-103-courseProspectus-content .elementor-element.elementor-widget-button a {
+        width: 100%;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}

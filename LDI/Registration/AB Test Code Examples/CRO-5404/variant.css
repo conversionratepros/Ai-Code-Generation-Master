@@ -1,0 +1,66 @@
+html body.croki105 .cro105-dentists-text {
+    color: #1E1A34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: center;
+}
+
+html body.croki105 .cro105-dentists-text span {
+    font-weight: 600;
+}
+
+html body.croki105 .cro105-dentists--wrapper {
+    width: 100%;
+    max-width: 1296px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+html body.croki105 .cro105-dentists-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+}
+
+html body.croki105 .cro105-dentists-section {
+    border-bottom: 1px solid #DEDEDE;
+    background: #FFF;
+}
+
+@media (max-width:1330px) {
+    html body.croki105 .cro105-dentists--wrapper {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width:1024px) {
+    html body.croki105 .cro105-dentists--wrapper {
+        padding-left: 54px;
+        padding-right: 54px;
+
+    }
+}
+
+@media (max-width:767px) {
+    html body.croki105 .cro105-dentists-text {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+    }
+
+    html body.croki105 .cro105-dentists-text span {
+        display: block;
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    html body.croki105 .cro105-dentists--wrapper {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
