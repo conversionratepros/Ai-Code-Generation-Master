@@ -1,0 +1,9 @@
+#calc_btn:after {
+    content: 'Tile calculator';
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+button#calc_btn {
+    font-size: 0;
+}

@@ -1,0 +1,287 @@
+html body.cro-ctm-129-buyNow .cro-129-accordion-wrapper{
+    border-top: 1px solid #E6E6E6;
+    border-bottom: 1px solid #E6E6E6;
+    padding: 16px 0;
+    margin-bottom: 32px;
+}
+
+
+html body.cro-ctm-129-buyNow .cro-129-accordion-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+html body.cro-ctm-129-buyNow.cro-129-dropDownSection .cro-129-accordion-inner {
+    margin-bottom: 16px;
+}
+
+/* No logos in accordion header – header shows only text + arrow */
+html body.cro-ctm-129-buyNow .cro-129-accordion-contentImg {
+    display: none !important;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-accordion-arrowImg img {
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+}
+
+html body.cro-129-dropDownSection.cro-ctm-129-buyNow .cro-129-accordion-arrowImg img {
+    transform: rotate(180deg);
+}
+
+html body.cro-ctm-129-buyNow .cro-129-accordion-dropDown {
+    display: none;
+    transition: transform 0.3s ease;
+}
+
+html body.cro-129-dropDownSection.cro-ctm-129-buyNow .cro-129-accordion-dropDown{
+    display: block;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-payflex .cro-129-dropDown-imgPay {
+    max-width: 86px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-img-tooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-payJustNow .cro-129-dropDown-imgPay {
+    max-width: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-content p {
+    color: #404040;
+    font-family: "Source Sans Pro",'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 126%;
+    margin: 0;
+}
+
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-content p b{
+    font-weight: 400;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-content p span{
+    font-weight: 700;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-payJustNow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-payflex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #F8F8F8;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-dropDown-img-tooltip img {
+    cursor: pointer;
+}
+
+/* Hide Payflex and PayJustNow buttons – accordion replaces them */
+html body.cro-ctm-129-buyNow.catalog-product-view .page-wrapper .media-info-main .product-info-main .product-info-price .pdp-payflex,
+html body.cro-ctm-129-buyNow.catalog-product-view .page-wrapper .media-info-main .product-info-main .product-info-price .pdp-payjustnow {
+    display: none !important;
+}
+
+html body.cro-ctm-129-buyNow .custom-tooltip-wrapper {
+      position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-ctm-129-buyNow .custom-tooltip-text {
+    visibility: hidden;
+    background-color: #fff;
+    color: #000;
+    text-align: left;
+    padding: 6px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 1px solid #000;
+    border-radius: 4px;
+    /* box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15); */
+    font-size: 10px;
+}
+
+html body.cro-ctm-129-buyNow .custom-tooltip-wrapper:hover .custom-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+html body.cro-ctm-129-buyNow .cro-129-accordion-header p {
+    color: #404040;
+    font-family: "Source Sans Pro",'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 126%; /* 22.68px */
+    margin-bottom: 8px;
+}
+
+@media (min-width: 801px) {
+
+}
+
+@media (min-width: 851px) and (max-width: 1250px){
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-payJustNow .cro-129-dropDown-imgPay{
+        max-width: 80px;
+    }
+    
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-payflex .cro-129-dropDown-imgPay{
+        max-width: 70px;
+    }
+
+    
+}
+
+@media (min-width: 801px) and (max-width: 850px){
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-payJustNow .cro-129-dropDown-imgPay{
+        max-width: 70px;
+    }
+    
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-payflex .cro-129-dropDown-imgPay{
+        max-width: 60px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-content p{
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1250px) {
+
+    html body.cro-ctm-129-buyNow .custom-tooltip-text{
+        left: -50px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-content p{
+        max-width: 160px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-img{
+        gap: 4px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-accordion-contentImg{
+        gap: 8px;
+    }
+
+    html body.cro-ctm-129-buyNow .custom-tooltip-wrapper{
+        max-width: 16px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-dropDown{
+        padding: 12px;
+    }
+
+    .cro-129-dropDown-payJustNow .cro-129-dropDown-content{
+        max-width: 140px;
+    }
+}
+
+@media (max-width: 800px) {
+    html body.cro-ctm-129-buyNow .custom-tooltip-text{
+        left: -40px;
+    }
+
+    html body.cro-ctm-129-buyNow .page-wrapper #maincontent.page-main .media-info-main .product-info-main .product-info-price{
+        margin-bottom: 16px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-img{
+        gap: 8px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-accordion-wrapper{
+        margin-bottom: 20px;
+    }
+
+    html body.cro-ctm-129-buyNow .custom-tooltip-wrapper{
+        margin-top: 1px;
+    }
+
+    /* html body.cro-ctm-129-buyNow .cro-129-dropDown-payflex .cro-129-dropDown-imgPay{
+        max-width: 65px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-payJustNow .cro-129-dropDown-imgPay{
+        max-width: 80px;
+    } */
+}
+
+@media (max-width: 475px) {
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-content p{
+        max-width: 155px;
+    }
+}
+
+@media (max-width: 350px) {
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-payflex .cro-129-dropDown-imgPay{
+        max-width: 65px;
+    }
+
+    html body.cro-ctm-129-buyNow .cro-129-dropDown-payJustNow .cro-129-dropDown-imgPay {
+        max-width: 75px;
+    }
+
+    html body.cro-ctm-129-buyNow .custom-tooltip-wrapper{
+        max-width: 16px;
+    }
+}
+
+
+/* Updated COde */
+
+html body.cro-ctm-129-buyNow span.cro-129-hideAmount {
+    display: none;
+}
+
+html body.cro-ctm-129-buyNow.cro-ctm-129-buyNow-v2 .cro-129-accordion-header p {
+    margin-bottom: 0;
+}
+
+html body.cro-ctm-129-buyNow.cro-ctm-129-buyNow-v2 .cro-129-accordion-img {
+    height: 25px;
+}

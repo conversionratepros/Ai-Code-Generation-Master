@@ -1,0 +1,34 @@
+---
+description: Follow AB Test Code Examples CSS structure for variation/variant CSS
+alwaysApply: true
+---
+
+# Variation/Variant CSS – Required Structure
+
+When building or editing variation/variant CSS in this project, **follow the structure used in `AB Test Code Examples`** (e.g. `CRO-6231/variant.css`, `CRO-3223/variant.css`, `Recipe KI238.../variationB/variation.css`, `CRO-36/variant.css`, `CRO-96/variant.css`). Use those files as the reference.
+
+## Scoping (required)
+
+- **Scope all variation-specific rules** with the body class that matches the JS `variation_name` (the class added via `addClass("body", variation_name)`).
+- Use the selector prefix: **`html body.{variation_name}`** (e.g. `html body.cro-206`, `html body.croki238`, `html body.recipe94`, `html body.cro-t-212`).
+- For product/catalog pages you may use: **`html body.catalog-product-view.{variation_name}`** when the test only runs on that page.
+- Every rule that is specific to the variation must start with this prefix so it does not affect the control or other tests.
+
+## Selector pattern
+
+- Full selector format: `html body.{variation_name} .your-selector` (or with page context if needed).
+- Custom classes you add (e.g. wrappers, buttons, modals) should use a **consistent prefix** derived from the variation (e.g. `.cro-206-lightBox`, `.croki238-new-button-wrapper`, `.cro-t-212`).
+- Inside **media queries**, repeat the same prefix: `html body.{variation_name} .selector` so specificity stays correct on breakpoints.
+
+## Structure
+
+1. **Base / visibility rules** – e.g. hide/show elements, overlay, modal base styles.
+2. **Component styles** – layout, typography, custom components (buttons, wrappers, icons) scoped with `html body.{variation_name}`.
+3. **Media queries at the end** – `@media (max-width: ...)` or `@media screen and (max-width: ...)`. Keep overrides inside the same scoping prefix.
+4. **Comments** – Use short comments for sections or intent when helpful (e.g. `/* Hide the Mario popup widget */`).
+
+## Rules
+
+- Do **not** add unscoped selectors that could affect the rest of the site; always scope with `html body.{variation_name}` (or the same with page context).
+- Use **`!important`** only when necessary to override existing site styles (e.g. hiding elements, fixing specificity).
+- For new variation CSS, mirror the patterns in `AB Test Code Examples`: scoping, naming, and media-query placement.

@@ -1,0 +1,47 @@
+html body.cro-t-ki238_240 .product-info-main .product-add-form .calc-container {
+    flex-direction: row-reverse;
+    gap: 48px;
+}
+
+html body.cro-t-ki238_240 .product-info-main .product-add-form .calc-container #calc_btn {
+    max-width: 196px;
+    width: 100%;
+    border-radius: 4px;
+    border: 2px solid #CBAF61;
+    background: rgba(253, 198, 1, 0.65);
+    color: #000;
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 126%;
+    /* 17.64px */
+    text-transform: capitalize;
+}
+
+html body.cro-t-ki238_240 .product-info-main .product-add-form .calc-container .qty-input-group {
+    flex-basis: 100%;
+}
+
+html body.cro-t-ki238_240 .product-info-main .product-add-form .calc-container #calc_btn::before {
+    background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/CTM/Recipe_KI238_KI239_KI240_KI241/cro_CTM_238_240_calculator.svg");
+    width: 25px;
+    height: 24px;
+    background-size: contain;
+    background-position: center;
+    min-height: 18px;
+    background-repeat: no-repeat;
+
+}
+
+@media screen and (max-width: 1250px) {
+    html body.cro-t-ki238_240 .product-info-main .product-add-form .calc-container {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+    
+    html body.cro-t-ki238_240 .product-info-main .product-add-form .calc-container #calc_btn {
+        max-width: 100%;
+    }
+}
