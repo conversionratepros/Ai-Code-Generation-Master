@@ -1,0 +1,45 @@
+html body.cro-justMoney-test-01 button.btn.primary::after{
+    content: "Start now";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+html body.cro-justMoney-test-01 button.btn.primary{
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #4AAEAC;
+}
+
+html body.cro-justMoney-test-01 .body-text a:not(.btn), 
+html body.cro-justMoney-test-01 .content a:not(.btn){
+    border-color: #000000;
+}
+
+html body.cro-justMoney-test-01 .form-field.notice a {
+    text-decoration: underline;
+}
+
+html body.cro-justMoney-test-01 a.btn.primary {
+    background-color: #4AAEAC;
+    /* padding: 10px 35px; */
+    max-width: 404px;
+    width: 100%;
+    text-align: center;
+}
+
+html body.cro-justMoney-test-01 #second-call-to-action{
+    background-color: #FAEBD5;
+}
+
+@media (max-width: 1023px){
+    html body.cro-justMoney-test-01 a.btn.primary{
+        max-width: 100%;
+    }
+}

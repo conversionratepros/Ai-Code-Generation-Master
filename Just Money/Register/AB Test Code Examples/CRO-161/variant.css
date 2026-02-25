@@ -1,0 +1,112 @@
+html body.cro-t-22_28 section.register h1.topcaption {
+    font-size: 0 !important;
+}
+
+html body.cro-t-22_28 section.register h1.topcaption::after {
+    content: "Get instant access to your Credit Score";
+    color: #38404E;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro-t-22_28 .register-hld.register h1.topcaption {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-top: 7px;
+}
+
+html body.cro-t-22_28 .cro-t-22-subheading-text {
+    color: #38404E;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-22_28 .cro-t-22-subheading-wrapper {
+    margin-bottom: 27px;
+}
+
+html body.cro-t-22_28 .registerform .frmhold .rgstertext {
+    font-size: 0;
+    text-align: left !important;
+}
+
+html body.cro-t-22_28 .registerform .frmhold .rgstertext::after {
+    content: 'See your free credit score';
+    color: #22222C;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (min-width:1024px) {
+    html body.cro-t-22_28 .cro-heading-parent {
+        width: 100%;
+        max-width: 750px;
+    }
+
+    html body.cro-t-22_28 .registerholder .col-lg-8 {
+        width: 100%;
+        max-width: 811px;
+    }
+}
+
+@media (min-width:992px) and (max-width:1023px) {
+    html body.cro-t-22_28 .cro-heading-parent {
+        width: 100%;
+        max-width: 559px;
+    }
+}
+
+@media (max-width:991px) {
+    html body.cro-t-22_28 .cro-heading-parent {
+        width: 100%;
+        max-width: 628px;
+    }
+}
+
+@media (max-width:767px) {
+    .cro-heading-parent {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    html body.cro-t-22_28 section.register h1.topcaption::after {
+        font-size: 24px;
+        line-height: normal;
+    }
+
+    html body.cro-t-22_28 .cro-t-22-subheading-text {
+        font-size: 20px;
+        line-height: normal;
+    }
+
+    html body.cro-t-22_28 .register-hld.register h1.topcaption {
+        margin-top: 4px;
+    }
+
+    html body.cro-t-22_28 .registerform .frmhold .rgstertext::after {
+        font-size: 18px;
+        line-height: normal;
+    }
+
+    html body.cro-t-22_28 .cro-heading-parent {
+        max-width: 100%;
+    }
+
+    html body.cro-t-22_28 .cro-t-22-subheading-wrapper {
+        margin-bottom: 32px;
+        margin-top: 7px;
+    }
+}

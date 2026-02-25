@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cro-556 — Our Partners & Solve your debt problem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+    .cro-556-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0;
+      width: 100%;
+    }
+    .cro-556-section--partners { background: #FFFFFF; }
+    .cro-556-section--solve { background: #F3FAFF; }
+
+    .cro-556-container {
+      width: 100%;
+      max-width: 1080px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 0 16px;
+    }
+
+    .cro-556-heading-2 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.11;
+      text-align: center;
+      color: #414141;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .cro-556-heading-2 {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .cro-556-section { padding: 20px 0; }
+      .cro-556-section--solve { padding: 24px 0; }
+      .cro-556-container {
+        max-width: 360px;
+        gap: 24px;
+        padding: 0 12px;
+      }
+      .cro-556-section--solve .cro-556-container { padding: 0 16px; }
+    }
+
+    /* Our Partners — logos row */
+    .cro-556-partners {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 96px;
+      flex-wrap: wrap;
+    }
+    .cro-556-partners__link {
+      display: block;
+      width: 132.8px;
+      flex-shrink: 0;
+    }
+    .cro-556-partners__link img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    @media (max-width: 768px) {
+      .cro-556-partners {
+        justify-content: flex-start;
+        gap: 12px 12px;
+        max-height: 83px;
+        flex-wrap: wrap;
+        align-content: flex-start;
+      }
+      .cro-556-partners__link {
+        width: 104px;
+      }
+      .cro-556-partners__link img {
+        max-width: 96px;
+        max-height: 44px;
+      }
+    }
+
+    /* Solve your debt — cards row */
+    .cro-556-cards {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 80px;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+    .cro-556-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+    .cro-556-card--center { width: 296px; }
+    .cro-556-card__icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+    .cro-556-card__icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .cro-556-card__title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.56;
+      text-align: center;
+      color: #0E70AB;
+      margin: 0;
+    }
+    .cro-556-card__text {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: center;
+      color: #000000;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .cro-556-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      .cro-556-card--center { width: 100%; max-width: 328px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Section: Our Partners -->
+  <section class="cro-556-section cro-556-section--partners" aria-label="Our Partners">
+    <div class="cro-556-container">
+      <h2 class="cro-556-heading-2">Our Partners</h2>
+      <div class="cro-556-partners">
+        <a href="#" class="cro-556-partners__link" aria-label="DebtBusters">
+          <img src="https://i.ibb.co.com/Fk55WLJp/Debt-Busters.png" alt="DebtBusters" width="133" height="61">
+        </a>
+        <a href="#" class="cro-556-partners__link" aria-label="JustMoney">
+          <img src="https://i.ibb.co.com/JRrbDB6r/Just-Money.png" alt="JustMoney" width="133" height="38">
+        </a>
+        <a href="#" class="cro-556-partners__link" aria-label="Intelligent Debt Management (IDM)">
+          <img src="https://i.ibb.co.com/RkZZph6Q/Intelligent-Debt-Management-IDM.png" alt="Intelligent Debt Management (IDM)" width="133" height="49">
+        </a>
+        <a href="#" class="cro-556-partners__link" aria-label="Sanlam">
+          <img src="https://i.ibb.co.com/KjDwqk71/Sanlam.png" alt="Sanlam" width="133" height="28">
+        </a>
+        <a href="#" class="cro-556-partners__link" aria-label="Fincheck">
+          <img src="https://i.ibb.co.com/VccLmk1W/Fincheck.png" alt="Fincheck" width="133" height="26">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Solve your debt problem with us -->
+  <section class="cro-556-section cro-556-section--solve" aria-label="Solve your debt problem with us">
+    <div class="cro-556-container">
+      <h2 class="cro-556-heading-2">Solve your debt problem with us</h2>
+      <div class="cro-556-cards">
+        <div class="cro-556-card">
+          <div class="cro-556-card__icon">
+            <img src="https://i.ibb.co.com/F43CX7ct/SVG.png" alt="" width="48" height="48">
+          </div>
+          <h4 class="cro-556-card__title">Multiple Partners</h4>
+          <p class="cro-556-card__text">We pick the best partner for your needs from our group of reputable partners.</p>
+        </div>
+        <div class="cro-556-card cro-556-card--center">
+          <div class="cro-556-card__icon">
+            <img src="https://i.ibb.co.com/9DwXBGq/SVG-1.png" alt="" width="48" height="48">
+          </div>
+          <h4 class="cro-556-card__title">Broad range of interest rates</h4>
+          <p class="cro-556-card__text">The interest rates charged on our partner's loans range between 20.25% and 24.50%.</p>
+        </div>
+        <div class="cro-556-card">
+          <div class="cro-556-card__icon">
+            <img src="https://i.ibb.co.com/fdVdSdZd/SVG-2.png" alt="" width="48" height="48">
+          </div>
+          <h4 class="cro-556-card__title">Multiple term options</h4>
+          <p class="cro-556-card__text">Our partner's payment terms are between 24 to 72 months.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</body>
+</html>

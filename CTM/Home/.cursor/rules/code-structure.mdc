@@ -1,0 +1,34 @@
+---
+description: Follow codeStructure.txt when building variation/variant JS
+alwaysApply: true
+---
+
+# Variation/Variant JS – Required Structure
+
+When building or editing variation/variant JavaScript in this project, **always follow the structure in `codeStructure.txt`**. Use it as the single source of truth.
+
+## Required layout (in order)
+
+1. **IIFE wrapper** – `(function () { try { ... } catch (e) { ... } })();`
+2. **Main variables** – `var debug = 0;` and `var variation_name = "cro-...";`
+3. **Helper functions** – Include only the helpers the recipe needs; keep the same implementations as in `codeStructure.txt`:
+   - `waitForElement(selector, trigger)`
+   - `live(selector, event, callback, context)`
+   - `insertHtml(selector, content, position)` (default position `"afterend"`)
+   - `innerHTMLContent(selector, content)`
+   - `innerChildContent(selector, childNumber, content)`
+   - `addClass(el, cls)` / `toggleClass(el, cls)` / `removeClass(el, cls)` (first arg is selector string)
+   - `scroll(click, selector)` – click is element, selector is scroll target
+   - `waitForSwiper(trigger)` (only if Swiper is used)
+   - `addScript()` / `initializeSwiper()` (only if Swiper is used)
+4. **init()** – Start with `addClass("body", variation_name);` then add variation-specific DOM/UI setup.
+5. **croEventHandkler()** – Use `live("selector", "event", function () { ... });` for delegated events. Register once via the `window.cro_t_XX` guard.
+6. **Bootstrap** – Guard: `if (!window.cro_t_XX) { croEventHandkler(); window.cro_t_XX = true; }` then `waitForElement('.product-info-main', init);` (or the selector the recipe specifies).
+7. **Error logging** – In catch: `if (debug) console.log(e, "error in Test" + variation_name);`
+
+## Rules
+
+- Use **existing helpers** from this structure; do not replace them with different patterns or vanilla DOM code.
+- Use `live()` for click/input handlers (delegated), not direct `addEventListener` on specific nodes.
+- Keep the same variable names and section order. Only omit helpers that are truly unused (e.g. no Swiper → no `waitForSwiper`/`addScript`/`initializeSwiper`).
+- For new files, copy the full skeleton from `codeStructure.txt` and then add/remove helpers and fill in `init` and `croEventHandkler` for the recipe.

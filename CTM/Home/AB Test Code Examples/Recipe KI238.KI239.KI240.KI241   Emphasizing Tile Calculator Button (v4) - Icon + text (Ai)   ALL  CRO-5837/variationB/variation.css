@@ -1,0 +1,96 @@
+html body.catalog-product-view.croki238 .page-wrapper .media-info-main .product-info-main #product_addtocart_form .input-title {
+    font-size: 0;
+    line-height: 0;
+    width: 100%;
+    max-width: 290px;
+    margin-bottom: 21px;
+  }
+
+html body.catalog-product-view.croki238 .page-wrapper .media-info-main .product-info-main #product_addtocart_form .input-title::after {
+       content: 'Use the tile calculator to find out how many tiles you need';
+    color: #404040;
+    font-family: 'Source Sans Pro';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 126%;
+  }
+
+html body.catalog-product-view.croki238 .page-wrapper .media-info-main .product-info-main #product_addtocart_form .input-title .pdp-tooltip{
+    display: none;
+  }
+
+html body.catalog-product-view.croki238 .page-wrapper .media-info-main .product-info-main #product_addtocart_form .calc-container #calc_btn{
+     display: none;
+  }
+
+
+html body.catalog-product-view.croki238 .croki238-new-button-wrapper-inner {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+html body.catalog-product-view.croki238 .croki238-new-button-text {
+    color: #6D6D6D;
+    text-align: left;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 126%; /* 17.64px */
+    text-transform: capitalize;
+}
+
+html body.catalog-product-view.croki238 .croki238-new-button-icon {
+    width: 28px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+html body.catalog-product-view.croki238 .croki238-new-button-icon img {
+    width: 100%;
+}
+
+html body.catalog-product-view.croki238 .croki238-new-button-wrapper {
+    border: 1px solid #898989;
+    height: 56px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px;
+    border-radius: 4px;
+}
+
+html body.catalog-product-view.croki238 .croki238-new-button {
+    width: 50%;
+    cursor: pointer;
+}
+
+html body.catalog-product-view.croki238 .product-add-form .calc-container {
+    gap: 16px;
+    flex-direction: row-reverse;
+    margin-bottom: 21px;
+}
+
+@media (max-width:1250px) {
+    html body.catalog-product-view.croki238 .product-add-form .calc-container {
+    flex-direction: column-reverse;
+}
+
+html body.catalog-product-view.croki238 .croki238-new-button {
+    width: 100%;
+}
+
+html body.catalog-product-view.croki238 .page-wrapper .media-info-main .product-info-main #product_addtocart_form .input-title {
+    margin-bottom: 15px;
+}
+html body.catalog-product-view.croki238 .product-add-form .calc-container {
+    margin-bottom: 15px;
+}
+}

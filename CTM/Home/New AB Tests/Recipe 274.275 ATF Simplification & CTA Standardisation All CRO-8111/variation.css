@@ -1,0 +1,305 @@
+/* CRO 274/275 – Banner & Welcome Strip */
+
+html body.cro-ctm-274_275 .cro-274_275-banner {
+    width: 100%;
+    overflow: hidden;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-heroBanner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    order: 1;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-heading {
+    margin: 0 0 33px;
+    color: #000;
+    font-family: "Source Sans Pro";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 64px;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-cta {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #ED1C24;
+    /* color: #fff; */
+    /* font-weight: 700; */
+    /* text-decoration: none; */
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: fit-content;
+    transform: scale(1);
+    transition: transform .2s ease-in;
+    color: #FFF;
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px; /* 166.667% */
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-cta:hover {
+    /* background: #a00; */
+    color: #fff;
+    transform: scale(.9);
+    transition: transform .2s ease-in;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-img {
+    width: 100%;
+    /* line-height: 0; */
+}
+
+html body.cro-ctm-274_275 .cro-274_275-banner-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    html body.cro-ctm-274_275 .cro-274_275-heroBanner {
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-content {
+        flex: 0 1 auto;
+        align-items: flex-start;
+        padding: 0 40px 0 69px;
+        order: 1;
+        width: 35%;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-heading {
+        text-align: left;
+        max-width: 350px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-img {
+        max-width: 65%;
+    }
+}
+
+html body.cro-ctm-274_275 .cro-274_275-bannerStrip {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: #F8F8F7;
+    border-top: 1px solid #eee;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-strip-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-strip-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-strip-icon img,
+html body.cro-ctm-274_275 .cro-274_275-strip-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-strip-text {
+    color: #535353;
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21.7px;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-strip-link {
+    color: #ED1C24;
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21.7px;
+    text-decoration: underline;
+}
+
+html body.cro-ctm-274_275 .cro-274_275-strip-link:hover {
+    text-decoration: underline;
+}
+
+html body.cro-ctm-274_275 #promo-mobile{
+    display: none;
+}
+
+
+section.cro-274-savers span.small-shopping-button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #FFF;
+    color: #ED1C24;
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21.7px; /* 155% */
+    text-transform: uppercase;
+}
+
+section.cro-274-services button {
+    border-radius: 5px;
+    background: #ED1C24 !important;
+    color: #FFF !important;
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21.7px; /* 155% */
+    text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+    html body.cro-ctm-274_275 .cro-274_275-bannerStrip {
+        padding: 16px 72px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-strip-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-strip-item {
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 767px){
+    html body.cro-ctm-274_275 #promo-mobile{
+        display: none !important;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-heroBanner{
+        flex-direction: column-reverse;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-heading{
+        font-size: 40px;
+        line-height: normal;
+        max-width: 270px;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-content{
+        padding: 24px 10px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-cta{
+        font-size: 16px;
+        padding: 8px 24px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-strip-inner{
+        gap: 16px;
+        align-items: center;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-bannerStrip{
+        padding: 16px 10px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-img {
+        height: 100%;
+        width: 100%;
+        min-height: 250px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-img img{
+        height: 250px;
+        width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-strip-text{
+
+    }
+
+    section.cro-274-savers span.small-shopping-button{
+        border-radius: 5px;
+        background: #FFF;
+        color: #ED1C24;
+        text-align: center;
+        font-family: "Source Sans Pro";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 21.7px; /* 155% */
+        text-transform: uppercase;
+        padding: 5px 10px;
+    }
+}
+
+
+@media (min-width: 1024px) and (max-width: 1253px) {
+    html body.cro-ctm-274_275 .cro-274_275-banner-heading{
+        font-size: 45px;
+        line-height: 50px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    html body.cro-ctm-274_275 .cro-274_275-banner-heading{
+        font-size: 35px;
+        line-height: 35px;
+        margin-bottom: 20px;
+    }
+
+    html body.cro-ctm-274_275 .cro-274_275-banner-content{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

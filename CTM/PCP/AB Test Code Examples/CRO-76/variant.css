@@ -1,0 +1,80 @@
+@media screen and (min-width: 1131px) {
+    html body.cro-t-137 #maincontent .columns .roomvo-product-display-button-desktop.roomvo-product-display-button,
+    html body.cro-t-137 #maincontent .columns .roomvo-container {
+        /* display: none !important; */
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    html body.cro-t-137 #maincontent .columns .media-info-main .product.media {
+        position: relative;
+        left: -100px;
+        width: 50%;
+    }
+
+    html body.cro-t-137 #maincontent .columns .media-info-main {
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 1400px) and (min-width: 1131px) {
+    html body.cro-t-137 #maincontent .columns .media-info-main .product.media {
+        width: 55%;
+    }
+}
+
+
+@media screen and (max-width: 1270px) and (min-width: 1131px) {
+    html body.cro-t-137 #maincontent .columns .media-info-main .product.media {
+        width: 55%;
+    }
+    
+html body.cro-t-137 #maincontent .media-info-main .product-info-main {
+    width: 40%;
+}
+}
+
+
+
+@media screen and (max-width: 1200px) and (min-width: 1131px) {
+    html body.cro-t-137 #maincontent .columns .media-info-main .product.media {
+        width: 55%;
+    }
+    
+html body.cro-t-137 #maincontent .media-info-main .product-info-main {
+    width: 35%;
+}
+}
+
+@media screen and (max-width: 1130px) {
+    html body.cro-t-137 .columns .roomvo-container {
+        display: none;
+    }
+    html body.cro-t-137 .columns .roomvo-product-display-button-desktop {
+        display: none !important;
+    }
+    html body.cro-t-137.catalog-product-view .page-wrapper .media-info-main .product.media .gallery--main-container .thumbnail-wrapper .thumbnail-container .thumbnail-item .thumbnail-image {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    html body.cro-t-137 .product .roomvo-container {
+        display: none;
+    }
+
+    html body.cro-t-137.catalog-product-view .page-wrapper #maincontent.page-main .media-info-main .product.media .roomvo-product-display-button-desktop {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    html body.cro-t-137.catalog-product-view .page-wrapper .media-info-main .product-info-main .product-info-price {
+        margin-top: 20px;
+    }
+}
+
+html body.cro-t-137.catalog-product-view .page-wrapper .media-info-main .product.media .gallery--main-container .gallery--wrapper.keen-wrapper .arrow-left {
+    z-index: 1;
+}

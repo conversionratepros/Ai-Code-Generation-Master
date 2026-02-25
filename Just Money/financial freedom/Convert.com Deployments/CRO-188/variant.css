@@ -1,0 +1,263 @@
+html body.cro-twoPartForm-t-1 .cro-step2{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader #call-to-action-and-form h4::after {
+    content: "Enter your ID number for see if you qualify";
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.78px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader #call-to-action-and-form h4 {
+    font-size: 0;
+    line-height: 0;
+    margin-bottom: 30px;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader .btn.primary[type="submit"]{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader .cro-id-btn {
+    margin-top: 24px;
+}
+
+html body.cro-twoPartForm-t-1 .cro-Id-check-btn {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.78px;
+    text-align: center;
+    --tw-text-opacity: 1;
+    --tw-bg-opacity: 1;
+    background-color: rgb(229 154 44 / var(--tw-bg-opacity));
+    border-radius: 9999px;
+    text-transform: none;
+    letter-spacing: 0;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+    transition-duration: .3s;
+    cursor: pointer;
+    max-height: 45px;
+    height: 100%;
+    max-width: 176px;
+    width: 100%;
+    padding: 16px 38px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-twoPartForm-t-1 .cro-Id-check-btn:hover {
+    --tw-scale-x: 1.03;
+    --tw-scale-y: 1.03;
+    transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+html body.cro-twoPartForm-t-1.cro-wrongId #id_number {
+    /* border: 2px solid red; */
+    --tw-border-opacity: 1;
+    border-color: rgb(220 38 38 / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(254 202 202 / var(--tw-bg-opacity)) !important;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader.cro-formHeader2 #call-to-action-and-form h4::after{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader.cro-formHeader2 #id_number{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader.cro-formHeader2 .cro-id-btn{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1 .cro-jm-39-loader-gif {
+    max-width: 87px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 28px;
+}
+
+html body.cro-twoPartForm-t-1 .cro-jm-39-loader {
+    max-width: 275px;
+    margin: 0 auto;
+}
+
+html body.cro-twoPartForm-t-1 h3.cro-jm-39-loader-text {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.78px;
+    text-align: left;
+    margin: 0;
+    max-width: 275px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader3 .cro-jm-39-loader{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader3 .cro-id-btn{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader3 .cro-step2{
+    display: block;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader3 #id_number{
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader.cro-formHeader3 #call-to-action-and-form h4::after {
+    content: "Enter your ID number for see if you qualify";
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.78px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader3 #call-to-action-and-form h4:not(.cro-jm-39-newHeader-content){
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1 .cro-jm-39-newHeader-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 22px;
+    margin-top:3px;
+}
+
+html body.cro-twoPartForm-t-1 h4.cro-jm-39-newHeader-content {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21.78px;
+    text-align: left;
+    margin: 0;
+    margin-left: 13px;
+}
+
+html body.cro-twoPartForm-t-1 .notice.cro-step2 a {
+    text-decoration: underline;
+}
+
+html body.cro-twoPartForm-t-1 .form-field.cro-step1 {
+    margin-bottom: 0 !important;
+    border-radius: 5px;
+}
+
+html body.cro-twoPartForm-t-1 .form-field.cro-step1 input{
+    border-radius: 5px;
+}
+
+html body.cro-twoPartForm-t-1 .cro-jm-39-newHeader-img {
+    max-width: 20px;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader form[method="POST"] {
+    margin-bottom: 5px;
+}
+
+html body.cro-twoPartForm-t-1 .form-field.cro-step2 input{
+    border-radius: 5px;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader3 .btn.primary[type="submit"] {
+    max-height: 45px;
+    height: 100%;
+    max-width: 176px;
+    width: 100%;
+    padding: 16px 38px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-twoPartForm-t-1 .cro-jm-39-loader {
+    display: none;
+}
+
+html body.cro-twoPartForm-t-1.cro-formHeader2 .cro-jm-39-loader{
+    display: block;
+}
+
+@media (max-width: 1023px) {
+    html body.cro-twoPartForm-t-1 .cro-Id-check-btn {
+        width: 100%;
+        max-height: 45px;
+        height: 100%;
+        min-height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+    }
+    html body.cro-twoPartForm-t-1.cro-formHeader #call-to-action-and-form h4{
+        margin-top: 12px;
+        margin-bottom: 24px;
+    }
+    body.cro-twoPartForm-t-1.cro-formHeader3 #call-to-action-and-form .btn.lg{
+        width: 100%;
+        max-width: 100%;
+    }
+    html body.cro-twoPartForm-t-1 .cro-jm-39-newHeader-inner{
+        margin-top: 15px;
+    }
+    html body.cro-twoPartForm-t-1 h3.cro-jm-39-loader-text{
+        max-width: 247px;
+        text-align: center;
+        margin-bottom: 43px;
+    }
+
+    html body.cro-twoPartForm-t-1.cro-formHeader .cro-id-btn{
+        margin-bottom: 23px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+    html body.cro-twoPartForm-t-1 #call-to-action-and-form h1{
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 1535px) {
+    html body.cro-twoPartForm-t-1 #call-to-action-and-form .relative.container .grid .grid-column:nth-child(3) {
+        max-width: 442px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1535px) {
+    html body.cro-twoPartForm-t-1 #call-to-action-and-form .relative.container .grid{
+        grid-template-columns: 1fr 1fr 1.5fr;
+        column-gap: 1rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+    html body.cro-twoPartForm-t-1 #call-to-action-and-form .relative.container .grid{
+        grid-template-columns: 0.5fr 1fr 1.5fr;
+        column-gap: 1rem;
+    }
+}

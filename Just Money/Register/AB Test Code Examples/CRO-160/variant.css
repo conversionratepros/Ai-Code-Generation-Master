@@ -1,0 +1,449 @@
+@media (max-width:767px) {
+    html body.croUc1_mobile .cro-loginbottompart {
+        display: block !important;
+    }
+
+    /* html body.croUc1_mobile .loginbgholder {
+        background-position: center;
+        display: none;
+    } */
+
+    html body.croUc1_mobile .loginbgholder {
+        visibility: hidden;
+        height: 0;
+        min-height: 0;
+    }
+
+    html body.croUc1_mobile .rating-badge {
+        width: 100%;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 10px !important;
+        margin: 0 !important;
+    }
+
+    html body.croUc1_mobile .register-hld h1.topcaption {
+        font-size: 24px;
+        padding-top: 28px;
+    }
+
+    html body.croUc1_mobile .registerform {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        margin-bottom: 1rem !important;
+        padding: 0 4px;
+    }
+
+    html body.croUc1_mobile .registerform .frmhold {
+        padding-right: 0rem !important;
+        padding-left: 0rem !important;
+        padding-top: 56px !important;
+        margin: 0 !important;
+    }
+
+    html body.croUc1_mobile .registerform .rgstertext {
+        font-weight: 500;
+        font-size: 18px;
+        text-align: left !important;
+    }
+
+    html body.croUc1_mobile .registerform #IdNumber {
+        border-radius: 5px;
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+    }
+
+    html body.croUc1_mobile .registerform input#FirstName,
+    html body.croUc1_mobile .registerform input#Surname,
+    html body.croUc1_mobile .registerform input#PhoneNumber,
+    html body.croUc1_mobile .registerform input#Email,
+    html body.croUc1_mobile .registerform input#Password,
+    html body.croUc1_mobile .registerform input#ConfirmPassword {
+        border-radius: 5px;
+        border: 1px solid #D9D9D9;
+        background: #FFF;
+    }
+
+    html body.croUc1_mobile #id-number-form button.btn,
+    html body.croUc1_mobile #registerForm button.btn {
+        background: #E5993B;
+        border-color: #E5993B;
+    }
+
+    html body.croUc1_mobile #registerForm #btnRegisterRegisterPage-3+.registerbtn {
+        color: #22222c !important;
+    }
+
+    html body.croUc1_mobile #registerForm #btnRegisterRegisterPage-3+.registerbtn>a {
+        color: #22222c !important;
+    }
+
+    html body.croUc1_mobile .cro-term-and-condition>div span:not(.round),
+    html body.croUc1_mobile .cro-term-and-condition>div span:not(.round) a {
+        color: #22222c !important;
+    }
+
+    html body.croUc1_mobile .registerholder {
+        padding: 0 !important;
+    }
+
+
+    /* -----new---part--- */
+    html body.croUc1_mobile .cro-gauge-cont {
+        display: block;
+        position: relative;
+        width: 190px;
+        height: 190px;
+        z-index: 1;
+        margin-top: 15px;
+        transform: scale(.8);
+    }
+
+    html body.croUc1_mobile .cro-mx-auto {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    html body.croUc1_mobile .cro-score {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        left: 35px;
+        top: 35px;
+        z-index: 4;
+        box-shadow: 0 0 10px #00000059;
+        background: #ececec;
+        border-radius: 95px;
+    }
+
+    html body.croUc1_mobile .cro-score .cro-score_inner {
+        box-shadow: 0 0 0 2px #4aaeab;
+        width: 100px;
+        height: 100px;
+        margin-left: 10px;
+        margin-top: 10px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    html body.croUc1_mobile .cro-score .cro-score_inner {
+        background: #ececec;
+        border-radius: 95px;
+    }
+
+    html body.croUc1_mobile .cro-score .cro-score_inner p {
+        font-size: 10px;
+        font-weight: 700;
+        font-family: Roboto, sans-serif;
+
+    }
+
+    html body.croUc1_mobile .cro-mb-0 {
+        margin-bottom: 0 !important;
+    }
+
+    html body.croUc1_mobile .cro-score .cro-score_inner h2 {
+        font-size: 40px;
+        line-height: 38px;
+        font-family: Roboto, sans-serif;
+
+    }
+
+    html body.croUc1_mobile .cro-font-weight-bold {
+        font-weight: 700 !important;
+    }
+
+    html body.croUc1_mobile .cro-value {
+        color: #bf7d1c;
+    }
+
+    html body.croUc1_mobile .cro-gauge,
+    html body.croUc1_mobile .cro-inner {
+        width: 190px;
+        height: 190px;
+    }
+
+    html body.croUc1_mobile .cro-inner,
+    html body.croUc1_mobile .cro-inner:after {
+        background-color: #fff;
+        border-radius: 190px;
+    }
+
+    html body.croUc1_mobile .cro-inner:after {
+        content: "";
+        width: 110px;
+        height: 150px;
+        top: 40px;
+        left: 40px;
+        position: absolute;
+        z-index: 3;
+    }
+
+    html body.croUc1_mobile .cro-pointer {
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: 3;
+        bottom: 95px;
+        left: 78px;
+        transform: rotate(-140deg);
+        transform-origin: center bottom;
+        transition: transform .8s ease;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 80px solid #4aaeab;
+    }
+
+    html body.croUc1_mobile .cro-pointer-knob {
+        width: 20px;
+        height: 20px;
+        background-color: #4aaeab;
+        position: absolute;
+        left: 85px;
+        bottom: 85px;
+        z-index: 3;
+        border-radius: 20px;
+    }
+
+    html body.croUc1_mobile .cro-arc_start {
+        border-color: transparent #bf7d1c #bf7d1c !important;
+        transform: rotate(-180deg);
+    }
+
+    html body.croUc1_mobile .cro-arc {
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        border: 5px solid;
+    }
+
+    html body.croUc1_mobile p.cro-average.cro-text-white.cro-md {
+        position: absolute;
+        top: -30px;
+        left: 74px;
+        font-size: 12px;
+        color: #38404e !important;
+        font-family: Roboto, sans-serif;
+
+    }
+
+    html body.croUc1_mobile .cro-average_line {
+        width: 120px;
+        height: 2px;
+        border-bottom: 2px dashed #e59a2c;
+        transform: rotate(90deg);
+        position: absolute;
+        top: 60px;
+        left: 36px;
+    }
+
+    html body.croUc1_mobile p.cro-bad.cro-text-white.cro-md {
+        position: absolute;
+        font-size: 12px;
+        bottom: 0;
+        left: -20px;
+        color: #38404e !important;
+        font-family: Roboto, sans-serif;
+
+    }
+
+    html body.croUc1_mobile .cro-bad_line {
+        width: 123px;
+        height: 2px;
+        border-bottom: 2px dashed #f35424;
+        transform: rotate(140deg);
+        position: absolute;
+        bottom: 71px;
+        left: 3px;
+        z-index: 3;
+    }
+
+    html body.croUc1_mobile p.cro-good.cro-text-white.cro-md {
+        position: absolute;
+        font-size: 12px;
+        bottom: 0;
+        right: -20px;
+        color: #38404e !important;
+        font-family: Roboto, sans-serif;
+
+    }
+
+    html body.croUc1_mobile .cro-good_line {
+        width: 120px;
+        height: 2px;
+        border-bottom: 2px dashed #31de22;
+        transform: rotate(-140deg);
+        position: absolute;
+        bottom: 71px;
+        right: 3px;
+        z-index: 3;
+    }
+
+    html body.croUc1_mobile .risk_block {
+        margin-top: 10px;
+    }
+
+    html body.croUc1_mobile .cro-text-center {
+        text-align: center !important;
+    }
+
+    html body.croUc1_mobile .cro-text-dark {
+        --bs-text-opacity: 1;
+        color: rgba(33, 37, 41, var(--bs-text-opacity)) !important;
+        color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+    }
+
+    html body.croUc1_mobile p.cro-sm {
+        font-size: 9px;
+        font-family: Roboto, sans-serif;
+        text-align: center;
+        margin-top: 10px;
+
+    }
+
+    html body.croUc1_mobile .cro-loginbottom-mid-part {
+        background: #D9D9D9;
+        border-radius: 12px;
+        /* box-shadow: 0 0 8px #00000080; */
+        /* transform: scale(.8) translate(-13%); */
+        width: 500px;
+        padding: 20px 24px 24px 24px;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    html body.croUc1_mobile .cro-top-bottom-icon-text-parent {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    html body.croUc1_mobile .cro-top-bottom-icon-text {
+        color: #22222C;
+        font-family: Roboto, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    html body.croUc1_mobile .cro-top-bottom-icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    html body.croUc1_mobile .cro-top-bottom-heading {
+        color: #38404E;
+        font-family: Roboto, sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    html body.croUc1_mobile .cro-top-bottom-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding-top: 24px;
+    }
+
+    html body.croUc1_mobile .cro-loginbottom-image {
+        background: url(registrationbg.ce2761211190336d.webp);
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 450px;
+        background-size: 330px;
+        padding-left: 0;
+    }
+
+    html body.croUc1_mobile .cro-loginbottom-last-container {
+        width: 500px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 45px 0;
+        max-width: 100%;
+        gap: 10px;
+    }
+
+    html body.croUc1_mobile .cro-loginbottom-mid-part-container {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+        margin-top: -25px;
+    }
+
+    html body.croUc1_mobile .cro-callme-button-text-parent {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    html body.croUc1_mobile span.cro-border-orange.cro-rounded-circle {
+        border: 1px solid #e59a2c;
+        border-radius: 50% !important;
+        padding: .5rem !important;
+    }
+
+    html body.croUc1_mobile .cro-loginbottom-last-right {
+        width: 173px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.croUc1_mobile .cro-d-block {
+        display: block;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        font-family: Roboto, sans-serif;
+    }
+
+    html body.croUc1_mobile .cro-callus {
+        cursor: pointer;
+    }
+
+    html body.croUc1_mobile .cro-number-text {
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
+
+    }
+
+    html body.croUc1_mobile .cro-number-text a:hover {
+        color: #e59a2c;
+    }
+
+    html body.croUc1_mobile a#cro-callme {
+        display: block;
+        line-height: 15px;
+        font-size: 14px;
+        color: #e59a2c;
+        padding-bottom: 5px;
+        font-family: Roboto, sans-serif;
+    }
+
+    html body.croUc1_mobile .cro-gplayimage {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width:342px) {
+    html body.croUc1_mobile .cro-top-bottom-icon-text-parent.part-1 {
+        align-items: flex-start;
+    }
+}

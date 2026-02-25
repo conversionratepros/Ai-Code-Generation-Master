@@ -1,0 +1,327 @@
+html body.recipe-t-review-1 .register-hld.register h1.topcaption {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 38px;
+    letter-spacing: 0em;
+    font-family: 'Roboto', sans-serif;
+}
+html body.recipe-t-review-1 .register-hld.register h1.topcaption span {
+    font-weight: 700;
+}
+html body.recipe-t-review-1 .register-hld.register .rgstertext {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 19px !important;
+}
+html body.recipe-t-review-1 .register-hld.register #id-number-form .form-control {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+/* html body.recipe-t-review-1 .ng-star-inserted .footer{
+    display: none;
+} */
+/* ----//---- */
+html body.recipe-t-review-1 .cro-top-button-sec {
+    position: sticky;
+}
+html body.recipe-t-review-1 img.img-icon {
+    width: 28px;
+    height: 28px;
+    max-width: 100%;
+    max-height: 100%;
+}
+html body.recipe-t-review-1 .main-icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 6px;
+}
+html body.recipe-t-review-1 .top-button {
+    width: 254px;
+    /* width: 100%; */
+    max-height: 67px;
+    background-color: #4AAEAC;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+html body.recipe-t-review-1 p.btn-first-text {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+html body.recipe-t-review-1 .btn-sec-part {
+    display: flex;
+    align-items: center;
+    /* padding: 1px 0px; */
+}
+html body.recipe-t-review-1 p.btn-sec-text {
+    margin: 0;
+    color: #fff;
+    padding-right: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+html body.recipe-t-review-1 img.btn-star-sec {
+    width: 91px;
+    height: 19px;
+    max-width: 100%;
+    max-height: 100%;
+}
+html body.recipe-t-review-1 p.btn-last-text {
+    margin: 0;
+    color: #ACF1F0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+@media (min-width: 768px) {
+    html body.recipe-t-review-1 .cro-top-button-sec-mob {
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    html body.recipe-t-review-1 .cro-top-button-sec {
+        display: none;
+    }
+    html body.recipe-t-review-1 .cro-top-button-sec-mob {
+        position: sticky;
+        margin-top: 16px;
+        margin-bottom: 26px;
+    }
+}
+html body.recipe-t-review-1 .cro-top-button-sec-mob .top-button{
+    margin: 0 auto;
+    max-width: 337px;
+    width: 100%;
+}
+html body.recipe-t-review-1 .cro-top-button-sec-mob p.btn-first-text {
+    margin-right: 6px;
+}
+html body.recipe-t-review-1 section.new-sec {
+    background-color: #FAEBD5;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+html body.recipe-t-review-1 h2.top-header {
+    margin-top: 60px;
+    margin-bottom: 9px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #22222C;
+}
+html body.recipe-t-review-1 .sec-part {
+    text-align: center;
+    padding-bottom: 35px;
+}
+html body.recipe-t-review-1 .sec-header-part {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+html body.recipe-t-review-1 p.sec-frst-text {
+    margin-right: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #22222C;
+}
+html body.recipe-t-review-1 img.top-icon {
+    width: 100px;
+    height: 20px;
+    max-width: 100%;
+    max-height: 100%;
+}
+html body.recipe-t-review-1 p.sec-sec-text {
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #22222C;
+}
+html body.recipe-t-review-1 p.sec-sec-text strong {
+    font-weight: 700;
+}
+html body.recipe-t-review-1 .cards-part {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+html body.recipe-t-review-1 .first-card {
+    width: 100%;
+    max-width: 178px;
+}
+html body.recipe-t-review-1 .sec-card {
+    max-width: 178px;
+    margin: 0px 20px;
+}
+html body.recipe-t-review-1 .third-card {
+    max-width: 178px;
+    margin-right: 20px;
+}
+html body.recipe-t-review-1 .four-card {
+    max-width: 178px;
+}
+html body.recipe-t-review-1 .back-part {
+    background-color: #fff;
+    border: 1px solid #CDBBA1;
+    padding: 20px 20px;
+    height: 350px;
+    /* min-height: 500px; */
+    display: flex !important;
+    flex-direction: column;
+}
+html body.recipe-t-review-1 h3.card-header {
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    color: #22222C;
+    border-bottom: none;
+    padding: 0;
+    margin-bottom: 12px;
+    min-height: 38px;
+}
+html body.recipe-t-review-1 p.under-text {
+    width: 100%;
+    max-width: 90%;
+    margin-bottom: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    color: #22222C;
+    flex: 1;
+}
+html body.recipe-t-review-1 img.card-img-1 {
+    width: 100%;
+    max-width: 90px;
+}
+html body.recipe-t-review-1 p.clint-name {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    color: #D9A937;
+}
+html body.recipe-t-review-1 .cro-review-card {
+    max-width: 220px !important;
+    width: 100%;
+}
+@media (max-width: 1199px) {
+    html body.recipe-t-review-1 .four-card{
+        margin: 20px;
+        margin-left: 0;
+    }
+}
+@media (max-width: 991px) {
+    html body.recipe-t-review-1 .third-card{
+        margin-top: 20px;
+    }
+}
+@media (max-width: 509px) {
+    html body.recipe-t-review-1 .third-card{
+        margin: 20px 20px 0;
+    }
+    html body.recipe-t-review-1 .four-card{
+        margin: 20px auto 0;
+    }
+    html body.recipe-t-review-1 .first-card{
+        margin-bottom: 20px;
+    }
+    
+}
+@media (max-width: 469px) {
+    html body.recipe-t-review-1 .sec-card{
+        margin: 20px auto 0;
+    }
+}
+@media (max-width: 767px) {
+    html body.recipe-t-review-1 .sec-header-part{
+        align-items: center;
+        flex-direction: column;
+    }
+    html body.recipe-t-review-1 p.sec-frst-text{
+        margin: 0;
+    }
+    html body.recipe-t-review-1 .register-hld.register h1.topcaption{
+        font-size: 20px;
+        line-height: 23.44px;
+    }
+    html body.recipe-t-review-1 p.btn-first-text{
+        font-size: 16px;
+        line-height: 18.15px;
+    }
+    html body.recipe-t-review-1 p.btn-last-text{
+        font-size: 18px;
+        line-height: 18.15px;
+    }
+    html body.recipe-t-review-1 .register-hld.register .rgstertext{
+        font-size: 18px;
+        line-height: 21.09px;
+    }
+    html body.recipe-t-review-1 h2.top-header{
+        margin-top: 0;
+        font-size: 16px;
+        line-height: 18.75px;
+    }
+    html body.recipe-t-review-1 .cro-review-card{
+        max-width: 300px !important;
+        margin: 20px auto;
+    }
+    html body.recipe-t-review-1 .sec-part{
+        padding-bottom: 0;
+    }
+    html body.recipe-t-review-1 img.top-icon{
+        margin: 10px 0;
+    }
+    html body.recipe-t-review-1 .back-part{
+        height: 100%;
+        min-height: auto;
+    }
+}

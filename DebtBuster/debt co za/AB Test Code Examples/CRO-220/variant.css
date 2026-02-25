@@ -1,0 +1,63 @@
+html body.cro-t-8-10 ol.decorated li .bullet {
+    background-color: #0E70AB;
+}
+
+html body.cro-t-8-10 section.cro-t-8_10-ourPartners h2 {
+    display: none;
+}
+
+html body.cro-t-8-10 .cro-t-8_10-debtProblem .grid>div svg {
+    display: none;
+}
+
+html body.cro-t-8-10 .cro8_10-debt-problem-bottom-image {
+    width: 80.019px;
+    height: 57px;
+    margin: 0 auto;
+}
+
+html body.cro-t-8-10 .cro8_10-debt-problem-bottom-image-2 {
+    width: 60.581px;
+    height: 53.921px;
+    margin: 0 auto;
+}
+
+html body.cro-t-8-10 .cro8_10-debt-problem-bottom-image-3 {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto;
+}
+
+html body.cro-t-8-10 .cro-t-8_10-debtProblem img {
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 1024px) {
+    html body.cro-t-8-10 section.cro-t-8_10-ourPartners {
+        margin-top: 80px;
+        padding: 61px 0;
+        background-color: #F2F2F2;
+    }
+
+    html body.cro-t-8-10 section.cro-t-8_10-debtProblem {
+        background-color: #fff;
+    }
+
+}
+
+@media (max-width: 1023px) {
+    html body.cro-t-8-10 section.cro-t-8_10-ourPartners {
+        padding: 79px 0 66px;
+    }
+
+    html body.cro-t-8-10 .cro8_10-debt-problem-bottom-image {
+        width: 74px !important;
+        height: 53px !important;
+    }
+
+    html body.cro-t-8-10 .cro8_10-debt-problem-bottom-image-2 {
+        width: 69px !important;
+        height: 61px !important;
+    }
+}

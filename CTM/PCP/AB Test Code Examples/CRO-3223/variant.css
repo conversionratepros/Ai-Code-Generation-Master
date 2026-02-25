@@ -1,0 +1,597 @@
+html body.cro-206.cro-206-hide .cro-206-lightBox {
+    display: none;
+}
+
+html body.cro-206 .cro-206-lightBox {
+    display: block;
+}
+
+html body.cro-206 .cro-206-lightBox {
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    /* left: 0px; */
+    z-index: 999992;
+    /* padding: 10px; */
+    overflow-y: auto;
+    display: flex;
+}
+
+html body.cro-206 .cro-206-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.5);
+    height: 520px;
+    min-height: 100%;
+}
+
+html body.cro-206 .cro-206-modal {
+    /* border-radius: 6px; */
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    width: 100%;
+    max-width: 887px;
+    text-align: left;
+    overflow: visible;
+    box-sizing: border-box !important;
+    margin: auto !important;
+    padding: 40px 24px;
+    box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.26);
+}
+
+html body.cro-206 .cro-206-model-open {
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    max-height: 673px;
+    /* box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.26); */
+}
+
+html body.cro-206 img.cro-206-cross-img {
+    width: 100%;
+    max-width: 14px;
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+}
+
+html body.cro-206 .cro-206-cross {
+    position: relative;
+
+}
+
+
+html body.cro-206:not(.cro-206-hide) {
+    overflow: hidden;
+    height: auto !important;
+}
+
+html body.cro206 .cro-206-modal-top-header-text {
+    color: #000;
+    font-family: "Source Sans Pro";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px;
+}
+
+html body.cro206 .cro-206-modal-main-image {
+    position: relative;
+}
+
+html body.cro206 .cro-206-modal-image-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 121px;
+    height: 121px;
+}
+
+html body.cro206 .cro-206-modal-installation-icon-text {
+    display: contents;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: #DDEEFC;
+    margin-top: 12px;
+}
+
+html body.cro206 .cro-206-modal-installation-icon {
+    width: 17px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro206 .cro-206-modal-installation-text {
+    color: #2D65CF;
+    font-family: "Source Sans Pro";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 126%;
+}
+
+html body.cro206 .cro-206-modal-installation-text span {
+    font-weight: 700;
+}
+
+html body.cro206 .cro-206-modal-image {
+    width: 100%;
+    height: 284px;
+}
+
+.cro-206-modal-top-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    padding-bottom: 12px;
+}
+
+.cro-206-modal-top-sub-header-text {
+    color: #6D6D6D;
+    font-family: "Source Sans Pro";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+/* -----New--Update--- */
+#HowToInstall .cro206_top_heading>.mgz-icon-position-right .has-icon {
+    display: none;
+}
+
+/* html body.cro206.cro_model div#HowToInstall {
+     position: fixed;
+     top: 0px;
+     right: 0;
+     width: 647px;
+     z-index: 99999;
+     height: calc(100vh) !important;
+     background-color: #f8f8f8;
+     overflow-y: scroll;
+ } */
+
+/* html body.cro206:not(.cro_model) div#HowToInstall {
+     display: none;
+ } */
+
+#HowToInstall .cro206_top_heading .mgz-panel-body .mgz-block-content .mgz-panels {
+    display: flex;
+    flex-direction: column;
+}
+
+#HowToInstall .cro206_Guaranteeing {
+    order: 1;
+    margin-bottom: 0;
+}
+
+.cro206-info-box {
+    order: 2;
+    padding: 12px 0 16px;
+}
+
+#HowToInstall .cro206_Preparation {
+    order: 3;
+    border-top: 1px solid #E6E6E6;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0;
+}
+
+#HowToInstall .cro206_Tile_Purchasing {
+    order: 4;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0;
+}
+
+#HowToInstall .cro206_Start_Tiling {
+    order: 5;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0;
+}
+
+#HowToInstall .cro206_Correct_Spacing {
+    order: 6;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0;
+}
+
+#HowToInstall .cro206_Grouting {
+    order: 7;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0;
+}
+
+.cro206-top-model-heading {
+    color: #000;
+    font-family: "Source Sans Pro";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 34%;
+    /* 10.88px */
+}
+
+.cro206-top-model-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cro206-top-model-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 26px;
+}
+
+
+#HowToInstall .cro206_Guaranteeing.mgz-active .has-icon,
+#HowToInstall .cro206_Preparation.mgz-active .has-icon,
+#HowToInstall .cro206_Tile_Purchasing.mgz-active .has-icon,
+#HowToInstall .cro206_Start_Tiling.mgz-active .has-icon,
+#HowToInstall .cro206_Correct_Spacing.mgz-active .has-icon,
+#HowToInstall .cro206_Grouting.mgz-active .has-icon {
+    padding-left: 0;
+}
+
+svg.cro206-close-icon {
+    width: 100%;
+    cursor: pointer;
+}
+
+html.cro-scroll-hide {
+    overflow: hidden;
+}
+
+html body.cro_model .cro206-new-overlay {
+    /* width: 100%;
+     height: 100vh;
+     opacity: 0.4;
+     background: #000;
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     margin: 0 auto; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.6;
+    background: #4F4E4D;
+    z-index: 999;
+}
+
+/* html body.cro_model .cro206-new-overlay {
+
+     width: 100%;
+     height: 100vh;
+     opacity: 0.1;
+     background: #4F4E4D;
+ } */
+@media (max-width:768px) {
+    /* html body.cro206.cro_model div#HowToInstall {
+         top: 34%;
+         width: 100%;
+     } */
+
+    .cro206-top-model-inner {
+        padding: 10px 0 10px;
+    }
+
+    .cro206-top-model-heading {
+        color: #000;
+        font-family: "Source Sans Pro";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 34%;
+    }
+
+    html body.cro206 .cro206-info-box-text {
+        font-size: 14px;
+    }
+
+    html body.cro206.cro_model #HowToInstall {
+        border-radius: 16px 16px 0 0;
+    }
+}
+
+
+/* ------------------------New------------------- */
+
+html body.cro206 .cro206_top_heading>.mgz-panel-body {
+    display: block !important;
+    height: 100% !important;
+}
+
+html body.cro206 .cro206_Guaranteeing .has-icon .mgz-accoridon-icon-triangle {
+    display: none;
+}
+
+html body.cro206 .cro206_Guaranteeing .has-icon {
+    pointer-events: none;
+}
+
+html body.cro206 .cro206_Guaranteeing .mgz-panel-body {
+    display: block !important;
+    height: 100% !important;
+    /* -webkit-transition: none !important; */
+    /* transition: none !important; */
+}
+
+html body.cro206 .mgz-element .mgz-panel .mgz-panel-heading.mgz-icon-position-right a.has-icon {
+    padding: 16px 40px 16px 16px !important;
+}
+
+html body.cro206 .mgz-element .mgz-panel.cro206_Guaranteeing .mgz-panel-heading.mgz-icon-position-right a.has-icon {
+    padding-left: 0 !important;
+}
+
+html body.cro206 .cro206-info-box-icon {
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro206 .cro206-info-box-text {
+    color: #2D65CF;
+    font-family: "Source Sans Pro";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 126%;
+}
+
+html body.cro206 .cro206-info-box-text span {
+    font-weight: 700;
+}
+
+html body.cro206 .cro206-info-box-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+html body.cro206 .cro206-info-box-wrapper {
+    border-radius: 4px;
+    background: #DDEEFC;
+    padding: 10px 16px;
+}
+
+html body.cro206 #HowToInstall .mgz-panel .mgz-panel-heading .has-icon span {
+    color: #6D6D6D;
+}
+
+html body.cro206 .cro206_Preparation .step-1 .mgz-element-text .mgz-element-inner {
+    padding: 15px 70px 15px 30px !important;
+}
+
+html body.cro206 #HowToInstall .cro206_top_heading>.mgz-panel-body {
+    border-bottom: 0;
+}
+
+@media (max-width: 575px) {
+    html body.cro206 .cro206_Preparation .step-1 .mgz-element-text .mgz-element-inner {
+        padding: 15px 10px 15px 5px !important;
+    }
+}
+
+/* @media (max-width: 550px) {
+     html body.cro206 .vas-modals-container .pdp-vas-modals .modal_1 {
+         grid-column: 1 !important;
+         grid-row: 1 !important;
+     }
+
+     html body.cro206 .vas-modals-container .cro-install {
+         grid-column: 1 !important;
+         grid-row: 2 !important;
+     }
+
+     html body.cro206 .vas-modals-container .pdp-vas-modals .modal_2 {
+         grid-column: 2 !important;
+         grid-row: 1 !important;
+     }
+
+     html body.cro206 .vas-modals-container .pdp-vas-modals .modal_3 {
+         grid-column: 2 !important;
+         grid-row: 2 !important;
+     }
+
+     html body.cro206 .vas-modals-container .pdp-vas-modals .modal_4 {
+         grid-column: 3 !important;
+         grid-row: 1 !important;
+     }
+
+
+ } */
+
+
+
+@media (max-width: 550px) {
+    html body.cro206 .vas-modals-container .pdp-vas-modals {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        /* 2 column layout */
+        grid-gap: 20px !important;
+        justify-items: center;
+    }
+
+    html body.cro206 .vas-modals-container .pdp-vas-modals .modal_1 {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+    }
+
+    html body.cro206 .vas-modals-container .cro-install {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+    }
+
+    html body.cro206 .vas-modals-container .pdp-vas-modals .modal_2 {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+    }
+
+    html body.cro206 .vas-modals-container .pdp-vas-modals .modal_3 {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+    }
+
+    html body.cro206 .vas-modals-container .pdp-vas-modals .modal_4 {
+        grid-column: 1 !important;
+        grid-row: 3 !important;
+        justify-self: center;
+    }
+
+    html body.cro206 li.cro-install .vas-modal-title {
+        width: 100%;
+        max-width: 75px;
+    }
+}
+
+
+
+/* ------------------new---------------- */
+/* ---------- Base (hidden) ---------- */
+html body.cro206 #HowToInstall {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(647px, 100vw);
+    height: 100vh;
+    background: #f8f8f8;
+    overflow-y: auto;
+    z-index: 99999;
+
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ---------- Desktop (default → slide from right) ---------- */
+@keyframes cro-slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes cro-slide-out-right {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Open state (desktop) */
+html body.cro206.cro_model #HowToInstall {
+    animation: cro-slide-in-right .4s ease-in-out forwards;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Close state (desktop) */
+html body.cro206:not(.cro_model) #HowToInstall.was-open {
+    animation: cro-slide-out-right .4s ease-in-out forwards;
+}
+
+/* ---------- Mobile (override → slide from bottom) ---------- */
+@media (max-width: 768px) {
+    html body.cro206 #HowToInstall {
+        top: auto;
+        /* reset top */
+        bottom: 0;
+        /* stick to bottom */
+        height: 90vh;
+        /* smaller height if you want */
+        right: 0;
+        width: 100%;
+        /* full width on mobile */
+    }
+
+    @keyframes cro-slide-in-bottom {
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes cro-slide-out-bottom {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+    }
+
+    /* Open state (mobile) */
+    html body.cro206.cro_model #HowToInstall {
+        animation: cro-slide-in-bottom .4s ease-in-out forwards;
+    }
+
+    /* Close state (mobile) */
+    html body.cro206:not(.cro_model) #HowToInstall.was-open {
+        animation: cro-slide-out-bottom .4s ease-in-out forwards;
+    }
+}
+
+html body.cro206 #HowToInstall .mgz-block-content .mgz-panels .mgz-panel:not(.cro206_top_heading, .cro206_Guaranteeing) {
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 0;
+}
+
+html body.cro206 #HowToInstall .installation-heading h2.mgz-element-heading-text {
+    font-size: 0;
+}
+
+html body.cro206 .cro-t-206_207-mosaicHeading>.mgz-element-inner {
+    padding: 0 !important;
+}
+
+
+html body.cro206 .cro-t-206_207-mosaicHeading>.mgz-element-inner>[data-background-type="image"] {
+    display: none;
+}
+
+html body.cro206 .mgz-element-inner.cro-t-206_207-mosaicParent {
+    padding: 14px 20px !important;
+}

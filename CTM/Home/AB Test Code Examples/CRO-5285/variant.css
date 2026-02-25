@@ -1,0 +1,162 @@
+html body.cro-ctm_238_240 .cro_238_240-calculator-inner {
+    border-radius: 4px;
+    border: 1px solid #ACA39E;
+    background: #000;
+    color: #FFFFFF;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    max-width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-ctm_238_240 .cro_238_240-calculator-inner:hover {
+    /* background: #1f1f1f; */
+    opacity: 0.8;
+}
+
+html body.catalog-product-view.cro-ctm_238_240 .page-wrapper .media-info-main .product-info-main .calc-container #calc_btn {
+    display: none;
+}
+
+html body.catalog-product-view.cro-ctm_238_240 .page-wrapper .media-info-main .product-info-main .calc-container {
+    gap: 20px;
+    /* margin-bottom: 21px; */
+}
+
+html body.cro-ctm_238_240 .cro_238_240-calculator-wrapper {
+    /* height: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    /* width: 185px; */
+}
+
+html body.cro-ctm_238_240 .page-wrapper .media-info-main .product-info-main .control.calculator{
+    margin-top: 0 !important;
+}
+
+html body.cro-ctm_238_240 .input-title.cro-ctm_238_240-input-title {
+    /* margin-bottom: 21px; */
+}
+
+html body.cro-ctm_238_240 .cro-ctm_238_240-toolTip-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.cro-ctm_238_240 .product-add-form .box-tocart .cro-ctm_238_240-tileTooltip.cro-ctm_238_240-toolTip-desktop .pdp-tooltip:hover .pdp-info>div {
+    top: -135px;
+    right: -25px;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.15);
+    padding: 16px;
+    font-size: 11px;
+    line-height: 110%;
+    /* right: -160px; */
+    /* top: 4px; */
+    width: 332px;
+    z-index: 1;
+}
+
+html body.cro-ctm_238_240 .product-add-form .box-tocart .cro-ctm_238_240-tileTooltip.cro-ctm_238_240-toolTip-desktop .pdp-tooltip .pdp-info>span {
+    rotate: 180deg;
+    top: -30px;
+}
+
+html body.cro-ctm_238_240 .product-add-form .box-tocart .cro-ctm_238_240-tileTooltip.cro-ctm_238_240-toolTip-desktop .pdp-tooltip:hover .pdp-info>div p {
+    color: #000;
+    font-family: "Source Sans Pro";
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 15.4px */
+}
+
+html body.cro-ctm_238_240 .cro_238_240-calculator-inner span {
+    color: #FFF;
+    text-align: center;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px; /* 107.143% */
+    text-transform: capitalize;
+}
+
+@media (min-width: 1251px){
+    html body.catalog-product-view.cro-ctm_238_240 .page-wrapper .media-info-main .product-info-main .input-title:not(.cro-ctm_238_240-input-title) {
+        display: none;
+    }
+
+    html body.cro-ctm_238_240 .cro-ctm_238_240-toolTip-mobile{
+        display: none;
+    }
+
+    html body.cro-ctm_238_240 .cro_238_240-calculator-wrapper {
+        width: max-content;
+        min-width: 185px;
+    }
+}
+
+@media (max-width: 1250px) {
+    html body.cro-ctm_238_240 .cro_238_240-calculator-wrapper{
+        width: 100%;
+    }
+
+    html body.cro-ctm_238_240 .cro_238_240-calculator-inner{
+        max-width: 100%;
+    }
+
+    html body.catalog-product-view.cro-ctm_238_240 .page-wrapper .media-info-main .product-info-main .calc-container {
+        gap: 15px;
+        /* margin-bottom: 15px; */
+    }
+
+    html body.cro-ctm_238_240 .cro-ctm_238_240-toolTip-desktop{
+        display: none;
+    }
+
+    html body.catalog-product-view.cro-ctm_238_240 .page-wrapper .media-info-main .product-info-main .input-title:not(.cro-ctm_238_240-input-title){
+        /* margin-bottom: 10px; */
+    }
+
+    html body.cro-ctm_238_240 .product-add-form .box-tocart .cro-ctm_238_240-tileTooltip.cro-ctm_238_240-toolTip-mobile .pdp-tooltip .pdp-info>div {
+        top: -122px;
+        padding: 16px;
+        width: 100%;
+        min-width: 284px;
+        right: -150px;
+    }
+
+    html body.cro-ctm_238_240 .product-add-form .box-tocart .cro-ctm_238_240-tileTooltip.cro-ctm_238_240-toolTip-mobile .pdp-tooltip .pdp-info>span {
+        top: -30px;
+        rotate: 180deg;
+    }
+
+    html body.cro-ctm_238_240 .cro_238_240-calculator-inner span {
+        font-size: 16px;
+        line-height: 15px;
+    }
+}
+
+@media (min-width: 801px) and (max-width:867px) {
+    html body.cro-ctm_238_240 .cro_238_240-calculator-inner span {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1250px) {
+  html body.cro-ctm_238_240 .product-add-form .box-tocart .cro-ctm_238_240-tileTooltip.cro-ctm_238_240-toolTip-mobile .pdp-tooltip .pdp-info>div{
+        right: -130px;
+  }
+}

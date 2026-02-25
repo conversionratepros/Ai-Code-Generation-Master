@@ -1,0 +1,7 @@
+@media (max-width:1023px) {
+    html body.cro16 #main-form>div.grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+}

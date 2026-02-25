@@ -1,0 +1,283 @@
+html body.cro-t-51_52 section.new-sec {
+    display: none;
+}
+
+/* ----New--Update---- */
+html body.cro-t-51_52 div#cro51_52-Review-Section {
+    background: #FAEBD5;
+}
+
+html body.cro-t-51_52 .cro51_52-header-part {
+    padding-top: 64px;
+    padding-bottom: 60px;
+}
+
+html body.cro-t-51_52 h2.cro51_52-header-text {
+    color: #000;
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+}
+
+html body.cro-t-51_52 .cro51_52-header-secend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+html body.cro-t-51_52 img.cro51_52-header-top-icon {
+    width: 100%;
+    max-width: 110px;
+    margin: 0 12px;
+}
+
+html body.cro-t-51_52 p.cro51_52-header-secend-text.secend-text-2 {
+    color: #000;
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+
+html body.cro-t-51_52 .cro51_52-review-card {
+    border: 1px solid #CDBBA1;
+    background: #FFF;
+}
+
+html body.cro-t-51_52 .cro51_52-card-inner-parent {
+    /* padding: 32px 33px 28px 27px; */
+    padding: 28px;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+html body.cro-t-51_52 .cro51_52-card-top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+html body.cro-t-51_52 .cro51_52-card-top-header-text {
+    color: #000;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+html body.cro-t-51_52 .cro51_52-card-top-sub-header-text {
+    color: #000;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    width: 100%;
+    /* max-width: 251px; */
+}
+
+html body.cro-t-51_52 .cro51_52-card-bottom-client-name {
+    color: #D9A937;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+    padding-top: 12px;
+}
+
+html body.cro-t-51_52 .cro51_52-card-bottom-icon {
+    width: 100%;
+    max-width: 110px;
+}
+
+html body.cro-t-51_52 p.cro51_52-header-secend-text.rated {
+    color: #000;
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+
+html body.cro-t-51_52 .cro51_52-left-part-inner-swiper {
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    /* padding-bottom: 96px; */
+}
+
+html body.cro-t-51_52 .cro51_52-left-part-inner {
+    padding-bottom: 96px;
+}
+
+html body.cro-t-51_52 .swiper-button-prev::after {
+    display: none;
+}
+
+html body.cro-t-51_52 .swiper-button-next::after {
+    display: none;
+}
+
+html body.cro-t-51_52 .cro51_52-left-part-prev {
+    border-radius: 3px;
+    background: #4AAEAC;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    width: 52px;
+    left: -15px;
+    top: 0px;
+    bottom: 0;
+    margin: auto;
+    height: 52px;
+}
+
+html body.cro-t-51_52 .cro51_52-left-part-next {
+    border-radius: 3px;
+    background: #4AAEAC;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    width: 52px;
+    right: -15px;
+    top: 0px;
+    bottom: 0;
+    margin: auto;
+    height: 52px;
+}
+
+html body.cro-t-51_52 .cro51_52-left-part-inner-swiper .swiper-wrapper {
+    padding: 0;
+}
+
+html body.cro-t-51_52 p.cro51_52-header-secend-text.secend-text-2 strong {
+    font-weight: 700;
+}
+
+html body.cro-t-51_52 .cro51_52-left-part-prev:hover {
+    opacity: 80%;
+}
+
+html body.cro-t-51_52 .cro51_52-left-part-next:hover {
+    opacity: 80%;
+}
+
+html body.cro-t-51_52 .swiper .swiper-slide {
+    padding-top: 0;
+}
+
+@media (min-width:1536px) and (max-width:1799px) {
+    html body.cro-t-51_52 .cro51_52-card-inner-parent {
+        min-height: 450px;
+    }
+}
+
+@media (max-width:1535px) {
+    html body.cro-t-51_52 .cro51_52-card-inner-parent {
+        min-height: 525px;
+    }
+}
+
+@media (max-width:1279px) {
+    html body.cro-t-51_52 .cro51_52-card-inner-parent {
+        min-height: 500px;
+    }
+}
+
+@media (max-width:1023px) {
+    html body.cro-t-51_52 .cro51_52-card-inner-parent {
+        min-height: 450px;
+    }
+}
+
+
+
+@media (max-width:767px) {
+    html body.cro-t-51_52 .cro51_52-left-part-prev {
+        left: -10px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-left-part-next {
+        right: -10px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-header-secend {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 20px;
+        flex-direction: column;
+    }
+
+    html body.cro-t-51_52 h2.cro51_52-header-text {
+        line-height: normal;
+    }
+
+    html body.cro-t-51_52 img.cro51_52-header-top-icon {
+        margin: 11px 0;
+    }
+
+    html body.cro-t-51_52 .cro51_52-left-part-inner {
+        padding-bottom: 43px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-header-part {
+        padding-top: 47px;
+        padding-bottom: 66px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-left-part-prev,
+    html body.cro-t-51_52 .cro51_52-left-part-next {
+        width: 46px;
+        height: 46px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-card-inner-parent {
+        min-height: 525px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-card-top {
+        gap: 20px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-card-bottom-client-name {
+        padding-top: 10px;
+    }
+
+    /* html body.cro-t-51_52 .cro51_52-card-inner-parent {
+        padding: 22px
+    } */
+
+}
+
+@media (min-width:550px) and (max-width:767px) {
+    html body.cro-t-51_52 .cro51_52-card-inner-parent {
+        min-height: 380px;
+    }
+}
+
+@media (min-width:320px) and (max-width:359px) {
+
+    html body.cro-t-51_52 .cro51_52-card-top-header-text,
+    html body.cro-t-51_52 .cro51_52-card-top-sub-header-text,
+    html body.cro-t-51_52 .cro51_52-card-bottom-client-name {
+        font-size: 18px;
+    }
+
+    html body.cro-t-51_52 .cro51_52-card-bottom-icon {
+        max-width: 100px;
+    }
+}

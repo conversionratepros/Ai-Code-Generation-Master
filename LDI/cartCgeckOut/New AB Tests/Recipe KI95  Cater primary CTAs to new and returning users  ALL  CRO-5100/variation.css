@@ -1,0 +1,174 @@
+html body.cro5100 .elementor-location-header a[href*="/vle/"]{
+    border: none !important;
+}
+
+html body.cro5100 .elementor-location-header a[href*="/vle/"]:hover {
+  text-decoration: underline;
+  background-color: transparent !important;
+}
+
+html body.cro5100 .cro5100-course-ortho .elementor-widget-button,
+html body.cro5100 .cro5100-course-aesthetic .elementor-widget-button,
+html body.cro5100 .cro5100-course-implant .elementor-widget-button{
+    width: 100%;;
+}
+
+html body.cro5100 .cro5100-prospectus-btn .elementor-button-content-wrapper {
+    display: flex;
+    flex-direction: row !important;
+}
+
+html body.cro5100 .cro5100-course-ortho.has_eae_slider .elementor-button-wrapper,
+html body.cro5100 .cro5100-course-aesthetic.has_eae_slider .elementor-button-wrapper,
+html body.cro5100 .cro5100-course-implant.has_eae_slider .elementor-button-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+
+html body.cro5100 .cro5100-course-ortho .elementor-button:not(.cro5100-prospectus-btn) .elementor-button-icon,
+html body.cro5100 .cro5100-course-aesthetic .elementor-button:not(.cro5100-prospectus-btn) .elementor-button-icon,
+html body.cro5100 .cro5100-course-implant .elementor-button:not(.cro5100-prospectus-btn) .elementor-button-icon{
+    display: none;
+}
+
+html body.cro5100 .has_eae_slider .cro5100-prospectus-btn {
+  background-color: #2B5E7D !important;
+  /* border: 1px solid #2f5f7b; */
+  color: #ffffff !important;
+}
+
+html body.cro5100 .has_eae_slider .cro5100-prospectus-btn:hover {
+  background-color: #007EA8 !important;
+  border: 1px solid #007EA8 !important;
+}
+
+/* Icon spacing */
+html body.cro5100 .cro5100-prospectus-btn .elementor-button-icon {
+  margin-left: 8px;
+}
+
+/* SECONDARY CTA – Learn more */
+html body.cro5100 .cro5100-course-ortho.has_eae_slider .elementor-button:not(.cro5100-prospectus-btn),
+html body.cro5100 .cro5100-course-aesthetic.has_eae_slider .elementor-button:not(.cro5100-prospectus-btn),
+html body.cro5100 .cro5100-course-implant.has_eae_slider .elementor-button:not(.cro5100-prospectus-btn) {
+  background-color: transparent !important;
+  border: 1px solid #cfd8df !important;
+  color: #2f5f7b !important;
+}
+
+html body.cro5100 .cro5100-course-ortho.has_eae_slider .elementor-button:not(.cro5100-prospectus-btn):hover,
+html body.cro5100 .cro5100-course-aesthetic.has_eae_slider .elementor-button:not(.cro5100-prospectus-btn):hover,
+html body.cro5100 .cro5100-course-implant.has_eae_slider .elementor-button:not(.cro5100-prospectus-btn):hover {
+  color: #007EA8 !important;
+}
+
+
+/* Keep arrow aligned */
+html body.cro5100 .cro5100-prospectus-btn .elementor-button-content-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html body.cro5100 .cro5100-prospectus-btn .elementor-button-content-wrapper {
+  display:flex;
+  flex-direction: row !important;
+}
+html body.cro5100 .elementor-location-header a[href*="/vle/"]{
+    border: none !important;
+}
+
+html body.cro5100 .elementor-location-header a[href*="/vle/"]:hover {
+  text-decoration: underline;
+}
+
+
+html body.cro5100 .cro5100-prospectus-btn .elementor-button-content-wrapper {
+    display: flex;
+    flex-direction: row !important;
+}
+
+html body.cro5100 .cro5100-course-ortho .has_eae_slider .elementor-button-wrapper,
+html body.cro5100 .cro5100-course-aesthetic .has_eae_slider .elementor-button-wrapper,
+html body.cro5100 .cro5100-course-implant .has_eae_slider .elementor-button-wrapper {
+  gap: 20px !important;
+}
+
+/* ------DEntal Page--- */
+
+html[cro-datapath="/dental-courses/"] body.cro5100 .cro5100-course-ortho.has_eae_slider > .has_eae_slider,
+html[cro-datapath="/dental-courses/"] body.cro5100 .cro5100-course-aesthetic.has_eae_slider > .has_eae_slider,
+html[cro-datapath="/dental-courses/"] body.cro5100 .cro5100-course-implant.has_eae_slider > .has_eae_slider{
+    display: flex;
+    flex-direction: column;
+}
+
+html[cro-datapath="/dental-courses/"] body.cro5100 .cro5100-prospectus-btn .elementor-button-content-wrapper {
+    display: flex;
+    flex-direction: row-reverse !important;
+}
+
+/* ----3 Course---- */
+
+html body.cro5100 .cro-course-pages a:not(.cro-download){
+      background-color: transparent !important;
+    color: #2f5f7b !important;
+    border-style: solid !important;
+    border-width: 1px 1px 1px 1px !important;
+    border-color: #2B5E7D80 !important;
+    border-radius: 0px 0px 0px 0px !important;
+}
+
+html body.cro5100 .cro-course-pages a.cro-download {
+    background-color: #2B5E7D !important;
+    fill: #FFFFFF !important;
+    color: #FFFFFF !important;
+    border-style: solid !important;
+    border-width: 1px 1px 1px 1px !important;
+    border-color: #2B5E7D !important;
+    border-radius: 0px 0px 0px 0px !important;
+}
+
+html body.cro5100 .cro-course-pages a.cro-download .elementor-button-content-wrapper{
+  grid: 8px;
+}
+
+
+html body.cro5100 .cro-course-pages a:not(.cro-download) .elementor-button-icon{
+  display: none;
+}
+
+html body.cro5100 .cro-course-pages a.cro-download:hover{
+    background-color: #007EA8 !important;
+    border-color: #007EA8 !important;
+}
+
+html body.cro5100 .cro-course-pages a:not(.cro-download):hover{
+    color: #007EA8 !important;
+    border-color: #007EA8 !important;
+}
+
+html body.cro5100 .cro-course-pages .cro5100-btn-parent {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+}
+
+html[cro-datapath="/"] body.cro5100 .has_eae_slider .cro5100-prospectus-btn {
+    border: 1px solid #2B5E7D !important;
+    height: 50px;
+}
+
+html[cro-datapath="/"] body.cro5100 .has_eae_slider .cro5100-prospectus-btn:hover {
+    background-color: #007EA8 !important;
+    border: 1px solid #007EA8 !important;
+}
+
+@media (max-width:767px) {
+html body.cro5100 .cro-course-pages .cro5100-btn-parent {
+    display: flex !important;
+    flex-direction: column-reverse;
+    justify-content: flex-end !important;
+}
+}

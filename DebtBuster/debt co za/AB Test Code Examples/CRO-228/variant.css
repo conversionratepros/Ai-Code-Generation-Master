@@ -1,0 +1,28 @@
+.pb-0 h1 {font-weight: normal !important;}
+.pb-0 h2 {
+    font-size: 24px;
+}
+
+@media (min-width: 1301px) and (max-width: 1439px){
+    .pb-0 h2 {
+        font-size: 21px;
+    }
+}
+
+@media (min-width: 1159px) and (max-width: 1300px){
+    .pb-0 h2 {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1158px){
+    .pb-0 h2 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px){
+    .pb-0 h2 {
+        font-size: 16px;
+    }
+}

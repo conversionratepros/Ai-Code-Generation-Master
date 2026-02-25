@@ -1,0 +1,278 @@
+html body.cro_8127 .cro_8127-debt-awareness {
+  padding: 20px 0;
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+html body.cro_8127 .cro_8127-debt-awareness-wrapper {
+    background: #61A644;
+    padding: 20px;
+}
+
+/* ===== Layout ===== */
+html body.cro_8127 .cro_8127-debt-awareness-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 980px;
+  position: relative;
+  margin: 0 auto;
+}
+
+html body.cro_8127 .cro_8127-debt-awareness-left {
+  flex: 0 0 190px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  border-radius: 100px;
+  background: #FFF;
+  box-shadow: 0 2px 4.3px 3px rgba(0, 0, 0, 0.25);
+  width: 189px;
+  height: 189px;
+  align-items: center;
+  left: 0;
+}
+
+html body.cro_8127 .cro_8127-badge {
+  width: 176px;
+  display: flex;
+  border-radius: 1000px;
+  border: 1px solid #61A644;
+  background: #FFF;
+  width: 167px;
+  height: 167px;
+  align-items: center;
+}
+
+html body.cro_8127 .cro_8127-badge span {
+  color: #61A644;
+  text-align: center;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 21px;
+  width: 158px;
+  transform: rotate(-24.774deg);
+  font-family: Open Sans;
+}
+
+/* ===== Right Content ===== */
+html body.cro_8127 .cro_8127-debt-awareness-right {
+  width: 100%;
+  max-width: 740px;
+  margin-left: auto;
+}
+
+html body.cro_8127 .cro_8127-debt-awareness-right h2 {
+  font-size: 28px;
+  margin: 0 0 8px;
+  color: #FFF;
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+html body.cro_8127 .cro_8127-debt-awareness-right p {
+  margin: 0;
+  color: #FFF;
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+html body.cro_8127 .registerholder p.page-text{
+  font-size: 0;
+  line-height: 0;
+}
+
+html body.cro_8127 .registerholder p.page-text:after{
+  content: 'In less than 1 minute';
+  color: #202020;
+  font-family: Open Sans;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 55px;
+}
+
+html body.cro_8127 .registerholder h1.page-caption{
+  font-size: 0;
+  line-height: 0;
+}
+
+html body.cro_8127 .registerholder h1.page-caption::after{
+  content: 'Get your FREE credit report';
+  color: #282828;
+  font-family: Open Sans;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 55.2px; 
+
+}
+
+html body.cro_8127 .registerholder .desktop-text.page-subtext,
+html body.cro_8127 .registerholder .mobile-text.page-subtext{
+  font-size: 0;
+  line-height: 0;
+  position: relative;
+}
+
+html body.cro_8127 .registerholder .desktop-text.page-subtext::before,
+html body.cro_8127 .registerholder .mobile-text.page-subtext::before{
+  content: "Register to take control of your finances. ";
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  font-family: Open Sans;
+  color: #202020;
+}
+
+html body.cro_8127 .registerholder .desktop-text.page-subtext::after,
+html body.cro_8127 .registerholder .mobile-text.page-subtext::after{
+  content: "It gets better. And it starts here.";
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  font-family: Open Sans;
+  color: #202020;
+}
+
+/* ---Update--- */
+
+html body.cro_8127 .register-hld.otpscreen +.cro_8127-debt-awareness{
+  display: none;
+}
+
+html body.cro_8127 .footr .kudough-text{
+  display: none;
+}
+
+.cro_8127-competition-terms {
+  text-align: center;
+  /* padding: 12px 0; */
+}
+
+html body.cro_8127 .cro_8127-competition-link,
+html body.cro_8127 .cro_8127-competition-terms a,
+html body.cro_8127 .cro_8127-competition-powered {
+  font-family: Open Sans;
+  font-size: 13px;
+  line-height: 19.5px; /* 150% */
+  font-weight: 400;
+  color: #222223;
+  text-decoration: none;
+}
+
+html body.cro_8127 .cro_8127-competition-terms a{
+  cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  html body.cro_8127 .registerholder h1.page-caption::after,
+  html body.cro_8127 .registerholder p.page-text:after{
+      font-size: 34px;
+      line-height: 1.2;
+}
+}
+
+@media (max-width:767px) {
+  html body.cro_8127 .registerholder h1.page-caption::after,
+  html body.cro_8127 .registerholder p.page-text:after{
+      font-size: 24px;
+      line-height: 1.2;
+}
+}
+
+/* ===== Mobile (≤991px) ===== */
+@media (max-width: 991px) {
+  html body.cro_8127 .cro_8127-debt-awareness-inner {
+    /* flex-direction: column;
+    text-align: center; */
+    position: unset;
+  }
+
+  html body.cro_8127 .cro_8127-debt-awareness-right h2 {
+    font-size: 24px;
+  }
+
+  html body.cro_8127 .cro_8127-debt-awareness-right p {
+    font-size: 16px;
+    line-height: normal;
+  }
+
+  html body.cro_8127 .cro_8127-debt-awareness-right {
+      margin-left: 0;
+  }
+
+  html body.cro_8127 .cro_8127-debt-awareness-wrapper {
+      padding-top: 160px;
+  }
+
+  html body.cro_8127 .cro_8127-debt-awareness {
+      margin-top: 24px;
+      position: relative;
+      padding-top: 45px;
+      padding-bottom: 0;
+      margin-bottom: 0;
+  }
+
+  html body.cro_8127 .cro_8127-debt-awareness-left {
+      left: 0;
+      margin: auto;
+      right: 0;
+      top: 0;
+  }
+
+  html body.cro_8127 .cro_8127-debt-awareness-right {
+      margin-left: 0;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+ html body.cro_8127 .bottom-section {
+    padding-bottom: 50px;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1230px) {
+    html body.cro_8127 .phone1and2img-desktop-div {
+        width: 430px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  html body.cro_8127 .footr .col-.cro-Contact-Us {
+    width: 100%;
+    max-width: 175px;
+  }
+
+  html body.cro_8127 .bottom-section {
+    padding-bottom: 25px;
+  }
+}
+
+@media (max-width:767px) {
+  .cro_8127-competition-terms {
+    width: 100%;
+    padding-bottom: 15px;
+}
+   html body.cro_8127 #bgcontrol .topcap{
+        padding-right: 16px !important;
+    }
+    html body.cro_8127 .registerholder .mobile-text.page-subtext::after{
+        display:inline-block;
+    }
+    html body.cro_8127 .registerholder .mobile-text.page-subtext {
+        width: 100%;
+        max-width: 500px;
+    }
+}

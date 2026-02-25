@@ -1,0 +1,83 @@
+html body.cro-cb-t-546 .cro-546-uniqueProduct-header h3 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0 0 7px;
+}
+
+html body.cro-cb-t-546 .cro-546-uniqueProduct-list ul {
+    list-style: disc;
+    margin: 0;
+    padding: 0 0 0 16px;
+}
+
+html body.cro-cb-t-546 .cro-546-uniqueProduct-list ul li {
+    color: #000;
+    font-family: Poppins;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-cb-t-546 .cro-546-uniqueProduct-list ul li {
+    margin-bottom: 7px;
+}
+
+html body.cro-cb-t-546 .cro-546-uniqueProduct-list ul li.cro-546-designer {
+    margin-bottom: 0;
+}
+
+html body.cro-cb-t-546 .product-info-main .product.attribute.overview{
+    margin-bottom: 0;
+}
+
+/* Styles for screens with a minimum width of 768px */
+@media (min-width: 768px) {
+    html body.cro-cb-t-546 .cro-546-uniqueProduct-inner {
+        margin-bottom: 45px;
+        margin-top: 20px;
+    }
+}
+
+/* Styles for screens with a maximum width of 767px */
+@media (max-width: 767px) {
+    html body.cro-cb-t-546 .cro-546-uniqueProduct-inner {
+        /* margin-bottom: 45px; */
+    }
+
+    html body.cro-cb-t-546 .cro-546-uniqueProduct-wrapper {
+        margin-bottom: 2rem;
+        padding: 20px;
+        background: #FFF;
+        /* box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25); */
+        border: 1px solid #e1e1e1;
+    }
+
+    html body.cro-cb-t-546 .main-inner {
+        margin-bottom: 20px;
+    }
+}
+
+/* Updated code */
+html body.cro-cb-t-546.cro-546-no-designer .cro-546-uniqueProduct-list ul li.cro-546-designer {
+    display: none;
+}
+html body.cro-cb-t-546.cro-546-no-material .cro-546-uniqueProduct-list ul li.cro-546-material {
+    display: none;
+}
+
+html body.cro-cb-t-546.cro-546-no-designer .cro-546-uniqueProduct-list ul li.cro-546-material{
+    margin-bottom: 0 !important;
+}
+
+html body.cro-cb-t-546.cro-546-no-material .cro-546-uniqueProduct-list ul li.cro-546-designer{
+    margin-bottom: 0 !important;
+}
+
+html body.cro-cb-t-546.cro-546-no-material.cro-546-no-designer .cro-546-uniqueProduct-list ul li.cro-546-design{
+    margin-bottom: 0 !important;
+}

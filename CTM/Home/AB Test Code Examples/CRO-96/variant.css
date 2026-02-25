@@ -1,0 +1,84 @@
+@media (max-width:800px) {
+    html body.cro-t-212 .product-add-form .calc-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .qty-input-group {
+        display: flex;
+        flex-basis: 65%;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .btn-calculator {
+        display: flex;
+        flex-basis: 30%;
+    }
+
+    html body.cro-t-212 #calc_btn:after {
+        content: 'Tile calculator';
+        font-size: 12px;
+        margin-top: 2px;
+    }
+
+    html body.cro-t-212 button#calc_btn {
+        font-size: 0;
+    }
+}
+
+@media (max-width:457px) {
+    html body.cro-t-212 .product-add-form .calc-container .btn-calculator {
+        padding: 8px 2px;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .qty-input-group {
+        flex-basis: 67%;
+    }
+}
+
+@media (max-width:400px) {
+    html body.cro-t-212 .product-add-form .calc-container .btn-calculator {
+        padding: 8px 2px;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .qty-input-group {
+        flex-basis: 70%;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .btn-calculator {
+        flex-basis: 27%;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .inputs .qty-btn {
+        flex-basis: 30px;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .inputs input {
+        flex-basis: calc(100% - 30px);
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .ctm-input-qty .input-measure {
+        transform: translateX(calc(-50% - 33px));
+    }
+}
+
+@media (max-width:374px) {
+    html body.cro-t-212 .product-add-form .calc-container .ctm-input-qty .input-measure {
+        transform: translateX(calc(-50% - 31px));
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .inputs .qty-btn {
+        flex-basis: 25px;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .inputs input {
+        flex-basis: calc(100% - 25px);
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .btn-calculator {
+        flex-basis: 29%;
+    }
+
+    html body.cro-t-212 .product-add-form .calc-container .qty-input-group {
+        flex-basis: 69%;
+    }
+}

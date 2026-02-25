@@ -1,0 +1,70 @@
+html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-newImg {
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-newImg img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform: scale(1.1);
+}
+
+html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-credit-master-leftImg {
+    max-width: 750px;
+    overflow: hidden;
+}
+
+html body.cro-t-UC2-Device.register-body.cro-t-rec-2 img.cro-credit-master-left-img-desktop {
+    transform: scale(1.05);
+}
+
+@media (max-width:990px) {
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-newImg {
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 35px;
+    }
+
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-newImg img {
+        width: 100%;
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width:1023px) {
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-credit-master-leftImg {
+        max-width: 100%;
+        margin-top: 55px;
+    }
+
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-credit-master-wrapper {
+        margin-bottom: 30px;
+    }
+
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 section.cro-credit-master {
+        padding-right: 1rem;
+    }
+
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-newImg {
+        overflow: hidden;
+    }
+
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 p.cro-new-banner-left-para {
+        padding-right: 16px;
+    }
+
+}
+
+@media (max-width:1023px) and (min-width:768px) {
+    html body.cro-t-UC2-Device.register-body.cro-t-rec-2 .cro-credit-master-leftImg {
+        max-width: 100%;
+        margin-top: 55px;
+        overflow: hidden;
+        padding-bottom: 50px;
+    }
+
+}

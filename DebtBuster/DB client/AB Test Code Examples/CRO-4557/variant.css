@@ -1,0 +1,531 @@
+html body.cro_uc1 .cro360-Debt-Free-wrapper {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card {
+    width: 100%;
+    /* max-width: 389px; */
+    height: 100%;
+    min-height: 494px;
+    border-radius: 16px;
+    border: 1px solid #E2E2E2;
+    background: #FFF;
+    padding: 32px;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-wrapper {
+    /* padding: 32px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    background: #E0E8DD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-heading-text {
+    color: #282828;
+    text-align: center;
+    font-family: Open Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    /* 116.667% */
+    height: 56px;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-sub_heading-text {
+    color: #52595F;
+    text-align: center;
+    font-family: Open Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    /* 140% */
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-bottom-Credit-Score {
+    width: 100%;
+    border-radius: 8px;
+    background: #F8F9FA;
+    padding: 16px;
+}
+
+html body.cro_uc1 .card-1 .cro360-Debt-Free-card-bottom-Credit-Score-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-Credit-Score-text {
+    color: #34373D;
+    font-family: Open Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    /* 143.75% */
+}
+
+html body.cro_uc1 .cro360-Debt-Free-Credit-Score-text-right {
+    color: #64A845;
+    font-family: Open Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    /* 115% */
+}
+
+html body.cro_uc1 .card-2 .cro360-Debt-Free-card-bottom-Credit-Score-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+
+html body.cro_uc1 .cro360-Debt-Free-Credit-Score-right-icon {
+    height: 34px;
+    width: 100px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #64A845 0%, #98C85A 32%, #EF8E23 57%, #E96920 80%, #DC351F 100%);
+}
+
+html body.cro_uc1 .cro360-Debt-Free-Credit-Score-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+html body.cro_uc1 .card-3 .cro360-Debt-Free-card-bottom-Credit-Score-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.cro_uc1 .card-4 .cro360-Debt-Free-card-bottom-Credit-Score-wrapper {
+    gap: 40px;
+    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-row-gap: 4px;
+}
+
+html body.cro_uc1 .card-5 .cro360-Debt-Free-card-bottom-Credit-Score-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.cro_uc1 .card-5 .cro360-Debt-Free-Credit-Score-text-right {
+    border-radius: 8px;
+    background: #61A644;
+    display: flex;
+    padding: 5px 11px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #FFF;
+    font-family: Open Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    /* 115% */
+}
+
+html body.cro_uc1 .card-6 .cro360-Debt-Free-card-bottom-Credit-Score-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-bottom-Credit-icon {
+    border-radius: 15px;
+    background: #A1CE5E;
+    width: 15px;
+    height: 15px;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-card-bottom-Credit-icon-text {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+html body.cro_uc1 .card-3 .cro360-Debt-Free-Credit-Score-text-right {
+    color: #DC351F;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 23px;
+}
+
+html body.cro_uc1 .icon-text-2 .cro360-Debt-Free-card-bottom-Credit-icon {
+    background: #B9B9B9;
+}
+
+html body.cro_uc1 .cro360-left-part-inner-swiper .swiper {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+html body.cro_uc1 .cro360-left-part-prev::after,
+html body.cro_uc1 .cro360-left-part-next::after {
+    display: none;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-wrapper {
+    position: relative;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-wrapper::after {
+    content: "";
+    position: absolute;
+    /* or relative depending on context */
+    top: 0;
+    right: 0;
+    width: 683px;
+    height: 433px;
+    background-image: url('https://debtbusters-client.co.za/assets/images/green_overlays.png');
+    background-size: cover;
+    /* or contain, or specific value */
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+    /* put behind main content, adjust if needed */
+    opacity: 1;
+    /* adjust transparency if needed */
+    opacity: 0.2;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-wrapper::before {
+    content: "";
+    position: absolute;
+    /* or relative depending on context */
+    bottom: 0;
+    left: 0;
+    width: 911px;
+    height: 578px;
+    background-image: url('https://debtbusters-client.co.za/assets/images/green_overlays.png');
+    background-size: cover;
+    /* or contain, or specific value */
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+    /* put behind main content, adjust if needed */
+    opacity: 1;
+    /* adjust transparency if needed */
+    opacity: 0.2;
+    transform: rotate(180deg);
+}
+
+html body.cro_uc1 .cro360-Debt-Free-top-heading-text {
+    color: #282828;
+    text-align: center;
+    font-family: Open Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-top-subheading-text {
+    color: #282828;
+    text-align: center;
+    font-family: Open Sans, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Noto Sans, Liberation Sans, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    /* 140% */
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-inner {
+    padding-top: 60px;
+    padding-bottom: 80px;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-top-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    align-items: center;
+    padding-bottom: 64px;
+}
+
+html body.cro_uc1 .cro360-left-part-prev,
+html body.cro_uc1 .cro360-left-part-next {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #61A644;
+    position: absolute;
+    top: 50%;
+    margin: auto;
+}
+
+html body.cro_uc1 .cro360-left-part-inner-swiper .cro360-pagination {
+    bottom: -55px !important;
+    width: 50%;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+html body.cro_uc1 .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+    background-color: #61A644;
+    opacity: 100%;
+}
+
+html body.cro_uc1 .swiper-pagination-bullet-active {
+    background-color: #F6821B;
+}
+
+html body.cro_uc1 .cro360-Debt-Free-inner {
+    width: 100%;
+    max-width: 1328px;
+    margin: 0 auto;
+}
+
+html body.cro_uc1 .cro360-left-part-inner-swiper {
+    position: relative;
+}
+
+html body.cro_uc1 section.register-hld.otpscreen+.cro360-Debt-Free {
+    display: none;
+}
+
+html body.cro_uc1 .cro360-left-part-prev.cro360-arrowbtn {
+    left: 0px;
+    right: auto;
+}
+
+html body.cro_uc1 .cro360-left-part-next.cro360-arrowbtn {
+    right: 0px;
+    left: auto;
+}
+
+@media (max-width:1420px) {
+    html body.cro_uc1 .cro360-left-part-next.cro360-arrowbtn {
+        right: -10px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-prev.cro360-arrowbtn {
+        left: -10px;
+    }
+}
+
+@media (max-width:1390px) {
+    html body.cro_uc1 .cro360-left-part-next.cro360-arrowbtn {
+        right: -50px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-prev.cro360-arrowbtn {
+        left: -50px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-inner-swiper {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width:1024px) {
+    html body.cro_uc1 .cro360-Debt-Free-wrapper::after {
+        width: 350px;
+        height: 300px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-wrapper::before {
+        width: 511px;
+        height: 378px;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1024px) {
+    html body.cro_uc1 .cro360-Debt-Free-card {
+        min-height: 510px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+    html body.cro_uc1 .cro360-Debt-Free-card {
+        min-height: 560px;
+    }
+
+    html body.cro_uc1 .card-4 .cro360-Debt-Free-Credit-Score-text {
+        font-size: 14px;
+    }
+
+    html body.cro_uc1 .card-4 .cro360-Debt-Free-card-bottom-Credit-Score-wrapper {
+        gap: 15px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-card-bottom-Credit-icon-text {
+        gap: 5px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-Credit-Score-right-icon {
+        width: 70px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-Credit-Score-right {
+        gap: 5px;
+    }
+}
+
+@media (max-width:500px) {
+    html body.cro_uc1 .cro360-Debt-Free-wrapper::before {
+        width: 340px;
+        height: 202px;
+    }
+}
+
+@media (max-width:899px) {
+
+    html body.cro_uc1 .cro360-left-part-prev,
+    html body.cro_uc1 .cro360-left-part-next {
+        top: auto;
+        bottom: -60px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-next.cro360-arrowbtn {
+        right: 0px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-prev.cro360-arrowbtn {
+        left: 0px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-inner-swiper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro_uc1 .cro360-Debt-Free-wrapper::after {
+        display: none;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-card {
+        padding: 24px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-card-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-card-wrapper {
+        gap: 16px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-card-heading-text {
+        font-size: 20px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-card-sub_heading-text {
+        font-size: 16px;
+        line-height: 23px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-card-heading {
+        gap: 16px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-wrapper {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-top-heading-text {
+        font-size: 28px;
+        line-height: normal;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-top-subheading-text {
+        font-size: 16px;
+        line-height: 23px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-top-heading {
+        gap: 26px;
+        padding-bottom: 48px;
+    }
+
+    html body.cro_uc1 .cro360-Debt-Free-inner {
+        padding-top: 32px;
+        padding-bottom: 91px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-next {
+        right: 0px;
+    }
+
+    html body.cro_uc1 .cro360-left-part-prev {
+        left: 0px;
+    }
+
+
+
+    html body.cro_uc1 .cro360-Debt-Free-card {
+        min-height: 375px;
+    }
+
+    /* html body.cro_uc1 .cro360-Debt-Free-Credit-Score-text-right {
+        font-size: 16px;
+        line-height: 23px;
+    } */
+
+    /* html body.cro_uc1 .cro360-Debt-Free-Credit-Score-text {
+        font-size: 14px;
+    } */
+
+    html body.cro_uc1 .card-5 .cro360-Debt-Free-Credit-Score-text-right {
+        font-size: 16px;
+        line-height: 23px;
+    }
+}
+
+@media (max-width:399px) {
+    html body.cro_uc1 .cro360-Debt-Free-card {
+        min-height: 395px;
+    }
+}
+
+.swiper_inner_section {
+    position: relative;
+}
+
+.cro360-Debt-Free-inner .swiper-button-prev.swiper-button-disabled, .cro360-Debt-Free-inner .swiper-button-next.swiper-button-disabled {
+    background-color: #b5b1b1 !important;
+}

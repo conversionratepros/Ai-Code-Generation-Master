@@ -1,0 +1,1121 @@
+/* updated code */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+/* updated code */
+
+
+
+/* ----NAVBAR---- */
+
+html body.cro-t-193 section#landing-page-justmoney-logo-white-header-global-section>.relative>div:first-child {
+    display: none;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-left-main-img {
+    width: 100%;
+    max-width: 181px;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-left-part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-left-text a {
+    color: #686868;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-navbar-right-text {
+    color: var(--Dark-Grey, #545454);
+    text-align: right;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    max-width: 160px;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-right-img {
+    width: 100%;
+    max-width: 116px;
+    margin-left: 10px;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-right-part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-t-193 img.cro-ndca-img {
+    width: 100%;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-left-text.Apply-Now {
+    margin: 0 30px;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-left-text.Benefits {
+    margin-right: 30px;
+}
+
+/* -----NAVBAR END---- */
+
+
+
+html body.cro-t-193 #icons {
+    display: none;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(2) {
+    display: none;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(1) {
+    display: none;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(2) {
+    display: none;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) {
+    background-color: #F2F2F2 !important;
+    box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 442px;
+    padding: 35px;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form>.form-field>input {
+    border-radius: 5px;
+    border: 1px solid #D4D4D4;
+    /* background: #FFF; */
+    color: #686868;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 14px 11px;
+    height: 42px;
+}
+
+#call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form button.btn.primary {
+    font-size: 0;
+    line-height: 0;
+    height: 45px;
+    padding: 11px 16px;
+}
+
+#call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form button.btn.primary::after {
+    content: 'Sign me up!';
+    color: #FFF;
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form>.form-field.error {
+    --tw-border-opacity: 1;
+    border-color: rgb(220 38 38 / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(254 202 202 / var(--tw-bg-opacity))
+}
+
+html body.cro-t-193 #call-to-action-and-form .overlay {
+    background: #FFF;
+    opacity: 1 !important;
+}
+
+html body.cro-t-193 .grid.grid-cols-1>:nth-child(4) button.btn.primary {
+    width: 100%;
+}
+
+html body.cro-t-193 .grid.grid-cols-1>:nth-child(4) h4 {
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 18px;
+}
+
+html body.cro-t-193 .grid.grid-cols-1>:nth-child(4) .form-field.notice {
+    color: #777;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .grid.grid-cols-1>:nth-child(4) .form-field.notice a {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+
+html body.cro-t-193 section#landing-page-justmoney-logo-white-header-global-section {
+    background-color: #fff;
+    box-shadow: 0px 4px 28px 0px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+html body.cro-t-193 #call-to-action-and-form .container {
+    width: 100%;
+    max-width: 1252px;
+}
+
+html body.cro-t-193 .cro-t-193-hero-top-heading {
+    color: #E59A2C;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-hero-top-subheading {
+    color: #4BAEAC;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 25px 0 36px;
+}
+
+html body.cro-t-193 .cro-t-193-hero-top-text-financial-health {
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-hero-top-text-financial-health strong {
+    font-weight: 700;
+}
+
+html body.cro-t-193 .cro-t-193-Technical-jargon-text strong {
+    font-weight: 700;
+}
+
+html body.cro-t-193 .cro-t-193-Unlock-cash-card-subheader strong {
+    font-weight: 700;
+}
+
+html body.cro-t-193 .cro-t-193-hero-inner {
+    width: 100%;
+    max-width: 558px;
+}
+
+html body.cro-t-193 .cro-t-193-hero-top-text-financial-health.text-2 {
+    padding-top: 20px;
+    padding-bottom: 36px;
+}
+
+/* html body.cro-t-193 .cro-t-193-hero-top-text-financial-health.text-3 {
+    padding-bottom: 36px;
+} */
+
+/* html body.cro-t-193 p.cro-title-financial-health-title {
+    margin-bottom: 10px;
+} */
+
+/* .cro-t-193-hero-top-text-financial-health.text-3 ul.cro-styled-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+} */
+
+html body.cro-t-193 .cro-t-193-review-rated-left-text {
+    color: var(--Dark-Grey, #545454);
+    /* text-align: right; */
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-left-text.Rated {
+    color: var(--Dark-Grey, #545454);
+    text-align: left;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-left-icon-star {
+    width: 100%;
+    max-width: 90px;
+    margin-left: 6px;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-left-img {
+    width: 100%;
+    max-width: 41px;
+    margin-right: 12px;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-left-icon-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-right-icon {
+    width: 100%;
+    max-width: 51px;
+    margin-right: 14px;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-right-text {
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    width: 100%;
+    max-width: 140px;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-right-text span {
+    font-weight: 700;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-inner {
+    display: flex;
+    align-items: center;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-left {
+    display: flex;
+    align-items: center;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-left::after {
+    content: '';
+    width: 1px;
+    height: 67px;
+    background-color: #545454;
+    margin: 0 10px;
+}
+
+html body.cro-t-193 .cro-t-193-review-rated-left-text span {
+    font-weight: 700;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form .form-field:nth-child(8) {
+    /* margin-bottom: 33px; */
+    display: none;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form .cro-Terms-and-Conditions {
+    margin-bottom: 33px;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form .form-field.mb-3 {
+    margin-bottom: 15px;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form .form-field.mb-3:nth-child(7) {
+    margin-bottom: 18px;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form {
+    margin-bottom: 0;
+}
+
+html body.cro-t-193 .cro-t-193-new-navbar-left-text a.cro-color-orange {
+    color: #E59A2C;
+}
+
+
+
+
+/* --------Mid Part------ */
+
+html body.cro-t-193 .cro-t-193-Technical-jargon {
+    background: #F2F2F2;
+}
+
+html body.cro-t-193 .cro-container {
+    max-width: 1242px;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    /* padding-top: 80px;
+    padding-bottom: 80px; */
+}
+
+#second-call-to-action a.btn.primary {
+    font-size: 0;
+}
+
+#second-call-to-action a.btn.primary:after {
+    content: 'Take me to the form';
+    color: #FFF;
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+@media (max-width:1279px) and (min-width:768px) {
+    html body.cro-t-193 .cro-container {
+        max-width: 100%;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+}
+
+html body.cro-t-193 .cro-t-193-Technical-jargon-inner {
+    padding: 80px 0;
+}
+
+html body.cro-t-193 .cro-t-193-Technical-jargon-text {
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    max-width: 1150px;
+}
+
+
+/* card---- */
+
+html body.cro-t-193 .cro-t-193-Unlock-cash-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 55px;
+    max-width: 1242px;
+}
+
+html body.cro-t-193 .cro-t-193-Unlock-cash-card {
+    /* background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden; */
+    max-width: 260px;
+    /* text-align: center; */
+    /* padding: 15px; */
+}
+
+html body.cro-t-193 .cro-t-193-Unlock-cash-card img {
+    width: 100%;
+    height: 209px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+html body.cro-t-193 h3.cro-t-193-Unlock-cash-card-header {
+    color: #4BAEAC;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 24px 0 23px;
+    text-align: left;
+    height: 43px;
+}
+
+html body.cro-t-193 p.cro-t-193-Unlock-cash-card-subheader {
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    width: 250px;
+    margin: 0;
+}
+
+html body.cro-t-193 .cro-t-193-Unlock-cash-wrapper {
+    padding: 80px 0;
+}
+
+
+/* ---slider--- */
+html body.cro-t-193 .swiper-button-prev::after {
+    display: none;
+}
+
+html body.cro-t-193 .swiper-button-next::after {
+    display: none;
+}
+
+html body.cro-t-193 .cro-t-193-review-card {
+    border-radius: 5px;
+    border: 1px solid #E5E5E5;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 98%;
+    padding: 20px;
+    height: 100%;
+    min-height: 312px;
+    margin-left: 3px;
+}
+
+html body.cro-t-193 .cro-t-43-44-left-part {
+    background: #F2F2F2;
+}
+
+html body.cro-t-193 .cro-t-193-review-card img {
+    width: 100%;
+    max-width: 110px;
+    padding: 24px 0;
+}
+
+html body.cro-t-193 .cro-t-193-review-client-name {
+    color: var(--Dark-Grey, #545454);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-review-client-surname {
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-review-card p {
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+
+html body.cro-t-193 .cro-t-43-44-left-part-prev {
+    border-radius: 4px;
+    background: #4BAEAC;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    width: 38px;
+    left: 0;
+    top: -7px;
+    bottom: 0;
+    margin: auto;
+    height: 43px;
+}
+
+html body.cro-t-193 .cro-t-43-44-left-part-next {
+    border-radius: 4px;
+    background: #4BAEAC;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    width: 38px;
+    right: 0;
+    top: -7px;
+    bottom: 0;
+    margin: auto;
+    height: 43px;
+}
+
+html body .cro-t-43-44-left-part .swiper-slide {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    /* max-width: 248px; */
+    width: 248px;
+}
+
+html body.cro-t-193 img.cro-t-193-header-top-icon {
+    width: 100%;
+    max-width: 120px;
+    margin: 0 11px;
+}
+
+html body.cro-t-193 .cro-t-193-header-secend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 38px;
+}
+
+html body.cro-t-193 p.cro-t-193-header-secend-text {
+    color: var(--Dark-Grey, #545454);
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+}
+
+html body.cro-t-193 p.cro-t-193-header-secend-text.rated {
+    color: var(--Dark-Grey, #545454);
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 h2.cro-t-193-header-text {
+    color: var(--Dark-Grey, #545454);
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    margin: 0px 0px 20px;
+}
+
+html body.cro-t-193 .cro-t-193-header-part {
+    /* padding-top: 80px; */
+}
+
+html body.cro-t-193 section#second-call-to-action {
+    background: #FFF;
+    padding: 67px 0;
+}
+
+/* ---control---- */
+html body.cro-t-193 #second-call-to-action .relative h2 {
+    font-size: 0;
+    text-align: center;
+    margin-bottom: 32px;
+    line-height: 0;
+}
+
+html body.cro-t-193 #second-call-to-action .relative h2::after {
+    content: 'Take your next step today!';
+    text-align: center;
+    color: var(--Dark-Grey, #545454);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    margin-bottom: 32px;
+}
+
+html body.cro-t-193 section#second-call-to-action p {
+    font-size: 0;
+    text-align: center;
+    line-height: 0;
+    margin-bottom: 32px;
+}
+
+html body.cro-t-193 section#second-call-to-action p::after {
+    content: 'For a no-obligation assessment and credit check, complete the form above and click “Sign me up!”';
+    color: var(--Dark-Grey, #545454);
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 32px;
+}
+
+html body.cro-t-193 #second-call-to-action strong {
+    font-weight: 400;
+}
+
+html body.cro-t-193 #second-call-to-action a {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+html body.cro-t-193 section#second-call-to-action a.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 372px;
+    margin: 0 auto;
+    height: 45px;
+}
+
+html body.cro-t-193 .cro-t-43-44-left-part-wrapper {
+    padding: 80px 0 73px;
+}
+
+/* ----Footer-- */
+
+html body.cro-t-193 section#footer {
+    display: none;
+}
+
+html body.cro-t-193 section.cro-t-193-footer {
+    background: #333;
+    padding-top: 64px;
+    padding-bottom: 141px;
+
+}
+
+html body.cro-t-193 .cro-t-193-footer-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 53px;
+}
+
+html body.cro-t-193 .cro-t-193-footer-heading {
+    color: #FFF;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 20px;
+}
+
+html body.cro-t-193 .cro-t-193-footer-text {
+    color: #FFF;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-t-193-footer-text a {
+    color: #FFF;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+html body.cro-t-193 .cro-t-193-footer-heading.Contact-us {
+    margin-top: 34px;
+}
+
+html body.cro-t-193 .cro-t-193-footer-text.Privacy {
+    margin: 8px 0px;
+}
+
+html body.cro-t-193 .cro-t-193-footer-download-app-img {
+    width: 100%;
+    max-width: 240px;
+}
+
+html body.cro-t-193 img.cro-google-pay {
+    width: 100%;
+}
+
+/* .cro-t-193-footer-about {
+    width: 100%;
+    max-width: 332px;
+} */
+
+html body.cro-t-193 .cro-t-193-footer-Operating {
+    width: 100%;
+    max-width: 245px;
+}
+
+html body.cro-t-193 .cro-t-193-footer-other {
+    width: 100%;
+    max-width: 243px;
+}
+
+html body.cro-t-193 .cro-t-193-footer-about {
+    width: 100%;
+    max-width: 315px;
+}
+
+html body.cro-t-193 .cro-t-193-footer-download-app {
+    width: 100%;
+    max-width: 243px;
+}
+
+html body.cro-t-193 .cro-google-pay-link {
+    cursor: pointer;
+}
+
+html body.cro-t-193 .swiper-button-prev.cro-t-193-left-part-prev {
+    left: 0px;
+}
+
+html body.cro-t-193 .swiper-button-next.cro-t-193-left-part-next {
+    right: 0;
+}
+
+html body.cro-t-193 section#call-to-action-and-form {
+    padding-top: 59px;
+    padding-bottom: 39px;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) #id_number {
+    padding-left: 35px;
+}
+
+/* html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form .form-field.notice {
+    font-size: 0;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form .form-field.notice:after {
+    content: 'By continuing, you accept our';
+    font-size: 10px;
+} */
+html body.cro-t-193 .cro-Terms-and-Conditions {
+    color: #777;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-193 .cro-Terms-and-Conditions a {
+    color: #777;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) .form-field.mb-3:nth-child(6) {
+    position: relative;
+}
+
+html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) .from-lock-icon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+@media (max-width: 1023px) {
+    html body.cro-t-193 p.cro-t-193-Unlock-cash-card-subheader{
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    html body.cro-t-193 .cro-t-193-Unlock-cash-card{
+           width: 100% !important;
+        max-width: 100% !important;
+    }
+    html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1 {
+        flex-direction: column;
+    }
+
+    html body.cro-t-193 .cro-t-193-new-navbar-left-text.Apply-Now,
+    html body.cro-t-193 .cro-t-193-new-navbar-left-text.Benefits,
+    html body.cro-t-193 .cro-t-193-new-navbar-left-text.Reviews {
+        display: none;
+    }
+
+    html body.cro-t-193 .cro-t-193-new-navbar-right-img {
+        display: none;
+    }
+
+    html body.cro-t-193 .cro-t-193-hero-top-heading {
+        color: #E59A2C;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Noto Color Emoji;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+
+    html body.cro-t-193 .cro-t-193-hero-top-subheading {
+        padding: 25px 0 25px;
+    }
+
+    html body.cro-t-193 .cro-t-193-hero-top-text-financial-health,
+    html body.cro-t-193 .cro-t-193-hero-top-text-financial-health.text-2 {
+        display: none;
+    }
+
+    html body.cro-t-193 .cro-t-193-review-rated-left::after {
+        display: none;
+    }
+
+    html body.cro-t-193 .cro-t-193-review-rated-right {
+        display: none;
+    }
+
+    html body.cro-t-193 .cro-t-193-hero-inner {
+        max-width: 100%;
+    }
+
+    html body.cro-t-193 .cro-t-193-review-rated-left-img>svg path {
+        fill: #4BAEAC;
+    }
+
+    html body.cro-t-193 .cro-t-193-from-bottom {
+        display: block !important;
+    }
+
+    html body.cro-t-193 .cro-t-193-review-rated-right.mobile-part {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 25px;
+        justify-content: flex-start;
+    }
+
+    html body.cro-t-193 .cro-t-193-hero-top-text-financial-health.mobile-part {
+        display: block;
+        width: 100%;
+        max-width: 688px;
+    }
+
+    html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) {
+        max-width: 500px;
+    }
+
+    html body.cro-t-193 section#call-to-action-and-form {
+        padding-top: 40px !important;
+        padding-bottom: 40px;
+    }
+
+    html body.cro-t-193.cro-review-test-1.cro-t-58-widget .cro-top-button-sec-mobile{
+        display: none !important;
+    }
+
+    html body.cro-t-193 .cro-t-193-hero-top-text-financial-health.text-2.mobile-part {
+        padding-bottom: 0px !important;
+    }
+
+    html body.cro-t-193 .cro-t-193-Unlock-cash-wrapper {
+        padding: 40px 0;
+    }
+
+    html body.cro-t-193 .cro-t-193-Technical-jargon-inner {
+        padding: 40px 0;
+    }
+
+    html body.cro-t-193 .cro-t-193-Unlock-cash-card-container {
+        gap: 30px;
+    }
+
+    html body.cro-t-193 .cro-t-193-header-part {
+        /* padding-top: 40px; */
+    }
+
+    /* html body.cro-t-193 .cro-container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    } */
+
+    html body.cro-t-193 h2.cro-t-193-header-text {
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+
+    html body.cro-t-193 .cro-t-193-header-secend {
+        flex-direction: column;
+    }
+
+    html body.cro-t-193 .cro-t-193-footer-inner {
+        gap: 53px;
+        flex-direction: column;
+    }
+
+    html body.cro-t-193 .cro-t-193-footer-about {
+        max-width: 100%;
+    }
+
+    html body.cro-t-193 section#second-call-to-action a.btn {
+        max-width: 203px;
+    }
+
+    html body.cro-t-193 h3.cro-t-193-Unlock-cash-card-header {
+        height: auto;
+    }
+
+    html body.cro-t-193 img.cro-t-193-header-top-icon {
+        margin: 3px 11px;
+    }
+
+    html body.cro-t-193 .cro-t-193-footer-Operating {
+        max-width: 100%;
+    }
+
+    html body.cro-t-193 .cro-t-193-Unlock-cash-card {
+        width: 100%;
+        /* max-width: 280px !important; */
+    }
+
+    html body.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) {
+        padding: 20px;
+    }
+
+    html body.cro-t-193 .cro-t-43-44-left-part {
+        background: #fff;
+    }
+
+    html body.cro-t-193 section#second-call-to-action {
+        background: #f2f2f2;
+        padding: 40px 0;
+    }
+
+    html body.cro-t-193 section.cro-t-193-footer {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+
+    html body.cro-t-193 section#second-call-to-action p::after {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    html body.cro-t-193 .cro-t-43-44-left-part-wrapper {
+        padding: 40px 0 33px;
+    }
+
+    /* html body.cro-t-193 .cro-t-193-hero-top-text-financial-health.text-3 {
+        padding-bottom: 0px;
+    } */
+}
+
+@media (max-width: 600px) {
+    html body.cro-t-193 .cro-t-193-new-navbar-left-main-img {
+        width: 100% !important;
+        max-width: 105px !important;
+    }
+
+    html body.cro-t-193 .cro-t-193-Unlock-cash-card img {
+    height: auto;
+}
+}
+
+.cro-t-43-44-left-part-inner-swiper {
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+}
+
+.cro-t-43-44-left-part-inner-swiper .swiper-wrapper.cro-t-43-44-swiperWrapper {
+    padding: 0;
+    padding-bottom: 7px;
+}
+
+/* @media (max-width: 768px) {
+    .cro-t-193-Unlock-cash-card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+} */
+
+/* #second-call-to-action{
+
+} */
+
+
+/* updated code */
+html body.cro-t-193.cro-t-trust-101 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) form .form-field:nth-child(8){
+    display: block;
+}
+
+html body.cro-t-193.cro-t-trust-101.cro-twoPartForm-t-1.cro-33_34-firstFold-t-2.cro-formHeader .btn.primary[type="submit"]{
+    display: block;
+}
+
+html body.cro-t-trust-101.cro-twoPartForm-t-1.cro-33_34-firstFold-t-2.cro-formHeader .cro-id-btn{
+    display: none;
+}
+
+html body.cro-t-trust-101.cro-t-193 #call-to-action-and-form .relative.container .grid.grid-cols-1>:nth-child(4) .form-field.mb-3:nth-child(6){
+    margin-bottom: 0.75rem !important;
+}
+
+html body.cro-t-trust-101.cro-t-193 .cro-Terms-and-Conditions{
+    display: none;
+}
+
+html body.cro-t-trust-101.cro-twoPartForm-t-1.cro-33_34-firstFold-t-2.cro-formHeader #call-to-action-and-form h4{
+    font-size: 16px;
+    margin-bottom: 18px;
+    line-height: normal;
+}
+
+html body.cro-t-trust-101.cro-twoPartForm-t-1.cro-33_34-firstFold-t-2.cro-formHeader #call-to-action-and-form h4::after{
+    font-size: 0;
+    margin-bottom: 0;
+    line-height: 0;
+}
+
+html body.cro-t-trust-101.cro-review-test-1.cro-t-58-widget section.new-sec{
+    display: none;
+}
+
+html body.cro-t-trust-101.cro-recipe-33_34-t-1.cro-33_34-firstFold-t-2 .cro-footerUpdate{
+    display: none;
+}

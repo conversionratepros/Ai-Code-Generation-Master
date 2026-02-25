@@ -1,0 +1,1414 @@
+html body.cro51-redesign #content .cro51-hero > .elementor-container .elementor-column:first-child .elementor-widget-wrap .elementor-element:last-child {
+    display: none;
+}
+
+html body.cro51-redesign #content .cro51-hero .elementor-container > .elementor-column + .elementor-column {
+    display: none;
+}
+
+html body.cro51-redesign #content .cro51-sub-nav {
+    display: none;
+}
+
+html body.cro51-redesign #content #CourseOverview .elementor-container > .elementor-column + .elementor-column {
+    display: none;
+}
+
+html body.cro51-redesign #content #CourseOverview .elementor-container > .elementor-column:first-child > .elementor-widget-wrap > .elementor-element:first-child + .elementor-element {
+    display: none;
+}
+
+html body.cro51-redesign #content .cro51-benefit {
+    display: none;
+}
+
+html body.cro51-redesign #content #membership_countdown_container {
+    padding: 0;
+    text-align: start;
+    max-width: 1296px;
+    width: 100%;
+    margin: 0 auto;
+    background: unset;
+    color: #fff;
+}
+
+html body.cro51-redesign #content .cro51-membership-countdown-parent {
+    background: #353148;
+    padding: 16px 30px;
+}
+
+html body.cro51-redesign #content .cro51-hero {
+    background: #1e1a34;
+    padding: 60px 0;
+}
+
+html body.cro51-redesign #content #CourseOverview .elementor-container > .elementor-column:first-child > .elementor-widget-wrap {
+    padding-right: 20px;
+}
+
+html body.cro51-redesign #content #CourseOverview .elementor-container > .elementor-column:first-child {
+    max-width: 638px;
+    width: 50%;
+}
+
+html body.cro51-redesign #content #CourseOverview .elementor-container > .elementor-column:first-child > .elementor-widget-wrap > .elementor-element:first-child .elementor-heading-title {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+html body.cro51-redesign #content #CourseOverview .elementor-container > .elementor-column:first-child > .elementor-widget-wrap > .elementor-element:last-child .elementor-widget-container {
+    margin-top: 20px;
+}
+
+html body.cro51-redesign #content #CourseOverview .elementor-container > .elementor-column:first-child > .elementor-widget-wrap > .elementor-element:last-child p {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign .cro51-pricing-container {
+    width: 538px;
+    position: relative;
+}
+
+html body.cro51-redesign .cro51-pricing-wrapper {
+    display: block;
+    position: absolute;
+    z-index: 1;
+}
+
+html body.cro51-redesign .cro51-pricing-main {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+    gap: 36px;
+}
+
+html body.cro51-redesign .cro51-pricing-content {
+    box-sizing: border-box;
+}
+
+html body.cro51-redesign .cro51-pricing-content1 {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+}
+
+html body.cro51-redesign .cro51-pricing-hr {
+    height: auto;
+    width: 1px;
+    background: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 33px;
+}
+
+html body.cro51-redesign .cro51-pricing-info1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+html body.cro51-redesign .cro51-pricing-info-text1 {
+    color: #797979;
+    font-family: "Poppins", Sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+html body.cro51-redesign .cro51-pricing-info-text2 {
+    color: #1fb2e2;
+    font-family: "Poppins", Sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+}
+
+html body.cro51-redesign .cro51-pricing-info-text1 .cro51-text2 {
+    color: #1fb2e2;
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+html body.cro51-redesign .cro51-pricing-info2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+html body.cro51-redesign .cro51-pricing-list-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+html body.cro51-redesign .cro51-pricing-list-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+html body.cro51-redesign .cro51-pricing-list-icon {
+    width: 13px;
+    min-width: 13px;
+    height: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 4px;
+}
+
+html body.cro51-redesign .cro51-pricing-list-icon svg {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+html body.cro51-redesign .cro51-pricing-list-text {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign .cro51-pricing-content3 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    font-family: "Poppins", Sans-serif;
+}
+
+html body.cro51-redesign .cro51-enroll-now {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 24px;
+    border-radius: 36px;
+    background: #00a9e0;
+    color: #fff;
+    font-family: inherit;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 161px;
+    height: 43px;
+    transition: all 0.3s;
+}
+
+html body.cro51-redesign .cro51-enroll-now:hover {
+    color: #fff;
+    opacity: 50%;
+}
+
+html body.cro51-redesign .cro51-prospectus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 36px;
+    border: 2px solid #00a9e0;
+    background: #fff;
+    color: #00a9e0;
+    font-family: inherit;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 43px;
+    transition: all 0.3s;
+}
+
+html body.cro51-redesign .cro51-prospectus:hover {
+    color: #00a9e0;
+    opacity: 50%;
+}
+
+html body.cro51-redesign .cro51-pricing-content4 {
+    color: #797979;
+    font-family: "Poppins", Sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro51-redesign .cro51-pricing-content4 p {
+    color: #797979;
+    font-family: "Poppins", Sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro51-redesign .cro51-pricing-content4 p:last-child {
+    margin-bottom: 0;
+}
+
+html body.cro51-redesign #content .cro51-hero h1.elementor-heading-title {
+    display: none;
+}
+
+html body.cro51-redesign #content .cro51-hero .has_eae_slider p.elementor-heading-title {
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro51-redesign #content .cro51-hero .has_eae_slider .bb-theme-elementor-wrap p {
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: 140%;
+}
+
+html body.cro51-redesign #content .cro51-hero .has_eae_slider .bb-theme-elementor-wrap p span {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit !important;
+    line-height: inherit;
+}
+
+html body.cro51-redesign #content .cro51-course-name h2.elementor-heading-title {
+    font-size: 0;
+    line-height: 0;
+    margin-top: 30px;
+}
+
+html body.cro51-redesign #content .cro51-course-name h2.elementor-heading-title span {
+    color: #fff !important;
+    font-family: "Poppins", Sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+html body.cro51-redesign #content .cro51-course-name > .elementor-widget-container {
+    padding: 0 10% 0 0;
+}
+
+html body.cro51-redesign #content .cro51-hero .elementor-widget-wrap {
+    padding: 0;
+}
+
+html body.cro51-redesign #content .cro51-hero > .elementor-container.elementor-column-gap-default {
+    justify-content: space-between;
+}
+
+html body.cro51-redesign #content .cro51-course-info > .elementor-widget-container {
+    padding: 0 5% 0 0;
+}
+
+html body.cro51-redesign #CourseOverview {
+    margin-top: 80px;
+    padding-bottom: 80px;
+}
+
+html body.cro51-redesign.cro51-aesthetic #CourseOverview {
+    margin-bottom: 80px;
+}
+
+html body.cro51-redesign #content .cro51-pricing {
+    margin-top: 46px;
+    display: none;
+}
+
+html body.cro51-redesign #EntryRequirements {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 80px 0;
+    background: #edf2f2;
+}
+
+html body.cro51-redesign #EntryRequirements .elementor-widget-wrap > .elementor-element:nth-child(-n + 5) {
+    display: none;
+}
+
+html body.cro51-redesign #EntryRequirements .elementor-widget-wrap {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+}
+
+html body.cro51-redesign #EntryRequirements .cro51-assessment {
+    grid-area: 1/2/2/3;
+}
+
+html body.cro51-redesign #EntryRequirements .cro51-assessment + .elementor-element {
+    grid-area: 2/2/3/3;
+}
+
+html body.cro51-redesign #EntryRequirements .cro51-qualification {
+    grid-area: 1/1/2/2;
+}
+
+html body.cro51-redesign #EntryRequirements .cro51-qualification + .elementor-element {
+    grid-area: 2/1/3/2;
+}
+
+html body.cro51-redesign #EntryRequirements .cro51-assessment .elementor-widget-container,
+html body.cro51-redesign #EntryRequirements .cro51-qualification .elementor-widget-container {
+    margin: 0;
+}
+
+html body.cro51-redesign #EntryRequirements .cro51-assessment .elementor-widget-container h3,
+html body.cro51-redesign #EntryRequirements .cro51-qualification .elementor-widget-container h3 {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+html body.cro51-redesign #EntryRequirements .cro51-assessment + .elementor-element p,
+html body.cro51-redesign #EntryRequirements .cro51-qualification + .elementor-element p {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign .cro51-requirement-container {
+    background: #edf2f2;
+    padding: 80px 30px;
+}
+
+html body.cro51-redesign .cro51-requirement-wrapper {
+    max-width: 1296px;
+    width: 100%;
+    margin: auto;
+}
+
+html body.cro51-redesign .cro51-requirement-header {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+html body.cro51-redesign .cro51-requirement-subheader {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+html body.cro51-redesign .cro51-requirement-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+html body.cro51-redesign .cro51-requirement-list > div {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+html body.cro51-redesign .cro51-requirement-list-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    min-width: 14px;
+    height: 14px;
+    position: relative;
+    top: 3px;
+}
+
+html body.cro51-redesign .cro51-requirement-list-icon svg {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+html body.cro51-redesign .cro51-requirement-list-text {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign #CourseReviews h2.elementor-heading-title {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-style: normal;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: center;
+}
+
+html body.cro51-redesign #CourseReviews h3.elementor-heading-title {
+    color: #00a9e0;
+    text-align: left;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    /* margin-left: 30px; */
+    /* margin-right: 30px; */
+    /* padding: 0 50px; */
+}
+
+html body.cro51-redesign #content .cro51-benefit h2.elementor-heading-title {
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: left;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-icon-box-wrapper {
+    display: flex;
+    text-align: start;
+    gap: 15px;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-icon-box-wrapper .elementor-icon-box-icon {
+    margin-bottom: 0;
+    display: flex;
+    margin-right: 0;
+    margin-left: 0;
+    width: 26px;
+    height: 26px;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-icon-box-wrapper .elementor-icon-box-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-icon-box-wrapper h3.elementor-icon-box-title {
+    display: flex;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-icon-box-wrapper h3.elementor-icon-box-title span {
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-element .bb-theme-elementor-wrap p span {
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: 140%;
+    text-align: start;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-element .bb-theme-elementor-wrap p {
+    text-align: start;
+    padding-right: 30px;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-widget-wrap {
+    padding: 0;
+    margin: 0;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section > .elementor-container {
+    gap: 20px;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section {
+    margin-top: 60px;
+}
+
+html body.cro51-redesign #content .cro51-benefit {
+    padding: 80px 30px;
+}
+
+html body.cro51-redesign section#Modules {
+    display: none;
+}
+
+html body.cro51-redesign section#Faculty .elementor-widget-wrap > .has_eae_slider.elementor-element {
+    display: flex !important;
+    padding: 0;
+}
+
+html body.cro51-redesign.cro51-orthodontics section#Faculty .elementor-widget-wrap > .has_eae_slider.elementor-element + .elementor-element,
+html body.cro51-redesign.cro51-aesthetic section#Faculty .elementor-widget-wrap > .has_eae_slider.elementor-element + .elementor-element {
+    display: none !important;
+}
+
+html body.cro51-redesign.cro51-implantology section#Faculty .elementor-widget-wrap > .elementor-hidden-mobile {
+    display: none !important;
+}
+
+html body.cro51-redesign #Faculty .swiper-button-next.cro51-next {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -40px;
+    margin: auto 0;
+}
+
+html body.cro51-redesign #Faculty .swiper-button-prev.cro51-prev {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -40px;
+    margin: auto 0;
+}
+
+html body.cro51-redesign #Faculty .swiper-button-next.cro51-next svg {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+html body.cro51-redesign #Faculty .swiper-button-prev.cro51-prev svg {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+html body.cro51-redesign #Faculty .elementor-widget-wrap > .has_eae_slider.elementor-element .swiper-container-wrap {
+    position: relative;
+}
+
+html body.cro51-redesign #Faculty .elementor-widget-wrap > .has_eae_slider.elementor-element .e-con-inner {
+    margin: 0 auto;
+}
+
+html body.cro51-redesign .cro51-module-wrapper {
+    max-width: 1296px;
+    width: 100%;
+    margin: auto;
+}
+
+html body.cro51-redesign .cro51-module-container {
+    padding: 80px 30px;
+}
+
+html body.cro51-redesign .cro51-module-header {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin-bottom: 20px;
+}
+
+html body.cro51-redesign .cro51-module-subheader {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin-bottom: 49px;
+    max-width: 864px;
+    width: 100%;
+}
+
+html body.cro51-redesign .cro51-module-content-name {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+}
+
+html body.cro51-redesign .cro51-module-content-duration {
+    color: rgba(30, 26, 52, 0.5);
+    font-family: "Poppins", Sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+html body.cro51-redesign .cro51-module-dropdown-text {
+    color: #10aee2;
+    font-family: "Poppins", Sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+html body.cro51-redesign .cro51-module-dropdown-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    width: -moz-fit-content;
+    width: fit-content;
+    cursor: pointer;
+}
+
+html body.cro51-redesign .cro51-module-dropdown-icon {
+    width: 12.525px;
+    height: 12.525px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro51-redesign .cro51-module-dropdown-icon svg {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+html body.cro51-redesign .cro51-module-dropdown-icon2 {
+    display: none;
+}
+
+html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-icon1 {
+    display: none;
+}
+
+html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-icon2 {
+    display: flex;
+}
+
+html body.cro51-redesign .cro51-module-content {
+    border-bottom: 1px solid #cecece;
+    padding: 30px;
+}
+
+html body.cro51-redesign .cro51-module-list-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+html body.cro51-redesign .cro51-module-lists {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 40px 0 0 0;
+}
+
+html body.cro51-redesign .cro51-module-content:nth-child(odd) {
+    background: #f2f2f2;
+}
+
+html body.cro51-redesign .cro51-module-content:nth-child(even) {
+    background: rgba(242, 242, 242, 0.5);
+}
+
+html body.cro51-redesign .cro51-module-content:last-child {
+    border-bottom: 0;
+}
+
+html body.cro51-redesign .cro51-module-list-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 26px;
+    margin-top: 3px;
+}
+
+html body.cro51-redesign .cro51-module-dropdown-contents {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    font-family: "Roboto";
+}
+
+html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-contents {
+    max-height: 580px;
+}
+
+html body.cro51-redesign .cro51-module-item-info {
+    color: rgba(30, 26, 52, 0.75);
+    font-family: inherit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    padding-top: 30px;
+}
+
+html body.cro51-redesign .cro51-module-list-text {
+    color: rgba(30, 26, 52, 0.75);
+    font-family: inherit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign .cro51-module-list-text strong {
+    font-weight: 700;
+}
+
+html body.cro51-redesign .cro51-course-overview-container {
+    display: none;
+}
+
+html body.cro51-redesign .cro51-course-overview-header {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin-bottom: 20px;
+}
+
+html body.cro51-redesign .cro51-course-overview-info {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign section#Faculty h2.elementor-heading-title.elementor-size-default {
+    color: #1e1a34;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+}
+
+html body.cro51-redesign section#Faculty {
+    background: #edf2f2;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 80px 0;
+}
+
+html body.cro51-redesign section#Faculty .elementor-container .elementor-widget-wrap > .elementor-element:first-child + .elementor-element {
+    display: none;
+}
+
+html body.cro51-redesign section#Faculty .elementor-container .elementor-widget-wrap > .elementor-element:first-child {
+    margin-bottom: 60px;
+}
+
+html body.cro51-redesign section#Faculty .elementor-container .swiper-slide h4 {
+    color: #1e1a34;
+    text-align: center;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+}
+
+html body.cro51-redesign section#Faculty .elementor-container .swiper-slide .eael-tm-position {
+    color: #1e1a34;
+    text-align: center;
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+html body.cro51-redesign #content .cro51-partners {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 80px 0;
+}
+
+html body.cro51-redesign section#FAQ {
+    background: #edf2f2;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 60px 0;
+}
+
+html body.cro51-redesign #FAQ > .elementor-container > .elementor-column > .elementor-widget-wrap {
+    padding: 80px 40px;
+    border-radius: 7px;
+    background: #fff;
+}
+
+html body.cro51-redesign #FAQ > .elementor-container > .elementor-column > .elementor-widget-wrap section {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+html body.cro51-redesign #FAQ section h2.elementor-heading-title {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: start;
+}
+
+html body.cro51-redesign #FAQ section .elementor-widget-wrap > .elementor-element:last-child {
+    display: none;
+}
+
+html body.cro51-redesign #FAQ span.eael-accordion-tab-title {
+    color: #1e1a34;
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px;
+}
+
+html body.cro51-redesign #FAQ .eael-accordion-content {
+    color: #1e1a34;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign #FAQ section .elementor-element:first-child + .elementor-element .elementor-widget-container {
+    margin: 20px 0 0;
+}
+
+html body.cro51-redesign #FAQ .eael-adv-accordion .eael-accordion-list:nth-child(odd) {
+    background: #edf2f2;
+}
+
+html body.cro51-redesign #FAQ .eael-adv-accordion .eael-accordion-list > div {
+    padding-right: 10px;
+    padding-left: 10px;
+    border-color: rgba(30, 26, 52, 0.3);
+}
+
+html body.cro51-redesign #FAQ .eael-adv-accordion {
+    border: 0;
+}
+
+html body.cro51-redesign #content .cro51-benefit .elementor-section .elementor-icon-box-wrapper .elementor-icon-box-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+html body.cro51-redesign #FAQ section > .elementor-container > .elementor-column > .elementor-widget-wrap > .elementor-element:first-child .elementor-widget-container {
+    padding: 0;
+}
+
+html body.cro51-redesign .cro-51-benefit-container {
+    padding: 80px 30px;
+    background-color: #1e1a34;
+}
+
+html body.cro51-redesign .cro-51-benefit-wrapper {
+    max-width: 1296px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+html body.cro51-redesign .cro-51-benefit-header {
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    text-align: left;
+    margin-bottom: 60px;
+}
+
+html body.cro51-redesign .cro-51-benefit-content-icon {
+    margin-bottom: 0;
+    display: flex;
+    margin-right: 0;
+    margin-left: 0;
+    width: 26px;
+    min-width: 26px;
+    height: 26px;
+}
+
+html body.cro51-redesign .cro-51-benefit-content-icon svg {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+html body.cro51-redesign .cro-51-benefit-content-text {
+    color: #fff;
+    line-height: 140%;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* html body.cro51-redesign .cro-51-benefit-info {
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: 140%;
+    text-align: start;
+    padding-right: 30px;
+    display: none;
+} */
+html body.cro51-redesign .cro-51-benefit-content-header {
+    display: flex;
+    text-align: start;
+    gap: 15px;
+}
+
+html body.cro51-redesign .cro-51-benefit-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+html body.cro51-redesign .cro-51-benefit-contents {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    -moz-column-gap: 20px;
+    column-gap: 40px;
+    row-gap: 60px;
+}
+
+html body.cro51-redesign #content .cro51-benefit > .elementor-container {
+    padding: 0;
+}
+
+html body.cro51-redesign #CourseReviews li p.wprev_preview_tcolor1_T1 {
+    color: #000;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+html body.cro51-redesign #content .cro51-partners p {
+    color: #1e1a34;
+    text-align: center;
+
+    font-family: "Roboto";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin-bottom: 3px;
+}
+
+html body.cro51-redesign #content .cro51-partners h2 {
+    margin-bottom: 0;
+}
+
+html body.cro51-redesign #content .cro51-partners .elementor-element .elementor-widget-text-editor .elementor-widget-container {
+    margin: 43px 0 0;
+}
+
+html body.cro51-redesign #content .cro51-partners .has_eae_slider.elementor-section {
+    margin-top: 43px;
+}
+
+html body.cro51-redesign #CourseReviews span.wprev_showdate_T1 {
+    font-size: 18px;
+}
+
+html body.cro51-redesign .cro51-module-list-item.cro51-module-list-item-bonus {
+    color: rgba(30, 26, 52, 0.75);
+    font-family: inherit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    padding-top: 5px;
+}
+
+html body.cro51-redesign #Faculty + .elementor-section {
+    background-color: #edf2f2;
+    margin-top: 0;
+}
+
+html body.cro51-redesign.cro51-implantology #content .cro51-benefit .elementor-section .elementor-icon-box-wrapper {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+html body.cro51-redesign.cro51-implantology #content .cro51-benefit .elementor-section .elementor-element .bb-theme-elementor-wrap p {
+    text-align: center;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+@media screen and (min-width: 768px) {
+    html body.cro51-redesign #Faculty .elementor-widget-wrap > .has_eae_slider.elementor-element .swiper-pagination {
+        display: none;
+    }
+
+    html body.cro51-redesign #Faculty .elementor-widget-wrap > .has_eae_slider.elementor-element .e-con-inner {
+        padding: 0 40px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    html body.cro51-redesign .cro-51-benefit-content-text {
+        max-width: 300px;
+        width: 100%;
+    }
+
+    html body.cro51-redesign .cro-51-benefit-content-icon {
+        margin-top: 2px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    html body.cro51-redesign .cro51-course-overview-container,
+    html body.cro51-redesign #EntryRequirements,
+    html body.cro51-redesign .cro51-requirement-container,
+    html body.cro51-redesign #content .cro51-hero > .elementor-container.elementor-column-gap-default > .has_eae_slider:first-child,
+    html body.cro51-redesign #content .cro51-partners,
+    html body.cro51-redesign section#Faculty,
+    html body.cro51-redesign .cro-51-benefit-container,
+    html body.cro51-redesign #content .cro51-benefit {
+        padding: 60px 30px;
+    }
+
+    html body.cro51-redesign #FAQ > .elementor-container > .elementor-column > .elementor-widget-wrap {
+        padding: 80px 30px;
+    }
+
+    html body.cro51-redesign .cro51-pricing-wrapper {
+        position: static;
+    }
+
+    html body.cro51-redesign .cro51-course-overview-container {
+        display: block;
+    }
+
+    html body.cro51-redesign .cro51-pricing-container {
+        width: 100%;
+    }
+
+    html body.cro51-redesign #content .cro51-hero > .elementor-container.elementor-column-gap-default {
+        padding: 0;
+    }
+
+    html body.cro51-redesign #content .cro51-hero {
+        padding: 0;
+        background: #fff;
+    }
+
+    html body.cro51-redesign #content .cro51-hero > .elementor-container.elementor-column-gap-default > .has_eae_slider:first-child {
+        background: #1e1a34;
+    }
+
+    html body.cro51-redesign .cro51-pricing-main {
+        padding: 30px 30px;
+    }
+
+    html body.cro51-redesign #CourseOverview {
+        display: none;
+    }
+
+    html body.cro51-redesign .cro51-requirement-container {
+        margin-top: -2px;
+        position: relative;
+    }
+
+    html body.cro51-redesign .cro51-pricing-hr {
+        margin: 0 10px;
+    }
+
+    html body.cro51-redesign #EntryRequirements .elementor-widget-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    html body.cro51-redesign #EntryRequirements .cro51-assessment {
+        grid-area: 3/1/4/2;
+    }
+
+    html body.cro51-redesign #EntryRequirements .cro51-assessment + .elementor-element {
+        grid-area: 4/1/5/2;
+    }
+
+    html body.cro51-redesign #EntryRequirements .cro51-qualification {
+        grid-area: 1/1/2/2;
+    }
+
+    html body.cro51-redesign #EntryRequirements .cro51-qualification + .elementor-element {
+        grid-area: 2/1/3/2;
+    }
+
+    html body.cro51-redesign section#EntryRequirements > .elementor-container {
+        padding: 0;
+    }
+
+    html body.cro51-redesign #content .cro51-benefit .elementor-section > .elementor-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+    }
+
+    html body.cro51-redesign #content .cro51-benefit .elementor-section > .elementor-container > .elementor-column {
+        width: 100%;
+    }
+
+    html body.cro51-redesign #CourseReviews .elementor-widget-wrap .elementor-element:first-child .elementor-widget-container,
+    html body.cro51-redesign #CourseReviews .elementor-widget-wrap .elementor-element:first-child + .elementor-element .elementor-widget-container {
+        padding: 0 30px;
+    }
+
+    html body.cro51-redesign #content .cro51-benefit h2.elementor-heading-title {
+        line-height: 140%;
+        margin-bottom: 20px;
+    }
+
+    html body.cro51-redesign #content .cro51-benefit > .elementor-container > .has_eae_slider > .elementor-widget-wrap > .elementor-element .elementor-widget-container {
+        padding: 0;
+    }
+
+    html body.cro51-redesign .cro-51-benefit-contents {
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+        column-gap: 0;
+    }
+
+    html body.cro51-redesign #content .cro51-benefit .elementor-section {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    html body.cro51-redesign #CourseReviews h2.elementor-heading-title {
+        font-size: 24px;
+        line-height: 34px;
+    }
+
+    /* html body.cro51-redesign #Faculty .swiper-button-next.cro51-next,
+    html body.cro51-redesign #Faculty .swiper-button-prev.cro51-prev {
+        display: none;
+    } */
+
+    html body.cro51-redesign .cro51-course-overview-container,
+    html body.cro51-redesign #EntryRequirements,
+    html body.cro51-redesign .cro51-requirement-container,
+    html body.cro51-redesign #content .cro51-hero > .elementor-container.elementor-column-gap-default > .has_eae_slider:first-child,
+    html body.cro51-redesign .cro51-module-container,
+    html body.cro51-redesign #content .cro51-partners,
+    html body.cro51-redesign section#Faculty,
+    html body.cro51-redesign .cro-51-benefit-container,
+    html body.cro51-redesign #content .cro51-benefit {
+        padding: 60px 20px;
+    }
+
+    html body.cro51-redesign .cro51-pricing-main {
+        padding: 30px 20px;
+    }
+
+    html body.cro51-redesign #FAQ > .elementor-container > .elementor-column > .elementor-widget-wrap {
+        padding: 80px 20px;
+    }
+
+    html body.cro51-redesign #CourseReviews .elementor-widget-wrap .elementor-element:first-child .elementor-widget-container,
+    html body.cro51-redesign #CourseReviews .elementor-widget-wrap .elementor-element:first-child + .elementor-element .elementor-widget-container {
+        padding: 0 20px;
+    }
+
+    html body.cro51-redesign section#FAQ {
+        padding: 0;
+    }
+
+    html body.cro51-redesign section#Faculty {
+        background-color: #fff;
+    }
+
+    html body.cro51-redesign #content .cro51-partners {
+        background-color: #edf2f2;
+    }
+
+    html body.cro51-redesign #Faculty + .elementor-section {
+        background-color: #fff;
+    }
+
+    html body.cro51-redesign .cro51-pricing-content3 {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    html body.cro51-redesign .cro51-enroll-now {
+        width: 100%;
+    }
+
+    html body.cro51-redesign .cro51-prospectus {
+        width: 100%;
+    }
+
+    html body.cro51-redesign .cro-51-benefit-header {
+        line-height: 28px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-contents {
+        max-height: 720px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-contents {
+        max-height: 930px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    html body.cro51-redesign .cro51-module-dropdown-contents {
+        transition: max-height 0.6s ease;
+    }
+
+    html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-contents {
+        max-height: 1700px;
+    }
+    html body.cro51-redesign #Faculty .e-swiper-container > .has_eae_slider .e-widget-swiper > .elementor-widget-container {
+        margin: 30px 0 0;
+    }
+
+    html body.cro51-redesign #Faculty .swiper-button-next.cro51-next {
+        right: 0;
+    }
+
+    html body.cro51-redesign #Faculty .swiper-button-prev.cro51-prev {
+        left: 0;
+    }
+    html body.cro51-redesign #CourseReviews .waf-site-review-slide-next:hover,
+    html body.cro51-redesign #CourseReviews .waf-site-review-slide-prev:hover {
+        opacity: 1;
+    }
+
+    html body.cro51-redesign .cro51-course-name-parent .cro51-course-name {
+        display: block;
+    }
+
+    html body.cro51-redesign .cro51-course-name-parent > .elementor-element.elementor-hidden-desktop.elementor-hidden-tablet.elementor-widget.elementor-widget-heading {
+        display: none;
+    }
+
+    html body.cro51-redesign .cro51-course-name-parent .cro51-course-name br {
+        display: none;
+    }
+    html body.cro51-redesign #EntryRequirements .cro51-qualification + .elementor-element p {
+        margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-contents {
+        max-height: 2130px;
+    }
+    html body.cro51-redesign #content .cro51-course-name > .elementor-widget-container {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 374px) {
+    html body.cro51-redesign .cro51-module-dropdown-contents {
+        max-height: unset;
+        display: none;
+    }
+
+    html body.cro51-redesign .cro51-show-dropdown .cro51-module-dropdown-contents {
+        max-height: unset;
+        display: block;
+    }
+}
+
+html body.cro51-redesign section#CourseOverview .elementor-container > .has_eae_slider:nth-child(1) > .elementor-element-populated .elementor-element[data-element_type="widget"] {
+    display: block !important;
+}
+
+html body.cro51-redesign #EntryRequirements .elementor-widget-wrap > .elementor-element.cro51-assessment {
+    display: block;
+}

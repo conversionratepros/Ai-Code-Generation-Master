@@ -1,0 +1,503 @@
+html body.cro-t-rollback {
+    background: linear-gradient(180deg, #0F73AF 0%, #06427B 100%);
+}
+
+html body.cro-t-rollback section.bg-gray {
+    display: none;
+}
+
+html body.cro-t-rollback .cro-hero-banner {
+    display: none;
+}
+
+html body.cro-t-rollback .pt-10 ol.decorated {
+    display: none;
+}
+
+html body.cro-t-rollback .pt-10 h1,
+html body.cro-t-rollback .pt-10 .cro-free-loan-parent p {
+    display: none;
+}
+
+html body.cro-t-rollback .cro-icon-section-parent {
+    display: none;
+}
+
+html body.cro-t-rollback .py-5.bg-primary {
+    display: none;
+}
+
+html body.cro-t-rollback h2#main-form-header {
+    display: none;
+}
+
+html body.cro-t-rollback form#main-form {
+    padding: 0;
+}
+
+html body.cro-t-rollback .bg-primary.py-4 {
+    background-color: transparent;
+}
+
+@media (min-width:1024px) {
+    html body.cro-t-rollback .container {
+        width: 100%;
+        max-width: 1024px;
+    }
+
+
+}
+
+/* html body.cro-t-rollback .cro-hero-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+} */
+
+
+html body.cro-t-rollback #primary picture img {
+    width: 100%;
+    max-width: 256PX;
+}
+
+html body.cro-t-rollback section.pt-10 {
+    padding-top: 18px;
+}
+
+html body.cro-t-rollback .croRB-t-2-custom-parent-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 12px;
+    border: 6px solid #FFF;
+    background: linear-gradient(180deg, #BCDDF6 0%, #FFF 100%);
+    padding: 30px;
+    gap: 0;
+    width: 100%;
+    position: relative;
+}
+
+html body.cro-t-rollback .pt-10>div {
+    grid-template-columns: none;
+}
+
+
+html body.cro-t-rollback .pt-10 .border {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    max-width: 459px;
+}
+
+html body.cro-t-rollback .cro-from-name-parent label,
+html body.cro-t-rollback .cro-from-number-parent label,
+html body.cro-t-rollback .cro-from-id-number-parent label {
+    color: #000;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 25px;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+html body.cro-t-rollback .cro-from-name-parent,
+html body.cro-t-rollback .cro-from-number-parent,
+html body.cro-t-rollback .cro-from-id-number-parent {
+    gap: 19px;
+}
+
+html body.cro-t-rollback .cro-from-name-parent input,
+html body.cro-t-rollback .cro-from-number-parent input,
+html body.cro-t-rollback .cro-from-id-number-parent input {
+    border-radius: 3px;
+    padding: 8px 11px;
+    border: 1px solid #6B7280 !important;
+}
+
+html body.cro-t-rollback .cro-from-name-parent p,
+html body.cro-t-rollback .cro-from-number-parent p,
+html body.cro-t-rollback .cro-from-id-number-parent p {
+    margin-bottom: 19px;
+}
+
+html body.cro-t-rollback .cro-from-button-parent {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 27px;
+}
+
+html body.cro-t-rollback .cro-from-button-parent input.btn {
+    margin: 0;
+    color: #FFF;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+    padding: 15px 12px;
+    border-radius: 25px;
+    background: #96C63D;
+    cursor: pointer;
+}
+
+html body.cro-t-rollback .cro-from-button-parent input.btn:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(14 112 171 / var(--tw-bg-opacity));
+}
+
+html body.cro-t-rollback .croRB-t-2-top-banner-heading-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+}
+
+html body.cro-t-rollback .croRB-t-2-top-banner-heading-text {
+    color: #000;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+}
+
+html body.cro-t-rollback .croRB-t-2-top-banner-subheading-text {
+    color: #000;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+html body.cro-t-rollback .croRB-t-2-top-banner-bullet {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+    padding: 27px 0;
+}
+
+html body.cro-t-rollback .croRB-t-2-top-bullet {
+    gap: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.cro-t-rollback .croRB-t-2-top-bullet-icon {
+    color: #FFF;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 25px;
+    border: 4px solid #FFF;
+    background: #96C63D;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    height: 41px;
+    padding: 15px 28px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 66px;
+}
+
+html body.cro-t-rollback .croRB-t-2-top-bullet-icon-text {
+    color: #000;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-rollback p.croRB-t-2-From-tnc {
+    color: #000;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    padding-bottom: 27px;
+    padding-top: 8px;
+    margin: 0;
+}
+
+html body.cro-t-rollback p.croRB-t-2-From-tnc a {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+}
+
+html body.cro-t-rollback .croRB-t-2-top-banner-left-img {
+    width: 100%;
+    max-width: 416px;
+    position: absolute;
+    top: 36px;
+    right: -5px;
+}
+
+html body.cro-t-rollback img.cro-calculator {
+    width: 100%;
+}
+
+html body.cro-t-rollback .cro-from-number-parent [for="email"] {
+    font-size: 0 !important;
+}
+
+html body.cro-t-rollback .cro-from-number-parent [for="email"]:after {
+    content: 'Email';
+    color: #000;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 25px;
+}
+
+html body.cro-t-rollback .cro-from-id-number-parent [for="id_number"] {
+    font-size: 0 !important;
+}
+
+html body.cro-t-rollback .cro-from-id-number-parent [for="id_number"]:after {
+    content: 'ID number';
+    color: #000;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    height: 25px;
+}
+
+
+/* ----From--Bottom--- */
+
+html body.cro-t-rollback .croRB-t-2-premium-partners-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+    padding-top: 34px;
+    padding-bottom: 34px;
+}
+
+html body.cro-t-rollback .croRB-t-2-number-of-premium-partners-text {
+    color: #FFF;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-rollback .croRB-t-2-partners-logo-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+    padding: 19px 0;
+    border-top: 2px solid #0F73AF;
+    border-bottom: 2px solid #0F73AF;
+}
+
+html body.cro-t-rollback .croRB-t-2-partners-text {
+    color: #FFF;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.cro-t-rollback .croRB-t-2-partners-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+
+}
+
+html body.cro-t-rollback .croRB-t-2-premium-partners-wrapper {
+    padding-bottom: 104px;
+}
+
+html body.cro-t-rollback .croRB-t-2-partners-logo-text {
+    width: 100%;
+    max-width: 120px;
+}
+
+html body.cro-t-rollback .croRB-t-2-partners-logo-main.logo-1 {
+    width: 100%;
+    max-width: 112px;
+}
+
+html body.cro-t-rollback img.croRB-t-2-partner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+html body.cro-t-rollback .croRB-t-2-partners-logo-main {
+    width: 100%;
+    max-width: 128px;
+}
+
+html body.cro-t-rollback .croRB-t-2-partners-logo-main a {
+    cursor: pointer;
+}
+
+html body.cro-t-rollback .croRB-t-2-footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding-top: 34px;
+    /* padding-bottom: 104px; */
+}
+
+html body.cro-t-rollback .croRB-t-2-footer-Copyright-text {
+    color: #FFF;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+html body.cro-t-rollback .croRB-t-2-footer-debt-solutions-text {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+@media (max-width:1023px) {
+    html body.cro-t-rollback .croRB-t-2-partners-logo-inner {
+        gap: 30px;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-partners-logo {
+        gap: 30px;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-top-banner-left-img {
+        display: none;
+    }
+}
+
+@media (min-width:768px) {
+    html body.cro-t-rollback #primary a {
+        padding-top: 58px;
+    }
+
+    html body.cro-t-rollback .pt-10 .border .hidden.redirect-msg {
+        padding-bottom: 40px;
+        padding-top: 40px;
+    }
+}
+
+@media (max-width:767px) {
+    html body.cro-t-rollback .croRB-t-2-custom-parent-wrapper {
+        padding: 24px 11px;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-top-banner-heading-top {
+        gap: 27px;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-top-banner-subheading-text {
+        line-height: normal;
+    }
+
+    html body.cro-t-rollback .cro-from-name-parent,
+    html body.cro-t-rollback .cro-from-number-parent,
+    html body.cro-t-rollback .cro-from-id-number-parent {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 0px !important;
+    }
+
+    html body.cro-t-rollback .pt-10 .border {
+        max-width: 100%;
+    }
+
+    html body.cro-t-rollback .cro-from-button-parent>div {
+        width: 100%;
+    }
+
+    html body.cro-t-rollback .cro-from-button-parent>div {
+        width: 100%;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-premium-partners-inner {
+        padding-top: 34px;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-partners-logo-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-partners-logo {
+        /* display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        column-gap: 25px; */
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 2fr));
+    }
+
+    html body.cro-t-rollback .croRB-t-2-premium-partners-wrapper {
+        padding-bottom: 92px;
+    }
+
+    html body.cro-t-rollback p.croRB-t-2-From-tnc {
+        line-height: normal;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-footer-Copyright-text {
+        line-height: normal;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-footer-debt-solutions-text {
+        line-height: normal;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-partners-logo {
+        gap: 25px;
+    }
+    html body.cro-t-rollback #primary a {
+        padding-top: 3px;
+    }
+
+    html body.cro-t-rollback .pt-10 .border .hidden.redirect-msg {
+        padding: 30px 0 2px;
+
+    }
+
+    html body.cro-t-rollback .croRB-t-2-partners-logo-main.logo-1 {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    html body.cro-t-rollback .croRB-t-2-partners-logo-main {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+.cro-t-dcz-153.cro-t-rollback .cro-153-mobileAtf {
+    display: none;
+}

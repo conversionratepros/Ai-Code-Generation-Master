@@ -1,0 +1,107 @@
+html body.cro-db-15-form #cro-15-continue {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(128 175 59 / var(--tw-bg-opacity));
+    cursor: pointer;
+    color: #FFF;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 4px;
+    background: #80AF3B;
+    transition: 0.3s;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+html body.cro-db-15-form #cro-15-continue:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(14 112 171 / var(--tw-bg-opacity));
+}
+
+body.cro-db-15-form.cro-t-15-step2 .cro-db-15-loader .cro-db-15-loader-gif {
+    max-width: 150px;
+    margin: 75px auto;
+}
+
+html body.cro-db-15-form .cro-t-15-step1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+
+
+html body.cro-db-15-form h3.cro-db-15-loader-text {
+    display: none;
+}
+
+
+html body.cro-db-15-form.cro-t-15-step_5 .pt-10 .container.gap-5{
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    html body.cro-db-15-form .pt-10 .container.gap-5 {
+        align-items: flex-start;
+    }
+
+
+}
+
+@media (min-width: 768px) {
+        html body.cro-db-15-form #cro-15-continue {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+
+
+
+html body.cro-db-15-form .cro-db-15-loader {
+    display: none;
+}
+
+html  body.cro-db-15-form.cro-t-15-step2 .cro-db-15-loader {
+    display: block;
+}
+
+html body.cro-db-15-form .cro-t-15-step3{
+    display: none;
+}
+
+html .cro-db-15-form.cro-t-15-step2 .cro-t-15-step1 {
+    display: none;
+}
+
+html body.cro-db-15-form.cro-t-15-step2 p.cro-t-15-policyTerms {
+    display: none;
+}
+
+html body.cro-db-15-form.cro-t-15-step2 #cro-15-continue {
+    display: none;
+}
+
+html body.cro-db-15-form.cro-t-15-step4 .cro-t-15-step1 {
+    display: none;
+}
+html body.cro-db-15-form.cro-t-15-step4 .cro-t-15-step3 {
+    display: grid;
+}
+
+html body.cro-db-15-form.cro-t-15-wrongId span#id_number-error{
+    display: block;
+}
+
+/* Display None Block */
