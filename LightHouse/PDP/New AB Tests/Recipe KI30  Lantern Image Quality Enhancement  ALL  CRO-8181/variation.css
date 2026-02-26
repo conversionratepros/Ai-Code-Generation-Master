@@ -1,0 +1,29 @@
+/* Hide original image */
+.product-gallery__media-list-wrapper 
+.product-gallery__media[data-media-id="31500520358026"] img{
+    opacity: 0;
+}
+
+/* Replace with new image */
+.product-gallery__media-list-wrapper 
+.product-gallery__media[data-media-id="31500520358026"],
+.pswp__zoom-wrap{
+    position: relative;
+}
+
+.product-gallery__media-list-wrapper 
+.product-gallery__media[data-media-id="31500520358026"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/lightHouse/Recipe_KI30_Lantern_Image_CRO8181.svg") 
+                no-repeat center center;
+    background-size: contain; /* or cover */
+}
+
+
+
+/* ---------- */
+.pswp__zoom-wrap img[srcset*="Solar_Lantern_Listing_Creation_33.jpg"]{
+  content: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/lightHouse/Recipe_KI30_Lantern_Image_CRO8181.svg") !important;
+}
