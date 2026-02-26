@@ -1,0 +1,106 @@
+html body.croki51 .croki51-secure-payments {
+    border-top: 1px solid #e6e6e6;
+    position: relative;
+    top: -15px;
+    display: block !important;
+}
+
+html body.croki51 .croki51-secure-payments-lock-icon {
+    width: 18.4px;
+    height: 18.4px;
+}
+
+html body.croki51 .croki51-secure-payments-text {
+    color: #4A4A4A;
+    font-family: Nunito Sans, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 24px;
+    /* 150% */
+    letter-spacing: 0.64px;
+}
+
+html body.croki51 .croki51-secure-payments-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.croki51 .croki51-secure-payments-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    padding-top: 18px;
+}
+
+html body.croki51 .croki51-secure-payments-icon.icon-1 {
+    width: 50.564px;
+    height: 20.759px;
+}
+
+html body.croki51 .croki51-secure-payments-icon.icon-2 {
+    width: 37.273px;
+    height: 22.845px;
+}
+
+html body.croki51 .croki51-secure-payments-icon.icon-3 {
+    width: 39.218px;
+    height: 13.46px;
+}
+
+html body.croki51 .croki51-secure-payments-icon.icon-4 {
+    width: 26.881px;
+    height: 27.654px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+html body.croki51 .croki51-secure-payments-icon.icon-5 {
+    width: 37.442px;
+    height: 25.299px;
+}
+
+html body.croki51 .croki51-secure-payments-bottom-icon-wrapper {
+    display: flex;
+    gap: 18.436px;
+    align-self: stretch;
+    align-items: center;
+}
+
+html body.croki51 .croki51-secure-payments-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+@media (max-width:991px) {
+    html body.croki51 .croki51-secure-payments-bottom-icon {
+        padding-bottom: 18px;
+    }
+
+    html body.croki51 .croki51-secure-payments-text {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+}
+
+@media (max-width:500px) {
+    html body.croki51 .croki51-secure-payments-bottom-icon {
+        width: 100%;
+    }
+
+    html body.croki51 .croki51-secure-payments-bottom-icon-wrapper {
+        display: flex;
+        align-items: center;
+        height: 28px;
+        justify-content: space-between;
+        gap: 0;
+        width: 100%;
+    }
+
+}
