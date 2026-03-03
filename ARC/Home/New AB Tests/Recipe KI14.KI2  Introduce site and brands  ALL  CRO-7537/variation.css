@@ -1,0 +1,181 @@
+/* ======================
+   DESKTOP
+====================== */
+
+
+html body.croki14 .cro_ki14-top-nav-Stripe.content-row__item{
+   background: #EC2CA4 !important;
+}
+
+html body.croki14 .cro_ki14-top-nav-Stripe .content-row__item__body{
+   background: #EC2CA4 !important;
+}
+
+html body.croki14 .croki14-beauty-banner{
+    display: block !important;
+}
+
+html body.croki14 .content-container.cro-Site-Navbar {
+    display: none;
+}
+
+html body.croki14 .croki14-beauty-banner {
+    width: 100%;
+    min-height: 378px;
+    background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/ARC/Recipe+KI14.KI2+%7C+Introduce+site+and+brands+%7C+ALL+%7C+CRO-7537/Recipe_KI14_KI2_brands_CRO7537_3.svg");
+    background-size: cover;
+    background-position: center right;
+    display: flex;
+    align-items: center;
+}
+
+html body.croki14 .croki14-banner-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 16.8px;
+    box-sizing: border-box;
+}
+
+html body.croki14 .croki14-banner-content {
+    max-width: 522px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+html body.croki14 .croki14-banner-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 48px;
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+    color: #FFF;
+}
+
+html body.croki14 .croki14-banner-content p {
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    width: 100%;
+    max-width: 507px;
+}
+
+html body.croki14 .croki14-banner-btn {
+    padding: 10px 28px;
+    background: #ffffff;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 !important;
+    font-family: "DM Sans", sans-serif;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 1px;
+}
+
+@media (min-width:1024px) {
+    html body.croki14 .croki14-beauty-banner {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* ======================
+   MOBILE
+====================== */
+
+@media (max-width: 1023px) {
+
+    html body.croki14 .croki14-beauty-banner {
+        background: none;
+        padding: 0;
+        display: block;
+    }
+
+    html body.croki14 .croki14-banner-container {
+        padding: 0;
+    }
+
+    html body.croki14 .croki14-beauty-banner::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 300px;
+        background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/ARC/Recipe+KI14.KI2+%7C+Introduce+site+and+brands+%7C+ALL+%7C+CRO-7537/Recipe_KI14_KI2_brands_CRO7537_2.svg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    html body.croki14 .croki14-banner-content {
+        background: #fff;
+        padding: 16px;
+        max-width: 100%;
+        color: #000;
+        gap: 16px;
+        padding-left: 1.8em;
+        padding-right: 1.8em;
+        padding-bottom: 24px;
+    }
+
+    html body.croki14 .croki14-banner-content h1 {
+        color: #000;
+        font-family: "DM Sans", sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 34px;
+    }
+
+    html body.croki14 .croki14-banner-content p {
+        color: #000;
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    html body.croki14 .croki14-banner-btn {
+        background: #1e40af;
+        color: #fff;
+        width: fit-content;
+        border: 1px solid #FFF;
+        background: #0D3DCC;
+        width: 200px;
+        font-weight: 700;
+    }
+
+    html body.croki14 a.croki14-banner-btn:hover{
+        color: #fff;
+    }
+
+    html body.croki14 a.croki14-banner-btn:focus{
+        color: #fff;
+    }
+
+    .cro_featured_brands .content-row__item__body > h2:nth-child(3),
+    .cro_featured_brands .content-row__item__body > h2:nth-child(2) {
+        display: block !important;
+    }
+
+    .cro_featured_brands .content-row__item__body > h2, .cro_featured_brands .content-row__item__body > p {
+        display: none;
+    }
+
+    .cro_featured_brands .content-row {
+        margin-top: 0;
+    }
+}
