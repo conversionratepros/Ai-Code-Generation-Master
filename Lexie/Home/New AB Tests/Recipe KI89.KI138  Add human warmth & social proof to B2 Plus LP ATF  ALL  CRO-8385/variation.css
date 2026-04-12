@@ -1,0 +1,690 @@
+/* ======Control====== */
+html body.croki89 section[data-cy="trust-callout-banner"] {
+    display: none;
+}
+
+/*
+
+html body.croki89 section.relative.bg-white {
+    display: none !important;
+} */
+
+/* Section */
+html body.croki89 .croki89-ab-hero {
+    position: relative;
+    height: 617px;
+    overflow: hidden;
+}
+
+/* Background Image */
+html body.croki89 .croki89-ab-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    /* right: 30px; */
+}
+
+html body.croki89 .croki89-ab-hero-bg img:not(.prod) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+}
+
+/* Container */
+html body.croki89 .croki89-ab-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1248px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 0 20px; */
+}
+
+/* Left Content */
+html body.croki89 .croki89-ab-hero-content {
+    max-width: 582px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+html body.croki89 .croki89-ab-hero-header h1 {
+    /* font-size: 36px; */
+    /* font-weight: 600; */
+    /* margin-bottom: 8px; */
+    color: #051A28;
+    font-family: "Montserrat",sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 103%;
+    margin: 0;
+}
+
+html body.croki89 .croki89-ab-hero-header h2 {
+    color: #7A4D89;
+    font-family: "Montserrat",sans-serif;
+    font-size: 41px;
+    font-weight: 700;
+    line-height: 103%;
+}
+
+html body.croki89 .croki89-ab-hero-Sub-header p {
+    font-family: "Montserrat",sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 140%;
+    max-width: 95%;
+        color: #051A28;
+
+    /* margin-top: 15px; */
+}
+
+/* PRICE */
+html body.croki89 .croki89-ab-price {
+    display: block;
+    color: #025B64;
+    font-family: "Montserrat",sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 39px;
+    /* margin-top: 15px; */
+}
+
+html body.croki89 .croki89-ab-price sup {
+    font-size: 16px;
+    top: -8px;
+    position: relative;
+    font-size: 75%;
+    top: -.5em;
+}
+
+/* BUTTON */
+html body.croki89 .ab-btn {
+    display: inline-block;
+    padding: 12px 16px;
+    color: #fff;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    /* margin-top: 15px; */
+    width: 100%;
+    min-width: 275px;
+    border-radius: 9999px;
+    background: #3364D9;
+    color: #FFF;
+    text-align: center;
+    font-family: "Montserrat",sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    /* 140% */
+    letter-spacing: 0.78px;
+    cursor: pointer;
+}
+
+html body.croki89 .ab-btn:hover {
+    background-color: rgb(var(--background-primary)) !important;
+}
+
+/* Right Product */
+html body.croki89 .croki89-ab-hero-product {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    max-width: 420px;
+}
+
+html body.croki89 .croki89-ab-hero-product img {
+    width: 100%;
+    height: auto;
+}
+
+html body.croki89 section.croki89-ab-hero {
+    display: block !important;
+}
+
+/* 🔥 RESPONSIVE FIX (IMPORTANT) */
+@media (max-width: 1400px) {
+    html body.croki89 .croki89-ab-hero-product {
+        right: 0;
+        /* keep product visible */
+    }
+}
+
+@media (max-width: 1023px) {
+    html body.croki89 .croki89-ab-container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    html body.croki89 .croki89-ab-hero-product {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 20px;
+        max-width: 300px;
+    }
+
+    html body.croki89 section.croki89-ab-hero {
+        display: none !important;
+    }
+}
+
+
+
+
+
+html body.croki89 .croki89-ab-trust {
+    display: block !important;
+}
+
+
+html body.croki89 .croki89-ab-trust {
+    background: #025B64;
+    padding: 186px 20px 100px;
+    position: relative;
+}
+
+html body.croki89 .croki89-ab-trust-badge {
+    position: absolute;
+    top: -58px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background: #123c4a; */
+    color: #fff;
+    /* padding: 15px 20px; */
+    /* border-radius: 12px; */
+    /* text-align: center; */
+    width: 250px;
+    height: 300px;
+}
+
+html body.croki89 .croki89-ab-trust-badge span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+html body.croki89 .croki89-ab-trust-container {
+    width: 990px;
+    margin: auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 16px;
+    display: flex;
+    gap: 0;
+}
+
+html body.croki89 .croki89-ab-trust-left h3 {
+    font-size: 16px;
+    color: var(--Blue-Kelp, #025B64);
+    text-align: center;
+
+    /* Desktop/H3 */
+    font-family: "Montserrat",sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    /* 57.6px */
+}
+
+html body.croki89 .croki89-ab-trust-left h2 {
+    font-size: 36px;
+    color: #0f6b6b;
+    color: var(--Blue-Kelp, #025B64);
+    text-align: center;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.16);
+
+    /* Desktop/Banner */
+    /* -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--Blue-Kelp, #025B64); */
+    font-family: "Montserrat",sans-serif;
+    font-size: 90px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 110px;
+    /* 122.222% */
+}
+
+html body.croki89 .croki89-ab-trust-left p {
+    font-size: 16px;
+    color: var(--Blue-Kelp, #025B64);
+    text-align: center;
+
+    /* Desktop/H3 */
+    font-family: "Montserrat",sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    /* 57.6px */
+}
+
+html body.croki89 .croki89-ab-trust-right ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px 0;
+}
+
+html body.croki89 .croki89-ab-trust-right li {
+    font-size: 14px;
+    position: relative;
+    padding-left: 24px;
+    color: var(--Blue-Kelp, #025B64);
+    /* Desktop/Body Bold */
+    font-family: "Montserrat",sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    /* 28px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+html body.croki89 .croki89ab-trust-left {
+    width: 100%;
+    max-width: 50%;
+    border-right: 1px solid #025B64;
+}
+
+html body.croki89 .croki89ab-trust-right {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 50%;
+    align-items: center;
+    /* gap: 24px; */
+    /* flex-direction: column; */
+    padding-left: 24px;
+}
+
+html body.croki89 .croki89-ab-trust-left {
+    width: 100%;
+    max-width: 50%;
+    border-right: 1px solid #025B64;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+html body.croki89 li.cro-icon-1 img {
+    padding: 9px;
+    border-radius: 50px;
+    background-color: #025B64;
+}
+
+html body.croki89 .croki89-ab-trust-right li>img {
+    width: 100%;
+    max-width: 50px;
+    height: 50px;
+}
+
+html body.croki89 .croki89-ab-trust-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* MOBILE */
+@media (max-width: 1023px) {
+
+    html body.croki89 .croki89-ab-trust-left:not(.mobile) {
+        display: none;
+    }
+
+
+
+    html body.croki89 .croki89-ab-trust-left.mobile {
+        display: block !important;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    html body.croki89 .croki89-ab-hero .ab-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    html body.croki89 .ab-hero-image img {
+        max-width: 100%;
+    }
+
+    html body.croki89 .ab-trust-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    html body.croki89 .ab-trust-badge {
+        top: -30px;
+    }
+
+    html body.croki89 .croki89-ab-trust-container {
+        padding: 16px;
+    }
+
+    html body.croki89 .croki89-ab-trust-right ul {
+        padding: 0;
+    }
+
+    html body.croki89 .croki89-ab-trust-right-text {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+    }
+
+    html body.croki89 .croki89-ab-trust-right li {
+        padding: 0;
+    }
+
+    html body.croki89 .croki89-ab-trust-badge {
+        width: 191px;
+        height: 231px;
+        top: -64px;
+    }
+
+    html body.croki89 .croki89-ab-trust-left h3 {
+        color: var(--Cotton-Ball, #F8FBFE);
+        text-align: center;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 110%;
+    }
+
+    html body.croki89 .croki89-ab-trust-left h2 {
+        color: var(--Cotton-Ball, #F8FBFE);
+        text-align: center;
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: "Montserrat",sans-serif;
+        font-size: 80px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 90px;
+        /* 112.5% */
+    }
+
+    html body.croki89 .croki89-ab-trust-left p {
+        color: var(--Cotton-Ball, #F8FBFE);
+        text-align: center;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 110%;
+        /* 41.8px */
+    }
+
+    html body.croki89 .croki89-ab-trust {
+        padding: 200px 16px 80px;
+    }
+
+    html body.croki89 .croki89-ab-trust-container {
+        width: 100%;
+    }
+
+}
+
+
+.croki89-ab-hero-Sub-header.croki89-ab-hero-mobile_crp{
+    display: none;
+}
+
+
+@media (max-width:1023px) {
+    html body.croki89 .croki89-ab-hero-bg-mobile img {
+        object-position: 85% !important;
+    }
+
+    html body.croki89 section.relative.bg-white section>div img[alt*="Lexie B2 Plus hearing aids showcase."] {
+        width: 100% !important;
+    }
+
+    html body.croki89 section.relative.bg-white section>div .space-y-8>div.flex.flex-col {
+        padding: 0 16px;
+    }
+
+    html body.croki89 section.relative.bg-white section > div .space-y-8 > div.croki89-ab-hero-mobile_crp {
+        padding: 0 16px;
+    }
+
+    html body.croki89 section.relative.bg-white section > div .space-y-8 .croki89-ab-container {
+        padding: 0 16px;
+    }
+
+    html body.croki89 section.relative.bg-white section > div {
+        padding-bottom: 100px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    html body.croki89 .croki89-ab-hero-content .croki89-ab-hero-Sub-header {
+        display: none;
+    }
+
+    html body.croki89 .croki89-ab-hero-bg{
+        display: none;
+    }
+    
+    html body.croki89 .croki89-ab-hero-mobile {
+        display: block !important;
+    }
+
+    html body.croki89 .croki89-ab-hero-mobile-container {
+        padding: 40px 0 100px;
+    }
+
+    html body.croki89 .croki89-ab-hero-header-mobile h1 {
+        color: #051A28;
+        text-align: center;
+        font-family: "Montserrat",sans-serif;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100%;
+        /* 34px */
+    }
+
+    html body.croki89 .croki89-ab-hero-header-mobile h2 {
+        color: #7A4D89;
+        text-align: center;
+        font-family: "Montserrat",sans-serif;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100%;
+        /* 40px */
+    }
+
+    html body.croki89 .croki89-ab-hero-header-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 11px;
+        padding: 0 16px;
+        margin-bottom: 32px;
+    }
+
+    html body.croki89 .croki89-ab-hero-bg-mobile {
+        height: 381px;
+        width: 100%;
+    }
+
+    html body.croki89 .croki89-ab-hero-bg-mobile img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center right;
+    }
+
+    html body.croki89 .croki89-ab-hero-bg-mobile-image {
+        position: relative;
+    }
+
+    html body.croki89 .croki89-ab-hero-bg-mobile-2 {
+        width: 258px;
+        height: 259px;
+        position: relative;
+        margin: 0 auto;
+        top: -60px;
+    }
+
+    html body.croki89 .croki89-ab-hero-bg-mobile-2 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        width: 258px;
+        height: 259px;
+    }
+
+    html body.croki89 .croki89-ab-hero-content-mobile {
+        padding: 0 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        /* position: relative;
+        top: -30px; */
+    }
+
+    html body.croki89 .croki89-ab-hero-Sub-header p {
+        color: #051A28;
+        font-family: "Montserrat",sans-serif;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+        /* 30.8px */
+    }
+
+    html body.croki89 span.croki89-ab-price {
+        color: #025B64;
+        font-family: "Montserrat",sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 39px;
+        /* 162.5% */
+    }
+
+    html body.croki89 .ab-btn {
+        color: #FFF;
+        text-align: center;
+        font-family: "Montserrat",sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 27px;
+        /* 192.857% */
+        letter-spacing: 0.78px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    html body.croki89 section.relative.bg-white section>div .space-y-8 > .flex.items-center {
+    width: 100%;
+    min-height: 600px;
+    background-image: url("https://lexiehearing.com/uploads/hero_mobile_3b654c1664.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+html body.croki89 section.relative.bg-white section > div .space-y-8 {
+    display: flex;
+    flex-direction: column;
+}
+
+html body.croki89 section.relative.bg-white section > div .space-y-8 .croki89-ab-container {
+    order: 1;
+}
+
+html body.croki89 section.relative.bg-white section > div .space-y-8 > div.flex.items-center {
+    order: 2;
+}
+
+html body.croki89 section.relative.bg-white section > div .space-y-8 > div.flex.flex-col {
+    order: 4;
+}
+
+html body.croki89 section.relative.bg-white section > div .space-y-8 > div.croki89-ab-hero-mobile_crp {
+    order: 3;
+    display: block !important;
+}
+}
+
+@media (max-width:766px) {
+    html body.croki89 .croki89-ab-btn-section {
+        width: 100%;
+    }
+}
+
+@media (max-width:360px) {
+    html body.croki89 .croki89-ab-trust-left h2 {
+        font-size: 65px;
+        line-height: 75px;
+    }
+}
+
+
+/* -----Footer---- */
+
+html body.croki89 a.croki89-TCs-Apply-link {
+    color: #FFF;
+    text-align: center;
+    font-family: "Montserrat",sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: fit-content;
+}
+
+html body.croki89 .croki89-TCs-Apply-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html body.croki89 .croki89-TCs-Apply-section {
+    display: block !important;
+}
+
+html body.croki89 section.relative.bg-white section>div img[alt*="Lexie B2 Plus hearing aids showcase."] {
+    visibility: hidden;
+}
+
+html body.croki89 section.relative.bg-white section>div .space-y-8>div:not(.croki89-ab-container, .flex, .croki89-ab-hero-mobile_crp) {
+    display: none;
+}
+
+html body.croki89 section.relative.bg-white section>div .space-y-8>div.flex.flex-col {
+    margin-top: 0 !important;
+}
+
+html body.croki89 section.relative.bg-white section>div .space-y-8>div.flex.flex-col .mt-6{
+    margin-top: 20px !important;
+}
+
+html body.croki89 section.relative.bg-white section>div .space-y-8>div.flex.flex-col.items-center.lg\:items-start {
+    display: none !important;
+}
+
+html body.croki89 section.relative.bg-white section>div .space-y-8>div.flex.flex-col:not(.lg\:items-start) p {
+    display: none;
+}
