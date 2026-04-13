@@ -108,6 +108,7 @@ html body.CRO_8143 #ShippingProviderContent {
     /* margin-left: 1.2em; */
     /* padding-left: 0; */
     /* margin-right: 2.4em; */
+    display: none;
 }
 
 html body.CRO_8143 .u-billing-card-header {
@@ -166,6 +167,7 @@ html body.CRO_8143 #Block__BillingAddress .u-billing-card-body button:after {
     pointer-events: auto !important;
     position: relative;
     left: -12px;
+    font-weight: 700;
 }
 
 html body.CRO_8143 form .grid--external-bleed-x {
@@ -234,6 +236,10 @@ html body.CRO_8143 .dw-mod.cro_selected_shipping label {
 
     html body.CRO_8143 #content .content-row__item__body .paragraph-container #Block__SummaryContainer .order-summary-body-container.dw-mod label .accordion-static-summary-header-text {
         padding-left: 0;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 21px;
     }
 
     html body.CRO_8143 #content .content-row__item__body .paragraph-container #Block__SummaryContainer .order-summary-block-container label:before {
@@ -250,7 +256,7 @@ html body.CRO_8143 .dw-mod.cro_selected_shipping label {
         top: 6px;
         color: #1841c4;
         -webkit-text-stroke: 1px #d3d3d3;
-        margin-left: 5px;
+        margin-left: 12px;
     }
 
     html body.CRO_8143 #content .content-row__item__body .paragraph-container #Block__SummaryContainer .order-summary-block-container label {
@@ -261,6 +267,10 @@ html body.CRO_8143 .dw-mod.cro_selected_shipping label {
 
     html body.CRO_8143 #content .content-row__item__body .paragraph-container #Block__SummaryContainer .order-summary-block-container label .accordion-static-summary-header-total {
         margin-left: auto;
+        font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 25.6px;
     }
 
     html body.CRO_8143 div#Block__StepBar {
@@ -340,7 +350,7 @@ html body.CRO_8143 .dw-mod.cro_selected_shipping label {
         /* background: #212121; */
         width: 100%;
         display: flex;
-        margin: 12px 1.2em;
+        margin: 32px 1.2em;
     }
 
     html body.CRO_8143 .cro_payement_button button {
@@ -371,4 +381,75 @@ body.CRO_8143.cro_details_hide #Block__OrderContainerRow {
 
 html body.CRO_8143 #content .content-row__item__body .paragraph-container #Block__Shipping .u-shipping-method:nth-child(1)>.dw-mod {
     border-right: none;
+}
+
+.cro_pickup_button button {
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    border-width: 1px;
+    border-color: #212121;
+    border-radius: 0;
+    background-color: #212121;
+    width: 100%;
+    letter-spacing: .1rem;
+    min-height: 38px;
+    line-height: 20px;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 200ms;
+    vertical-align: top;
+    word-spacing: initial;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.cro_pickup_button {
+    margin-top: 15px;
+    display: flex;
+}
+
+.cro_store_pickup_message>i {
+    /* width: 100%; */
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+}
+
+.cro_store_pickup_message {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    width: 100%;
+    padding: 24px;
+    border: 1px solid #D3D3D3;
+}
+
+.cro_store_location.cro_location_updated+i {
+    display: none;
+}
+
+.table.cart-table:before {
+    content: 'Cart Items';
+    font-family: "DM Sans", sans-serif;
+    color: #333;  
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+html body.CRO_8143 #content .content-row__item__body .paragraph-container #Block__SummaryContainer .order-summary-body-container.dw-mod .table.cart-table{
+  margin-top: 16px;
+}
+
+html body.CRO_8143 .cro_delivery_message span{
+    color: #222;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
 }
