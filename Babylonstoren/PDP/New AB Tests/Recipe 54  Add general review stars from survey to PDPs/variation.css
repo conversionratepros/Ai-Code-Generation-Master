@@ -2,7 +2,7 @@ html body.cro54 .cro54-rating-bar {
     width: 100%;
     background: #F0F5FA;
     padding: 24px 48px;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     margin-top: 24px;
 }
@@ -66,10 +66,17 @@ html body.cro54 .d-block.ng-star-inserted.cro-product-detail {
 
     html body.cro54 .cro54-rating-bar {
         padding: 24px 20px;
+        margin-bottom: 16px;
     }
 
     html body.cro54 .cro54-rating-content{
         padding: 0;
+    }
+
+      html body.cro54 .cro54-rating-text {
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.64px;
     }
 
 }
