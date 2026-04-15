@@ -38,10 +38,10 @@
             }
         }
 
-        var newParts = `<div class="cro54-rating-bar">
+        var newParts = `<div class="cro54-rating-bar" style="display: none;">
   <div class="cro54-rating-content">
     <div class="cro54-rating-icon-star">
-        <img src="https://i.ibb.co.com/Sw4BXBPw/Frame-6.png" alt="stars" class="stars">
+        <img src="https://crp-clients-images.s3.af-south-1.amazonaws.com/babylonstoren/Recipe+54+%7C+Add+general+review+stars+from+survey+to+PDPs/cro-54-star-image.png" alt="stars" class="stars">
     </div>
     <div class="cro54-rating-text-parent">
       <div class="cro54-rating-text"><span>Rated 4.86/5</span> by 5,000+ happy customers across all products on our online shop.</div>
@@ -62,9 +62,9 @@
                 });
             });
 
-            waitForElement(".x-page-row.ng-star-inserted", function () {
+            waitForElement(".x-product-view #product-view > [xsticky] + .x-page-row", function () {
                 if (!document.querySelector(".cro54-rating-bar")) {
-                    insertHtml(".x-page-row.ng-star-inserted", newParts, "beforebegin");
+                    insertHtml(".x-product-view #product-view > [xsticky] + .x-page-row", newParts, "afterend");
                 }
             });
 
