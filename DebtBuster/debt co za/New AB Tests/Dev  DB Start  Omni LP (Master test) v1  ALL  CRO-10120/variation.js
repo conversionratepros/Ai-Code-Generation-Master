@@ -473,7 +473,7 @@
             </svg>
                     </div>
                     <p class="testimonial-text">
-                    “DebtBusters reduced my monthly instalment by more than half. I now tell all my friends and family about them.”
+                    “DebtBusters reduced my monthly instalment by more than half. I now tell all my friends and family about them. Life is exciting again.”
                     </p>
 
                     <div class="cro-10120-testimonial-user">
@@ -519,9 +519,9 @@
     <div class="cro-10120-faq-inner">
   <h2 class="cro-10120-faq-title">FAQ’s</h2>
 
-  <div class="cro-10120-faq-item">
+  <div class="cro-10120-faq-item item-1">
     <div class="cro-10120-faq-question">
-      <span>How long does debt review take?</span>
+      <span>What is debt consolidation</span>
       <span class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
   <path d="M0.666626 0.666687L8.66663 8.66669L16.6666 0.666687" stroke="#1A202C" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -529,13 +529,14 @@
       </span>
     </div>
     <div class="cro-10120-faq-answer">
-      Usually it takes between 30 to 60 days depending on your case and documents.
+      Debt consolidation simplifies payments by combining all your debts into one monthly payment.
+      <P class="cro-10120-faq-answer-text">However, consolidation loans usually come with high interest rates, while  a consolidated debt counselling plan reduces your interest rate, saving you money on your repayments each month.</P>
     </div>
   </div>
 
-  <div class="cro-10120-faq-item">
+  <div class="cro-10120-faq-item item-2">
     <div class="cro-10120-faq-question">
-      <span>Will debt review affect my credit score?</span>
+      <span>What will happen when I complete the a. form on this page?</span>
       <span class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
   <path d="M0.666626 0.666687L8.66663 8.66669L16.6666 0.666687" stroke="#1A202C" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -543,13 +544,13 @@
       </span>
     </div>
     <div class="cro-10120-faq-answer">
-      Yes, temporarily it may affect your credit score but helps you recover financially.
+      Once you submit the form, one of our friendly agents will give you a call - usually within a minute. They'll take the time to understand your current situation and work with you to assess the best debt management solution for your needs.
     </div>
   </div>
 
-  <div class="cro-10120-faq-item">
+  <div class="cro-10120-faq-item item-3">
     <div class="cro-10120-faq-question">
-      <span>What happens to my accounts during debt review?</span>
+      <span>Can I trust DebtBusters with my personal information?</span>
       <span class="icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
   <path d="M0.666626 0.666687L8.66663 8.66669L16.6666 0.666687" stroke="#1A202C" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -557,9 +558,38 @@
       </span>
     </div>
     <div class="cro-10120-faq-answer">
-      Your accounts are restructured and payments are managed under a new plan.
+      Yes. We are a fully accredited and registered debt counselling company (NCRDC2484), a member of the National Debt Counsellors' Association, and fully compliant with the Protection of Personal Information Act. Our website's SSL security further ensures your data is always safe with us.
     </div>
   </div>
+
+  <div class="cro-10120-faq-item item-4">
+    <div class="cro-10120-faq-question">
+      <span>Does DebtBusters provide loans?</span>
+      <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
+  <path d="M0.666626 0.666687L8.66663 8.66669L16.6666 0.666687" stroke="#1A202C" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+      </span>
+    </div>
+    <div class="cro-10120-faq-answer">
+      No, our debt consolidation solution does not require you to take on any new loans. We understand that many people associate "debt consolidation" with a consolidation loan – a single, new loan often issued at a very high interest rate (sometimes 25% or more) to cover existing debts. We offer a different, often more beneficial, path for consumers.
+    </div>
+  </div>
+
+    <div class="cro-10120-faq-item item-5">
+    <div class="cro-10120-faq-question">
+      <span>Will my credit score be affected by signing up with DebtBusters</span>
+      <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="none">
+  <path d="M0.666626 0.666687L8.66663 8.66669L16.6666 0.666687" stroke="#1A202C" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+      </span>
+    </div>
+    <div class="cro-10120-faq-answer">
+      Studies show that debt counselling significantly boosts credit scores. Consumers who commit to and complete the process will not only benefit from lower monthly debt repayments through a debt restructuring plan but will also achieve significantly higher credit scores compared to over-indebted individuals who should have signed up, but did not.
+    </div>
+  </div>
+
   </div>
 
 </div>`;
@@ -672,11 +702,11 @@
   var newHeroSecton = `<div class="cro-10120-New-Hero-Banner">
   <div class="cro-10120-New-Hero-Banner-wrapper">
     <div class="cro-10120-New-Hero-Banner-img Desktop" style="display: none;">
-      <img class="cro-Hero-Banner-img" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-3.png" alt="">
+      <img class="cro-Hero-Banner-img" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-13.jpg" alt="">
     </div>
 
     <div class="cro-10120-New-Hero-Banner-img Mobile" style="display: none;">
-      <img class="cro-Hero-Banner-img-mob" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-4.png" alt="">
+      <img class="cro-Hero-Banner-img-mob" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-14.jpg" alt="">
     </div>
 
     <div class="cro-10120-debt-section-3rd" style="display: none;">
@@ -701,6 +731,17 @@
         
         function init() {
             addClass("body", variation_name)
+            waitForElement("#Whatsapp", function () {
+                var buttons = ["#Callback", "#Online", "#Whatsapp"];
+                buttons.forEach(function (btnSelector) {
+                    var btn = document.querySelector(btnSelector);
+                    if (!btn) return;
+
+                    btn.addEventListener("click", function () {
+                        setTimeout(checkSpans, 100);
+                    });
+                });
+            });
 
 
             var currentUrl = window.location.href;
@@ -763,12 +804,21 @@
             waitForElement('picture.hidden.md\\:block', function () {
                 if (!document.querySelector('.cro-hero-updated')) {
                     var el = document.querySelector('picture.hidden.md\\:block');
-                    
+                    var desktopImg = '';
+
+                    if (document.body.classList.contains('omni-lp')) {
+                        desktopImg = 'https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-9.jpg';
+                    }
+
+                    if (document.body.classList.contains('image-text-lp2')) {
+                        desktopImg = 'https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-11.jpg';
+                    }
+
                     el.outerHTML = `
                     <picture class="w-full h-full hidden md:block cro-hero-updated">
                         <img 
                         class="w-full lg:h-full object-cover"
-                        src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-1.png"
+                        src="${desktopImg}"
                         alt="Hero Image"
                         >
                     </picture>
@@ -779,12 +829,21 @@
             waitForElement('picture.block.md\\:hidden', function () {
                 if (!document.querySelector('.cro-hero-mobile-updated')) {
                     var el = document.querySelector('picture.block.md\\:hidden');
-                    
+                    var mobileImg = '';
+
+                    if (document.body.classList.contains('omni-lp')) {
+                        mobileImg = 'https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-10.jpg';
+                    }
+
+                    if (document.body.classList.contains('image-text-lp2')) {
+                        mobileImg = 'https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-12.jpg';
+                    }
+
                     el.outerHTML = `
                     <picture class="w-full h-full block md:hidden cro-hero-mobile-updated">
                         <img 
                         class="w-full h-1/3 sm:h-auto md:h-full object-cover object-center"
-                        src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Debt-co-za/ATF+%7C+Reduced+Hero+Image+%7C+ALL+%7C+CRO-10120/CRO-DB-10120-2.png"
+                        src="${mobileImg}"
                         alt="Mobile Hero Image"
                         >
                     </picture>
@@ -938,6 +997,51 @@
 			});
 
 
+            // -----------Form--Value----------
+
+            waitForElement(".cro-10120-from-button #buttonsWrapper > div:last-child input", function () {
+                var btn = document.querySelector(".cro-10120-from-button #buttonsWrapper > div:last-child input");
+                
+                if (btn) {
+                    btn.value = "Chat on WhatsApp";
+                }
+            });
+
+            waitForElement(".cro-10120-from-name-parent>input", function () {
+                var input = document.querySelector(".cro-10120-from-name-parent>input");
+                input && (input.placeholder = "Your first name");
+            });
+
+            waitForElement(".cro-10120-from-surname-parent>input", function () {
+                var input = document.querySelector(".cro-10120-from-surname-parent>input");
+                input && (input.placeholder = "Your surname");
+            });
+
+            waitForElement(".cro-10120-from-idNumber-parent>input", function () {
+                var input = document.querySelector(".cro-10120-from-idNumber-parent>input");
+                input && (input.placeholder = "SA ID number");
+            });
+
+            waitForElement(".cro-10120-from-email-parent>input", function () {
+                var input = document.querySelector(".cro-10120-from-email-parent>input");
+                input && (input.placeholder = "Email address");
+            });
+
+            waitForElement(".cro-10120-from-conNumber-parent>input", function () {
+                var input = document.querySelector(".cro-10120-from-conNumber-parent>input");
+                input && (input.placeholder = "Mobile number");
+            });
+
+            waitForElement(".cro-10120-btn-tnc a", function () {
+                var links = document.querySelectorAll(".cro-10120-btn-tnc a");
+
+                links.forEach(function(link) {
+                    link.setAttribute("target", "_blank");
+                    link.setAttribute("rel", "noopener noreferrer");
+                });
+            });
+
+
             // ---------Youtude---Video---------
 
 
@@ -984,18 +1088,40 @@
                 });
 
                 });
+        }
 
+        var fieldMap = [
+            { input: "#name", error: "#errName" },
+            { input: "#surname", error: "#errSurname" },
+            { input: "#idNumber", error: "#errIDNumber" },
+            { input: "#contactNumber", error: "#errTel" },
+            { input: "#email", error: "#errEmail" }
+        ];
 
+        function checkSpans() {
+            fieldMap.forEach(function (field) {
+                var inputEl = document.querySelector(field.input);
+                var errorEl = document.querySelector(field.error);
 
+                if (!inputEl || !errorEl) return;
+
+                var spanText = errorEl.textContent.trim();
+
+                if (spanText) {
+                // span is empty
+                inputEl.classList.add("cro_error");
+                } else {
+                // span has error text
+                inputEl.classList.remove("cro_error");
+                }
+            });
         }
         
         function croEventHandkler() {
-            live("selector", "click", function () {});
-
+            
             live('.cro-10120-faq-question', 'click', function () {
                 var parent = this.parentElement;
 
-                // check already active কিনা
                 if (parent.classList.contains('active')) {
                 parent.classList.remove('active');
                 } else {
@@ -1021,12 +1147,25 @@
                 const iframeWrapper = document.querySelector("#cVideo");
                 if (iframeWrapper) iframeWrapper.innerHTML = "";
             });
+
+            live(".cro-10120-from-button #buttonsWrapper > div:nth-child(3)", "click", function () {
+                var btn = document.querySelector(".cro-10120-from-button #buttonsWrapper > div:nth-child(3) input#Whatsapp")
+                if (btn) {
+                    btn.click();
+                }
+            });
+
+            // live('#Callback", "#Online", "#Whatsapp', 'click', function (e) {
+            //     console.log('click')
+            //     setTimeout(checkSpans, 100);
+            // });
+
         }
         
-        if (!window.cro_t_20) {
-             addScript();
+        if (!window.cro_t_20_debt) {
+            addScript();
             croEventHandkler();
-            window.cro_t_20 = true;
+            window.cro_t_20_debt = true;
         }
         
         waitForElement('body', init);
