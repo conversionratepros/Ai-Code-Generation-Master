@@ -1,0 +1,396 @@
+/* ===== cro_t_20_carousel – CSS ===== */
+:root {
+    --cro20-blue: #0d2741;
+    /* active indicator + arrows */
+    --cro20-grey: #d9d9d9;
+    /* inactive indicator */
+    --cro20-text: #0e0e0e;
+    --cro20-muted: #5a5a5a;
+}
+
+html[cro-datapath="/za"] body.cro_t_20_carousel x-channel-home x-page-layout .channel-content>x-section-with-image:nth-child(1) {
+    display: none;
+}
+
+
+html[cro-datapath="/za"] body.cro_t_20_carousel .cro20-wrap {
+    position: relative;
+    display: block !important;
+    /* margin: 0 0 32px; */
+}
+
+/* Main container */
+.cro20-carousel {
+    position: relative;
+    /* overflow: hidden; */
+    border-radius: 16px;
+    background: #fff;
+    /* box-shadow: 0 2px 14px rgba(0, 0, 0, .05); */
+}
+
+/* Track simply holds height (slides are absolutely stacked) */
+.cro20-track {
+    position: relative;
+    min-height: clamp(360px, 52vw, 560px);
+}
+
+/* Slides are stacked for fade effect */
+.cro20-slide {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 320ms ease;
+}
+
+/* Active slide (shown) */
+.cro20-slide.cro20-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* If JS hasn’t toggled yet, show the first slide to avoid a blank flash */
+.cro20-track:not(.cro20-ready) .cro20-slide:first-child {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Left media / Right copy */
+.cro20-media {
+    background: #f4e0cf;
+    /* fallback tone; replace via inline bg-image per slide */
+    background-size: cover;
+    background-position: center;
+}
+
+.cro20-copy {
+    display: flex;
+    align-items: center;
+    padding: clamp(16px, 4vw, 48px);
+    background: #f9fbfd;
+}
+
+
+a.cro20-cta {
+    margin-top: 1rem;
+    padding: 18px 22px;
+    border-radius: 4px;
+    background: #09223F;
+    color: #FFF;
+    font-family: Nunito Sans, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 2.1px;
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+.cro20-copy>div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cro20-cta:focus-visible {
+    outline: 3px solid #9ec3ff;
+    outline-offset: 2px;
+}
+
+/* Default arrow styling (absolute center style – overridden in wrapper) */
+.cro20-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* width: 42px;
+    height: 42px; */
+    /* border-radius: none; */
+    border: none;
+    background: #09223F;
+    color: #fff;
+    /* display: grid; */
+    place-items: center;
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+}
+
+.cro20-arrow[aria-disabled="true"] {
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.cro20-prev {
+    left: -60px;
+    top: -20px;
+}
+
+.cro20-next {
+    right: -60px;
+    top: -20px;
+}
+
+.cro20-arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Indicators */
+.cro20-indicators {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cro20-dot {
+    width: 20px;
+    height: 2px;
+    /* inactive */
+    border-radius: 100px;
+    /* background: var(--cro20-grey); */
+    background: #F0F5FA;
+    transition: all 220ms ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cro20-dot[aria-current="true"] {
+    width: 39px;
+    background: #09223F;
+    /* active wider */
+    /* background: var(--cro20-blue); */
+}
+
+/* Wrapper for both arrows + indicators (bottom-right bar) */
+.cro_btn_wrapper {
+    position: absolute;
+    right: clamp(12px, 7vw, 80px);
+    bottom: 10%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Inside wrapper, arrows should be inline (not centered absolute) */
+.cro_btn_wrapper .cro20-arrow {
+    /* position: static; */
+    transform: none;
+}
+
+/* Indicators inline within wrapper */
+.cro_btn_wrapper .cro20-indicators {
+    position: static;
+}
+
+
+
+.cro20-pre {
+    color: #222;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 20px;
+    /* 125% */
+    letter-spacing: 2.4px;
+    margin-bottom: 12px;
+}
+
+h2.cro20-h {
+    font-family: "Cormorant Garamond", serif;
+    color: #222;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    /* 125% */
+    letter-spacing: 0.64px;
+    margin-bottom: 1rem;
+    text-transform: none;
+}
+
+p.cro20-sh {
+    letter-spacing: .04em;
+    color: #4A4A4A;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 24px;
+    /* 150% */
+}
+
+a.cro20-cta {
+    margin-top: 1rem;
+}
+
+button#cro20-prev {
+    background-color: transparent;
+}
+
+button#cro20-prev svg {
+    color: #09223F;
+}
+
+.cro20-arrow[aria-disabled="true"] svg {
+    color: #F0F5FA !important;
+}
+
+.cro20-media img {
+    display: none;
+}
+
+
+span.cro20_mobile_arrow {
+    display: none;
+}
+
+.cro_mobile_btn_wrapper {
+    display: flex;
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+    .cro20-slide {
+        grid-template-columns: 1fr;
+    }
+
+    .cro20-media {
+        min-height: 62vw;
+    }
+
+    p.cro20-sh,
+    .cro20-pre {
+        font-size: 14px;
+    }
+
+    h2.cro20-h {
+        font-size: 28px;
+    }
+
+    .cro20-copy {
+        padding: 3rem;
+        /* padding-bottom: 0; */
+    }
+
+    .cro20-track {
+        /* min-height: calc(100vh); */
+    }
+
+    .cro20-copy {
+        align-items: center;
+    }
+
+    .cro_btn_wrapper .cro20-arrow {
+        position: static;
+    }
+
+    .cro_btn_wrapper .cro20-indicators {
+        position: static;
+    }
+
+    .cro_btn_wrapper {
+        justify-content: center;
+    }
+
+    .cro_btn_wrapper {
+        margin: auto;
+        position: relative;
+        right: 0;
+        left: 0;
+        padding: 0 3rem;
+        margin-bottom: 30px;
+    }
+
+    button#cro20-prev {
+        display: none;
+    }
+
+
+
+    button#cro20-next {
+        display: none;
+    }
+
+
+    .cro20-dot[aria-current="true"] {
+        width: 50%;
+    }
+
+    .cro20-dot {
+        width: 15%;
+    }
+
+    div#cro20-indicators {
+        width: 100%;
+        padding-bottom: 1rem;
+    }
+
+    .cro20-copy {
+        background-color: #FFFFFF;
+    }
+
+    .cro20_mobile_arrow {
+        position: relative;
+        border: none;
+        background: #09223F;
+        color: #fff;
+        /* display: grid; */
+        place-items: center;
+        cursor: pointer;
+        user-select: none;
+        z-index: 2;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1 / 1;
+    }
+
+    .cro_mobile_btn_wrapper {
+        margin-top: 2rem;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        /* margin-bottom: 2rem; */
+    }
+
+    span.cro20_mobile_arrow {
+        display: block;
+    }
+
+    section.cro20-slide:not(.cro20-active) {
+        visibility: hidden;
+        height: 0;
+    }
+
+    .cro20-slide {
+        position: relative;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .cro20-track {
+        min-height: clamp(500px, 52vw, 560px);
+    }
+
+    .cro20-copy {
+        align-items: flex-start;
+    }
+
+}

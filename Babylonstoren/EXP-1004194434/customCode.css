@@ -1,0 +1,88 @@
+html body.cro54 .cro54-rating-bar {
+    width: 100%;
+    background: #F0F5FA;
+    padding: 24px 48px;
+    display: flex !important;
+    justify-content: center;
+    margin-top: 32px; 
+}
+
+html body.cro54 .cro54-rating-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+html body.cro54 .stars {
+  height: 16.24px;
+}
+
+html body.cro54 .cro54-rating-text {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Nunito Sans,sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 24px;
+  letter-spacing: 0.64px;
+}
+
+html body.cro54 .cro54-rating-text strong {
+  font-weight: bold;
+}
+
+html body.cro54 .cro54-rating-text span {
+  font-weight: 700;
+}
+
+html body.cro54 .cro54-rating-icon-star {
+  width: 97px;
+  height: 16.5px;
+}
+
+html body.cro54 .d-block.ng-star-inserted.cro-product-detail {
+  margin-top: 0 !important;
+  border-top: 0 !important;
+}
+
+html body.cro54 .cro54-rating-bar + .x-page-row .container-fluid > .border-top-color {
+    border-top: none;
+    /* margin-top: 0 !important; */
+}
+
+@media (max-width:991px){
+    html body.cro54 .cro54-rating-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    html body.cro54 .cro54-rating-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    html body.cro54 .cro54-rating-text span {
+        display: block;
+    }
+
+    html body.cro54 .cro54-rating-bar {
+        padding: 24px 20px;
+        margin-bottom: 16px;
+        margin-top: 24px;
+    }
+
+    html body.cro54 .cro54-rating-content{
+        padding: 0;
+    }
+
+      html body.cro54 .cro54-rating-text {
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.64px;
+    }
+
+}

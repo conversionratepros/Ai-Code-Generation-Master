@@ -1,0 +1,17 @@
+@media (min-width:992px) {
+
+    html body.croki6 .x-product-card .actions {
+        height: 60px !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+    }
+
+    html body.croki6 .x-product-card .body-content {
+        height: auto !important;
+    }
+
+    html body.croki6.shop .x-product-card .view, 
+    html body.croki6.shop .x-product-card .view.adding-to-cart{
+        padding-bottom: 60px !important; 
+    }
+}
