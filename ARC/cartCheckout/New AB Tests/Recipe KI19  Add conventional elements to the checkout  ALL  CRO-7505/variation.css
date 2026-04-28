@@ -1,0 +1,977 @@
+@media (min-width: 992px) {
+    html body.cro_My_Bag #Cart .card>table {
+        width: 66.666667%;
+        /* padding-right: 80px !important; */
+        margin-right: 88px;
+        margin-top: 32px;
+    }
+
+    html body.cro_My_Bag #Cart .card>.grid.u-border-top {
+        -ms-flex: 1 0 auto;
+        -webkit-flex: 1 0 0%;
+        flex: 1 0 0%;
+        width: 0;
+    }
+
+    html body.cro_My_Bag #Cart .card>.grid.u-border-top .grid__col-sm-3 {
+        width: 100%;
+        /* padding-left: 88px; */
+        padding: 24px;
+        height: fit-content;
+    }
+
+    html body.cro_My_Bag #Cart .card>.grid.u-border-top .grid__col-sm-9 {
+        display: none;
+    }
+}
+
+html body.cro_My_Bag #Cart .card {
+    display: inline-block;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    zoom: 1;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    /* word-spacing: -.43em !important; */
+    list-style-type: none;
+    /* gap: 88px; */
+}
+
+html body.cro_My_Bag #Cart .card>.grid.u-border-top .grid__col-sm-3 {
+    background: #FAFAFA;
+}
+
+html body.cro_My_Bag #Cart .card>.grid.u-border-top {
+    border-top: none;
+    margin-top: 32px;
+}
+
+html body.cro_My_Bag #Cart .card>table tbody>tr:nth-child(1) {
+    border-top: none;
+}
+
+html body.cro_My_Bag #Cart .card-header {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+html body.cro_My_Bag #Cart .card>.grid:not(.u-border-top) .grid__col--line-top {
+    padding: 0;
+    border-top: none !important;
+}
+
+html body.cro_My_Bag #Cart .card>table tbody>tr:last-child {
+    border-bottom: 1px solid #d3d3d3;
+}
+
+#OrderLines {
+    border-bottom: 1px solid #d3d3d3;
+}
+
+html body.cro_My_Bag #Block__StepNavigation button {
+    display: none;
+}
+
+html body.cro_My_Bag #Block__StepNavigation a span i {
+    display: none;
+}
+
+html body.cro_My_Bag #Block__StepNavigation a span {
+    display: flex;
+    min-height: 38px;
+    padding: 7.8px 29.8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #1841C4;
+    color: #1841C4;
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 1px;
+}
+
+html body.cro_My_Bag #Block__StepNavigation .card {
+    padding-left: 0;
+}
+
+
+html body.cro_My_Bag .cro_checkout_btn {
+    display: flex;
+    min-height: 38px;
+    padding: 7.8px 29.8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #212121;
+    background: #212121;
+    margin-top: 19px;
+    cursor: pointer;
+}
+
+html body.cro_My_Bag .cro_checkout_btn span {
+    color: #FFF;
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+@media (max-width: 1023px) {
+    html body.cro_My_Bag #Cart .card>.grid.u-border-top .grid__col-sm-9 {
+        width: 0;
+        padding: 0;
+    }
+
+    html body.cro_My_Bag #Cart .card>.grid.u-border-top .grid__col-sm-3 {
+        width: 100%;
+        background-color: transparent;
+        padding-bottom: 16px;
+        padding-top: 16px;
+    }
+
+    html body.cro_My_Bag #Cart .card>.grid.u-border-top {
+        margin-top: 0;
+        border-bottom: 1px solid #E3E3E3;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .u-pull--left.u-clear--left {
+        width: 100%;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation a span {
+        width: 100%;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .card {
+        padding-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    html body.cro_My_Bag #Cart .card-header>span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    html body.cro_My_Bag #Cart .card-header>span .mybasket {
+        margin-right: auto;
+    }
+
+
+
+
+    html body.cro_My_Bag #Block__StepNavigation .card .cro_checkout_btn {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+
+    html body.cro_My_Bag #Cart .card>.grid:not(.u-border-top) {
+        flex: 0;
+    }
+
+    html body.cro_My_Bag #Block__OrderContainerRow>div:not(#Block__StepNavigation) {
+        padding-bottom: 0;
+    }
+
+    html body.cro_My_Bag .paragraph-container.u-padding {
+        padding-bottom: 0;
+    }
+
+    html body.cro_My_Bag #Cart .card>table {
+        margin-top: 24px !important;
+    }
+
+    html body.cro_My_Bag #Cart .card>table tr[id*="Orderline"]:not(.table__row--no-border, :first-child) {
+        border-top: 1px solid #BEBEBE;
+    }
+
+    html body.cro_My_Bag #Cart .card>table tr[id*="Orderline"]:not(.table__row--no-border, :first-child) td {
+        padding-top: 32px;
+    }
+}
+
+/* ----------------- */
+
+html body.cro_Delivery .order-summary-body-container table:before {
+    content: 'Cart Items';
+    color: #333;
+    font-family: inherit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+}
+
+html body.cro_Delivery .order-summary-body-container table {
+    margin-top: 21px;
+    border-top: 1px solid #d3d3d3;
+}
+
+html body.cro_Delivery .order-summary-body-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+}
+
+html body.cro_Delivery .order-summary-body-container table {
+    order: 5;
+}
+
+html body.cro_Delivery div#Block__SummaryContainer {
+    background: #FAFAFA;
+    height: fit-content;
+}
+
+html body.cro_Delivery .order-summary-header-container.dw-mod,
+html body.cro_Delivery .order-summary-body-container {
+    background-color: transparent;
+}
+
+html body.cro_Delivery .u-billing-card-body button[title*="Already a customer?"]:focus,
+html body.cro_Delivery .u-billing-card-body button[title*="Already a customer?"]:hover,
+html body.cro_Delivery .u-billing-card-body button[title*="Already a customer?"]:active {
+    background-color: transparent;
+}
+
+html body.cro_Delivery .u-billing-card-body button[title*="Already a customer?"] {
+    border: 1px solid #1841C4;
+    color: #1841C4;
+    text-align: center;
+    font-family: inherit;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 1px;
+    background-color: transparent;
+}
+
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) {
+    display: none;
+}
+
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left.u-clear--left button {
+    display: flex;
+    min-height: 38px;
+    padding: 7.8px 29.8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #1841C4;
+    color: #1841C4;
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 1px;
+}
+
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left.u-clear--left button i {
+    display: none;
+}
+
+html body.cro_Delivery #Block__AddressContainer .grid {
+    /* flex: auto !important; */
+    flex: unset !important;
+}
+
+html body.cro_Delivery .order-summary-body-container table {
+    /* padding-top: 20px; */
+    margin-bottom: 20.4px;
+}
+
+html body.cro_Delivery .order-summary-body-container>.u-ta-left {
+    padding-bottom: 20.4px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+html body.cro_Delivery .cro_payment_btn span {
+    display: flex;
+    min-height: 38px;
+    padding: 7.8px 29.8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border: 1px solid #212121;
+    background: #212121;
+    border-bottom: 1px sold red !important;
+    color: #fff;
+}
+
+
+@media (max-width: 991px) {
+
+    /* ------------- */
+    html body.cro_Delivery label.accordion-showbefore::before {
+        left: unset;
+        right: -18px;
+        top: -3px;
+    }
+
+    html body.cro_Delivery label.accordion-showbefore {
+        padding: 0;
+    }
+
+    html body.cro_Delivery label.accordion-showbefore .accordion-static-summary-header-text {
+        padding-left: 0;
+        color: #212121;
+        font-family: inherit;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 21px;
+        /* 131.25% */
+    }
+
+    html body.cro_Delivery label.accordion-showbefore .accordion-static-summary-header-total {
+        padding-right: 0;
+    }
+
+    html body.cro_Delivery .order-summary-body-container {
+        padding: 10px 0 !important;
+        margin-left: 1.2em;
+        margin-right: 2.4em;
+    }
+
+    html body.cro_Delivery div#Block__StaticSummary {
+        border-bottom: 1px solid #E3E3E3;
+        border-top: 1px solid #E3E3E3;
+    }
+
+    html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left.u-clear--left,
+    html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left.u-clear--left button {
+        width: 100%;
+    }
+
+    html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) {
+        display: block;
+        margin-bottom: 16px;
+        width: 100%;
+    }
+
+    html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) button {
+        width: 100%;
+    }
+
+    html body.cro_Delivery .u-shipping-card-header.dw-mod,
+    html body.cro_Delivery .u-billing-card-header.dw-mod {
+        margin-right: 1.2em;
+    }
+
+    html body.cro_Delivery .u-margin--radio-button-indent {
+        padding-left: 22px;
+        margin-left: 0;
+    }
+
+    html body.cro_Delivery .card-header.mybasket-mobile-header {
+        display: none;
+    }
+
+    html body.cro_Delivery .table.cart-table.u-margin-bottom.u-border-bottom.dw-mod {
+        margin-top: 10px;
+    }
+
+
+    html body.cro_Delivery .card-header.u-no-border.dw-mod.cro_delivery_heading {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
+
+html body.cro_Payment div#Block__SummaryContainerRow {
+    background: #FAFAFA;
+}
+
+html body.cro_Payment .order-summary-header-container.dw-mod {
+    background: transparent;
+    margin: 0;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+}
+
+html body.cro_Payment .order-summary-body-container {
+    background: transparent;
+
+}
+
+html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod table {
+    order: 5;
+}
+
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>.form__field-group {
+    display: none;
+}
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) .form__field-combi,
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) .form__field-combi {
+    width: 50%;
+    flex-direction: column;
+    order: 1;
+}
+
+
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group),
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) {
+    display: flex;
+    width: 100%;
+}
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) #btnCouponRemove,
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardRemove {
+    order: 2;
+}
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) #CouponApply,
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardApply {
+    order: 3;
+    height: fit-content;
+    min-height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7.8px 29.8px;
+    width: 166px !important;
+}
+
+
+
+html body.cro_Payment #btnCouponRemove,
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardRemove {
+    display: inline-flex;
+    align-items: center;
+}
+
+html body.cro_Payment #btnCouponRemove::after,
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardRemove::after {
+    content: '\f2ed';
+    /* FA close icon */
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    color: #1841C4;
+    margin-left: 0;
+    font-size: 18px;
+}
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) #btnCouponRemove,
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardRemove {
+    font-size: 0;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    min-height: unset !important;
+    padding: 10px;
+    width: min-content;
+    margin-right: 5px;
+    max-height: 40px;
+}
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) #CouponApply:after {
+    content: 'Apply Coupon';
+    color: #1841C4;
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardApply:after {
+    content: 'Apply Gift Card';
+    color: #1841C4;
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) #CouponApply,
+html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardApply {
+    font-size: 0;
+    background-color: transparent;
+    width: fit-content !important;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    letter-spacing: normal;
+    border: 1px solid #1841C4;
+}
+
+html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-group,
+    html body.cro_Payment #ClicksRegistrationForm,
+    html body.cro_Payment [style*="padding-top"]) {
+    display: flex;
+    /* width: 100%; */
+    gap: 16px;
+}
+
+html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-group,
+    html body.cro_Payment #ClicksRegistrationForm,
+    html body.cro_Payment [style*="padding-top"]) .form__field-combi {
+    width: 50%;
+    flex-direction: column;
+}
+
+html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-group,
+    html body.cro_Payment #ClicksRegistrationForm,
+    html body.cro_Payment [style*="padding-top"]) #OrderRoyaltyApply {
+    color: #1841C4;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    background-color: transparent;
+    width: fit-content !important;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    letter-spacing: normal;
+    border: 1px solid #1841C4;
+    height: fit-content;
+    min-height: fit-content;
+}
+
+html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-group,
+    html body.cro_Payment #ClicksRegistrationForm,
+    html body.cro_Payment [style*="padding-top"]) #OrderRoyaltyApply:hover {
+    color: #1841C4 !important;
+}
+
+
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left:not(.u-clear--left) {
+    display: none;
+}
+
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button i {
+    display: none;
+}
+
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button {
+    display: flex;
+    min-height: 38px;
+    padding: 7.8px 29.8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #1841C4;
+    color: #1841C4;
+    text-align: center;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 1px;
+}
+
+html body.cro_Payment #Block__StepNavigation .card {
+    padding-left: 0;
+}
+
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left {
+    padding-left: 1.2em;
+}
+
+html body.cro_Payment .cro_pay_btn span {
+    display: flex;
+    min-height: 38px;
+    padding: 7.8px 29.8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border: 1px solid #212121;
+    background: #212121;
+    color: #fff;
+}
+
+html body.cro_Payment .order-summary-body-container>.u-ta-left {
+    padding-bottom: 20.4px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+html body .card-header.u-no-border.dw-mod.cro_delivery_heading>span {
+    display: flex;
+    gap: 15px;
+}
+
+html body .card-header.u-no-border.dw-mod.cro_delivery_heading {
+    width: 100%;
+    border-bottom: 1px solid #E3E3E3;
+    margin-left: 1.5em;
+    padding-left: 0;
+    padding-bottom: 16px;
+    margin-bottom: 36px;
+}
+
+
+
+html body.cro_Payment .card-header.u-no-border.dw-mod.cro_payment_heading {
+    display: block;
+}
+
+html body.cro_Payment .card-header.u-no-border.dw-mod.cro_payment_heading>span {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+html body.cro_Payment .card-header.u-no-border.dw-mod.cro_payment_heading {
+    width: 100%;
+    border-bottom: 1px solid #E3E3E3;
+    margin-left: 1.5em;
+    padding-left: 0;
+    padding-bottom: 16px;
+    margin-bottom: 36px;
+}
+
+html body.cro_Payment .order-summary-body-container table:before {
+    content: 'Cart Items';
+    color: #333;
+    font-family: inherit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+}
+
+html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod table {
+    margin-top: 21px;
+    border-top: 1px solid #d3d3d3;
+}
+
+html body.cro_Payment .u-coupon-card-header.dw-mod,
+html body.cro_Payment.u-voucher-card-header.dw-mod,
+html body.cro_Payment .u-payment-card-header.dw-mod {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+@media (max-width: 991px) {
+
+    html body.cro_Payment div#Block__SummaryContainerRow {
+        background-color: #fff;
+    }
+
+    html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group),
+    html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) {
+        flex-wrap: wrap;
+    }
+
+    html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) .form__field-combi,
+    html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) .form__field-combi {
+        width: calc(100% - 35px);
+    }
+
+    html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) #CouponApply,
+    html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardApply {
+        width: 100% !important;
+    }
+
+    html body.cro_Payment .u-coupon-card-body.dw-mod>div:not(.form__field-group) #btnCouponRemove,
+    html body.cro_Payment #Block__GiftCard .u-voucher-card-body.dw-mod>div:not(.form__field-group) #btnGiftCardRemove {
+        width: 25px !important;
+        padding-left: 5px;
+        margin-right: 0 !important;
+    }
+
+    html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-group, html body.cro_Payment #ClicksRegistrationForm, html body.cro_Payment [style*="padding-top"]) .form__field-combi {
+        width: 100%;
+    }
+
+    html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-group, html body.cro_Payment #ClicksRegistrationForm, html body.cro_Payment [style*="padding-top"]) {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-group, html body.cro_Payment #ClicksRegistrationForm, html body.cro_Payment [style*="padding-top"]) #OrderRoyaltyApply {
+        width: 100% !important;
+    }
+
+    html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button {
+        width: 100%;
+    }
+
+    html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left {
+        width: 100%;
+    }
+
+    html body.cro_Payment #Block__StepNavigation .card .u-pull--left:not(.u-clear--left) {
+        display: block;
+        width: 100%;
+        margin-bottom: 16px;
+        padding-left: 1.2em;
+    }
+
+    html body.cro_Payment #Block__StepNavigation .card .u-pull--left:not(.u-clear--left) button {
+        width: 100%;
+    }
+
+    div#Block__StaticSummary {
+        border-bottom: 1px solid #E3E3E3;
+        border-top: 1px solid #E3E3E3;
+        background: #FAFAFA;
+    }
+
+    html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod {
+        padding: 0 !important;
+        margin-left: 1.2em;
+        margin-right: 2.4em;
+    }
+
+    html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod label {
+        padding: 10px 0;
+    }
+
+
+    html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod label.accordion-showbefore:before {
+        right: -10px;
+        left: unset;
+    }
+
+    html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod .accordion-static-summary-header-text {
+        padding-left: 0;
+        color: #212121;
+        font-family: inherit;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 21px;
+        /* 131.25% */
+    }
+
+    html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod .accordion-static-summary-header-total {
+        padding-right: 10px;
+    }
+
+    html body.cro_Payment div#Block__SummaryContainerRow .card-header:not(.u-checkout-header-main) {
+        border-top-left-radius: unset !important;
+        border-top-right-radius: unset;
+        margin-right: 1.2em;
+    }
+
+    #Block__GiftCard {
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+    }
+
+    div#Block__Payment {
+        padding-top: 1.5em;
+    }
+
+    #Block__Payment .u-payment-card-header {
+        margin-right: 1.2em;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    html body.cro_Payment .card-header.u-no-border.dw-mod.cro_payment_heading {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    html body.cro_Payment .card-header.mybasket-mobile-header.dw-mod {
+        display: none;
+    }
+
+    html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod table {
+        margin-top: 10px;
+    }
+}
+
+.cro-progress-wrap {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    box-sizing: border-box;
+}
+
+.cro-progress-bar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cro-progress-line {
+    position: absolute;
+    top: 14px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: #E0E0E7;
+    z-index: 1;
+}
+
+.cro-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #0D3DCC;
+    transition: width 0.3s ease;
+}
+
+.cro-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    min-width: 80px;
+}
+
+.cro-step-circle {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 4px;
+    border-radius: 50%;
+    /* border: 2px solid #bdbdbd; */
+    background: #fff;
+    color: #212121;
+    font-size: 13px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.cro-step-label {
+    font-size: 14px;
+    color: #898F8F;
+    transition: color 0.3s ease;
+}
+
+.cro-step:not(.active) .cro-step-circle {
+    background-color: #E0E0E7;
+}
+
+.cro-step.active .cro-step-circle {
+    border-color: #0D3DCC;
+    color: #1841C4;
+    border: 2px solid;
+}
+
+.cro-step.active .cro-step-label {
+    color: #0D3DCC;
+}
+
+.cro-step.completed .cro-step-circle {
+    background: #1f4fff;
+    border-color: #1f4fff;
+    color: #fff;
+}
+
+.cro-step.completed .cro-step-label {
+    color: #898F8F;
+}
+
+.cro-step-check {
+    display: none;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.cro-step.completed .cro-step-check {
+    display: block;
+    width: 28px;
+    height: 28px;
+}
+
+.cro-step.completed .cro-step-number {
+    display: none;
+}
+
+
+
+
+.cro_My_Bag div#Block__StepBar,
+.cro_Delivery div#Block__StepBar,
+.cro_Payment div#Block__StepBar {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .cro-progress-wrap {
+        padding-bottom: 16px;
+        margin-bottom: 0;
+        border-bottom: 1px solid #d3d3d3;
+        margin-top: 0;
+    }
+
+    #CouponCode,
+    #LsGiftCardCode,
+    #RoyaltyNumber {
+        padding-top: 7.8px;
+        padding-bottom: 7.8px;
+    }
+}
+
+.cro_pay_btn,
+.cro_payment_btn {
+    cursor: pointer;
+}
+
+.cro-step.active .cro-step-circle .cro-step-number {
+    color: #1841C4;
+}
