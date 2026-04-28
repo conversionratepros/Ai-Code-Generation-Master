@@ -1,0 +1,1766 @@
+.landing .relative picture.absolute{
+  display:none;
+}
+
+/* =========1st Page========== */
+
+.omni-lp section.cro-debt-3-reviews.bg-dark-green-new{
+    display: none;
+}
+
+
+/* ---------trust-badges----- */
+
+  .cro-10120-trust-badges{
+       background: #F8F9FA;
+          padding: 16px 0px;
+  }
+  .cro-10120-trust-badges-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    border: 0;
+    /* flex-direction: column; */
+}
+
+.cro-10120-trust-item {
+    width: 33.33%;
+    min-height: 60px;
+    padding: 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: relative;
+    flex-direction: column;
+}
+
+
+.cro-10120-trust-item p {
+    margin: 0;
+    color: #2D3748;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 112.5% */
+    font-family: "Open Sans";
+}
+
+.cro-10120-trust-image img {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 767px) {
+    .cro-10120-trust-badges {
+        flex-direction: column;
+    }
+
+    .omni-lp .cro-10120-trust-item {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .cro-10120-trust-item.cro-10120-trust-image {
+        display: none;
+    }
+    
+    .omni-lp .cro-10120-trust-item{
+        flex-direction: row;
+        padding: 0;
+        min-height: auto;
+        gap: 8px;
+    }
+
+    .omni-lp .cro-10120-trust-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .omni-lp .cro-10120-trust-icon svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .omni-lp .cro-10120-trust-item p {
+        color: #2D3748;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+        font-family: "Open Sans";
+    }
+
+    .omni-lp .cro-10120-trust-badges-inner {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .omni-lp .cro-10120-trust-badges{
+        padding: 24px;
+        padding-bottom: 0;
+  }
+
+    .image-text-lp2 .cro-10120-trust-item p {
+        margin: 0;
+        color: #2D3748;
+        text-align: center;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+    }
+
+}
+
+
+/* ---------benefits-badges----- */
+
+    .cro-10120-benefits{
+        background: #F8F9FA;
+        padding: 20px 0;
+    }
+
+    .cro-10120-benefits-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 16px;
+    /* border: 1px solid #D9E2EC; */
+    border-radius: 4px;
+    flex-wrap: wrap;
+}
+
+.cro-10120-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.cro-10120-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cro-10120-text {
+    color: #2D3748;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 112.5% */
+    font-family: "Open Sans";
+}
+
+@media (max-width: 767px) {
+    .omni-lp .cro-10120-benefits {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 0;
+    }
+
+    .omni-lp .cro-10120-text {
+        color: #2D3748;
+        text-align: center;
+        font-family: "Open Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 128.571% */
+    }
+    
+    .omni-lp .cro-10120-benefits-inner {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 24px 24px;
+        gap: 20px;
+    }
+}
+
+
+
+
+
+
+/* -----------TESTIMONIALS---------- */
+
+.cro-10120-testimonial-section{
+  background: #5BAC43;
+  padding: 80px 20px;
+}
+
+.cro-10120-testimonial-wrapper{
+  max-width:1200px;
+  margin:auto;
+}
+
+.cro-10120-testimonial-heading{
+  text-align:center;
+  color:#fff;
+  margin-bottom: 50px;
+}
+
+.cro-10120-testimonial-heading h2{
+  /* font-size:42px; */
+  font-weight:700;
+  color: #FFF;
+  text-align: center;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1; /* 120% */
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-family: "Open Sans";
+}
+
+.cro-10120-testimonial-heading p{
+  color: #FFF;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 150% */
+  font-family: "Open Sans";
+}
+
+.cro-10120-testimonial-slider{
+  display:flex;
+  gap:24px;
+}
+
+.cro-10120-testimonial-card{
+  background:#fff;
+  border-radius:18px;
+  padding: 30px 24px;
+  flex:1;
+  min-width: 330px;
+}
+
+.stars{
+  display:flex;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.testimonial-text{
+  font-size:18px;
+  line-height:1.7;
+  color:#1f2937;
+  min-height: 100px;
+  color: #2D3748;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 25.2px; /* 140% */
+  margin-bottom: 20px;
+  font-family: "Open Sans";
+}
+
+.cro-10120-testimonial-user{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top: 20px;
+}
+
+.cro-10120-testimonial-user img{
+  width: 48px;
+  height: 48px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.cro-10120-testimonial-user h4{
+  font-size:16px;
+  color: #2D3748;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px; /* 150% */
+  margin: 0;
+  font-family: "Open Sans";
+}
+
+.cro-10120-testimonial-user span{
+  font-size:14px;
+  color:#777;
+  color: #718096;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+  font-family: "Open Sans";
+}
+
+.cro-10120-watch-btn{
+  margin-left:auto;
+  border:1px solid #5BAC43;
+  background:#fff;
+  color:#5BAC43;
+  border-radius: 100px;
+  padding: 10px 16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  font-size:14px;
+  color: #2D3748;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+  font-family: "Open Sans";
+}
+
+.cro-10120-testimonial-user-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cro-10120-testimonial-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-text {
+  flex-grow: 1;
+  margin: 0;
+  min-height: auto;
+}
+
+/* @media (max-width:1161px){
+  .testimonial-text {
+    min-height: 126px;
+}
+} */
+
+@media (max-width:1099px){
+    
+  .cro-10120-testimonial-slider{
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:10px;
+  }
+  
+  .cro-10120-testimonial-section{
+    padding-right: 0px;
+  }
+    
+    .cro-10120-testimonial-card.card-3{
+        margin-right:16px;
+    }
+}
+
+/* Mobile Slider */
+@media (max-width:767px){
+
+  .cro-10120-testimonial-heading h2{
+    color: #FFF;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 38px;
+  }
+
+  .testimonial-slider::-webkit-scrollbar{
+    display:none;
+  }
+
+  .cro-10120-testimonial-card{
+    max-width: 290px;
+    flex:0 0 auto;
+    scroll-snap-align:start;
+    min-width: 290px;
+  }
+
+  .cro-10120-testimonial-text{
+    min-height:auto;
+    font-size:16px;
+  }
+
+  .watch-btn{
+    padding:8px 14px;
+    font-size:13px;
+  }
+
+    button.cro-10120-watch-btn {
+        width: 100%;
+        margin-left:0;
+        justify-content:center;
+    }
+
+    .cro-10120-testimonial-user {
+        display: flex;
+        flex-wrap:wrap;
+        gap:12px;
+        row-gap: 20px;
+    }
+
+    .cro-10120-testimonial-heading {
+        margin-bottom: 30px;
+        padding-right: 16px;
+    }
+
+    .cro-10120-testimonial-section {
+        padding: 24px 16px;
+        padding-right: 0;
+    }
+}
+
+/* ---2nd-Page-trust-badges--Update----
+------------------------------------ */
+
+@media (max-width:767px) {
+    .cro-10120-trust-badges-inner {
+      justify-content: center;
+    }
+
+    .cro-10120-trust-item {
+      width: 50%;
+  }
+  
+}
+
+
+
+/* -----New-review-section--2nd-Page---- */
+
+.cro-10120-debt-review {
+    background: #FFF;
+    padding: 48px 0;
+}
+
+.cro-10120-debt-review-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 16px;
+    background: #F8F9FA;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cro-10120-debt-revie-heading-text {
+    color: #1A202C;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 48px; /* 120% */
+}
+
+.cro-10120-debt-revie-Sub_heading-text {
+    color: #718096;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; /* 150% */
+}
+@media(max-width:767px){
+    .cro-10120-debt-review {
+        padding: 0;
+    }
+
+    .cro-10120-debt-review-wrapper{
+        padding:24px 16px;
+        gap: 4px;
+    }
+
+    .cro-10120-debt-revie-heading-text {
+    color: #1A202C;
+    text-align: center;
+    /* font-family: Roboto; */
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 48px; /* 150% */
+}
+
+.cro-10120-debt-revie-Sub_heading-text {
+    color: #718096;
+    text-align: center;
+    /* font-family: Roboto; */
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; /* 150% */
+}
+}
+
+/* -----Faq---Section-----
+----------------------- */
+
+.cro-10120-faq {
+  max-width: 100%;
+  margin: auto;
+  background: #F8F9FA;
+}
+
+.cro-10120-faq-title {
+  text-align: center;
+  /* margin-bottom: 20px; */
+  align-self: stretch;
+  color: #1A202C;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 48px; /* 120% */
+  margin: 0;
+  font-family: "Open Sans";
+}
+
+.cro-10120-faq-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.cro-10120-faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  cursor: pointer;
+  color: #1A202C;
+  /* font-family: Roboto; */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 125% */
+  font-family: "Open Sans";
+  gap: 24px;
+}
+
+.cro-10120-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 15px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+  font-family: "Open Sans";
+    color: #1A202C;
+}
+
+.cro-10120-faq-answer p.cro-10120-faq-answer-text {
+    overflow: hidden;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    font-family: "Open Sans";
+    color: #1A202C;
+    margin: 0;
+    margin-top: 16px;
+}
+
+.cro-10120-faq-item.active .cro-10120-faq-answer {
+  max-height: 200px;
+  padding: 12px 0 16px;
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.cro-10120-faq-item.active .icon {
+  transform: rotate(180deg);
+}
+
+.cro-10120-faq-inner {
+    padding: 30px;
+}
+
+.cro-10120-faq-item:last-child {
+    border-bottom: none;
+}
+
+@media (max-width:767px) {
+        h2.cro-10120-faq-title {
+        color: #1A202C;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 48px; /* 150% */
+        margin-bottom: 10px;
+    }
+
+    .cro-10120-faq-question {
+        padding: 8px 0;
+    }
+
+    .cro-10120-faq-inner {
+        padding: 24px;
+    }
+
+    .cro-10120-faq-answer {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 125% */
+}
+    .cro-10120-faq-answer p.cro-10120-faq-answer-text {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 125% */
+}
+    
+}
+
+
+/* ------------Hero---Banner----------- */
+
+
+/* ----------------------------------
+==================================
+------Form top Label Update------- */
+
+.cro-10120-from-name-parent:before {
+    content:"Name *";
+    color: #718096;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.5px;
+    display: flex;
+    margin-bottom:6px;
+}
+
+.cro-10120-from-surname-parent:before {
+    content:"Surname *";
+    color: #718096;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.5px;
+    display: flex;
+    margin-bottom:6px;
+}
+
+.cro-10120-from-idNumber-parent:before {
+    content:"ID Number *";
+    color: #718096;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.5px;
+    display: flex;
+    margin-bottom:6px;
+}
+
+.cro-10120-from-conNumber-parent:before {
+    content:"Contact Number *";
+    color: #718096;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.5px;
+    display: flex;
+    margin-bottom:6px;
+}
+
+.cro-10120-from-email-parent:before {
+    content:"Email *";
+    color: #718096;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.5px;
+    display: flex;
+    margin-bottom:6px;
+}
+
+
+
+
+
+/* --------Form--------- */
+
+.cro-10120-from-name-parent>input,
+.cro-10120-from-surname-parent>input,
+.cro-10120-from-conNumber-parent>input,
+.cro-10120-from-email-parent>input,
+.cro-10120-from-idNumber-parent>input {
+    margin-bottom: 22.5px !important;
+    height: 100%;
+    max-height: 42px !important;
+    padding: 11px !important;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0 !important;
+    background: #FFF;
+}
+
+
+.cro-10120-from-name-parent>input.cro_error,
+.cro-10120-from-surname-parent>input.cro_error,
+.cro-10120-from-conNumber-parent>input.cro_error,
+.cro-10120-from-email-parent>input.cro_error,
+.cro-10120-from-idNumber-parent>input.cro_error {
+    margin-bottom: 10px !important;
+}
+
+
+.cro-10120-from-name-parent>input.cro_error + #errName,
+.cro-10120-from-surname-parent>input.cro_error + #errSurname,
+.cro-10120-from-conNumber-parent>input.cro_error + #errTel,
+.cro-10120-from-email-parent>input.cro_error + #errEmail,
+.cro-10120-from-idNumber-parent>input.cro_error + #errIDNumber {
+    margin-bottom: 10px !important;
+}
+
+
+.cro-10120-from-name-parent,
+.cro-10120-from-surname-parent,
+.cro-10120-from-conNumber-parent,
+.cro-10120-from-email-parent,
+.cro-10120-from-idNumber-parent {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+
+.cro-10120-from-name-parent {
+    width: 100%;
+    max-width: 48%;
+    order:1;
+}
+
+.cro-10120-from-surname-parent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 48%;
+    order: 2;
+}
+
+form#main-form {
+    position: relative;
+    display: flex;
+    flex-direction:column;
+}
+
+.cro-10120-from-idNumber-parent {
+    order: 3;
+}
+
+.cro-10120-from-conNumber-parent {
+    order: 4;
+    width: 100%;
+    max-width: 48%;
+}
+
+.cro-10120-from-email-parent {
+    order: 5;
+    position: absolute;
+    bottom: 124px;
+    right: 0;
+    max-width: 48%;
+    width: 100%;
+}
+
+.button.cro-10120-btn-tnc {
+    order: 6;
+    color: rgba(113, 128, 150, 0.80);
+    text-align: center;
+    /* font-family: Roboto; */
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+}
+
+
+ /* --------Irror ----Mes--------
+===============================
+=============================== */
+
+
+
+
+#callback-form #errName, 
+#callback-form #errSurname, 
+#callback-form #errTel, 
+#callback-form #errEmail, 
+#callback-form #errIDNumber{
+    color : red;
+    font-size: 14px;
+    line-height: 16px;
+    /* margin-bottom: 10px; */
+}
+
+.debtbusters-form .hidden.redirect-msg{
+    color: #1A202C;
+}
+
+
+
+@media(max-width:425px){
+.button.cro-10120-btn-tnc {
+    text-align: left;
+}
+}
+
+.button.cro-10120-from-button {
+    order: 8;
+}
+
+div#callback-form {
+    width: 100%;
+    min-width: 744px;
+    padding: 30px;
+    border-radius: 16px;
+    background: #FFF;
+    margin-left: -9rem;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+@media(max-width:1279px) and (min-width:1024px){
+    div#callback-form {
+        min-width: 600px;
+    }
+    
+    .cro-10120-debt-section {
+        min-width: 600px;
+        max-width: 600px;
+    }
+}
+
+@media(max-width:1023px) and (min-width:768px){
+    div#callback-form {
+        width: 100%;
+        min-width: 500px;
+        padding: 30px;
+        border-radius: 16px;
+        background: #FFF;
+        margin-left: -13rem;
+        margin-bottom: 0;
+        /* margin-top: 14rem; */
+    }
+
+    .cro-10120-debt-section {
+        min-width: 500px;
+        max-width: 500px;
+    }
+
+    .image-text-lp2 div#callback-form,
+    .image-text-lp2 .cro-10120-debt-section{
+        margin-left: -9rem;
+    }
+
+    .omni-lp div#callback-form,
+    .omni-lp .cro-10120-debt-section{
+        margin-left: -9rem;
+    }
+    
+}
+
+.cro-10120-from-button #buttonsWrapper > div {
+    height: 100%;
+    max-height: 50px;
+    width: 100%;
+}
+
+.cro-10120-from-button #buttonsWrapper > div input{
+    padding: 15px 24px !important;
+    width: 100% !important;
+    min-width: 211px !important;
+    background: #F39200;
+}
+
+.cro-10120-from-button #buttonsWrapper > div:last-child input {
+    /* min-width: 230px !important; */
+    /* position: unset; */
+}
+
+.cro-10120-from-button #buttonsWrapper .right-arrow-icon{
+    top: 0;
+    right: -5px;
+    margin: 0;
+    width: 14px;
+    height: 14px;
+}
+
+.cro-10120-from-button #buttonsWrapper > div:nth-child(3){
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 15px 24px !important;
+    width: 100% !important;
+    /* min-width: 211px !important; */
+    background: #F39200;
+    border-radius: 9999px !important;
+    /* width: 100%; */
+    min-width: 230px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cro-10120-from-button #buttonsWrapper > div:nth-child(3):before{
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50"><path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 29.079097 3.1186875 32.88588 4.984375 36.208984 L 2.0371094 46.730469 A 1.0001 1.0001 0 0 0 3.2402344 47.970703 L 14.210938 45.251953 C 17.434629 46.972929 21.092591 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 21.278025 46 17.792121 45.029635 14.761719 43.333984 A 1.0001 1.0001 0 0 0 14.033203 43.236328 L 4.4257812 45.617188 L 7.0019531 36.425781 A 1.0001 1.0001 0 0 0 6.9023438 35.646484 C 5.0606869 32.523592 4 28.890107 4 25 C 4 13.390466 13.390466 4 25 4 z M 16.642578 13 C 16.001539 13 15.086045 13.23849 14.333984 14.048828 C 13.882268 14.535548 12 16.369511 12 19.59375 C 12 22.955271 14.331391 25.855848 14.613281 26.228516 L 14.615234 26.228516 L 14.615234 26.230469 C 14.588494 26.195329 14.973031 26.752191 15.486328 27.419922 C 15.999626 28.087653 16.717405 28.96464 17.619141 29.914062 C 19.422612 31.812909 21.958282 34.007419 25.105469 35.349609 C 26.554789 35.966779 27.698179 36.339417 28.564453 36.611328 C 30.169845 37.115426 31.632073 37.038799 32.730469 36.876953 C 33.55263 36.755876 34.456878 36.361114 35.351562 35.794922 C 36.246248 35.22873 37.12309 34.524722 37.509766 33.455078 C 37.786772 32.688244 37.927591 31.979598 37.978516 31.396484 C 38.003976 31.104927 38.007211 30.847602 37.988281 30.609375 C 37.969311 30.371148 37.989581 30.188664 37.767578 29.824219 C 37.302009 29.059804 36.774753 29.039853 36.224609 28.767578 C 35.918939 28.616297 35.048661 28.191329 34.175781 27.775391 C 33.303883 27.35992 32.54892 26.991953 32.083984 26.826172 C 31.790239 26.720488 31.431556 26.568352 30.914062 26.626953 C 30.396569 26.685553 29.88546 27.058933 29.587891 27.5 C 29.305837 27.918069 28.170387 29.258349 27.824219 29.652344 C 27.819619 29.649544 27.849659 29.663383 27.712891 29.595703 C 27.284761 29.383815 26.761157 29.203652 25.986328 28.794922 C 25.2115 28.386192 24.242255 27.782635 23.181641 26.847656 L 23.181641 26.845703 C 21.603029 25.455949 20.497272 23.711106 20.148438 23.125 C 20.171937 23.09704 20.145643 23.130901 20.195312 23.082031 L 20.197266 23.080078 C 20.553781 22.728924 20.869739 22.309521 21.136719 22.001953 C 21.515257 21.565866 21.68231 21.181437 21.863281 20.822266 C 22.223954 20.10644 22.02313 19.318742 21.814453 18.904297 L 21.814453 18.902344 C 21.828863 18.931014 21.701572 18.650157 21.564453 18.326172 C 21.426943 18.001263 21.251663 17.580039 21.064453 17.130859 C 20.690033 16.232501 20.272027 15.224912 20.023438 14.634766 L 20.023438 14.632812 C 19.730591 13.937684 19.334395 13.436908 18.816406 13.195312 C 18.298417 12.953717 17.840778 13.022402 17.822266 13.021484 L 17.820312 13.021484 C 17.450668 13.004432 17.045038 13 16.642578 13 z M 16.642578 15 C 17.028118 15 17.408214 15.004701 17.726562 15.019531 C 18.054056 15.035851 18.033687 15.037192 17.970703 15.007812 C 17.906713 14.977972 17.993533 14.968282 18.179688 15.410156 C 18.423098 15.98801 18.84317 16.999249 19.21875 17.900391 C 19.40654 18.350961 19.582292 18.773816 19.722656 19.105469 C 19.863021 19.437122 19.939077 19.622295 20.027344 19.798828 L 20.027344 19.800781 L 20.029297 19.802734 C 20.115837 19.973483 20.108185 19.864164 20.078125 19.923828 C 19.867096 20.342656 19.838461 20.445493 19.625 20.691406 C 19.29998 21.065838 18.968453 21.483404 18.792969 21.65625 C 18.639439 21.80707 18.36242 22.042032 18.189453 22.501953 C 18.016221 22.962578 18.097073 23.59457 18.375 24.066406 C 18.745032 24.6946 19.964406 26.679307 21.859375 28.347656 C 23.05276 29.399678 24.164563 30.095933 25.052734 30.564453 C 25.940906 31.032973 26.664301 31.306607 26.826172 31.386719 C 27.210549 31.576953 27.630655 31.72467 28.119141 31.666016 C 28.607627 31.607366 29.02878 31.310979 29.296875 31.007812 L 29.298828 31.005859 C 29.655629 30.601347 30.715848 29.390728 31.224609 28.644531 C 31.246169 28.652131 31.239109 28.646231 31.408203 28.707031 L 31.408203 28.708984 L 31.410156 28.708984 C 31.487356 28.736474 32.454286 29.169267 33.316406 29.580078 C 34.178526 29.990889 35.053561 30.417875 35.337891 30.558594 C 35.748225 30.761674 35.942113 30.893881 35.992188 30.894531 C 35.995572 30.982516 35.998992 31.07786 35.986328 31.222656 C 35.951258 31.624292 35.8439 32.180225 35.628906 32.775391 C 35.523582 33.066746 34.975018 33.667661 34.283203 34.105469 C 33.591388 34.543277 32.749338 34.852514 32.4375 34.898438 C 31.499896 35.036591 30.386672 35.087027 29.164062 34.703125 C 28.316336 34.437036 27.259305 34.092596 25.890625 33.509766 C 23.114812 32.325956 20.755591 30.311513 19.070312 28.537109 C 18.227674 27.649908 17.552562 26.824019 17.072266 26.199219 C 16.592866 25.575584 16.383528 25.251054 16.208984 25.021484 L 16.207031 25.019531 C 15.897202 24.609805 14 21.970851 14 19.59375 C 14 17.077989 15.168497 16.091436 15.800781 15.410156 C 16.132721 15.052495 16.495617 15 16.642578 15 z"></path></svg>');
+    height: 20px;
+    width: 20px;
+    display: block;
+    position: unset;
+    filter: brightness(0) invert(1);
+    margin-right: 2px;
+}
+
+.cro-10120-from-button #buttonsWrapper > div:nth-child(3) > input{
+    padding: 0 !important;
+    border-radius: 0;
+    /* width: 156px !important; */
+    min-width: 140px !important;
+    max-width: 140px;
+}
+
+.cro-10120-from-button #buttonsWrapper i.whatsapp-icon {
+    display: none;
+}
+
+
+@media(max-width:767px){
+
+    div#callback-form {
+        min-width: 100%;
+        margin-left: 0;
+    }
+
+}
+
+@media(max-width:639px){
+
+    div#callback-form {
+        border-radius: 0;
+    }
+
+}
+
+
+
+
+
+@media(max-width:1023px){
+    .cro-10120-from-surname-parent {
+        position: unset;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .cro-10120-from-name-parent {
+        max-width: 100%;
+    }
+
+    .cro-10120-from-conNumber-parent {
+        max-width: 100%;
+    }
+
+    .cro-10120-from-email-parent {
+        position: unset;
+        max-width: 100%;
+    }
+
+   #buttonsWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+       margin-top: 16px;
+    }
+    
+    #buttonsWrapper > div:nth-child(1),
+    #buttonsWrapper > div:nth-child(2) {
+        width: 48%;
+        margin: 0 !important;
+    }
+    
+    #buttonsWrapper > div:nth-child(3) {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    
+}
+
+
+
+
+
+
+
+/* Form---Text */
+
+.cro-10120-form-heading-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 21px;
+}
+
+.cro-10120-form-heading-text {
+    color: #1A202C;
+    text-align: left;
+    /* font-family: Roboto; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    font-family: "Open Sans";
+}
+
+.cro-10120-form-heading-icon {
+    width: 100%;
+    max-width: 145px;
+    height: 49px;
+}
+
+@media (max-width:767px){
+.cro-10120-form-heading-icon {
+    display: none;
+}
+.cro-10120-form-mobile-icons {
+    display: block !important;
+}
+
+.cro-10120-form-mobile-icons-1 {
+    width: 100%;
+    max-width: 160px;
+}
+
+.cro-10120-form-mobile-icons-2 {
+    width: 100%;
+    max-width: 140px;
+}
+
+.cro-10120-form-mobile-icons-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 16px;
+}
+}
+
+/* ------------Control------- */
+/* ---------------------------------
+================================== */
+
+#callback-form + .lead{
+  display: none;
+}
+
+#callback-form h1.hidden{
+  display: none;
+}
+
+#callback-form h1.block{
+   display: none;  
+}
+
+#callback-form .debtbusters-form{
+  padding: 0;
+}
+
+#callback-form picture{
+  display: none;
+}
+
+.omni-lp .overflow-hidden .mb-5.w-full{
+    display:none;
+}
+
+.image-text-lp2 .overflow-hidden .mb-5.w-full{
+    display:none;
+}
+
+.cro-10120-btn-tnc .underline:first-child{
+    font-size:0;
+    line-height: 0;
+}
+
+.cro-10120-btn-tnc .underline:first-child:after{
+    content:"Privacy Policy";
+    /* color: rgba(113, 128, 150, 0.80); */
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    color: #718096;
+}
+
+.cro-10120-btn-tnc .underline:last-child{
+    font-size:0;
+    line-height: 0;
+}
+
+.cro-10120-btn-tnc .underline:last-child:after{
+    content:"POPIA & Consent";
+    /* color: rgba(113, 128, 150, 0.80); */
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    color: #718096;
+}
+
+@media (max-width:639px){
+    .overflow-hidden .relative.container.pt-5{
+        padding-left:0;
+        padding-right:0;
+    }
+}
+
+
+
+
+
+
+
+/* --------------------------------- 
+      ---------#3rd_Page------- 
+---------------------------------- */
+
+
+.brand-lp3 .cro-10120-testimonial-card.card-3 {
+    display: none;
+}
+
+@media (max-width:1099px){
+    .brand-lp3 .cro-10120-testimonial-section {
+        padding-right: 20px;
+    }
+}
+
+@media (max-width:767px){
+    .brand-lp3 .cro-10120-testimonial-section {
+        padding-right: 0px;
+    }
+
+    .brand-lp3 .cro-10120-testimonial-card {
+        max-width: 50%;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        min-width: 290px;
+    }
+
+    .brand-lp3 .cro-10120-testimonial-card.card-2 {
+        margin-right: 16px;
+    }
+}
+
+@media (max-width:500px){
+
+    .brand-lp3 .cro-10120-testimonial-card {
+        max-width: 290px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        min-width: 290px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* outer section */
+.cro-10120-debt-section {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  width: 100%;
+  background: #FFF;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 24px;
+  margin-left: -9rem;
+  min-width: 744px;
+}
+
+
+
+@media(max-width:1279px){  
+    /* .cro-10120-debt-section {
+        min-width: 600px;
+        max-width: 600px;
+    } */
+
+    .cro-10120-from-button #buttonsWrapper > div input {
+        min-width: 100px !important;
+    }
+}
+
+@media(max-width:1279px) and (min-width:1024px){
+    .cro-10120-debt-section {
+        min-width: 600px;
+        max-width: 600px;
+    }
+}
+
+@media(max-width:1023px) and (min-width:768px){
+    .cro-10120-debt-section {
+        min-width: 500px;
+        max-width: 500px;
+        margin-left: -13rem;
+        margin-top: 14rem;
+        margin-bottom: 32px;
+    }
+    .cro-hero-updated {
+        background-color: #f1f1f1;
+    }
+    
+}
+
+/* card wrapper */
+.cro-10120-debt-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* title */
+.cro-10120-debt-title {
+  color: #1A202C;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  font-family: "Open Sans";
+}
+
+/* sub text */
+.cro-10120-debt-subtext {
+  color: #718096;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 150% */
+  font-family: "Open Sans";
+  margin: 0;
+}
+
+.omni-lp .cro-10120-debt-title.title-2,
+.omni-lp .cro-10120-debt-title.title-3,
+.omni-lp .cro-10120-debt-subtext.subtext-2,
+.omni-lp .cro-10120-debt-subtext.subtext-3,
+.omni-lp .cro-10120-debt-subtext.mobile{
+    display:none;
+}
+
+.image-text-lp2 .cro-10120-debt-title.title-1,
+.image-text-lp2 .cro-10120-debt-title.title-3,
+.image-text-lp2 .cro-10120-debt-subtext.subtext-1,
+.image-text-lp2 .cro-10120-debt-subtext.subtext-3,
+.image-text-lp2 .cro-10120-debt-subtext.mobile{
+    display:none;
+}
+
+@media (max-width: 1023px){
+
+    .cro-10120-debt-title{
+        color: #1A202C;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    .cro-10120-debt-subtext {
+        color: #718096;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 27px;
+    }
+
+    /* .cro-10120-debt-section */
+}
+
+/* 📱 mobile responsive */
+@media (max-width: 767px) {
+
+  .cro-10120-debt-section {
+        max-width: 340px;
+        margin-left: 0;
+        margin-top: 14rem;
+        padding: 10px 24px 10px 16px;
+        width: 100%;
+        min-width: 340px;
+        margin-left: auto;
+        margin-bottom: 32px;
+    }
+
+  /* .cro-10120-debt-title {
+    font-size: 22px;
+  } */
+
+  /* .cro-10120-debt-subtext {
+    font-size: 14px;
+  } */
+}
+
+@media (max-width: 639px) {
+    .cro-10120-debt-section {
+        border-radius: 20px 0 0 20px;
+        margin-top: 13rem;
+    }
+
+    .omni-lp .cro-10120-debt-section {
+        margin-top: 5.7rem;
+    }
+
+    .image-text-lp2 .cro-10120-debt-section {
+        margin-top: 5.7rem;
+    }
+}
+
+
+
+.cro-10120-secure-Text-icon {
+    order: 8;
+}
+
+.cro-10120-secure-Text {
+    color: rgba(113, 128, 150, 0.70);
+    text-align: center;
+    /* font-family: Roboto; */
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.5px; /* 150% */
+}
+
+.cro-10120-secure-Text-icon-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.cro-10120-secure-Text-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.cro-10120-secure-Text-icon{
+    margin-top: 20px;
+}
+
+@media (max-width: 1023px){
+    .cro-10120-secure-Text-icon:not(.Mobile){
+        display: none;
+    }
+    
+    .cro-10120-secure-Text-icon.Mobile {
+        display: block !important;
+        order: 7;
+        margin-top: 16px;
+    }
+    
+    .Mobile .cro-10120-secure-Text-icon-wrapper{
+        gap: 8px;
+    }
+      
+}
+
+@media(max-width:384px){
+    .Mobile .cro-10120-secure-Text {
+        font-size: 12px;
+        text-align: left;
+    }
+}
+
+
+
+/* -----------Therd--banner---------
+=================================
+================================= */
+
+.brand-lp3 .relative.overflow-hidden > div.absolute{
+    position:unset;
+}
+
+.brand-lp3 .relative.overflow-hidden picture.cro-hero-updated{
+    display: none;
+}
+
+.brand-lp3 .relative.overflow-hidden picture.cro-hero-mobile-updated{
+    display: none;
+}
+
+.brand-lp3 .overflow-hidden .mb-5.w-full {
+    display: none;
+}
+
+.brand-lp3 .relative.overflow-hidden {
+    background: #F8F9FA;
+}
+
+.cro-10120-New-Hero-Banner-img.Desktop {
+    display: block !important;
+    width: 100%;
+    height: 225px;
+}
+
+img.cro-Hero-Banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.cro-10120-debt-section-3rd {
+    display: block !important;
+    position: absolute;
+    top: 42px;
+    /* left: 0; */
+    right: 7rem;
+    width: 744px;
+    padding: 30px;
+    border-radius: 20px;
+    background: #FFF;
+}
+
+.brand-lp3 .cro-10120-New-Hero-Banner {
+    position: relative;
+}
+
+h2.cro-10120-debt-title-3rd {
+    color: #1A202C;
+    font-family: Roboto;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    font-family: "Open Sans";
+}
+
+p.cro-10120-debt-subtext-3rd {
+    color: #718096;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; /* 150% */
+    margin: 0;
+    font-family: "Open Sans";
+}
+
+.cro-10120-debt-wrapper-3rd {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.brand-lp3 div#callback-form {
+    margin: 0 auto;
+    padding: 71px 30px;
+    border-radius: 0;
+    /* min-width: 100%; */
+    /* width: 100%; */
+    /* max-width: 100%; */
+}
+
+.brand-lp3 .relative.overflow-hidden .content {
+    margin: 0 auto;
+    width: 744px;
+}
+
+@media(max-width:1279px) and (min-width:1024px){
+    .cro-10120-debt-section-3rd {
+        right: 5rem;
+        width: 600px;
+    }
+}
+
+@media(max-width:1023px){
+
+.cro-10120-New-Hero-Banner-img.Desktop {
+    display: none !important;
+}
+
+.brand-lp3 section.cro-10120-trust-badges {
+    display: none;
+}
+
+
+.cro-10120-New-Hero-Banner-img.Mobile {
+    display: block !important;
+    width: 100%;
+    height: 400px;
+}
+
+img.cro-Hero-Banner-img-mob {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cro-10120-New-Hero-Banner {
+    position: unset !important;
+}
+
+.cro-10120-debt-section-3rd {
+    position: unset;
+    width: 100%;
+}
+    
+h2.cro-10120-debt-title-3rd {
+    color: #1A202C;
+    /* font-family: Roboto; */
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; /* 116.667% */
+}
+.brand-lp3 .relative.overflow-hidden .content {
+    width: 600px;
+}
+    
+}
+
+.brand-lp3 .cro-10120-form-heading-icon {
+    display: none;
+}
+
+.brand-lp3 .relative.overflow-hidden .container.pt-5{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+@media(max-width:767px){
+    .cro-10120-debt-section-3rd {
+        padding: 10px 24px;
+    }
+
+    .brand-lp3 .relative.overflow-hidden .content {
+        width: 100%;
+    }
+    .brand-lp3 .relative.overflow-hidden > picture{
+        display:none;
+    }
+
+    .brand-lp3 .relative.overflow-hidden .container.pt-5{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .brand-lp3 .relative.overflow-hidden > .absolute .absolute.from-black-translucent-light {
+        --tw-gradient-from: transparent !important;
+        --tw-gradient-to: transparent !important;
+        --tw-gradient-stops: transparent !important;
+    }
+
+    .brand-lp3 div#callback-form {
+        margin: 0 auto;
+        padding: 24px 32px;
+    }
+    
+    .brand-lp3 .cro-10120-form-heading-inner{
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width:639px){
+    .cro-10120-New-Hero-Banner-img.Mobile {
+        height: 200px;
+    }
+}
+
+
+
+
+
+
+
+
+/* Modal background */
+.cro-debt-3-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999999;
+  }
+  
+  /* Modal content */
+  .cro-debt-3-modal-content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Close button */
+  .cro-debt-3-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    width: 24px;
+    height: 24px;
+  }
+
+  .cro-debt-3-close span.icon.material-symbols-rounded {
+    cursor: pointer;
+    z-index: 9;
+    position: relative;
+    color: #fff;
+  }
+  
+  /* Video container */
+  .cro-debt-3-video-container {
+    padding-top: 56.25%; /* Aspect ratio for 16:9 video */
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 56.25%;
+    
+  }
+  
+  #cro-debt-3-videoModal iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  section.cro-debt-3-video {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.cro-debt-3-modalOpen.cro-debt-3-modal{
+    display: block !important;
+}
+
+.ytp-expand-pause-overlay .ytp-pause-overlay {
+    display: none;
+}
+
+:not(.ytp-mweb-player) .ytp-endscreen-content {
+    display: none;
+}
+
+.cro-debt-3-bg-dark-green-new .mr-5 b {
+    margin: 0 10px;
+}
+
+/* @media (min-width: 1600px) {
+    .cro-debt-3-modal-content {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+} */
+
+@media (min-width: 1024px) {
+    div#cro-debt-3-videoModal {
+        padding: 5rem;
+    }
+}
+
+@media (max-width: 1023px) {
+    div#cro-debt-3-videoModal {
+        padding: 2.5rem;
+    }
+}
+
+
+
+/* ---------Footer------- */
+
+.container.pt-5 p.mb-0{
+    color: #718096;
+    margin-top: 10px;
+}
+
+.cro-hours-wrapper {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+@media(max-width:767px){
+    .container.pt-5 p.mb-0{
+    margin-top: 15px;
+    }
+    
+    .cro-hours-wrapper > div:nth-child(1)  > div:nth-child(1){
+        margin-bottom: 13px
+    }
+    
+    .cro-hours-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 30px 24px;
+    }
+    .cro-hours-wrapper > div:nth-child(1){
+        border: none;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+        width: 100%;
+    }
+
+    .cro-hours-wrapper > div:nth-child(2) {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 10px;
+    }
+}
