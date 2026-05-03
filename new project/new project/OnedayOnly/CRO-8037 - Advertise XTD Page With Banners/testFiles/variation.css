@@ -1,0 +1,29 @@
+html body.CRO-8037_Banner_After_Every_4th_Row .cro-xtd-banner__link {
+    display: block;
+}
+
+html body.CRO-8037_Banner_After_Every_4th_Row .cro-xtd-banner__img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+html body.CRO-8037_Banner_After_Every_4th_Row .cro-xtd-banner--flexItem {
+    margin-bottom: 32px;
+    padding-left: 32px;
+    padding-right: 0px;
+    margin-top: 0;
+}
+
+html body.CRO-8037_Banner_After_Every_4th_Row .cro-xtd-banner {
+    width: 100%;
+    display: block;
+    flex: 0 0 100%;
+    grid-column: 1 / -1;
+}
+
+@media screen and (max-width: 767px) {
+    html body.CRO-8037_Banner_After_Every_4th_Row .cro-xtd-banner--flexItem {
+        padding-left: 16px;
+    }
+}
