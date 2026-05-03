@@ -1,0 +1,122 @@
+/* ─── Hide native save badge ──────────────────────────────────────────────── */
+
+body.cro-t-odo-12114 .savings-badge {
+    display: none !important;
+}
+
+/* ─── CRP Save Badge ──────────────────────────────────────────────────────── */
+/* Mobile: top-left, inline row — top:10px left:10px, padding:2px 8px */
+
+body.cro-t-odo-12114 .crp-12114-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 131;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    background: #e50e62;
+    color: #fff;
+    border-radius: 8px;
+    padding: 2px 8px;
+    pointer-events: none;
+    /* font-family: 'DM Sans', sans-serif; */
+    white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body.cro-t-odo-12114 .crp-12114-save {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+}
+
+body.cro-t-odo-12114 .crp-12114-pct {
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 16px;
+}
+
+/* Desktop: top-right, stacked — top:16px right:15px, padding:12px 10px */
+
+@media screen and (min-width: 1024px) {
+    body.cro-t-odo-12114 .crp-12114-badge {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        top: 16px;
+        left: auto;
+        right: 15px;
+        padding: 12px 10px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    body.cro-t-odo-12114 .crp-12114-save {
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 600;
+    }
+
+    body.cro-t-odo-12114 .crp-12114-pct {
+        font-size: 18px;
+        line-height: 17px;
+        white-space: nowrap;
+        font-weight: 700;
+    }
+}
+
+/* ─── Move pill container to bottom-left (native: bottom-right) ───────────── */
+
+body.cro-t-odo-12114 .css-1bpdoat {
+    right: auto !important;
+    left: 10px !important;
+}
+
+/* ─── Native pill restyling ───────────────────────────────────────────────── */
+/* Mobile: px-6px py-7px, 8px text, SemiBold, capitalize */
+
+body.cro-t-odo-12114 .pill.crp-12114-styled {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 100px !important;
+    /* font-family: 'DM Sans', sans-serif !important; */
+    font-weight: 600 !important;
+    font-size: 8px !important;
+    padding: 7px 8px !important;
+    text-transform: capitalize !important;
+    white-space: nowrap !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Desktop: p-8px, 12px text, Bold */
+
+@media screen and (min-width: 1024px) {
+    body.cro-t-odo-12114 .pill.crp-12114-styled {
+        font-weight: 700 !important;
+        font-size: 12px !important;
+        padding: 9px 8px !important;
+    }
+}
+
+body.cro-t-odo-12114 .pill.crp-12114-blue-pill {
+    color: #0093d0 !important;
+}
+
+body.cro-t-odo-12114 .pill.crp-12114-stock-pill {
+    color: #f26d2e !important;
+}
+
+body.cro-t-odo-12114 .pill.crp-12114-bs-pill {
+    color: #e2081b !important;
+}
+
+@media(max-width:767px){
+    body.cro-t-odo-12114 .crp-12114-styled-parent {
+        right: auto;
+        left: 7px;
+    }
+}
