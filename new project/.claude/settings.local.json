@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.dometic.com)",
+      "Bash(python3 -c ' *)",
+      "Read(//private/tmp/**)",
+      "Bash(curl -s -o figma_hero.png \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/0fc70fdd-fd7c-4cb2-82e7-4244d2fd4ae5\")",
+      "Bash(curl -s -o figma_sticky.png \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/dd18f42e-3a0b-4660-a0a5-fb1e1214a576\")",
+      "Bash(curl -s -o figma_mobile.png \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/79f88b96-6743-4a20-9887-ff8fdd927055\")",
+      "Bash(npm exec *)",
+      "Bash(npm list *)",
+      "Bash(npx --yes @modelcontextprotocol/inspector --version)",
+      "Bash(npx @playwright/mcp --version)",
+      "Bash(npx @modelcontextprotocol/server-puppeteer --version)",
+      "Read(//Applications/**)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(npx @playwright/mcp --help)",
+      "Bash(npx playwright *)",
+      "Bash(timeout 3 npx @playwright/mcp --browser chrome --executable-path \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\")",
+      "Bash(echo \"exit code: $?\")",
+      "Bash(npm install *)",
+      "Bash(npm --version)",
+      "Bash(sudo npm *)",
+      "WebFetch(domain:www.figma.com)"
+    ]
+  }
+}

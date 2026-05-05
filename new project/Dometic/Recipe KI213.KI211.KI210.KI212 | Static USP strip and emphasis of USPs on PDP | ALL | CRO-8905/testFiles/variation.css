@@ -1,0 +1,187 @@
+html body.CRO_8905_Static_USP_strip .product-details .text-teka.border-border .max-w-none>div:not(.cro_test_8905) {
+    display: none;
+}
+
+html body.CRO_8905_Static_USP_strip .cro_test_8905 {
+    display: block !important;
+}
+
+html body.CRO_8905_Static_USP_strip .product-details .text-teka.border-border .max-w-none {
+    width: 100%;
+}
+
+html body.CRO_8905_Static_USP_strip .cro_test_8905 {
+    width: 100%;
+}
+
+html body.CRO_8905_Static_USP_strip .cro_test_8905 .cro_test_8905_wrapper>div>div {
+    text-align: center;
+}
+
+
+.cro-rack-benefits,
+.cro-non_rack-benefits {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cro-benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.cro-benefit-icon {
+    width: 24px;
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cro-benefit-icon svg {
+    display: block;
+    width: 24px;
+    height: auto;
+}
+
+.cro-benefit-text {
+    color: #0d0d0d;
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--line-height-19_5, 19.5px);
+    /* 139.286% */
+}
+
+html body.CRO_8905_Static_USP_strip .cro-benefits {
+    display: block !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+html body.CRO_8905_Static_USP_strip .product-details .buy-me-box .product-stock>div {
+    display: none;
+}
+
+.cro-stock {
+    display: flex;
+    margin-top: 20px;
+}
+
+span.cro-out-stock-text {
+    display: none;
+}
+
+.cro-stock-row {
+    display: flex;
+    align-items: center;
+    /* gap: 7px; */
+}
+
+span.cro-stock-text {
+    color: #0d0d0d;
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: var(--font-weight-400, 400);
+    line-height: var(--line-height-19_5, 19.5px);
+    /* 168.103% */
+}
+
+span.cro-find-text {
+    color: #0d0d0d;
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: var(--font-weight-400, 400);
+    line-height: var(--line-height-19_5, 19.5px);
+    /* 168.103% */
+}
+
+span.cro-divider {
+    width: 7px;
+}
+
+.map svg {
+    width: 12.607px;
+}
+
+.stock {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing)*2);
+}
+
+.map {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+
+.CRO_8905_Static_USP_strip .cro-stock {
+    display: flex !important;
+    flex-direction: row-reverse;
+}
+
+.CRO_8905_Static_USP_strip .cro-stock.cro_activeStock .stock {
+    display: flex !important;
+}
+
+.CRO_8905_Static_USP_strip .cro-stock.cro_findStore .map {
+    display: flex !important;
+    cursor: pointer;
+}
+
+.CRO_8905_Static_USP_strip .cro-stock.cro_outStock .cro-out-stock-text {
+    display: block !important;
+}
+
+span.cro-out-stock-text {
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: var(--font-weight-400, 400);
+    line-height: var(--line-height-19_5, 19.5px);
+    color: #6b6b6b;
+}
+
+.CRO_8905_Static_USP_strip.cro-rack-page .cro-benefits .cro-non_rack-benefits {
+    display: none;
+}
+
+.CRO_8905_Static_USP_strip:not(.cro-rack-page) .cro-benefits .cro-rack-benefits {
+    display: none;
+}
+
+
+@media (max-width: 1024px) {
+    .cro_test_8905_wrapper>div {
+        flex-direction: column;
+        justify-content: left;
+        gap: calc(var(--spacing) * 2);
+    }
+
+    html body.CRO_8905_Static_USP_strip .cro_test_8905 .cro_test_8905_wrapper>div>div {
+        text-align: left;
+        /* line-height: 32px; */
+        display: flex;
+    }
+
+    .cro_test_8905_wrapper .text-11 {
+        font-size: 11px;
+    }
+
+    .product-details .text-teka.border-border {
+        border-top: 1px solid oklch(.928 .006 264.531);
+    }
+
+    html body.CRO_8905_Static_USP_strip .product-details .buy-me-box .product-stock {
+        border-bottom: none;
+    }
+
+    /* border-top: 1px solid oklch(.928 .006 264.531); */
+}
