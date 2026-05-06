@@ -228,20 +228,27 @@ button {
 /* ═══════════════════════════════════════════════════════════════
    1. HERO SECTION
    ═══════════════════════════════════════════════════════════════ */
+#hero.section-hero {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .section-hero {
   background: var(--color-white);
-  padding: 60px 149px;
+  /* padding: 60px 149px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 60px;
+  gap: 10px;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   max-width: 900px;
   width: 100%;
   text-align: center;
@@ -252,13 +259,21 @@ button {
   background: var(--color-badge-bg);
   color: #fff;
   font-family: var(--font-body);
-  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 8px 16px;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.badge {
+  text-align: center;
+  font-family: inherit;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
 }
 
 .hero-heading {
@@ -270,12 +285,17 @@ button {
   max-width: 900px;
 }
 
+h1.hero-heading {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 .hero-content .body-text {
   max-width: 800px;
 }
 
 .hero-cta-btn {
-  margin-top: 8px;
+  margin-top: 34px;
   padding: 16px 32px;
   min-width: 300px;
   justify-content: center;
@@ -289,7 +309,7 @@ button {
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px 16px;
-  margin-top: 8px;
+  margin-top: 26px;
 }
 
 .suitable-label {
@@ -328,6 +348,7 @@ button {
 .hero-image-wrap {
   width: 100%;
   max-width: 944px;
+  margin-top: 50px;
 }
 
 .hero-img {
@@ -626,6 +647,7 @@ button {
   border: none;
   cursor: pointer;
   transition: background 0.2s;
+  padding: 0;
 }
 
 .carousel-dot.active {
@@ -1197,7 +1219,7 @@ button {
     padding: 0 40px;
   }
 
-  .section-hero {
+  #hero.section-hero {
     padding: 60px 40px;
   }
 
@@ -1323,7 +1345,7 @@ button {
   }
 
   /* ── Hero ── */
-  .section-hero {
+  #hero.section-hero {
     padding: 48px 20px;
     gap: 24px;
   }
@@ -1331,6 +1353,7 @@ button {
   .hero-heading {
     font-size: var(--fs-hero-m);
     text-align: left;
+    margin-bottom: 5px;
   }
 
   .hero-content {
@@ -1345,7 +1368,8 @@ button {
 
   .badge {
     font-size: 11px;
-    margin-bottom: 0;
+    margin-bottom: 14px;
+    padding: 6px 12px;
   }
 
   .hero-cta-btn {
@@ -1359,6 +1383,12 @@ button {
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
+    margin-top: 0;
+  }
+
+  a#hero-cta-mobile {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .suitable-items {
@@ -1783,9 +1813,88 @@ button {
 @media (max-width:767px) {
   .hero-image-wrap.mobile {
     display: block !important;
+    margin-top: 8px;
   }
 
   .hero-image-wrap.desktop {
-    display: block !important;
+    display: none !important;
   }
+
+  #hero-cta {
+    display: none;
+  }
+}
+
+
+/* ------------New Changes---------- */
+
+/* -------------NAV------------ */
+.site-header .header-inner {
+  padding: 0;
+  max-width: 100% !important;
+}
+
+.e-con.e-flex>.e-con-inner {
+  max-width: 100% !important;
+  padding-top: 0;
+}
+
+header.site-header {
+  max-width: 100% !important;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  height: auto;
+}
+
+.e-con.elementor-element {
+  padding: 0 !important;
+}
+
+.site-header a.header-cta {
+  display: flex;
+  min-width: 120px;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #2B5E7D;
+  background: #FFF;
+}
+
+
+@media (min-width: 768px) {
+  header.site-header .header-inner {
+    max-width: 1296px !important;
+  }
+
+  a#hero-cta-mobile {
+    display: none;
+  }
+
+}
+
+
+/* ------------HERO SECTION------------- */
+
+
+
+.hero-content {
+  max-width: 1142px;
+}
+
+
+
+
+
+
+p.body-text {
+  /* font-size: 18px; */
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0;
+}
+
+#hero-cta {
+  line-height: normal;
 }
