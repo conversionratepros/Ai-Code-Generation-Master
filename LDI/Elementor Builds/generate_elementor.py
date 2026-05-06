@@ -10,25 +10,19 @@ OUT = pathlib.Path(__file__).parent / "elementor-template.json"
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
-def sec(sid, widgets, **extra):
+def sec(sid, widgets):
+    """Outer container — full-width, no padding, html widget handles its own bg/padding."""
     return {
         "id": sid,
-        "elType": "section",
+        "elType": "container",
+        "isInner": False,
         "settings": {
-            "layout": "full_width",
-            "stretch_section": "section-stretched",
+            "flex_direction": "column",
+            "flex_justify_content": "flex-start",
+            "content_width": "full",
             "padding": {"unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": False},
-            **extra
         },
-        "elements": [{
-            "id": sid + "c",
-            "elType": "column",
-            "settings": {
-                "_column_size": 100,
-                "padding": {"unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": False}
-            },
-            "elements": widgets
-        }]
+        "elements": widgets
     }
 
 
@@ -769,16 +763,13 @@ content = [
     sec("ldis12", [hw("ldiw12", wrap(HTML_STICKY_FOOTER))]),
 ]
 
-template = [{
+template = {
     "version": "0.4",
     "title": "LDI – Diploma in Aesthetic & Restorative Dentistry",
     "type": "page",
     "content": content,
-    "page_settings": {
-        "hide_title": "yes",
-        "page_layout": "elementor_canvas"
-    }
-}]
+    "page_settings": []
+}
 
 OUT.write_text(json.dumps(template, indent=2, ensure_ascii=False))
 print(f"Written: {OUT}")
