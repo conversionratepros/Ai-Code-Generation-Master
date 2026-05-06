@@ -122,8 +122,169 @@
                 setTimeout(function () {
 
                     var url = window.location.href;
-                    if (url.includes('/product')) {
-                        lib.waitForElement('.product-details nav [data-slot="breadcrumb-item"] a[href="/en-us/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-za/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-de/category/rack-systems/racks"]', function () {
+                    if (url.includes('/product') || url.includes('/produkt')) {
+                        lib.waitForElement('.product-details nav [data-slot="breadcrumb-item"] a[href="/en-us/category/rack-systems"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-za/category/rack-systems"], .product-details nav [data-slot="breadcrumb-item"] a[href="/de-de/kategorie/rack-systems"]', function () {
+                            window.crotest_Rack_PDP_optimisation_All_CRO12206 = 1;
+                            window._conv_q = window._conv_q || [];
+                            window._conv_q.push(["executeExperiment", "1004197050"]);
+                            console.info("Experiment Rack PDP optimisation | All | CRO-12206 Activated");
+                        }, 50, 15000)
+
+                    } else {
+                        if (document.querySelector('.CRO_12180_Slimline_PDP_V1')) {
+                            document.querySelector('body').classList.remove('CRO_12180_Slimline_PDP_V1');
+                        }
+                    }
+                }, 600)
+            }
+        };
+
+        console.log("Global JavaScript Activate");
+        experiments.test_KI213_KI211_KI210_KI212_Static_USP_strip_and_emphasis_of_USPs_on_PDP_ALL_CRO8905();
+        experiments.test_Rack_PDP_optimisation_All_CRO12206();
+        /**
+         * Activate all experiments on location change
+         */
+        function activateExpOnPageChange() {
+            experiments.test_KI213_KI211_KI210_KI212_Static_USP_strip_and_emphasis_of_USPs_on_PDP_ALL_CRO8905();
+            experiments.test_Rack_PDP_optimisation_All_CRO12206();
+
+        }
+
+        if (!window.cro_globalJs) {
+            lib.listener(activateExpOnPageChange);
+            window.cro_globalJs = true;
+        }
+
+    } catch (e) {
+        console.log("Error in Global JavaScript");
+    }
+})(); (function () {
+    try {
+        // LIBRARY FUNCTIONS
+        var lib = {
+            live(selector, event, callback, context) {
+                // helper for enabling IE 8 event bindings
+                function addEvent(el, type, handler) {
+                    if (el.attachEvent) el.attachEvent("on" + type, handler);
+                    else el.addEventListener(type, handler);
+                }
+                // matches polyfill
+                this &&
+                    this.Element &&
+                    (function (ElementPrototype) {
+                        ElementPrototype.matches =
+                            ElementPrototype.matches ||
+                            ElementPrototype.matchesSelector ||
+                            ElementPrototype.webkitMatchesSelector ||
+                            ElementPrototype.msMatchesSelector ||
+                            function (selector) {
+                                var node = this,
+                                    nodes = (node.parentNode || node.document).querySelectorAll(selector),
+                                    i = -1;
+                                while (nodes[++i] && nodes[i] != node);
+                                return !!nodes[i];
+                            };
+                    })(Element.prototype);
+                // live binding helper using matchesSelector
+                function live(selector, event, callback, context) {
+                    addEvent(context || document, event, function (e) {
+                        var found,
+                            el = e.target || e.srcElement;
+                        while (el && el.matches && el !== context && !(found = el.matches(selector)))
+                            el = el.parentElement;
+                        if (found) callback.call(el, e);
+                    });
+                }
+                live(selector, event, callback, context);
+            },
+            getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(";");
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == " ") c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            },
+            waitForElement(selector, trigger, delayInterval, delayTimeout) {
+                var interval = setInterval(function () {
+                    if (
+                        document &&
+                        document.querySelector(selector) &&
+                        document.querySelectorAll(selector).length > 0
+                    ) {
+                        clearInterval(interval);
+                        trigger();
+                    }
+                }, delayInterval);
+                setTimeout(function () {
+                    clearInterval(interval);
+                }, delayTimeout);
+            },
+            listener(trigger) {
+                window.addEventListener("locationchange", function () {
+                    trigger();
+                    console.log("Global JavaScript Activate");
+                });
+                history.pushState = ((f) =>
+                    function pushState() {
+                        var ret = f.apply(this, arguments);
+                        window.dispatchEvent(new Event("pushstate"));
+                        window.dispatchEvent(new Event("locationchange"));
+                        return ret;
+                    })(history.pushState);
+                history.replaceState = ((f) =>
+                    function replaceState() {
+                        var ret = f.apply(this, arguments);
+                        window.dispatchEvent(new Event("replacestate"));
+                        window.dispatchEvent(new Event("locationchange"));
+                        return ret;
+                    })(history.replaceState);
+                window.addEventListener("popstate", () => {
+                    window.dispatchEvent(new Event("locationchange"));
+                });
+            },
+        };
+
+        var experiments = {
+            test_KI213_KI211_KI210_KI212_Static_USP_strip_and_emphasis_of_USPs_on_PDP_ALL_CRO8905() {
+                setTimeout(function () {
+                    var url = window.location.href;
+                    if (url.includes('/en-us/product')) {
+                        window.crotest_KI213_KI211_KI210_KI212_Static_USP_strip_and_emphasis = 1;
+                        window._conv_q = window._conv_q || [];
+                        window._conv_q.push(["executeExperiment", "1004191584"]);
+                        console.info("Experiment Recipe KI213.KI211.KI210.KI212 | Static USP strip and emphasis of USPs on PDP | ALL | CRO-8905 Activated");
+                    } else {
+                        if (document.querySelector('.CRO_8905_Static_USP_strip')) {
+                            document.querySelector('body').classList.remove('CRO_8905_Static_USP_strip');
+                        }
+
+                        if (document.querySelector('.cro_outStock')) {
+                            document.querySelector('body').classList.remove('cro_outStock');
+                        }
+
+                        if (document.querySelector('.cro_activeStock')) {
+                            document.querySelector('body').classList.remove('cro_activeStock');
+                        }
+
+                        if (document.querySelector('.cro_findStore')) {
+                            document.querySelector('body').classList.remove('cro_findStore');
+                        }
+
+                        if (document.querySelector('.cro-rack-page')) {
+                            document.querySelector('body').classList.remove('cro-rack-page');
+                        }
+                    }
+                }, 600)
+            }, test_Rack_PDP_optimisation_All_CRO12206() {
+                setTimeout(function () {
+
+                    var url = window.location.href;
+                    if (url.includes('/product') || url.includes('/produkt')) {
+                        lib.waitForElement('.product-details nav [data-slot="breadcrumb-item"] a[href="/en-us/category/rack-systems"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-za/category/rack-systems"], .product-details nav [data-slot="breadcrumb-item"] a[href="/de-de/kategorie/rack-systems"]', function () {
                             window.crotest_Rack_PDP_optimisation_All_CRO12206 = 1;
                             window._conv_q = window._conv_q || [];
                             window._conv_q.push(["executeExperiment", "1004197050"]);
