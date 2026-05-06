@@ -284,7 +284,7 @@
 
                     var url = window.location.href;
                     if (url.includes('/product') || url.includes('/produkt')) {
-                        lib.waitForElement('.product-details nav [data-slot="breadcrumb-item"] a[href="/en-us/category/rack-systems"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-za/category/rack-systems"], .product-details nav [data-slot="breadcrumb-item"] a[href="/de-de/kategorie/rack-systems"]', function () {
+                        lib.waitForElement('.product-details nav [data-slot="breadcrumb-item"] a[href="/en-us/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-za/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/de-de/kategorie/rack-systems/racks"]', function () {
                             window.crotest_Rack_PDP_optimisation_All_CRO12206 = 1;
                             window._conv_q = window._conv_q || [];
                             window._conv_q.push(["executeExperiment", "1004197050"]);
