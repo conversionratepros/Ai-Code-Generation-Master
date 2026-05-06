@@ -253,7 +253,9 @@ def build_hero():
     content_col = con([badge, h1, body1, body2, cta, suitable],
                       dir="column", align="center", gap_n=20)
 
-    return outer([content_col, hero_img],
+    img_wrap = con([hero_img], dir="column", align="center")
+
+    return outer([content_col, img_wrap],
                  bg=WH, pad_=pad(60, 149, 60, 149),
                  pad_m=pad(48, 20, 48, 20),
                  pad_t=pad(60, 40, 60, 40),
@@ -310,10 +312,7 @@ def build_benefits():
     ]
 
     # Testimonial card
-    avatar = con([
-        image(url="[NEEDS_UPLOAD: Dr. Haroon Dalili headshot]",
-              align="center", radius=60, width_pct=100)
-    ], width=px(120), pad_=pad(0, 0, 0, 0))
+    avatar = html_w('<div style="width:80px;height:80px;min-width:80px;border-radius:50%;overflow:hidden;flex-shrink:0"><img src="[NEEDS_UPLOAD: Dr. Haroon Dalili headshot]" alt="Dr. Haroon Dalili" style="width:100%;height:100%;object-fit:cover;display:block"/></div>')
 
     stars = heading("&#9733;&#9733;&#9733;&#9733;&#9733;", tag="div",
                     color=LA, font=FB, size_d=20, size_m=16, weight="400")
@@ -353,13 +352,12 @@ def build_online():
     CHECK_URL = "https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124544/check-icon.png"
 
     def feature(title, desc):
-        icon_wrap = con([image(CHECK_URL, align="center", width_pct=100)],
-                        bg=P, pad_=pad(8, 8, 8, 8), br=50, width=px(32))
+        icon = html_w(f'<div style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;min-width:40px;background:#2b5e7d;border-radius:50%;flex-shrink:0;padding:8px;box-sizing:border-box"><img src="{CHECK_URL}" alt="" style="width:20px;height:20px;display:block"/></div>')
         text_col = con([
             heading(title, tag="h4", color=BD, font=FB, size_d=18, size_m=16, weight="700"),
             text_ed(f"<p>{desc}</p>", size_d=18, size_m=16)
         ], dir="column", gap_n=4, cw="full")
-        return con([icon_wrap, text_col], dir="row", align="flex-start", gap_n=16)
+        return con([icon, text_col], dir="row", align="flex-start", gap_n=16)
 
     features = [
         feature("Clinical Simulation Kit",
@@ -434,10 +432,7 @@ def build_accreditation():
     section_h = heading("UK qualifications, accessible worldwide",
                         color=BD, size_d=32, size_m=28, weight="400", align="center")
 
-    icon_wrap = con([
-        image("https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04125001/cert-icon.png",
-              align="center", width_pct=60)
-    ], bg=TE, pad_=pad(13, 13, 13, 13), br=8, width=px(64))
+    icon_wrap = html_w('<div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#3f8fbc;border-radius:8px;padding:13px;box-sizing:border-box;flex-shrink:0"><img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04125001/cert-icon.png" alt="" style="width:38px;height:38px;display:block"/></div>')
 
     card_title = heading("UK level 7 accredited", tag="h3", color=P, font=FB,
                          size_d=32, size_m=20, weight="700")
@@ -530,11 +525,7 @@ def build_programme():
     div_line = divider_w(color="#d9d9d9", width_px=250)
 
     def step(num, title, desc, show_badge=False):
-        num_circle = con([
-            heading(str(num), tag="div", color=TE, font=FB,
-                    size_d=28, size_m=24, weight="700", align="center")
-        ], bg=GB, pad_=pad(0, 0, 0, 0), br=50, width=px(64),
-           align="center", justify="center")
+        num_circle = html_w(f'<div style="width:64px;height:64px;border-radius:50%;background:#f2f2f2;display:flex;align-items:center;justify-content:center;margin:0 auto;flex-shrink:0"><span style="font-family:ABC Social Edu,Inter,sans-serif;font-size:28px;font-weight:700;color:#3f8fbc;line-height:1">{num}</span></div>')
 
         children = [num_circle,
                     heading(title, tag="h4", color=BD, font=FB,
@@ -658,8 +649,7 @@ def build_faculty():
     ]
 
     def faculty_card(img_url, name, role, bio):
-        avatar_wrap = con([image(img_url, align="center", width_pct=100)],
-                          width=px(120), br=60)
+        avatar_wrap = html_w(f'<div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto;flex-shrink:0"><img src="{img_url}" alt="{name}" style="width:100%;height:100%;object-fit:cover;display:block"/></div>')
         return con([
             avatar_wrap,
             heading(name, tag="h3", color=P, font=FB, size_d=18, size_m=16, weight="700", align="center"),
