@@ -63,19 +63,6 @@
       }
     }
 
-    function innerHTMLContent(selector, content) {
-      var el = document.querySelector(selector);
-      if (el) {
-        el.innerHTML = content;
-      }
-    }
-
-    function innerChildContent(selector, childNumber, content) {
-      var el = document.querySelector(selector);
-      if (el.hasChildNodes()) {
-        el.childNodes[childNumber].textContent = content;
-      }
-    }
 
     function addClass(el, cls) {
       var el = document.querySelector(el);
@@ -84,58 +71,8 @@
       }
     }
 
-    function toggleClass(el, cls) {
-      var el = document.querySelector(el);
-      if (el) {
-        el.classList.toggle(cls);
-      }
-    }
-
-    function removeClass(el, cls) {
-      var el = document.querySelector(el);
-      if (el) {
-        el.classList.contains(cls) && el.classList.remove(cls);
-      }
-    }
-
-    function scroll(click, selector) {
-      click.addEventListener('click', function (event) {
-        event.preventDefault();
-        var target = document.querySelector(selector);
-        if (target) {
-          window.scrollTo({
-            top: target.getBoundingClientRect().top + window.scrollY,
-            behavior: 'smooth'
-          });
-        }
-      });
-    }
-
-    function waitForSwiper(trigger) {
-      var interval = setInterval(function () {
-        if (typeof window.Swiper != "undefined") {
-          clearInterval(interval);
-          trigger();
-        }
-      }, 50);
-      setTimeout(function () {
-        clearInterval(interval);
-      }, 15000);
-    }
-
-    function addScript() {
-      var scriptOne = document.createElement("script");
-      scriptOne.src = "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.2/swiper-bundle.min.js";
-      document.querySelector("head").appendChild(scriptOne);
-
-      var swiperCss = '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.2/swiper-bundle.css" crossorigin="anonymous" referrerpolicy="no-referrer" />';
-      document.querySelector("head").insertAdjacentHTML("beforeend", swiperCss);
-    }
-
-    function initializeSwiper() { }
-
     /* ── SVG Icons ── */
-    var svg_star = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="#F5A623" aria-hidden="true"><path d="M8 1l1.854 3.756 4.146.603-3 2.924.708 4.131L8 10.25l-3.708 2.164.708-4.131-3-2.924 4.146-.603z"/></svg>';
+    var svg_star = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="#000000" aria-hidden="true"><path d="M8 1l1.854 3.756 4.146.603-3 2.924.708 4.131L8 10.25l-3.708 2.164.708-4.131-3-2.924 4.146-.603z"/></svg>';
 
     var svg_warranty = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5L3.5 5.25v4.5c0 3.9 2.8 7.55 6.5 8.5 3.7-.95 6.5-4.6 6.5-8.5v-4.5L10 2.5z" stroke="#0d0d0d" stroke-width="1.4" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke="#0d0d0d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
@@ -241,7 +178,8 @@
 
     /* ── Change 4: Testimonial — fetched from Yotpo API using SKU ── */
     function injectTestimonial() {
-      // if (injected.testimonial) return;
+      if (injected.testimonial) return;
+      if (document.querySelector('[data-cro12180="testimonial"]')) return;
       injected.testimonial = true;
 
       var skuInput = document.querySelector('.buy-me-box form input[name="sku"]');
@@ -315,48 +253,7 @@
     }
 
     /* ── Change 5: Sticky ATC bar (mobile only) ── */
-    function buildStickyBar() {
-      if (document.querySelector('[data-cro12180="sticky"]')) return;
 
-      var nameEl = document.querySelector('.product-details h1');
-      var priceEl = document.querySelector('.product-details .buy-me-box .price-wrapper');
-      var imgEl = document.querySelector('.product-details [class*="gallery"] img, .product-details img');
-
-      var productName = nameEl ? nameEl.textContent.trim() : '';
-      var productPrice = priceEl ? priceEl.textContent.trim() : '';
-      var productImg = imgEl ? imgEl.src : '';
-
-      var thumbHtml = productImg
-        ? '<img class="cro-12180-sticky__thumb" src="' + productImg + '" alt="" />'
-        : '';
-
-      var html_sticky =
-        '<div class="cro-12180-sticky" data-cro12180="sticky" aria-hidden="true" style="display:none">' +
-        '<div class="cro-12180-sticky__inner">' +
-        thumbHtml +
-        '<div class="cro-12180-sticky__info">' +
-        '<span class="cro-12180-sticky__name">' + productName + '</span>' +
-        '<span class="cro-12180-sticky__price">' + productPrice + '</span>' +
-        '</div>' +
-        '<button class="cro-12180-sticky__btn" type="button">Add to bag</button>' +
-        '</div>' +
-        '</div>';
-
-      document.body.insertAdjacentHTML('beforeend', html_sticky);
-
-      var atcBtn = document.querySelector('.product-details .buy-me-box button[type="submit"]')
-        || document.querySelector('.product-details .buy-me-box button');
-
-      if (atcBtn && 'IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-          var sticky = document.querySelector('[data-cro12180="sticky"]');
-          if (!sticky) return;
-          sticky.classList.toggle('cro-12180-sticky--visible', !entries[0].isIntersecting);
-        }, { threshold: 0 });
-        observer.observe(atcBtn);
-      }
-
-    }
 
     /* ── Watch buy box for Vue re-renders and re-apply classes ── */
     function watchBuyBox() {
@@ -368,24 +265,29 @@
       var debounce;
       new MutationObserver(function () {
         clearTimeout(debounce);
-        debounce = setTimeout(fixPriceAlignment, 400);
+        debounce = setTimeout(function () {
+          if (!document.querySelector('.cro-12180-official-store')) {
+            fixPriceAlignment();
+          }
+        }, 400);
       }).observe(buyBox, { childList: true, subtree: true });
     }
 
-    /* ── Init ── */
-    function init() {
-      addClass('body', variation_name);
-      // waitForElement('.product-details .buy-me-box .price-wrapper', injectPayflex);
+    function htmlAdd() {
       waitForElement('.product-details .buy-me-box .price-wrapper', fixPriceAlignment);
       waitForElement('.product-actions.mt-4.flex.flex-col.gap-2', injectUsps);
       waitForElement('.buy-me-box>div .product-form .payflex-product-widget', moveStockBelowPayflex);
-      // waitForElement('.product-details .buy-me-box', buildStickyBar);
       waitForElement('.product-details .buy-me-box', watchBuyBox);
+    }
+    /* ── Init ── */
+    function init() {
+      addClass('body', variation_name);
+      waitForElement('body', trigger);
     }
 
     function trigger() {
       var intervalCallAgain = setInterval(function () {
-        waitForElement('.product-details', init);
+        waitForElement('.product-details', htmlAdd);
       }, 400);
       setTimeout(function () {
         clearInterval(intervalCallAgain);
@@ -405,7 +307,9 @@
       window.cro_t_12180 = true;
     }
 
-    waitForElement('body', trigger);
+    waitForElement('body', init);
+
+
   } catch (e) {
     if (debug) console.log(e, "error in Test" + variation_name);
   }
