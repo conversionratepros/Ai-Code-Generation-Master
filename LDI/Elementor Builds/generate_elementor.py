@@ -1,766 +1,768 @@
 """
-LDI Elementor JSON Generator
-Produces elementor-template.json importable via Elementor > Templates > Import.
+LDI Elementor JSON Generator – Native Widgets
+Produces elementor-template.json using native Elementor containers, heading,
+text-editor, button, image, divider widgets. HTML widgets used only for
+interactive JS components (FAQ accordion, carousel, sticky footer).
 Run: python3 generate_elementor.py
 """
 
-import json, pathlib, textwrap
+import json, pathlib
 
 OUT = pathlib.Path(__file__).parent / "elementor-template.json"
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# ── Colour tokens ────────────────────────────────────────────────────────────
+P   = "#2b5e7d"   # primary / heading
+BD  = "#030b3d"   # body text
+GB  = "#f2f2f2"   # gray bg
+WH  = "#ffffff"   # white
+PU  = "rgba(122,78,209,0.7)"  # purple badge
+TE  = "#3f8fbc"   # teal icon bg
+LA  = "#bca6e8"   # lavender testimonial border
+GN  = "#d2e4cc"   # green sticky footer bg
 
-def sec(sid, widgets):
-    """Outer container — full-width, no padding, html widget handles its own bg/padding."""
-    return {
-        "id": sid,
-        "elType": "container",
-        "isInner": False,
-        "settings": {
-            "flex_direction": "column",
-            "flex_justify_content": "flex-start",
-            "content_width": "full",
-            "padding": {"unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": False},
-        },
-        "elements": widgets
+# ── Typography ───────────────────────────────────────────────────────────────
+FH = "Frame Head"        # heading – register in Elementor → Custom Fonts
+FB = "ABC Social Edu"    # body    – register in Elementor → Custom Fonts
+
+# ── ID counter ───────────────────────────────────────────────────────────────
+_c = [0]
+def uid():
+    _c[0] += 1
+    return f"ldi{_c[0]:04d}aa"
+
+# ── Primitive helpers ─────────────────────────────────────────────────────────
+def px(n):
+    return {"unit": "px", "size": n, "sizes": []}
+
+def em(n):
+    return {"unit": "em", "size": n, "sizes": []}
+
+def pct(n):
+    return {"unit": "%", "size": n, "sizes": []}
+
+def pad(t=0, r=0, b=0, l=0):
+    return {"unit": "px", "top": str(t), "right": str(r), "bottom": str(b), "left": str(l), "isLinked": False}
+
+def gap(n):
+    return {"column": str(n), "row": str(n), "isLinked": True, "unit": "px", "size": n}
+
+def border_w(n):
+    return {"unit": "px", "top": str(n), "right": str(n), "bottom": str(n), "left": str(n), "isLinked": True}
+
+def border_r(n, unit="px"):
+    return {"unit": unit, "top": str(n), "right": str(n), "bottom": str(n), "left": str(n), "isLinked": True}
+
+# ── Widget builders ───────────────────────────────────────────────────────────
+
+def heading(title, tag="h2", color=BD, font=FH, size_d=32, size_m=28, weight="400",
+            align="left", lh_em=1.2, letter_spacing=None):
+    s = {
+        "title": title,
+        "header_size": tag,
+        "align": align,
+        "title_color": color,
+        "typography_typography": "custom",
+        "typography_font_family": font,
+        "typography_font_size": px(size_d),
+        "typography_font_size_mobile": px(size_m),
+        "typography_font_weight": weight,
+        "typography_line_height": em(lh_em),
     }
+    if letter_spacing is not None:
+        s["typography_letter_spacing"] = {"unit": "px", "size": letter_spacing, "sizes": []}
+    return {"id": uid(), "elType": "widget", "widgetType": "heading", "settings": s, "elements": []}
 
 
-def hw(wid, html):
-    return {"id": wid, "elType": "widget", "widgetType": "html", "settings": {"html": html}, "elements": []}
+def text_ed(html, color=BD, size_d=18, size_m=16, align="left", weight="400", lh_em=1.6):
+    return {"id": uid(), "elType": "widget", "widgetType": "text-editor", "settings": {
+        "editor": html,
+        "align": align,
+        "text_color": color,
+        "typography_typography": "custom",
+        "typography_font_family": FB,
+        "typography_font_size": px(size_d),
+        "typography_font_size_mobile": px(size_m),
+        "typography_font_weight": weight,
+        "typography_line_height": em(lh_em),
+    }, "elements": []}
 
 
-# ── Inline SVG assets ─────────────────────────────────────────────────────────
-
-ARROW_WHITE = '<svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 10h13M11.5 5l5 5-5 5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-ARROW_BLUE  = '<svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 10h13M11.5 5l5 5-5 5" stroke="#2b5e7d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-ARROW_NAV   = '<svg width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="19.5" cy="19.5" r="19.5" fill="rgba(0,0,0,0.40)"/><path d="M17 13.5l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-CHEVRON_UP  = '<svg class="icon-minus" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16.59 16.3228L12 11.7328L7.41 16.3228L6 14.9027L12 8.90277L18 14.9027L16.59 16.3228Z" fill="#2B5E7D"/></svg>'
-CHEVRON_DN  = '<svg class="icon-plus" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1.41 0L6 4.58998L10.59 0L12 1.42001L6 7.41998L0 1.42001L1.41 0Z" fill="#2B5E7D"/></svg>'
-CLOSE_X     = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2L16 16M16 2L2 16" stroke="#030b3d" stroke-width="2" stroke-linecap="round"/></svg>'
-
-# ── Shared CSS (included once in the first widget) ────────────────────────────
-
-SHARED_CSS = """<style><!-- LDI shared CSS v1 -->
-/* ── Google Fonts proxy (replace with Frame Head / ABC Social Edu in Elementor > Custom Fonts) ── */
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Inter:wght@400;600;700&display=swap');
-
-/* ── Design tokens ── */
-:root{
-  --color-primary:#2b5e7d;
-  --color-body:#030b3d;
-  --color-gray-bg:#f2f2f2;
-  --color-white:#ffffff;
-  --color-border:#e3e3e3;
-  --color-badge-bg:rgba(122,78,209,0.7);
-  --color-sticky-bg:#d2e4cc;
-  --color-blue-bar:#3ba5c8;
-  --color-blue-light:#cfdee7;
-  --font-heading:'Frame Head','Lora','Georgia',serif;
-  --font-body:'ABC Social Edu','Inter','Helvetica Neue',Arial,sans-serif;
-  --fs-hero-d:36px;--fs-heading-d:32px;--fs-body-d:18px;--fs-btn-d:18px;
-  --fs-hero-m:30px;--fs-heading-m:28px;--fs-body-m:16px;--fs-btn-m:16px;
-}
-
-/* ── Reset ── */
-.ldi-page *,.ldi-page *::before,.ldi-page *::after{box-sizing:border-box;margin:0;padding:0}
-.ldi-page img{display:block;max-width:100%;height:auto}
-.ldi-page a{color:inherit;text-decoration:none}
-.ldi-page ul{list-style:none}
-.ldi-page button{cursor:pointer;background:none;border:none;font:inherit}
-
-/* ── Full-viewport breakout (escape Elementor container) ── */
-.ldi-header,.ldi-section{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-}
-
-/* ── Utilities ── */
-.ldi-page .text-center{text-align:center}
-.ldi-page .body-text{font-family:var(--font-body);font-size:var(--fs-body-d);line-height:1.6;color:var(--color-body)}
-.ldi-page .container{width:100%;max-width:1152px;margin:0 auto;padding:0 24px}
-.ldi-page .container-narrow{width:100%;max-width:932px;margin:0 auto;padding:0 24px}
-.ldi-page .desktop-only{display:block}
-.ldi-page .mobile-only{display:none}
-.ldi-page .section-heading{font-family:var(--font-heading);font-size:var(--fs-heading-d);font-weight:400;color:var(--color-body);line-height:1.2}
-.ldi-page .ldi-section{padding:96px 0}
-.ldi-page .section-gray{background:var(--color-gray-bg)}
-.ldi-page .section-white{background:var(--color-white)}
-
-/* ── Buttons ── */
-.ldi-page .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:var(--fs-btn-d);font-weight:700;line-height:1;cursor:pointer;text-decoration:none;padding:16px 28px;transition:opacity .2s,background .2s}
-.ldi-page .btn:hover{opacity:.88}
-.ldi-page .btn-primary{background:var(--color-primary);color:#fff;border:1px solid var(--color-primary)}
-.ldi-page .btn-outline{background:#fff;color:var(--color-primary);border:1px solid var(--color-primary)}
-.ldi-page .btn-full{width:100%;justify-content:center}
-.ldi-page .btn-icon{width:20px!important;height:20px!important;max-height:20px;object-fit:contain;flex-shrink:0}
-.ldi-page .link-underline{text-decoration:underline}
-
-/* ── HEADER ── */
-.ldi-header{position:sticky;top:0;z-index:999;width:100%;background:#fff;border-bottom:1px solid var(--color-border);height:80px;overflow:hidden}
-.ldi-header .header-inner{display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1440px;margin:0 auto;padding:0 200px}
-.ldi-header .logo-wrap{display:block;flex-shrink:0;max-width:142px}
-.ldi-header .logo{height:48px!important;width:auto!important;object-fit:contain}
-.ldi-header .nav-full{display:inline}
-.ldi-header .nav-short{display:none}
-
-/* ── HERO ── */
-.section-hero{background:var(--color-white);padding:60px 149px;display:flex;flex-direction:column;align-items:center;gap:60px}
-.section-hero .hero-content{display:flex;flex-direction:column;align-items:center;gap:20px;max-width:900px;width:100%;text-align:center}
-.section-hero .badge{display:inline-block;background:var(--color-badge-bg);color:#fff;font-family:var(--font-body);font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:8px 16px;border-radius:5px;margin-bottom:20px}
-.section-hero .hero-heading{font-family:var(--font-heading);font-size:var(--fs-hero-d);font-weight:400;color:var(--color-primary);line-height:1.15;max-width:900px}
-.section-hero .hero-content .body-text{max-width:800px}
-.section-hero .hero-cta-btn{margin-top:8px;padding:16px 32px;min-width:300px;justify-content:center}
-.section-hero .suitable-for{display:flex;flex-direction:row;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 16px;margin-top:8px}
-.section-hero .suitable-label{font-size:var(--fs-body-d);white-space:nowrap}
-.section-hero .suitable-items{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px 24px;justify-content:center;align-items:center}
-.section-hero .suitable-item{font-size:var(--fs-body-d);position:relative;padding-left:14px}
-.section-hero .suitable-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:#245b8a}
-.section-hero .hero-image-wrap{width:100%;max-width:944px}
-.section-hero .hero-img{width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 24px 48px rgba(0,0,0,.08);object-fit:cover}
-.section-hero .hero-image-wrap.mobile{display:none}
-
-/* ── PROBLEM ── */
-.section-problem{padding:60px 124px}
-.section-problem .body-text+.body-text{margin-top:1em}
-
-/* ── BENEFITS ── */
-.section-benefits{padding:96px 120px}
-.section-benefits .container{display:flex;flex-direction:column;align-items:center;gap:48px}
-.section-benefits .section-heading-wrap{max-width:700px}
-.section-benefits .intro-text{max-width:800px}
-.section-benefits .bullet-list{display:flex;flex-direction:column;gap:20px;max-width:800px;width:100%}
-.section-benefits .bullet-list li{display:flex;gap:14px;align-items:flex-start}
-.section-benefits .bullet-list li::before{content:'';display:block;flex-shrink:0;width:8px;height:8px;border-radius:4px;background:var(--color-primary);margin-top:8px}
-.section-benefits .bullet-text{font-size:var(--fs-body-d);color:var(--color-body);line-height:1.6}
-.section-benefits .bullet-text strong{font-weight:700}
-.testimonial-card{background:#fff;border:1px solid #bca6e8;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,.05);display:flex;flex-direction:row;align-items:center;gap:32px;padding:40px 40px 36px;max-width:800px;width:100%}
-.testimonial-card .testimonial-avatar{flex-shrink:0;width:120px;height:120px;border-radius:50%;overflow:hidden}
-.testimonial-card .testimonial-avatar img{width:100%;height:100%;object-fit:cover}
-.testimonial-card .testimonial-body{flex:1;display:flex;flex-direction:column;gap:0}
-.testimonial-card .star-rating{color:#BCA6E8;font-size:18px;letter-spacing:2px}
-.testimonial-card .testimonial-text{font-family:var(--font-body);font-size:18px;font-weight:400;line-height:normal;padding:15px 0}
-.testimonial-card .testimonial-name{font-size:var(--fs-body-d);color:var(--color-primary);margin-bottom:4px}
-.testimonial-card .testimonial-role{font-size:var(--fs-body-d)}
-
-/* ── ONLINE LEARNING ── */
-.section-online{padding:96px 144px}
-.section-online .online-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;max-width:1152px;margin:0 auto}
-.section-online .online-text{display:flex;flex-direction:column;gap:24px}
-.section-online .feature-list{display:flex;flex-direction:column;gap:20px;padding-top:8px}
-.section-online .feature-item{display:flex;gap:16px;align-items:flex-start}
-.section-online .feature-icon{flex-shrink:0;width:32px;height:32px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.section-online .feature-icon img{width:16px;height:16px;object-fit:contain;filter:brightness(0) invert(1)}
-.section-online .feature-title{font-weight:700;font-size:var(--fs-body-d);margin-bottom:4px}
-.section-online .feature-item .body-text{margin-top:2px}
-.carousel-wrap{position:relative}
-.carousel-wrap .carousel{width:100%;overflow:hidden;border-radius:8px;aspect-ratio:1/1}
-.carousel-wrap .carousel-track{display:flex;height:100%;transition:transform .4s ease}
-.carousel-wrap .carousel-slide{flex:0 0 100%;height:100%}
-.carousel-wrap .carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
-.carousel-wrap .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:39px;height:39px;padding:0;background:none;border:none;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center}
-.carousel-wrap .carousel-prev{left:-19px}
-.carousel-wrap .carousel-next{right:-19px}
-.carousel-wrap .carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:16px}
-.carousel-wrap .carousel-dot{width:8px;height:8px;border-radius:50%;background:#c5c5c5;border:none;cursor:pointer;transition:background .2s}
-.carousel-wrap .carousel-dot.active{background:var(--color-primary)}
-
-/* ── ACCREDITATION ── */
-.section-accreditation{padding:60px 0}
-.section-accreditation .container{display:flex;flex-direction:column;align-items:center;gap:32px}
-.section-accreditation .accreditation-card{background:#fff;border:2px solid #3f8fbc;border-radius:8px;padding:46px 53px;max-width:1152px;width:100%;display:flex;flex-direction:column;gap:16px}
-.section-accreditation .accred-icon{width:64px;height:64px;background:#3f8fbc;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.section-accreditation .accred-icon img{width:38px;height:38px;object-fit:contain}
-.section-accreditation .accred-title{font-family:var(--font-body);font-size:32px;font-weight:700;color:var(--color-primary);line-height:1.2;padding-top:20px}
-.section-accreditation .accred-note{max-width:1142px}
-
-/* ── FAQ ── */
-.section-faq{padding:96px 0}
-.section-faq .container-narrow{display:flex;flex-direction:column;align-items:center;gap:32px}
-.section-faq .faq-intro{max-width:500px}
-.section-faq .faq-list{display:flex;flex-direction:column;gap:12px;width:100%;max-width:720px}
-.section-faq .faq-item{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:6px;overflow:hidden}
-.section-faq .faq-question{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px;text-align:left;font-size:var(--fs-body-d);font-weight:700;color:var(--color-body)}
-.section-faq .faq-icon{flex-shrink:0;display:flex;align-items:center}
-.section-faq .faq-icon .icon-plus{display:block}
-.section-faq .faq-icon .icon-minus{display:none}
-.section-faq .faq-item.active .faq-icon .icon-plus{display:none}
-.section-faq .faq-item.active .faq-icon .icon-minus{display:block}
-.section-faq .faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 20px}
-.section-faq .faq-item.active .faq-answer{max-height:400px;padding:0 20px 20px}
-
-/* ── PROGRAMME ── */
-.section-programme{padding:60px 0}
-.section-programme .container{display:flex;flex-direction:column;align-items:center;gap:40px}
-.section-programme .programme-header{display:flex;flex-direction:column;align-items:center;gap:12px}
-.section-programme .divider{width:250px;height:1px;background:#d9d9d9;margin-top:8px}
-.section-programme .steps-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:40px;max-width:900px;width:100%}
-.section-programme .step:nth-child(1){grid-column:1/3}
-.section-programme .step:nth-child(2){grid-column:3/5}
-.section-programme .step:nth-child(3){grid-column:5/7}
-.section-programme .step:nth-child(4){grid-column:2/4}
-.section-programme .step:nth-child(5){grid-column:4/6}
-.section-programme .step{display:flex;flex-direction:column;align-items:center;gap:8px}
-.section-programme .step-number{width:64px;height:64px;border-radius:32px;background:var(--color-gray-bg);display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:28px;font-weight:700;color:#3f8fbc}
-.section-programme .step-title{font-size:var(--fs-body-d);font-weight:700;color:var(--color-body);text-align:center}
-.section-programme .step .body-text{font-size:var(--fs-body-d)}
-.section-programme .cohort-badge{display:inline-block;background:#ffc4c4;color:#ff1c1c;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:12px;margin-top:4px}
-.section-programme .curriculum-highlights{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:700px;padding-top:24px}
-
-/* ── FORM ── */
-.section-form{padding:96px 124px}
-.section-form .form-card{background:#fff;border:1px solid var(--color-primary);border-radius:6px;box-shadow:0 12px 16px rgba(0,0,0,.05);display:flex;gap:73px;align-items:center;justify-content:center;padding:58px;max-width:900px;margin:0 auto}
-.section-form .form-text{flex:0 0 340px;display:flex;flex-direction:column;gap:20px}
-.section-form .form-wrap{flex:0 0 360px}
-.section-form .prospectus-form{display:flex;flex-direction:column;gap:12px}
-.section-form .form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
-.section-form .form-group label{font-size:var(--fs-body-d);color:var(--color-body)}
-.section-form .form-group input{background:#f7f7f7;border:1px solid #bdbdbd;height:50px;padding:0 16px;font-family:var(--font-body);font-size:var(--fs-body-d);color:var(--color-body);outline:none;width:100%;transition:border-color .2s}
-.section-form .form-group input:focus{border-color:var(--color-primary)}
-.section-form .form-group input::placeholder{color:#9b9b9b}
-.section-form .form-apply{display:flex;justify-content:center;padding:8px 0}
-.section-form .apply-link{font-size:var(--fs-body-d);font-weight:700;color:var(--color-primary)}
-.section-form .form-contact{font-size:var(--fs-body-d);margin-top:4px}
-
-/* ── FACULTY ── */
-.section-faculty{padding:60px 149px}
-.section-faculty .container{display:flex;flex-direction:column;align-items:center;gap:40px}
-.section-faculty .faculty-intro{max-width:636px}
-.section-faculty .faculty-grid{display:flex;gap:60px;justify-content:center;flex-wrap:wrap;width:100%}
-.section-faculty .faculty-card{display:flex;flex-direction:column;align-items:center;gap:8px;width:280px}
-.section-faculty .faculty-avatar{width:120px;height:120px;border-radius:50%;overflow:hidden;border:4px solid #fafafa;margin-bottom:8px}
-.section-faculty .faculty-avatar img{width:100%;height:100%;object-fit:cover}
-.section-faculty .faculty-name{font-size:var(--fs-body-d);color:var(--color-primary);text-align:center}
-.section-faculty .faculty-role{font-size:var(--fs-body-d);color:var(--color-body);text-align:center;margin-bottom:4px}
-.section-faculty .faculty-card .body-text{font-size:var(--fs-body-d)}
-.section-faculty .faculty-card .link-underline{color:var(--color-primary);font-weight:700;font-size:var(--fs-body-d);text-decoration:underline;margin-top:4px}
-.section-faculty .faculty-more{text-align:center}
-.section-faculty .view-faculty{font-size:var(--fs-body-d);color:var(--color-body)}
-
-/* ── FINAL CTA ── */
-.section-final-cta{padding:60px 149px}
-.section-final-cta .container-narrow{display:flex;flex-direction:column;align-items:center;gap:24px}
-.section-final-cta .cta-buttons{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;padding-top:8px}
-.section-final-cta .cta-buttons .btn{min-width:250px;justify-content:center}
-
-/* ── STICKY FOOTER ── */
-.ldi-sticky-footer{position:fixed;bottom:0;left:0;right:0;width:100%;background:var(--color-sticky-bg);z-index:9998;transform:translateY(105%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
-.ldi-sticky-footer.visible{transform:translateY(0)}
-.ldi-sticky-footer .sticky-footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1440px;margin:0 auto;padding:16px 144px}
-.ldi-sticky-footer .sticky-footer-title{font-family:var(--font-body);font-size:var(--fs-body-d);color:var(--color-body)}
-.ldi-sticky-footer .sticky-footer-actions{display:flex;align-items:center;gap:16px}
-.ldi-sticky-footer .sticky-btn{padding:14px 24px}
-.ldi-sticky-footer .sticky-close{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s;flex-shrink:0;background:none;border:none;cursor:pointer}
-.ldi-sticky-footer .sticky-close:hover{background:rgba(0,0,0,.08)}
-
-/* ══ RESPONSIVE – TABLET (≤ 1024px) ══ */
-@media(max-width:1024px){
-  .ldi-header .header-inner{padding:0 40px}
-  .section-hero{padding:60px 40px}
-  .section-problem{padding:60px 40px}
-  .section-benefits{padding:60px 40px}
-  .section-online{padding:60px 40px}
-  .section-online .online-grid{grid-template-columns:1fr}
-  .section-form{padding:60px 40px}
-  .section-form .form-card{flex-direction:column;gap:40px;padding:40px}
-  .section-form .form-text,.section-form .form-wrap{flex:none;width:100%}
-  .section-faculty{padding:60px 40px}
-  .section-final-cta{padding:60px 40px}
-  .ldi-sticky-footer .sticky-footer-inner{padding:16px 40px}
-  .testimonial-card{flex-direction:column;text-align:center;padding:32px 24px}
-  .testimonial-card .testimonial-avatar{margin:0 auto}
-}
-
-/* ══ RESPONSIVE – MOBILE (≤ 767px) ══ */
-@media(max-width:767px){
-  .ldi-page .desktop-only{display:none!important}
-  .ldi-page .mobile-only{display:block!important}
-  body,.ldi-page .body-text{font-size:var(--fs-body-m)}
-  .ldi-page .btn{font-size:var(--fs-btn-m);padding:16px 20px}
-  .ldi-header{height:67px}
-  .ldi-header .header-inner{padding:16px 20px;height:auto}
-  .ldi-header .logo{height:34px!important;max-width:99px}
-  .ldi-header .nav-full{display:none}
-  .ldi-header .nav-short{display:inline}
-  .ldi-header .header-cta{padding:7px 13px;font-size:var(--fs-btn-m)}
-  .section-hero{padding:48px 20px;gap:24px}
-  .section-hero .hero-heading{font-size:var(--fs-hero-m);text-align:left}
-  .section-hero .hero-content{text-align:left;align-items:flex-start}
-  .section-hero .badge{font-size:11px;margin-bottom:0}
-  .section-hero .hero-cta-btn{width:100%;justify-content:center}
-  .section-hero .suitable-for{flex-direction:column;align-items:flex-start;justify-content:flex-start;width:100%}
-  .section-hero .suitable-items{flex-direction:column;gap:2px;width:100%}
-  .section-hero .suitable-item{width:100%;padding:0 12px;height:35px;display:flex;align-items:center;background:var(--color-blue-light);border-left:3px solid var(--color-blue-bar);font-size:var(--fs-body-m)}
-  .section-hero .suitable-item::before{display:none}
-  .section-hero .hero-image-wrap.desktop{display:none!important}
-  .section-hero .hero-image-wrap.mobile{display:block!important}
-  .ldi-page .section-heading{font-size:var(--fs-heading-m)}
-  .section-problem{padding:48px 20px}
-  .section-problem .container-narrow{text-align:left;padding:0}
-  .section-benefits{padding:48px 20px}
-  .section-benefits .container{gap:24px;padding:0}
-  .section-benefits .bullet-list{gap:16px}
-  .section-benefits .bullet-text{font-size:var(--fs-body-m)}
-  .testimonial-card{flex-direction:column;align-items:center;text-align:center;padding:40px 24px 24px;gap:12px}
-  .testimonial-card .testimonial-avatar{margin:0 auto;width:80px;height:80px}
-  .testimonial-card .testimonial-body{align-items:center;gap:8px}
-  .testimonial-card .testimonial-name,.testimonial-card .testimonial-role,.testimonial-card .testimonial-text{font-size:var(--fs-body-m)}
-  .testimonial-card .star-rating{font-size:14px}
-  .section-online{padding:48px 20px}
-  .section-online .online-grid{grid-template-columns:1fr;gap:24px;padding:0}
-  .section-online .online-text{gap:15px}
-  .section-online .feature-title,.section-online .feature-item .body-text{font-size:var(--fs-body-m)}
-  .section-online .feature-icon{width:20px;height:20px}
-  .section-online .feature-icon img{width:12px;height:12px}
-  .section-online .feature-list{gap:12px}
-  .carousel-wrap .carousel{aspect-ratio:4/3}
-  .carousel-wrap .carousel-prev{left:-18px}
-  .carousel-wrap .carousel-next{right:-18px}
-  .section-accreditation{padding:48px 20px}
-  .section-accreditation .container{padding:0}
-  .section-accreditation .accreditation-card{padding:32px 24px;gap:7px;border:1px solid #2e6d86;border-radius:6px}
-  .section-accreditation .accred-icon{width:48px;height:48px;border-radius:4px}
-  .section-accreditation .accred-icon img{width:24px;height:24px}
-  .section-accreditation .accred-title{font-size:16px;padding-top:9px}
-  .section-accreditation .accred-note{font-size:var(--fs-body-m)}
-  .section-faq{padding:48px 20px}
-  .section-faq .container-narrow{padding:0}
-  .section-faq .faq-question{font-size:var(--fs-body-m);padding:16px}
-  .section-faq .faq-item.active .faq-answer{padding:0 16px 16px}
-  .section-faq .faq-answer .body-text,.section-faq .faq-intro{font-size:var(--fs-body-m)}
-  .section-programme{padding:48px 20px}
-  .section-programme .steps-grid{grid-template-columns:1fr;gap:40px}
-  .section-programme .step:nth-child(1),.section-programme .step:nth-child(2),.section-programme .step:nth-child(3),.section-programme .step:nth-child(4),.section-programme .step:nth-child(5){grid-column:1/2}
-  .section-programme .step{width:100%;max-width:320px;margin:0 auto}
-  .section-programme .step-number{width:56px;height:56px;font-size:24px}
-  .section-programme .step-title,.section-programme .step .body-text,.section-programme .curriculum-highlights .body-text{font-size:var(--fs-body-m)}
-  .section-programme .divider{display:none}
-  .section-form{padding:48px 20px}
-  .section-form .container,.section-programme .container{padding:0}
-  .section-form .form-card{flex-direction:column;gap:24px;padding:24px 20px}
-  .section-form .form-text .section-heading{font-size:var(--fs-heading-m);text-align:center}
-  .section-form .form-text .body-text,.section-form .form-group label,.section-form .form-group input,.section-form .form-contact,.section-form .apply-link{font-size:var(--fs-body-m)}
-  .section-form .form-wrap{width:100%}
-  .section-faculty{padding:48px 20px}
-  .section-faculty .container{gap:24px}
-  .section-faculty .faculty-grid{flex-direction:column;gap:40px;align-items:center}
-  .section-faculty .faculty-card{width:100%;max-width:320px}
-  .section-faculty .faculty-avatar{width:80px;height:80px}
-  .section-faculty .faculty-name,.section-faculty .faculty-role,.section-faculty .faculty-card .body-text,.section-faculty .faculty-card .link-underline,.section-faculty .faculty-intro{font-size:var(--fs-body-m)}
-  .section-final-cta{padding:48px 20px}
-  .section-final-cta .section-heading,.section-final-cta .body-text{font-size:var(--fs-heading-m)}
-  .section-final-cta .body-text{font-size:var(--fs-body-m)}
-  .section-final-cta .cta-buttons{flex-direction:column;gap:12px}
-  .section-final-cta .cta-buttons .btn{width:100%}
-  .ldi-sticky-footer .sticky-footer-inner{padding:16px 20px;flex-direction:column;gap:12px;align-items:center;text-align:center;width:100%;max-width:100%;box-sizing:border-box}
-  .ldi-sticky-footer .sticky-footer-title{font-size:var(--fs-body-m);text-align:center}
-  .ldi-sticky-footer .sticky-footer-actions{width:100%;justify-content:center;box-sizing:border-box}
-  .ldi-sticky-footer .sticky-btn{width:100%;justify-content:center;font-size:var(--fs-btn-m);box-sizing:border-box}
-}
-</style>"""
+def button(text, url, bg=P, fg=WH, size_d=18, size_m=16, align="left",
+           pad_lr=28, pad_tb=16, border_color=None, hover_bg=None, radius=0):
+    s = {
+        "text": text,
+        "link": {"url": url, "is_external": "", "nofollow": ""},
+        "align": align,
+        "background_color": bg,
+        "button_text_color": fg,
+        "button_background_hover_color": hover_bg or ("#1f4a62" if bg == P else bg),
+        "hover_color": fg,
+        "typography_typography": "custom",
+        "typography_font_family": FB,
+        "typography_font_size": px(size_d),
+        "typography_font_size_mobile": px(size_m),
+        "typography_font_weight": "700",
+        "border_radius": {"unit": "px", "top": radius, "right": radius, "bottom": radius, "left": radius, "isLinked": True},
+        "padding": pad(pad_tb, pad_lr, pad_tb, pad_lr),
+    }
+    if border_color:
+        s["border_border"] = "solid"
+        s["border_width"] = border_w(1)
+        s["border_color"] = border_color
+    return {"id": uid(), "elType": "widget", "widgetType": "button", "settings": s, "elements": []}
 
 
-# ── Section HTML strings ──────────────────────────────────────────────────────
+def image(url, img_id="", size="full", align="left", radius=0, width_pct=None, hide_mobile=False, hide_desktop=False):
+    s = {
+        "image": {"id": img_id, "url": url},
+        "image_size": size,
+        "align": align,
+    }
+    if radius:
+        s["border_radius"] = border_r(radius)
+    if width_pct:
+        s["width"] = pct(width_pct)
+    if hide_mobile:
+        s["responsive_description"] = ""
+        s["hide_mobile"] = "hide-mobile"
+    if hide_desktop:
+        s["hide_desktop"] = "hide-desktop"
+    return {"id": uid(), "elType": "widget", "widgetType": "image", "settings": s, "elements": []}
 
-# [C1] Logo: Figma asset URL — must be uploaded to WP Media Library
-LOGO_URL = "<!-- [NEEDS_UPLOAD: LDI logo — upload to WP Media Library and replace this src] -->https://www.figma.com/api/mcp/asset/dc4dc51b-1af2-47ff-b08c-28da970f09a1"
 
-HTML_HEADER = f"""<header class="ldi-header">
-  <div class="header-inner">
-    <a href="#" class="logo-wrap">
-      <img src="{LOGO_URL}" alt="London Dental Institute" class="logo" />
-    </a>
-    <a href="#ldi-form-section" class="btn btn-outline header-cta">
-      <span class="nav-full">Download free prospectus</span>
-      <span class="nav-short">Download</span>
-      {ARROW_BLUE}
-    </a>
-  </div>
-</header>"""
+def divider_w(color="#d9d9d9", width_px=250, weight_px=1):
+    return {"id": uid(), "elType": "widget", "widgetType": "divider", "settings": {
+        "color": {"color": color},
+        "weight": px(weight_px),
+        "width": {"unit": "px", "size": width_px, "sizes": []},
+        "align": "center",
+        "gap": px(0),
+    }, "elements": []}
 
-# [C2] Hero CTA arrow + testimonial avatar: Figma assets
-HTML_HERO = f"""<section class="ldi-section section-hero" id="ldi-hero">
-  <div class="hero-content">
-    <div class="badge">FOR GRADUATE DENTISTS</div>
-    <h1 class="hero-heading">Treat the cases already in your chair to their full potential.</h1>
-    <p class="body-text">A 12-month online programme that gives general dentists the clinical framework to assess, plan, and deliver complex aesthetic cases in full: composite artistry, smile design, indirect restorations.</p>
-    <p class="body-text">Structured case-planning. 1:1 clinical support from UK faculty. Built on an evidence-based, UK-accredited foundation.</p>
-    <a href="#ldi-form-section" class="btn btn-primary hero-cta-btn" id="ldi-hero-cta">
-      Download free prospectus
-      {ARROW_WHITE}
-    </a>
-    <div class="suitable-for">
-      <div class="suitable-label body-text"><strong>Suitable for:</strong></div>
-      <div class="suitable-items">
-        <div class="suitable-item">Graduate dentists</div>
-        <div class="suitable-item">NHS dentists</div>
-        <div class="suitable-item">Private dentists</div>
-        <div class="suitable-item">Practice owners</div>
+
+def html_w(content):
+    return {"id": uid(), "elType": "widget", "widgetType": "html",
+            "settings": {"html": content}, "elements": []}
+
+
+# ── Container builder ─────────────────────────────────────────────────────────
+
+def con(children, bg=None, pad_=None, pad_m=None, pad_t=None,
+        dir="column", dir_m=None, align="", justify="",
+        gap_n=None, cw="", br=None, border=None, width=None,
+        width_t=None, width_m=None, is_outer=False):
+    s = {"flex_direction": dir, "padding": pad_ or pad()}
+    if bg:
+        s["background_background"] = "classic"
+        s["background_color"] = bg
+    if align: s["flex_align_items"] = align
+    if justify: s["flex_justify_content"] = justify
+    if gap_n is not None: s["flex_gap"] = gap(gap_n)
+    if cw: s["content_width"] = cw
+    if br: s["border_radius"] = border_r(br)
+    if border:
+        s["border_border"] = "solid"
+        s["border_color"] = border[0]
+        s["border_width"] = border_w(border[1])
+    if pad_m: s["padding_mobile"] = pad_m
+    if pad_t: s["padding_tablet"] = pad_t
+    if dir_m: s["flex_direction_mobile"] = dir_m
+    if width: s["width"] = width
+    if width_t: s["width_tablet"] = width_t
+    if width_m: s["width_mobile"] = width_m
+    return {"id": uid(), "elType": "container", "isInner": not is_outer,
+            "settings": s, "elements": children}
+
+
+def outer(children, bg=None, pad_=None, pad_m=None, pad_t=None,
+          dir="column", dir_m=None, align="center", justify="flex-start", gap_n=None):
+    return con(children, bg=bg, pad_=pad_, pad_m=pad_m, pad_t=pad_t,
+               dir=dir, dir_m=dir_m, align=align, justify=justify,
+               gap_n=gap_n, is_outer=True)
+
+
+# ── SVG assets (inline, no Figma URLs) ───────────────────────────────────────
+ARROW_W  = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ARROW_P  = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="#2b5e7d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+NAV_NEXT = '<svg width="39" height="39" viewBox="0 0 39 39" fill="none"><circle cx="19.5" cy="19.5" r="19.5" fill="rgba(0,0,0,.4)"/><path d="M16 13.5l7 6-7 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+NAV_PREV = '<svg width="39" height="39" viewBox="0 0 39 39" fill="none"><circle cx="19.5" cy="19.5" r="19.5" fill="rgba(0,0,0,.4)"/><path d="M23 13.5l-7 6 7 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+CHECK    = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l4 4 8-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+CLOSE_X  = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2L16 16M16 2L2 16" stroke="#030b3d" stroke-width="2" stroke-linecap="round"/></svg>'
+CHEV_UP  = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 15l6-6 6 6" stroke="#2b5e7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+CHEV_DN  = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#2b5e7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SECTION BUILDERS
+# ─────────────────────────────────────────────────────────────────────────────
+
+def build_header():
+    logo = image(
+        url="[NEEDS_UPLOAD: Upload LDI logo to WP Media Library]",
+        align="left", width_pct=70
+    )
+    cta = button("Download free prospectus", "#ldi-form-section",
+                 bg=WH, fg=P, border_color=P, hover_bg=GB,
+                 size_d=16, size_m=14, pad_lr=20, pad_tb=12)
+    inner = con([logo, cta],
+                bg=WH, dir="row", align="center", justify="space-between",
+                pad_=pad(0, 200, 0, 200),
+                pad_m=pad(0, 20, 0, 20),
+                pad_t=pad(0, 40, 0, 40),
+                cw="full")
+    return outer([inner], bg=WH,
+                 pad_=pad(16, 0, 16, 0))
+
+
+def build_hero():
+    badge = con([
+        heading("FOR GRADUATE DENTISTS", tag="div", color=WH, font=FB,
+                size_d=14, size_m=11, weight="700", align="center",
+                letter_spacing=0.5)
+    ], bg=PU, pad_=pad(8, 16, 8, 16), br=5)
+
+    h1 = heading("Treat the cases already in your chair to their full potential.",
+                 tag="h1", color=P, size_d=36, size_m=30, weight="400",
+                 align="center", lh_em=1.15)
+
+    body1 = text_ed(
+        "<p>A 12-month online programme that gives general dentists the clinical framework to assess, plan, and deliver complex aesthetic cases in full: composite artistry, smile design, indirect restorations.</p>",
+        align="center", size_d=18, size_m=16
+    )
+    body2 = text_ed(
+        "<p>Structured case-planning. 1:1 clinical support from UK faculty. Built on an evidence-based, UK-accredited foundation.</p>",
+        align="center", size_d=18, size_m=16
+    )
+
+    cta = button("Download free prospectus", "#ldi-form-section",
+                 align="center", size_d=18, size_m=16, pad_lr=32, pad_tb=16)
+
+    suitable = text_ed(
+        '<p style="text-align:center"><strong>Suitable for:</strong>'
+        ' &nbsp;&#8226;&nbsp; Graduate dentists'
+        ' &nbsp;&#8226;&nbsp; NHS dentists'
+        ' &nbsp;&#8226;&nbsp; Private dentists'
+        ' &nbsp;&#8226;&nbsp; Practice owners</p>',
+        align="center", size_d=18, size_m=16
+    )
+
+    hero_img = image(
+        url="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/05144535/hero-desktop.jpg",
+        align="center", radius=8, width_pct=100
+    )
+
+    content_col = con([badge, h1, body1, body2, cta, suitable],
+                      dir="column", align="center", gap_n=20)
+
+    return outer([content_col, hero_img],
+                 bg=WH, pad_=pad(60, 149, 60, 149),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40),
+                 gap_n=48)
+
+
+def build_problem():
+    copy = text_ed("""
+<p>You&#8217;re already seeing these patients.</p>
+<br>
+<p>The worn anteriors. The discoloured composites that have never quite matched. The patient who points at their smile and says <em>can we do something about all of this?</em></p>
+<br>
+<p>You can treat them. But often, you only treat part of it. Perhaps just a single tooth when all anteriors need addressing. Whitening when more intervention was justifiable. Something very conservative when the patient was ready for something more comprehensive.</p>
+<br>
+<p>It&#8217;s not about ability. It&#8217;s that aesthetic cases don&#8217;t arrive with a clear framework the way simpler restorative ones do &#8212; no agreed sequence for full-arch planning, no structured approach to reading occlusion into a smile case, no formal training in how to build and present a treatment plan that genuinely addresses what the patient came in for.</p>
+<br>
+<p>So you do what you can confidently justify. And the patient leaves with something, rather than everything they needed, or wanted.</p>
+""", align="center", size_d=18, size_m=16)
+
+    inner = con([copy], cw="full", pad_=pad(0, 80, 0, 80), pad_m=pad(0, 0, 0, 0))
+    return outer([inner], bg=GB,
+                 pad_=pad(60, 124, 60, 124),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
+
+
+def build_benefits():
+    h2 = heading("Build the clinical framework to treat aesthetic cases in full",
+                 color=BD, size_d=32, size_m=28, weight="400", align="center")
+
+    intro = text_ed(
+        "<p>Over 12 months, you build the clinical framework to assess, plan, and deliver aesthetic cases in full &#8212; with the confidence to propose treatment that properly meets what your patients are asking for.</p>",
+        align="center", size_d=18, size_m=16
+    )
+
+    def bullet(strong_text, rest):
+        return text_ed(
+            f'<p><span style="display:inline-block;width:8px;height:8px;background:#2b5e7d;border-radius:4px;margin-right:14px;vertical-align:middle;flex-shrink:0"></span>'
+            f'<strong>{strong_text}</strong> {rest}</p>',
+            size_d=18, size_m=16
+        )
+
+    bullets = [
+        bullet("Develop a structured approach to full-arch aesthetic assessment",
+               "&#8212; so you can see and plan the complete case, not just the presenting complaint"),
+        bullet("Build confidence in treatment sequencing",
+               "&#8212; when to whiten first, when indirect restorations are the right call, how occlusion shapes every aesthetic decision"),
+        bullet("Present comprehensive treatment plans patients understand and accept",
+               "&#8212; and charge accordingly"),
+        bullet("Deliver high-quality composite artistry, indirect restorations, and more",
+               "&#8212; with 1:1 clinical support from expert faculty"),
+        bullet("Build on a UK-accredited, evidence-based foundation",
+               "&#8212; not short courses with no follow-up"),
+    ]
+
+    # Testimonial card
+    avatar = con([
+        image(url="[NEEDS_UPLOAD: Dr. Haroon Dalili headshot]",
+              align="center", radius=60, width_pct=100)
+    ], width=px(120), pad_=pad(0, 0, 0, 0))
+
+    stars = heading("&#9733;&#9733;&#9733;&#9733;&#9733;", tag="div",
+                    color=LA, font=FB, size_d=20, size_m=16, weight="400")
+
+    quote = text_ed(
+        '<p>&#8220;Opting for LDI for my Aesthetic and Restorative Dentistry diploma was one of the most significant career choices I have made. I would highly recommend this course.&#8221;</p>',
+        size_d=18, size_m=16, lh_em=1.6
+    )
+    name = heading("Dr. Haroon Dalili, UK", tag="h4", color=P, font=FB,
+                   size_d=18, size_m=16, weight="700")
+    role = text_ed("<p>General Dentist, LDI - PG Dip. Alumnus</p>",
+                   size_d=18, size_m=16)
+
+    testimonial_body = con([stars, quote, name, role], dir="column", gap_n=8, cw="full")
+    testimonial = con([avatar, testimonial_body],
+                      bg=WH, dir="row", dir_m="column", align="center",
+                      gap_n=32, pad_=pad(40, 40, 36, 40),
+                      border=(LA, 1), br=8)
+
+    inner = con([h2, intro] + bullets + [testimonial],
+                dir="column", align="center", gap_n=24, cw="full")
+
+    return outer([inner], bg=WH,
+                 pad_=pad(96, 120, 96, 120),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
+
+
+def build_online():
+    section_h = heading("Can you really learn Aesthetic &amp; Restorative Dentistry online?",
+                        color=BD, size_d=32, size_m=28, weight="400", align="left")
+    intro = text_ed(
+        "<p>The programme combines online theory with a comprehensive Clinical Simulation Kit and 1:1 case support from our expert tutors. You receive the models and equipment needed to practise hands-on techniques at home, alongside live Zoom study clubs and optional in-person workshops in London.</p>",
+        size_d=18, size_m=16
+    )
+
+    CHECK_URL = "https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124544/check-icon.png"
+
+    def feature(title, desc):
+        icon_wrap = con([image(CHECK_URL, align="center", width_pct=100)],
+                        bg=P, pad_=pad(8, 8, 8, 8), br=50, width=px(32))
+        text_col = con([
+            heading(title, tag="h4", color=BD, font=FB, size_d=18, size_m=16, weight="700"),
+            text_ed(f"<p>{desc}</p>", size_d=18, size_m=16)
+        ], dir="column", gap_n=4, cw="full")
+        return con([icon_wrap, text_col], dir="row", align="flex-start", gap_n=16)
+
+    features = [
+        feature("Clinical Simulation Kit",
+                "models and equipment for composite, indirect restoration, and clinical photography practice, shipped to you"),
+        feature("1:1 clinical case support",
+                "apply new techniques to your own patients with tutor feedback through the VLE"),
+        feature("Monthly Live Study Clubs",
+                "live Zoom sessions with faculty, with recordings on the VLE if you miss them"),
+        feature("Optional in-person workshops at LDI London",
+                "additional hands-on teaching for those who can travel (not required)"),
+    ]
+
+    left_col = con([section_h, intro] + features, dir="column", gap_n=24,
+                   width=pct(50), width_t=pct(100), width_m=pct(100))
+
+    # Carousel — html widget with inline styles + JS (no <style> block)
+    carousel_html = f"""
+<div style="position:relative;width:100%">
+  <div style="width:100%;overflow:hidden;border-radius:8px;aspect-ratio:1/1" id="ldiCar">
+    <div style="display:flex;height:100%;transition:transform .4s ease" id="ldiCarTrack">
+      <div style="flex:0 0 100%;height:100%">
+        <img src="[NEEDS_UPLOAD: Carousel slide 1]" alt="Gallery 1" style="width:100%;height:100%;object-fit:cover;display:block" />
+      </div>
+      <div style="flex:0 0 100%;height:100%">
+        <img src="[NEEDS_UPLOAD: Carousel slide 2]" alt="Gallery 2" style="width:100%;height:100%;object-fit:cover;display:block" />
+      </div>
+      <div style="flex:0 0 100%;height:100%">
+        <img src="[NEEDS_UPLOAD: Carousel slide 3]" alt="Gallery 3" style="width:100%;height:100%;object-fit:cover;display:block" />
       </div>
     </div>
   </div>
-  <div class="hero-image-wrap desktop">
-    <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/05144535/hero-desktop.jpg" alt="LDI Clinical Simulation Kit with laptop" class="hero-img" />
-  </div>
-  <div class="hero-image-wrap mobile">
-    <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/05144541/hero-mobile.jpg" alt="LDI Clinical Simulation Kit with laptop" class="hero-img" />
-  </div>
-</section>"""
-
-HTML_PROBLEM = """<section class="ldi-section section-gray section-problem">
-  <div class="container-narrow text-center">
-    <p class="body-text">You&#8217;re already seeing these patients.</p>
-    <p class="body-text">The worn anteriors. The discoloured composites that have never quite matched. The patient who points at their smile and says <em>can we do something about all of this?</em></p>
-    <p class="body-text">You can treat them. But often, you only treat part of it. Perhaps just a single tooth when all anteriors need addressing. Whitening when more intervention was justifiable. Something very conservative when the patient was ready for something more comprehensive.</p>
-    <p class="body-text">It&#8217;s not about ability. It&#8217;s that aesthetic cases don&#8217;t arrive with a clear framework the way simpler restorative ones do &#8212; no agreed sequence for full-arch planning, no structured approach to reading occlusion into a smile case, no formal training in how to build and present a treatment plan that genuinely addresses what the patient came in for.</p>
-    <p class="body-text">So you do what you can confidently justify. And the patient leaves with something, rather than everything they needed, or wanted.</p>
-  </div>
-</section>"""
-
-# [C3] Testimonial avatar is a Figma asset
-TESTIMONIAL_AVATAR_URL = "<!-- [NEEDS_UPLOAD: Dr. Haroon Dalili headshot — upload to WP Media Library] -->https://www.figma.com/api/mcp/asset/b93da990-22e6-476d-87cf-5a8aefd71627"
-
-HTML_BENEFITS = f"""<section class="ldi-section section-white section-benefits">
-  <div class="container">
-    <div class="section-heading-wrap">
-      <h2 class="section-heading text-center">Build the clinical framework to treat aesthetic cases in full</h2>
-    </div>
-    <p class="body-text text-center intro-text">Over 12 months, you build the clinical framework to assess, plan, and deliver aesthetic cases in full &#8212; with the confidence to propose treatment that properly meets what your patients are asking for.</p>
-    <ul class="bullet-list">
-      <li><p class="bullet-text"><strong>Develop a structured approach to full-arch aesthetic assessment</strong> &#8212; so you can see and plan the complete case, not just the presenting complaint</p></li>
-      <li><p class="bullet-text"><strong>Build confidence in treatment sequencing</strong> &#8212; when to whiten first, when indirect restorations are the right call, how occlusion shapes every aesthetic decision</p></li>
-      <li><p class="bullet-text"><strong>Present comprehensive treatment plans patients understand and accept</strong> &#8212; and charge accordingly</p></li>
-      <li><p class="bullet-text"><strong>Deliver high-quality composite artistry, indirect restorations, and more</strong> &#8212; with 1:1 clinical support from expert faculty</p></li>
-      <li><p class="bullet-text"><strong>Build on a UK-accredited, evidence-based foundation</strong> &#8212; not short courses with no follow-up</p></li>
-    </ul>
-    <div class="testimonial-card">
-      <div class="testimonial-avatar">
-        <img src="{TESTIMONIAL_AVATAR_URL}" alt="Dr. Haroon Dalili" />
-      </div>
-      <div class="testimonial-body">
-        <div class="star-rating" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote class="testimonial-text body-text">&#8220;Opting for LDI for my Aesthetic and Restorative Dentistry diploma was one of the most significant career choices I have made. I would highly recommend this course.&#8221;</blockquote>
-        <p class="testimonial-name"><strong>Dr. Haroon Dalili, UK</strong></p>
-        <p class="testimonial-role body-text">General Dentist, LDI - PG Dip. Alumnus</p>
-      </div>
-    </div>
-  </div>
-</section>"""
-
-# [C4] Carousel images are Figma assets
-CAROUSEL_IMG_1 = "<!-- [NEEDS_UPLOAD: Carousel slide 1 — upload to WP Media Library] -->https://www.figma.com/api/mcp/asset/f9ba1b86-576d-4163-9962-77cb32a7c328"
-CAROUSEL_IMG_2 = "<!-- [NEEDS_UPLOAD: Carousel slide 2 — upload to WP Media Library] -->https://www.figma.com/api/mcp/asset/6485024f-a9f7-4c18-9bda-157aec8a7cf2"
-CAROUSEL_IMG_3 = "<!-- [NEEDS_UPLOAD: Carousel slide 3 — upload to WP Media Library] -->https://www.figma.com/api/mcp/asset/515e31fb-a227-4c24-95b2-9179a6fe3135"
-
-HTML_ONLINE = f"""<section class="ldi-section section-gray section-online">
-  <div class="container online-grid">
-    <div class="online-text">
-      <h2 class="section-heading">Can you really learn Aesthetic &amp; Restorative Dentistry online?</h2>
-      <p class="body-text">The programme combines online theory with a comprehensive Clinical Simulation Kit and 1:1 case support from our expert tutors. You receive the models and equipment needed to practise hands-on techniques at home, alongside live Zoom study clubs and optional in-person workshops in London.</p>
-      <ul class="feature-list">
-        <li class="feature-item">
-          <span class="feature-icon"><img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124544/check-icon.png" alt="" /></span>
-          <div><p class="feature-title">Clinical Simulation Kit</p><p class="body-text">models and equipment for composite, indirect restoration, and clinical photography practice, shipped to you</p></div>
-        </li>
-        <li class="feature-item">
-          <span class="feature-icon"><img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124544/check-icon.png" alt="" /></span>
-          <div><p class="feature-title">1:1 clinical case support</p><p class="body-text">apply new techniques to your own patients with tutor feedback through the VLE</p></div>
-        </li>
-        <li class="feature-item">
-          <span class="feature-icon"><img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124544/check-icon.png" alt="" /></span>
-          <div><p class="feature-title">Monthly Live Study Clubs</p><p class="body-text">live Zoom sessions with faculty, with recordings on the VLE if you miss them</p></div>
-        </li>
-        <li class="feature-item">
-          <span class="feature-icon"><img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124544/check-icon.png" alt="" /></span>
-          <div><p class="feature-title">Optional in-person workshops at LDI London</p><p class="body-text">additional hands-on teaching for those who can travel (not required)</p></div>
-        </li>
-      </ul>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel" id="ldi-carousel">
-        <div class="carousel-track" id="ldiCarouselTrack">
-          <div class="carousel-slide"><img src="{CAROUSEL_IMG_1}" alt="LDI Gallery 1" /></div>
-          <div class="carousel-slide"><img src="{CAROUSEL_IMG_2}" alt="LDI Gallery 2" /></div>
-          <div class="carousel-slide"><img src="{CAROUSEL_IMG_3}" alt="LDI Gallery 3" /></div>
-        </div>
-      </div>
-      <button class="carousel-btn carousel-prev" id="ldiCarouselPrev" aria-label="Previous slide" style="transform:translateY(-50%) scaleX(-1)">{ARROW_NAV}</button>
-      <button class="carousel-btn carousel-next" id="ldiCarouselNext" aria-label="Next slide">{ARROW_NAV}</button>
-      <div class="carousel-dots" id="ldiCarouselDots"></div>
-    </div>
-  </div>
-</section>
+  <button onclick="ldiCar(-1)" aria-label="Previous" style="position:absolute;top:50%;left:-19px;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0">{NAV_PREV}</button>
+  <button onclick="ldiCar(1)" aria-label="Next" style="position:absolute;top:50%;right:-19px;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0">{NAV_NEXT}</button>
+  <div id="ldiCarDots" style="display:flex;gap:8px;justify-content:center;margin-top:16px"></div>
+</div>
 <script>
 (function(){{
-  var track=document.getElementById('ldiCarouselTrack');
-  var dotsEl=document.getElementById('ldiCarouselDots');
-  if(!track||!dotsEl)return;
-  var slides=track.querySelectorAll('.carousel-slide');
-  var current=0;
+  var track=document.getElementById('ldiCarTrack');
+  var dots=document.getElementById('ldiCarDots');
+  if(!track||!dots)return;
+  var slides=track.querySelectorAll('div');
+  var cur=0;
   slides.forEach(function(_,i){{
-    var dot=document.createElement('button');
-    dot.className='carousel-dot'+(i===0?' active':'');
-    dot.setAttribute('aria-label','Slide '+(i+1));
-    dot.addEventListener('click',function(){{goTo(i);}});
-    dotsEl.appendChild(dot);
+    var d=document.createElement('button');
+    d.style.cssText='width:8px;height:8px;border-radius:50%;background:'+(i===0?'#2b5e7d':'#c5c5c5')+';border:none;cursor:pointer;padding:0';
+    d.setAttribute('aria-label','Slide '+(i+1));
+    d.addEventListener('click',function(){{go(i);}});
+    dots.appendChild(d);
   }});
-  function goTo(n){{
-    current=(n+slides.length)%slides.length;
-    track.style.transform='translateX(-'+current*100+'%)';
-    dotsEl.querySelectorAll('.carousel-dot').forEach(function(d,i){{d.classList.toggle('active',i===current);}});
+  window.ldiCar=function(dir){{go(cur+dir);}};
+  function go(n){{
+    cur=(n+slides.length)%slides.length;
+    track.style.transform='translateX(-'+cur*100+'%)';
+    dots.querySelectorAll('button').forEach(function(d,i){{d.style.background=i===cur?'#2b5e7d':'#c5c5c5';}});
   }}
-  document.getElementById('ldiCarouselPrev').addEventListener('click',function(){{goTo(current-1);}});
-  document.getElementById('ldiCarouselNext').addEventListener('click',function(){{goTo(current+1);}});
 }})();
 </script>"""
 
-HTML_ACCREDITATION = """<section class="ldi-section section-white section-accreditation">
-  <div class="container">
-    <h2 class="section-heading text-center">UK qualifications, accessible worldwide</h2>
-    <div class="accreditation-card">
-      <div class="accred-icon">
-        <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04125001/cert-icon.png" alt="" />
-      </div>
-      <h3 class="accred-title">UK level 7 accredited</h3>
-      <p class="body-text">Upon successful completion you will be awarded the London Dental Institute Diploma in Aesthetic &amp; Restorative Dentistry, accredited as Level 7 by EduQual &#8212; a regulated awarding body approved by SQA Accreditation, a globally recognised UK qualifications regulator.</p>
-    </div>
-    <p class="body-text text-center accred-note">No UK student visa required. Our 100% online programme is accessible to dentists worldwide.</p>
-  </div>
-</section>"""
+    right_col = con([html_w(carousel_html)], dir="column",
+                    width=pct(50), width_t=pct(100), width_m=pct(100))
 
-HTML_FAQ = f"""<section class="ldi-section section-gray section-faq">
-  <div class="container-narrow">
-    <h2 class="section-heading text-center">Frequently Asked Questions</h2>
-    <p class="body-text text-center faq-intro">Find answers to common questions about our programs and admissions.</p>
-    <div class="faq-list">
-      <div class="faq-item active">
-        <button class="faq-question" aria-expanded="true">
-          <span>What qualification will I receive?</span>
-          <span class="faq-icon">{CHEVRON_UP}{CHEVRON_DN}</span>
-        </button>
-        <div class="faq-answer">
-          <p class="body-text">Upon successful completion of the program, you will receive the London Dental Institute Diploma in Aesthetic &amp; Restorative Dentistry, accredited at Level 7 by EduQual &#8212; a regulated awarding body approved by SQA Accreditation, a globally recognised UK qualifications regulator.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>Is LDI accredited?</span>
-          <span class="faq-icon">{CHEVRON_UP}{CHEVRON_DN}</span>
-        </button>
-        <div class="faq-answer">
-          <p class="body-text">Yes. The London Dental Institute is accredited by EduQual, a regulated awarding body approved by SQA Accreditation &#8212; a globally recognised UK qualifications regulator. Our diplomas are certified at Level 7 of the UK qualifications framework.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-          <span>Do I need a student visa?</span>
-          <span class="faq-icon">{CHEVRON_UP}{CHEVRON_DN}</span>
-        </button>
-        <div class="faq-answer">
-          <p class="body-text">No. Our programme is 100% online, so no UK student visa is required. You can study from anywhere in the world while continuing to work in your practice.</p>
-        </div>
-      </div>
-    </div>
+    row = con([left_col, right_col], dir="row", dir_m="column",
+              gap_n=64, align="flex-start", cw="full")
+
+    return outer([row], bg=GB,
+                 pad_=pad(96, 144, 96, 144),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
+
+
+def build_accreditation():
+    section_h = heading("UK qualifications, accessible worldwide",
+                        color=BD, size_d=32, size_m=28, weight="400", align="center")
+
+    icon_wrap = con([
+        image("https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04125001/cert-icon.png",
+              align="center", width_pct=60)
+    ], bg=TE, pad_=pad(13, 13, 13, 13), br=8, width=px(64))
+
+    card_title = heading("UK level 7 accredited", tag="h3", color=P, font=FB,
+                         size_d=32, size_m=20, weight="700")
+    card_body = text_ed(
+        "<p>Upon successful completion you will be awarded the London Dental Institute Diploma in Aesthetic &amp; Restorative Dentistry, accredited as Level 7 by EduQual &#8212; a regulated awarding body approved by SQA Accreditation, a globally recognised UK qualifications regulator.</p>",
+        size_d=18, size_m=16
+    )
+    card = con([icon_wrap, card_title, card_body],
+               bg=WH, dir="column", gap_n=16, pad_=pad(46, 53, 46, 53),
+               pad_m=pad(32, 24, 32, 24),
+               border=(TE, 2), br=8, cw="full")
+
+    note = text_ed(
+        "<p>No UK student visa required. Our 100% online programme is accessible to dentists worldwide.</p>",
+        align="center", size_d=18, size_m=16
+    )
+
+    inner = con([section_h, card, note], dir="column", gap_n=32, cw="full")
+    return outer([inner], bg=WH,
+                 pad_=pad(60, 80, 60, 80),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
+
+
+def build_faq():
+    section_h = heading("Frequently Asked Questions",
+                        color=BD, size_d=32, size_m=28, weight="400", align="center")
+    intro = text_ed(
+        "<p>Find answers to common questions about our programs and admissions.</p>",
+        align="center", size_d=18, size_m=16
+    )
+
+    faqs = [
+        ("What qualification will I receive?",
+         "Upon successful completion of the program, you will receive the London Dental Institute Diploma in Aesthetic &amp; Restorative Dentistry, accredited at Level 7 by EduQual &#8212; a regulated awarding body approved by SQA Accreditation, a globally recognised UK qualifications regulator."),
+        ("Is LDI accredited?",
+         "Yes. The London Dental Institute is accredited by EduQual, a regulated awarding body approved by SQA Accreditation &#8212; a globally recognised UK qualifications regulator. Our diplomas are certified at Level 7 of the UK qualifications framework."),
+        ("Do I need a student visa?",
+         "No. Our programme is 100% online, so no UK student visa is required. You can study from anywhere in the world while continuing to work in your practice."),
+    ]
+
+    faq_items_html = ""
+    for i, (q, a) in enumerate(faqs):
+        is_open = "block" if i == 0 else "none"
+        faq_items_html += f"""
+<div style="background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:6px;overflow:hidden;margin-bottom:12px">
+  <button onclick="ldiToggleFaq(this)" aria-expanded="{'true' if i==0 else 'false'}"
+    style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px;text-align:left;font-family:ABC Social Edu,Inter,sans-serif;font-size:18px;font-weight:700;color:#030b3d;background:none;border:none;cursor:pointer">
+    <span>{q}</span>
+    <span style="flex-shrink:0">{CHEV_UP if i==0 else CHEV_DN}</span>
+  </button>
+  <div style="display:{is_open};padding:0 20px 20px;font-family:ABC Social Edu,Inter,sans-serif;font-size:18px;color:#030b3d;line-height:1.6">
+    {a}
   </div>
-</section>
+</div>"""
+
+    accordion = f"""
+<div style="width:100%;max-width:720px;margin:0 auto">
+{faq_items_html}
+</div>
 <script>
-(function(){{
-  document.querySelectorAll('.section-faq .faq-question').forEach(function(btn){{
-    btn.addEventListener('click',function(){{
-      var item=btn.closest('.faq-item');
-      var isOpen=item.classList.contains('active');
-      document.querySelectorAll('.section-faq .faq-item').forEach(function(i){{
-        i.classList.remove('active');
-        i.querySelector('.faq-question').setAttribute('aria-expanded','false');
-      }});
-      if(!isOpen){{item.classList.add('active');btn.setAttribute('aria-expanded','true');}}
-    }});
+window.ldiToggleFaq = function(btn) {{
+  var answer = btn.nextElementSibling;
+  var isOpen = btn.getAttribute('aria-expanded') === 'true';
+  document.querySelectorAll('[onclick="ldiToggleFaq(this)"]').forEach(function(b) {{
+    b.setAttribute('aria-expanded', 'false');
+    b.nextElementSibling.style.display = 'none';
+    b.querySelector('span:last-child').innerHTML = '{CHEV_DN}';
   }});
-}})();
+  if (!isOpen) {{
+    btn.setAttribute('aria-expanded', 'true');
+    answer.style.display = 'block';
+    btn.querySelector('span:last-child').innerHTML = '{CHEV_UP}';
+  }}
+}};
 </script>"""
 
-HTML_PROGRAMME = """<section class="ldi-section section-white section-programme">
-  <div class="container">
-    <div class="programme-header">
-      <h2 class="section-heading text-center">Designed for dentists worldwide</h2>
-      <p class="body-text text-center">12-month online programme</p>
-      <div class="divider"></div>
-    </div>
-    <div class="steps-grid">
-      <div class="step">
-        <div class="step-number">1</div>
-        <h4 class="step-title">Format</h4>
-        <p class="body-text text-center">100% online core curriculum with optional in-person training</p>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <h4 class="step-title">Access</h4>
-        <p class="body-text text-center">Flexible 24/7 learning through the LDI Virtual Learning Environment (VLE)</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <h4 class="step-title">Support</h4>
-        <p class="body-text text-center">1:1 case support to help you apply new skills immediately</p>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <h4 class="step-title">Community</h4>
-        <p class="body-text text-center">Membership in a community of like-minded dental professionals</p>
-      </div>
-      <div class="step">
-        <div class="step-number">5</div>
-        <h4 class="step-title">Start dates</h4>
-        <p class="body-text text-center">29th May 2026</p>
-        <span class="cohort-badge">MAY NEXT COHORT DATE</span>
-      </div>
-    </div>
-    <div class="curriculum-highlights">
-      <h4 class="body-text"><strong>Curriculum highlights</strong></h4>
-      <p class="body-text text-center">Aesthetic Clinical Photography &#8226; Smile Design &#8226; Indirect Restorations &#8226; Aesthetic Implant Restorations &#8226; Facial Aesthetics &#8226; Marketing an Aesthetic Practice</p>
-    </div>
-  </div>
-</section>"""
+    inner = con([section_h, intro, html_w(accordion)],
+                dir="column", align="center", gap_n=32, cw="full")
+    return outer([inner], bg=GB,
+                 pad_=pad(96, 80, 96, 80),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
 
-# [C5] Form: HTML stub — replace with WP form shortcode in Elementor
-HTML_FORM = f"""<section class="ldi-section section-gray section-form" id="ldi-form-section">
-  <div class="container">
-    <div class="form-card">
-      <div class="form-text">
-        <h2 class="section-heading">See the full curriculum, faculty, and fees</h2>
-        <p class="body-text">Download the Aesthetic &amp; Restorative Dentistry prospectus &#8212; every module, every faculty member, every fee, every case study.</p>
-      </div>
-      <div class="form-wrap">
-        <!-- [NEEDS_FORM: Replace the form below with your WP form plugin shortcode.
-             Recommended: Contact Form 7 or WPForms.
-             Example: [contact-form-7 id="YOUR_FORM_ID" title="Prospectus Download"]
-             The form should collect: First Name, Last Name, Email.
-             On success, trigger prospectus download or redirect. -->
-        <form class="prospectus-form" action="#" method="POST" id="ldi-prospectus-form">
-          <div class="form-group desktop-only">
-            <label for="ldi-first-name">First Name</label>
-            <input type="text" id="ldi-first-name" name="first_name" required />
-          </div>
-          <div class="form-group desktop-only">
-            <label for="ldi-last-name">Last Name</label>
-            <input type="text" id="ldi-last-name" name="last_name" required />
-          </div>
-          <div class="form-group desktop-only">
-            <label for="ldi-email">Email</label>
-            <input type="email" id="ldi-email" name="email" required />
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">
-            Download prospectus
-            {ARROW_WHITE}
-          </button>
-          <div class="form-apply">
-            <a href="#" class="apply-link">Apply Now</a>
-          </div>
-          <p class="form-contact body-text text-center">
-            Questions? <a href="#" class="link-underline">Contact our admissions team.</a>
-          </p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>"""
 
-HTML_FACULTY = """<section class="ldi-section section-white section-faculty">
-  <div class="container">
-    <h2 class="section-heading text-center">Meet our faculty</h2>
-    <p class="body-text text-center faculty-intro">We are proud to present our teaching faculty, featuring some of the world&#8217;s most respected educators in aesthetic and restorative dentistry.</p>
-    <div class="faculty-grid">
-      <div class="faculty-card">
-        <div class="faculty-avatar">
-          <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124352/dr-1.png" alt="Dr. George Cheetham" />
-        </div>
-        <p class="faculty-name">Dr. George Cheetham</p>
-        <p class="faculty-role"><strong>Aesthetic &amp; Restorative Dentistry, UK</strong></p>
-        <p class="body-text text-center">Dr. George Cheetham is an award-winning restorative dentist and one of the UK&#8217;s leading educators in aesthetic and restorative dentistry.</p>
-        <a href="#" class="link-underline">View full bio</a>
-      </div>
-      <div class="faculty-card">
-        <div class="faculty-avatar">
-          <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124417/dr-2.png" alt="Prof. James Field" />
-        </div>
-        <p class="faculty-name">Prof. James Field</p>
-        <p class="faculty-role"><strong>Professor of Restorative Dentistry, UK</strong></p>
-        <p class="body-text text-center">Professor James Field holds a full-time Chair in Restorative Dentistry and is internationally recognised for his clinical research.</p>
-        <a href="#" class="link-underline">View full bio</a>
-      </div>
-      <div class="faculty-card">
-        <div class="faculty-avatar">
-          <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124358/dr-3.png" alt="Dr. Asmaa Al-Taie" />
-        </div>
-        <p class="faculty-name">Dr. Asmaa Al-Taie</p>
-        <p class="faculty-role"><strong>Consultant in Restorative Dentistry, UK</strong></p>
-        <p class="body-text text-center">Dr. Asmaa Al-Taie is a Clinical Academic at the University of Liverpool and an NHS Consultant in Restorative Dentistry.</p>
-        <a href="#" class="link-underline">View full bio</a>
-      </div>
-    </div>
-    <div class="faculty-more">
-      <a href="#" class="view-faculty body-text"><strong>View full faculty</strong> &#8594;</a>
-    </div>
-  </div>
-</section>"""
+def build_programme():
+    section_h = heading("Designed for dentists worldwide",
+                        color=BD, size_d=32, size_m=28, weight="400", align="center")
+    sub = text_ed("<p>12-month online programme</p>", align="center", size_d=18, size_m=16)
+    div_line = divider_w(color="#d9d9d9", width_px=250)
 
-HTML_FINAL_CTA = f"""<section class="ldi-section section-gray section-final-cta">
-  <div class="container-narrow text-center">
-    <h2 class="section-heading">Join the next enrolment</h2>
-    <p class="body-text">Start building the clinical framework to treat your aesthetic cases in full. The next cohort starts 29 May 2026.</p>
-    <div class="cta-buttons">
-      <a href="#ldi-form-section" class="btn btn-primary">Download prospectus {ARROW_WHITE}</a>
-      <a href="#" class="btn btn-outline">Apply Now</a>
-    </div>
-  </div>
-</section>"""
+    def step(num, title, desc, show_badge=False):
+        num_circle = con([
+            heading(str(num), tag="div", color=TE, font=FB,
+                    size_d=28, size_m=24, weight="700", align="center")
+        ], bg=GB, pad_=pad(0, 0, 0, 0), br=50, width=px(64),
+           align="center", justify="center")
 
-HTML_STICKY_FOOTER = f"""<div class="ldi-sticky-footer" id="ldi-sticky-footer" role="complementary" aria-label="Download prospectus">
-  <div class="sticky-footer-inner">
-    <p class="sticky-footer-title">Diploma in Aesthetic &amp; Restorative Dentistry</p>
-    <div class="sticky-footer-actions">
-      <a href="#ldi-form-section" class="btn btn-primary sticky-btn">
-        Download prospectus
-        {ARROW_WHITE}
+        children = [num_circle,
+                    heading(title, tag="h4", color=BD, font=FB,
+                            size_d=18, size_m=16, weight="700", align="center"),
+                    text_ed(f"<p>{desc}</p>", align="center", size_d=18, size_m=16)]
+
+        if show_badge:
+            badge = con([
+                heading("MAY NEXT COHORT DATE", tag="div", color="#ff1c1c",
+                        font=FB, size_d=10, size_m=10, weight="700",
+                        align="center", letter_spacing=0.5)
+            ], bg="#ffc4c4", pad_=pad(4, 10, 4, 10), br=12)
+            children.append(badge)
+
+        return con(children, dir="column", align="center", gap_n=8,
+                   width=pct(30), width_m=pct(100))
+
+    row1 = con([
+        step(1, "Format", "100% online core curriculum with optional in-person training"),
+        step(2, "Access", "Flexible 24/7 learning through the LDI Virtual Learning Environment (VLE)"),
+        step(3, "Support", "1:1 case support to help you apply new skills immediately"),
+    ], dir="row", dir_m="column", gap_n=40, align="flex-start", justify="center", cw="full")
+
+    row2 = con([
+        step(4, "Community", "Membership in a community of like-minded dental professionals"),
+        step(5, "Start dates", "29th May 2026", show_badge=True),
+    ], dir="row", dir_m="column", gap_n=40, align="flex-start", justify="center", cw="full")
+
+    curriculum_title = text_ed("<p><strong>Curriculum highlights</strong></p>",
+                               align="center", size_d=18, size_m=16)
+    curriculum_body = text_ed(
+        "<p>Aesthetic Clinical Photography &#8226; Smile Design &#8226; Indirect Restorations &#8226; Aesthetic Implant Restorations &#8226; Facial Aesthetics &#8226; Marketing an Aesthetic Practice</p>",
+        align="center", size_d=18, size_m=16
+    )
+
+    inner = con([section_h, sub, div_line, row1, row2, curriculum_title, curriculum_body],
+                dir="column", align="center", gap_n=32, cw="full")
+
+    return outer([inner], bg=WH,
+                 pad_=pad(60, 80, 60, 80),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
+
+
+def build_form():
+    form_h = heading("See the full curriculum, faculty, and fees",
+                     color=BD, size_d=32, size_m=28, weight="400", align="left")
+    form_intro = text_ed(
+        "<p>Download the Aesthetic &amp; Restorative Dentistry prospectus &#8212; every module, every faculty member, every fee, every case study.</p>",
+        size_d=18, size_m=16
+    )
+    left = con([form_h, form_intro], dir="column", gap_n=20,
+               width=pct(45), width_m=pct(100))
+
+    form_html = f"""
+<form id="ldi-form" action="#" method="POST"
+  style="display:flex;flex-direction:column;gap:12px;font-family:ABC Social Edu,Inter,sans-serif">
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <label for="ldi-fn" style="font-size:18px;color:#030b3d">First Name</label>
+    <input type="text" id="ldi-fn" name="first_name" required
+      style="background:#f7f7f7;border:1px solid #bdbdbd;height:50px;padding:0 16px;font-size:18px;color:#030b3d;width:100%;box-sizing:border-box;outline:none" />
+  </div>
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <label for="ldi-ln" style="font-size:18px;color:#030b3d">Last Name</label>
+    <input type="text" id="ldi-ln" name="last_name" required
+      style="background:#f7f7f7;border:1px solid #bdbdbd;height:50px;padding:0 16px;font-size:18px;color:#030b3d;width:100%;box-sizing:border-box;outline:none" />
+  </div>
+  <div style="display:flex;flex-direction:column;gap:7px">
+    <label for="ldi-em" style="font-size:18px;color:#030b3d">Email</label>
+    <input type="email" id="ldi-em" name="email" required
+      style="background:#f7f7f7;border:1px solid #bdbdbd;height:50px;padding:0 16px;font-size:18px;color:#030b3d;width:100%;box-sizing:border-box;outline:none" />
+  </div>
+  <button type="submit" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#2b5e7d;color:#fff;border:1px solid #2b5e7d;font-family:ABC Social Edu,Inter,sans-serif;font-size:18px;font-weight:700;padding:16px 28px;cursor:pointer;width:100%">
+    Download prospectus {ARROW_W}
+  </button>
+  <div style="text-align:center;padding:8px 0">
+    <a href="#" style="font-size:18px;font-weight:700;color:#2b5e7d">Apply Now</a>
+  </div>
+  <p style="font-size:16px;color:#030b3d;text-align:center;margin-top:4px">
+    Questions? <a href="#" style="text-decoration:underline;color:#030b3d">Contact our admissions team.</a>
+  </p>
+</form>
+<p style="font-size:12px;color:#888;margin-top:8px;font-family:ABC Social Edu,Inter,sans-serif">
+  [NEEDS_FORM: Replace form above with your WP form plugin shortcode, e.g. [contact-form-7 id="XX"]]
+</p>"""
+
+    right = con([html_w(form_html)], dir="column",
+                width=pct(45), width_m=pct(100))
+
+    card = con([left, right],
+               bg=WH, dir="row", dir_m="column",
+               gap_n=73, align="center", justify="center",
+               pad_=pad(58, 58, 58, 58), pad_m=pad(24, 20, 24, 20),
+               border=(P, 1), br=6)
+
+    return outer([card], bg=GB,
+                 pad_=pad(96, 124, 96, 124),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40),
+                 align="center")
+
+
+def build_faculty():
+    section_h = heading("Meet our faculty",
+                        color=BD, size_d=32, size_m=28, weight="400", align="center")
+    intro = text_ed(
+        "<p>We are proud to present our teaching faculty, featuring some of the world&#8217;s most respected educators in aesthetic and restorative dentistry.</p>",
+        align="center", size_d=18, size_m=16
+    )
+
+    faculty = [
+        ("https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124352/dr-1.png",
+         "Dr. George Cheetham", "Aesthetic &amp; Restorative Dentistry, UK",
+         "Dr. George Cheetham is an award-winning restorative dentist and one of the UK&#8217;s leading educators in aesthetic and restorative dentistry."),
+        ("https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124417/dr-2.png",
+         "Prof. James Field", "Professor of Restorative Dentistry, UK",
+         "Professor James Field holds a full-time Chair in Restorative Dentistry and is internationally recognised for his clinical research."),
+        ("https://media.londondentalinstitute.com/wp-content/uploads/2026/05/04124358/dr-3.png",
+         "Dr. Asmaa Al-Taie", "Consultant in Restorative Dentistry, UK",
+         "Dr. Asmaa Al-Taie is a Clinical Academic at the University of Liverpool and an NHS Consultant in Restorative Dentistry."),
+    ]
+
+    def faculty_card(img_url, name, role, bio):
+        avatar_wrap = con([image(img_url, align="center", width_pct=100)],
+                          width=px(120), br=60)
+        return con([
+            avatar_wrap,
+            heading(name, tag="h3", color=P, font=FB, size_d=18, size_m=16, weight="700", align="center"),
+            text_ed(f"<p><strong>{role}</strong></p>", align="center", size_d=18, size_m=16),
+            text_ed(f"<p>{bio}</p>", align="center", size_d=18, size_m=16),
+            button("View full bio", "#", bg=WH, fg=P, border_color=P,
+                   size_d=16, size_m=14, pad_lr=16, pad_tb=8, align="center"),
+        ], dir="column", align="center", gap_n=8,
+           width=pct(30), width_m=pct(100))
+
+    cards_row = con([faculty_card(*f) for f in faculty],
+                    dir="row", dir_m="column", gap_n=40,
+                    align="flex-start", justify="center", cw="full")
+
+    more = text_ed('<p style="text-align:center"><a href="#"><strong>View full faculty</strong> &#8594;</a></p>',
+                   align="center", size_d=18, size_m=16)
+
+    inner = con([section_h, intro, cards_row, more],
+                dir="column", align="center", gap_n=40, cw="full")
+
+    return outer([inner], bg=WH,
+                 pad_=pad(60, 149, 60, 149),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
+
+
+def build_final_cta():
+    section_h = heading("Join the next enrolment",
+                        color=BD, size_d=32, size_m=28, weight="400", align="center")
+    body = text_ed(
+        "<p>Start building the clinical framework to treat your aesthetic cases in full. The next cohort starts 29 May 2026.</p>",
+        align="center", size_d=18, size_m=16
+    )
+    btn_primary = button("Download prospectus", "#ldi-form-section",
+                         align="center", size_d=18, size_m=16, pad_lr=32)
+    btn_outline = button("Apply Now", "#",
+                         bg=WH, fg=P, border_color=P,
+                         align="center", size_d=18, size_m=16, pad_lr=32)
+    btns = con([btn_primary, btn_outline], dir="row", dir_m="column",
+               gap_n=20, align="center", justify="center")
+
+    inner = con([section_h, body, btns],
+                dir="column", align="center", gap_n=24, cw="full")
+
+    return outer([inner], bg=GB,
+                 pad_=pad(60, 149, 60, 149),
+                 pad_m=pad(48, 20, 48, 20),
+                 pad_t=pad(60, 40, 60, 40))
+
+
+def build_sticky_footer():
+    sticky_html = f"""
+<div id="ldi-sticky" style="position:fixed;bottom:0;left:0;right:0;background:#d2e4cc;z-index:9999;transform:translateY(110%);transition:transform .35s cubic-bezier(.4,0,.2,1)">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1440px;margin:0 auto;padding:16px 144px;box-sizing:border-box">
+    <p style="font-family:ABC Social Edu,Inter,sans-serif;font-size:18px;color:#030b3d;margin:0">Diploma in Aesthetic &amp; Restorative Dentistry</p>
+    <div style="display:flex;align-items:center;gap:16px;flex-shrink:0">
+      <a href="#ldi-form-section" style="display:inline-flex;align-items:center;gap:10px;background:#2b5e7d;color:#fff;border:1px solid #2b5e7d;font-family:ABC Social Edu,Inter,sans-serif;font-size:18px;font-weight:700;padding:14px 24px;text-decoration:none">
+        Download prospectus {ARROW_W}
       </a>
-      <button class="sticky-close desktop-only" id="ldi-sticky-close" aria-label="Close">{CLOSE_X}</button>
+      <button id="ldi-sticky-close" aria-label="Close" style="width:32px;height:32px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center">{CLOSE_X}</button>
     </div>
   </div>
 </div>
 <script>
 (function(){{
-  var heroCta=document.getElementById('ldi-hero-cta');
-  var stickyBar=document.getElementById('ldi-sticky-footer');
-  var closeBtn=document.getElementById('ldi-sticky-close');
-  if(!heroCta||!stickyBar)return;
+  var bar=document.getElementById('ldi-sticky');
+  var close=document.getElementById('ldi-sticky-close');
   var dismissed=false;
-  function showSticky(){{stickyBar.classList.add('visible');document.body.style.paddingBottom=stickyBar.offsetHeight+'px';}}
-  function hideSticky(){{stickyBar.classList.remove('visible');document.body.style.paddingBottom='0';}}
-  var obs=new IntersectionObserver(function(entries){{
-    entries.forEach(function(e){{if(dismissed)return;if(e.isIntersecting)hideSticky();else showSticky();}});
-  }},{{threshold:0}});
-  obs.observe(heroCta);
-  if(closeBtn)closeBtn.addEventListener('click',function(){{dismissed=true;hideSticky();}});
+  function showBar(){{bar.style.transform='translateY(0)';document.body.style.paddingBottom=bar.offsetHeight+'px';}}
+  function hideBar(){{bar.style.transform='translateY(110%)';document.body.style.paddingBottom='0';}}
+  var heroCta = document.querySelector('a[href="#ldi-form-section"].e-con-full') ||
+                document.querySelector('.elementor-widget:nth-child(5) .elementor-button') ||
+                null;
+  if(heroCta){{
+    var obs=new IntersectionObserver(function(entries){{
+      entries.forEach(function(e){{if(dismissed)return;if(e.isIntersecting)hideBar();else showBar();}});
+    }},{{threshold:0}});
+    obs.observe(heroCta);
+  }} else {{
+    setTimeout(function(){{if(!dismissed)showBar();}}, 3000);
+  }}
+  if(close)close.addEventListener('click',function(){{dismissed=true;hideBar();}});
 }})();
 </script>"""
 
-# ── Build Elementor content ───────────────────────────────────────────────────
+    return outer([html_w(sticky_html)], bg="transparent", pad_=pad(0, 0, 0, 0))
 
-def wrap(html):
-    return f'<div class="ldi-page">{html}</div>'
+
+# ── Assemble template ─────────────────────────────────────────────────────────
 
 content = [
-    sec("ldis01", [hw("ldiw01", SHARED_CSS + "\n" + wrap(HTML_HEADER))]),
-    sec("ldis02", [hw("ldiw02", wrap(HTML_HERO))]),
-    sec("ldis03", [hw("ldiw03", wrap(HTML_PROBLEM))]),
-    sec("ldis04", [hw("ldiw04", wrap(HTML_BENEFITS))]),
-    sec("ldis05", [hw("ldiw05", wrap(HTML_ONLINE))]),
-    sec("ldis06", [hw("ldiw06", wrap(HTML_ACCREDITATION))]),
-    sec("ldis07", [hw("ldiw07", wrap(HTML_FAQ))]),
-    sec("ldis08", [hw("ldiw08", wrap(HTML_PROGRAMME))]),
-    sec("ldis09", [hw("ldiw09", wrap(HTML_FORM))]),
-    sec("ldis10", [hw("ldiw10", wrap(HTML_FACULTY))]),
-    sec("ldis11", [hw("ldiw11", wrap(HTML_FINAL_CTA))]),
-    sec("ldis12", [hw("ldiw12", wrap(HTML_STICKY_FOOTER))]),
+    build_header(),
+    build_hero(),
+    build_problem(),
+    build_benefits(),
+    build_online(),
+    build_accreditation(),
+    build_faq(),
+    build_programme(),
+    build_form(),
+    build_faculty(),
+    build_final_cta(),
+    build_sticky_footer(),
 ]
 
 template = {
@@ -772,6 +774,19 @@ template = {
 }
 
 OUT.write_text(json.dumps(template, indent=2, ensure_ascii=False))
+
+# Stats
+total_widgets = 0
+def count(el):
+    global total_widgets
+    if el.get('elType') == 'widget':
+        total_widgets += 1
+    for c in el.get('elements', []):
+        count(c)
+for s in content:
+    count(s)
+
 print(f"Written: {OUT}")
 print(f"Sections: {len(content)}")
+print(f"Total widgets: {total_widgets}")
 print(f"File size: {OUT.stat().st_size / 1024:.1f} KB")
