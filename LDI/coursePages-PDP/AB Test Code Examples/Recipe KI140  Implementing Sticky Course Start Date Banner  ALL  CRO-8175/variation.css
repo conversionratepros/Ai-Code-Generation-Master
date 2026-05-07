@@ -1,0 +1,110 @@
+html body.CRO-8175 .CRO-8175-Sticky-Course {
+    background: #D2E4CC;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
+    transform: translateY(100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+html body.CRO-8175 .CRO-8175-Sticky-Course.active {
+    transform: translateY(0);   /* 🔥 upore show */
+}
+
+html body.CRO-8175 .CRO-8175-Sticky-Course-wrapper {
+    padding: 16px 72px;
+    width: 100%;
+}
+
+html body.CRO-8175 .CRO-8175-Sticky-Course-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+html body.CRO-8175 .CRO-8175-Sticky-Course-left-text {
+    color: var(--Color-3, #030B3D);
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    font-family: 'ABC Social' !important;
+}
+
+html body.CRO-8175 .CRO-8175-Sticky-Course-right {
+    flex-shrink: 0;
+}
+
+html body.CRO-8175 a.CRO-8175-Sticky-Course-right-button {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    font-family: 'ABC Social' !important;
+    padding: 14px 20px;
+    width: auto !important;
+    min-width: 300px;
+    /* max-width: 300px; */
+    background: var(--Color-2, #2B5E7D);
+    display: inline-block;
+    cursor: pointer;
+}
+
+html.CRO-8175-Sticky-active body{
+    padding-bottom: 82px;
+}
+
+
+@media (max-width:767px){
+    html body.CRO-8175 .CRO-8175-Sticky-Course-inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    html body.CRO-8175 .CRO-8175-Sticky-Course-left-text {
+        font-size: 16px;
+        line-height: normal;
+    }
+
+    html body.CRO-8175 a.CRO-8175-Sticky-Course-right-button {
+        font-size: 16px;
+        line-height: normal;
+        padding: 16px;
+    }
+
+    html body.CRO-8175 .CRO-8175-Sticky-Course-wrapper {
+        padding: 20px;
+    }
+
+    html body.CRO-8175 .CRO-8175-Sticky-Course.active{
+        box-shadow: 0 -5px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    html.CRO-8175-Sticky-active body{
+        padding-bottom: 120px;
+    }
+}
+
+@media (max-width:500px){
+
+    html body.CRO-8175 .CRO-8175-Sticky-Course-inner{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    html body.CRO-8175 .CRO-8175-Sticky-Course-right{
+        width: 100%;
+    }
+
+    html body.CRO-8175 a.CRO-8175-Sticky-Course-right-button{
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        display: block;
+        box-sizing: border-box;
+    }
+}
