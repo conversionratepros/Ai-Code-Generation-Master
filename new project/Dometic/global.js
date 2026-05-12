@@ -120,38 +120,20 @@
                 }, 600)
             }, test_Rack_PDP_optimisation_All_CRO12206() {
                 setTimeout(function () {
-                    lib.waitForElement('.product-details nav [data-slot="breadcrumb-item"] a[href="/en-us/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-za/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/de-de/kategorie/rack-systems/racks"]', function () {
-                        var sku = document.querySelector('.product-details nav [data-slot="breadcrumb-item"] a[href*="/rack-systems/racks"]')
-                        if (sku) {
+
+                    var url = window.location.href;
+                    if (url.includes('/product')) {
+                        lib.waitForElement('.product-details nav [data-slot="breadcrumb-item"] a[href="/en-us/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-za/category/rack-systems/racks"], .product-details nav [data-slot="breadcrumb-item"] a[href="/en-de/category/rack-systems/racks"]', function () {
                             window.crotest_Rack_PDP_optimisation_All_CRO12206 = 1;
                             window._conv_q = window._conv_q || [];
                             window._conv_q.push(["executeExperiment", "1004197050"]);
                             console.info("Experiment Rack PDP optimisation | All | CRO-12206 Activated");
+                        }, 50, 15000)
 
-                        } else {
-                            if (document.querySelector('.CRO_12180_Slimline_PDP_V1')) {
-                                document.querySelector('body').classList.remove('CRO_12180_Slimline_PDP_V1');
-                                console.log('remove from PDP')
-                            }
+                    } else {
+                        if (document.querySelector('.CRO_12180_Slimline_PDP_V1')) {
+                            document.querySelector('body').classList.remove('CRO_12180_Slimline_PDP_V1');
                         }
-                    }, 50, 15000)
-
-
-                    if (document.querySelector(".product-details") && document.querySelector('.CRO_12180_Slimline_PDP_V1') && !document.querySelector('.product-details nav [data-slot="breadcrumb-item"] a[href*="/rack-systems/racks"]')) {
-
-                        var intervalCallAgain = setInterval(function () {
-                            if (document.querySelector(".product-details") && document.querySelector('.CRO_12180_Slimline_PDP_V1') && !document.querySelector('.product-details nav [data-slot="breadcrumb-item"] a[href*="/rack-systems/racks"]')) {
-                                document.querySelector('body').classList.remove('CRO_12180_Slimline_PDP_V1');
-                                console.log('remove from Not PDP');
-                            }
-                        }, 400);
-                        setTimeout(function () {
-                            clearInterval(intervalCallAgain);
-                        }, 7000);
-                    }
-
-                    if (!document.querySelector(".product-details") && document.querySelector('.CRO_12180_Slimline_PDP_V1')) {
-                        document.querySelector('body').classList.remove('CRO_12180_Slimline_PDP_V1');
                     }
                 }, 600)
             }

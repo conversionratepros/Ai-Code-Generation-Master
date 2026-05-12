@@ -1,0 +1,122 @@
+/* Variation B - Hampers PLP Recommended Reshuffle | CRO-007 */
+
+/* Hide the original virtual-scroll list once our grid is ready */
+body.cro-007 .cdk-virtual-scroll-viewport.product-list-viewport {
+  display: none !important;
+}
+
+/* Loading shimmer while products are being fetched */
+body.cro-007 .cro-007-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  width: 100%;
+  color: #888;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+/* Grid container — matches the control's .product-list-row.row structure */
+body.cro-007 .cro-007-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Card — matches .x-product-card.col-4 */
+body.cro-007 .cro-007-card {
+  position: relative;
+  cursor: pointer;
+}
+
+body.cro-007 .cro-007-card .view {
+  position: relative;
+}
+
+/* Image hover swap — control uses .secondary-media on hover */
+body.cro-007 .cro-007-card .secondary-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.cro-007 .cro-007-card:hover .secondary-media {
+  opacity: 1;
+}
+
+body.cro-007 .cro-007-card:hover .main-media {
+  opacity: 0;
+}
+
+body.cro-007 .cro-007-card .main-media {
+  transition: opacity 0.3s ease;
+}
+
+/* Images */
+body.cro-007 .cro-007-card .media {
+  position: relative;
+  overflow: hidden;
+}
+
+body.cro-007 .cro-007-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Quantity stepper — shown when item is in cart */
+body.cro-007 .cro-007-qty-wrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+body.cro-007 .cro-007-qty-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 12px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+  transition: background 0.2s;
+}
+
+body.cro-007 .cro-007-qty-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+body.cro-007 .cro-007-qty-val {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* Loading state on add button */
+body.cro-007 .cro-007-add.loading,
+body.cro-007 .cro-007-qty-btn.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Wishlist button active/filled state */
+body.cro-007 .cro-007-wishlist-btn.cro-007-wishlisted svg path {
+  fill: #c0392b;
+}
+
+body.cro-007 .cro-007-wishlist-btn.cro-007-wishlisted {
+  color: #c0392b;
+}

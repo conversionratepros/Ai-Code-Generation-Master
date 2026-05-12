@@ -6,6 +6,11 @@ body.CRO_12180_Slimline_PDP_V1 .yotpo-stars .yotpo-sr-star-full path {
   stroke: #FFBE01 !important;
 }
 
+body.CRO_12180_Slimline_PDP_V1 .yotpo-stars .yotpo-sr-star-half path {
+  fill: #F5A623 !important;
+  stroke: #FFBE01 !important;
+}
+
 body.CRO_12180_Slimline_PDP_V1 .yotpo-stars .yotpo-sr-star-empty path {
   stroke: #FFBE01 !important;
 
@@ -114,10 +119,10 @@ body.CRO_12180_Slimline_PDP_V1 .cro-12180-usp-icon {
 }
 
 body.CRO_12180_Slimline_PDP_V1 .cro-12180-usp-text {
-  font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
-  font-size: 13px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
   font-weight: 400;
-  color: #0d0d0d;
+  color: #6B6B6B;
   line-height: 1.5;
 }
 
@@ -134,14 +139,14 @@ body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial {
 body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial__stars {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 0px;
 }
 
 body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial__quote {
-  font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
-  font-size: 14px;
+  font-family: inherit;
+  font-size: 13px;
   font-weight: 400;
-  color: #0d0d0d;
+  color: #212121;
   line-height: 1.5;
   margin: 0;
 }
@@ -153,20 +158,20 @@ body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial__meta {
 }
 
 body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial__author {
-  font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
-  font-size: 13px;
+  font-family: inherit;
+  font-size: 12px;
   font-weight: 400;
-  color: #0d0d0d;
+  color: #212121;
 }
 
 body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial__verified {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 400;
-  color: #16a34a;
+  color: #488350;
 }
 
 /* ── Change 5: Sticky ATC bar (mobile only) ── */
@@ -345,6 +350,7 @@ body.CRO_12180_Slimline_PDP_V1 .buy-me-box {
 
 
   body.CRO_12180_Slimline_PDP_V1 .product-actions.mt-4.flex.flex-col.gap-2>div [aria-label="Add to Wishlist"],
+  body.CRO_12180_Slimline_PDP_V1 .product-actions.mt-4.flex.flex-col.gap-2>div [aria-label="Zur Wunschliste hinzufügen"],
   body.CRO_12180_Slimline_PDP_V1 .product-actions.mt-4.flex.flex-col.gap-2>div>div[data-slot="form-item"] {
     display: none;
   }
@@ -379,8 +385,16 @@ body.CRO_12180_Slimline_PDP_V1 .buy-me-box {
     align-items: center;
   }
 
+  html[lang="de-DE"] body.CRO_12180_Slimline_PDP_V1 [aria-label="Quick add to cart"]>div>div:last-child button:after {
+    content: 'In den Warenkorb' !important;
+  }
+
   body.CRO_12180_Slimline_PDP_V1 [aria-label="Quick add to cart"]>div>div:last-child svg {
     margin-left: calc(50% - 65px);
+  }
+
+  html[lang="de-DE"] body.CRO_12180_Slimline_PDP_V1 [aria-label="Quick add to cart"]>div>div:last-child svg {
+    margin-left: calc(50% - 92px);
   }
 
   body.CRO_12180_Slimline_PDP_V1 [aria-label="Quick add to cart"]>div {
@@ -393,6 +407,14 @@ body.CRO_12180_Slimline_PDP_V1 .buy-me-box {
 
   body.CRO_12180_Slimline_PDP_V1 .buy-me-box>div .product-form .payflex-product-widget {
     margin-top: 0;
+  }
+
+  body.CRO_12180_Slimline_PDP_V1 .buy-me-box {
+    padding-bottom: 0;
+  }
+
+  body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial__stars {
+    gap: 0;
   }
 }
 
@@ -418,4 +440,38 @@ body.CRO_12180_Slimline_PDP_V1 .cro-12180-testimonial__stars {
 
 body.CRO_12180_Slimline_PDP_V1 .buy-me-box>div p.text-secondary-foreground {
   order: 2;
+}
+
+html[lang="de-DE"] body.CRO_12180_Slimline_PDP_V1 .cro-12180-usps .cro-12180-usp-item:nth-child(1) .cro-12180-usp-text:after {
+  content: '5 Jaar Garantie';
+  font-size: 12px;
+}
+
+html[lang="de-DE"] body.CRO_12180_Slimline_PDP_V1 .cro-12180-usps .cro-12180-usp-item:nth-child(2) .cro-12180-usp-text:after {
+  content: '30 Dagen Retour';
+  font-size: 12px;
+
+}
+
+html[lang="de-DE"] body.CRO_12180_Slimline_PDP_V1 .cro-12180-usps .cro-12180-usp-item:nth-child(3) .cro-12180-usp-text:after {
+  content: 'Gratis verzending op reksets';
+  font-size: 12px;
+
+}
+
+html[lang="de-DE"] body.CRO_12180_Slimline_PDP_V1 .cro-12180-usps .cro-12180-usp-item .cro-12180-usp-text {
+  font-size: 0;
+}
+
+/* ── Description: 2-line clamp with Read more / Read less toggle ── */
+body.CRO_12180_Slimline_PDP_V1 .buy-me-box .product-name .text-secondary-foreground .line-clamp-3 {
+  -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
+}
+
+body.CRO_12180_Slimline_PDP_V1 .buy-me-box .product-name .text-secondary-foreground.cro-12180-expanded .line-clamp-3 {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  overflow: visible !important;
 }

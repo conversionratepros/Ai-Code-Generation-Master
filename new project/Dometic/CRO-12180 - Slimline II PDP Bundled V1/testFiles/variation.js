@@ -120,7 +120,7 @@
     /* ── Price row: align price and official-store badge on same row ── */
 
     function fixPriceAlignment() {
-      console.log('add')
+      // console.log('add')
       var imgEl = document.querySelector('.buy-me-box #Background');
       if (!imgEl) return; // no official store badge on this product — keep retrying
 
@@ -252,6 +252,45 @@
         });
     }
 
+    /* ── Description: 2-line clamp with Read more / Read less toggle ── */
+    function initDescription() {
+      var descEl = document.querySelector('.buy-me-box .product-name .text-secondary-foreground');
+      if (!descEl || descEl.getAttribute('data-cro12180-desc')) return;
+      descEl.setAttribute('data-cro12180-desc', '1');
+
+      var pEl = descEl.querySelector('.line-clamp-3');
+      if (!pEl) return;
+
+      setTimeout(function () {
+        // Only proceed if text content exceeds 2 lines (~36px)
+        if (pEl.scrollHeight <= 36) return;
+
+        var btn = descEl.querySelector('button');
+
+        if (!btn) {
+          // No native button — inject our own
+          btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'text-primary cursor-pointer text-sm underline';
+          btn.setAttribute('data-cro12180', 'readmore');
+          btn.textContent = 'Read more';
+          pEl.insertAdjacentElement('afterend', btn);
+        }
+
+        // Wire toggle — stopPropagation prevents React hiding the button on click
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (descEl.classList.contains('cro-12180-expanded')) {
+            descEl.classList.remove('cro-12180-expanded');
+            btn.textContent = 'Read more';
+          } else {
+            descEl.classList.add('cro-12180-expanded');
+            btn.textContent = 'Read less';
+          }
+        });
+      }, 300);
+    }
+
     /* ── Change 5: Sticky ATC bar (mobile only) ── */
 
 
@@ -278,6 +317,7 @@
       waitForElement('.product-actions.mt-4.flex.flex-col.gap-2', injectUsps);
       waitForElement('.buy-me-box>div .product-form .payflex-product-widget', moveStockBelowPayflex);
       waitForElement('.product-details .buy-me-box', watchBuyBox);
+      waitForElement('.buy-me-box .product-name .text-secondary-foreground', initDescription);
     }
     /* ── Init ── */
     function init() {

@@ -1,195 +1,111 @@
-/* Variation B - PDP Buy Box Redesign | CRO-12051 | Babylonstoren */
+/* ─── Hide native save badge ──────────────────────────────────────────────── */
 
-/* ===================== Step 1 - Desktop: Widen Add to Bag button ===================== */
-
-@media (min-width: 992px) {
-  body.CRO-12051 .container-fluid .product-detail x-add-to-cart-button button.add-all-button {
-    flex: 1;
-    width: 100%;
-  }
+body.cro-t-odo-12114 .savings-badge {
+  display: none !important;
 }
 
+/* ─── CRP Save Badge ──────────────────────────────────────────────────────── */
+/* Mobile: top-left, inline row — top:10px left:10px, padding:2px 8px */
 
-
-/* ===================== Step 4 - Delivery Badge ===================== */
-
-body.CRO-12051 .cro-12051-delivery {
-  display: flex;
+body.cro-t-odo-12114 .crp-12114-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 131;
+  display: inline-flex;
+  flex-direction: row;
   align-items: center;
-  gap: 10px;
-  background: #F4F6FB;
-  border-radius: 2px;
-  padding: 8px 12px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  /* border-bottom: 1px solid rgba(230, 230, 230, 0.50); */
+  gap: 4px;
+  background: #e50e62;
+  color: #fff;
+  border-radius: 8px;
+  padding: 2px 8px;
+  pointer-events: none;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
 }
 
-body.CRO-12051 .cro-12051-delivery svg {
-  flex-shrink: 0;
+body.cro-t-odo-12114 .crp-12114-save {
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
 }
 
-body.CRO-12051 .cro-12051-delivery-text {
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 200;
-  color: #09223F;
-  line-height: 1.4;
-  margin: 0;
+body.cro-t-odo-12114 .crp-12114-pct {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 16px;
 }
 
-.cro-12051-delivery-text b {
-  font-weight: 500;
-}
+/* Desktop: top-right, stacked — top:16px right:15px, padding:12px 10px */
 
-body.CRO-12051 .cro-12051-delivery-link {
-  color: #09223F;
-  text-decoration: underline;
-}
-
-/* ===================== Step 5 - USP Strip ===================== */
-
-body.CRO-12051 .cro-12051-usp-strip {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16px 0;
-  /* border-top: 1px solid #e5e5e5; */
-  gap: 12px;
-  padding-bottom: 0;
-  border-top: 1px solid #e6e6e6;
-}
-
-body.CRO-12051 .cro-12051-usp-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-body.CRO-12051 .cro-12051-usp-icon {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
-body.CRO-12051 .cro-12051-usp-label {
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  color: #0F2E53;
-  line-height: 1.3;
-}
-
-/* ===================== Step 6 - Payment Section ===================== */
-
-body.CRO-12051 .cro-12051-payment {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 16px 0;
-  border-top: 1px solid #e5e5e5;
-}
-
-body.CRO-12051 .cro-12051-payment-left {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-}
-
-body.CRO-12051 .cro-12051-payment-text {
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  color: #4A4A4A;
-  line-height: 1.3;
-}
-
-body.CRO-12051 .cro-12051-payment-logos {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 25%;
-}
-
-body.CRO-12051 .cro-12051-payment-logos img {
-  height: 20px;
-  width: 35px;
-  display: block;
-}
-
-/* ===================== Step 3 - Mobile: Sticky footer slide behaviour ===================== */
-
-@media (max-width: 991px) {
-
-  /* Hidden by default when test is active — slides in only when buy box is off-screen */
-  body.CRO-12051.shop .x-product-view .product-add-to-cart-mobile {
-    transition: transform 0.3s ease;
-    transform: translateY(100%) !important;
-  }
-
-  body.CRO-12051.cro-12051-atc-hidden.shop .x-product-view .product-add-to-cart-mobile {
-    transform: translateY(0) !important;
-  }
-}
-
-/* ===================== Step 2 - Mobile: Show price and Add to Bag button ===================== */
-
-@media (max-width: 991px) {
-
-  body.CRO-12051.shop .x-product-view .add-to-cart,
-  body.CRO-12051.shop .x-product-view.sticky-action-bar .product-detail x-product-price {
-    display: block !important;
-  }
-
-  body.CRO-12051.shop .x-product-view .add-to-cart button.add-all-button {
-    width: 100% !important;
-  }
-
-  body.CRO-12051 .cro-12051-delivery-text {
-    font-size: 13px;
-  }
-
-  body.CRO-12051 .cro-12051-payment-text {
-    font-size: 13px;
-  }
-
-  body.CRO-12051 .cro-12051-payment-logos {
-    margin-left: 0;
-  }
-
-  body.CRO-12051 .cro-12051-payment-logos img {
-    width: 22px;
-    height: 13px;
-  }
-
-  body.CRO-12051 .cro-12051-payment {
-    justify-content: space-between;
-    flex-wrap: wrap;
-    /* align-items: center; */
-    gap: 5px;
-    /* margin: auto; */
-  }
-
-  body.CRO-12051 .cro-12051-payment-left {
-    /* margin-right: auto !important; */
-  }
-}
-
-@media (max-width: 360px) {
-  body.CRO-12051 .cro-12051-payment {
+@media screen and (min-width: 1024px) {
+  body.cro-t-odo-12114 .crp-12114-badge {
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 4px;
+    top: 16px;
+    left: auto;
+    right: 15px;
+    padding: 12px 10px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  body.cro-t-odo-12114 .crp-12114-save {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  body.cro-t-odo-12114 .crp-12114-pct {
+    font-size: 18px;
+    line-height: 17px;
+    white-space: nowrap;
   }
 }
 
-body.CRO-12051 .cro-12051-delivery {
-  display: flex !important;
+/* ─── Move pill container to bottom-left (native: bottom-right) ───────────── */
+
+body.cro-t-odo-12114 .css-1bpdoat {
+  right: auto !important;
+  left: 10px !important;
 }
 
-body.CRO-12051 .cro-12051-usp-strip {
-  display: flex !important;
+/* ─── Native pill restyling ───────────────────────────────────────────────── */
+/* Mobile: px-6px py-7px, 8px text, SemiBold, capitalize */
+
+body.cro-t-odo-12114 .pill.crp-12114-styled {
+  background: #fff !important;
+  border: none !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 100px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 8px !important;
+  padding: 7px 8px !important;
+  text-transform: capitalize !important;
+  white-space: nowrap !important;
 }
 
-body.CRO-12051 .cro-12051-payment {
-  display: flex !important;
+/* Desktop: p-8px, 12px text, Bold */
+
+@media screen and (min-width: 1024px) {
+  body.cro-t-odo-12114 .pill.crp-12114-styled {
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    padding: 9px 8px !important;
+  }
+}
+
+body.cro-t-odo-12114 .pill.crp-12114-blue-pill {
+  color: #0093d0 !important;
+}
+
+body.cro-t-odo-12114 .pill.crp-12114-stock-pill {
+  color: #f26d2e !important;
+}
+
+body.cro-t-odo-12114 .pill.crp-12114-bs-pill {
+  color: #e2081b !important;
 }
