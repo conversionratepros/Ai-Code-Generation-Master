@@ -33,27 +33,6 @@ body.cro-007 .cro-007-card .view {
   position: relative;
 }
 
-/* Image hover swap — control uses .secondary-media on hover */
-body.cro-007 .cro-007-card .secondary-media {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-body.cro-007 .cro-007-card:hover .secondary-media {
-  opacity: 1;
-}
-
-body.cro-007 .cro-007-card:hover .main-media {
-  opacity: 0;
-}
-
-body.cro-007 .cro-007-card .main-media {
-  transition: opacity 0.3s ease;
-}
 
 /* Images */
 body.cro-007 .cro-007-card .media {
@@ -73,7 +52,7 @@ body.cro-007 .cro-007-qty-wrap {
   align-items: center;
   width: 100%;
   border: 1px solid currentColor;
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -91,11 +70,24 @@ body.cro-007 .cro-007-qty-btn {
   flex-shrink: 0;
   color: inherit;
   transition: background 0.2s;
+  border-radius: 4px 0 0 4px;
+  color: #fff;
+  flex-shrink: 0;
+  font-size: 20px;
+  width: 42px;
+  padding: 0 10px;
+  font-weight: 300;
+  line-height: 14px;
+  font-family: Nunito Sans, sans-serif;
+  letter-spacing: .15em;
+  height: 48px;
+  min-width: auto;
+  background-color: #09223f;
 }
 
-body.cro-007 .cro-007-qty-btn:hover {
+/* body.cro-007 .cro-007-qty-btn:hover {
   background: rgba(0, 0, 0, 0.06);
-}
+} */
 
 body.cro-007 .cro-007-qty-val {
   flex: 1;
@@ -103,7 +95,15 @@ body.cro-007 .cro-007-qty-val {
   font-size: 14px;
   font-weight: 500;
   pointer-events: none;
+  line-height: 14px;
+  font-family: Nunito Sans, sans-serif;
+  letter-spacing: .15em;
 }
+
+.cro-007-qty-wrap .cro-007-qty-val:after {
+  content: ' IN BAG';
+}
+
 
 /* Loading state on add button */
 body.cro-007 .cro-007-add.loading,
@@ -112,11 +112,65 @@ body.cro-007 .cro-007-qty-btn.loading {
   pointer-events: none;
 }
 
+/* Match control's fa-icon.icon-size-x-large which renders at ~25px */
+body.cro-007 .cro-007-wishlist-btn .ng-fa-icon,
+body.cro-007 .cro-007-wishlist-btn .ng-fa-icon svg {
+  width: 25px !important;
+  height: 25px !important;
+}
+
 /* Wishlist button active/filled state */
 body.cro-007 .cro-007-wishlist-btn.cro-007-wishlisted svg path {
-  fill: #c0392b;
+  fill: #adc4e1;
 }
 
 body.cro-007 .cro-007-wishlist-btn.cro-007-wishlisted {
-  color: #c0392b;
+  color: #adc4e1;
+}
+
+
+body.cro-007 button.mdc-button.mdc-button--unelevated.mat-mdc-unelevated-button.mat-primary.add-button.cro-007-add {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 14px;
+  font-family: Nunito Sans, sans-serif;
+  letter-spacing: .15em;
+  padding: 0 14px;
+  height: 48px;
+  min-width: auto;
+  width: 100%;
+  border-radius: 4px;
+  flex: 1;
+  text-transform: uppercase;
+}
+
+
+@media (max-width: 767px) {
+  body.cro-007 .cro-007-card {
+    width: 50%;
+
+  }
+
+  body.cro-007 .cro-007-grid {
+    row-gap: 3rem !important;
+  }
+
+  .cro-007-card .cro-007-add span:after {
+    content: 'ADD';
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 14px;
+    font-family: Nunito Sans, sans-serif;
+    letter-spacing: .15em;
+  }
+
+  .cro-007-card .cro-007-add span {
+    font-size: 0;
+    letter-spacing: normal;
+  }
+
+  .cro-007-qty-wrap .cro-007-qty-val:after {
+    content: ' ';
+  }
+
 }
