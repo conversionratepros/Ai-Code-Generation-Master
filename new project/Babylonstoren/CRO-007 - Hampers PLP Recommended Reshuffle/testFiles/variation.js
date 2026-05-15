@@ -69,6 +69,8 @@
     var cro007Store = null;
     var cro007NgZone = null;
     var cro007GridEl = null;
+    var cro007StateSub = null;
+    var cro007LastRegionCode = undefined; // undefined = not yet initialised
 
     /* ── Helpers ── */
 
@@ -175,7 +177,7 @@
       var pageIndex = 0;
       var total = null;
       var pageSize = 48;
-      var query = 'query ShopProductListing($taxonId: Int, $locale: String!, $channelCode: String!, $sort: ShopSortInput, $page: ShopPageInput) { items: shopProducts(taxonId: $taxonId, locale: $locale, channelCode: $channelCode, sort: $sort, page: $page) { id name slug shortDescription __typename mainMedia { url __typename } secondaryMedia { url __typename } variants { id name slug available __typename price { amount currency __typename } availableRegions { id parentId code __typename } } } totalItemsCount: shopProductsCount(taxonId: $taxonId, channelCode: $channelCode) }';
+      var query = 'query ShopProductListing($taxonId: Int, $locale: String!, $channelCode: String!, $sort: ShopSortInput, $page: ShopPageInput) { items: shopProducts(taxonId: $taxonId, locale: $locale, channelCode: $channelCode, sort: $sort, page: $page) { id name slug shortDescription __typename mainMedia { url __typename } secondaryMedia { url __typename } variants { id name slug available __typename price { amount currency __typename } availableRegions { id parentId code __typename } availability { isAvailable unavailableReason __typename } } } totalItemsCount: shopProductsCount(taxonId: $taxonId, channelCode: $channelCode) }';
 
       function fetchPage() {
         return fetch(ENDPOINT, {
@@ -211,8 +213,30 @@
       var productUrl = '/za/p/' + product.id + '/' + product.slug + '?origin=product-listing';
       var shortDesc = product.shortDescription || '';
 
+      var isAvailable = variant.availability ? !!variant.availability.isAvailable : !!variant.available;
+
+      var regionLabelMap = { 'za': 'SA', 'za-cpt': 'CPT', 'za-jhb': 'JHB' };
+      var regions = variant.availableRegions || [];
+      var regionBadgesHtml = '';
+      if (regions.length > 0) {
+        regionBadgesHtml = '<div class="cro-007-regions">';
+        regions.forEach(function (r) {
+          var label = regionLabelMap[(r.code || '').toLowerCase()] || r.code;
+          regionBadgesHtml += '<span class="cro-007-region-badge">' + label + '</span>';
+        });
+        regionBadgesHtml += '</div>';
+      }
+
       var actionsHtml;
-      if (cartQty > 0) {
+      if (!isAvailable) {
+        actionsHtml =
+          '<div class="x-product-add-to-bag">' +
+          '<a href="' + productUrl + '" class="mdc-button mdc-button--outlined mat-mdc-outlined-button mat-unthemed notify-button cro-007-notify">' +
+          '<fa-icon _ngcontent-ng-c3143085172="" icon="bell" xiconsize="medium" class="ng-fa-icon icon-size-medium"><svg data-prefix="fal" data-icon="bell" class="svg-inline--fa fa-bell fa-undefined fa-fw fa-pull-undefined" role="img" viewBox="0 0 18.31 20.57" aria-hidden="true"><path fill="currentColor" d="M18.1,17.25s-1.23-1.29-1.23-7.39c0-2.06-.8-4-2.26-5.46-1.32-1.32-3.03-2.11-4.86-2.24V.6c0-.34-.27-.6-.6-.6s-.6.26-.6.6v1.56c-1.83.13-3.54.92-4.86,2.24-1.46,1.46-2.27,3.4-2.27,5.46,0,5.65-1.28,7.46-1.29,7.47-.14.18-.17.42-.07.63.1.21.31.34.54.34h6.11c-.07.13-.08.27-.04.42.16.53.49,1,.93,1.34.45.33,1,.51,1.55.51s1.11-.18,1.55-.51c.44-.34.77-.81.93-1.34.04-.15.03-.29-.04-.42h6.11c.25,0,.49-.15.58-.39.08-.24.02-.5-.18-.66ZM10.48,18.38c-.08.28-.26.54-.5.72-.47.35-1.18.35-1.66,0-.23-.18-.41-.44-.49-.72-.01-.03-.02-.06-.04-.08h2.73s-.03.05-.04.08ZM1.58,17.1c.45-1.13,1.05-3.35,1.05-7.24,0-1.74.67-3.38,1.91-4.62,1.23-1.23,2.87-1.91,4.61-1.91s3.38.68,4.61,1.91c1.24,1.24,1.92,2.88,1.92,4.62,0,4.03.5,6.15.96,7.24H1.58Z"></path></svg></fa-icon>' +
+          '<span class="mdc-button__label">Notify Me</span>' +
+          '</a>' +
+          '</div>';
+      } else if (cartQty > 0) {
         actionsHtml =
           '<div class="x-product-add-to-bag cro-007-in-cart">' +
           '<div class="cro-007-qty-wrap">' +
@@ -230,6 +254,18 @@
           '</div>';
       }
 
+      var wishlistBtn =
+        '<div class="x-wishlist-action">' +
+        '<button class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-unthemed size-normal cro-007-wishlist-btn' + (wishlisted ? ' cro-007-wishlisted active' : '') + '" ' +
+        'data-product-id="' + product.id + '" ' +
+        'title="' + (wishlisted ? 'Remove from favourites' : 'Add to favourites') + '">' +
+        '<span class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span>' +
+        '<span class="ng-fa-icon heart icon-size-x-large">' + heartSVG() + '</span>' +
+        '<span class="mat-focus-indicator"></span>' +
+        '<span class="mat-mdc-button-touch-target"></span>' +
+        '</button>' +
+        '</div>';
+
       return (
         '<div class="x-product-card col-4 cro-007-card" data-variant-id="' + variantId + '" data-product-id="' + product.id + '">' +
         '<div class="view">' +
@@ -242,21 +278,13 @@
         '<div class="body-content">' +
         '<header class="mat-body-2">' + product.name + '</header>' +
         '<div class="description mat-display-4">' + shortDesc + '</div>' +
+        (isAvailable ? regionBadgesHtml : '<div class="cro-007-oos-badge">Out Of Stock</div>') +
         '<div class="footer">' +
         '<div class="price mat-body-1">' + price + '</div>' +
         '</div>' +
         '<div class="actions"><div class="actions-container">' +
         actionsHtml +
-        '<div class="x-wishlist-action">' +
-        '<button class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-unthemed size-normal cro-007-wishlist-btn' + (wishlisted ? ' cro-007-wishlisted active' : '') + '" ' +
-        'data-product-id="' + product.id + '" ' +
-        'title="' + (wishlisted ? 'Remove from favourites' : 'Add to favourites') + '">' +
-        '<span class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span>' +
-        '<span class="ng-fa-icon heart icon-size-x-large">' + heartSVG() + '</span>' +
-        '<span class="mat-focus-indicator"></span>' +
-        '<span class="mat-mdc-button-touch-target"></span>' +
-        '</button>' +
-        '</div>' +
+        wishlistBtn +
         '</div></div>' +
         '</div>' +
         '</div>' +
@@ -284,6 +312,10 @@
       cro007Products = products;
       cro007Store = getNgxsStore();
 
+      /* Remove any existing grid from a previous IIFE run (cro007GridEl may be null in a new closure) */
+      var existing = document.querySelector('.cro-007-grid');
+      if (existing) existing.remove();
+
       var html = '';
       products.forEach(function (p) {
         if (!p.variants || !p.variants.length) return;
@@ -293,23 +325,36 @@
       var viewport = document.querySelector('.cdk-virtual-scroll-viewport.product-list-viewport');
       var row = document.createElement('div');
       row.className = 'product-list-row row pb-5 pb-lg-5 cro-007-grid';
+      row.setAttribute('style', 'display: none;');
       row.innerHTML = html;
       viewport.parentNode.insertBefore(row, viewport);
       cro007GridEl = row;
 
-      /* Add body class now that grid is in DOM — this hides original list */
-      addClass('body', variation_name);
-
-      /* Subscribe to NGXS cart state changes and refresh affected cards */
+      /* Subscribe to NGXS state changes — handles both cart qty and region changes */
+      if (cro007StateSub) { try { cro007StateSub.unsubscribe(); } catch (e) { } }
+      cro007LastRegionCode = undefined;
       if (cro007Store && cro007Store._stateStream) {
-        cro007Store._stateStream.subscribe(function (state) {
+        cro007StateSub = cro007Store._stateStream.subscribe(function (state) {
+          /* Re-render every card when the delivery region changes */
+          var newRegionCode = (state.regionState && state.regionState.region && state.regionState.region.code) || null;
+          if (newRegionCode !== cro007LastRegionCode) {
+            cro007LastRegionCode = newRegionCode;
+            if (cro007GridEl) {
+              cro007Products.forEach(function (p) {
+                if (p.variants && p.variants.length) refreshCard(p.variants[0].id);
+              });
+            }
+            return;
+          }
+
+          /* Cart quantity changes */
           var items = (state.orderState && state.orderState.order && state.orderState.order.items) || [];
           cro007Products.forEach(function (p) {
             if (!p.variants || !p.variants.length) return;
             var vId = p.variants[0].id;
             var serverItem = items.find(function (i) { return i.variantId === vId; });
             var serverQty = serverItem ? (serverItem.quantity || 0) : 0;
-            var card = cro007GridEl.querySelector('.cro-007-card[data-variant-id="' + vId + '"]');
+            var card = cro007GridEl && cro007GridEl.querySelector('.cro-007-card[data-variant-id="' + vId + '"]');
             if (!card) return;
             var qtyEl = card.querySelector('.cro-007-qty-val');
             var currentQty = qtyEl ? parseInt(qtyEl.textContent) : 0;
@@ -560,36 +605,46 @@
         });
     }
 
-    /* ── Bind all events via delegation ── */
+    /* ── Bind all events via delegation from the grid element ── */
+    /* Delegating from the grid (not document) means listeners die when the grid
+       is removed — no stale closures survive SPA re-navigation. */
     function bindEvents() {
       live('.cro-007-add', 'click', function (e) {
         e.preventDefault();
         var variantId = parseInt(this.getAttribute('data-variant-id'));
         handleAddToCart(variantId, this);
-      });
+      }, cro007GridEl);
 
       live('.cro-007-plus', 'click', function (e) {
         e.preventDefault();
         var variantId = parseInt(this.getAttribute('data-variant-id'));
         handleQtyChange(variantId, 1, this);
-      });
+      }, cro007GridEl);
 
       live('.cro-007-minus', 'click', function (e) {
         e.preventDefault();
         var variantId = parseInt(this.getAttribute('data-variant-id'));
         handleQtyChange(variantId, -1, this);
-      });
+      }, cro007GridEl);
 
       live('.cro-007-wishlist-btn', 'click', function (e) {
         e.preventDefault();
         var productId = parseInt(this.getAttribute('data-product-id'));
         handleWishlist(productId, this);
-      });
+      }, cro007GridEl);
     }
 
     /* ── Init ── */
     function init() {
+      addClass('body', variation_name);
+
       waitForElement('.cdk-virtual-scroll-viewport.product-list-viewport', function () {
+        /* Remove any leftover grid from a previous init (SPA re-navigation) */
+        if (cro007GridEl && cro007GridEl.parentNode) {
+          cro007GridEl.remove();
+          cro007GridEl = null;
+        }
+
         var taxonMatch = location.pathname.match(/\/pl\/(\d+)\//);
         var taxonId = taxonMatch ? parseInt(taxonMatch[1]) : 61;
 
@@ -598,16 +653,27 @@
         var loader = document.createElement('div');
         loader.className = 'cro-007-loading';
         loader.textContent = 'Loading products…';
-        viewport.parentNode.insertBefore(loader, viewport);
+        if (!document.querySelector('.cro-007-loading')) {
+          viewport.parentNode.insertBefore(loader, viewport);
+        }
+
+
 
         fetchAllProducts(taxonId).then(function (products) {
           loader.remove();
+
           var sorted = sortProducts(products);
           renderGrid(sorted);
           bindEvents();
           watchSortFilter();
+
+          var totalCards = cro007GridEl ? cro007GridEl.querySelectorAll('.cro-007-card').length : 0;
+          var notifyCards = cro007GridEl ? cro007GridEl.querySelectorAll('.cro-007-notify').length : 0;
+          var addCards = cro007GridEl ? cro007GridEl.querySelectorAll('.cro-007-add').length : 0;
+          console.log('CRO-007 grid rendered — total cards:', totalCards, '| Add to Bag:', addCards, '| Notify Me:', notifyCards);
         }).catch(function (e) {
           loader.remove();
+          document.body.classList.remove(variation_name);
           if (debug) console.log('CRO-007: init error', e);
         });
       });
@@ -625,14 +691,7 @@
       }, 200);
     }
 
-    function croEventHandkler() {
-      live("selector", "click", function () { });
-    }
 
-    if (!window.cro_t_007) {
-      croEventHandkler();
-      window.cro_t_007 = true;
-    }
 
     waitForElement('body', init);
 

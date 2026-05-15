@@ -1,0 +1,155 @@
+/* Variation B - PLP reduce distraction and improve navigation | CRO-7972 */
+
+body.cro-7972 .cro-7972-hidden,
+body.cro-7972 .cro-7972-duplicate-filter {
+	display: none;
+}
+
+/* KI32 — Hide promotional banners in their original position inside #ProductsContainer */
+body.cro-7972 #ProductsContainer>div:not([data-template="GridViewItem"]) {
+	display: none;
+}
+
+/* KI32 — Hide distraction elements (banners, carousels) above the product list */
+body.cro-7972 .content-container:not(.cro-7972-product-list-container):has(.background-image.imgpara),
+body.cro-7972 .content-container:not(.cro-7972-product-list-container):has(.ProductListCarousel),
+body.cro-7972 .content-container:not(.cro-7972-product-list-container):has(.carousel) {
+	display: none;
+}
+
+.cro-7972-promo-banners {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cro-7972-promo-banners__inner {
+	max-width: 1280px;
+	grid-column: auto;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	padding: 1em;
+	margin: 1em;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.cro-7972-promo-banners__cards {
+	display: flex;
+	flex: 1 0 0%;
+}
+
+.cro-7972-promo-banners__empty {
+	width: 25%;
+}
+
+#Block__Navigation:before {
+	content: 'Shop By';
+	padding: 1.2em .6em;
+	color: #212121;
+	font-family: inherit;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 21px;
+	/* 105% */
+	padding-top: 0;
+	padding-left: 0;
+}
+
+body.cro-7972 .cro-7972-has-h3,
+body.cro-7972 .cro-7972-has-plp-header {
+	display: none;
+}
+
+body.cro-7972 .content-row--spacing-xl {
+	margin-bottom: 0;
+}
+
+body.cro-7972 .separation-line-container {
+	min-height: 0 !important;
+	display: none;
+}
+
+.cro-7972-product-list-container .content-row__item__body {
+	padding-top: 0;
+	margin-top: 0;
+}
+
+body.cro-7972 div#productList {
+	padding: 2px;
+}
+
+body.cro-7972 .content-row__item__body.sp1 {
+	padding-left: 24px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.cro-7972-breadcrumb .breadcrumb.dw-mod {
+	margin-left: 11px;
+}
+
+.cro-7972-subtext span {
+	font-family: crimson text, sans-serif !important;
+}
+
+.cro-7972-subtext div.card-paragraph {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+body.cro-7972 #Block__Navigation .facets-container.dw-mod .facets-container__header {
+	padding-left: 0;
+}
+
+.cro_subtext_parent {
+	min-height: auto;
+}
+
+/* -------------- */
+@media (max-width: 1023px) {
+
+	.cro-7972-promo-banners__empty {
+		width: 0;
+	}
+
+	.cro-7972-promo-banners__inner {
+		padding: 0;
+	}
+
+	.cro-7972-promo-banners__cards>div {
+		width: 50%;
+		padding: 0;
+	}
+
+	.cro-7972-promo-banners__cards {
+		flex-wrap: wrap;
+	}
+
+	body.cro-7972 div#productList {
+		padding: 0;
+	}
+
+	.cro-7972-breadcrumb .u-align-left {
+		padding-left: .6em;
+		padding-right: .6em;
+		padding-top: 0;
+	}
+
+	body.cro-7972 .content-row__item__body.sp1 {
+		padding-left: .6em;
+	}
+
+	.cro-7972-breadcrumb .breadcrumb.dw-mod {
+		margin-left: 0;
+	}
+}
