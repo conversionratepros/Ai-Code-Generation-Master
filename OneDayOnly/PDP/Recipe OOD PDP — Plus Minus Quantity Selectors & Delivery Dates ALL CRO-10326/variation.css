@@ -1,0 +1,126 @@
+/* ─── Hide native quantity select ─────────────────────────────────────────── */
+
+body.cro-t-odo-10326 #product-quantity-select {
+    display: none !important;
+}
+
+/* ─── Quantity wrapper ────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10326 .crp-10326-qty-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ─── Quantity label ──────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10326 .crp-10326-qty-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ─── Stepper container ───────────────────────────────────────────────────── */
+
+body.cro-t-odo-10326 .crp-10326-stepper {
+    display: inline-flex;
+    align-items: stretch;
+    /* border: 2px solid #0093d0; */
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+/* ─── Minus / Plus buttons (blue fill) ───────────────────────────────────── */
+
+body.cro-t-odo-10326 .crp-10326-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 37px;
+    background: #F0F1F3;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 1;
+    padding: 0;
+    transition: background 0.15s ease, color 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    flex-shrink: 0;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn:hover:not([disabled]) {
+    background: #0093D0;
+    color: #ffffff;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn:active:not([disabled]) {
+    background: #0093D0;
+    color: #ffffff;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn[disabled] {
+    background: #F0F1F3;
+    color: #bbbbbb;
+    cursor: default;
+}
+
+/* ─── Quantity input (white centre) ──────────────────────────────────────── */
+
+body.cro-t-odo-10326 .crp-10326-input {
+    width: 58px;
+    height: 37px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333333;
+    background: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: default;
+    pointer-events: none;
+    border-top: 1px solid #99ABB9;
+    border-bottom: 1px solid #99ABB9;
+}
+
+/* ─── Mobile tweaks ───────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 767px) {
+    body.cro-t-odo-10326 .crp-10326-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    body.cro-t-odo-10326 .crp-10326-input {
+        width: 56px;
+        height: 48px;
+    }
+}
+
+
+button.crp-10326-btn.crp-10326-minus {
+    border-radius: 4px 0 0 4px;
+    border-right: 1px solid #99ABB9;
+}
+
+button.crp-10326-btn.crp-10326-plus {
+    border-radius: 0 4px 4px 0;
+    border-left: 1px solid #99ABB9;
+}
+
+input.crp-10326-input {
+    border: 1px solid #99ABB9;
+}

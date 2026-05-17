@@ -147,3 +147,65 @@ Create a new subfolder inside `{base_path}/New AB tests/{test-name}/` and write:
 - `user-story.md` (if the user provided one in Step 5)
 
 Confirm the files have been created and show the folder path.
+
+---
+
+## Learnings & Patterns
+
+### Replacing a native `<select>` with a custom stepper
+
+When a test replaces a dropdown quantity selector with a custom ±1 stepper:
+
+1. **Read limits from the native select** — never hardcode min/max. Derive them from the actual `<option>` values so stock-level caps are respected:
+   ```js
+   function getSelectLimits() {
+       var sel = document.querySelector('#your-qty-select');
+       var values = [];
+       for (var i = 0; i < sel.options.length; i++) {
+           var v = parseInt(sel.options[i].value, 10);
+           if (!isNaN(v)) values.push(v);
+       }
+       return { min: Math.min.apply(null, values), max: Math.max.apply(null, values) };
+   }
+   ```
+
+2. **Insert stepper directly after the native select** — not before the CTA button:
+   ```js
+   sel.parentNode.insertBefore(wrapper, sel.nextSibling);
+   ```
+
+3. **Sync native select on every stepper change** — dispatch both `change` and `input` events so any framework listeners (React, Next.js) pick up the new value:
+   ```js
+   sel.value = qty;
+   sel.dispatchEvent(new Event('change', { bubbles: true }));
+   sel.dispatchEvent(new Event('input',  { bubbles: true }));
+   ```
+
+4. **Hide native select via CSS using its ID** — never hide the label's parent container via JS, as that can break layout. Use:
+   ```css
+   body.variation-class #your-qty-select { display: none !important; }
+   ```
+
+5. **Disable minus at min, disable plus at max** — always reflect limits visually. Use `setAttribute('disabled','disabled')` / `removeAttribute('disabled')` rather than the `.disabled` property for reliable cross-browser attribute toggling.
+
+6. **Guard against duplicate runs**:
+   ```js
+   if (!window.cro_XXXXX) {
+       window.cro_XXXXX = true;
+       waitForElement('#your-qty-select', init);
+   }
+   ```
+
+### Init flow for dynamic pages (React / Next.js)
+
+```
+waitForElement('#native-select-id')
+  → init()
+      → body.classList.add(VARIATION)
+      → read limits from select
+      → waitForElement('[data-action="cta"]')
+          → buildStepper()   // inserts HTML after native select
+          → sync native select to starting value
+```
+
+Never call `init()` directly — always gate it through `waitForElement` on the key selector.

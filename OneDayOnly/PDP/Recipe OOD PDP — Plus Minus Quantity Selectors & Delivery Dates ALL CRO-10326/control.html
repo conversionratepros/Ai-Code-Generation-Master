@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRO-10326 Local Test — OOD PDP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .product-image {
+            flex: 0 0 480px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .buy-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e50e62;
+        }
+
+        .product-price .was {
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .variant-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .variant-select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #333;
+            background: #fff;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+
+        .qty-native-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* I Want button */
+        .i-want-btn {
+            width: 100%;
+            padding: 16px;
+            background: #00b900;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        .i-want-btn:hover { background: #009f00; }
+
+        .debug-panel {
+            margin-top: 24px;
+            padding: 16px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .debug-panel h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .debug-log {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            min-height: 60px;
+            max-height: 180px;
+            overflow-y: auto;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 767px) {
+            .page-wrapper { flex-direction: column; }
+            .product-image { flex: none; height: 260px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <div class="product-image">[ Product Image ]</div>
+
+    <div class="buy-box">
+
+        <h1 class="product-title">Premium Wireless Headphones</h1>
+
+        <div class="product-price">
+            R 1,299.00 <span class="was">R 1,999.00</span>
+        </div>
+
+        <!-- Variant selectors (must remain visible and functional) -->
+        <div>
+            <div class="variant-label">Colour</div>
+            <select class="variant-select" name="colour">
+                <option value="">— Select Colour —</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="silver">Silver</option>
+            </select>
+        </div>
+
+        <div>
+            <div class="variant-label">Size</div>
+            <select class="variant-select" name="size">
+                <option value="">— Select Size —</option>
+                <option value="one-size">One Size</option>
+            </select>
+        </div>
+
+        <!-- Native quantity select — id="product-quantity-select" (hidden by variation) -->
+        <div>
+            <label class="qty-native-label">Quantity</label>
+            <select class="variant-select" id="product-quantity-select" name="qty">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+
+        <!-- I Want button — data-action="add-to-cart" -->
+        <button class="i-want-btn" data-action="add-to-cart" id="i-want-btn">
+            I want one
+        </button>
+
+        <!-- Debug -->
+        <div class="debug-panel">
+            <h4>Debug — native select &amp; cart log (max in this mock = 8)</h4>
+            <div class="debug-log" id="debug-log">Waiting...</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var sel = document.querySelector('#product-quantity-select');
+        var log = document.getElementById('debug-log');
+
+        // Log native select changes
+        sel.addEventListener('change', function () {
+            log.textContent = '[' + new Date().toLocaleTimeString() + '] select#product-quantity-select → ' + sel.value + '\n' + log.textContent;
+        });
+
+        // Log cart clicks
+        document.querySelector('[data-action="add-to-cart"]').addEventListener('click', function () {
+            var btn = document.getElementById('i-want-btn');
+            log.textContent = '[' + new Date().toLocaleTimeString() + '] CART CLICK — qty: ' + sel.value + ' | btn text: "' + btn.textContent.trim() + '"\n' + log.textContent;
+        });
+    });
+</script>
+
+<!-- ═══════════════ VARIATION CSS ═══════════════ -->
+<style>
+body.cro-t-odo-10326 #product-quantity-select {
+    display: none !important;
+}
+
+body.cro-t-odo-10326 .crp-10326-qty-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body.cro-t-odo-10326 .crp-10326-qty-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body.cro-t-odo-10326 .crp-10326-stepper {
+    display: inline-flex;
+    align-items: stretch;
+    border: 2px solid #0093d0;
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #0093d0;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+    padding: 0;
+    transition: background 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    flex-shrink: 0;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn:hover:not([disabled]) {
+    background: #007ab3;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn:active:not([disabled]) {
+    background: #006699;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn[disabled] {
+    background: #b3d9ed;
+    cursor: default;
+    color: #ffffff;
+}
+
+body.cro-t-odo-10326 .crp-10326-input {
+    width: 52px;
+    height: 44px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333333;
+    background: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: default;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 767px) {
+    body.cro-t-odo-10326 .crp-10326-btn { width: 48px; height: 48px; }
+    body.cro-t-odo-10326 .crp-10326-input { width: 56px; height: 48px; }
+}
+</style>
+
+<!-- ═══════════════ VARIATION JS ═══════════════ -->
+<script>
+(function () {
+    try {
+        var VARIATION = 'cro-t-odo-10326';
+
+        var WORDS = [
+            '', 'one', 'two', 'three', 'four', 'five',
+            'six', 'seven', 'eight', 'nine', 'ten',
+            'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
+            'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
+            'twenty one', 'twenty two', 'twenty three', 'twenty four', 'twenty five'
+        ];
+
+        function waitForElement(selector, cb) {
+            var tries = 0;
+            var timer = setInterval(function () {
+                if (document.querySelector(selector)) {
+                    clearInterval(timer);
+                    cb();
+                } else if (++tries >= 200) {
+                    clearInterval(timer);
+                }
+            }, 100);
+        }
+
+        function qtyWord(n) {
+            if (n >= 1 && n <= 25) return WORDS[n];
+            return '[to be confirmed]';
+        }
+
+        function getSelectLimits() {
+            var sel = document.querySelector('#product-quantity-select');
+            var values = [];
+            for (var i = 0; i < sel.options.length; i++) {
+                var v = parseInt(sel.options[i].value, 10);
+                if (!isNaN(v)) values.push(v);
+            }
+            return {
+                min: Math.min.apply(null, values),
+                max: Math.max.apply(null, values)
+            };
+        }
+
+        var currentQty = 1;
+        var QTY_MIN = 1;
+        var QTY_MAX = 10;
+
+        function updateNativeSelect(qty) {
+            var sel = document.querySelector('#product-quantity-select');
+            if (!sel) return;
+            sel.value = qty;
+            sel.dispatchEvent(new Event('change', { bubbles: true }));
+            sel.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        function findIWantBtn() {
+            var els = document.querySelectorAll('button, a');
+            for (var i = 0; i < els.length; i++) {
+                if (/i want/i.test(els[i].textContent)) return els[i];
+            }
+            return null;
+        }
+
+        function updateButtonText(qty) {
+            var btn = findIWantBtn();
+            if (!btn) return;
+            var word = qtyWord(qty);
+            var span = btn.querySelector('span');
+            if (span && /i want/i.test(span.textContent)) {
+                span.textContent = 'I want ' + word;
+            } else if (span) {
+                span.textContent = word;
+            } else {
+                btn.textContent = 'I want ' + word;
+            }
+        }
+
+        function buildStepper() {
+            if (document.querySelector('.crp-10326-stepper')) return;
+
+            var addToCartBtn = document.querySelector('[data-action="add-to-cart"]');
+            if (!addToCartBtn) return;
+
+            var wrapper = document.createElement('div');
+            wrapper.className = 'crp-10326-qty-wrapper';
+            wrapper.innerHTML =
+                '<label class="crp-10326-qty-label">Quantity</label>' +
+                '<div class="crp-10326-stepper">' +
+                    '<button class="crp-10326-btn crp-10326-minus" type="button" disabled aria-label="Decrease quantity">&#8722;</button>' +
+                    '<input class="crp-10326-input" type="text" value="' + QTY_MIN + '" readonly aria-label="Quantity">' +
+                    '<button class="crp-10326-btn crp-10326-plus" type="button"' + (QTY_MIN >= QTY_MAX ? ' disabled' : '') + ' aria-label="Increase quantity">&#43;</button>' +
+                '</div>';
+
+            addToCartBtn.parentNode.insertBefore(wrapper, addToCartBtn);
+
+            var minusBtn = wrapper.querySelector('.crp-10326-minus');
+            var plusBtn  = wrapper.querySelector('.crp-10326-plus');
+            var input    = wrapper.querySelector('.crp-10326-input');
+
+            plusBtn.addEventListener('click', function () {
+                if (currentQty >= QTY_MAX) return;
+                currentQty++;
+                input.value = currentQty;
+                if (currentQty <= QTY_MIN) minusBtn.setAttribute('disabled', 'disabled');
+                else minusBtn.removeAttribute('disabled');
+                if (currentQty >= QTY_MAX) plusBtn.setAttribute('disabled', 'disabled');
+                else plusBtn.removeAttribute('disabled');
+                updateNativeSelect(currentQty);
+                updateButtonText(currentQty);
+            });
+
+            minusBtn.addEventListener('click', function () {
+                if (currentQty <= QTY_MIN) return;
+                currentQty--;
+                input.value = currentQty;
+                if (currentQty <= QTY_MIN) minusBtn.setAttribute('disabled', 'disabled');
+                else minusBtn.removeAttribute('disabled');
+                if (currentQty >= QTY_MAX) plusBtn.setAttribute('disabled', 'disabled');
+                else plusBtn.removeAttribute('disabled');
+                updateNativeSelect(currentQty);
+                updateButtonText(currentQty);
+            });
+        }
+
+        function init() {
+            document.body.classList.add(VARIATION);
+
+            var limits = getSelectLimits();
+            QTY_MIN    = limits.min;
+            QTY_MAX    = limits.max;
+            currentQty = QTY_MIN;
+
+            waitForElement('[data-action="add-to-cart"]', function () {
+                buildStepper();
+                updateNativeSelect(currentQty);
+                updateButtonText(currentQty);
+            });
+        }
+
+        if (!window.cro_10326) {
+            window.cro_10326 = true;
+            waitForElement('#product-quantity-select', init);
+        }
+
+    } catch (e) { }
+})();
+</script>
+
+</body>
+</html>
