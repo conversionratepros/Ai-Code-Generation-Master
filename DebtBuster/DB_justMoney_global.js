@@ -109,6 +109,23 @@
         // experiments.test_63_64_ThemePageCleanup();
         console.log("Global JavaScript Activate");
 
+        function getConvertIds() {
+            var experiments = window.convert && window.convert.currentData && window.convert.currentData.experiments;
+
+            if (!experiments || Object.keys(experiments).length === 0) {
+                console.log("[Convert] No active experiments found");
+                return;
+            }
+
+            Object.keys(experiments).forEach(function (experienceId) {
+                var data = experiments[experienceId];
+                var experimentId = (data && data.variation_id) ? data.variation_id : "N/A";
+                console.log("[Convert] Experience ID:", experienceId);
+                console.log("[Convert] Experiment ID:", experimentId);
+            });
+        }
+        // getConvertIds();
+
         /**
          * Activate all experiments on location change
          */

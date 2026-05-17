@@ -21,38 +21,6 @@
       }, 15000);
     }
 
-    function live(selector, event, callback, context) {
-      function addEvent(el, type, handler) {
-        if (el.attachEvent) el.attachEvent("on" + type, handler);
-        else el.addEventListener(type, handler);
-      }
-      this &&
-        this.Element &&
-        (function (ElementPrototype) {
-          ElementPrototype.matches =
-            ElementPrototype.matches ||
-            ElementPrototype.matchesSelector ||
-            ElementPrototype.webkitMatchesSelector ||
-            ElementPrototype.msMatchesSelector ||
-            function (selector) {
-              var node = this,
-                nodes = (node.parentNode || node.document).querySelectorAll(selector),
-                i = -1;
-              while (nodes[++i] && nodes[i] != node);
-              return !!nodes[i];
-            };
-        })(Element.prototype);
-      function live(selector, event, callback, context) {
-        addEvent(context || document, event, function (e) {
-          var found,
-            el = e.target || e.srcElement;
-          while (el && el.matches && el !== context && !(found = el.matches(selector))) el = el.parentElement;
-          if (found) callback.call(el, e);
-        });
-      }
-      live(selector, event, callback, context);
-    }
-
     function insertHtml(selector, content, position) {
       var el = document.querySelector(selector);
       if (!position) {
@@ -381,6 +349,28 @@
       if (btn) btn.textContent = 'Shop by';
     }
 
+    function hideLongParagraphs() {
+      document.querySelectorAll('.content-row__item__body p').forEach(function (p) {
+        var lineHeight = parseFloat(window.getComputedStyle(p).lineHeight);
+        if (!lineHeight || isNaN(lineHeight)) return;
+        var lines = Math.round(p.getBoundingClientRect().height / lineHeight);
+        if (lines > 2) {
+          p.classList.add('cro-7972-long-paragraph');
+        }
+      });
+
+      document.querySelectorAll('.card-paragraph.content-row__item__body').forEach(function (card) {
+        var paragraphs = Array.prototype.slice.call(card.querySelectorAll('p'));
+        if (!paragraphs.length) return;
+        var allHidden = paragraphs.every(function (p) {
+          return p.classList.contains('cro-7972-long-paragraph') || p.textContent.replace(/ /g, '').trim() === '';
+        });
+        if (allHidden) {
+          card.classList.add('cro-7972-empty-card');
+        }
+      });
+    }
+
     function collapseAccordions() {
       document.querySelectorAll('#Block__Navigation input').forEach(function (input) {
         if (input.getAttribute('checked') === 'true' || input.checked) {
@@ -401,6 +391,7 @@
       waitForElement('.content-row__item__body h2.plp-header', tagHeadingContainers);
       waitForElement('#Block__Navigation input', collapseAccordions);
       waitForElement('.btn.btn--primary.btn--full--mobile.dw-mod.js-expand-hide', updateMobileFilterBtn);
+      waitForElement('.content-row__item__body p', hideLongParagraphs);
     }
 
 

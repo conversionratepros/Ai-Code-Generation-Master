@@ -1,0 +1,58 @@
+/* Variation B - PDP | Buy Box Simplification | All | CRO-8475 */
+
+html body.CRO-8475 .product-add-form .calc-container {
+    gap: 18px;
+}
+
+html body.CRO-8475 .product-add-form .calc-container .qty-input-group {
+    display: flex;
+    flex-basis: 65%;
+}
+
+html body.CRO-8475 .product-add-form .calc-container .btn-calculator {
+    flex-direction: row;
+    width: 100%;
+    max-width: 35%;
+}
+
+html body.CRO-8475 .box-tocart .actions .add-to-cart-note {
+    text-align: center;
+}
+
+html body.CRO-8475 .product-info-main .installation-notice {
+    border-radius: 4px;
+    background: #FFFCE8;
+    color: #404040;
+    font-family: "Source Sans Pro";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 14px 20px;
+}
+
+html body.CRO-8475 .catalog-product-view .vas-modals-container .pdp-vas-modals .vas-modal_button {
+    gap: 8px;
+}
+
+html body.CRO-8475 span.tooltip-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+}
+
+html body.CRO-8475 .installation-notice .tooltip-trigger {
+    padding: 0;
+}
+
+html body.CRO-8475 .product-add-form .trust-message {
+    display: none;
+}
+
+@media (max-width: 1250px) {
+    html body.CRO-8475 .product-add-form .calc-container .btn-calculator {
+        max-width: 100%;
+    }
+}

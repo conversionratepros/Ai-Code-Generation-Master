@@ -115,6 +115,16 @@ body.cro-7972 #Block__Navigation .facets-container.dw-mod .facets-container__hea
 	min-height: auto;
 }
 
+body.cro-7972 .cro-7972-long-paragraph {
+	display: none;
+}
+
+body.cro-7972 .cro-7972-empty-card {
+	/* display: none !important; */
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
 /* -------------- */
 @media (max-width: 1023px) {
 
