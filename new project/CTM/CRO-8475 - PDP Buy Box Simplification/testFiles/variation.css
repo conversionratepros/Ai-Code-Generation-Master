@@ -1,6 +1,4 @@
-/* Variation B - PDP | Buy Box Simplification | All | CRO-8475 */
-
-html body.CRO-8475 .product-add-form .calc-container {
+html body.CRO-8475 .product-add-form .calc-container{
     gap: 18px;
 }
 
@@ -13,9 +11,14 @@ html body.CRO-8475 .product-add-form .calc-container .btn-calculator {
     flex-direction: row;
     width: 100%;
     max-width: 35%;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 126%;
+    font-family: Source Sans Pro;
 }
 
-html body.CRO-8475 .box-tocart .actions .add-to-cart-note {
+html body.CRO-8475 .box-tocart .actions .add-to-cart-note{
     text-align: center;
 }
 
@@ -32,7 +35,12 @@ html body.CRO-8475 .product-info-main .installation-notice {
 }
 
 html body.CRO-8475 .catalog-product-view .vas-modals-container .pdp-vas-modals .vas-modal_button {
+    gap: 8px !important;
+}
+
+html body.CRO-8475 .catalog-product-view .vas-modals-container .pdp-vas-modals .vas-modal_button{
     gap: 8px;
+
 }
 
 html body.CRO-8475 span.tooltip-icon {
@@ -43,16 +51,59 @@ html body.CRO-8475 span.tooltip-icon {
     height: 18px;
 }
 
-html body.CRO-8475 .installation-notice .tooltip-trigger {
+html body.CRO-8475 .installation-notice .tooltip-trigger{
     padding: 0;
+    width: 18px;
+    height: 18px;
 }
 
-html body.CRO-8475 .product-add-form .trust-message {
+html body.CRO-8475 .product-add-form .trust-message{
     display: none;
 }
 
-@media (max-width: 1250px) {
-    html body.CRO-8475 .product-add-form .calc-container .btn-calculator {
+html body.CRO-8475 .product-info-price {
+    border-top: 1px solid #E6E6E6 !important;
+    padding-top: 24px;
+}
+
+html body.CRO-8475 .tooltip-trigger .tooltip-icon svg{
+    display: none;
+}
+
+html body.CRO-8475 .tooltip-trigger .tooltip-icon::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/CTM/PDP+%7C+Buy+Box+simplification+%7C+All+%7C+CRO-8475/CRO-8475-5.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+html body.CRO-8475 .tooltip-trigger .tooltip-icon{
+    position: relative;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+@media (max-width:800px){
+    html body.CRO-8475.catalog-product-view .page-wrapper #maincontent.page-main .media-info-main .product-info-main .product-info-price {
+    margin-top: 0 !important;
+    border: none !important;
+}
+}
+
+@media (max-width:1250px) {
+
+    html body.CRO-8475 .product-add-form .calc-container .btn-calculator{
         max-width: 100%;
     }
+
+    html body.CRO-8475 div#pdp-payflex {
+        border-top: 1px solid #E6E6E6 !important;
+        margin-top: 16px;
+        padding-top: 16px;
+    }
+    
 }
