@@ -297,3 +297,139 @@ To serve the test locally, run:
 npm exec fecli host config.json
 ```
 Then open an incognito Chrome window at `https://localhost:8080`.
+
+---
+
+## Patterns & Learnings
+
+### waitForElement trigger selection
+
+Pick the most **reliable** selector that always exists on target pages as your trigger — not a selector that may or may not be present. If you need to branch on whether an optional element exists, do that check **inside** the triggered function, not via two separate `waitForElement` calls.
+
+```js
+// Bad — times out silently on pages where .optional-heading doesn't render
+waitForElement('.optional-heading', updateHeading);
+
+// Good — #productList always exists on PLPs; branch inside
+waitForElement('#productList', updateHeading);
+// inside updateHeading: if (document.querySelector('.optional-heading')) { ... } else { ... }
+```
+
+---
+
+### Double-inject guard
+
+Any function that injects HTML must guard against running twice (e.g. the test script loads twice, or `waitForElement` fires more than once):
+
+```js
+function injectThing() {
+  if (document.querySelector('.cro-XXXX-my-element')) return; // guard
+  // ... inject
+}
+```
+
+---
+
+### Hide long paragraphs by line count
+
+Detect paragraphs that render more than N lines and tag them for CSS hiding:
+
+```js
+function hideLongParagraphs() {
+  document.querySelectorAll('.your-container p').forEach(function (p) {
+    var lineHeight = parseFloat(window.getComputedStyle(p).lineHeight);
+    if (!lineHeight || isNaN(lineHeight)) return;
+    var lines = Math.round(p.getBoundingClientRect().height / lineHeight);
+    if (lines > 2) p.classList.add('cro-XXXX-long-paragraph');
+  });
+}
+```
+
+```css
+body.cro-XXXX .cro-XXXX-long-paragraph { display: none; }
+```
+
+---
+
+### Conditional visibility override (keep class pattern)
+
+When a container would be hidden by a general CSS rule but you need to show it conditionally, add a **keep class** with `!important` that wins regardless of order:
+
+```js
+// In JS — mark container to stay visible
+container.classList.add('cro-XXXX-keep-visible');
+```
+
+```css
+/* General rule hides it */
+body.cro-XXXX .cro-XXXX-hidden-group { display: none; }
+
+/* Keep class overrides */
+body.cro-XXXX .cro-XXXX-keep-visible { display: block !important; }
+```
+
+---
+
+### Filter reordering — CSS order, not DOM moves
+
+Never use `insertBefore` / DOM manipulation to reorder filter groups. Platforms re-render filter lists on every selection, resetting DOM order. Use CSS `order` instead:
+
+**JS — tag elements with order classes:**
+```js
+function reorderFilterContainer(container) {
+  if (!container) return;
+  var seen = {};
+  Array.prototype.slice.call(container.children).forEach(function (el) {
+    var name = getFilterLabel(el).toLowerCase();
+    if (!name) return;
+    var input = getPrecedingInput(el); // INPUT sibling that controls this filter
+    if (seen[name]) {
+      el.classList.add('cro-XXXX-duplicate-filter');
+      if (input) input.classList.add('cro-XXXX-duplicate-filter');
+      return;
+    }
+    seen[name] = true;
+    if (name === 'category')   { el.classList.add('cro-XXXX-order-1'); if (input) input.classList.add('cro-XXXX-order-1'); }
+    if (name === 'sub category') { el.classList.add('cro-XXXX-order-2'); if (input) input.classList.add('cro-XXXX-order-2'); }
+  });
+}
+```
+
+**CSS — flex column + order values:**
+```css
+body.cro-XXXX #Block__Navigation .facets-container.dw-mod,
+body.cro-XXXX #productList .facets-container.dw-mod {
+  display: flex !important;
+  flex-direction: column;
+}
+body.cro-XXXX .facets-container.dw-mod > .cro-XXXX-order-1 { order: 1; }
+body.cro-XXXX .facets-container.dw-mod > .cro-XXXX-order-2 { order: 2; }
+body.cro-XXXX .facets-container.dw-mod > :not(.cro-XXXX-order-1):not(.cro-XXXX-order-2):not(.cro-XXXX-duplicate-filter) { order: 3; }
+```
+
+---
+
+### MutationObserver — survive platform re-renders
+
+Some platforms **completely replace** the filter container DOM on every filter selection. Observing the container itself is useless because the element is swapped out. Always observe the **stable parent** with `subtree: true`, and debounce to avoid firing mid-render:
+
+```js
+function watchFilterContainer(parentSelector, reorderFn) {
+  var parent = document.querySelector(parentSelector);
+  if (!parent) return;
+  var debounceTimer = null;
+  var observer = new MutationObserver(function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () { reorderFn(); }, 100);
+  });
+  observer.observe(parent, { childList: true, subtree: true });
+}
+
+// In init():
+waitForElement('#Block__Navigation .facets-container', function () {
+  reorderFilters();
+  watchFilterContainer('#Block__Navigation', reorderFilters);
+});
+```
+
+> **Rule:** always attach `MutationObserver` to the nearest ancestor that survives re-renders (e.g. `#Block__Navigation`, `#productList`), not to the element being re-rendered.

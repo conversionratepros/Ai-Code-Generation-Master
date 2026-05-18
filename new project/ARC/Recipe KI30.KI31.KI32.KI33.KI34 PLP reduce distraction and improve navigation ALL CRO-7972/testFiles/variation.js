@@ -160,7 +160,57 @@
       var productContainer = productList.closest('.content-container');
       if (!productContainer) return;
 
-      productContainer.insertAdjacentElement('afterend', wrapper);
+      if (!document.querySelector('.cro-7972-promo-banners')) {
+        productContainer.insertAdjacentElement('afterend', wrapper);
+      }
+
+    }
+
+    function injectCategoryHeading() {
+      if (document.querySelector('.cro-7972-injected-heading')) return;
+
+      var categoryName = '';
+      var plpHeader = document.querySelector('h2.plp-header');
+      if (plpHeader) {
+        categoryName = plpHeader.textContent.trim()
+          .replace(/^shop\s+all\s+/i, '').replace(/^shop\s+/i, '').trim();
+      }
+      if (!categoryName) {
+        var segments = window.location.pathname.split('/').filter(function (s) { return s.length > 0; });
+        var lastSegment = segments[segments.length - 1] || '';
+        categoryName = lastSegment.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      }
+      if (!categoryName) return;
+
+      var headingHtml =
+        '<div class="content-container dw-mod cro-7972-injected-heading">' +
+        '<div class="content-row__item__body sp1 padding-size-md padding-position-around dw-mod">' +
+        '<h1 class="cro-7972-generated-h1">Shop all ' + categoryName + '</h1>' +
+        '</div>' +
+        '</div>';
+
+      // Insert after our injected breadcrumb if it exists
+      var croBreadcrumb = document.querySelector('.cro-7972-breadcrumb');
+      if (croBreadcrumb) {
+        croBreadcrumb.insertAdjacentHTML('afterend', headingHtml);
+        return;
+      }
+      // Native breadcrumb present — insert after its outermost container
+      var nativeBreadcrumb = document.querySelector('.breadcrumb');
+      if (nativeBreadcrumb) {
+        var bcContainer = nativeBreadcrumb.closest('.content-container') || nativeBreadcrumb.parentElement;
+        if (bcContainer) {
+          bcContainer.insertAdjacentHTML('afterend', headingHtml);
+          return;
+        }
+      }
+      // Fallback: insert just before the product list
+      var plcContainer = document.querySelector('.cro-7972-product-list-container');
+      if (plcContainer) {
+        plcContainer.insertAdjacentHTML('beforebegin', headingHtml);
+        return;
+      }
+      insertHtml('#content', headingHtml, 'afterbegin');
     }
 
     function updateCategoryHeading() {
@@ -174,12 +224,29 @@
       var container = document.querySelector('.content-row__item__body.sp1');
 
       if (container) {
-        // Page has an existing heading — update it
         var heading = container.querySelector('h1');
         if (heading) {
           var categoryName = heading.textContent.trim();
           categoryName = categoryName.replace(/^shop\s+all\s+/i, '').replace(/^shop\s+/i, '').trim();
           heading.textContent = 'Shop all ' + categoryName;
+
+          // Bug 1 fix: hide any other h1 on the page that would create a duplicate heading
+          document.querySelectorAll('h1').forEach(function (otherH1) {
+            if (!container.contains(otherH1)) {
+              var dup = otherH1.closest('.content-container');
+              if (dup) dup.classList.add('cro-7972-hidden');
+            }
+          });
+        } else {
+          // .sp1 has no h1 (e.g. has h2 instead) — hide the sp1 container and reveal
+          // the existing h2.plp-header rather than injecting a new heading
+          var spContainer = container.closest('.content-container');
+          if (spContainer) spContainer.classList.add('cro-7972-hidden');
+          var plpHeader = document.querySelector('h2.plp-header');
+          if (plpHeader) {
+            var plpContainer = plpHeader.closest('.u-margin-bottom--lg') || plpHeader.closest('.content-container');
+            if (plpContainer) plpContainer.classList.add('cro-7972-keep-plp-header');
+          }
         }
 
         var subtext = container.querySelector('p');
@@ -201,28 +268,12 @@
             '</div>' +
             '</div>' +
             '</div>';
-          insertHtml('.cro-7972-product-list-container', bottomHTML, 'afterend');
-        }
-      } else {
-        // No heading structure found — generate one from the URL slug
-        var segments = window.location.pathname.split('/').filter(function (s) { return s.length > 0; });
-        var lastSegment = segments[segments.length - 1] || '';
-        var generatedName = lastSegment.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
-
-        if (generatedName) {
-          var headingHtml =
-            '<div class="content-container dw-mod cro-7972-injected-heading">' +
-            '<div class="content-row__item__body sp1 padding-size-md padding-position-around dw-mod">' +
-            '<h1 class="cro-7972-generated-h1">Shop all ' + generatedName + '</h1>' +
-            '</div>' +
-            '</div>';
-          var breadcrumb = document.querySelector('.cro-7972-breadcrumb');
-          if (breadcrumb) {
-            breadcrumb.insertAdjacentHTML('afterend', headingHtml);
-          } else {
-            insertHtml('#content', headingHtml, 'afterbegin');
+          if (!document.querySelector('.cro-7972-subtext')) {
+            insertHtml('.cro-7972-product-list-container', bottomHTML, 'afterend');
           }
         }
+      } else {
+        injectCategoryHeading();
       }
     }
 
@@ -280,48 +331,30 @@
       if (!container) return;
 
       var filters = Array.prototype.slice.call(container.children);
-
-      // Hide duplicates — keep first occurrence of each filter name
       var seen = {};
+
       filters.forEach(function (filter) {
         var name = getFilterLabel(filter);
         if (!name) return;
+        var input = getPrecedingInput(filter);
+
         if (seen[name]) {
           filter.classList.add('cro-7972-duplicate-filter');
-          var input = getPrecedingInput(filter);
           if (input) input.classList.add('cro-7972-duplicate-filter');
-        } else {
-          seen[name] = true;
+          return;
+        }
+        seen[name] = true;
+
+        // Bug 3 fix: tag with order classes instead of moving DOM nodes so
+        // platform accordion JS cannot break the visual order on interaction
+        if (name === 'category') {
+          filter.classList.add('cro-7972-order-1');
+          if (input) input.classList.add('cro-7972-order-1');
+        } else if (name === 'sub category' || name === 'subcategory') {
+          filter.classList.add('cro-7972-order-2');
+          if (input) input.classList.add('cro-7972-order-2');
         }
       });
-
-      // Work only with visible (non-duplicate) filters
-      var visible = filters.filter(function (f) {
-        return !f.classList.contains('cro-7972-duplicate-filter');
-      });
-
-      // Find Category and Sub Category groups by label text
-      var categoryFilter = null;
-      var subCategoryFilter = null;
-      visible.forEach(function (filter) {
-        var name = getFilterLabel(filter);
-        if (name === 'category') categoryFilter = filter;
-        if (name === 'sub category' || name === 'subcategory') subCategoryFilter = filter;
-      });
-
-      // Capture input siblings before any DOM moves (references become stale after moves)
-      var categoryInput = categoryFilter ? getPrecedingInput(categoryFilter) : null;
-      var subCategoryInput = subCategoryFilter ? getPrecedingInput(subCategoryFilter) : null;
-
-      // Prepend in reverse order so Category ends up first, Sub Category second
-      if (subCategoryFilter) {
-        container.insertBefore(subCategoryFilter, container.firstChild);
-        if (subCategoryInput) container.insertBefore(subCategoryInput, subCategoryFilter);
-      }
-      if (categoryFilter) {
-        container.insertBefore(categoryFilter, container.firstChild);
-        if (categoryInput) container.insertBefore(categoryInput, categoryFilter);
-      }
     }
 
     function reorderFilters() {
@@ -330,6 +363,17 @@
 
     function reorderMobileFilters() {
       reorderFilterContainer(document.querySelector('#productList .facets-container'));
+    }
+
+    function watchFilterContainer(parentSelector, reorderFn) {
+      var parent = document.querySelector(parentSelector);
+      if (!parent) return;
+      var debounceTimer = null;
+      var observer = new MutationObserver(function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () { reorderFn(); }, 100);
+      });
+      observer.observe(parent, { childList: true, subtree: true });
     }
 
     function tagHeadingContainers() {
@@ -383,10 +427,16 @@
     function init() {
       addClass('body', variation_name);
       waitForElement('#content', buildBreadcrumb);
-      waitForElement('.content-row__item__body.sp1', updateCategoryHeading);
+      waitForElement('#productList', updateCategoryHeading);
       waitForElement('#ProductsContainer', movePromoBanners);
-      waitForElement('#Block__Navigation .facets-container', reorderFilters);
-      waitForElement('#productList .facets-container', reorderMobileFilters);
+      waitForElement('#Block__Navigation .facets-container', function () {
+        reorderFilters();
+        watchFilterContainer('#Block__Navigation', reorderFilters);
+      });
+      waitForElement('#productList .facets-container', function () {
+        reorderMobileFilters();
+        watchFilterContainer('#productList', reorderMobileFilters);
+      });
       waitForElement('.content-row__item__body h3', tagHeadingContainers);
       waitForElement('.content-row__item__body h2.plp-header', tagHeadingContainers);
       waitForElement('#Block__Navigation input', collapseAccordions);

@@ -70,6 +70,10 @@ body.cro-7972 .cro-7972-has-plp-header {
 	display: none;
 }
 
+body.cro-7972 .cro-7972-keep-plp-header {
+	display: block !important;
+}
+
 body.cro-7972 .content-row--spacing-xl {
 	margin-bottom: 0;
 }
@@ -111,6 +115,25 @@ body.cro-7972 #Block__Navigation .facets-container.dw-mod .facets-container__hea
 	padding-left: 0;
 }
 
+/* Bug 3 fix: use CSS order so platform accordion JS cannot break filter sequence */
+body.cro-7972 #Block__Navigation .facets-container.dw-mod,
+body.cro-7972 #productList .facets-container.dw-mod {
+	display: flex !important;
+	flex-direction: column;
+}
+
+body.cro-7972 .facets-container.dw-mod > .cro-7972-order-1 {
+	order: 1;
+}
+
+body.cro-7972 .facets-container.dw-mod > .cro-7972-order-2 {
+	order: 2;
+}
+
+body.cro-7972 .facets-container.dw-mod > :not(.cro-7972-order-1):not(.cro-7972-order-2):not(.cro-7972-duplicate-filter) {
+	order: 3;
+}
+
 .cro_subtext_parent {
 	min-height: auto;
 }
@@ -123,6 +146,10 @@ body.cro-7972 .cro-7972-empty-card {
 	/* display: none !important; */
 	margin: 0 !important;
 	padding: 0 !important;
+}
+
+body.cro-7972 main+footer {
+	margin-top: 25px;
 }
 
 /* -------------- */
