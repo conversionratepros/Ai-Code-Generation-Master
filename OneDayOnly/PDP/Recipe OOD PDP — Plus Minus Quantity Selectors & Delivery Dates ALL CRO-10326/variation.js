@@ -35,6 +35,7 @@
                 var v = parseInt(sel.options[i].value, 10);
                 if (!isNaN(v)) values.push(v);
             }
+            if (!values.length) return null; // guard: options temporarily empty during React re-render
             return {
                 min: Math.min.apply(null, values),
                 max: Math.max.apply(null, values)
@@ -73,6 +74,48 @@
             } else {
                 btn.textContent = 'I want ' + word;
             }
+        }
+
+        // Re-sync stepper limits whenever variant change updates the native select's options.
+        // Debounced so we only act once React finishes removing/adding all options (fires 9+ times per change).
+        // No updateNativeSelect call here — dispatching change events mid-render creates a feedback loop.
+        function watchSelectOptions() {
+            var sel = document.querySelector('#product-quantity-select');
+            if (!sel) return;
+
+            var debounceTimer = null;
+
+            var observer = new MutationObserver(function () {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function () {
+                    var limits = getSelectLimits();
+                    if (!limits) return;
+
+                    QTY_MIN = limits.min;
+                    QTY_MAX = limits.max;
+
+                    if (currentQty < QTY_MIN) currentQty = QTY_MIN;
+                    if (currentQty > QTY_MAX) currentQty = QTY_MAX;
+
+                    var input = document.querySelector('.crp-10326-input');
+                    var minusBtn = document.querySelector('.crp-10326-minus');
+                    var plusBtn = document.querySelector('.crp-10326-plus');
+
+                    if (input) input.value = currentQty;
+                    if (minusBtn) {
+                        if (currentQty <= QTY_MIN) minusBtn.setAttribute('disabled', 'disabled');
+                        else minusBtn.removeAttribute('disabled');
+                    }
+                    if (plusBtn) {
+                        if (currentQty >= QTY_MAX) plusBtn.setAttribute('disabled', 'disabled');
+                        else plusBtn.removeAttribute('disabled');
+                    }
+
+                    updateButtonText(currentQty);
+                }, 200);
+            });
+
+            observer.observe(sel, { childList: true, subtree: true });
         }
 
         function buildStepper() {
@@ -129,6 +172,8 @@
             QTY_MIN = limits.min;
             QTY_MAX = limits.max;
             currentQty = QTY_MIN;
+
+            watchSelectOptions();
 
             waitForElement('[data-action="add-to-cart"]', function () {
                 buildStepper();

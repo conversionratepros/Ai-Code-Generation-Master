@@ -43,6 +43,28 @@ Accumulated from CRO tests on onedayonly.co.za. Update this file whenever you di
 - Do NOT hide the parent/grandparent container — that removes the native label too and disrupts layout.
 - **Sync native select** on every stepper change (dispatch `change` + `input`) so React/Next.js listeners update cart state correctly.
 
+### Variant change → qty options update (MutationObserver gotchas)
+
+When the user picks a variant, React removes the current `<option>` elements one-by-one before adding the new ones. This means:
+
+1. **Same node, mutated in place** — `#product-quantity-select` is NOT replaced; React mutates its children. A standard `MutationObserver({ childList: true })` on the select does fire.
+2. **Fires 9+ times per variant change** — one callback per option removal. Reading limits and updating the stepper on every intermediate state causes a feedback loop (each `updateNativeSelect` dispatches a `change` event that triggers React mid-render).
+3. **Fix: debounce the observer callback (200ms)** — wait until React finishes all option mutations before reading limits. Also do NOT call `updateNativeSelect` inside the observer; only update the stepper UI.
+
+```js
+var debounceTimer = null;
+var observer = new MutationObserver(function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+        var limits = getSelectLimits();
+        if (!limits) return; // guard: temporarily empty mid-render
+        // update QTY_MIN, QTY_MAX, clamp currentQty, update stepper UI
+        // do NOT call updateNativeSelect here
+    }, 200);
+});
+observer.observe(sel, { childList: true, subtree: true });
+```
+
 ### "I want" Button
 
 - The primary CTA displays dynamic text: **"I want one"**, **"I want two"**, etc.

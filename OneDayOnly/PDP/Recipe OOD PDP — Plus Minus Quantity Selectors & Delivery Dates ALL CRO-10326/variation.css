@@ -1,6 +1,6 @@
 /* ─── Hide native quantity select ─────────────────────────────────────────── */
 
-body.cro-t-odo-10326 #product-quantity-select {
+body.cro-t-odo-10326 [width="1"] #product-quantity-select {
     display: none !important;
 }
 
@@ -10,7 +10,7 @@ body.cro-t-odo-10326 .crp-10326-qty-wrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -34,6 +34,7 @@ body.cro-t-odo-10326 .crp-10326-stepper {
     border-radius: 6px;
     overflow: hidden;
     width: fit-content;
+    border: 1px solid #99ABB9;
 }
 
 /* ─── Minus / Plus buttons (blue fill) ───────────────────────────────────── */
@@ -81,19 +82,18 @@ body.cro-t-odo-10326 .crp-10326-input {
     height: 37px;
     border: none;
     text-align: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: #333333;
     background: #ffffff;
-    font-family: 'Montserrat', sans-serif;
     padding: 0;
     outline: none;
-    -webkit-appearance: none;
     appearance: none;
     cursor: default;
     pointer-events: none;
-    border-top: 1px solid #99ABB9;
-    border-bottom: 1px solid #99ABB9;
+    color: #444;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
 }
 
 /* ─── Mobile tweaks ───────────────────────────────────────────────────────── */
