@@ -30,11 +30,15 @@ body.cro-t-odo-10326 .crp-10326-qty-label {
 body.cro-t-odo-10326 .crp-10326-stepper {
     display: inline-flex;
     align-items: stretch;
-    /* border: 2px solid #0093d0; */
     border-radius: 6px;
     overflow: hidden;
     width: fit-content;
     border: 1px solid #99ABB9;
+    transition: border-color 0.15s ease;
+}
+
+body.cro-t-odo-10326 .crp-10326-stepper:hover {
+    border-color: #0093D0;
 }
 
 /* ─── Minus / Plus buttons (blue fill) ───────────────────────────────────── */
@@ -98,7 +102,7 @@ body.cro-t-odo-10326 .crp-10326-input {
 
 /* ─── Mobile tweaks ───────────────────────────────────────────────────────── */
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
     body.cro-t-odo-10326 .crp-10326-btn {
         width: 48px;
         height: 48px;
@@ -108,7 +112,7 @@ body.cro-t-odo-10326 .crp-10326-input {
         width: 56px;
         height: 48px;
     }
-}
+} */
 
 
 button.crp-10326-btn.crp-10326-minus {

@@ -231,18 +231,20 @@
 
 <!-- ═══════════════ VARIATION CSS ═══════════════ -->
 <style>
+/* LOCAL OVERRIDE: hide native select without the live-site [width="1"] table context */
 body.cro-t-odo-10326 #product-quantity-select {
     display: none !important;
 }
 
+/* ─── Quantity wrapper ────────────────────────────────────────────────────── */
 body.cro-t-odo-10326 .crp-10326-qty-wrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 16px;
     font-family: 'Montserrat', sans-serif;
 }
 
+/* ─── Quantity label ──────────────────────────────────────────────────────── */
 body.cro-t-odo-10326 .crp-10326-qty-label {
     display: block;
     font-size: 14px;
@@ -252,70 +254,85 @@ body.cro-t-odo-10326 .crp-10326-qty-label {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* ─── Stepper container ───────────────────────────────────────────────────── */
 body.cro-t-odo-10326 .crp-10326-stepper {
     display: inline-flex;
     align-items: stretch;
-    border: 2px solid #0093d0;
     border-radius: 6px;
     overflow: hidden;
     width: fit-content;
+    border: 1px solid #99ABB9;
 }
 
+/* ─── Minus / Plus buttons ────────────────────────────────────────────────── */
 body.cro-t-odo-10326 .crp-10326-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: #0093d0;
+    width: 36px;
+    height: 37px;
+    background: #F0F1F3;
     border: none;
     cursor: pointer;
     font-size: 22px;
     font-weight: 400;
-    color: #ffffff;
+    color: #333333;
     line-height: 1;
     padding: 0;
-    transition: background 0.15s ease;
+    transition: background 0.15s ease, color 0.15s ease;
     -webkit-appearance: none;
     appearance: none;
     flex-shrink: 0;
 }
 
 body.cro-t-odo-10326 .crp-10326-btn:hover:not([disabled]) {
-    background: #007ab3;
-}
-
-body.cro-t-odo-10326 .crp-10326-btn:active:not([disabled]) {
-    background: #006699;
-}
-
-body.cro-t-odo-10326 .crp-10326-btn[disabled] {
-    background: #b3d9ed;
-    cursor: default;
+    background: #0093D0;
     color: #ffffff;
 }
 
+body.cro-t-odo-10326 .crp-10326-btn:active:not([disabled]) {
+    background: #0093D0;
+    color: #ffffff;
+}
+
+body.cro-t-odo-10326 .crp-10326-btn[disabled] {
+    background: #F0F1F3;
+    color: #bbbbbb;
+    cursor: default;
+}
+
+/* ─── Quantity input (white centre) ──────────────────────────────────────── */
 body.cro-t-odo-10326 .crp-10326-input {
-    width: 52px;
-    height: 44px;
+    width: 58px;
+    height: 37px;
     border: none;
     text-align: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: #333333;
     background: #ffffff;
-    font-family: 'Montserrat', sans-serif;
     padding: 0;
     outline: none;
-    -webkit-appearance: none;
     appearance: none;
     cursor: default;
     pointer-events: none;
+    color: #444;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19.2px;
 }
 
-@media screen and (max-width: 767px) {
-    body.cro-t-odo-10326 .crp-10326-btn { width: 48px; height: 48px; }
-    body.cro-t-odo-10326 .crp-10326-input { width: 56px; height: 48px; }
+button.crp-10326-btn.crp-10326-minus {
+    border-radius: 4px 0 0 4px;
+    border-right: 1px solid #99ABB9;
+}
+
+button.crp-10326-btn.crp-10326-plus {
+    border-radius: 0 4px 4px 0;
+    border-left: 1px solid #99ABB9;
+}
+
+input.crp-10326-input {
+    border: 1px solid #99ABB9;
 }
 </style>
 
@@ -357,6 +374,7 @@ body.cro-t-odo-10326 .crp-10326-input {
                 var v = parseInt(sel.options[i].value, 10);
                 if (!isNaN(v)) values.push(v);
             }
+            if (!values.length) return null;
             return {
                 min: Math.min.apply(null, values),
                 max: Math.max.apply(null, values)
@@ -397,27 +415,65 @@ body.cro-t-odo-10326 .crp-10326-input {
             }
         }
 
+        function watchSelectOptions() {
+            var sel = document.querySelector('#product-quantity-select');
+            if (!sel) return;
+
+            var debounceTimer = null;
+
+            var observer = new MutationObserver(function () {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function () {
+                    var limits = getSelectLimits();
+                    if (!limits) return;
+
+                    QTY_MIN = limits.min;
+                    QTY_MAX = limits.max;
+
+                    if (currentQty < QTY_MIN) currentQty = QTY_MIN;
+                    if (currentQty > QTY_MAX) currentQty = QTY_MAX;
+
+                    var input = document.querySelector('.crp-10326-input');
+                    var minusBtn = document.querySelector('.crp-10326-minus');
+                    var plusBtn = document.querySelector('.crp-10326-plus');
+
+                    if (input) input.value = currentQty;
+                    if (minusBtn) {
+                        if (currentQty <= QTY_MIN) minusBtn.setAttribute('disabled', 'disabled');
+                        else minusBtn.removeAttribute('disabled');
+                    }
+                    if (plusBtn) {
+                        if (currentQty >= QTY_MAX) plusBtn.setAttribute('disabled', 'disabled');
+                        else plusBtn.removeAttribute('disabled');
+                    }
+
+                    updateButtonText(currentQty);
+                }, 200);
+            });
+
+            observer.observe(sel, { childList: true, subtree: true });
+        }
+
         function buildStepper() {
             if (document.querySelector('.crp-10326-stepper')) return;
 
-            var addToCartBtn = document.querySelector('[data-action="add-to-cart"]');
-            if (!addToCartBtn) return;
+            var sel = document.querySelector('#product-quantity-select');
+            if (!sel) return;
 
             var wrapper = document.createElement('div');
             wrapper.className = 'crp-10326-qty-wrapper';
             wrapper.innerHTML =
-                '<label class="crp-10326-qty-label">Quantity</label>' +
                 '<div class="crp-10326-stepper">' +
-                    '<button class="crp-10326-btn crp-10326-minus" type="button" disabled aria-label="Decrease quantity">&#8722;</button>' +
-                    '<input class="crp-10326-input" type="text" value="' + QTY_MIN + '" readonly aria-label="Quantity">' +
-                    '<button class="crp-10326-btn crp-10326-plus" type="button"' + (QTY_MIN >= QTY_MAX ? ' disabled' : '') + ' aria-label="Increase quantity">&#43;</button>' +
+                '<button class="crp-10326-btn crp-10326-minus" type="button" disabled aria-label="Decrease quantity">&#8722;</button>' +
+                '<input class="crp-10326-input" type="text" value="' + QTY_MIN + '" readonly aria-label="Quantity">' +
+                '<button class="crp-10326-btn crp-10326-plus" type="button"' + (QTY_MIN >= QTY_MAX ? ' disabled' : '') + ' aria-label="Increase quantity">&#43;</button>' +
                 '</div>';
 
-            addToCartBtn.parentNode.insertBefore(wrapper, addToCartBtn);
+            sel.parentNode.insertBefore(wrapper, sel.nextSibling);
 
             var minusBtn = wrapper.querySelector('.crp-10326-minus');
-            var plusBtn  = wrapper.querySelector('.crp-10326-plus');
-            var input    = wrapper.querySelector('.crp-10326-input');
+            var plusBtn = wrapper.querySelector('.crp-10326-plus');
+            var input = wrapper.querySelector('.crp-10326-input');
 
             plusBtn.addEventListener('click', function () {
                 if (currentQty >= QTY_MAX) return;
@@ -448,9 +504,11 @@ body.cro-t-odo-10326 .crp-10326-input {
             document.body.classList.add(VARIATION);
 
             var limits = getSelectLimits();
-            QTY_MIN    = limits.min;
-            QTY_MAX    = limits.max;
+            QTY_MIN = limits.min;
+            QTY_MAX = limits.max;
             currentQty = QTY_MIN;
+
+            watchSelectOptions();
 
             waitForElement('[data-action="add-to-cart"]', function () {
                 buildStepper();

@@ -122,15 +122,15 @@ body.cro-7972 #productList .facets-container.dw-mod {
 	flex-direction: column;
 }
 
-body.cro-7972 .facets-container.dw-mod > .cro-7972-order-1 {
+body.cro-7972 .facets-container.dw-mod>.cro-7972-order-1 {
 	order: 1;
 }
 
-body.cro-7972 .facets-container.dw-mod > .cro-7972-order-2 {
+body.cro-7972 .facets-container.dw-mod>.cro-7972-order-2 {
 	order: 2;
 }
 
-body.cro-7972 .facets-container.dw-mod > :not(.cro-7972-order-1):not(.cro-7972-order-2):not(.cro-7972-duplicate-filter) {
+body.cro-7972 .facets-container.dw-mod> :not(.cro-7972-order-1):not(.cro-7972-order-2):not(.cro-7972-duplicate-filter) {
 	order: 3;
 }
 
