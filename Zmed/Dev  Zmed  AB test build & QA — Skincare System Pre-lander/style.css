@@ -1,0 +1,1045 @@
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #0e0e0e;
+  background: #fff;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 24px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.btn:hover { opacity: 0.85; }
+
+.btn--dark { background: #0e0e0e; color: #fff; }
+
+.btn--outline {
+  background: transparent;
+  color: #0e0e0e;
+  border: 1px solid #0e0e0e;
+  padding: 18px 40px;
+}
+
+.btn--full { width: 100%; }
+
+/* Fix 2: icon is the raw SVG arrow — no circle background */
+.btn__arrow {
+  flex-shrink: 0;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION WRAPPER
+═══════════════════════════════════════════ */
+.section-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 122px;
+}
+
+/* Sections with non-standard horizontal padding */
+.approaches .section-inner { padding: 0 84px; }
+.final-cta   .section-inner { padding: 0 120px; }
+
+/* Feature: flex row layout lives on the wrapper */
+.feature .section-inner {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+/* Approaches: flex column layout lives on the wrapper */
+.approaches .section-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Info section: flex column layout lives on the wrapper */
+.info-section .section-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 1 — HERO
+═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 760px;
+  background: linear-gradient(180deg, #fffbf3 0%, #f1ede4 100%);
+  background-color: #f1ede4;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+/* Fix 1: photo positioned to match Figma — spans ~51% to ~94% of the hero width */
+.hero__photo {
+  position: absolute;
+  top: 0;
+  left: 51%;
+  width: 43%;
+  height: 100%;
+  background: url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Zmed/Dev+%7C+Zmed+%7C+AB+test+build+%26+QA+%E2%80%94+Skincare+System+Pre-lander/CRO-Zmed-hero-photo.png') center / cover no-repeat;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 602px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero__text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero__heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.22;
+  color: #0e0e0e;
+  letter-spacing: 1.5px;
+  max-width: 602px;
+}
+
+.hero__sub {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #5a5a5a;
+  max-width: 453px;
+}
+
+/* Fix 2: constrain the hero CTA button to ~450px and stretch it full width within that */
+.hero__cta-wrap {
+  max-width: 450px;
+  width: 100%;
+}
+.hero__cta-wrap .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.hero__seen-on {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 32px;
+  max-width: 602px;
+}
+
+.seen-on__label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #5a5a5a;
+  white-space: nowrap;
+}
+
+.seen-on__divider {
+  width: 1px;
+  height: 32px;
+  background: #5a5a5a;
+  flex-shrink: 0;
+}
+
+.seen-on__logos {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.seen-on__logo {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Mobile hero image hidden on desktop */
+.hero__mobile-img { display: none; }
+
+/* ═══════════════════════════════════════════
+   SECTION 2 — PRODUCT FEATURE
+═══════════════════════════════════════════ */
+.feature {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.feature__img-wrap {
+  flex: 0 0 543px;
+  width: 543px;
+  height: 522px;
+  /* border: 1px solid #0e0e0e; */
+  overflow: hidden;
+}
+
+.feature__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fix 3: align-items: flex-start so the button doesn't stretch full width */
+.feature__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 589px;
+}
+
+.feature__heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #0e0e0e;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.feature__text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #5a5a5a;
+  padding-bottom: 16px;
+}
+
+/* Fix 3: button stays only as wide as its content */
+.feature__btn {
+  align-self: flex-start;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 3 — TWO WAYS TO APPROACH
+═══════════════════════════════════════════ */
+.approaches {
+  background: #f1ede4;
+  padding: 72px 0;
+}
+
+.approaches__header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.approaches__heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 400;
+  color: #0e0e0e;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.approaches__sub {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #5a5a5a;
+}
+
+.approaches__cards {
+  display: flex;
+  gap: 16px;
+  max-width: 994px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Product image card (left) */
+.product-img-card {
+  flex: 0 0 535px;
+  /* border: 1px solid #0e0e0e; */
+  background: #fff;
+  overflow: hidden;
+  min-height: 674px;
+}
+
+.product-img-card__img {
+  width: 100%;
+  height: 100%;
+  min-height: 674px;
+  object-fit: cover;
+  display: block;
+}
+.product-img-card__img--mobile { display: none; }
+
+/* Pricing + Review card (right) */
+.pricing-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.pricing-card__inner {
+  background: #fff;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricing-card__name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #0e0e0e;
+  line-height: 36px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.pricing-card__price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.pricing-card__price {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #0e0e0e;
+  line-height: 24px;
+}
+
+.pricing-card__was {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #0e0e0e;
+  color: rgba(14, 14, 14, 0.50);
+  font-family: Nunito;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 114.286% */
+  text-decoration-line: line-through;
+}
+
+.pricing-card__suitable {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suitable__label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0e0e0e;
+}
+
+/* Fix 5: 2-column tag grid — no background (Figma fill.visible = false) */
+.suitable__tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  padding: 2px 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a5a5a;
+  line-height: 16px;
+}
+
+.tag__tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pricing-card__cta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Secure checkout bar */
+.secure-checkout {
+  /* background: linear-gradient(90deg, #fffbf3 0%, #f1ede4 100%); */
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.secure-checkout__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0e0e0e;
+  white-space: nowrap;
+  line-height: 16px;
+}
+
+.payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  max-height: 24px;
+}
+
+.pay-icon {
+  height: 24px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Fix 6: Review carousel */
+.review-carousel {
+  background: #fff;
+  /* border: 1px solid #1a1a1a; */
+  padding: 32px;
+}
+
+.review-slides {
+  position: relative;
+}
+
+.review-slide {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+.review-slide.is-active {
+  display: flex;
+}
+
+.review-slide__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.review-slide__stars {
+  font-size: 14px;
+  color: #0e0e0e;
+  letter-spacing: 2px;
+}
+
+.review-slide__date {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #5a5a5a;
+  line-height: 16px;
+}
+
+.review-slide__text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #0e0e0e;
+}
+
+/* Footer: author name + verified on left, dots on right — same row */
+.review-slide__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.review-slide__author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.review-slide__name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #0e0e0e;
+}
+
+.review-slide__verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #4a7c59;
+  line-height: 16px;
+}
+
+/* Dot navigation — all dark, 4px gap, active = 24px wide pill */
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 44px;
+  background: #0e0e0e;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+  opacity: 0.64;
+  background:  #0E0E0E;
+}
+
+.carousel-dot.is-active {
+  width: 24px;
+  background: #0E0E0E;
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 4 — DR NABILA / INFORMATION
+═══════════════════════════════════════════ */
+.info-section {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.info-section__heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #0e0e0e;
+  text-align: center;
+  line-height: 36px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  max-width: 646px;
+  margin: 0 auto;
+}
+
+/* Card: relative container, h=400px, clipsContent=false so image overflows above */
+.info-section__card {
+  position: relative;
+  background: #f1ede4;
+  overflow: visible;
+  max-width: 1058px;
+  margin: 0 auto;
+  width: 100%;
+  height: 400px;
+}
+
+/* Image: Figma x=5706 (left=12px from card), bottom-aligned, h=491 overflows 91px above.
+   Progressive blur at right edge (Figma: LAYER_BLUR progressive, starts at 88% → full at 101%) */
+.info-section__img-wrap {
+  position: absolute;
+  left: 12px;
+  bottom: 0;
+  width: 402px;
+  height: 491px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+  mask-image: linear-gradient(to right, black 82%, transparent 100%);
+}
+
+.info-section__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+
+/* Right wrapper: spans from icon x (404px from card left) to right edge minus 90px padding */
+.info-section__right {
+  position: absolute;
+  left: 404px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Quote icon: Figma top=60px from card, left=404px from card → top=60px within right wrapper */
+.info-section__quote-icon {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  transform: rotate(360deg);
+  transform-origin: center;
+}
+
+/* Quote block: Figma left=432px from card (28px from right wrapper), top=76px from card */
+.info-section__quote-block {
+  position: absolute;
+  left: 28px;
+  top: 76px;
+  right: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Quote text: Figma fontSize=22, lineHeight=36px. margin-bottom=24px gap to author */
+.info-section__quote {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #0e0e0e;
+  font-style: normal;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+/* Author: gap=4px between name and title, margin-bottom=16px gap to stats */
+.info-section__author {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.info-section__author-name {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0e0e0e;
+  line-height: 24px;
+}
+
+.info-section__author-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a5a5a;
+  line-height: 16px;
+}
+
+.info-section__stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* border: 1px solid #0e0e0e; */
+  border-radius: 63px;
+  padding: 12px 16px;
+  border: 1px solid #0E0E0E33;
+}
+
+.stat-pill__num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #0e0e0e;
+}
+
+.stat-pill__label {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a5a5a;
+  line-height: 16px;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 5 — FINAL CTA
+═══════════════════════════════════════════ */
+/* Figma imageTransform: image offset y=19.69% (112px), height=76.15% (433px) of 568px frame */
+.final-cta {
+  min-height: 568px;
+  /* background: url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Zmed/Dev+%7C+Zmed+%7C+AB+test+build+%26+QA+%E2%80%94+Skincare+System+Pre-lander/CRO-Zmed-cta-photo-1.png') 0 112px / 100% 433px no-repeat, #f1ede4; */
+  display: flex;
+  align-items: center;
+  padding: 72px 0;
+    background-color: #F1EDE4;
+  position: relative;
+}
+
+.final-cta-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Zmed/Dev+%7C+Zmed+%7C+AB+test+build+%26+QA+%E2%80%94+Skincare+System+Pre-lander/CRO-Zmed-cta-photo-1.png') center / cover no-repeat;
+    z-index: 9;
+}
+
+.final-cta__card {
+  background: #fff;
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 726px;
+  width: 100%;
+  z-index: 10;
+  position: relative;
+}
+
+.final-cta__heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #0e0e0e;
+  line-height: 36px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.final-cta__buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════
+   TABLET (≤1100px)
+═══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  /* Collapse all section wrappers to 40px side padding */
+  .section-inner,
+  .approaches .section-inner,
+  .final-cta .section-inner { padding: 0 40px; }
+
+  .hero { padding: 60px 0; }
+  .hero__photo { left: 48%; width: 46%; }
+
+  .feature { padding: 60px 0; }
+  .feature .section-inner { gap: 40px; }
+  .feature__img-wrap { flex: 0 0 380px; width: 380px; height: 380px; }
+
+  .approaches { padding: 60px 0; }
+  .approaches__cards { max-width: 100%; }
+  .product-img-card { flex: 0 0 45%; }
+
+  .info-section { padding: 60px 0; }
+  .info-section .section-inner { gap: 40px; }
+  .info-section__card { height: auto; display: flex; align-items: stretch; overflow: visible; }
+  .info-section__img-wrap { position: static; flex: 0 0 260px; width: 260px; height: auto; min-height: 360px; }
+  .info-section__right { position: static; flex: 1; min-width: 0; }
+  .info-section__quote-icon { 
+        position: static;
+    display: block;
+    margin: 40px 0px 0px 0px;
+    transform: rotate(360deg);
+  }
+
+  .info-section__quote-block { position: static; padding: 0 40px 40px 24px; }
+
+  .final-cta { padding: 60px 0; }
+  .final-cta__card { padding: 40px; }
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE (≤768px)
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Collapse all section wrappers to 20px side padding */
+  .section-inner,
+  .approaches .section-inner,
+  .final-cta .section-inner { padding: 0 20px; }
+
+  /* Hero */
+  .hero {
+    min-height: unset;
+    padding: 50px 0 0;
+    background: linear-gradient(180deg, #fffbf3 0%, #f1ede4 100%);
+    background-color: #f1ede4;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero .section-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Hide desktop photo on mobile */
+  .hero__photo { display: none; }
+
+  .hero__content {
+    max-width: 100%;
+    gap: 20px;
+    padding-bottom: 0;
+  }
+
+  .hero__heading { font-size: 24px; }
+  .hero__sub { font-size: 16px; max-width: 100%; }
+
+  /* Mobile hero CTA button – full width */
+  .hero__cta-wrap {
+    max-width: 100%;
+  }
+  .hero__cta-wrap .btn {
+    width: 100%;
+    padding: 18px 24px;
+  }
+
+  .hero__seen-on {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 0;
+    max-width: 100%;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  .seen-on__label {
+    text-align: center;
+    width: 100%;
+  }
+
+  .seen-on__logos {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .seen-on__divider { display: none; }
+
+  /* Show mobile hero image */
+  .hero__mobile-img {
+    display: block;
+    margin: 0 -20px;
+    width: calc(100% + 40px);
+  }
+  .hero__mobile-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Feature section */
+  .feature {
+    padding: 50px 0;
+  }
+  .feature .section-inner {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .feature__img-wrap {
+    flex: none;
+    width: 335px;
+    height: 270px;
+  }
+  .feature__body {
+    max-width: 100%;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .feature__btn { align-self: stretch; }
+  .feature__heading { font-size: 24px; line-height: 32px;}
+  .feature__text { font-size: 16px; padding-bottom: 4px;}
+  .feature .btn { width: 100%; padding: 18px 24px; }
+
+  /* Approaches */
+  .approaches { padding: 50px 0; }
+  .approaches .section-inner { gap: 30px; }
+  .approaches__heading { font-size: 24px; line-height: 32px; }
+  .approaches__sub { font-size: 16px; }
+  .approaches__cards {
+    flex-direction: column;
+    max-width: 100%;
+    gap: 12px;
+  }
+  .product-img-card {
+    flex: none;
+    width: 100%;
+    min-height: unset;
+    max-height: 370px;
+  }
+  .product-img-card__img {
+    min-height: unset;
+    height: 370px;
+  }
+  .product-img-card__img--desktop { display: none; }
+  .product-img-card__img--mobile { display: block; }
+  .pricing-card__inner { padding: 32px 24px; }
+  .pricing-card__name { font-size: 24px; }
+  .pricing-card .btn--full { padding: 18px 24px; }
+  .secure-checkout {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Tags - single column on mobile */
+  .suitable__tags {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Review carousel */
+  .review-carousel { padding: 24px 20px; }
+  .review-slide__footer { flex-wrap: wrap; gap: 8px; }
+
+  /* Info section */
+  .info-section {
+    padding: 40px 0;
+  }
+  .info-section .section-inner { gap: 24px; }
+  .info-section__heading {
+    font-size: 24px;
+    text-align: center;
+  }
+  .info-section__card {
+    height: auto;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .info-section__img-wrap {
+    flex: none;
+    width: 100%;
+    /* height: 300px; */
+    height: 100%;
+    min-height: unset;
+    order: 2;
+    -webkit-mask-image: none;
+    /* mask-image: none; */
+    mask-image: linear-gradient(to right, black 82%, transparent 100%);
+  }
+  .info-section__right { position: static; order: 1; }
+  .info-section__quote-icon {
+        position: static;
+        display: block;
+        margin: 24px 0 0 16px;
+        transform: rotate(360deg);
+  }
+  .info-section__quote-block {
+    position: static;
+    padding: 0 16px 0;
+  }
+  .info-section__quote { font-size: 20px; line-height: 36px; margin-bottom: 25px; }
+  .info-section__author-title { font-weight: 400; }
+  .info-section__author { margin-bottom: 16px; }
+  .stat-pill { padding: 8px 16px; }
+  .stat-pill__num { font-size: 18px; }
+
+  /* Final CTA */
+  .final-cta {
+    min-height: unset;
+    padding: 50px 0 160px;
+    /* background: url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Zmed/Dev+%7C+Zmed+%7C+AB+test+build+%26+QA+%E2%80%94+Skincare+System+Pre-lander/CRO-Zmed-cta-photo-1.png') center / cover no-repeat, #f1ede4; */
+  }
+  .final-cta__card {
+    padding: 40px 24px;
+    max-width: 100%;
+    gap: 20px;
+  }
+  .final-cta__heading { font-size: 24px; line-height: 32px;}
+  .final-cta__buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .final-cta__buttons .btn,
+  .final-cta__buttons .btn--outline {
+    width: 100%;
+    padding: 18px 24px;
+    justify-content: center;
+  }
+  .info-section__stats{
+    flex-wrap: wrap;
+  }
+
+  .info-section__stats{
+    gap: 10px;
+  }
+
+  .pricing-card{
+    gap: 12px;
+  }
+
+  .hero__text-block{
+    gap: 16px;
+  }
+
+  .secure-checkout__label{
+    color: #5A5A5A;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .final-cta-image {
+      background-position: bottom right;
+      background-size: 350px auto;
+      height: 100%;
+  }
+}
