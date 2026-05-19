@@ -170,16 +170,31 @@
       if (document.querySelector('.cro-7972-injected-heading')) return;
 
       var categoryName = '';
+
+      // Priority 1: use h2.plp-header text
       var plpHeader = document.querySelector('h2.plp-header');
       if (plpHeader) {
         categoryName = plpHeader.textContent.trim()
           .replace(/^shop\s+all\s+/i, '').replace(/^shop\s+/i, '').trim();
       }
+
+      // Priority 2: derive from URL — but only on platform category pages.
+      // Bug 3 fix: if the page has a plain editorial h2 (no dw-mod class) and no
+      // plp-header, this is a custom editorial page with its own heading — don't inject.
       if (!categoryName) {
+        var editorialH2 = Array.prototype.find.call(
+          document.querySelectorAll('.content-row__item__body h2'),
+          function (h2) {
+            return !h2.classList.contains('dw-mod') && !h2.classList.contains('plp-header');
+          }
+        );
+        if (editorialH2) return;
+
         var segments = window.location.pathname.split('/').filter(function (s) { return s.length > 0; });
         var lastSegment = segments[segments.length - 1] || '';
         categoryName = lastSegment.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
       }
+
       if (!categoryName) return;
 
       var headingHtml =
@@ -193,24 +208,34 @@
       var croBreadcrumb = document.querySelector('.cro-7972-breadcrumb');
       if (croBreadcrumb) {
         croBreadcrumb.insertAdjacentHTML('afterend', headingHtml);
-        return;
-      }
-      // Native breadcrumb present — insert after its outermost container
-      var nativeBreadcrumb = document.querySelector('.breadcrumb');
-      if (nativeBreadcrumb) {
-        var bcContainer = nativeBreadcrumb.closest('.content-container') || nativeBreadcrumb.parentElement;
-        if (bcContainer) {
-          bcContainer.insertAdjacentHTML('afterend', headingHtml);
-          return;
+      } else {
+        // Native breadcrumb present — insert after its outermost container
+        var nativeBreadcrumb = document.querySelector('.breadcrumb');
+        if (nativeBreadcrumb) {
+          var bcContainer = nativeBreadcrumb.closest('.content-container') || nativeBreadcrumb.parentElement;
+          if (bcContainer) {
+            bcContainer.insertAdjacentHTML('afterend', headingHtml);
+          }
+        } else {
+          // Fallback: insert just before the product list
+          var plcContainer = document.querySelector('.cro-7972-product-list-container');
+          if (plcContainer) {
+            plcContainer.insertAdjacentHTML('beforebegin', headingHtml);
+          } else {
+            insertHtml('#content', headingHtml, 'afterbegin');
+          }
         }
       }
-      // Fallback: insert just before the product list
-      var plcContainer = document.querySelector('.cro-7972-product-list-container');
-      if (plcContainer) {
-        plcContainer.insertAdjacentHTML('beforebegin', headingHtml);
-        return;
-      }
-      insertHtml('#content', headingHtml, 'afterbegin');
+
+      // Bug 1 fix: hide the native platform category heading (h2 in .u-margin-bottom--lg)
+      // that would otherwise duplicate our injected h1.
+      // Use .u-margin-bottom--lg directly — walking up to .content-container is too broad
+      // and can reach the product list container when the h2 is inside the same wrapper.
+      document.querySelectorAll('.content-row__item__body h2').forEach(function (h2) {
+        if (h2.classList.contains('plp-header')) return;
+        var llContainer = h2.closest('.u-margin-bottom--lg');
+        if (llContainer) llContainer.classList.add('cro-7972-hidden');
+      });
     }
 
     function updateCategoryHeading() {
@@ -379,7 +404,10 @@
     function tagHeadingContainers() {
       document.querySelectorAll('.content-row__item__body h3').forEach(function (h3) {
         var container = h3.closest('.content-container.dw-mod');
-        if (container) container.classList.add('cro-7972-has-h3');
+        // Bug 2 fix: don't hide a container that carries the page's main h1
+        if (container && !container.querySelector('h1')) {
+          container.classList.add('cro-7972-has-h3');
+        }
       });
 
       document.querySelectorAll('.content-row__item__body h2.plp-header').forEach(function (h2) {
