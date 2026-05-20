@@ -1,0 +1,53 @@
+{% comment %}
+  @param context {Object}
+    Collection object or search object
+{% endcomment %}
+
+{%- assign total_active_values = 0 -%}
+
+<h2 class="productgrid--sidebar-title">
+  {{ 'product_grid.filters.title_count' | t: count: 0 }}
+</h2>
+
+{% assign active_filters = false %}
+{% for filter in context.filters %}
+  {% if filter.active_values.size > 0 or filter.min_value.value or filter.max_value.value %}
+    {% assign active_filters = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if active_filters == true %}
+  <div class="productgrid--filters--mobile">
+    {%-
+      render 'product-grid-filters-active',
+      context: context,
+    %}
+  </div>
+{% endif %}
+
+{% comment %} NATIVE SHOPIFY FAIL-SAFE SEARCH BAR FORM {% endcomment %}
+<form action="{{ routes.search_url }}" method="get" role="search" class="global-filter-search-container" style="position: relative; margin: 5px 0 20px 0; padding: 0; display: block; width: 100%;">
+  <input type="hidden" name="type" value="product">
+  <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #888; font-size: 14px; pointer-events: none; z-index: 2;">🔍</span>
+  <input 
+    type="text" 
+    name="q"
+    class="global-filter-search-input" 
+    placeholder="Waarna soek jy?" 
+    value="{{ search.terms | escape }}"
+    style="width: 100%; padding: 10px 10px 10px 32px; border: 1px solid #dcdcdc; border-radius: 4px; font-size: 13px; background: #fff; box-sizing: border-box; position: relative; z-index: 1;"
+  >
+</form>
+
+<div class="filter-form">
+  {%- for filter in context.filters -%}
+    {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+    {%
+      render 'faceted-filter-group',
+      filter: filter,
+      show_product_count: show_product_count,
+      forloop: forloop,
+    %}
+  {%- endfor -%}
+</div>

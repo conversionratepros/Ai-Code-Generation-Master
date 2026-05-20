@@ -1,0 +1,384 @@
+{% comment %}
+  @param filter
+  @param filter_group_classes
+{% endcomment %}
+
+<div
+  class="
+    collection-filters__filter-group
+    {{ filter_group_classes }}
+  "
+  aria-label="{{ 'product_grid.filters.title_count.zero' | t }}"
+  data-filter-group
+>
+  <button
+    class="
+      collection-filters__filter-group-heading
+      productgrid--sidebar-button
+    "
+    data-filter-group-trigger
+    aria-expanded="false"
+    style="display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: left;"
+  >
+    <div class="collection-filters__filter-title">
+      {{ filter.label }}
+    </div>
+
+    {% comment %} ROTATING SIDEBAR CHEVRON ICON {% endcomment %}
+    <div class="collection-filters__filter-icon-wrapper" style="transition: transform 0.25s ease;" tabindex="-1">
+      <span class="custom-sidebar-chevron" style="display: inline-block; font-size: 11px; transform: rotate(0deg); transition: transform 0.2s ease;">
+        ▼
+      </span>
+    </div>
+  </button>
+
+  {% case filter.type %}
+    {% when 'boolean' or 'list' %}
+      <ul
+        class="
+          collection-filters__filter
+          collection-filters__filter-list
+          {% if filter.presentation == 'swatch' or filter.presentation == 'image' %}
+            collection-filters__filter-list--{{ filter.presentation }}
+          {% endif %}
+        "
+        data-filter-group-list
+        data-accordion-content
+      >
+        {% if filter.presentation == 'swatch' or filter.presentation == 'image' %}
+          <div class="collection-filters__filter-wrapper">
+        {% endif %}
+        
+        {%- for value in filter.values -%}
+          <li
+            class="
+              collection-filters__filter-list-item
+              {% if forloop.index > 6 %}hide-filter-item{% endif %}
+              {% if value.active %}
+                collection-filters__filter-list-item--active
+              {% endif %}
+            "
+            style="{% if forloop.index > 6 %}display: none;{% endif %}"
+            {% if value.active -%}
+              data-filter-open="true"
+            {% else %}
+              data-filter-open="false"
+            {% endif %}
+          >
+            <a
+              class="collection-filters__filter-link"
+              {% if filter.presentation == 'swatch' or filter.presentation == 'image' %}
+                aria-label="{{ value.label | escape }}"
+              {% endif %}
+              data-name="{{ value.param_name }}"
+              data-value="{{ value.value }}"
+              data-handle="filter-{{ filter.label | escape | replace: ' ', '-'}}-{{ forloop.index0 }}"
+              {% if value.active -%}
+                {% assign animation_state = 'checked' %}
+                data-filter-active
+                data-url="{{ value.url_to_remove | url_encode }}"
+                href="{{ value.url_to_remove }}"
+              {% else %}
+                {% assign animation_state = 'unchecked' %}
+                data-url="{{ value.url_to_add | url_encode }}"
+                href="{{ value.url_to_add }}"
+              {%- endif %}
+              {% if value.count == 0 and value.active == false -%}
+                data-disabled
+              {%- endif %}
+              data-filter-input
+            >
+              {% if filter.presentation == 'text' or filter.presentation == nil or filter.presentation == '' %}
+                <span class="filter-icon--checkbox" data-handle="filter-{{ filter.label | escape | replace: ' ', '-'}}-{{ forloop.index0 }}">
+                  {%- render 'icon-checkmark-animated', animation_state: animation_state -%}
+                </span>
+                <span class="collection-filters__filter-list-item-text">
+                  {{ value.label | escape }}
+                  {% if show_product_count %}
+                    ({{ value.count }})
+                  {% endif %}
+                </span>
+              {% elsif filter.presentation == 'swatch' %}
+                <div class="collection-filters__swatch-wrapper" data-swatch-tooltip="{{ value.label | escape }}">
+                  <div class="collection-filters__swatch">
+                    <div
+                      class="collection-filters__swatch-inner"
+                      style="
+                        {% if value.display.type == 'colors' %}
+                          --swatch-color: {{ value.display.value }};
+                        {% else %}
+                          --swatch-image: url('{{ value.display.value | image_url: width: 100 }}');
+                        {% endif %}
+                      "
+                    >
+                    </div>
+                  </div>
+                </div>
+              {% elsif filter.presentation == 'image' %}
+                <div class="collection-filters__image-wrapper" data-swatch-tooltip="{{ value.label | escape }}">
+                  {%- if value.image -%}
+                    {{ value.image | image_url: width: 100 | image_tag: class: 'collection-filters__image', alt: value.image.alt, loading: 'lazy' }}
+                  {%- endif -%}
+                </div>
+              {% endif %}
+            </a>
+          </li>
+        {%- endfor -%}
+
+        {% if filter.presentation == 'swatch' or filter.presentation == 'image' %}
+          </div>
+        {% endif %}
+
+        {%- if filter.values.size > 6 -%}
+          <li class="view-more-toggle-item" style="list-style: none; margin-top: 10px; padding-left: 0;">
+            <button 
+              type="button" 
+              class="filter-view-more-btn" 
+              onclick="toggleFilterVisibility(this)" 
+              style="background: none; border: none; padding: 0; color: #007a80; font-size: 13px; font-weight: bold; text-decoration: underline; cursor: pointer;"
+              data-expanded="false"
+            >
+              View More...
+            </button>
+          </li>
+        {%- endif -%}
+      </ul>
+
+    {% when 'price_range' %}
+      <form
+        class="collection-filters__price-range-form"
+        data-accordion-content
+      >
+        <div
+          class="
+            collection-filters__filter
+            collection-filters__filter-range
+          "
+          data-filter-group-range
+          style="padding: 10px 15px 15px 15px; display: flex; flex-direction: column;"
+        >
+          
+          {%- assign max_price_ceil = 10000 -%}
+          
+          {%- assign min_raw = filter.min_value.value | divided_by: 100 | round -%}
+          {%- assign max_raw = filter.max_value.value | divided_by: 100 | round -%}
+          
+          {%- assign current_min_val = min_raw | default: 0 -%}
+          {%- assign current_max_val = max_raw | default: max_price_ceil -%}
+          
+          {%- if current_min_val > max_price_ceil -%}{%- assign current_min_val = 0 -%}{%- endif -%}
+          {%- if current_max_val > max_price_ceil or current_max_val == 0 -%}{%- assign current_max_val = max_price_ceil -%}{%- endif -%}
+
+          {% comment %} HORIZONTAL IMAGE-MATCHED FORM INPUT ROWS {% endcomment %}
+          <div style="display: flex; gap: 12px; justify-content: space-between; width: 100%; margin-bottom: 20px;">
+            
+            {% comment %} MIN Input Element Column {% endcomment %}
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-size: 9px; font-weight: bold; text-transform: uppercase; color: #888; letter-spacing: 0.5px;">MIN</span>
+              <div style="position: relative; width: 100%;">
+                <input
+                  class="collection-filters__filter-range-input form-field-input min-price-numeric-input"
+                  name="{{ filter.min_value.param_name }}"
+                  id="filter-{{ filter.label }}-{{ forloop.index0 }}-from"
+                  type="number"
+                  min="0"
+                  max="{{ max_price_ceil }}"
+                  step="1"
+                  data-filter-range
+                  style="width: 100%; padding: 8px 10px; border: 1px solid #e2e2e2; border-radius: 6px; font-size: 14px; height: 38px; box-sizing: border-box; background: #fff;"
+                  value="{{ current_min_val }}"
+                >
+              </div>
+            </div>
+            
+            {% comment %} MAX Input Element Column {% endcomment %}
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-size: 9px; font-weight: bold; text-transform: uppercase; color: #888; letter-spacing: 0.5px;">MAX</span>
+              <div style="position: relative; width: 100%;">
+                <input
+                  class="collection-filters__filter-range-input form-field-input max-price-numeric-input"
+                  name="{{ filter.max_value.param_name }}"
+                  id="filter-{{ filter.label }}-{{ forloop.index0 }}-to"
+                  type="number"
+                  min="0"
+                  max="{{ max_price_ceil }}"
+                  step="1"
+                  data-filter-range
+                  style="width: 100%; padding: 8px 10px; border: 1px solid #e2e2e2; border-radius: 6px; font-size: 14px; height: 38px; box-sizing: border-box; background: #fff;"
+                  value="{{ current_max_val }}"
+                >
+              </div>
+            </div>
+            
+          </div>
+
+          {% comment %} IMAGE MATCHED TEAL DOUBLE-HANDLE SLIDER {% endcomment %}
+          <div class="custom-price-slider-wrapper" style="position: relative; width: 100%; height: 20px; padding: 0 5px; box-sizing: border-box; margin-bottom: 5px;">
+            <div class="slider-track-line" style="position: absolute; top: 50%; transform: translateY(-50%); left: 5px; right: 5px; height: 4px; background: #e8e8e8; border-radius: 2px; z-index: 1;"></div>
+            <div class="slider-track-highlight" style="position: absolute; top: 50%; transform: translateY(-50%); left: 5px; right: 5px; height: 4px; background: #14747c; border-radius: 2px; z-index: 2;"></div>
+            <input 
+              type="range" 
+              class="range-slider-handle min-price-slider"
+              min="0" 
+              max="{{ max_price_ceil }}" 
+              value="{{ current_min_val }}" 
+              step="1"
+              style="position: absolute; left: 0; width: 100%; top: 50%; transform: translateY(-50%); background: none; pointer-events: none; -webkit-appearance: none; margin: 0; z-index: 3;"
+            >
+            <input 
+              type="range" 
+              class="range-slider-handle max-price-slider"
+              min="0" 
+              max="{{ max_price_ceil }}" 
+              value="{{ current_max_val }}" 
+              step="1"
+              style="position: absolute; left: 0; width: 100%; top: 50%; transform: translateY(-50%); background: none; pointer-events: none; -webkit-appearance: none; margin: 0; z-index: 4;"
+            >
+          </div>
+
+        </div>
+      </form>
+  {% endcase %}
+</div>
+
+<style>
+  /* TEAL SLIDER THUMB AND DESIGN IMPLEMENTATION */
+  .range-slider-handle::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    pointer-events: auto;
+    border: 2px solid #14747c; /* Custom theme teal */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .range-slider-handle::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    pointer-events: auto;
+    border: 2px solid #14747c;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .range-slider-handle {
+    outline: none;
+  }
+  .productgrid--sidebar-button[aria-expanded="true"] .custom-sidebar-chevron {
+    transform: rotate(180deg) !important;
+  }
+</style>
+
+<script>
+window.priceDebounceTimer = window.priceDebounceTimer || null;
+
+// Self-healing function checks and updates color fills between slider handles dynamically
+function updateSliderVisuals(container) {
+  const minSlider = container.querySelector('.min-price-slider');
+  const maxSlider = container.querySelector('.max-price-slider');
+  const highlight = container.querySelector('.slider-track-highlight');
+  if (!minSlider || !maxSlider || !highlight) return;
+
+  const maxVal = parseInt(minSlider.max, 10);
+  const minPct = (parseInt(minSlider.value, 10) / maxVal) * 100;
+  const maxPct = (parseInt(maxSlider.value, 10) / maxVal) * 100;
+
+  highlight.style.left = `calc(${minPct}% + ${5 - (minPct * 0.1)}px)`;
+  highlight.style.right = `calc(${100 - maxPct}% + ${5 - ((100 - maxPct) * 0.1)}px)`;
+}
+
+if (window.empirePriceInterval) clearInterval(window.empirePriceInterval);
+
+window.empirePriceInterval = setInterval(() => {
+  const container = document.querySelector('[data-filter-group-range]');
+  if (!container) return;
+
+  const minSlider = container.querySelector('.min-price-slider');
+  const maxSlider = container.querySelector('.max-price-slider');
+  const minInput = container.querySelector('.min-price-numeric-input');
+  const maxInput = container.querySelector('.max-price-numeric-input');
+
+  if (!minSlider || !maxSlider || !minInput || !maxInput) return;
+  
+  // Set up initial highlight line bar position values
+  updateSliderVisuals(container);
+  
+  if (minSlider.dataset.bound === "true") return;
+  minSlider.dataset.bound = "true";
+
+  minSlider.oninput = (e) => {
+    let val = parseInt(e.target.value, 10);
+    if (val > parseInt(maxSlider.value, 10)) {
+      e.target.value = maxSlider.value;
+      val = parseInt(maxSlider.value, 10);
+    }
+    minInput.value = val;
+    updateSliderVisuals(container);
+    executeThemeGridRefresh(minInput);
+  };
+
+  maxSlider.oninput = (e) => {
+    let val = parseInt(e.target.value, 10);
+    if (val < parseInt(minSlider.value, 10)) {
+      e.target.value = minSlider.value;
+      val = parseInt(minSlider.value, 10);
+    }
+    maxInput.value = val;
+    updateSliderVisuals(container);
+    executeThemeGridRefresh(maxInput);
+  };
+
+  minInput.oninput = (e) => {
+    if (e.target.value === '') return;
+    let val = parseInt(e.target.value, 10);
+    if (isNaN(val) || val < 0) val = 0;
+    if (maxInput.value !== '' && val > parseInt(maxInput.value, 10)) val = parseInt(maxInput.value, 10);
+    
+    minSlider.value = val;
+    updateSliderVisuals(container);
+    executeThemeGridRefresh(e.target);
+  };
+
+  maxInput.oninput = (e) => {
+    if (e.target.value === '') return;
+    let val = parseInt(e.target.value, 10);
+    if (isNaN(val)) val = 10000;
+    if (val > 10000) val = 10000;
+    if (minInput.value !== '' && val < parseInt(minInput.value, 10)) val = parseInt(minInput.value, 10);
+    
+    e.target.value = val;
+    maxSlider.value = val;
+    updateSliderVisuals(container);
+    executeThemeGridRefresh(e.target);
+  };
+
+}, 350);
+
+function executeThemeGridRefresh(inputElement) {
+  clearTimeout(window.priceDebounceTimer);
+  window.priceDebounceTimer = setTimeout(() => {
+    inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+    inputElement.dispatchEvent(new Event('change', { bubbles: true }));
+  }, 1100);
+}
+
+function toggleFilterVisibility(button) {
+  const isExpanded = button.getAttribute('data-expanded') === 'true';
+  const parentUl = button.closest('.collection-filters__filter-list');
+  const hiddenItems = parentUl.querySelectorAll('.hide-filter-item');
+
+  if (!isExpanded) {
+    hiddenItems.forEach(item => item.style.setProperty('display', 'block', 'important'));
+    button.textContent = "Sien minder...";
+    button.setAttribute('data-expanded', 'true');
+  } else {
+    hiddenItems.forEach(item => item.style.setProperty('display', 'none', 'important'));
+    button.textContent = "Sien meer...";
+    button.setAttribute('data-expanded', 'false');
+  }
+}
+</script>

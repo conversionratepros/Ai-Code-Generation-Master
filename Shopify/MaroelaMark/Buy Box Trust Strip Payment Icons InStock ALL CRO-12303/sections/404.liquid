@@ -1,0 +1,26 @@
+{% assign continue_shopping_url = routes.all_products_collection_url %}
+
+{% if settings.continue_shopping_url != blank %}
+  {% assign continue_shopping_url = settings.continue_shopping_url %}
+{% endif %}
+
+<section class="fourohfour--container"
+  style="background-image: url('https://cdn.shopify.com/s/files/1/0623/7906/5530/files/AdobeStock_909136228.jpg?v=1729359121');background-size: cover; margin-top: .25rem;margin-bottom: .75rem;">
+  <header class="fourohfour-title"><p><br><br><br><br><br><br><br><br><br><br><br><br></p>
+    <h1>{{ '404.general.title' | t }}</h1>
+    <h2>404 ERROR</h2>
+  </header>
+
+  <div class="fourohfour--inner">
+    <p>{{ '404.general.text' | t }}</p>
+
+    {% if settings.continue_url_404 != blank %}
+      <a class="button-primary" href="{{ continue_shopping_url }}">
+        {{ '404.general.continue_shopping' | t }}
+      </a>
+      <p><br><br><br><br><br><br><br><br><br><br><br><br></p>
+      
+      
+    {% endif %}
+  </div>
+</section>
