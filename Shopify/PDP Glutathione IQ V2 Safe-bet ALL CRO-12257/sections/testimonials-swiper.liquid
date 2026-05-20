@@ -1,0 +1,213 @@
+{{ 'component-testimonials-swiper.css' | asset_url | stylesheet_tag }}
+
+{%- assign id = 'section-' | append: section.id -%}
+
+{% render 'section-paddings',
+  id: id
+  paddingTop: section.settings.padding-top,
+  paddingBottom: section.settings.padding-bottom,
+  paddingTopMobile: section.settings.padding-top-mobile,
+  paddingBottomMobile: section.settings.padding-bottom-mobile
+%}
+
+<section class="testimonial__slider-outer">
+  <div class="testimonial__slider" id="{{ id }}">
+    <div class="testimonial__swiper swiper">
+      {% if section.settings.title != blank %}
+        <h2 class="testimonial__slider-title">{{ section.settings.title }}</h2>
+      {% endif %}
+      <div class="swiper-navigation-bar">
+        <div class="swiper-button-prev swiper-button">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.6567 7.00061H1.34299M1.34299 7.00061L6.99989 1.34375M1.34299 7.00061L6.99989 12.6575" stroke="#C9A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="swiper-button-next swiper-button">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.34326 7.00061H12.657M12.657 7.00061L7.00011 1.34375M12.657 7.00061L7.00011 12.6575" stroke="#C9A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            <div class="swiper-slide__left-column">
+              <div class="swiper-slide__header">
+                <div class="swiper-slide__header-wrapper">
+                  <div class="testimonial-author-date">
+                    <div class="testimonial-author">
+                      {% if block.settings.author_image != blank %}
+                        <img src="{{ block.settings.author_image | image_url: width: 45, height: 45 }}" alt="{{ block.settings.author_image.alt }}" width="45" height="45">
+                      {% endif %}
+                    </div>
+                    <div class="testimonial-author__name-review">
+                      {% if block.settings.name != blank %}
+                        <span>{{ block.settings.name }}</span>
+                      {% endif %}
+                      {% assign count = block.settings.stars_count %}
+                      <div class="stars">
+                        {% for i in (1..5) %}
+                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6 0L7.83389 3.47587L11.7063 4.1459L8.9673 6.96413L9.52671 10.8541L6 9.12L2.47329 10.8541L3.0327 6.96413L0.293661 4.1459L4.16611 3.47587L6 0Z" {% if i > count %}fill="#b8b7b7"{% else %}fill="#C9A86A"{% endif %}/>
+                        </svg>
+                        {% endfor %}
+                      </div>
+                    </div>
+                    {% if block.settings.verified_customer %}
+                      <div class="testimonial-verified">
+                        <svg class="checkmark" width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 6.49428L10.6691 4.89999L10.8545 2.79142L8.88548 2.32285L7.85456 0.5L6.00004 1.33428L4.14547 0.5L3.11456 2.32285L1.14546 2.78571L1.33092 4.89999L0 6.49428L1.33092 8.0886L1.14546 10.2029L3.11456 10.6714L4.14547 12.5L6.00004 11.66L7.85456 12.4943L8.88548 10.6714L10.8545 10.2029L10.6691 8.09429L12 6.49428ZM9.84551 7.34L9.54002 7.71146L9.58369 8.19714L9.68187 9.31143L8.18726 9.66575L7.94732 10.0885L7.40732 11.0485L6.43635 10.6086L6.00004 10.4143L5.56907 10.6086L4.5982 11.0485L4.0582 10.0943L3.8182 9.67143L2.32364 9.31711L2.42183 8.19714L2.46547 7.71146L2.16001 7.34L1.45637 6.5L2.16001 5.65428L2.46547 5.28286L2.41637 4.79143L2.31819 3.68285L3.81274 3.32857L4.05274 2.90571L4.59275 1.94571L5.56365 2.38571L6.00004 2.58L6.43092 2.38571L7.4018 1.94571L7.9418 2.90571L8.18184 3.32857L9.67636 3.68285L9.57817 4.79714L9.5346 5.28286L9.83999 5.65428L10.5436 6.49428L9.84551 7.34Z" fill="black"/>
+                          <path d="M5.04667 7.82202L3.79712 6.50566L3 7.34747L5.04667 9.5L9 5.34182L8.20281 4.5L5.04667 7.82202Z" fill="black"/>
+                        </svg>
+                        {% render 'verified-icon-text' %}
+                      </div>
+                    {% endif %}
+                  </div>
+                  {% if block.settings.date != blank %}
+                    <div class="testimonial-date">{{ block.settings.date }}</div>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="swiper-slide__body">
+                {% if block.settings.title != blank %}
+                  <h3 class="testimonial-title">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.content != blank %}
+                  <div class="testimonial-content">{{ block.settings.content }}</div>
+                {% endif %}
+              </div>
+            </div>
+            {% if block.settings.image != blank %}
+              <div class="swiper-slide__right-column absolute-img">
+                {% render 'image',
+                  image: block.settings.image,
+                  width: 767,
+                  widths: '320, 550, 767, 990',
+                  fetchpriority: false,
+                  loading: 'lazy'
+                %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  <div class="c-container">
+    <div class="line"></div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Testimonial Slider",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "what customers say"
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-top-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top mobile",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom mobile",
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "type": "testimonial-item",
+        "name": "Testimonial item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "author_image",
+            "label": "Author image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Name"
+          },
+          {
+            "type": "range",
+            "id": "stars_count",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "label": "Stars count",
+            "default": 5
+          },
+          {
+            "type": "checkbox",
+            "id": "verified_customer",
+            "label": "Verified buyer",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "date",
+            "label": "Date"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content",
+            "default": "<p></p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Testimonial Slider"
+      }
+    ]
+  }
+{% endschema %}

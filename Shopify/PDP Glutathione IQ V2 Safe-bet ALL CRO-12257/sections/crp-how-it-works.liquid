@@ -1,0 +1,382 @@
+{% comment %}
+  How It Works Section
+  Displays the 3-step process for how Glutathione IQ works
+{% endcomment %}
+
+<div class="how-it-works" data-section-id="{{ section.id }}">
+  <div class="how-it-works-container">
+    <div class="how-it-works-header">
+      <h2 class="how-it-works-title">{{ section.settings.section_title }}</h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-label">{{ section.settings.step_1_label }}</div>
+
+        <div class="step-icon">
+          {% if section.settings.step_1_icon != blank %}
+            <img
+              src="{{ section.settings.step_1_icon | image_url: width: 80 }}"
+              alt="{{ section.settings.step_1_title | escape }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="icon-placeholder"></div>
+          {% endif %}
+        </div>
+
+        <div class="step-content">
+          <h3 class="step-title">{{ section.settings.step_1_title }}</h3>
+          <div class="step-description rte">
+            {{ section.settings.step_1_description }}
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-label">{{ section.settings.step_2_label }}</div>
+
+        <div class="step-icon">
+          {% if section.settings.step_2_icon != blank %}
+            <img
+              src="{{ section.settings.step_2_icon | image_url: width: 80 }}"
+              alt="{{ section.settings.step_2_title | escape }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="icon-placeholder"></div>
+          {% endif %}
+        </div>
+
+        <div class="step-content">
+          <h3 class="step-title">{{ section.settings.step_2_title }}</h3>
+          <div class="step-description rte">
+            {{ section.settings.step_2_description }}
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-label">{{ section.settings.step_3_label }}</div>
+
+        <div class="step-icon">
+          {% if section.settings.step_3_icon != blank %}
+            <img
+              src="{{ section.settings.step_3_icon | image_url: width: 80 }}"
+              alt="{{ section.settings.step_3_title | escape }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="icon-placeholder"></div>
+          {% endif %}
+        </div>
+
+        <div class="step-content">
+          <h3 class="step-title">{{ section.settings.step_3_title }}</h3>
+          <div class="step-description rte">
+            {{ section.settings.step_3_description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .how-it-works {
+    background: #F1EDE4;
+    padding: 64px 24px 72px;
+  }
+
+  .how-it-works-container {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .how-it-works-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .how-it-works-title {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 400;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #0E0E0E;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  .step-card {
+    background: #ffffff;
+    min-height: 270px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .step-label {
+    margin-bottom: 24px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #0E0E0E;
+  }
+
+  .step-icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .icon-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #f1ede4 0%, #e8dfce 100%);
+  }
+
+  .step-content {
+    width: 100%;
+  }
+
+  .step-title {
+    margin: 0 0 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 400;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: #111111;
+  }
+
+  .step-description {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    font-weight: 400;
+    color: #757575;
+  }
+
+  .step-description p {
+    margin: 0;
+  }
+
+  .step-description.rte {
+    color: #6B6B6B;
+    text-align: center;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+}
+
+h3.step-title {
+    color: #0E0E0E;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    /* 140% */
+    letter-spacing: 2px;
+}
+
+  @media (max-width: 1024px) {
+    .how-it-works {
+      padding: 56px 20px 64px;
+    }
+
+    .how-it-works-title {
+      font-size: 24px;
+      letter-spacing: 1.2px;
+    }
+
+    .steps-grid {
+      gap: 14px;
+    }
+
+    .step-card {
+      padding: 24px 20px;
+      min-height: 250px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .how-it-works {
+      padding: 40px 14px 46px;
+    }
+
+    .how-it-works-header {
+      margin-bottom: 28px;
+    }
+
+    .how-it-works-title {
+      font-size: 24px;
+      line-height: 1.45;
+      letter-spacing: 1px;
+      max-width: 280px;
+    }
+
+    .steps-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .step-card {
+      min-height: auto;
+      padding: 24px 22px 26px;
+    }
+
+    .step-label {
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    .step-icon {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 18px;
+    }
+
+    .step-title {
+      font-size: 17px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .step-description {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "How Glutathione IQ Works"
+    },
+    {
+      "type": "header",
+      "content": "Step 1"
+    },
+    {
+      "type": "text",
+      "id": "step_1_label",
+      "label": "Step Label",
+      "default": "Step 01"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_1_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Title",
+      "default": "DRINK"
+    },
+    {
+      "type": "richtext",
+      "id": "step_1_description",
+      "label": "Description",
+      "default": "<p>Take 10ml daily on an empty stomach. That's one medicine-cup - takes 5 seconds.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Step 2"
+    },
+    {
+      "type": "text",
+      "id": "step_2_label",
+      "label": "Step Label",
+      "default": "Step 02"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_2_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Title",
+      "default": "ABSORB"
+    },
+    {
+      "type": "richtext",
+      "id": "step_2_description",
+      "label": "Description",
+      "default": "<p>500mg of pure glutathione enters your system, targeting melanin production at the cellular level.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Step 3"
+    },
+    {
+      "type": "text",
+      "id": "step_3_label",
+      "label": "Step Label",
+      "default": "Step 03"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_3_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Title",
+      "default": "TRANSFORM"
+    },
+    {
+      "type": "richtext",
+      "id": "step_3_description",
+      "label": "Description",
+      "default": "<p>Skin begins to brighten and even out. Most customers see visible results in 4-8 weeks.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works"
+    }
+  ]
+}
+{% endschema %}

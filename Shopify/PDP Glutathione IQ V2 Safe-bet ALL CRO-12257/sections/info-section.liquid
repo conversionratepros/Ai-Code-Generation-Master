@@ -1,0 +1,115 @@
+{%- assign id = 'section-' | append: section.id -%}
+
+{% render 'section-paddings',
+  id: id
+  paddingTop: section.settings.padding-top,
+  paddingBottom: section.settings.padding-bottom,
+  paddingTopMobile: section.settings.padding-top-mobile,
+  paddingBottomMobile: section.settings.padding-bottom-mobile
+%}
+
+{% if section.blocks.size > 0 %}
+  {{ 'component-section-info.css' | asset_url | stylesheet_tag }}
+  <section class="info__section" id="{{ id }}" style="background-color: {{ section.settings.bg_color }};">
+    <div class="c-container">
+      {% if section.settings.title != blank %}
+        <h2 class="info__section-title">{{ section.settings.title }}</h2>
+      {% endif %}
+      <ul class="info__section-items">
+        {% for block in section.blocks %}
+          {% if block.settings.text != blank %}
+            <li class="info__section-item" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | image_url: width: 60, height: 60 }}" alt="{{ block.settings.image.alt }}" width="60" height="60" loading="lazy">
+              {% endif %}
+              <h3>{{ block.settings.text }}</h3>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Info section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Why IQ is Different"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#FEF9F2"
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-top-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top mobile",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom mobile",
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "type": "info-item",
+        "name": "Info item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Info section"
+      }
+    ]
+  }
+{% endschema %}

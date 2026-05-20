@@ -1,0 +1,206 @@
+{{ 'component-hero-banner.css' | asset_url | stylesheet_tag }}
+
+<section class="hero__banner" id="section-{{ section.id }}">
+  <div class="hero__banner-inner">
+    {% if section.settings.image %}
+      <div class="hero__banner-image absolute-img">
+        {% if section.settings.image_mobile != blank %}
+          {% render 'image',
+            image: section.settings.image_mobile,
+            width: 767,
+            widths: '320, 550, 767, 990',
+            fetchpriority: false,
+            loading: 'lazy',
+            class: 'mobile'
+          %}
+        {% endif %}
+        {% render 'image',
+          image: section.settings.image,
+          width: 1440,
+          widths: '750, 900, 1024, 1440',
+          fetchpriority: false,
+          loading: 'lazy'
+        %}
+      </div>
+    {% endif %}
+    <div class="c-container">
+      <div class="hero__banner-wrapper">
+        <div class="hero__banner-column text">
+          {% assign count = section.settings.star_count %}
+          <div class="hero__banner-reviews">
+            <div class="hero__banner-stars">
+            {% for i in (1..5) %}
+              {% if i <= count %}
+                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 0L13.0565 5.79311L19.5106 6.90983L14.9455 11.6069L15.8779 18.0902L10 15.2L4.12215 18.0902L5.05451 11.6069L0.489435 6.90983L6.94352 5.79311L10 0Z" fill="#C9A86A"/>
+                </svg>
+                  {% else %}
+                      <svg class="gray" width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 0L13.0565 5.79311L19.5106 6.90983L14.9455 11.6069L15.8779 18.0902L10 15.2L4.12215 18.0902L5.05451 11.6069L0.489435 6.90983L6.94352 5.79311L10 0Z" fill="#C9A86A"/>
+                  </svg>
+              {% endif %}
+            {% endfor %}
+            </div>
+            {% if section.settings.review_text %}
+              <div class="hero__banner-reviews_text">{{ section.settings.review_text }}</div>
+            {% endif %}
+          </div>
+          {% if section.settings.heading != blank %}
+            <h1 class="hero__banner-title">
+              {{ section.settings.heading }}
+            </h1>
+          {% endif %}
+          {% if section.settings.content != blank %}
+            <div class="hero__banner-content">{{ section.settings.content }}</div>
+          {% endif %}
+          {% if section.settings.content_secondary != blank %}
+            <div class="hero__banner-content_secondary">{{ section.settings.content_secondary }}</div>
+          {% endif %}
+          <div class="hero__banner-cta_wrapper">
+            {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+              <a href="{{ section.settings.cta_link }}" class="hero__banner-cta custom-btn">
+                {{ section.settings.cta_text }} 
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_261_111)">
+                  <path d="M1.15137 5.57151H10.8489M10.8489 5.57151L6.0001 0.722778M10.8489 5.57151L6.0001 10.4203" stroke="black" stroke-width="1.28571" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_261_111">
+                  <rect width="12" height="11.1429" fill="white"/>
+                  </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            {% endif %}
+            {% if section.settings.small_text != blank %}
+              <div class="hero__banner-stext">{{ section.settings.small_text }}</div>
+            {% endif %}
+          </div>
+          
+          
+        </div>
+        {% if section.blocks.size > 0 %}
+          <ul class="hero__banner-column desktop">
+            {% for block in section.blocks %}
+              {% if block.settings.text != blank %}
+                <li class="hero__banner-block" {{ block.shopify_attributes }}>
+                  {% if block.settings.icon != blank %}
+                    <img src="{{ block.settings.icon | image_url: width: 40, height: 40 }}" alt="{{ block.settings.icon.alt }}" width="40" height="40">
+                  {% endif %}
+                  <span>{{ block.settings.text }}</span>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="c-container mobile">
+    {% if section.blocks.size > 0 %}
+      <ul class="hero__banner-column mobile">
+        {% for block in section.blocks %}
+          {% if block.settings.text != blank %}
+            <li class="hero__banner-block" {{ block.shopify_attributes }}>
+              {% if block.settings.icon != blank %}
+                <img src="{{ block.settings.icon | image_url: width: 40, height: 40 }}" alt="{{ block.settings.icon.alt }}" width="40" height="40">
+              {% endif %}
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Hero banner",
+    "settings": [
+      {
+        "type": "range",
+        "id": "star_count",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "label": "Stars count",
+        "default": 5
+      },
+      {
+        "type": "text",
+        "id": "review_text",
+        "label": "Review text",
+        "default": "+ 2,000 Five Star Reviews"
+      },
+      {
+        "type": "richtext",
+        "id": "heading",
+        "label": "Heading",
+        "default": "<p></p>"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content",
+        "default": "<p></p>"
+      },
+      {
+        "type": "richtext",
+        "id": "content_secondary",
+        "label": "Secondary content",
+        "default": "<p></p>"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Text",
+        "default": "Discover Inside-Out"
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "richtext",
+        "id": "small_text",
+        "label": "Small text",
+        "default": "<p></p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image mobile"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon-text",
+        "name": "Icon text",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "icon"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero banner"
+      }
+    ]
+  }
+{% endschema %}

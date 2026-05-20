@@ -1,0 +1,426 @@
+{% comment %}
+  Information Section - Shopify PDP
+  Displays product benefits with icons and descriptions
+{% endcomment %}
+
+<div class="information-section women_love_section" data-section-id="{{ section.id }}">
+  <div class="information-container">
+    <div class="information-content">
+      {% if section.settings.section_title != blank %}
+        <h2 class="information-title">{{ section.settings.section_title }}</h2>
+      {% endif %}
+
+      {% if section.settings.logo_text != blank or section.settings.logo_image != blank %}
+        <div class="information-logo">
+          {% if section.settings.logo_image != blank %}
+            <img
+              src="{{ section.settings.logo_image | image_url: width: 240 }}"
+              alt="{{ section.settings.logo_text | escape }}"
+              loading="lazy"
+            >
+          {% elsif section.settings.logo_text != blank %}
+            <span>{{ section.settings.logo_text }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="information-grid">
+        <div class="information-image">
+          {% if section.settings.section_image != blank %}
+            <img
+              src="{{ section.settings.section_image | image_url: width: 860 }}"
+              alt="{{ section.settings.section_title | escape }}"
+              class="image"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="image-placeholder"></div>
+          {% endif %}
+        </div>
+
+        <div class="features-list">
+          {% for block in section.blocks %}
+            <div class="feature-item" {{ block.shopify_attributes }}>
+              <div class="feature-icon-wrapper">
+                <div class="feature-icon">
+                  {% if block.settings.icon_image != blank %}
+                    <img
+                      src="{{ block.settings.icon_image | image_url: width: 60 }}"
+                      alt="{{ block.settings.feature_text | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="feature-text">
+                {{ block.settings.feature_text }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .information-section .information-container {
+    padding-top: 64px;
+}
+  .information-section {
+    background: #ffffff;
+    padding: 72px 64px;
+  }
+
+  .information-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+  }
+
+  .information-content {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .information-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #0e0e0e;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .information-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+  }
+
+  .information-logo img {
+    display: block;
+    max-width: 180px;
+    max-height: 28px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .information-logo span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: #0e0e0e;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .information-grid {
+    display: grid;
+    grid-template-columns: 430px 1fr;
+    gap: 0px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    left: -25px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .feature-item {
+    background: #f1ede4;
+    border-radius: 999px;
+    padding: 12px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+        padding-left: 42px;
+    width: fit-content;
+  }
+
+  .feature-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feature-icon {
+    background: #ffffff;
+    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feature-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .feature-text {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #0e0e0e;
+    line-height: 1.5;
+  }
+
+  .information-image {
+    width: 430px;
+    height: 543px;
+    border-radius: 8px;
+    overflow: hidden;
+    {% comment %} box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.08); {% endcomment %}
+    background: #f5f5f5;
+    position: relative;
+    z-index: 2;
+  }
+
+  .information-image .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f1ede4 0%, #f9f7f4 100%);
+  }
+
+  @media (max-width: 1024px) {
+    .information-section {
+      padding: 48px 24px;
+    }
+
+    .information-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .features-list{
+      left:0;
+    }
+
+    .feature-item{
+      width: 100%;
+    }
+
+    .information-image {
+      width: 100%;
+      max-width: 430px;
+      height: 430px;
+      margin: 0 auto;
+      order: 1;
+    }
+
+    .features-list {
+      order: 2;
+      width: 100%;
+    }
+
+    .information-section.women_love_section {
+        background: var(--bg, linear-gradient(180deg, #F1EDE4 0%, #E1D8C7 100%));
+    }
+
+    .information-section.women_love_section .information-container {
+        background-color: transparent;
+       padding-top: 0;
+    }
+
+    .information-title{
+      font-size: 24px;
+    }
+
+    .information-section.women_love_section .information-container .information-image {
+        background-color: transparent !important;
+    }
+
+    .information-image {}
+
+    .information-section.women_love_section .information-container .feature-item {
+        border-radius: unset;
+        background-color: #fff;
+    }
+
+    .information-section.women_love_section .information-container .feature-icon {
+        background-color: rgba(241, 237, 228, 1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .information-section {
+      padding: 36px 16px;
+    }
+
+    .information-content {
+      gap: 48px;
+    }
+
+    .information-title {
+      font-size: 24px;
+      line-height: 1.35;
+      letter-spacing: 1px;
+    }
+
+    .information-logo img {
+      max-width: 120px;
+      max-height: 24px;
+    }
+
+    .information-logo span {
+      font-size: 14px;
+    }
+
+    .information-grid {
+      gap: 20px;
+    }
+
+    .information-image {
+      height: 340px;
+      border-radius: 6px;
+    }
+
+    .features-list {
+      gap: 10px;
+    }
+
+    .feature-item {
+      padding: 10px 14px;
+      gap: 10px;
+      border-radius: 999px;
+      align-items: center;
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+      padding: 8px;
+    }
+
+    .feature-text {
+      font-size: 14px;
+      line-height: 1.45;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .information-title {
+      font-size: 24px;
+    }
+
+    .information-image {
+      height: 280px;
+    }
+
+    .feature-text {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Information Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Why Women Love Glutathione IQ"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Small Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Small Logo Fallback Text",
+      "default": "LOGO1"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Section Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "default": "Feature description"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Information Section",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "500mg medical-grade glutathione per serving"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Visibly brighter, more even skin tone"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Protects against future pigmentation from UV + hormonal changes"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Reduces dark spots, melasma, and hyperpigmentation"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Formulated by Dr Nabila - aesthetic medicine specialist"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

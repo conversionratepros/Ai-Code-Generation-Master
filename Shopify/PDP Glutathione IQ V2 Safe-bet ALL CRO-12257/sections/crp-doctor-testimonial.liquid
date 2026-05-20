@@ -1,0 +1,651 @@
+{% comment %}
+  Doctor Testimonial Section
+  Exact layout closer to provided desktop/mobile design
+{% endcomment %}
+
+<div class="doctor-testimonial" data-section-id="{{ section.id }}">
+  <div class="testimonial-container">
+    {% if section.settings.section_title != blank %}
+      <div class="testimonial-header">
+        <h2 class="testimonial-title">{{ section.settings.section_title }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="testimonial-card">
+      <div class="testimonial-image-col">
+        {% if section.settings.doctor_image != blank %}
+          <img
+            src="{{ section.settings.doctor_image | image_url: width: 700 }}"
+            alt="{{ section.settings.doctor_name | escape }}"
+            class="doctor-image"
+            loading="lazy"
+          >
+        {% else %}
+          <div class="image-placeholder"></div>
+        {% endif %}
+      </div>
+
+      <div class="testimonial-content-col">
+        <div class="quote-block">
+         <div class="quote-icon quote-icon--desktop" aria-hidden="true">
+  {% if section.settings.quote_icon_desktop != blank %}
+    <img
+      src="{{ section.settings.quote_icon_desktop | image_url: width: 80 }}"
+      alt=""
+      loading="lazy"
+    >
+  {% endif %}
+</div>
+
+<div class="quote-icon quote-icon--mobile" aria-hidden="true">
+  {% if section.settings.quote_icon_mobile != blank %}
+    <img
+      src="{{ section.settings.quote_icon_mobile | image_url: width: 80 }}"
+      alt=""
+      loading="lazy"
+    >
+  {% endif %}
+</div>
+
+          <div class="quote-content">
+            {{ section.settings.quote_text }}
+          </div>
+        </div>
+
+        <div class="doctor-details">
+          {% if section.settings.doctor_name != blank %}
+            <p class="doctor-name">{{ section.settings.doctor_name }}</p>
+          {% endif %}
+          {% if section.settings.doctor_title != blank %}
+            <p class="doctor-title">{{ section.settings.doctor_title }}</p>
+          {% endif %}
+        </div>
+
+        <div class="badges-desktop">
+          <div class="badge-pill">
+            <span class="badge-number">{{ section.settings.badge_1_number }}</span>
+            <span class="badge-text">{{ section.settings.badge_1_label }}</span>
+          </div>
+
+          <div class="badge-pill">
+            <span class="badge-number">{{ section.settings.badge_2_number }}</span>
+            <span class="badge-text">{{ section.settings.badge_2_label }}</span>
+          </div>
+
+          <div class="badge-pill badge-pill--location">
+           <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+  <g clip-path="url(#clip0_4111_1258)">
+    <path d="M8.02087 0.427246C11.1279 0.427246 13.6556 2.95498 13.6556 6.06201C13.6556 7.08506 13.2011 8.17826 13.1791 8.23096L13.1781 8.23193C13.0301 8.58308 12.7404 9.12528 12.5297 9.44482L8.72986 15.2017C8.5601 15.4588 8.30307 15.6147 8.02087 15.6147C7.73876 15.6147 7.48164 15.459 7.31189 15.2017L3.51208 9.44482C3.30172 9.12531 3.01162 8.58312 2.86365 8.23193V8.23096C2.84415 8.18391 2.38611 7.08758 2.38611 6.06201C2.38614 2.955 4.91386 0.427275 8.02087 0.427246ZM8.02087 1.26611C5.37667 1.26614 3.225 3.4178 3.22498 6.06201C3.22498 6.90526 3.62489 7.87628 3.63708 7.90576C3.76482 8.21022 4.02929 8.70534 4.21228 8.98291L8.01208 14.7397L8.02087 14.7524C8.02358 14.7485 8.02664 14.7443 8.02966 14.7397L11.8295 8.98291C12.0124 8.70552 12.2768 8.21129 12.4047 7.90674L12.4056 7.90479C12.4068 7.902 12.4129 7.88701 12.4232 7.86084C12.4347 7.83157 12.4516 7.78837 12.4711 7.73486C12.51 7.62784 12.5613 7.4766 12.6127 7.29932C12.7158 6.9429 12.8168 6.48512 12.8168 6.06201C12.8167 3.41779 10.6651 1.26611 8.02087 1.26611Z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="0.187012"/>
+    <path d="M8.02118 3.03516C9.69045 3.0352 11.0485 4.39355 11.0485 6.0625C11.0485 7.73141 9.69043 9.0898 8.02118 9.08984C6.35189 9.08984 4.99388 7.73144 4.99384 6.0625C4.99384 4.39352 6.35186 3.03516 8.02118 3.03516ZM8.02118 3.87402C6.81499 3.87402 5.8327 4.856 5.8327 6.0625C5.83275 7.26896 6.81502 8.25098 8.02118 8.25098C9.2273 8.25093 10.2096 7.26893 10.2097 6.0625C10.2097 4.85603 9.22733 3.87407 8.02118 3.87402Z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="0.187012"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_4111_1258">
+      <rect width="16.0417" height="16.0417" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+            <span class="badge-text">{{ section.settings.badge_3_location }}</span>
+          </div>
+        </div>
+
+        <div class="badges-mobile">
+          <div class="badge-card">
+            <div class="badge-card-number">{{ section.settings.badge_1_number }}</div>
+            <div class="badge-card-text">{{ section.settings.badge_1_label }}</div>
+          </div>
+
+          <div class="badge-card">
+            <div class="badge-card-number">{{ section.settings.badge_2_number }}</div>
+            <div class="badge-card-text">{{ section.settings.badge_2_label }}</div>
+          </div>
+
+          <div class="badge-card badge-card--location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+  <g clip-path="url(#clip0_4111_1258)">
+    <path d="M8.02087 0.427246C11.1279 0.427246 13.6556 2.95498 13.6556 6.06201C13.6556 7.08506 13.2011 8.17826 13.1791 8.23096L13.1781 8.23193C13.0301 8.58308 12.7404 9.12528 12.5297 9.44482L8.72986 15.2017C8.5601 15.4588 8.30307 15.6147 8.02087 15.6147C7.73876 15.6147 7.48164 15.459 7.31189 15.2017L3.51208 9.44482C3.30172 9.12531 3.01162 8.58312 2.86365 8.23193V8.23096C2.84415 8.18391 2.38611 7.08758 2.38611 6.06201C2.38614 2.955 4.91386 0.427275 8.02087 0.427246ZM8.02087 1.26611C5.37667 1.26614 3.225 3.4178 3.22498 6.06201C3.22498 6.90526 3.62489 7.87628 3.63708 7.90576C3.76482 8.21022 4.02929 8.70534 4.21228 8.98291L8.01208 14.7397L8.02087 14.7524C8.02358 14.7485 8.02664 14.7443 8.02966 14.7397L11.8295 8.98291C12.0124 8.70552 12.2768 8.21129 12.4047 7.90674L12.4056 7.90479C12.4068 7.902 12.4129 7.88701 12.4232 7.86084C12.4347 7.83157 12.4516 7.78837 12.4711 7.73486C12.51 7.62784 12.5613 7.4766 12.6127 7.29932C12.7158 6.9429 12.8168 6.48512 12.8168 6.06201C12.8167 3.41779 10.6651 1.26611 8.02087 1.26611Z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="0.187012"/>
+    <path d="M8.02118 3.03516C9.69045 3.0352 11.0485 4.39355 11.0485 6.0625C11.0485 7.73141 9.69043 9.0898 8.02118 9.08984C6.35189 9.08984 4.99388 7.73144 4.99384 6.0625C4.99384 4.39352 6.35186 3.03516 8.02118 3.03516ZM8.02118 3.87402C6.81499 3.87402 5.8327 4.856 5.8327 6.0625C5.83275 7.26896 6.81502 8.25098 8.02118 8.25098C9.2273 8.25093 10.2096 7.26893 10.2097 6.0625C10.2097 4.85603 9.22733 3.87407 8.02118 3.87402Z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="0.187012"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_4111_1258">
+      <rect width="16.0417" height="16.0417" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
+            <span class="badge-card-location-text">{{ section.settings.badge_3_location }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+ .doctor-testimonial {
+  background: #ffffff;
+  padding: 64px 0 78px;
+}
+
+.testimonial-container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.testimonial-title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: 1.4px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #0E0E0E;
+}
+
+.testimonial-card {
+  display: grid;
+  grid-template-columns: 410px 1fr;
+  gap: 46px;
+  align-items: center;
+  background: #F1EDE4;
+  min-height: 474px;
+  padding: 0 42px 0 26px;
+  position: relative;
+  {% comment %} overflow: hidden; {% endcomment %}
+}
+
+.testimonial-image-col {
+  align-self: end;
+  display: flex;
+  align-items: end;
+}
+
+.doctor-image {
+    display: block;
+    width: 100%;
+    max-width: 425px;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+    left: 0;
+}
+
+.image-placeholder {
+  width: 390px;
+  height: 470px;
+  background: linear-gradient(135deg, #d8cfbf 0%, #cfc4b2 100%);
+}
+
+.testimonial-content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 590px;
+  padding: 18px 0 0;
+}
+
+.quote-block {
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.quote-icon {
+  position: absolute;
+}
+
+.quote-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.quote-icon--desktop {
+     left: -25px;
+    top: -10px;
+  width: 26px;
+  height: 26px;
+  opacity: 1;
+}
+
+.quote-icon--mobile {
+  display: none;
+}
+
+.quote-content {
+  max-width: 560px;
+}
+
+.quote-content p {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
+  line-height: 1.9;
+  font-weight: 400;
+  font-style: italic;
+  color: #1a1a1a;
+  letter-spacing: 0;
+}
+
+.doctor-details {
+  margin-bottom: 22px;
+}
+
+.doctor-name {
+  margin: 0 0 6px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111111;
+}
+
+.doctor-title {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: #4b4b4b;
+}
+
+.badges-desktop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 50px;
+  padding: 0 18px;
+border: 1px solid rgba(14, 14, 14, 0.20);
+  border-radius: 999px;
+  background: transparent;
+}
+
+.badge-pill svg {
+  flex-shrink: 0;
+}
+
+.badge-number {
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 700;
+  color: #111111;
+}
+
+.badge-text {
+  font-family: 'Nunito', sans-serif;
+  font-size: 10px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: #4b4b4b;
+}
+
+.badges-mobile {
+  display: none;
+}
+
+.quote-content p {
+    color: #0E0E0E;
+    font-family: Montserrat;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 36px;
+    /* 163.636% */
+}
+
+.testimonial-header {
+    margin-bottom: 64px;
+}
+
+.quote-block {
+    margin-bottom: 22px;
+}
+
+p.doctor-name {
+    color: #0E0E0E;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    /* 125% */
+    margin-bottom: 4px;
+}
+
+p.doctor-title {
+    color: #404040;
+    font-family: Nunito;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: 0.55px;
+}
+
+.doctor-details {
+    margin-bottom: 16px;
+}
+
+.badge-pill {
+    min-height: 41px;
+    padding: 0 16px;
+    gap: 6px;
+}
+
+span.badge-number {
+    color: #0E0E0E;
+    font-family: Nunito;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16.5px;
+    /* 82.5% */
+}
+
+span.badge-text {
+    color: #404040;
+    font-family: Nunito;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16.5px;
+    /* 150% */
+}
+
+.doctor-testimonial {
+    padding: 72px 0;
+}
+
+@media (max-width: 1024px) {
+  .doctor-testimonial {
+    padding: 56px 24px 64px;
+  }
+
+  .testimonial-container {
+    max-width: 980px;
+  }
+
+  .testimonial-header {
+    margin-bottom: 30px;
+  }
+
+  .testimonial-title {
+    font-size: 24px;
+    letter-spacing: 1.2px;
+  }
+
+  .testimonial-card {
+    grid-template-columns: 330px 1fr;
+    gap: 30px;
+    padding: 0 28px 0 18px;
+    min-height: 420px;
+  }
+
+  .doctor-image {
+    max-width: 320px;
+  }
+
+  .image-placeholder {
+    width: 320px;
+    height: 390px;
+  }
+
+  .testimonial-content-col {
+    max-width: 100%;
+  }
+
+  .quote-content p {
+    font-size: 21px;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 767px) {
+  .doctor-testimonial {
+    padding: 40px 16px 44px;
+  }
+
+  .testimonial-container {
+    max-width: 100%;
+  }
+
+  .testimonial-header {
+    margin-bottom: 24px;
+  }
+
+  .testimonial-title {
+    font-size: 24px;
+    line-height: 1.35;
+    letter-spacing: 1px;
+  }
+
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    background: #e9e4d9;
+  }
+
+  .testimonial-content-col {
+    order: 1;
+    max-width: 100%;
+    padding: 24px 18px 16px;
+  }
+
+  .testimonial-image-col {
+    order: 2;
+    padding: 0 18px 18px;
+  }
+
+  .doctor-image,
+  .image-placeholder {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .quote-block {
+    margin-bottom: 20px;
+  }
+
+  .quote-icon--desktop {
+    display: none;
+  }
+
+  .quote-icon--mobile {
+    display: block;
+    left: -10px;
+    top: -10px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.22;
+  }
+
+  .quote-content {
+    max-width: 100%;
+  }
+
+  .quote-content p {
+    font-size: 16px;
+    line-height: 32px;
+    font-style: italic;
+  }
+
+  .doctor-details {
+    margin-bottom: 16px;
+  }
+
+  .doctor-name {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .doctor-title {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .badges-desktop {
+    display: none;
+  }
+
+  .badges-mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .badge-card {
+    background: #f7f3eb;
+    min-height: 118px;
+    padding: 18px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 0;
+  }
+
+  .badge-card-number {
+    font-family: 'Nunito', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 12px;
+  }
+
+  .badge-card-text {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #4b4b4b;
+  }
+
+  .badge-card--location {
+    grid-column: 1 / -1;
+    min-height: 72px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 0 18px;
+    justify-content: flex-start;
+  }
+
+  .badge-card-location-text {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #4b4b4b;
+  }
+
+  .doctor-image {
+    position: relative;
+    left: 0;
+    max-width: 320px;
+    right: 0;
+    margin: auto;
+    }
+
+    .testimonial-image-col {
+        margin: 0 auto;
+        padding-bottom: 0;
+    }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Doctor Testimonial",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "FORMULATED BY DR NABILA"
+    },
+    {
+      "type": "image_picker",
+      "id": "doctor_image",
+      "label": "Doctor Image"
+    },
+    {
+  "type": "image_picker",
+  "id": "quote_icon_desktop",
+  "label": "Quote Icon Desktop"
+},
+{
+  "type": "image_picker",
+  "id": "quote_icon_mobile",
+  "label": "Quote Icon Mobile"
+},
+    {
+      "type": "richtext",
+      "id": "quote_text",
+      "label": "Quote Text",
+      "default": "<p>I created Glutathione IQ because I saw my patients spending thousands on IV glutathione drips with short-lived results. This liquid formula delivers the same active ingredient daily without the need for frequent clinic visits.</p>"
+    },
+    {
+      "type": "text",
+      "id": "doctor_name",
+      "label": "Doctor Name",
+      "default": "Dr Nabila"
+    },
+    {
+      "type": "text",
+      "id": "doctor_title",
+      "label": "Doctor Title",
+      "default": "Naturopath and skin of color specialist"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_number",
+      "label": "Badge 1 Number",
+      "default": "15"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_label",
+      "label": "Badge 1 Label",
+      "default": "yrs aesthetic medicine"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_number",
+      "label": "Badge 2 Number",
+      "default": "75K+"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_label",
+      "label": "Badge 2 Label",
+      "default": "client"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_location",
+      "label": "Location",
+      "default": "Umhlanga, KZN"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Doctor Testimonial"
+    }
+  ]
+}
+{% endschema %}

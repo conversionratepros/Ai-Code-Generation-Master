@@ -1,0 +1,86 @@
+.logo__section {
+  color: #000000;
+}
+
+.logo__section-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.logo__section .c-container {
+  padding-left: 100px;
+  padding-right: 120px;
+}
+
+.logo__section-heading {
+  font-family: "Playfair Display", sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 120%;
+  text-transform: capitalize;
+}
+
+.logo__section-heading strong {
+  font-weight: 600;
+}
+
+.logo__section-content {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  margin-top: 20px;
+} 
+
+.logo__section-text {
+  max-width: 550px;
+  width: 100%;
+}
+
+.logo__section-icon img {
+  width: 508px;
+  height: 123px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 1200px) {
+  .logo__section .c-container {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  .logo__section-text {
+    max-width: 400px;
+  }
+
+  .logo__section-icon img {
+    width: 450px;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .logo__section .c-container {
+    padding: 0 15px;
+  }
+
+  .logo__section-wrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .logo__section-text {
+    text-align: center;
+  }
+
+  .logo__section-heading {
+    font-size: 28px;
+  }
+
+  .logo__section-content {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}

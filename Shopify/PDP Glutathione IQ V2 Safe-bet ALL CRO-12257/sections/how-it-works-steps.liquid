@@ -1,0 +1,135 @@
+{%- style -%}
+  .how-it-works-section {
+    background-color: #F1EDE4; /* Matches the beige background */
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .how-it-works-title {
+    font-size: 28px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    color: #0E0E0E;
+    font-family: 'Montserrat';
+    font-weight: 400;
+  }
+  .steps-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .step-card {
+    background-color: #ffffff;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-number {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    color: #0E0E0E;
+  }
+  .step-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 25px;
+  }
+  .step-icon img, .step-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .step-title {
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: normal;
+    color: #0E0E0E;
+  }
+  .step-description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #6B6B6B;
+    margin: 0;
+  }
+
+  @media (max-width: 990px) {
+    .steps-container {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    .step-card {
+      padding: 40px 20px;
+    }
+      .how-it-works-title {
+    font-size: 24px;
+  }
+  }
+{%- endstyle -%}
+
+<section class="how-it-works-section">
+  <h2 class="how-it-works-title">{{ section.settings.main_title }}</h2>
+  
+  <div class="steps-container">
+    {%- for block in section.blocks -%}
+      <div class="step-card" {{ block.shopify_attributes }}>
+        <span class="step-number">{{ block.settings.step_label }}</span>
+        
+        <div class="step-icon">
+          {%- if block.settings.icon != blank -%}
+            {{ block.settings.icon | image_url: width: 200 | image_tag: loading: 'lazy' }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+
+        <h3 class="step-title">{{ block.settings.title }}</h3>
+        <p class="step-description">{{ block.settings.description }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works Steps",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Section Title",
+      "default": "HOW GLUTATHIONE IQ WORKS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "step_label", "label": "Step Label", "default": "Step 01" },
+        { "type": "image_picker", "id": "icon", "label": "Icon Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "DRINK" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Take 10ml daily on an empty stomach." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works Steps",
+      "blocks": [
+        { "type": "step", "settings": { "step_label": "Step 01", "title": "DRINK" } },
+        { "type": "step", "settings": { "step_label": "Step 02", "title": "ABSORB" } },
+        { "type": "step", "settings": { "step_label": "Step 03", "title": "TRANSFORM" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

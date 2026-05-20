@@ -1,0 +1,281 @@
+.hero__banner {
+  font-family: "Montserrat", sans-serif;
+}
+
+.hero__banner-inner {
+  position: relative;
+  padding-bottom: 80px;
+}
+
+@media screen and (min-width: 1000px) {
+  .hero__banner .c-container:not(.mobile) {
+    transform: translate(-50%, calc(-50% - 40px));
+  }
+}
+
+.hero__banner-inner::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  background: #00000026;
+  height: 1px;
+  width: calc(100% - 80px);
+  left: 40px;
+  max-width: 1360px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero__banner-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.hero__banner .c-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: fit-content;
+}
+
+.hero__banner .c-container.mobile {
+  background: #fff;
+}
+
+.hero__banner .absolute-img::before {
+  /* padding-top: 45.84%; */
+  padding-top: 50%;
+}
+
+@media screen and (max-width: 1250px) {
+  .hero__banner .absolute-img::before {
+    padding-top: 71.84%;
+  }
+}
+
+.hero__banner-stars svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hero__banner-stars svg.gray path {
+  fill: #b8b7b7;
+}
+
+.hero__banner-reviews {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.hero__banner-reviews_text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #000000;
+}
+
+.hero__banner-title * {
+  margin: 0;
+  padding: 0;
+}
+
+.hero__banner-title {
+  font-family: "Playfair Display", sans-serif;
+  letter-spacing: normal;
+  font-size: 40px;
+  line-height: 120%;
+  margin-bottom: 30px;
+  color: #000000;
+  text-transform: capitalize;
+}
+
+.hero__banner-title strong,
+.hero__banner-content strong,
+.hero__banner-content_secondary strong,
+.hero__banner-stext strong,
+.hero__banner-block span strong {
+  font-weight: 600;
+}
+
+.hero__banner-content {
+  font-size: 16px;
+  line-height: 140%;
+  color: #525252;
+  margin-bottom: 30px;
+}
+
+.hero__banner-content_secondary {
+  font-size: 16px;
+  line-height: 140%;
+  color: #000000;
+  margin-bottom: 40px;
+}
+
+.hero__banner-cta_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px 20px;
+}
+
+.hero__banner-cta {
+  white-space: nowrap;
+}
+
+.hero__banner-stext {
+  font-size: 16px;
+  line-height: 140%;
+  color: #000000;
+}
+
+.hero__banner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hero__banner-wrapper .hero__banner-column.text {
+  max-width: 44.12%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__banner-wrapper .hero__banner-column:not(.text) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  max-width: 25.83%;
+  width: 100%;
+}
+
+.hero__banner-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #FDF8F1;
+  border-radius: 10px;
+  /* We need this to overwrite theme styles */
+  padding: 10px 20px !important;
+}
+
+.hero__banner-block img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  min-width: 40px;
+}
+
+.hero__banner-block span {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  color: #000;
+  text-transform: capitalize;
+}
+
+.hero__banner-column.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 999px) {
+  .hero__banner-wrapper .hero__banner-column:not(.text).desktop {
+    display: none;
+  }
+
+  .hero__banner-column.mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 0 40px;
+    margin: 0;
+    list-style-type: none;
+    border-bottom: 1px solid #00000026;
+  }
+
+  .hero__banner-wrapper .hero__banner-column.text {
+    max-width: initial;
+  }
+
+  .hero__banner-stars svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero__banner-reviews_text {
+    font-size: 10px;
+  }
+
+  .hero__banner-reviews {
+    margin-bottom: 8px;
+  }
+
+  .hero__banner-title {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .hero__banner-content {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .hero__banner-content_secondary {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .hero__banner-cta_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 306px;
+  }
+
+  .hero__banner-cta {
+    white-space: initial;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__banner-stext {
+    font-size: 12px;
+  }
+
+  .hero__banner-inner {
+    padding: 64px 0 15px;
+  }
+
+  .hero__banner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__banner .absolute-img::before {
+    height: 724px;
+    padding-top: 0;
+  }
+
+  .hero__banner .c-container {
+    position: static;
+    transform: none;
+  }
+
+  .hero__banner-inner::after {
+    content: none;
+  }
+}

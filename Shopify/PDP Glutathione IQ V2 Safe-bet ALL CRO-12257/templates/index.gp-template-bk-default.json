@@ -1,0 +1,393 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/desktop_banner_model_with_box.png",
+            "mobile_image": "shopify://shop_images/mobeil_banner_model_with_box.jpg",
+            "subheading": "",
+            "title": "“The science of skin glow, perfected for home use.”",
+            "mobile_text_position": "place-self-end-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "button_1_text": "Shop Glutathione",
+            "button_1_link": "shopify://collections/most-loved-pigmentation-solutions",
+            "button_1_style": "fill",
+            "button_1_background": "#000000",
+            "button_1_text_color": "#ffffff",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "solid",
+            "button_2_background": "#1c1c1c",
+            "button_2_text_color": "#ffffff",
+            "background": "",
+            "background_opacity": 50,
+            "text_color": "#1c1c1c",
+            "border_color": "",
+            "gradient_overlay": "linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) 100%)"
+          }
+        },
+        "slide-2": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/pixelcut-export_37.png",
+            "subheading": "Our bag",
+            "title": "Elegant & Timeless",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 400,
+            "button_1_text": "View collection",
+            "button_1_link": "",
+            "button_1_style": "solid",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#000000",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 50,
+            "text_color": "#ffffff",
+            "border_color": "#ffffff",
+            "gradient_overlay": "linear-gradient(180deg, rgba(54, 54, 54, 0.1), rgba(4, 4, 4, 0.45) 100%)"
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "slide-2"
+      ],
+      "custom_css": [
+        ".content-over-media > :is(img, video, iframe, svg, video-media),.content-over-media > picture img,.content-over-media > image-parallax img {height: unset;}"
+      ],
+      "settings": {
+        "allow_transparent_header": true,
+        "show_next_section_button": true,
+        "media_size": "lg",
+        "show_initial_transition": true,
+        "autoplay": true,
+        "autoplay_pause_on_video": true,
+        "cycle_speed": 5,
+        "background": "#000000",
+        "controls_color": "#ffffff"
+      }
+    },
+    "scrolling-content-1": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Melanin Safe Skincare</strong>"
+          }
+        },
+        "text_RbVm39": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>over 75k clients </strong>"
+          }
+        },
+        "text_UVWVg9": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Shipping Between Public Holidays</strong>"
+          }
+        },
+        "text_FyVPh8": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>professional results at home </strong>"
+          }
+        }
+      },
+      "block_order": [
+        "text-1",
+        "text_RbVm39",
+        "text_UVWVg9",
+        "text_FyVPh8"
+      ],
+      "settings": {
+        "separate_section_with_border": true,
+        "scrolling_speed": 0.3,
+        "scroll_direction": "left",
+        "pause_on_hover": false,
+        "text_font": "heading",
+        "text_font_size_mobile": 20,
+        "text_font_size_desktop": 20,
+        "section_vertical_spacing_mobile": 10,
+        "section_vertical_spacing_desktop": 10,
+        "item_horizontal_spacing_mobile": 80,
+        "item_horizontal_spacing_desktop": 120,
+        "background": "#f1ede4",
+        "text_color": "#1c1c1c"
+      }
+    },
+    "rich_text_wxmnBE": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_WyQC4g": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>AS SEEN ON</strong>",
+            "heading_tag": "h4"
+          }
+        }
+      },
+      "block_order": [
+        "heading_WyQC4g"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": true
+      }
+    },
+    "slideshow_q4n7ta": {
+      "type": "slideshow",
+      "blocks": {
+        "image_t3pJYB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pixelcut-export_69.png",
+            "mobile_image": "shopify://shop_images/pixelcut-export_64_f124694b-0fda-4b91-bcfb-a40a064c6556_1.png",
+            "subheading": "",
+            "title": "",
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "content_max_width": 780,
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_1_style": "fill",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#1c1c1c",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "solid",
+            "button_2_background": "#1c1c1c",
+            "button_2_text_color": "#ffffff",
+            "background": "",
+            "background_opacity": 50,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_t3pJYB"
+      ],
+      "settings": {
+        "allow_transparent_header": false,
+        "show_next_section_button": true,
+        "media_size": "auto",
+        "show_initial_transition": false,
+        "autoplay": false,
+        "autoplay_pause_on_video": false,
+        "cycle_speed": 5,
+        "background": "#ffffff",
+        "controls_color": "#ffffff"
+      }
+    },
+    "featured-collections-1": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "most-loved-pigmentation-solutions",
+            "products_count": 8,
+            "title": "Glutathione IQ.",
+            "link_url": "shopify://collections/most-loved-pigmentation-solutions",
+            "link_text": "Shop Glutathione IQ"
+          }
+        }
+      },
+      "block_order": [
+        "collection-1"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "TOP SELLING PRODUCT."
+      }
+    },
+    "media_grid_GyitF7": {
+      "type": "media-grid",
+      "blocks": {
+        "image_daQ9fM": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/pixelcut-export_24.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "<strong>Hyper-pigmentation</strong>",
+            "heading_tag": "h5",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/hyperpigmentation",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 20
+          }
+        },
+        "image_CnnR3q": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/pixelcut-export_25.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Melasma",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/melasma",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 20
+          }
+        },
+        "image_dVjHC4": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/pixelcut-export_23_60fb0ceb-7e69-4aee-bfd4-a5d65cf14376.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Hormonal Acne",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/hormonal-acne",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 20
+          }
+        },
+        "image_3q7EWm": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/pixelcut-export_26_ab350e76-7bba-4f48-913d-d6d2784b52f7.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Uneven Tone",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/uneven-skin-tone",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 20
+          }
+        }
+      },
+      "block_order": [
+        "image_daQ9fM",
+        "image_CnnR3q",
+        "image_dVjHC4",
+        "image_3q7EWm"
+      ],
+      "name": "t:sections.media_grid.presets.media_grid.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "desktop_row_height": 200,
+        "mobile_row_height": 180,
+        "section_width": "lg",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "Shop by Condition",
+        "content": ""
+      }
+    },
+    "image_with_text_ghP77B": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_UE9ERf": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        "heading_AKXxcd": {
+          "type": "heading",
+          "settings": {
+            "text": "WHY GLUTATHIONE IQ?",
+            "heading_tag": "h3"
+          }
+        },
+        "richtext_xzhdAM": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h6>Pigmentation doesn’t start on the skin — it starts within.</h6>"
+          }
+        },
+        "button_Qee7V8": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Read More",
+            "url": "shopify://pages/why-zmed-works",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "subheading_UE9ERf",
+        "heading_AKXxcd",
+        "richtext_xzhdAM",
+        "button_Qee7V8"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/user_survey_no_errors_iq_2.png",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "sm",
+        "remove_vertical_spacing": true
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "scrolling-content-1",
+    "rich_text_wxmnBE",
+    "slideshow_q4n7ta",
+    "featured-collections-1",
+    "media_grid_GyitF7",
+    "image_with_text_ghP77B"
+  ]
+}

@@ -1,0 +1,779 @@
+{% comment %}
+  Video Carousel Section - Shopify PDP
+  Supports YouTube/Vimeo embeds and custom uploaded videos
+{% endcomment %}
+
+<div class="video-carousel" data-section-id="{{ section.id }}">
+  <div class="carousel-container">
+    <div class="carousel-header">
+      <h2 class="carousel-title">{{ section.settings.carousel_title }}</h2>
+    </div>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track">
+        {% for block in section.blocks %}
+          <div class="carousel-item" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <div class="video-item">
+              <div class="video-player">
+                {% if block.settings.custom_video != blank %}
+                  <div class="video-native-wrap">
+                    {{
+                      block.settings.custom_video
+                      | video_tag:
+                        controls: true,
+                        autoplay: false,
+                        loop: false,
+                        muted: false,
+                        playsinline: true,
+                        class: 'video-native-element'
+                    }}
+
+                    {% if block.settings.video_thumbnail != blank %}
+                      <div class="video-native-poster">
+                        <img
+                          src="{{ block.settings.video_thumbnail | image_url: width: 900 }}"
+                          alt="{{ block.settings.video_name | escape }}"
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
+
+                    <button class="play-button play-button--native" type="button" aria-label="Play video">
+                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <path d="M12 8v20l15-10z" fill="white"/>
+                      </svg>
+                    </button>
+                  </div>
+
+                {% elsif block.settings.hosted_video != blank %}
+                  <div class="video-native-wrap">
+                    <video
+                      class="video-native-element"
+                      playsinline
+                      webkit-playsinline
+                      preload="metadata"
+                      controls
+                    >
+                      <source src="{{ block.settings.hosted_video }}" type="video/mp4">
+                    </video>
+
+                    {% if block.settings.video_thumbnail != blank %}
+                      <div class="video-native-poster">
+                        <img
+                          src="{{ block.settings.video_thumbnail | image_url: width: 900 }}"
+                          alt="{{ block.settings.video_name | escape }}"
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
+
+                    <button class="play-button play-button--native" type="button" aria-label="Play video">
+                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <path d="M12 8v20l15-10z" fill="white"/>
+                      </svg>
+                    </button>
+                  </div>
+
+                {% elsif block.settings.youtube_video != blank %}
+                  <div class="video-embed" data-video-type="{{ block.settings.youtube_video.type }}" data-video-id="{{ block.settings.youtube_video.id }}">
+                    <div class="video-embed__poster">
+                      {% if block.settings.video_thumbnail != blank %}
+                        <img
+                          src="{{ block.settings.video_thumbnail | image_url: width: 900 }}"
+                          alt="{{ block.settings.video_name | escape }}"
+                          loading="lazy"
+                        >
+                      {% else %}
+                        <div class="video-placeholder"></div>
+                      {% endif %}
+                    </div>
+
+                    <button class="play-button" type="button" aria-label="Play video">
+                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <path d="M12 8v20l15-10z" fill="white"/>
+                      </svg>
+                    </button>
+                  </div>
+
+                {% else %}
+                  <div class="video-placeholder"></div>
+                {% endif %}
+              </div>
+
+              <div class="video-info">
+                {% if block.settings.video_caption != blank %}
+                  <p class="video-caption">{{ block.settings.video_caption }}</p>
+                {% endif %}
+
+                <div class="video-meta">
+                  {% if block.settings.video_name != blank %}
+                    <span class="video-name">{{ block.settings.video_name }}</span>
+                  {% endif %}
+                </div>
+
+                {% if block.settings.show_rating %}
+                  <div class="video-rating">
+                    {% for i in (1..5) %}
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 1l2.39 4.83h5.34l-4.33 3.15 1.65 5.02-4.65-3.36-4.65 3.36 1.65-5.02-4.33-3.15h5.34z"/>
+                      </svg>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+
+    </div>
+          {% if section.blocks.size > 1 %}
+        <button class="nav-button nav-prev" type="button" aria-label="Previous video">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+  <path d="M7.48835 10.5219L12.6191 5.3911L11.2666 4.03857L3.82678 11.4784L11.2666 18.9182L12.6191 17.5657L7.48835 12.4349H19.1311V10.5219H7.48835Z" fill="#0E0E0E"/>
+</svg>
+        </button>
+
+        <button class="nav-button nav-next" type="button" aria-label="Next video">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+  <path d="M15.4697 10.5219L10.3389 5.3911L11.6914 4.03857L19.1313 11.4784L11.6914 18.9182L10.3389 17.5657L15.4697 12.4349H3.8269V10.5219H15.4697Z" fill="#0E0E0E"/>
+</svg>
+        </button>
+      {% endif %}
+  </div>
+</div>
+
+<style>
+
+  .nav-button:hover {
+    background-color: #0e0e0e;
+  }
+
+  .nav-button:hover svg path {
+    fill: #fff;
+  }
+
+  .video-item .video-info {
+    display: none;
+  }
+
+  .video-carousel {
+    background: #fff;
+    padding: 72px 64px;
+  }
+
+  .carousel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position:relative;
+  }
+
+  .carousel-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .carousel-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #0e0e0e;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-item {
+    flex: 0 0 calc(25% - 12px);
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  .video-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .video-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #000;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+
+  .video-embed,
+  .video-embed__poster,
+  .video-native-wrap {
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-embed__poster img,
+  .video-native-element,
+  .video-native-wrap video,
+  .video-native-wrap iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: 0;
+  }
+
+  .video-native-wrap {
+    position: relative;
+  }
+
+  .video-native-poster {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .video-native-poster.is-hidden {
+    display: none;
+  }
+
+  .video-native-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .video-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #404040 0%, #202020 100%);
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    background: rgba(255,255,255,.2);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+    transition: opacity .2s ease, visibility .2s ease;
+  }
+
+  .play-button.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .video-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .video-caption {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    color: #404040;
+    margin: 0;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  .video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .video-name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0e0e0e;
+    white-space: nowrap;
+  }
+
+  .video-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: #ffc857;
+  }
+
+  .nav-button {
+    position: absolute;
+    top: 56.5%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: 1px solid #0e0e0e;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0e0e0e;
+    z-index: 3;
+    transition: opacity .2s ease;
+  }
+
+  .nav-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .nav-prev {
+    left: -20px;
+  }
+
+  .nav-next {
+    right: -20px;
+    color: #fff;
+    border: 1px solid #0e0e0e;
+    background: #fff;
+  }
+
+  @media (max-width: 1024px) {
+    .carousel-item {
+      flex: 0 0 calc(33.333% - 11px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .video-carousel {
+      padding: 48px 0;
+    }
+
+    .carousel-header {
+      margin-bottom: 24px;
+      padding: 0 24px;
+    }
+
+    .carousel-title {
+      font-size: 24px;
+      line-height: 1.28;
+      letter-spacing: 1px;
+    }
+
+    .carousel-wrapper {
+      overflow: visible;
+    }
+
+    .carousel-track {
+      gap: 12px;
+      padding: 0 2vw;
+      scroll-padding-left: 18vw;
+      scroll-padding-right: 18vw;
+    }
+
+    .carousel-item {
+      flex: 0 0 64vw;
+      scroll-snap-align: center;
+    }
+
+    .nav-button {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .video-carousel {
+      padding: 32px 0;
+    }
+
+    .carousel-header {
+      margin-bottom: 24px;
+      padding: 0 20px;
+    }
+
+    .carousel-title {
+      font-size: 24px;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .carousel-track {
+      gap: 12px;
+      padding: 0 2vw;
+      scroll-padding-left: 18vw;
+      scroll-padding-right: 18vw;
+    }
+
+    .carousel-item {
+      flex: 0 0 64vw;
+      scroll-snap-align: center;
+    }
+
+    .play-button {
+      width: 56px;
+      height: 56px;
+    }
+
+    .video-name {
+      font-size: 12px;
+    }
+
+    .video-caption {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    var track = section.querySelector('.carousel-track');
+    var items = Array.from(section.querySelectorAll('.carousel-item'));
+    var prevBtn = section.querySelector('.nav-prev');
+    var nextBtn = section.querySelector('.nav-next');
+
+    if (!track || !items.length) return;
+
+    var currentIndex = 0;
+    var isAnimating = false;
+
+    function getVisibleItems() {
+      if (window.innerWidth <= 768) return 1;
+      if (window.innerWidth <= 1024) return 3;
+      return 4;
+    }
+
+    function getMaxIndex() {
+      return Math.max(0, items.length - getVisibleItems());
+    }
+
+    function getDesktopScrollLeft(index) {
+      if (!items[index]) return 0;
+      return items[index].offsetLeft;
+    }
+
+    function getMobileScrollLeft(index) {
+      if (!items[index]) return 0;
+      return items[index].offsetLeft - ((track.clientWidth - items[index].offsetWidth) / 2);
+    }
+
+    function getTargetScrollLeft(index) {
+      if (window.innerWidth <= 768) {
+        return getMobileScrollLeft(index);
+      }
+      return getDesktopScrollLeft(index);
+    }
+
+    function clampIndex(index) {
+      var maxIndex = getMaxIndex();
+      if (index < 0) return 0;
+      if (index > maxIndex) return maxIndex;
+      return index;
+    }
+
+    function updateNavButtons() {
+      if (prevBtn) prevBtn.disabled = currentIndex <= 0;
+      if (nextBtn) nextBtn.disabled = currentIndex >= getMaxIndex();
+    }
+
+    function updateCurrentIndexFromScroll() {
+      var closestIndex = 0;
+      var minDiff = Infinity;
+      var currentScroll = track.scrollLeft;
+
+      items.forEach(function (item, index) {
+        var targetScroll = getTargetScrollLeft(index);
+        var diff = Math.abs(currentScroll - targetScroll);
+
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIndex = index;
+        }
+      });
+
+      currentIndex = clampIndex(closestIndex);
+      updateNavButtons();
+    }
+
+    function scrollToIndex(index) {
+      if (!items.length || isAnimating) return;
+
+      index = clampIndex(index);
+
+      if (index === currentIndex) {
+        updateNavButtons();
+        return;
+      }
+
+      currentIndex = index;
+      updateNavButtons();
+      isAnimating = true;
+
+      track.scrollTo({
+        left: getTargetScrollLeft(currentIndex),
+        behavior: 'smooth'
+      });
+
+      setTimeout(function () {
+        updateCurrentIndexFromScroll();
+        isAnimating = false;
+      }, 450);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        scrollToIndex(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        scrollToIndex(currentIndex + 1);
+      });
+    }
+
+    var scrollTimer;
+    track.addEventListener('scroll', function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        if (!isAnimating) {
+          updateCurrentIndexFromScroll();
+        }
+      }, 80);
+    });
+
+    window.addEventListener('resize', function () {
+      currentIndex = clampIndex(currentIndex);
+      track.scrollLeft = getTargetScrollLeft(currentIndex);
+      updateNavButtons();
+    });
+
+    function pauseAllEmbeds(exceptWrap) {
+      var embeds = section.querySelectorAll('.video-embed');
+      embeds.forEach(function (embed) {
+        if (embed !== exceptWrap) {
+          var btn = embed.querySelector('.play-button');
+          var poster = embed.querySelector('.video-embed__poster');
+          var iframe = embed.querySelector('.video-iframe');
+
+          if (iframe) iframe.remove();
+          if (poster) poster.style.display = '';
+          if (btn) btn.classList.remove('is-hidden');
+        }
+      });
+
+      var nativeWraps = section.querySelectorAll('.video-native-wrap');
+      nativeWraps.forEach(function (wrap) {
+        if (wrap !== exceptWrap) {
+          var video = wrap.querySelector('video');
+          var btn = wrap.querySelector('.play-button');
+          var nativePoster = wrap.querySelector('.video-native-poster');
+
+          if (video) video.pause();
+          if (btn) btn.classList.remove('is-hidden');
+          if (nativePoster) nativePoster.classList.remove('is-hidden');
+        }
+      });
+    }
+
+    section.querySelectorAll('.play-button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var nativeWrap = btn.closest('.video-native-wrap');
+        if (nativeWrap) {
+          var nativeVideo = nativeWrap.querySelector('video');
+          var nativePoster = nativeWrap.querySelector('.video-native-poster');
+          if (!nativeVideo) return;
+
+          pauseAllEmbeds(nativeWrap);
+
+          if (nativePoster) nativePoster.classList.add('is-hidden');
+
+          nativeVideo.play().then(function () {
+            btn.classList.add('is-hidden');
+          }).catch(function () {});
+          return;
+        }
+
+        var embed = btn.closest('.video-embed');
+        if (!embed) return;
+
+        var videoType = embed.getAttribute('data-video-type');
+        var videoId = embed.getAttribute('data-video-id');
+        var poster = embed.querySelector('.video-embed__poster');
+
+        if (!videoType || !videoId) return;
+
+        pauseAllEmbeds(embed);
+
+        if (poster) poster.style.display = 'none';
+        btn.classList.add('is-hidden');
+
+        var iframe = document.createElement('iframe');
+        iframe.className = 'video-iframe';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+        iframe.allowFullscreen = true;
+
+        if (videoType === 'youtube') {
+          iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
+        } else if (videoType === 'vimeo') {
+          iframe.src = 'https://player.vimeo.com/video/' + videoId + '?autoplay=1';
+        } else {
+          return;
+        }
+
+        embed.appendChild(iframe);
+      });
+    });
+
+    section.querySelectorAll('.video-native-wrap video').forEach(function (video) {
+      var wrap = video.closest('.video-native-wrap');
+      var btn = wrap.querySelector('.play-button');
+      var nativePoster = wrap.querySelector('.video-native-poster');
+
+      video.addEventListener('play', function () {
+        if (btn) btn.classList.add('is-hidden');
+        if (nativePoster) nativePoster.classList.add('is-hidden');
+      });
+
+      video.addEventListener('pause', function () {
+        if (btn) btn.classList.remove('is-hidden');
+      });
+
+      video.addEventListener('ended', function () {
+        if (btn) btn.classList.remove('is-hidden');
+        if (nativePoster) nativePoster.classList.remove('is-hidden');
+      });
+    });
+
+    setTimeout(function () {
+      track.scrollLeft = getTargetScrollLeft(0);
+      currentIndex = 0;
+      updateNavButtons();
+    }, 50);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "carousel_title",
+      "label": "Carousel Title",
+      "default": "Transformations with Glutathione IQ"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video Item",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "youtube_video",
+          "label": "YouTube or Vimeo Video",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "video",
+          "id": "custom_video",
+          "label": "Custom Uploaded Video"
+        },
+        {
+          "type": "url",
+          "id": "hosted_video",
+          "label": "Direct MP4 URL (optional)"
+        },
+        {
+          "type": "image_picker",
+          "id": "video_thumbnail",
+          "label": "Video Thumbnail"
+        },
+        {
+          "type": "text",
+          "id": "video_caption",
+          "label": "Video Caption",
+          "default": "Video transformation story"
+        },
+        {
+          "type": "text",
+          "id": "video_name",
+          "label": "Customer Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show 5-Star Rating",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Carousel",
+      "blocks": [
+        {
+          "type": "video",
+          "settings": {
+            "video_caption": "Video transformation story",
+            "video_name": "Customer Name"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "video_caption": "Another transformation",
+            "video_name": "Another Name"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

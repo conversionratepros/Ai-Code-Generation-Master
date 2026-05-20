@@ -1,0 +1,814 @@
+{% comment %}
+  Custom Judge.me Reviews
+  First page renders immediately
+  Remaining pages load in background for accurate histogram
+{% endcomment %}
+
+<section
+  id="cro-judgeme-real-results-{{ section.id }}"
+  class="cro-jm-section"
+  data-section-id="{{ section.id }}"
+  data-shop-domain="{{ shop.permanent_domain }}"
+  data-per-page="{{ section.settings.per_page }}"
+  data-title="{{ section.settings.title | escape }}"
+  data-summary-title="{{ section.settings.summary_title | escape }}"
+  data-write-review-text="{{ section.settings.write_review_text | escape }}"
+  data-load-more-text="{{ section.settings.load_more_text | escape }}"
+>
+  <div class="cro-jm-wrap">
+    <h2 class="cro-jm-title">{{ section.settings.title }}</h2>
+
+    <div class="cro-jm-top">
+      <div class="cro-jm-summary">
+        <h3 class="cro-jm-summary-title">{{ section.settings.summary_title }}</h3>
+        <div class="cro-jm-summary-rating">
+          <div class="cro-jm-summary-stars"></div>
+          <div class="cro-jm-summary-score"></div>
+        </div>
+        <div class="cro-jm-summary-count"></div>
+      </div>
+
+      <div class="cro-jm-breakdown is-loading"></div>
+
+      <div class="cro-jm-write">
+        <button type="button" class="cro-jm-write-btn">
+          {{ section.settings.write_review_text }}
+        </button>
+      </div>
+    </div>
+
+    <div class="cro-jm-grid">
+      <div class="cro-jm-column" data-col="0"></div>
+      <div class="cro-jm-column" data-col="1"></div>
+      <div class="cro-jm-column" data-col="2"></div>
+    </div>
+
+    <div class="cro-jm-footer">
+      <button type="button" class="cro-jm-load-more">
+        {{ section.settings.load_more_text }}
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  #cro-judgeme-real-results-{{ section.id }}{
+    background: #F1EDE4;
+    padding:66px 54px 88px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#0E0E0E;
+    margin-top:20px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} *{
+    box-sizing:border-box;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-wrap{
+    max-width:1136px;
+    margin:0 auto;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-title{
+    text-align:center;
+    font-size:28px;
+    line-height: 36px;
+    letter-spacing:.06em;
+    font-weight:400;
+    text-transform:uppercase;
+    margin:0 0 46px;
+    color: #0E0E0E;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-top{
+    display:grid;
+    grid-template-columns:1fr 1.05fr 280px;
+    gap:30px;
+    align-items:center;
+    margin-bottom:34px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-summary-title{
+    font-size:20px;
+    line-height:1.2;
+    font-weight:700;
+    margin:0 0 10px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-summary-rating{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 9px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-summary-score{
+    font-size:14px;
+    line-height:1.2;
+    font-weight:400;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-summary-count{
+    font-size:14px;
+    color:#333;
+    line-height:1.3;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-stars{
+    display:flex;
+    gap:0px;
+    line-height:1;
+    white-space:nowrap;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-stars.is-summary .cro-jm-star{
+    font-size:18px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-stars.is-card .cro-jm-star{
+    font-size:17px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-star{
+    color:#b9b5ae;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-star.is-filled{
+    color:#0E0E0E;
+  }
+
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-breakdown{
+    max-width:100%;
+    padding-top:2px;
+    position:relative;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-breakdown.is-loading::after{
+    content:"Updating...";
+    position:absolute;
+    top:-20px;
+    right:0;
+    font-size:12px;
+    color:#7B7B7B;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-breakdown__row{
+    display:grid;
+    grid-template-columns:75px 1fr 25px;
+    gap:10px;
+    align-items:center;
+    margin:0 0 8px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-breakdown__stars{
+    font-size:15px;
+    line-height:1;
+    letter-spacing:1px;
+    color:#0E0E0E;
+    white-space:nowrap;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-breakdown__bar{
+    height:12px;
+    background:#ddd9d3;
+    position:relative;
+    overflow:hidden;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-breakdown__bar span{
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    background:#0E0E0E;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-breakdown__count{
+    font-size:11.2px;
+    color:#7B7B7B;
+    text-align:left;
+  }
+
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-write{
+    display:flex;
+    justify-content:flex-end;
+    align-items:flex-start;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-write-btn{
+    width:248px;
+    height:48px;
+    border:1px solid #080808;
+    background:transparent;
+    color:#0E0E0E;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+  }
+
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:20px;
+    align-items:start;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-column{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card{
+    background:#fff;
+    padding:22px 20px 18px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__user{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__avatar{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#efe2c6;
+    color:#b08f46;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__name{
+    font-size:13px;
+    line-height:1.2;
+    font-weight:500;
+    color:#0E0E0E;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__title{
+    margin:0 0 10px;
+    font-size:13px;
+    line-height:1.35;
+    font-weight:700;
+    color:#0E0E0E;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__body{
+    margin:0 0 14px;
+    font-size:13.5px;
+    line-height:1.75;
+    color:#404040;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__images{
+    display:grid;
+    gap:4px;
+    margin:0 0 12px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__images.is-double{
+    grid-template-columns:1fr 1fr;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__images.is-single{
+    grid-template-columns:1fr;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__image-wrap{
+    aspect-ratio:1 / 1;
+    overflow:hidden;
+    background:#f4f4f4;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__image-wrap img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-card__verified{
+    font-size:10px;
+    color:#4A7C59;
+    line-height:1.3;
+    margin-top:2px;
+    font-weight: 400;
+  }
+
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-footer{
+    display:flex;
+    justify-content:center;
+    margin-top:36px;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-load-more{
+    min-width:242px;
+    height:46px;
+    background: #0E0E0E;
+    color:#fff;
+    border:0;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+    font-weight: 600;
+  }
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-load-more[disabled]{
+    opacity:.6;
+    cursor:not-allowed;
+  }
+
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-loading,
+  #cro-judgeme-real-results-{{ section.id }} .cro-jm-error{
+    background:#fff;
+    padding:20px;
+  }
+
+  @media (max-width:1024px){
+    #cro-judgeme-real-results-{{ section.id }}{
+      padding:50px 24px 60px;
+    }
+    #cro-judgeme-real-results-{{ section.id }} .cro-jm-top{
+      grid-template-columns:1fr;
+      gap:22px;
+    }
+    #cro-judgeme-real-results-{{ section.id }} .cro-jm-write{
+      justify-content:flex-start;
+    }
+    #cro-judgeme-real-results-{{ section.id }} .cro-jm-grid{
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width:767px){
+    #cro-judgeme-real-results-{{ section.id }} .cro-jm-title{
+      font-size:26px;
+      margin-bottom:30px;
+    }
+    #cro-judgeme-real-results-{{ section.id }} .cro-jm-grid{
+      grid-template-columns:1fr;
+    }
+    #cro-judgeme-real-results-{{ section.id }} .cro-jm-write-btn,
+    #cro-judgeme-real-results-{{ section.id }} .cro-jm-load-more{
+      width:100%;
+      min-width:0;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  function initCroJudgeMe{{ section.id | replace: '-', '_' }}() {
+    const section = document.getElementById('cro-judgeme-real-results-{{ section.id }}');
+    if (!section || section.dataset.initialized === 'true') return;
+    section.dataset.initialized = 'true';
+
+    const CONFIG = {
+      shopDomain: section.dataset.shopDomain,
+      perPage: Number(section.dataset.perPage || 9),
+      currentPage: 1,
+      loadMoreText: section.dataset.loadMoreText
+    };
+
+    const state = {
+      productId: null,
+      totalCount: 0,
+      averageRating: 0,
+      loading: false,
+      allLoaded: false,
+      loadedIds: new Set(),
+      renderedReviewIds: new Set(),
+      allReviewsForHistogram: [],
+      fullHistogramLoaded: false
+    };
+
+    const getProductId = () => {
+      if (window.meta?.product?.id) return String(window.meta.product.id);
+      if (window.__st?.rid) return String(window.__st.rid);
+
+      const scripts = [...document.querySelectorAll('script[type="application/ld+json"]')];
+      for (const script of scripts) {
+        try {
+          const parsed = JSON.parse(script.textContent);
+          const items = Array.isArray(parsed) ? parsed : [parsed];
+          for (const item of items) {
+            if (item["@type"] === "Product" && item.productID) {
+              return String(item.productID);
+            }
+          }
+        } catch (e) {}
+      }
+      return null;
+    };
+
+    const normalizeUrl = (url) => {
+      if (!url) return "";
+      return String(url).replace(/&amp;/g, "&").trim();
+    };
+
+    const escapeHtml = (str = "") =>
+      String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    const buildStars = (rating = 5, card = false) => {
+      const rounded = Math.round(Number(rating) || 0);
+      let html = `<div class="cro-jm-stars ${card ? "is-card" : "is-summary"}">`;
+      for (let i = 1; i <= 5; i++) {
+        html += `<span class="cro-jm-star ${i <= rounded ? "is-filled" : ""}">★</span>`;
+      }
+      html += `</div>`;
+      return html;
+    };
+
+    const getInitial = (name = "") => {
+      const n = String(name).trim();
+      return n ? n.charAt(0).toUpperCase() : "A";
+    };
+
+    const fetchJudgeMeWidget = async (page = 1, perPage = 9) => {
+      const url = `https://api.judge.me/reviews/reviews_for_widget?url=${encodeURIComponent(CONFIG.shopDomain)}&shop_domain=${encodeURIComponent(CONFIG.shopDomain)}&platform=shopify&page=${page}&per_page=${perPage}&product_id=${encodeURIComponent(state.productId)}`;
+
+      const response = await fetch(url, {
+        method: "GET",
+        headers: { accept: "application/json" }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Judge.me request failed: ${response.status}`);
+      }
+
+      return response.json();
+    };
+
+    const buildHistogramFromReviews = (reviews) => {
+      const counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+
+      reviews.forEach((review) => {
+        const score = Math.round(Number(review.rating) || 0);
+        if (counts[score] !== undefined) counts[score] += 1;
+      });
+
+      return [
+        { stars: 5, count: counts[5] },
+        { stars: 4, count: counts[4] },
+        { stars: 3, count: counts[3] },
+        { stars: 2, count: counts[2] },
+        { stars: 1, count: counts[1] }
+      ];
+    };
+
+    const calculateAverageFromReviews = (reviews) => {
+      if (!reviews || !reviews.length) return 0;
+
+      const total = reviews.reduce((sum, review) => {
+        return sum + Number(review.rating || 0);
+      }, 0);
+
+      return total / reviews.length;
+    };
+
+    const createHistogramHtml = (reviews) => {
+      const histogram = buildHistogramFromReviews(reviews);
+      const maxCount = Math.max(...histogram.map((r) => r.count), 1);
+
+      return histogram.map((row) => {
+        const width = row.count > 0 ? (row.count / maxCount) * 100 : 0;
+        return `
+          <div class="cro-jm-breakdown__row">
+            <div class="cro-jm-breakdown__stars">${"★".repeat(row.stars)}${"☆".repeat(5 - row.stars)}</div>
+            <div class="cro-jm-breakdown__bar"><span style="width:${width}%"></span></div>
+            <div class="cro-jm-breakdown__count">${row.count}</div>
+          </div>
+        `;
+      }).join("");
+    };
+
+    const parseJudgeMeHtml = (html) => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const reviewEls = [...doc.querySelectorAll(".jdgm-rev")];
+
+      const reviews = reviewEls.map((review, index) => {
+        const id = review.getAttribute("data-review-id") || `review-${Date.now()}-${index}`;
+
+        const author =
+          review.querySelector(".jdgm-rev__author")?.textContent?.trim() ||
+          review.querySelector("[class*='author']")?.textContent?.trim() ||
+          "Verified Buyer";
+
+        const title =
+          review.querySelector(".jdgm-rev__title")?.textContent?.trim() || "";
+
+        const body =
+          review.querySelector(".jdgm-rev__body p")?.textContent?.trim() ||
+          review.querySelector(".jdgm-rev__body")?.textContent?.trim() ||
+          "";
+
+        let rating =
+          parseInt(review.querySelector(".jdgm-rev__rating")?.getAttribute("data-score"), 10) ||
+          parseInt(review.getAttribute("data-score"), 10) ||
+          parseInt(review.getAttribute("data-rating"), 10) ||
+          0;
+
+        if (!rating) {
+          const fullStars = review.querySelectorAll(".jdgm-star.jdgm--on").length;
+          const allStars = review.querySelectorAll(".jdgm-star").length;
+          rating = fullStars || allStars || 5;
+        }
+
+        const verified =
+          !!review.querySelector(".jdgm-rev__buyer-badge, .jdgm-rev__verified-badge") ||
+          review.innerHTML.toLowerCase().includes("verified purchase");
+
+        const mediaImgs = (() => {
+          const found = [];
+
+          const pushIfValid = (value) => {
+            const normalized = normalizeUrl(value);
+            if (!normalized) return;
+
+            if (
+              /^data:image/i.test(normalized) ||
+              normalized.includes("avatar") ||
+              normalized.includes("icon") ||
+              normalized.includes("star")
+            ) return;
+
+            if (
+              normalized.includes("judgeme.imgix.net") ||
+              normalized.includes("cdn.shopify.com") ||
+              /\.(jpg|jpeg|png|webp)(\?|$)/i.test(normalized)
+            ) {
+              if (!found.includes(normalized)) found.push(normalized);
+            }
+          };
+
+          [...review.querySelectorAll(".jdgm-rev__pic-link")].forEach((a) => {
+            pushIfValid(a.getAttribute("href"));
+          });
+
+          [...review.querySelectorAll(".jdgm-rev__pic-img, img")].forEach((img) => {
+            pushIfValid(img.getAttribute("data-src"));
+            pushIfValid(img.getAttribute("src"));
+            pushIfValid(img.getAttribute("data-original"));
+          });
+
+          return found.slice(0, 2);
+        })();
+
+        return {
+          id,
+          author,
+          title,
+          body,
+          rating: Math.min(Math.max(rating, 1), 5),
+          verified,
+          mediaImgs
+        };
+      });
+
+      return { reviews };
+    };
+
+    const createCardHtml = (review) => {
+      const imagesHtml = review.mediaImgs.length
+        ? `
+          <div class="cro-jm-card__images ${review.mediaImgs.length === 1 ? "is-single" : "is-double"}">
+            ${review.mediaImgs.map((src) => `
+              <div class="cro-jm-card__image-wrap">
+                <img src="${src}" alt="Review image" loading="lazy" referrerpolicy="no-referrer">
+              </div>
+            `).join("")}
+          </div>
+        `
+        : "";
+
+      return `
+        <article class="cro-jm-card" data-review-id="${escapeHtml(review.id)}">
+          <div class="cro-jm-card__header">
+            <div class="cro-jm-card__user">
+              <div class="cro-jm-card__avatar">${escapeHtml(getInitial(review.author))}</div>
+              <div class="cro-jm-card__name">${escapeHtml(review.author)}</div>
+            </div>
+            ${buildStars(review.rating, true)}
+          </div>
+
+          ${review.title ? `<h3 class="cro-jm-card__title">${escapeHtml(review.title)}</h3>` : ""}
+          ${review.body ? `<p class="cro-jm-card__body">${escapeHtml(review.body)}</p>` : ""}
+          ${imagesHtml}
+          ${review.verified ? `<div class="cro-jm-card__verified">✓ Verified purchase</div>` : ""}
+        </article>
+      `;
+    };
+
+    const distributeCardsBalanced = (reviews, replace = false) => {
+      const cols = [...section.querySelectorAll(".cro-jm-column")];
+      if (replace) cols.forEach((col) => (col.innerHTML = ""));
+
+      const sorted = [...reviews].sort((a, b) => {
+        const aScore = (a.mediaImgs.length ? 1000 : 0) + (a.body?.length || 0);
+        const bScore = (b.mediaImgs.length ? 1000 : 0) + (b.body?.length || 0);
+        return bScore - aScore;
+      });
+
+      sorted.forEach((review) => {
+        if (state.renderedReviewIds.has(review.id)) return;
+        state.renderedReviewIds.add(review.id);
+
+        const targetCol = cols.reduce((shortest, col) => {
+          return col.scrollHeight < shortest.scrollHeight ? col : shortest;
+        }, cols[0]);
+
+        targetCol.insertAdjacentHTML("beforeend", createCardHtml(review));
+      });
+    };
+
+    const mergeReviewsForHistogram = (reviews) => {
+      reviews.forEach((review) => {
+        if (state.loadedIds.has(review.id)) return;
+        state.loadedIds.add(review.id);
+        state.allReviewsForHistogram.push(review);
+      });
+    };
+
+    const updateSummary = () => {
+      const allReviews = state.allReviewsForHistogram || [];
+      const calculatedAverage = calculateAverageFromReviews(allReviews);
+
+      state.averageRating = calculatedAverage;
+
+      section.querySelector(".cro-jm-summary-stars").innerHTML = buildStars(state.averageRating, false);
+      section.querySelector(".cro-jm-summary-score").textContent = `${Number(state.averageRating || 0).toFixed(2)} out of 5`;
+      section.querySelector(".cro-jm-summary-count").textContent = `Based on ${state.totalCount} reviews`;
+
+      const breakdown = section.querySelector(".cro-jm-breakdown");
+      breakdown.innerHTML = createHistogramHtml(state.allReviewsForHistogram);
+
+      if (state.fullHistogramLoaded) {
+        breakdown.classList.remove("is-loading");
+      } else {
+        breakdown.classList.add("is-loading");
+      }
+    };
+
+    const updateLoadMore = () => {
+      const btn = section.querySelector(".cro-jm-load-more");
+      const rendered = section.querySelectorAll(".cro-jm-card").length;
+
+      if (state.loading) {
+        btn.disabled = true;
+        btn.textContent = "LOADING...";
+        return;
+      }
+
+      if (state.allLoaded || rendered >= state.totalCount) {
+        btn.disabled = true;
+        btn.textContent = "ALL REVIEWS LOADED";
+        return;
+      }
+
+      btn.disabled = false;
+      btn.textContent = CONFIG.loadMoreText;
+    };
+
+    const loadReviews = async (page, replace = false) => {
+      state.loading = true;
+      updateLoadMore();
+
+      const data = await fetchJudgeMeWidget(page, CONFIG.perPage);
+      const parsed = parseJudgeMeHtml(data.html || "");
+
+      state.totalCount = parseInt(data.total_count, 10) || 0;
+
+      if (replace) {
+        state.loadedIds.clear();
+        state.renderedReviewIds.clear();
+        state.allReviewsForHistogram = [];
+        state.fullHistogramLoaded = false;
+      }
+
+      mergeReviewsForHistogram(parsed.reviews || []);
+      updateSummary();
+      distributeCardsBalanced(parsed.reviews || [], replace);
+
+      const rendered = section.querySelectorAll(".cro-jm-card").length;
+      if (!parsed.reviews.length || rendered >= state.totalCount) {
+        state.allLoaded = true;
+      }
+
+      state.loading = false;
+      updateLoadMore();
+    };
+
+    const loadAllPagesForHistogram = async () => {
+      if (!state.totalCount) return;
+
+      const totalPages = Math.ceil(state.totalCount / CONFIG.perPage);
+
+      if (totalPages <= 1) {
+        state.fullHistogramLoaded = true;
+        updateSummary();
+        return;
+      }
+
+      const promises = [];
+      for (let page = 2; page <= totalPages; page++) {
+        promises.push(
+          fetchJudgeMeWidget(page, CONFIG.perPage)
+            .then((data) => parseJudgeMeHtml(data.html || ""))
+            .then((parsed) => {
+              mergeReviewsForHistogram(parsed.reviews || []);
+            })
+            .catch((err) => {
+              console.warn(`Histogram fetch failed for page ${page}:`, err);
+            })
+        );
+      }
+
+      await Promise.all(promises);
+      state.fullHistogramLoaded = true;
+      updateSummary();
+    };
+
+    section.querySelector(".cro-jm-write-btn").addEventListener("click", () => {
+      const nativeBtn =
+        document.querySelector(".jdgm-write-rev-link") ||
+        document.querySelector(".jdgm-form__toggle-btn") ||
+        document.querySelector("[data-open-review-form]");
+
+      if (nativeBtn) {
+        nativeBtn.click();
+        nativeBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        alert("Native Judge.me write review button not found.");
+      }
+    });
+
+    section.querySelector(".cro-jm-load-more").addEventListener("click", async () => {
+      if (state.loading || state.allLoaded) return;
+      CONFIG.currentPage += 1;
+      await loadReviews(CONFIG.currentPage, false);
+    });
+
+    state.productId = getProductId();
+    if (!state.productId) {
+      section.querySelector('[data-col="0"]').innerHTML = `<div class="cro-jm-error">Could not detect Shopify product ID on this PDP.</div>`;
+      return;
+    }
+
+    section.querySelector('[data-col="0"]').innerHTML = `<div class="cro-jm-loading">Loading reviews...</div>`;
+
+    loadReviews(CONFIG.currentPage, true).then(() => {
+      const loading = section.querySelector(".cro-jm-loading");
+      if (loading) loading.remove();
+      loadAllPagesForHistogram();
+    }).catch((error) => {
+      console.error("Judge.me custom section failed:", error);
+      const col = section.querySelector('[data-col="0"]');
+      if (col) {
+        col.innerHTML = `<div class="cro-jm-error">Judge.me custom section failed: ${escapeHtml(error.message)}</div>`;
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCroJudgeMe{{ section.id | replace: '-', '_' }});
+  } else {
+    initCroJudgeMe{{ section.id | replace: '-', '_' }}();
+  }
+
+  document.addEventListener('shopify:section:load', initCroJudgeMe{{ section.id | replace: '-', '_' }});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Custom Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "REAL RESULTS FROM REAL WOMEN"
+    },
+    {
+      "type": "text",
+      "id": "summary_title",
+      "label": "Summary Title",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "text",
+      "id": "write_review_text",
+      "label": "Write Review Button Text",
+      "default": "Write a review"
+    },
+    {
+      "type": "text",
+      "id": "load_more_text",
+      "label": "Load More Button Text",
+      "default": "LOAD MORE"
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "label": "Reviews per page",
+      "default": 9
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Reviews"
+    }
+  ]
+}
+{% endschema %}

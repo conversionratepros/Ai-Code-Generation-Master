@@ -1,0 +1,206 @@
+{% comment %}
+  Brand Section - Shopify PDP
+  Displays "As Seen On" with brand logos
+{% endcomment %}
+
+<div class="brand-section" data-section-id="{{ section.id }}">
+  {% if section.settings.section_title != blank %}
+    <h2 class="section-title">{{ section.settings.section_title }}</h2>
+  {% endif %}
+
+  <div class="logos-container">
+    {% for block in section.blocks %}
+      <div class="logo-item" {{ block.shopify_attributes }}>
+        <div class="logo-placeholder">
+          {% if block.settings.logo_image != blank %}
+            <img
+              src="{{ block.settings.logo_image | image_url: width: 240 }}"
+              alt="{{ block.settings.logo_name | escape }}"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="logo-text-fallback">{{ block.settings.logo_name }}</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .brand-section {
+    background: #ffffff;
+    padding: 48px 140px;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #0e0e0e;
+    text-align: center;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 64px 0;
+    line-height: 1.333;
+  }
+
+  .logos-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .logo-placeholder {
+    width: 140px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-placeholder img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .logo-text-fallback {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #0e0e0e;
+    text-align: center;
+  }
+
+ @media (max-width: 999px) {
+  .brand-section {
+    padding: 28px 16px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    letter-spacing: 1.2px;
+  }
+
+  .logos-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .logos-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .logo-item {
+    flex: 0 0 auto;
+  }
+
+  .logo-placeholder {
+    width: 140px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Brand Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "As Seen On"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "logo_name",
+          "label": "Logo Name",
+          "default": "Brand Logo"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Section",
+      "blocks": [
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Medium"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "L'Officiel"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Bazaar"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Cosmopolitan"
+          }
+        },
+        {
+          "type": "logo",
+          "settings": {
+            "logo_name": "Luxury"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

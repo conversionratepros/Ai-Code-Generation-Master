@@ -1,0 +1,45 @@
+{{ 'component-footer-secondary.css' | asset_url | stylesheet_tag }}
+
+<footer class="footer__secondary" style="background: {{ section.settings.bg_color }};">
+  <div class="c-container">
+    {% if section.settings.logo != blank %}
+      <div class="footer__secondary-logo">
+        <img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ section.settings.logo.alt }}" width="165" height="29" loading="lazy">
+      </div>
+    {% endif %}
+
+    {% if section.settings.navigation != blank %}
+      <ul class="footer__secondary-menu">
+        {% for link in linklists[section.settings.navigation].links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "link_list",
+        "id": "navigation",
+        "label": "Navigation"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }
+    ]
+  }
+{% endschema %}

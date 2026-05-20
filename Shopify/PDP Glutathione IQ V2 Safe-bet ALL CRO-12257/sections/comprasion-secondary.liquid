@@ -1,0 +1,184 @@
+{{ 'component-comprasion-secondary.css' | asset_url | stylesheet_tag }}
+{%- assign id = 'section-' | append: section.id -%}
+{% assign bottom_blocks_size = 0 %}
+
+{% render 'section-paddings',
+  id: id
+  paddingTop: section.settings.padding-top,
+  paddingBottom: section.settings.padding-bottom,
+  paddingTopMobile: section.settings.padding-top-mobile,
+  paddingBottomMobile: section.settings.padding-bottom-mobile
+%}
+
+<section class="comprasion__secondary">
+  <div class="c-container">
+    <div class="comprasion__secondary-wrapper-outer" id="{{ id }}">
+      <div class="comprasion__secondary-section" style="background: {{ section.settings.bg_color }};">
+        {% if section.settings.heading != blank %}
+          <h2 class="comprasion__secondary-heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+        <div class="comprasion__secondary-wrapper">
+          {% if section.settings.center_icon %}
+            <img class="centered-icon" src="{{ section.settings.center_icon | image_url: width: 300, height: 300 }}" alt="{{ section.settings.center_icon.alt }}" width="70" height="70" loading="lazy">
+          {% endif %}
+          {% for block in section.blocks %}
+            {% if block.type == 'items' %}
+              {% assign bottom_blocks_size = bottom_blocks_size | plus: 1 %}
+            {% endif %}
+
+            {% if block.type == 'compare-block' %}
+              <div class="comprasion__secondary-item" {{ block.shopify_attributes }}>
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | image_url: width: 300, height: 300 }}" alt="{{ block.settings.image.alt }}" width="150" height="150" loading="lazy">
+                {% endif %}
+                {% if block.settings.title != blank %}
+                  <div class="comprasion__secondary-title">{{ block.settings.title }}</div>
+                {% endif %}
+                {% if block.settings.content != blank %}
+                  <div class="comprasion__secondary-content">{{ block.settings.content }}</div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="comprasion__secondary-bottom_wrapper">
+          {% if section.settings.bottom_title != blank %}
+            <h2 class="comprasion__secondary-bottom_title">{{ section.settings.bottom_title }}</h2>
+          {% endif %}
+          {% if bottom_blocks_size > 0 %}
+            <div class="comprasion__secondary-bottom_blocks">
+              {% for block in section.blocks %}
+                {% if block.type == 'items' %}
+                  {% if block.settings.text != blank %}
+                    <div class="c-s-text" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if section.settings.bottom_content != blank %}
+            <div class="comprasion__secondary-bottom_content">{{ section.settings.bottom_content }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Comprasion secondary",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#FEF9F2"
+      },
+      {
+        "type": "richtext",
+        "id": "heading",
+        "label": "Heading",
+        "default": "<p></p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "center_icon",
+        "label": "Centered icon"
+      },
+      {
+        "type": "text",
+        "id": "bottom_title",
+        "label": "Bottom title"
+      },
+      {
+        "type": "richtext",
+        "id": "bottom_content",
+        "label": "Bottom content",
+        "default": "<p></p>"
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-top-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top mobile",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom mobile",
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "limit": 2,
+        "type": "compare-block",
+        "name": "Comparision item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },          
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content"
+          }
+        ]
+      },
+      {
+        "type": "items",
+        "name": "Info item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Comparision secondary"
+      }
+    ]
+  }
+{% endschema %}

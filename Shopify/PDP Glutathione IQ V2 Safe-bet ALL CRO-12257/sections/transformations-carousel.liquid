@@ -1,0 +1,686 @@
+<style>
+  #transformations-{{ section.id }} {
+    --tc-bg: {{ section.settings.bg_color }};
+    --tc-text: {{ section.settings.text_color }};
+    --tc-star: #f5c842;
+    --tc-check: #3a7d44;
+    --tc-radius: 14px;
+    --tc-gap: 16px;
+    padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+    background: var(--tc-bg);
+  }
+
+  #transformations-{{ section.id }} .tc-heading {
+    font-weight: 400;
+    font-size: clamp(24px, 2.6vw, 28px);
+    letter-spacing: 1.5;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--tc-text);
+    margin: 0 auto {{ section.settings.heading_margin_bottom }}px;
+    font-family: 'Montserrat' !important;
+  }
+
+  #transformations-{{ section.id }} .tc-outer {
+    position: relative;
+    max-width: 1380px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  #transformations-{{ section.id }} .tc-track-wrap {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  #transformations-{{ section.id }} .tc-track {
+    display: flex;
+    gap: var(--tc-gap);
+    transition: transform 0.42s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+
+  /* ── Card ── */
+  #transformations-{{ section.id }} .tc-card {
+    flex: 0 0 calc(20% - 13px);
+    min-width: 190px;
+    
+    overflow: hidden;
+    position: relative;
+    background: #111;
+    aspect-ratio: 9 / 16;
+    cursor: pointer;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+
+
+  /* Thumbnail — always visible, sits below video */
+  #transformations-{{ section.id }} .tc-card img.tc-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    z-index: 0;
+  }
+
+  /* Video sits on top of thumbnail, hidden by default */
+  #transformations-{{ section.id }} .tc-card video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Fade video in over thumbnail when playing */
+  #transformations-{{ section.id }} .tc-card.is-playing video {
+    opacity: 1;
+  }
+
+  #transformations-{{ section.id }} .tc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.10) 45%, transparent 100%);
+
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* play button */
+  #transformations-{{ section.id }} .tc-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  #transformations-{{ section.id }} .tc-play svg {
+    width: 18px;
+    height: 18px;
+    fill: #1a1a1a;
+    margin-left: 3px;
+  }
+  #transformations-{{ section.id }} .tc-card.is-playing .tc-play {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  /* title caption */
+  #transformations-{{ section.id }} .tc-title {
+    position: absolute;
+    top: 14px;
+    left: 12px;
+    right: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.55);
+    line-height: 1.35;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* bottom author + stars */
+  #transformations-{{ section.id }} .tc-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 12px 14px;
+    z-index: 3;
+  }
+  #transformations-{{ section.id }} .tc-author-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+    justify-content: center;
+  }
+  #transformations-{{ section.id }} .tc-author-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.04em;
+    justify-content: center;
+  }
+  #transformations-{{ section.id }} .tc-check {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  #transformations-{{ section.id }} .tc-stars {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+  }
+  #transformations-{{ section.id }} .tc-stars svg {
+    width: 14px;
+    height: 14px;
+  }
+
+    #transformations-{{ section.id }} .tc-stars polygon {
+    fill: #fff;
+  }
+
+  /* ── Arrows ── */
+  #transformations-{{ section.id }} .tc-arrow {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #222;
+    transition: background 0.18s, border-color 0.18s, opacity 0.18s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  #transformations-{{ section.id }} .tc-arrow:hover { background: #f0f0f0; border-color: #888; }
+  #transformations-{{ section.id }} .tc-arrow.prev { left: -22px; }
+  #transformations-{{ section.id }} .tc-arrow.next { right: -22px; }
+  #transformations-{{ section.id }} .tc-arrow[disabled] { opacity: 0.25; pointer-events: none; }
+
+  @media (max-width: 900px) {
+    #transformations-{{ section.id }} .tc-card { flex: 0 0 calc(33.33% - 11px); min-width: 150px; }
+    #transformations-{{ section.id }} .tc-arrow.prev { left: -14px; }
+    #transformations-{{ section.id }} .tc-arrow.next { right: -14px; }
+  }
+  @media (max-width: 600px) {
+  #transformations-{{ section.id }} .tc-track-wrap {
+    overflow: visible;
+  }
+
+  #transformations-{{ section.id }} .tc-outer {
+    overflow: hidden;
+    padding: 0 12%;
+  }
+
+  #transformations-{{ section.id }} .tc-card {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+   #transformations-{{ section.id }} .tc-arrow {
+    display: none;
+  }
+
+
+}
+</style>
+
+<div id="transformations-{{ section.id }}">
+  {% if section.settings.heading != blank %}
+    <h2 class="tc-heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="tc-outer">
+    <button class="tc-arrow prev" id="tc-prev-{{ section.id }}" aria-label="Previous">&#8592;</button>
+
+    <div class="tc-track-wrap">
+      <div class="tc-track" id="tc-track-{{ section.id }}">
+
+        {% for block in section.blocks %}
+          {% assign stars = block.settings.star_rating | default: 5 %}
+
+          {%- comment -%} ── Get video URL from native Shopify video type ── {%- endcomment -%}
+          {%- assign video_src = '' -%}
+          {%- assign auto_thumb = '' -%}
+          {%- if block.settings.shopify_video != blank -%}
+            {%- comment -%} Prefer MP4 source {%- endcomment -%}
+            {%- for source in block.settings.shopify_video.sources -%}
+              {%- if source.format == 'mp4' and video_src == '' -%}
+                {%- assign video_src = source.url -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- comment -%} Fallback to first available source {%- endcomment -%}
+            {%- if video_src == '' -%}
+              {%- assign video_src = block.settings.shopify_video.sources[0].url -%}
+            {%- endif -%}
+            {%- comment -%} Auto thumbnail from Shopify video preview image {%- endcomment -%}
+            {%- if block.settings.shopify_video.preview_image != blank -%}
+              {%- assign auto_thumb = block.settings.shopify_video.preview_image | img_url: '600x' -%}
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- comment -%} Poster priority: manual picker > auto from video {%- endcomment -%}
+          {%- assign poster_url = '' -%}
+          {%- if block.settings.poster_image != blank -%}
+            {%- assign poster_url = block.settings.poster_image | img_url: '600x' -%}
+          {%- elsif auto_thumb != '' -%}
+            {%- assign poster_url = auto_thumb -%}
+          {%- endif -%}
+
+          <div class="tc-card" {{ block.shopify_attributes }}>
+
+            {%- comment -%} Thumbnail always shown underneath video {%- endcomment -%}
+            {% if poster_url != blank %}
+              <img
+                class="tc-poster"
+                src="{{ poster_url }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+              >
+            {% endif %}
+
+            {%- comment -%} Video element — fades in on hover/click {%- endcomment -%}
+            {% if video_src != blank %}
+              <video
+                src="{{ video_src }}"
+                playsinline
+                loop
+                preload="metadata"
+              ></video>
+            {% elsif poster_url == blank %}
+              <div style="position:absolute;inset:0;background:#222;border-radius:var(--tc-radius);z-index:0;"></div>
+            {% endif %}
+
+            <div class="tc-overlay"></div>
+
+            {% if video_src != blank %}
+              <div class="tc-play">
+                <svg viewBox="0 0 20 20"><polygon points="4,2 18,10 4,18"/></svg>
+              </div>
+            {% endif %}
+
+            {% if block.settings.title != blank %}
+              <div class="tc-title">{{ block.settings.title }}</div>
+            {% endif %}
+
+            <div class="tc-bottom">
+              {% if block.settings.author != blank %}
+                <div class="tc-author-row">
+                  <span class="tc-author-name">{{ block.settings.author }}</span>
+                  <span class="tc-check">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+<path d="M6.45015 10.9501L11.7376 5.66265L10.6876 4.61265L6.45015 8.85015L4.31265 6.71265L3.26265 7.76265L6.45015 10.9501ZM7.50015 15.0001C6.49486 15.0066 5.49908 14.8054 4.57515 14.4091C3.6865 14.0316 2.87824 13.4875 2.1939 12.8064C1.5189 12.1314 0.984898 11.3379 0.591148 10.4251C0.194939 9.50121 -0.0062597 8.50543 0.000148393 7.50015C-0.00621659 6.49487 0.194981 5.4991 0.591148 4.57515C0.968737 3.6865 1.51275 2.87824 2.1939 2.1939C2.8689 1.5189 3.6624 0.984898 4.57515 0.591148C5.49908 0.194939 6.49486 -0.0062597 7.50015 0.000148393C8.50543 -0.00621659 9.5012 0.194981 10.4251 0.591148C11.3138 0.968721 12.1221 1.51274 12.8064 2.1939C13.4814 2.8689 14.0161 3.6624 14.4091 4.57515C14.8054 5.49908 15.0066 6.49486 15.0001 7.50015C15.0066 8.50543 14.8054 9.50121 14.4091 10.4251C14.0316 11.3138 13.4876 12.1221 12.8064 12.8064C12.1314 13.4814 11.3379 14.0161 10.4251 14.4091C9.50121 14.8054 8.50543 15.0066 7.50015 15.0001Z" fill="white"/>
+</svg>
+                  </span>
+                </div>
+              {% endif %}
+
+              <div class="tc-stars">
+                {% for i in (1..5) %}
+                  <svg viewBox="0 0 20 20">
+                    <polygon
+                      points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7"
+                      fill="{% if i <= stars %}#f5c842{% else %}#ddd{% endif %}"
+                    />
+                  </svg>
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <button class="tc-arrow next" id="tc-next-{{ section.id }}" aria-label="Next">&#8594;</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  var track     = document.getElementById('tc-track-' + sectionId);
+  var prevBtn   = document.getElementById('tc-prev-' + sectionId);
+  var nextBtn   = document.getElementById('tc-next-' + sectionId);
+
+  if (!track) return;
+
+  var originalCards = Array.from(track.querySelectorAll('.tc-card'));
+  var totalOriginal = originalCards.length;
+
+  function visibleCount() {
+    var w = window.innerWidth;
+    if (w <= 600) return 1;
+    if (w <= 900) return 3;
+    return 5;
+  }
+
+  function cardWidth() {
+    var cards = track.querySelectorAll('.tc-card');
+    if (!cards.length) return 0;
+    return cards[0].getBoundingClientRect().width + 16;
+  }
+
+  
+  function setupClones() {
+    track.querySelectorAll('.tc-clone').forEach(function(c) { c.remove(); });
+
+    var vc = visibleCount();
+    var cards = Array.from(track.querySelectorAll('.tc-card:not(.tc-clone)'));
+
+    
+    for (var i = cards.length - vc; i < cards.length; i++) {
+      var clone = cards[i].cloneNode(true);
+      clone.classList.add('tc-clone');
+      track.insertBefore(clone, track.firstChild);
+    }
+
+    
+    for (var j = 0; j < vc; j++) {
+      var clone2 = cards[j].cloneNode(true);
+      clone2.classList.add('tc-clone');
+      track.appendChild(clone2);
+    }
+  }
+
+  var idx = 0; // 0 = first real card
+  var isTransitioning = false;
+
+  function getAllCards() {
+    return Array.from(track.querySelectorAll('.tc-card'));
+  }
+
+  function getOffset(position) {
+    var vc = visibleCount();
+    
+    return (position + vc) * cardWidth();
+  }
+
+  function goTo(n, animate) {
+    if (isTransitioning) return;
+    var vc = visibleCount();
+
+    idx = n;
+
+    if (animate === false) {
+      track.style.transition = 'none';
+    } else {
+      track.style.transition = 'transform 0.42s cubic-bezier(.4,0,.2,1)';
+      isTransitioning = true;
+    }
+
+    track.style.transform = 'translateX(-' + getOffset(idx) + 'px)';
+  }
+
+  
+  track.addEventListener('transitionend', function() {
+    isTransitioning = false;
+    var vc = visibleCount();
+
+    if (idx >= totalOriginal) {
+      
+      idx = 0;
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(-' + getOffset(idx) + 'px)';
+    } else if (idx < 0) {
+      
+      idx = totalOriginal - 1;
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(-' + getOffset(idx) + 'px)';
+    }
+  });
+
+  prevBtn.addEventListener('click', function() {
+    goTo(idx - 1, true);
+  });
+
+  nextBtn.addEventListener('click', function() {
+    goTo(idx + 1, true);
+  });
+
+  
+  var touchStartX = 0;
+  var touchEndX = 0;
+
+  track.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    var diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        goTo(idx + 1, true);
+      } else {
+        goTo(idx - 1, true);
+      }
+    }
+  }, { passive: true });
+
+  
+  function bindVideoEvents(card) {
+    var video = card.querySelector('video');
+    if (!video) return;
+
+    video.muted = true;
+
+    card.addEventListener('mouseenter', function() {
+      video.muted = false;
+      var p = video.play();
+      if (p !== undefined) {
+        p.then(function() {
+          card.classList.add('is-playing');
+        }).catch(function() {
+          video.muted = true;
+          video.play().then(function() { card.classList.add('is-playing'); });
+        });
+      }
+    });
+
+    card.addEventListener('mouseleave', function() {
+      video.pause();
+      video.muted = true;
+      card.classList.remove('is-playing');
+    });
+
+    card.addEventListener('click', function() {
+      if (video.paused) {
+        video.muted = false;
+        var p = video.play();
+        if (p !== undefined) {
+          p.then(function() {
+            card.classList.add('is-playing');
+          }).catch(function() {
+            video.muted = true;
+            video.play().then(function() { card.classList.add('is-playing'); });
+          });
+        }
+      } else {
+        video.pause();
+        video.muted = true;
+        card.classList.remove('is-playing');
+      }
+    });
+  }
+
+  originalCards.forEach(bindVideoEvents);
+
+  function init() {
+    setupClones();
+    
+    track.querySelectorAll('.tc-clone').forEach(bindVideoEvents);
+
+    goTo(0, false);
+  }
+
+  init();
+
+  window.addEventListener('resize', function() {
+    setupClones();
+    track.querySelectorAll('.tc-clone').forEach(bindVideoEvents);
+    goTo(idx, false);
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Transformations Carousel",
+  "tag": "section",
+  "class": "transformations-carousel-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Transformations with Glutathione IQ"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "label": "Heading Bottom Spacing",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading Text Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 70
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_card",
+      "name": "Video Card",
+      "settings": [
+        {
+          "type": "video",
+          "id": "shopify_video",
+          "label": "Video (Shopify Media)",
+          "info": "Shopify native video — thumbnail automatically video se aata hai"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "Custom Thumbnail (Optional)",
+          "info": "Blank rahay toh video ka automatic preview thumbnail use hoga"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title (shown on card)",
+          "placeholder": "e.g. Dark spots,"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "placeholder": "e.g. Raya S.",
+          "info": "A verified checkmark is added automatically"
+        },
+        {
+          "type": "range",
+          "id": "star_rating",
+          "label": "Star Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Transformations Carousel",
+      "blocks": [
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "Dark spots,",
+            "author": "Raya S.",
+            "star_rating": 5
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "Here's why this daily",
+            "author": "Anya S.",
+            "star_rating": 5
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "So you just had a baby",
+            "author": "John G.",
+            "star_rating": 5
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "The one mistake",
+            "author": "Anya S.",
+            "star_rating": 5
+          }
+        },
+        {
+          "type": "video_card",
+          "settings": {
+            "title": "Lately everyone's been telling me",
+            "author": "Kiri R.",
+            "star_rating": 5
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20
+}
+{% endschema %}

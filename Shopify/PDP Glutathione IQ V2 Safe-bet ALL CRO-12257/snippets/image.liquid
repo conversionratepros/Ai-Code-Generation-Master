@@ -1,0 +1,12 @@
+{% assign image_height_ = image.width | divided_by: image.aspect_ratio %}
+{{
+  image
+  | image_url: width: width
+  | image_tag:
+    width: image.width,
+    height: image_height,
+    class: class,
+    widths: widths,
+    fetchpriority: fetchpriority,
+    loading: loading
+}}

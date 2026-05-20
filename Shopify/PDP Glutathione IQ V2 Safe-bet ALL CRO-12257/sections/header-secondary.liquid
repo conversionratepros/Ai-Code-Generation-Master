@@ -1,0 +1,51 @@
+{{ 'component-header-secondary.css' | asset_url | stylesheet_tag }}
+
+<header class="header__secondary">
+  <div class="c-container">
+    {% if section.settings.logo != blank %}
+      <div class="header__secondary-logo">
+        <img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ section.settings.logo.alt }}" width="202" height="36" loading="lazy">
+      </div>
+    {% endif %}
+    {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+      <a href="{{ section.settings.cta_link }}" class="header__secondary-btn custom-btn">
+        {{ section.settings.cta_text }} 
+       <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_197_1065)">
+        <path d="M0.767456 4.00008H7.23246M7.23246 4.00008L3.99994 0.518932M7.23246 4.00008L3.99994 7.48123" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_197_1065">
+        <rect width="8" height="8" fill="white"/>
+        </clipPath>
+        </defs>
+      </svg>
+      </a>
+    {% endif %}
+  </div>
+</header>
+
+<script src="{{ 'header-secondary.js' | asset_url }}" defer></script>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Text"
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      }
+    ]
+  }
+{% endschema %}

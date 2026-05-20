@@ -1,0 +1,170 @@
+{{ 'component-compare-block.css' | asset_url | stylesheet_tag }}
+{%- assign id = 'section-' | append: section.id -%}
+
+{% render 'section-paddings',
+  id: id
+  paddingTop: section.settings.padding-top,
+  paddingBottom: section.settings.padding-bottom,
+  paddingTopMobile: section.settings.padding-top-mobile,
+  paddingBottomMobile: section.settings.padding-bottom-mobile
+%}
+
+<section class="comparison__section-outer">
+  <div class="comparison__section" id="{{ id }}"> 
+    <div class="c-container">
+      <div class="comparison__section-left">
+        {% if section.settings.heading %}
+          <h2 class="comparison__section-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.content %}
+          <div class="comparison__section-content">{{ section.settings.content }}</div>
+        {% endif %}
+        {% if section.settings.cta_text != blank and section.settings.cta_link != blank %}
+          <a href="{{ section.settings.cta_link }}" class="custom-btn">
+            {{ section.settings.cta_text }}
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_261_111)">
+                <path d="M1.15137 5.57151H10.8489M10.8489 5.57151L6.0001 0.722778M10.8489 5.57151L6.0001 10.4203" stroke="black" stroke-width="1.28571" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_261_111">
+                <rect width="12" height="11.1429" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+          </a>
+        {% endif %}
+      </div>
+      <div class="comparison__section-right">
+        {% if section.settings.before_image != blank %}
+          <div class="comparison__section-block absolute-img">
+            {% if section.settings.before_text != blank %}
+              <div class="comparison__section-label">{{ section.settings.before_text }}</div>
+            {% endif %}
+            {% render 'image',
+              image: section.settings.before_image,
+              width: 1440,
+              widths: '320, 550, 767, 990, 750, 900, 1024, 1440',
+              fetchpriority: false,
+              loading: 'lazy'
+            %}
+          </div>
+        {% endif %}
+        {% if section.settings.after_image != blank %}
+          <div class="comparison__section-block absolute-img">
+            {% if section.settings.after_text != blank %}
+              <div class="comparison__section-label">{{ section.settings.after_text }}</div>
+            {% endif %}
+            {% render 'image',
+              image: section.settings.after_image,
+              width: 1440,
+              widths: '320, 550, 767, 990, 750, 900, 1024, 1440',
+              fetchpriority: false,
+              loading: 'lazy'
+            %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="c-container is--line">
+    <div class="line"></div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Comprasion block",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "heading",
+        "label": "Heading",
+        "default": "<p></p>"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content",
+        "default": "<p></p>"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Text"
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "before_text",
+        "label": "Before text",
+        "default": "before"
+      },
+      {
+        "type": "image_picker",
+        "id": "before_image",
+        "label": "Before image"
+      },
+      {
+        "type": "text",
+        "id": "after_text",
+        "label": "After text",
+        "default": "after"
+      },
+      {
+        "type": "image_picker",
+        "id": "after_image",
+        "label": "After image"
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom desktop",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-top-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding top mobile",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom-mobile",
+        "min": 0,
+        "max": 70,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding bottom mobile",
+        "default": 0
+      }
+    ],
+    "presets": [
+      {
+        "name": "Comprasion block"        
+      }
+    ]
+  }
+{% endschema %}

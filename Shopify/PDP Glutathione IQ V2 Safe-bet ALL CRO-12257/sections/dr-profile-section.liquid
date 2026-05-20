@@ -1,0 +1,180 @@
+{%- style -%}
+  .dr-profile-section {
+    padding: 60px 20px;
+  }
+  .dr-profile-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    background-color: #F1EDE4; /* Matches the beige background */
+  }
+.dr-profile-image {
+    flex: 0 1 360px;
+    text-align: center;
+}
+  .dr-profile-image img {
+max-width: 361px;
+    height: auto;
+    display: block;
+    margin-top: -30px;
+  }
+  .dr-profile-content {
+    flex: 1 1;
+    padding-right: 120px;
+  }
+  .dr-profile-header {
+letter-spacing: 1.5px;
+    font-size: 28px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: 400;
+  }
+  .dr-quote-box {
+    position: relative;
+    padding-left: 20px;
+  }
+  .dr-quote-mark {
+    font-size: 4rem;
+    line-height: 1;
+    font-family: serif;
+    position: absolute;
+    left: -10px;
+    top: -20px;
+  }
+.dr-quote-text {
+    font-style: italic;
+    font-size: 22px;
+    line-height: 36px;
+    margin-bottom: 20px;
+    color: #0E0E0E;
+    font-family: 'Montserrat';
+}
+.dr-info-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 16px;
+    font-family: 'Nunito';
+}
+.dr-info-title {
+    font-size: 14px;
+    color: #404040;
+    margin-bottom: 20px;
+    display: block;
+    letter-spacing: 0.55px;
+}
+  .dr-stats-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .dr-stat-pill {
+    border: 1px solid rgba(14, 14, 14, 0.2);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: #0E0E0E;
+  }
+  .dr-stat-pill strong {
+    margin-right: 5px;
+    font-family: 'Nunito';
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .dr-profile-container { flex-direction: column-reverse; text-align: center; padding: 0 13px; }
+    .dr-quote-mark { left: 0px; top: -26px; opacity: 0.5; }
+    .dr-stats-row { justify-content: space-between !important; }
+    .dr-stat-pill:nth-child(3) {
+    flex-direction: row !important;
+    width: 100% !important;
+    align-items: center !important;
+    gap: 8px;
+}
+.dr-stat-pill svg {
+    width: 25px;
+    height: 34px;
+}
+  .dr-profile-header {
+    font-size: 24px;
+  }
+  }
+{%- endstyle -%}
+
+<section class="dr-profile-section">
+    <h2 class="dr-profile-header">{{ section.settings.heading }}</h2>
+  <div class="dr-profile-container">
+    
+    <div class="dr-profile-image">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+
+    <div class="dr-profile-content">
+      
+      <div class="dr-quote-box">
+        <span class="dr-quote-mark">“</span>
+        <p class="dr-quote-text">{{ section.settings.quote }}</p>
+        
+        <span class="dr-info-name">{{ section.settings.dr_name }}</span>
+        <span class="dr-info-title">{{ section.settings.dr_title }}</span>
+      </div>
+
+      <div class="dr-stats-row">
+        <div class="dr-stat-pill">
+          <strong>{{ section.settings.stat_1_val }}</strong> {{ section.settings.stat_1_text }}
+        </div>
+        <div class="dr-stat-pill">
+          <strong>{{ section.settings.stat_2_val }}</strong> {{ section.settings.stat_2_text }}
+        </div>
+        <div class="dr-stat-pill">
+           <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+<g clip-path="url(#clip0_4111_1258)">
+<path d="M8.02087 0.427246C11.1279 0.427246 13.6556 2.95498 13.6556 6.06201C13.6556 7.08506 13.2011 8.17826 13.1791 8.23096L13.1781 8.23193C13.0301 8.58308 12.7404 9.12528 12.5297 9.44482L8.72986 15.2017C8.5601 15.4588 8.30307 15.6147 8.02087 15.6147C7.73876 15.6147 7.48164 15.459 7.31189 15.2017L3.51208 9.44482C3.30172 9.12531 3.01162 8.58312 2.86365 8.23193V8.23096C2.84415 8.18391 2.38611 7.08758 2.38611 6.06201C2.38614 2.955 4.91386 0.427275 8.02087 0.427246ZM8.02087 1.26611C5.37667 1.26614 3.225 3.4178 3.22498 6.06201C3.22498 6.90526 3.62489 7.87628 3.63708 7.90576C3.76482 8.21022 4.02929 8.70534 4.21228 8.98291L8.01208 14.7397L8.02087 14.7524C8.02358 14.7485 8.02664 14.7443 8.02966 14.7397L11.8295 8.98291C12.0124 8.70552 12.2768 8.21129 12.4047 7.90674L12.4056 7.90479C12.4068 7.902 12.4129 7.88701 12.4232 7.86084C12.4347 7.83157 12.4516 7.78837 12.4711 7.73486C12.51 7.62784 12.5613 7.4766 12.6127 7.29932C12.7158 6.9429 12.8168 6.48512 12.8168 6.06201C12.8167 3.41779 10.6651 1.26611 8.02087 1.26611Z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="0.187012"/>
+<path d="M8.02118 3.03516C9.69045 3.0352 11.0485 4.39355 11.0485 6.0625C11.0485 7.73141 9.69043 9.0898 8.02118 9.08984C6.35189 9.08984 4.99388 7.73144 4.99384 6.0625C4.99384 4.39352 6.35186 3.03516 8.02118 3.03516ZM8.02118 3.87402C6.81499 3.87402 5.8327 4.856 5.8327 6.0625C5.83275 7.26896 6.81502 8.25098 8.02118 8.25098C9.2273 8.25093 10.2096 7.26893 10.2097 6.0625C10.2097 4.85603 9.22733 3.87407 8.02118 3.87402Z" fill="#0E0E0E" stroke="#0E0E0E" stroke-width="0.187012"/>
+</g>
+<defs>
+<clipPath id="clip0_4111_1258">
+<rect width="16.0417" height="16.0417" fill="white"/>
+</clipPath>
+</defs>
+</svg> {{ section.settings.location }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dr. Profile Section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Doctor Image" },
+    { "type": "text", "id": "heading", "label": "Top Heading", "default": "FORMULATED BY DR NABILA" },
+    { "type": "textarea", "id": "quote", "label": "Quote Text", "default": "I created Glutathione IQ because..." },
+    { "type": "text", "id": "dr_name", "label": "Doctor Name", "default": "Dr Nabila" },
+    { "type": "text", "id": "dr_title", "label": "Title", "default": "Aesthetic Medicine Practitioner" },
+    { "type": "text", "id": "stat_1_val", "label": "Stat 1 Value", "default": "15" },
+    { "type": "text", "id": "stat_1_text", "label": "Stat 1 Label", "default": "yrs aesthetic medicine" },
+    { "type": "text", "id": "stat_2_val", "label": "Stat 2 Value", "default": "5000+" },
+    { "type": "text", "id": "stat_2_text", "label": "Stat 2 Label", "default": "patients treated" },
+    { "type": "text", "id": "location", "label": "Location", "default": "Umhlanga, KZN" }
+  ],
+  "presets": [
+    { "name": "Dr. Profile Section" }
+  ]
+}
+{% endschema %}
