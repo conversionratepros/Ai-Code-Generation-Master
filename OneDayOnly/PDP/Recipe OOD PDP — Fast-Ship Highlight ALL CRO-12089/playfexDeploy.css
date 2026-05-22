@@ -1,0 +1,181 @@
+.cro-ki61_payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.cro-ki61_payment-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cro-ki61_payment-img img {}
+
+.cro-ki61_payment-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    padding: 16px 0;
+    border-bottom: 1px solid #99abb9;
+    padding-bottom: 0;
+}
+
+body.cro-61-openDropDown .cro-ki61_payment-inner {
+    /* gap: 24px; */
+    /* padding-bottom: 16px; */
+}
+
+.cro-ki61_payment-content {
+    display: flex;
+    flex-direction: column;
+    /* align-content: flex-start; */
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.cro-ki61_payment-body {
+    height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.4s ease;
+    padding: 0 16px;
+    border-radius: 12px;
+    background: #F5F5F5;
+}
+
+.cro-ki61_payment-text p {
+    margin: 0;
+    color: var(--Gray-2, #444);
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    /* 18.2px */
+}
+
+h3.cro-ki61_payment-title {
+    color: #747E86;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+h4.cro-ki61_payment-subtitle {
+    color: #747E86;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    margin: 20px 0;
+}
+
+.cro-ki61_payment-step strong {
+    color: #747E86;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.cro-ki61_payment-step {
+    margin-bottom: 15px;
+}
+
+.cro-ki61_payment-step p {
+    color: #747E86;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin: 5px 0 0;
+}
+
+.cro-ki61_payment-note strong {
+    color: #747E86;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.cro-ki61_payment-note ul {
+    margin-top: 5px;
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.cro-ki61_payment-note li {
+    color: #747E86;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.cro-ki61_payment-imgClose {
+    display: none;
+}
+
+body.cro-61-openDropDown .cro-ki61_payment-imgClose {
+    display: block;
+}
+
+body.cro-61-openDropDown .cro-ki61_payment-imgOpen {
+    display: none;
+}
+
+body.cro-61-openDropDown .cro-ki61_payment-body {
+    height: auto;
+    padding: 16px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+
+@media (min-width: 1024px) {
+    body.cro-oneDay-ki_61 .cro-ki61_paymentDesktop {
+        display: block !important;
+    }
+}
+
+@media (max-width: 1023px) {
+    [cro-quantity="cro-product"] {
+        margin-bottom: 8px;
+    }
+
+    body.cro-oneDay-ki_61 .cro-ki61_paymentMobile {
+        display: block !important;
+    }
+
+    [pagepath="gift-vouchers"] #__next [width="1"]>.show-for-desktop+div {
+        grid-template-areas:
+            'carousel'
+            'title'
+            'actions'
+            'buyNow'
+            'additional'
+            'price'
+            'details'
+            'button';
+    }
+
+    [pagepath="gift-vouchers"] body.cro-oneDay-ki_61 .cro-ki61_paymentMobile {
+        grid-area: buyNow;
+        margin-bottom: 10px;
+    }
+}
+
+.cro-ki61_payment.cro-ki61_paymentMobile {
+    border-top: 1px solid #99abb9;
+    margin-top: 10px;
+}

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRO-12089 Local Test — OOD PDP Fast-Ship Highlight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .product-image {
+            flex: 0 0 480px;
+            background: #e0e0e0;
+            border-radius: 8px;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* ── Buy box column — direct children are the selectors the JS targets ── */
+        .buy-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        /* Price block */
+        .price-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e50e62;
+        }
+
+        .product-price .was {
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .shipping-label {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .eta-label {
+            font-size: 12px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .affordability-label {
+            font-size: 12px;
+            color: #0093D0;
+        }
+
+        /* Variant groups */
+        .variant-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .variant-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .variant-select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #333;
+            background: #fff;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+
+        /* I Want button */
+        .i-want-btn {
+            width: 100%;
+            padding: 16px;
+            background: #00b900;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.2s;
+        }
+
+        .i-want-btn:hover { background: #009f00; }
+
+        /* Debug panel */
+        .debug-panel {
+            margin-top: 8px;
+            padding: 14px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .debug-panel h4 {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .debug-note {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .debug-log {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 11px;
+            min-height: 40px;
+            max-height: 160px;
+            overflow-y: auto;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        @media (max-width: 767px) {
+            .page-wrapper { flex-direction: column; }
+            .product-image { flex: none; height: 260px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <div class="product-image">[ Product Image ]</div>
+
+    <div class="buy-box">
+
+        <h1 class="product-title">Premium Wireless Noise-Cancelling Headphones</h1>
+
+        <!-- Price block: shipping label + ETA + affordability teaser all live here -->
+        <div class="price-block">
+            <div class="product-price">
+                R 1,299.00 <span class="was">R 1,999.00</span>
+            </div>
+            <div class="shipping-label">Excludes shipping</div>
+            <div class="eta-label">ETA 3-5 working days</div>
+            <div class="affordability-label">From as little as R325 per month</div>
+        </div>
+
+        <!-- Colour variant -->
+        <div class="variant-group">
+            <div class="variant-label">Colour</div>
+            <select class="variant-select" name="colour">
+                <option value="">— Select Colour —</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="silver">Silver</option>
+            </select>
+        </div>
+
+        <!-- Size variant -->
+        <div class="variant-group">
+            <div class="variant-label">Size</div>
+            <select class="variant-select" name="size">
+                <option value="">— Select Size —</option>
+                <option value="one-size">One Size</option>
+            </select>
+        </div>
+
+        <!-- Native quantity select — id required by variation.js -->
+        <div class="variant-group">
+            <div class="variant-label">Quantity</div>
+            <select class="variant-select" id="product-quantity-select" name="qty">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <!-- Add to cart -->
+        <button class="i-want-btn" data-action="add-to-cart">I want one</button>
+
+        <!-- Debug panel -->
+        <div class="debug-panel">
+            <h4>Local Test — CRO-12089</h4>
+            <p class="debug-note">
+                ETA reads "ETA 3-5 working days" → variation activates.<br>
+                Change the ETA text to "ETA 1-2 working days" to test the non-activation path.
+            </p>
+            <div class="debug-log" id="debug-log">Waiting for init…</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var log = document.getElementById('debug-log');
+        function logLine(msg) {
+            log.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg + '\n' + log.textContent;
+        }
+
+        document.querySelector('[data-action="add-to-cart"]').addEventListener('click', function () {
+            var qty = document.querySelector('#product-quantity-select').value;
+            logLine('CART CLICK — qty: ' + qty);
+        });
+
+        document.querySelector('#product-quantity-select').addEventListener('change', function () {
+            logLine('qty select changed → ' + this.value);
+        });
+
+        // Observe body class to confirm activation
+        var observer = new MutationObserver(function () {
+            if (document.body.classList.contains('cro-t-odo-12089')) {
+                logLine('✓ Variation activated — body class added');
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    });
+</script>
+
+<!-- ═══════════════ VARIATION CSS ═══════════════ -->
+<style>
+/* ─── Hidden elements ────────────────────────────────────────────────────── */
+
+body.cro-t-odo-12089 .crp-12089-hidden {
+    display: none !important;
+}
+
+/* ─── Fast Ship Strip ─────────────────────────────────────────────────────── */
+
+body.cro-t-odo-12089 .crp-12089-fast-ship {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #EBF7ED;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+body.cro-t-odo-12089 .crp-12089-fs-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+body.cro-t-odo-12089 .crp-12089-fs-mid {
+    font-weight: 500;
+}
+
+body.cro-t-odo-12089 .crp-12089-fast-ship strong {
+    font-weight: 700;
+}
+
+/* ─── Payflex Section ─────────────────────────────────────────────────────── */
+
+body.cro-t-odo-12089 .crp-12089-payflex {
+    display: block !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #333333;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    gap: 8px;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-copy {
+    font-size: 13px;
+    color: #444444;
+    line-height: 1.4;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-copy strong {
+    font-weight: 600;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: 1px solid #cccccc;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-btn:hover {
+    border-color: #7B2D8B;
+    background: #f9f0fb;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-chevron {
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-btn[aria-expanded="true"] .crp-12089-pf-chevron {
+    transform: rotate(180deg);
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-details {
+    border-top: 1px solid #e8e8e8;
+    padding: 12px;
+    background: #fafafa;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-details[hidden] {
+    display: none;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-desc {
+    font-size: 12px;
+    color: #555555;
+    margin: 0 0 10px;
+    line-height: 1.5;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-installments {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 60px;
+    padding: 8px 6px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #555555;
+    text-align: center;
+    gap: 4px;
+    box-sizing: border-box;
+}
+
+body.cro-t-odo-12089 .crp-12089-pf-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #7B2D8B;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+@media screen and (min-width: 768px) {
+    body.cro-t-odo-12089 .crp-12089-pf-mobile {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    body.cro-t-odo-12089 .crp-12089-pf-desktop {
+        display: none !important;
+    }
+}
+</style>
+
+<!-- ═══════════════ VARIATION JS ═══════════════ -->
+<script>
+(function () {
+    try {
+        var VARIATION = 'cro-t-odo-12089';
+
+        function waitForElement(selector, cb, maxTries) {
+            var tries = 0;
+            var max = maxTries || 200;
+            var timer = setInterval(function () {
+                if (document.querySelector(selector)) {
+                    clearInterval(timer);
+                    cb();
+                } else if (++tries >= max) {
+                    clearInterval(timer);
+                }
+            }, 100);
+        }
+
+        function isEta3to5() {
+            var pattern = /ETA\s+(\d+)(?:\s*[-–]\s*(\d+))?\s+working\s+day/i;
+            var bodyText = document.body ? (document.body.innerText || document.body.textContent || '') : '';
+            var match = bodyText.match(pattern);
+            if (match) {
+                var low = parseInt(match[1], 10);
+                var high = match[2] ? parseInt(match[2], 10) : low;
+                return low >= 3 && high <= 5;
+            }
+            return false;
+        }
+
+        function walkTextNodes(root, fn) {
+            var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+            var node;
+            while ((node = walker.nextNode())) {
+                if (fn(node) === false) return;
+            }
+        }
+
+        function replaceTextOnce(pattern, replacement) {
+            walkTextNodes(document.body, function (node) {
+                if (pattern.test(node.nodeValue)) {
+                    node.nodeValue = node.nodeValue.replace(pattern, replacement);
+                    return false;
+                }
+            });
+        }
+
+        function hideByTextPattern(pattern) {
+            walkTextNodes(document.body, function (node) {
+                if (pattern.test(node.nodeValue)) {
+                    var el = node.parentElement;
+                    if (el) el.classList.add('crp-12089-hidden');
+                    return false;
+                }
+            });
+        }
+
+        function getBuyBoxColumn() {
+            var el = document.querySelector('#product-quantity-select');
+            if (!el) return null;
+            while (el.parentNode && el.parentNode !== document.body) {
+                el = el.parentNode;
+                if (el.querySelectorAll('select').length >= 2) return el;
+            }
+            return null;
+        }
+
+        function getFirstSelectorChild(buyBox) {
+            var children = buyBox.children;
+            for (var i = 0; i < children.length; i++) {
+                if (children[i].querySelector('select')) return children[i];
+            }
+            return null;
+        }
+
+        function getQtyChild(buyBox) {
+            var qtySelect = document.querySelector('#product-quantity-select');
+            if (!qtySelect) return null;
+            var el = qtySelect;
+            while (el.parentNode && el.parentNode !== buyBox) {
+                el = el.parentNode;
+            }
+            return el.parentNode === buyBox ? el : null;
+        }
+
+        function buildFastShipStrip() {
+            var el = document.createElement('div');
+            el.className = 'crp-12089-fast-ship';
+            el.style.display = 'none'; // shown by body.cro-t-odo-12089 CSS rule
+            el.innerHTML =
+                '<span class="crp-12089-fs-icon" aria-hidden="true">' +
+                    '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                        '<circle cx="10" cy="10" r="10" fill="#1A9B3C"/>' +
+                        '<path d="M5.5 10L8.5 13L14.5 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                    '</svg>' +
+                '</span>' +
+                '<span class="crp-12089-fs-label">' +
+                    '<strong>Fast Ship</strong>' +
+                    '<span class="crp-12089-fs-mid"> - Arrives in </span>' +
+                    '<strong>2-3 working days</strong>' +
+                '</span>';
+            return el;
+        }
+
+        function buildPayflexSection(extraClass) {
+            var wrapper = document.createElement('div');
+            wrapper.className = 'crp-12089-payflex ' + extraClass;
+            wrapper.style.display = 'none'; // shown by body.cro-t-odo-12089 CSS rule
+
+            var row = document.createElement('div');
+            row.className = 'crp-12089-pf-row';
+            row.innerHTML =
+                '<div class="crp-12089-pf-info">' +
+                    '<span class="crp-12089-pf-copy">Buy Now, Pay Later from as little as <strong>R225 per instalment</strong> with</span>' +
+                    '<span class="crp-12089-pf-logo" aria-label="Payflex">' +
+                        '<svg width="74" height="20" viewBox="0 0 74 20" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                            '<text x="0" y="15" font-family="Montserrat, Arial, sans-serif" font-size="13" font-weight="700" fill="#7B2D8B">PAYFLEX</text>' +
+                        '</svg>' +
+                    '</span>' +
+                '</div>' +
+                '<button class="crp-12089-pf-btn" type="button" aria-expanded="false" aria-label="Show Payflex details">' +
+                    '<svg class="crp-12089-pf-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                        '<path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#555555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+                    '</svg>' +
+                '</button>';
+
+            var details = document.createElement('div');
+            details.className = 'crp-12089-pf-details';
+            details.setAttribute('hidden', '');
+            details.innerHTML =
+                '<div class="crp-12089-pf-details-inner">' +
+                    '<p class="crp-12089-pf-desc">Split your purchase into 4 equal, interest-free payments. No credit checks, no hidden fees.</p>' +
+                    '<div class="crp-12089-pf-installments">' +
+                        '<div class="crp-12089-pf-item"><span class="crp-12089-pf-num">1</span><span>Today</span></div>' +
+                        '<div class="crp-12089-pf-item"><span class="crp-12089-pf-num">2</span><span>2 weeks</span></div>' +
+                        '<div class="crp-12089-pf-item"><span class="crp-12089-pf-num">3</span><span>4 weeks</span></div>' +
+                        '<div class="crp-12089-pf-item"><span class="crp-12089-pf-num">4</span><span>6 weeks</span></div>' +
+                    '</div>' +
+                '</div>';
+
+            var btn = row.querySelector('.crp-12089-pf-btn');
+            btn.addEventListener('click', function () {
+                var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+                if (isExpanded) {
+                    btn.setAttribute('aria-expanded', 'false');
+                    details.setAttribute('hidden', '');
+                } else {
+                    btn.setAttribute('aria-expanded', 'true');
+                    details.removeAttribute('hidden');
+                }
+            });
+
+            wrapper.appendChild(row);
+            wrapper.appendChild(details);
+            return wrapper;
+        }
+
+        function init() {
+            if (!isEta3to5()) return;
+
+            document.body.classList.add(VARIATION);
+
+            replaceTextOnce(/excludes\s+shipping/i, 'Shipping calculated at checkout');
+            hideByTextPattern(/ETA\s+\d/i);
+            hideByTextPattern(/from\s+as\s+little\s+as/i);
+
+            var buyBox = getBuyBoxColumn();
+            if (!buyBox) return;
+
+            var firstSelectorChild = getFirstSelectorChild(buyBox);
+            if (!firstSelectorChild) return;
+
+            var strip = document.querySelector('.crp-12089-fast-ship');
+            if (!strip) {
+                strip = buildFastShipStrip();
+                buyBox.insertBefore(strip, firstSelectorChild);
+            }
+
+            if (!document.querySelector('.crp-12089-pf-desktop')) {
+                var pfDesktop = buildPayflexSection('crp-12089-pf-desktop');
+                buyBox.insertBefore(pfDesktop, strip);
+            }
+
+            if (!document.querySelector('.crp-12089-pf-mobile')) {
+                var qtyChild = getQtyChild(buyBox);
+                var pfMobile = buildPayflexSection('crp-12089-pf-mobile');
+                if (qtyChild) {
+                    buyBox.insertBefore(pfMobile, qtyChild.nextSibling);
+                } else {
+                    buyBox.appendChild(pfMobile);
+                }
+            }
+        }
+
+        if (!window.cro_12089) {
+            window.cro_12089 = true;
+            waitForElement('#product-quantity-select', init);
+        }
+
+    } catch (e) { }
+})();
+</script>
+
+</body>
+</html>

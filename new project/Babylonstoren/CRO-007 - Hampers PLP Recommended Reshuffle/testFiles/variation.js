@@ -48,20 +48,17 @@
     var USER_TOKEN_KEY = 'x_ecommerce_shop_x-user-token';
     var HEADERS = { 'Content-Type': 'application/json', 'apollographql-client-name': 'ecommerce' };
 
-    /* ── Priority order — first 12 products to show at top ── */
+    /* ── Priority order — first 9 products to show at top ── */
     var PRIORITY_NAMES = [
-      "The Gentleman's Reserve",
-      "The Signature Collection",
-      "Sure & Steady",
-      "Scents of the Cape",
-      "Office Celebration",
-      "With Love Hamper",
-      "Farm Quintessentials - Non-alcoholic",
       "Babel Bites",
-      "Classy Collection",
-      "Bites of Bliss",
+      "Golden Gourmet",
+      "With Love Hamper",
       "Farm Quintessentials",
-      "Golden Gourmet"
+      "Farm Quintessentials - Non-alcoholic",
+      "Sweet Snack Box",
+      "Classic Collective",
+      "Sure & Steady",
+      "Bites of Bliss"
     ];
 
     /* ── Module state ── */
