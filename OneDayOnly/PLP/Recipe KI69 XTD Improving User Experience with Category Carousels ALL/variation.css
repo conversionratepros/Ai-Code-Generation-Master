@@ -1,0 +1,531 @@
+/* =========================
+   KI69 — Category Carousels
+   ========================= */
+
+/* Hide control products once our container is injected */
+html body.cro-ki69 .ki69-product-container>*:not(.ki69-carousel-container) {
+    display: none !important;
+}
+
+/* ---- Container ---- */
+html body.cro-ki69 .ki69-carousel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+    display: block !important;
+}
+
+/* ---- Category Section ---- */
+html body.cro-ki69 .ki69-category-section {
+    margin-bottom: 25px;
+}
+
+/* ---- Section Header ---- */
+html body.cro-ki69 .ki69-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+html body.cro-ki69 .ki69-section-title {
+    font-family: Montserrat, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #3c3d3d;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* ---- View All Link ---- */
+html body.cro-ki69 .ki69-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 16px;
+    background: rgba(163, 28, 128, 0.16);
+    color: rgba(163, 28, 128, 1);
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+    line-height: 1.4;
+}
+
+html body.cro-ki69 .ki69-view-all:hover {
+    background: #e50e62;
+    color: #fff;
+}
+
+/* ---- Carousel Wrapper ---- */
+html body.cro-ki69 .ki69-carousel-wrapper {
+    position: relative;
+}
+
+/* ---- Carousel Viewport ---- */
+html body.cro-ki69 .ki69-carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+/* ---- Carousel Track ---- */
+html body.cro-ki69 .ki69-carousel-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.35s ease;
+    will-change: transform;
+    width: 100%;
+    /* Anchors % resolution in card flex-basis to viewport width, not track content width */
+}
+
+/* ---- Cards ---- */
+html body.cro-ki69 .ki69-card {
+    flex: 0 0 calc((100% - 48px) / 4);
+    /* 4 cards, 3 gaps of 16px */
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+html body.cro-ki69 .ki69-card-link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: 100%; */
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---- Card Top (image) ---- */
+html body.cro-ki69 .ki69-card-top {
+    position: relative;
+    /* overflow: hidden;  */
+}
+
+/* Use position:relative + aspect-ratio so the img can be absolutely positioned.
+   This breaks the circular height dependency that caused inconsistent card heights. */
+html body.cro-ki69 .ki69-card-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(58, 63, 71, 0.1);
+    box-sizing: border-box;
+    position: relative;
+}
+
+html body.cro-ki69 .ki69-card-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+html body.cro-ki69 .ki69-card-link:hover .ki69-card-img img {
+    transform: scale(1.04);
+}
+
+/* ---- Save Badge ---- */
+html body.cro-ki69 .ki69-card-saving {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    background: #444;
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    min-width: 45px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    box-sizing: border-box;
+    line-height: 1.2;
+}
+
+/* ---- Image Tags ---- */
+html body.cro-ki69 .ki69-card-tags {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+html body.cro-ki69 .ki69-card-bestseller {
+    display: none;
+    font-family: Montserrat, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background: #e30f13;
+    color: #fff;
+    letter-spacing: 0.02em;
+}
+
+html body.cro-ki69 .ki69-card-bestseller.show {
+    display: inline-block;
+}
+
+html body.cro-ki69 .ki69-card-quantity {
+    display: inline-block;
+    font-family: Montserrat, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background: #f36e21;
+    color: #fff;
+    letter-spacing: 0.02em;
+}
+
+html body.cro-ki69 .ki69-card-bluetag {
+    display: inline-block;
+    font-family: Montserrat, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    background: #fff;
+    color: #444;
+    border: 1px solid #0093d0;
+    letter-spacing: 0.02em;
+}
+
+/* ---- Card Bottom (info) ---- */
+html body.cro-ki69 .ki69-card-bottom {
+    margin-top: 12px;
+    width: 100%;
+}
+
+html body.cro-ki69 .ki69-card-brand {
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.2em;
+    color: #444444;
+    font-family: 'Montserrat', sans-serif;
+    word-break: break-word;
+}
+
+html body.cro-ki69 .ki69-card-name {
+    box-sizing: border-box;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #747e86;
+    line-height: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html body.cro-ki69 .ki69-card-pricing .ki69-card-link .ki69-card-price {
+    box-sizing: border-box;
+    font-size: 1.2857142857142858rem;
+    font-weight: 600;
+    margin-right: 8px;
+    margin-top: 8px;
+    color: #444444;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    bottom: -0.05em;
+}
+
+html body.cro-ki69 .ki69-card-pricing .ki69-card-link .ki69-card-retail {
+    box-sizing: border-box;
+    font-size: 0.7857142857142857rem;
+    color: #747e86;
+    font-weight: 500;
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-text-decoration: line-through;
+    text-decoration: line-through;
+}
+
+@media screen and (min-width: 1024px) {
+
+    html body.cro-ki69 .ki69-card-brand,
+    html body.cro-ki69 .ki69-card-name,
+    html body.cro-ki69 .ki69-card-pricing .ki69-card-link .ki69-card-retail {
+        font-size: 1rem;
+    }
+
+    html body.cro-ki69 .ki69-card-pricing .ki69-card-link .ki69-card-price {
+        font-size: 1.5714285714285714rem;
+    }
+
+    span.ki69-saving-label {
+        display: block;
+        font-size: 0.7857142857142857rem;
+    }
+
+    span.ki69-saving-value {
+        padding: 0 4px;
+        font-size: 1rem;
+    }
+}
+
+
+html body.cro-ki69 .ki69-card-pricing .ki69-card-link {
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    flex-direction: unset;
+}
+
+
+
+
+html body.cro-ki69 .ki69-card-pricing {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 8px;
+    gap: 6px;
+}
+
+html body.cro-ki69 .ki69-card-price {
+    font-family: Montserrat, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #444;
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+html body.cro-ki69 .ki69-card:hover .ki69-card-price {
+    color: #e50e62;
+}
+
+html body.cro-ki69 .ki69-card:hover .ki69-card-saving {
+    background-color: #e50e62;
+}
+
+html body.cro-ki69 .ki69-card-retail {
+    font-family: Montserrat, sans-serif;
+    font-size: 0.8rem;
+    color: #747e86;
+    font-weight: 500;
+    text-decoration: line-through;
+    line-height: 1;
+}
+
+html body.cro-ki69 .ki69-card-plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    background: #eff1f3;
+    color: #3c3d3d;
+    margin-left: auto;
+    transition: background 0.2s ease, color 0.2s ease;
+    text-decoration: none;
+}
+
+html body.cro-ki69 .ki69-card-plus:hover {
+    background: #5f6971;
+    color: #fff;
+}
+
+html body.cro-ki69 .ki69-card-plus svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ---- Arrow Buttons ---- */
+html body.cro-ki69 .ki69-arrow {
+    position: absolute;
+    top: 35%;
+    /* aligned to image area vertically */
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #3c3d3d;
+    transition: box-shadow 0.2s ease;
+}
+
+html body.cro-ki69 .ki69-arrow:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+html body.cro-ki69 .ki69-arrow-prev {
+    left: -20px;
+}
+
+html body.cro-ki69 .ki69-arrow-next {
+    right: -20px;
+}
+
+html body.cro-ki69 .ki69-arrow-hidden {
+    display: none !important;
+}
+
+/* ========================= */
+/* MOBILE                    */
+/* ========================= */
+@media (max-width: 1023px) {
+    html body.cro-ki69 .ki69-carousel-container {
+        padding: 0;
+    }
+
+    html body.cro-ki69 .ki69-section-title {
+        font-size: 18px;
+    }
+
+    /* Switch viewport to native scroll on mobile */
+    html body.cro-ki69 .ki69-carousel-viewport {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    html body.cro-ki69 .ki69-carousel-viewport::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Disable JS transform on mobile — use native scroll */
+    html body.cro-ki69 .ki69-carousel-track {
+        transform: none !important;
+        transition: none !important;
+        gap: 12px;
+    }
+
+    /* 2 full + ~20% of 3rd card visible.
+       vw units + !important ensure this always overrides the desktop 4-col rule. */
+    html body.cro-ki69 .ki69-card {
+        flex: 0 0 calc((100vw - 44px) / 2.2) !important;
+        /* 44 = 32px padding + 12px gap */
+        width: calc((100vw - 44px) / 2.2) !important;
+        scroll-snap-align: start;
+    }
+
+    /* No arrows on mobile */
+    html body.cro-ki69 .ki69-arrow {
+        display: none !important;
+    }
+
+    html body.cro-ki69 .ki69-card-price {
+        font-size: 1rem;
+    }
+
+    html body.cro-ki69 .ki69-category-section {
+        /* margin-bottom: 32px; */
+    }
+
+    span.ki69-saving-label {
+        display: none;
+    }
+
+    html body.cro-ki69 .ki69-card-saving {
+        box-sizing: border-box;
+        background-color: #e50e62;
+        margin-top: 6%;
+        margin-right: 0;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-top-left-radius: 4px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 4px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 0.7857142857142857rem;
+        color: #fff;
+        text-align: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: row;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 130;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        min-width: unset;
+        height: auto;
+        width: auto;
+        line-height: unset;
+    }
+
+    html body.cro-ki69 .ki69-card-saving:before {
+        content: '- ';
+        margin-right: 2px;
+    }
+}
+
+/* Narrow desktop padding adjustment */
+@media (min-width: 1024px) and (max-width: 1280px) {
+    html body.cro-ki69 .ki69-carousel-container {
+        padding: 16px 40px;
+    }
+}
+
+html body.cro-ki69 .ki69-page-heading {
+    display: none;
+}

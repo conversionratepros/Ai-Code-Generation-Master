@@ -819,6 +819,21 @@
                         }
                     });
                 }
+            },
+            test_Recipe_KI69_Improving_User_Experience_with_Category_Carousels() {
+                var pathName = window.location.href;
+                if (pathName.includes('/extra-time-deals')) {
+                    window.crotest_Recipe_KI69_Improving_User_Experience_with_Category_Carousels = 1;
+                    window._conv_q = window._conv_q || [];
+                    window._conv_q.push(["executeExperiment", "1004199324"]);
+                    console.log("Experiment Recipe KI69 | XTD - Improving User Experience with Category Carousels | ALL Activated");
+                } else {
+                    setTimeout(function () {
+                        if (document.querySelector('.cro-ki69')) {
+                            document.querySelector('body').classList.remove('cro-ki69')
+                        }
+                    }, 400)
+                }
             }
         };
 
@@ -855,6 +870,7 @@
         experiments.test_i3_Advertise_XTD_page_with_banners_ALL_CRO8037();
         experiments.test_Recipe_OOD_Product_Card_Save_Tag_Enhancement_ALL_CRO_12114_Activated();
         experiments.test_PDP_FastShip_Highlight_ALL_CRO12089();
+        experiments.test_Recipe_KI69_Improving_User_Experience_with_Category_Carousels();
 
         function activateListner() {
             // console.log("Global JavaScript Activate");
@@ -868,6 +884,7 @@
             experiments.test_i3_Advertise_XTD_page_with_banners_ALL_CRO8037();
             experiments.test_Recipe_OOD_Product_Card_Save_Tag_Enhancement_ALL_CRO_12114_Activated();
             experiments.test_PDP_FastShip_Highlight_ALL_CRO12089();
+            experiments.test_Recipe_KI69_Improving_User_Experience_with_Category_Carousels();
 
 
         }
