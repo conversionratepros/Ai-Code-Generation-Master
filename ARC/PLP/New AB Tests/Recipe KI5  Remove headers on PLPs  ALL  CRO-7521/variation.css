@@ -61,11 +61,11 @@
     display: none;
 }
 
-.cro-plp-wrapper+.content-container +.content-container .separation-line-container {
+.cro-plp-wrapper+.content-container+.content-container .separation-line-container {
     display: none;
 }
 
-.cro-plp-carousel-container.cro-plp-carousel-hidden + .content-container.dw-mod .separation-line {
+.cro-plp-carousel-container.cro-plp-carousel-hidden+.content-container.dw-mod .separation-line {
     display: none;
 }
 

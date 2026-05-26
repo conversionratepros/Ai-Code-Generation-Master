@@ -159,7 +159,7 @@
                 lib.waitForElement('.cro_My_Bag, .cro_Delivery, .cro_Payment', function () {
                     window.crotest_Recipe_KI19_checkout_ALL_CRO7505 = 1;
                     window._conv_q = window._conv_q || [];
-                    window._conv_q.push(["executeExperiment", "1004195888"]);
+                    window._conv_q.push(["executeExperiment", "1004199433"]);
                     console.log("Experiment Recipe KI19 | Add conventional elements to the checkout | ALL | CRO-7505 Activated");
                 }, 50, 20000)
             }, test_PLP_reduce_distraction_improve_navigation_ALL_CRO7972() {

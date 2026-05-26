@@ -1046,6 +1046,23 @@
 			}, 15000);
 		}
 
+		function waitForEitherElement(selector1, selector2, trigger) {
+			var fired = false;
+			var interval = setInterval(function () {
+				if (document && (document.querySelector(selector1) || document.querySelector(selector2))) {
+					clearInterval(interval);
+					if (!fired) {
+						fired = true;
+						trigger();
+					}
+				}
+			}, 50);
+
+			setTimeout(function () {
+				clearInterval(interval);
+			}, 15000);
+		}
+
 		function normalizeText(text) {
 			return text
 				? text.replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim()
@@ -1339,7 +1356,13 @@
 			var pageData = getPageData();
 			if (!pageData) return;
 
-			moveIntroToBottom(pageData);
+			waitForEitherElement(
+				".content-row--1-2split h1",
+				".u-full-width .content-row__item__body h2.plp-header",
+				function () {
+					moveIntroToBottom(pageData);
+				}
+			);
 		}
 
 		waitForElement("#multiForm", init);
