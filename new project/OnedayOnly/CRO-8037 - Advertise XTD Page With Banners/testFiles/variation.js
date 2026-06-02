@@ -1,6 +1,6 @@
 (function () {
   try {
-    var debug = 0;
+    var debug = 1;
     var variation_name = "CRO-8037_Banner_After_Every_4th_Row";
 
     function waitForElement(selector, trigger) {
@@ -33,13 +33,14 @@
     var CRO = {
       flag: "cro_t_8037",
       bannerAttr: "data-cro-xtd-banner",
+      shopMoreAttr: "data-cro-sm",
+      cardSel: ".unbxdanalyticsProduct",
       // S3 filenames are swapped — mobile.svg is the wide desktop banner, desktop.svg is the square mobile banner
       imgDesktop:
         "https://crp-clients-images.s3.af-south-1.amazonaws.com/OneDayOnly/i3+%7C+Advertise+XTD+page+with+banners+%7C+ALL+%7C+CRO-8037/i3_Advertise_banners_ALL_CRO8037_mobile.svg",
       imgMobile:
         "https://crp-clients-images.s3.af-south-1.amazonaws.com/OneDayOnly/i3+%7C+Advertise+XTD+page+with+banners+%7C+ALL+%7C+CRO-8037/i3_Advertise_banners_ALL_CRO8037_desktop.svg",
-      link: "https://www.onedayonly.co.za/shops/extra-time-deals",
-      productLinkSel: '[width="1"] > div [href*="/products"]'
+      link: "https://www.onedayonly.co.za/shops/extra-time-deals"
     };
 
     function createBannerNode(isFlexItem) {
@@ -61,139 +62,260 @@
       for (var i = 0; i < nodes.length; i++) nodes[i].remove();
     }
 
-    function getAbsoluteTop(el) {
-      return el.getBoundingClientRect().top + window.scrollY;
-    }
-
-    function getFlexItemFromLink(linkEl) {
-      var el = linkEl;
-      while (el && el !== document.body) {
-        var parent = el.parentElement;
+    // Walk up from el and return the element whose direct parent is a flex container.
+    function getFlexItemAncestor(el) {
+      var current = el;
+      while (current && current !== document.body) {
+        var parent = current.parentElement;
         if (parent && window.getComputedStyle(parent).display.indexOf("flex") !== -1) {
-          var siblings = parent.children;
-          for (var s = 0; s < siblings.length; s++) {
-            if (siblings[s] !== el && siblings[s].querySelector('[href*="/products"]')) return el;
-          }
+          return current;
         }
-        el = parent;
+        current = parent;
       }
       return null;
     }
 
-    function groupFlexItemsIntoVisualRows(flexItems) {
-      // batch all getBoundingClientRect reads before sorting to avoid repeated reflows
-      var rects = [];
-      for (var i = 0; i < flexItems.length; i++) {
-        rects.push(flexItems[i].getBoundingClientRect());
-      }
+    var lastCardCount = -1;
 
-      var map = {};
-      for (var i = 0; i < flexItems.length; i++) {
-        var key = String(Math.round(rects[i].top / 5) * 5);
-        if (!map[key]) map[key] = [];
-        map[key].push({ el: flexItems[i], left: rects[i].left });
+    // Build the ordered list of top-level group sections (sections with > 1 product card).
+    // Returns the array and leaves the data-cro-sm attribute set — caller must clean up.
+    function buildShopMoreEls() {
+      var shopMoreEls = [];
+      var allSections = document.querySelectorAll("section");
+      for (var i = 0; i < allSections.length; i++) {
+        var sec = allSections[i];
+        if (sec.closest("[" + CRO.shopMoreAttr + "]")) continue;
+        if (sec.querySelectorAll(CRO.cardSel).length > 1) {
+          sec.setAttribute(CRO.shopMoreAttr, "1");
+          shopMoreEls.push(sec);
+        }
       }
+      return shopMoreEls;
+    }
 
-      var keys = Object.keys(map).sort(function (a, b) {
-        return parseFloat(a) - parseFloat(b);
+    function cleanupShopMoreEls(shopMoreEls) {
+      for (var i = 0; i < shopMoreEls.length; i++) shopMoreEls[i].removeAttribute(CRO.shopMoreAttr);
+    }
+
+    // Given a free product's id from __NEXT_DATA__, find its .unbxdanalyticsProduct in
+    // the DOM and return the afterEl for the last card in the same visual row.
+    function findFreeCardRowEl(productId) {
+      var allCards = document.querySelectorAll(CRO.cardSel);
+      var targetCard = null;
+      for (var i = 0; i < allCards.length; i++) {
+        if (allCards[i].querySelector('a[href*="/' + productId + '"]')) {
+          targetCard = allCards[i];
+          break;
+        }
+      }
+      if (!targetCard) {
+        // if (debug) // console.log("[CRO-8037] Product '" + productId + "' not in DOM — falling back to visual sort");
+        return null;
+      }
+      var r = targetCard.getBoundingClientRect();
+      var rowTop = Math.round((r.top + window.scrollY) / 10) * 10;
+      // if (debug) // console.log("[CRO-8037] Found '" + productId + "' in DOM at rowTop=" + rowTop);
+      var rowCards = [];
+      for (var i = 0; i < allCards.length; i++) {
+        var cr = allCards[i].getBoundingClientRect();
+        if (cr.height > 0 && Math.round((cr.top + window.scrollY) / 10) * 10 === rowTop) {
+          rowCards.push({ el: allCards[i], left: cr.left });
+        }
+      }
+      if (rowCards.length === 0) return getFlexItemAncestor(targetCard) || targetCard;
+      rowCards.sort(function (a, b) { return a.left - b.left; });
+      var lastInRow = rowCards[rowCards.length - 1].el;
+      return getFlexItemAncestor(lastInRow) || lastInRow;
+    }
+
+    // Fallback: derive insertion point purely from visible DOM positions.
+    function find16thVisualSort(shopMoreEls) {
+      var allCards = Array.prototype.slice.call(document.querySelectorAll(CRO.cardSel));
+      if (allCards.length === 0) return null;
+
+      var groupLastTop = shopMoreEls.map(function (sm) {
+        var max = 0;
+        var smCards = sm.querySelectorAll(CRO.cardSel);
+        for (var ci = 0; ci < smCards.length; ci++) {
+          var r2 = smCards[ci].getBoundingClientRect();
+          if (r2.height > 0) {
+            var t = Math.round((r2.top + window.scrollY) / 10) * 10;
+            if (t > max) max = t;
+          }
+        }
+        return max;
       });
 
-      var rows = [];
-      for (var k = 0; k < keys.length; k++) {
-        var rowItems = map[keys[k]];
-        rowItems.sort(function (a, b) { return a.left - b.left; });
-        rows.push(rowItems.map(function (r) { return r.el; }));
-      }
-      return rows;
-    }
-
-    function buildUnifiedGroups() {
-      var groups = [];
-
-      var namedSections = [];
-      var allSections = document.querySelectorAll('section');
-      for (var i = 0; i < allSections.length; i++) {
-        var el = allSections[i];
-        if (
-          el.querySelector('h2[font-weight="700"][font-size="4"]') &&
-          el.querySelectorAll('[href*="/products"]').length > 1 &&
-          !el.closest('[data-cro-ns]')
-        ) {
-          el.setAttribute('data-cro-ns', '1');
-          namedSections.push(el);
-          groups.push({ kind: "namedSection", afterEl: el, top: getAbsoluteTop(el) });
+      var cardData = allCards.map(function (c) {
+        var r = c.getBoundingClientRect();
+        if (r.height > 0) {
+          return { el: c, top: Math.round((r.top + window.scrollY) / 10) * 10, left: r.left };
         }
-      }
+        var groupEl = c.closest("[" + CRO.shopMoreAttr + "]");
+        if (!groupEl) return null;
+        var gi = shopMoreEls.indexOf(groupEl);
+        return { el: c, top: groupLastTop[gi] + 1, left: Infinity };
+      }).filter(Boolean);
 
-      var links = document.querySelectorAll(CRO.productLinkSel);
-      var seen = new WeakSet();
-      var flexItems = [];
-
-      for (var i = 0; i < links.length; i++) {
-        if (links[i].closest('[data-cro-ns]')) continue;
-        var item = getFlexItemFromLink(links[i]);
-        if (!item || seen.has(item)) continue;
-        seen.add(item);
-        flexItems.push(item);
-      }
-
-      var productRows = groupFlexItemsIntoVisualRows(flexItems);
-      for (var j = 0; j < productRows.length; j++) {
-        var lastItem = productRows[j][productRows[j].length - 1];
-        if (lastItem) groups.push({ kind: "productRow", afterEl: lastItem, top: getAbsoluteTop(lastItem) });
-      }
-
-      groups.sort(function (a, b) { return a.top - b.top; });
-      for (var i = 0; i < namedSections.length; i++) namedSections[i].removeAttribute('data-cro-ns');
-
-      return groups;
-    }
-
-    var lastProductCount = -1;
-
-    function insertBannersAfterEvery4thGroup() {
-      // skip the expensive DOM work if the page content hasn't changed
-      var currentCount = document.querySelectorAll(CRO.productLinkSel).length;
-      if (currentCount === lastProductCount) return;
-      lastProductCount = currentCount;
-
-      removeExistingBanners();
-      var groups = buildUnifiedGroups();
-      if (groups.length === 0) return;
+      cardData.sort(function (a, b) { return a.top !== b.top ? a.top - b.top : a.left - b.left; });
 
       if (debug) {
-        console.log("[CRO-8037] Total groups detected:", groups.length);
-        for (var d = 0; d < groups.length; d++) {
-          console.log("[CRO-8037] Group " + (d + 1) + ":", groups[d].kind, "| top:", Math.round(groups[d].top), "| el:", groups[d].afterEl);
+        // console.log("[CRO-8037] Visual sort — total cards (incl. hidden group):", cardData.length);
+        cardData.forEach(function (d, i) {
+          var name = d.el.textContent.trim().slice(0, 35);
+          // console.log("[CRO-8037] #" + (i + 1) + (i === 15 ? " ← 16th" : "") + ": \"" + name + "\" top=" + d.top + " left=" + (d.left === Infinity ? "hidden" : Math.round(d.left)) + " inGroup=" + !!d.el.closest("[" + CRO.shopMoreAttr + "]"));
+        });
+      }
+
+      var targetData = cardData.length >= 16 ? cardData[15] : cardData[cardData.length - 1];
+      var targetCard = targetData.el;
+      var shopMoreParent = targetCard.closest("[" + CRO.shopMoreAttr + "]");
+
+      if (shopMoreParent) return shopMoreParent;
+
+      var rowTop = targetData.top;
+      var rowCards = cardData.filter(function (d) {
+        return d.top === rowTop && !d.el.closest("[" + CRO.shopMoreAttr + "]");
+      });
+      var lastInRow = rowCards[rowCards.length - 1].el;
+      return getFlexItemAncestor(lastInRow) || lastInRow;
+    }
+
+    function insertBannerAfter16Products(allowVisualFallback) {
+      var currentCount = document.querySelectorAll(CRO.cardSel).length;
+      var bannerExists = !!document.querySelector("[" + CRO.bannerAttr + "]");
+      if (currentCount === lastCardCount && bannerExists) return;
+
+      // Resolve __NEXT_DATA__ BEFORE committing to run.
+      // If it's not ready yet and visual fallback isn't allowed, return without updating
+      // lastCardCount so the next retry re-checks rather than skipping.
+      var nextProps = window.__NEXT_DATA__ && window.__NEXT_DATA__.props && window.__NEXT_DATA__.props.pageProps;
+      var page = nextProps && (nextProps.categoryPage || nextProps.shopPage);
+      var dataItems = page && Array.isArray(page.items) ? page.items : null;
+
+      if (!dataItems && !allowVisualFallback) {
+        // if (debug)  console.log("[CRO-8037] __NEXT_DATA__ not ready — will retry");
+        return;
+      }
+
+      lastCardCount = currentCount;
+      removeExistingBanners();
+
+      var shopMoreEls = buildShopMoreEls();
+      var afterEl = null;
+
+      if (dataItems) {
+        var totalProducts = 0;
+        for (var si = 0; si < dataItems.length; si++) {
+          totalProducts += ((dataItems[si] && dataItems[si].props && dataItems[si].props.items) || []).length;
+        }
+        var targetN = Math.min(16, totalProducts);
+        var count = 0;
+        var groupsSeen = 0;
+        var found = false;
+
+        // if (debug) console.log("[CRO-8037] __NEXT_DATA__ total products:", totalProducts, "| targeting #" + targetN);
+
+        for (var si = 0; si < dataItems.length && !found; si++) {
+          var sectionProds = (dataItems[si] && dataItems[si].props && dataItems[si].props.items) || [];
+          var isGroup = sectionProds.length > 1;
+
+          for (var pi = 0; pi < sectionProds.length && !found; pi++) {
+            count++;
+            if (count === targetN) {
+              var prod = sectionProds[pi];
+              // if (debug) console.log("[CRO-8037] #" + targetN + " (via __NEXT_DATA__): \"" + (prod.shortName || prod.id) + "\" | inGroup=" + isGroup + " | groupIdx=" + (isGroup ? groupsSeen : "n/a"));
+
+              if (isGroup) {
+                // Find product in DOM by URL match
+                var allDomCards = document.querySelectorAll(CRO.cardSel);
+                var matchedCard = null;
+                for (var k = 0; k < allDomCards.length; k++) {
+                  if (allDomCards[k].querySelector('a[href*="/' + prod.id + '"]')) {
+                    matchedCard = allDomCards[k];
+                    break;
+                  }
+                }
+                if (matchedCard) {
+                  // 1. Check if the card is inside one of the already-identified section groups
+                  for (var gi = 0; gi < shopMoreEls.length; gi++) {
+                    if (shopMoreEls[gi].contains(matchedCard)) {
+                      afterEl = shopMoreEls[gi];
+                      break;
+                    }
+                  }
+                  // 2. Not in a section group — look for a div-based group wrapper
+                  if (!afterEl) {
+                    var totalDomCards = document.querySelectorAll(CRO.cardSel).length;
+                    var cur = matchedCard.parentElement;
+                    while (cur && cur !== document.body) {
+                      var cnt = cur.querySelectorAll(CRO.cardSel).length;
+                      if (cnt > 1 && cnt < totalDomCards) { afterEl = cur; break; }
+                      cur = cur.parentElement;
+                    }
+                  }
+                  // 3. __NEXT_DATA__ says group but DOM renders it individually — treat as free card
+                  if (!afterEl) afterEl = findFreeCardRowEl(prod.id);
+                }
+                // Product not yet in DOM (collapsed/hidden) → fall back to positional index
+                if (!afterEl) afterEl = shopMoreEls[groupsSeen] || null;
+                // if (debug && afterEl)  console.log("[CRO-8037] → Banner after:", afterEl.querySelector && afterEl.querySelector("h2") ? afterEl.querySelector("h2").textContent.trim() : afterEl);
+              } else {
+                afterEl = findFreeCardRowEl(prod.id);
+              }
+              found = true;
+            }
+          }
+          if (!found && isGroup) groupsSeen++;
         }
       }
 
-      for (var i = 0; i < groups.length; i++) {
-        if ((i + 1) % 4 !== 0) continue;
-        var g = groups[i];
-        g.afterEl.insertAdjacentElement("afterend", createBannerNode(g.kind !== "namedSection"));
+      cleanupShopMoreEls(shopMoreEls);
+
+      // FALLBACK: visual sort (if __NEXT_DATA__ unavailable or product not found in DOM)
+      if (!afterEl) {
+        // if (debug)  console.log("[CRO-8037] Falling back to visual sort");
+        shopMoreEls = buildShopMoreEls();
+        afterEl = find16thVisualSort(shopMoreEls);
+        cleanupShopMoreEls(shopMoreEls);
       }
+
+      if (!afterEl) return;
+
+      var parentDisplay = afterEl.parentElement ? window.getComputedStyle(afterEl.parentElement).display : "";
+      var isFlexItem = parentDisplay.indexOf("flex") !== -1;
+
+      // if (debug)  console.log("[CRO-8037] Inserting after:", afterEl, "| isFlexItem:", isFlexItem);
+      afterEl.insertAdjacentElement("afterend", createBannerNode(isFlexItem));
     }
 
     function init() {
       addClass('body', variation_name);
 
-      waitForElement(CRO.productLinkSel, function () {
-        insertBannersAfterEvery4thGroup();
+      waitForElement(CRO.cardSel, function () {
+        insertBannerAfter16Products(false);
 
-        var retries = 0;
+        // Retry every 400ms for up to 5 seconds, stopping as soon as the banner is placed.
+        // Passes allowVisualFallback=true only on the last attempts (after 4.5s) so that
+        // the visual sort is a true last resort — not an early-fire on hidden/unrendered cards.
+        var start = Date.now();
         var intervalCallAgain = setInterval(function () {
-          insertBannersAfterEvery4thGroup();
-          if (++retries >= 15) clearInterval(intervalCallAgain);
+          if (document.querySelector("[" + CRO.bannerAttr + "]")) {
+            clearInterval(intervalCallAgain);
+            return;
+          }
+          var elapsed = Date.now() - start;
+          insertBannerAfter16Products(elapsed >= 4500);
+          if (elapsed >= 5000) clearInterval(intervalCallAgain);
         }, 400);
       });
     }
 
     if (!window[CRO.flag]) {
       window[CRO.flag] = true;
-      waitForElement("body", init);
-    }
 
+    }
+    waitForElement("body", init);
 
   } catch (e) {
     if (debug) console.log(e, "error in Test" + variation_name);
