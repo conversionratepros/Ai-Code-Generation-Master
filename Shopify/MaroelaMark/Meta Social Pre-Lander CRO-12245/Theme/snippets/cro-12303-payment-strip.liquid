@@ -1,0 +1,57 @@
+{% comment %}
+  CRO-12303 | Secure Payment Strip
+  ─────────────────────────────────────────────────────────────────────
+  Layout: [padlock icon + label text]  [payment icons row]
+
+  Label text:   section.settings.cro_payment_label (editable in theme editor)
+  Payment icons: rendered from `payment_icon` blocks if added by merchant,
+                 otherwise renders the 5 branded icons from cro-12303-payment-icons snippet.
+
+  Icons snippet: snippets/cro-12303-payment-icons.liquid
+  Accepts: icon = 'lock' | 'applepay' | 'amex' | 'visa' | 'mastercard' | 'giftcard'
+
+  Used by: snippets/cro-12303-trust-mount.liquid
+  Injected to DOM position: after .product-form--atc (via JS)
+{% endcomment %}
+
+
+{%- assign _label = section.settings.cro_payment_label | default: 'Secure payments via' -%}
+
+{%- assign _has_icon_blocks = false -%}
+{%- for _b in section.blocks -%}
+  {%- if _b.type == 'payment_icon' -%}
+    {%- assign _has_icon_blocks = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<div class="cro-payment-strip" data-cro-payment-strip>
+  <div class="cro-payment-strip__left">
+    {%- render 'cro-12303-payment-icons', icon: 'lock' -%}
+    <span class="cro-payment-strip__text">{{ _label | escape }}</span>
+  </div>
+
+  <div class="cro-payment-strip__icons">
+    {%- if _has_icon_blocks -%}
+      {%- for _b in section.blocks -%}
+        {%- if _b.type == 'payment_icon' and _b.settings.icon_image -%}
+          <span class="cro-payment-strip__icon" {{ _b.shopify_attributes }}>
+            <img
+              src="{{ _b.settings.icon_image | img_url: '80x' }}"
+              alt="{{ _b.settings.icon_alt | default: 'Payment method' | escape }}"
+              height="22"
+              width=""
+              loading="lazy"
+            >
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      <span class="cro-payment-strip__icon">{%- render 'cro-12303-payment-icons', icon: 'applepay' -%}</span>
+      <span class="cro-payment-strip__icon">{%- render 'cro-12303-payment-icons', icon: 'amex' -%}</span>
+      <span class="cro-payment-strip__icon">{%- render 'cro-12303-payment-icons', icon: 'visa' -%}</span>
+      <span class="cro-payment-strip__icon">{%- render 'cro-12303-payment-icons', icon: 'mastercard' -%}</span>
+      <span class="cro-payment-strip__icon">{%- render 'cro-12303-payment-icons', icon: 'giftcard' -%}</span>
+    {%- endif -%}
+  </div>
+</div>

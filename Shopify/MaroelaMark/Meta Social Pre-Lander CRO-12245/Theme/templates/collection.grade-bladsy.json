@@ -1,0 +1,144 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "static-collection",
+      "blocks": {
+        "filter-1": {
+          "type": "filter",
+          "disabled": true,
+          "settings": {
+            "filter_option": "faceted",
+            "filter_groups": "expand_all",
+            "show_filter_product_count": true,
+            "filter_style": "groups",
+            "filter_limit": "999",
+            "grid_categories": "",
+            "custom_ordered_categories": "",
+            "custom_ordered_tags": "",
+            "excluded_tags": "",
+            "excluded_groups": ""
+          }
+        },
+        "menu_frXYqm": {
+          "type": "menu",
+          "disabled": true,
+          "settings": {
+            "menu": "koop-volgens",
+            "show_prod_count": true,
+            "menu_depth_range": 1
+          }
+        }
+      },
+      "block_order": [
+        "filter-1",
+        "menu_frXYqm"
+      ],
+      "settings": {
+        "show_collection_image": false,
+        "products_per_page_range": 48,
+        "products_per_row": "4",
+        "sort_by": true,
+        "grid_list": false,
+        "default_view": "grid-view",
+        "enable_subcollection": false,
+        "show_product_count": true,
+        "thumbnail_image": "collection-image",
+        "image_crop": "square"
+      }
+    },
+    "static-recently-viewed": {
+      "type": "static-recently-viewed",
+      "disabled": true,
+      "settings": {
+        "enable_recently_viewed_products": true
+      }
+    },
+    "pxs_newsletter_CidbtX": {
+      "type": "pxs-newsletter",
+      "disabled": true,
+      "custom_css": [
+        "div {background-color: #007a80;}",
+        "@media screen and (min-width: 680px) {.pxs-newsletter-content {padding-top: 15px; padding-bottom: 15px; }}",
+        "h2.pxs-newsletter-heading {color: #fff;}",
+        ".pxs-newsletter-text {color: #fff;}"
+      ],
+      "settings": {
+        "title": "Wees die eerste om te weet",
+        "text": "<p>Teken in op ons nuusbrief en kry<br/>uitgesoekte produkte teen sakpaspryse</p>",
+        "desktop_alignment": "left",
+        "mobile_alignment": "top"
+      }
+    },
+    "dynamic_html_W4GDNi": {
+      "type": "dynamic-html",
+      "settings": {
+        "title": "",
+        "custom_html": "<div id=\"mc_embed_shell\">\n      <link href=\"//cdn-images.mailchimp.com/embedcode/classic-061523.css\" rel=\"stylesheet\" type=\"text/css\">\n  <style type=\"text/css\">\n        #mc_embed_signup{background:#007a80; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 100%;}\n        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.\n           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */\np {text-align: center;}\nh3 {text-align: center;}\n\n</style>\n<div id=\"mc_embed_signup\">\n    <form action=\"https://maroelamark.us20.list-manage.com/subscribe/post?u=67e83c9b3b1779f0b4933dba6&amp;id=8ab6ed4834&amp;f_id=00117ce0f0\" method=\"post\" id=\"mc-embedded-subscribe-form\" name=\"mc-embedded-subscribe-form\" class=\"validate\" target=\"_blank\">\n        <div id=\"mc_embed_signup_scroll\">\n<h3 style=\"color:#fff;\">Wees die eerste om te weet</h3>\n<p style=\"color:#fff;\">Teken in op ons nuusbrief en kry <br>uitgesoekte produkte teen sakpas pryse</p>\n            \n            <div class=\"mc-field-group\">\n<label for=\"mce-EMAIL\" style=\"color:#fff;\">E-posadres<span class=\"asterisk\">*</span></label><input type=\"email\" name=\"EMAIL\" class=\"required email\" id=\"mce-EMAIL\" required=\"\" value=\"\">\n</div>\n        <div id=\"mce-responses\" class=\"clear\">\n            <div class=\"response\" id=\"mce-error-response\" style=\"display: none;\"></div>\n            <div class=\"response\" id=\"mce-success-response\" style=\"display: none;\"></div>\n        </div>\n<div aria-hidden=\"true\" style=\"position: absolute; left: -5000px;\"><input type=\"text\" name=\"b_67e83c9b3b1779f0b4933dba6_8ab6ed4834\" tabindex=\"-1\" value=\"\"></div>\n<div class=\"clear\"><input type=\"submit\" name=\"subscribe\" id=\"mc-embedded-subscribe\" class=\"button\" value=\"Teken in\"></div>\n    </div>\n</form>\n</div>\n<script type=\"text/javascript\" src=\"//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js\"></script><script type=\"text/javascript\">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>\n</div>"
+      }
+    },
+    "dynamic_shoppable_image_miWweh": {
+      "type": "dynamic-shoppable-image",
+      "blocks": {
+        "hotspot_nFhJMW": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "x_axis": 10,
+            "y_axis": 65
+          }
+        },
+        "hotspot_rqp6MC": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "x_axis": 25,
+            "y_axis": 30
+          }
+        },
+        "hotspot_3B6Vxp": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "x_axis": 85,
+            "y_axis": 55
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_nFhJMW",
+        "hotspot_rqp6MC",
+        "hotspot_3B6Vxp"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "image": "shopify://shop_images/Copy_of_kosblik.png",
+        "image_width": "two-thirds",
+        "link_text": "View product",
+        "textbox_title": "Vir Meer Skryfbehoeftes",
+        "textbox_subheading": "",
+        "textbox_button_label": "Sien meer",
+        "textbox_button_link": "shopify://collections/skryfbehoeftes",
+        "textbox_button_style": "primary",
+        "textbox_text_alignment": "left",
+        "textbox_text_position": "right"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "static-recently-viewed",
+    "pxs_newsletter_CidbtX",
+    "dynamic_html_W4GDNi",
+    "dynamic_shoppable_image_miWweh"
+  ]
+}

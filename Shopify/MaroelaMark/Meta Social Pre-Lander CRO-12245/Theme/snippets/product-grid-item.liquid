@@ -1,0 +1,195 @@
+{% comment %}
+  Empire Theme 12.3.0 - Unified Final Specifications Template
+{% endcomment %}
+{% liquid
+  assign recently_viewed = recently_viewed | default: nil
+  assign countdown_timer = countdown_timer | default: nil
+  assign product_compare = product_compare | default: nil
+  assign product_grid_show_second_image = settings.product_grid_show_second_image
+  assign emphasize_price = settings.product_grid_emphasize_price
+  assign quick_shop_display = settings.product_grid_quick_shop_display
+  assign enable_quickshop = settings.product_grid_enable_quickshop
+  assign atc_display = settings.product_grid_show_atc
+  assign atc_button = settings.product_grid_show_atc_button
+  assign money_format = shop.money_format | strip_html
+
+  if product_compare
+    assign enable_quickshop = false
+    assign atc_button = true
+  endif
+
+  assign performance_lazyload = true
+  if context == 'collection'
+    assign products_per_row = products_per_row | plus: 0
+    if index <= products_per_row
+      assign performance_lazyload = false
+    endif
+  endif
+%}
+
+{% if product %}
+  {% assign compare_at_price = product.compare_at_price %}
+  {% assign compare_at_price_varies = product.compare_at_price_varies %}
+  {% assign price = product.price %}
+  {% assign price_varies = product.price_varies %}
+  {% assign product_available = product.available %}
+  {% assign product_title = product.title %}
+  {% assign product_vendor = product.vendor %}
+  {% assign product_link = product.url | within: collection %}
+{% else %}
+  {% assign onboarding = true %}
+  {% assign compare_at_price = 199900 %}
+  {% assign compare_at_price_varies = false %}
+  {% assign price = 199900 %}
+  {% assign price_varies = false %}
+  {% assign product_available = true %}
+  {% assign product_title = 'onboarding.product.title' | t %}
+  {% assign product_vendor = 'onboarding.product.vendor' | t %}
+  {% assign product_link = '#' %}
+{% endif %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign has_variants = false %}
+{% unless product.has_only_default_variant %}
+  {% assign has_variants = true %}
+{% endunless %}
+
+{% assign initial_image = product.featured_media.preview_image.src %}
+
+{% comment %} Safe Language Translation Engine Lookups {% endcomment %}
+{% if has_variants %}
+  {% assign quick_buy_text = 'product.buttons.choose_options' | t %}
+{% else %}
+  {% if product.template_suffix contains 'pre-order' %}
+    {% assign quick_buy_text = 'product.buttons.pre_order' | t %}
+  {% else %}
+    {% assign quick_buy_text = 'product.buttons.add_to_cart' | t %}
+  {% endif %}
+{% endif %}
+
+{% unless product_available %}
+  {% assign quick_buy_text = 'product.buttons.sold_out' | t %}
+{% endunless %}
+
+{% comment %} Completely Dynamic Case-Insensitive Translation Lookup System {% endcomment %}
+{% capture check_sale_translation %}{{ 'product.item.badges.sale' | t }}{% endcapture %}
+{% assign check_lower = check_sale_translation | downcase %}
+
+{% if check_lower contains 'missing' %}
+  {% capture check_sale_translation_alt %}{{ 'product.badges.sale' | t }}{% endcapture %}
+  {% assign check_lower_alt = check_sale_translation_alt | downcase %}
+  
+  {% if check_lower_alt contains 'missing' %}
+    {% comment %} Look up the third variant common string configuration used by Empire {% endcomment %}
+    {% capture check_sale_translation_three %}{{ 'products.product.on_sale' | t }}{% endcapture %}
+    {% assign check_lower_three = check_sale_translation_three | downcase %}
+    
+    {% if check_lower_three contains 'missing' %}
+      {% assign sale_badge_text = 'Uitverkoping' %}
+    {% else %}
+      {% assign sale_badge_text = check_sale_translation_three %}
+    {% endif %}
+  {% else %}
+    {% assign sale_badge_text = check_sale_translation_alt %}
+  {% endif %}
+{% else %}
+  {% assign sale_badge_text = check_sale_translation %}
+{% endif %}
+
+
+<div
+  class="productgrid--item custom-spec-grid-item"
+  data-product-item
+  data-product-quickshop-url="{{ product_link }}"
+  {% if recently_viewed %}data-recently-viewed-card{% endif %}
+>
+  <div class="custom-product-card-frame">
+    
+    <!-- 1. CARD IMAGE AREA -->
+    <div class="card-image-area">
+      {% if on_sale %}
+        <span class="sale-badge">{{ sale_badge_text }}</span>
+      {% endif %}
+      
+      <a class="productitem--image-link" href="{{ product_link }}" tabindex="-1" data-product-page-link>
+        {% if initial_image %}
+          <img src="{{ initial_image | img_url: '512x512' }}" alt="{{ product_title | escape }}" loading="lazy" class="card-img">
+        {% else %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder--image' }}
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- 2. CARD FOOTER MODULE -->
+    <div class="card-footer">
+      
+      <h3 class="product-title">
+        <a href="{{ product_link }}" data-product-page-link>{{ product_title }}</a>
+      </h3>
+
+      {% if settings.product_show_vendor and product_vendor != blank %}
+        <span class="supplier-name">{{ product_vendor }}</span>
+      {% endif %}
+
+      <!-- UNIFIED INTERCHANGEABLE LAYOUT SLOT WRAPPER -->
+      <div class="card-action-price-slot">
+        
+        <!-- Pricing Layer Block -->
+        <div class="product-price-container">
+          {% if price_varies %}
+            <span class="price-from">From R{{ product.price_min | money_without_currency }}</span>
+          {% elsif on_sale %}
+            <span class="price-sale">R{{ price | money_without_currency }}</span>
+            <span class="price-compare">R{{ compare_at_price | money_without_currency }}</span>
+          {% else %}
+            <span class="price-regular">R{{ price | money_without_currency }}</span>
+          {% endif %}
+        </div>
+
+        <!-- Add To Cart Interactive Button Layer Block -->
+        <div class="card-cta-wrapper productitem--actions" data-product-actions>
+          <button
+            class="btn-view-product productitem--action-trigger productitem--action-atc {% unless product_available %}disabled{% endunless %}"
+            type="button"
+            aria-label="{{ quick_buy_text }}"
+            {% unless has_variants %}data-quick-buy{% else %}data-quickshop-slim{% endunless %}
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            {% if product == false or product_available == false %}disabled{% endif %}
+          >
+            <span class="atc-button--text">{{ quick_buy_text }}</span>
+            <span class="atc-button--icon">{%- render 'icon-spinner' -%}</span>
+          </button>
+        </div>
+
+      </div>
+
+            <!-- Conditional Review Output Logic using Shopify Translation Engine -->
+      {% if product.metafields.reviews.rating.value != blank %}
+        <div class="card-reviews">
+          <span class="stars">★★★★★</span>
+          <span class="review-count">
+            {{ product.metafields.reviews.rating_count }} 
+            {% if product.metafields.reviews.rating_count == 1 or product.metafields.reviews.rating_count == '1' %}
+              {{ 'general.accessibility.star_review_text' | t | default: 'review' }}
+            {% else %}
+              {{ 'general.accessibility.star_reviews_text' | t | default: 'reviews' }}
+            {% endif %}
+          </span>
+        </div>
+      {% endif %}
+
+
+    </div>
+  </div>
+
+  <script type="application/json" data-quick-buy-settings>
+    {
+      "cart_redirection": {{ settings.enable_cart_redirection | json }},
+      "money_format": {{ shop.money_format | strip_html | json }}
+    }
+  </script>
+</div>

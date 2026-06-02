@@ -1,0 +1,368 @@
+{%- comment -%}
+  ─────────────────────────────────────────────────────────────────────
+  Pre-lander Listicle Item (CRP)
+  Reusable numbered content block. Add to a page template once per
+  numbered item (01, 02, 03 ...). Every element is independently
+  toggle-able and colour-configurable.
+  ─────────────────────────────────────────────────────────────────────
+{%- endcomment -%}
+
+{%- liquid
+  assign target_attr = ''
+  if section.settings.link_new_window
+    assign target_attr = ' target="_blank" rel="noopener"'
+  endif
+
+  assign img_desktop = section.settings.image_desktop
+  assign img_mobile = section.settings.image_mobile
+  assign num = section.settings.number_text
+
+  assign desktop_url = ''
+  if img_desktop != blank
+    assign desktop_url = img_desktop | image_url: width: 1562
+  elsif num != blank
+    assign desktop_fallback_name = 'pre-lander-crp-listicle-' | append: num | append: '-desktop.jpg'
+    assign desktop_url = desktop_fallback_name | asset_url
+  endif
+
+  assign mobile_url = ''
+  if img_mobile != blank
+    assign mobile_url = img_mobile | image_url: width: 780
+  elsif num != blank
+    assign mobile_fallback_name = 'pre-lander-crp-listicle-' | append: num | append: '-mobile.jpg'
+    assign mobile_url = mobile_fallback_name | asset_url
+  endif
+
+  assign primary_url = desktop_url
+  if primary_url == ''
+    assign primary_url = mobile_url
+  endif
+-%}
+
+<section
+  class="pre-lander-crp-listicle"
+  data-section-id="{{ section.id }}"
+  style="--number-color: {{ section.settings.number_color }}; --heading-color: {{ section.settings.heading_color }}; --paragraph-color: {{ section.settings.paragraph_color }}; --link-color: {{ section.settings.link_color }}; --quote-bg: {{ section.settings.quote_bg_color }}; --quote-border: {{ section.settings.quote_border_color }};"
+>
+  {%- if section.settings.show_top_divider -%}
+    <hr class="pre-lander-crp-listicle__divider" />
+  {%- endif -%}
+
+  <div class="pre-lander-crp-listicle__inner">
+    {%- if section.settings.show_number and section.settings.number_text != blank -%}
+      <span class="pre-lander-crp-listicle__number">{{ section.settings.number_text | escape }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.show_heading and section.settings.heading_text != blank -%}
+      <h2 class="pre-lander-crp-listicle__heading">{{ section.settings.heading_text | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.show_image and primary_url != '' -%}
+      <picture class="pre-lander-crp-listicle__image">
+        {%- if mobile_url != '' -%}
+          <source media="(max-width: 768px)" srcset="{{ mobile_url }}" />
+        {%- endif -%}
+        <img src="{{ primary_url }}" alt="" loading="lazy" />
+      </picture>
+    {%- endif -%}
+
+    {%- if section.settings.show_paragraph and section.settings.paragraph_text != blank -%}
+      <div class="pre-lander-crp-listicle__paragraph">{{ section.settings.paragraph_text }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.show_quote and section.settings.quote_text != blank -%}
+      <blockquote class="pre-lander-crp-listicle__quote">{{ section.settings.quote_text | escape | newline_to_br }}</blockquote>
+    {%- endif -%}
+
+    {%- if section.settings.show_second_paragraph and section.settings.second_paragraph_text != blank -%}
+      <div class="pre-lander-crp-listicle__paragraph">{{ section.settings.second_paragraph_text }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.show_link and section.settings.link_text != blank -%}
+      <a class="pre-lander-crp-listicle__link" href="{{ section.settings.link_url | default: '#' }}"{{ target_attr }}>{{ section.settings.link_text | escape }}</a>
+    {%- endif -%}
+
+    {%- if section.settings.show_review_desktop or section.settings.show_review_mobile -%}
+      {%- assign review_vis_class = '' -%}
+      {%- if section.settings.show_review_desktop -%}{%- assign review_vis_class = review_vis_class | append: ' is-shown-desktop' -%}{%- endif -%}
+      {%- if section.settings.show_review_mobile -%}{%- assign review_vis_class = review_vis_class | append: ' is-shown-mobile' -%}{%- endif -%}
+
+      {%- assign avatar_url = section.settings.review_avatar_image | image_url: width: 132 -%}
+      {%- if section.settings.review_avatar_image == blank -%}
+        {%- assign avatar_url = 'pre-lander-crp-review-avatar-placeholder.png' | asset_url -%}
+      {%- endif -%}
+
+      <aside class="pre-lander-crp-listicle__review{{ review_vis_class }}">
+        <div class="pre-lander-crp-listicle__review-head">
+          <div class="pre-lander-crp-listicle__review-stars" aria-label="{{ section.settings.review_star_count }} out of 5 stars">
+            {%- for i in (1..section.settings.review_star_count) -%}
+              <img class="pre-lander-crp-listicle__review-star" src="{{ 'pre-lander-crp-star.svg' | asset_url }}" alt="" aria-hidden="true" width="13" height="13" />
+            {%- endfor -%}
+          </div>
+          {%- if section.settings.review_date_text != blank -%}
+            <span class="pre-lander-crp-listicle__review-date">{{ section.settings.review_date_text | escape }}</span>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.review_text != blank -%}
+          <p class="pre-lander-crp-listicle__review-body">{{ section.settings.review_text | escape | newline_to_br }}</p>
+        {%- endif -%}
+        {%- if section.settings.review_name != blank or section.settings.review_avatar_image != blank -%}
+          <div class="pre-lander-crp-listicle__review-author">
+            <img class="pre-lander-crp-listicle__review-avatar" src="{{ avatar_url }}" alt="" width="44" height="44" loading="lazy" />
+            <div class="pre-lander-crp-listicle__review-meta">
+              {%- if section.settings.review_name != blank -%}
+                <span class="pre-lander-crp-listicle__review-name">{{ section.settings.review_name | escape }}</span>
+              {%- endif -%}
+              {%- if section.settings.review_is_verified -%}
+                <span class="pre-lander-crp-listicle__review-verified">
+                  <img src="{{ 'pre-lander-crp-check.svg' | asset_url }}" alt="" aria-hidden="true" width="12" height="9" />
+                  Verified customer
+                </span>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </aside>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;400italic;700&display=swap');
+
+  .pre-lander-crp-listicle {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    color: #1C1917;
+    box-sizing: border-box;
+    padding: 20px 0;
+  }
+
+  .pre-lander-crp-listicle *,
+  .pre-lander-crp-listicle *::before,
+  .pre-lander-crp-listicle *::after { box-sizing: border-box; }
+
+  .pre-lander-crp-listicle__divider {
+    border: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 0 40px;
+    max-width: 781px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pre-lander-crp-listicle__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 781px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .pre-lander-crp-listicle__number {
+    display: block;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--number-color, #C982A5);
+  }
+
+  .pre-lander-crp-listicle__heading {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--heading-color, #1C1917);
+  }
+
+  .pre-lander-crp-listicle__image {
+    display: block;
+    width: 100%;
+  }
+
+  .pre-lander-crp-listicle__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+  }
+
+  .pre-lander-crp-listicle__paragraph {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--paragraph-color, #1C1917);
+  }
+
+  .pre-lander-crp-listicle__paragraph p { margin: 0 0 1.5em; }
+  .pre-lander-crp-listicle__paragraph p:last-child { margin-bottom: 0; }
+  .pre-lander-crp-listicle__paragraph a { color: inherit; }
+
+  .pre-lander-crp-listicle__quote {
+    margin: 0;
+    padding: 20px;
+    background: var(--quote-bg, #F8F8F7);
+    border-left: 2px solid var(--quote-border, #E5932F);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #1C1917;
+  }
+
+  .pre-lander-crp-listicle__link {
+    align-self: flex-start;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: var(--link-color, #1C1917);
+  }
+
+  .pre-lander-crp-listicle__review {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: #F8F8F7;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    margin-top: 15px;
+  }
+  .pre-lander-crp-listicle__review-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pre-lander-crp-listicle__review-stars {
+    display: flex;
+    gap: 4px;
+  }
+  .pre-lander-crp-listicle__review-star {
+    width: 13px;
+    height: 13px;
+    display: block;
+  }
+  .pre-lander-crp-listicle__review-date {
+    font-size: 12px;
+    color: #1C1917;
+  }
+  .pre-lander-crp-listicle__review-body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    font-style: italic;
+    color: #1C1917;
+  }
+  .pre-lander-crp-listicle__review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pre-lander-crp-listicle__review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
+  }
+  .pre-lander-crp-listicle__review-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pre-lander-crp-listicle__review-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1C1917;
+  }
+  .pre-lander-crp-listicle__review-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #1C1917;
+  }
+  .pre-lander-crp-listicle__review-verified img {
+    width: 12px;
+    height: 9px;
+    display: block;
+  }
+
+  @media (min-width: 769px) {
+    .pre-lander-crp-listicle__review.is-shown-desktop { display: flex; }
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-listicle__review.is-shown-mobile { display: flex; }
+
+    .pre-lander-crp-listicle__divider { margin-bottom: 24px; }
+    .pre-lander-crp-listicle__inner { gap: 24px; }
+    .pre-lander-crp-listicle__number { font-size: 32px; }
+    .pre-lander-crp-listicle__heading { font-size: 24px; }
+    .pre-lander-crp-listicle__paragraph,
+    .pre-lander-crp-listicle__quote,
+    .pre-lander-crp-listicle__link { font-size: 14px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Listicle Item",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Layout" },
+    { "type": "checkbox", "id": "show_top_divider", "label": "Show top divider line", "default": false },
+
+    { "type": "header", "content": "Number" },
+    { "type": "checkbox", "id": "show_number", "label": "Show number", "default": true },
+    { "type": "text", "id": "number_text", "label": "Number", "default": "01" },
+    { "type": "color", "id": "number_color", "label": "Number colour", "default": "#C982A5" },
+
+    { "type": "header", "content": "Heading" },
+    { "type": "checkbox", "id": "show_heading", "label": "Show heading", "default": true },
+    { "type": "text", "id": "heading_text", "label": "Heading text" },
+    { "type": "color", "id": "heading_color", "label": "Heading colour", "default": "#1C1917" },
+
+    { "type": "header", "content": "Image" },
+    { "type": "checkbox", "id": "show_image", "label": "Show image", "default": true },
+    { "type": "image_picker", "id": "image_desktop", "label": "Image (desktop)", "info": "Upload image to exact proportions" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile)", "info": "Upload image to exact proportions" },
+
+    { "type": "header", "content": "Paragraph" },
+    { "type": "checkbox", "id": "show_paragraph", "label": "Show paragraph", "default": true },
+    { "type": "richtext", "id": "paragraph_text", "label": "Paragraph text" },
+    { "type": "color", "id": "paragraph_color", "label": "Paragraph colour", "default": "#1C1917" },
+    { "type": "checkbox", "id": "show_second_paragraph", "label": "Show second paragraph (renders under quote)", "default": false },
+    { "type": "richtext", "id": "second_paragraph_text", "label": "Second paragraph text" },
+
+    { "type": "header", "content": "Quote" },
+    { "type": "checkbox", "id": "show_quote", "label": "Show quote", "default": false },
+    { "type": "textarea", "id": "quote_text", "label": "Quote text" },
+    { "type": "color", "id": "quote_bg_color", "label": "Quote background colour", "default": "#F8F8F7" },
+    { "type": "color", "id": "quote_border_color", "label": "Quote border colour", "default": "#E5932F" },
+
+    { "type": "header", "content": "Link" },
+    { "type": "checkbox", "id": "show_link", "label": "Show link", "default": false },
+    { "type": "text", "id": "link_text", "label": "Link text", "default": "See the cup →" },
+    { "type": "url", "id": "link_url", "label": "Link URL" },
+    { "type": "checkbox", "id": "link_new_window", "label": "Open link in a new window", "default": false },
+    { "type": "color", "id": "link_color", "label": "Link colour", "default": "#1C1917" },
+
+    { "type": "header", "content": "Review card" },
+    { "type": "checkbox", "id": "show_review_desktop", "label": "Show on desktop", "default": false },
+    { "type": "checkbox", "id": "show_review_mobile", "label": "Show on mobile", "default": false },
+    { "type": "range", "id": "review_star_count", "label": "Star count", "min": 0, "max": 5, "step": 1, "default": 5 },
+    { "type": "text", "id": "review_date_text", "label": "Date text", "default": "2 days ago" },
+    { "type": "textarea", "id": "review_text", "label": "Review text" },
+    { "type": "image_picker", "id": "review_avatar_image", "label": "Reviewer avatar image (round)" },
+    { "type": "text", "id": "review_name", "label": "Reviewer name" },
+    { "type": "checkbox", "id": "review_is_verified", "label": "Show \"Verified customer\" badge", "default": true }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Listicle Item"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,209 @@
+{% liquid
+  assign is_customer = false
+  if shop.customer_accounts_enabled and customer
+    assign is_customer = true
+  endif
+
+  assign has_sidebar = false
+  assign has_items = false
+  assign show_continue_link = false
+
+  if section.blocks.size > 0 or settings.enable_free_shipping_bar and settings.free_shipping_minimum_amount != blank
+    assign has_sidebar = true
+  endif
+
+  if cart.items.size > 0
+    assign has_items = true
+  endif
+
+  assign continue_url = routes.all_products_collection_url
+  if settings.continue_shopping_url != blank
+    assign continue_url = settings.continue_shopping_url
+  endif
+%}
+
+{% if settings.continue_url_cart %}
+  {% assign show_continue_link = true %}
+  {%- capture continue_link_html -%}
+    <a class="cart-continue" href="{{ continue_url }}">
+      {{ 'cart.general.continue_shopping' | t }}
+      {% render 'icon-library', id: 'icon-signpost-arrow' %}
+    </a>
+  {%- endcapture -%}
+{% endif %}
+
+<script
+  type="application/json"
+  data-section-type="static-cart"
+  data-section-id="{{ section.id }}"
+  data-section-data>
+  {
+    "settings": {
+      "shipping": {{ section.settings.enable_shipping_calc | json }},
+      "money_format": {{ shop.money_format | strip_html | json }}
+    },
+    "shipping": {
+      "calculate_shipping": {{ 'cart.shipping.calculate_shipping' | t | json }},
+      "calculating": {{ 'cart.shipping.calculating' | t | json }},
+      "customer": {{ is_customer | default: false | json }},
+      "multiple_rates": {{ 'cart.shipping.multiple_rates' | t: number_of_rates: '*number_of_rates*', address: '*address*', rate: '*rate*' | json }},
+      "one_rate": {{ 'cart.shipping.one_rate' | t: address: '*address*' | json }},
+      "no_rates": {{ 'cart.shipping.no_rates' | t | json }},
+      "rate_value": {{ 'cart.shipping.rate_value' | t: rate_title: '*rate_title*', rate: '*rate*'  | json }},
+      "zip": {{ 'cart.shipping.zip' | t | json }},
+      "shipment_too_heavy": {{ 'cart.shipping.shipment_too_heavy' | t | json }},
+      "error_general": {{ 'cart.shipping.error_general' | t | json }}
+    }
+  }
+</script>
+
+<form action="{{ routes.cart_url }}" method="post" aria-label="cart checkout" class="custom-cart-form">
+  
+  {% comment %} --- NEW TWO-COLUMN CONTAINER --- {% endcomment %}
+  <div class="custom-cart-container">
+    
+    {% comment %} --- LEFT COLUMN: HEADING & PRODUCTS --- {% endcomment %}
+    <div class="custom-cart-left">
+      <header class="custom-cart-header">
+        <h1>Jou mandjie</h1>
+        {% if has_items %}
+          <a href="/checkout" class="custom-continue-btn mobile-only">Betaal</a>
+        {% endif %}
+      </header>
+
+      <div class="cart-product-list">
+        {% if has_items %}
+          {% comment %} 
+            Empire uses a snippet for the item list. 
+            Note: To get the badges/strikethrough as requested, 
+            you may also need to edit 'snippets/cart-item-list.liquid' 
+          {% endcomment %}
+          {% render 'cart-item-list',
+            cart: cart,
+            show_sku: section.settings.show_sku,
+            show_vendor: section.settings.show_vendor
+          %}
+        {% else %}
+          <p>{{ 'cart.general.cart_empty' | t }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} --- RIGHT COLUMN: ORDER SUMMARY --- {% endcomment %}
+    {% if has_items %}
+      <aside class="custom-cart-right">
+        <div class="order-summary-panel">
+          <h2 class="summary-title">Sub totaal</h2>
+          
+          <div class="summary-line">
+            <span>Sub totaal</span>
+            <span data-cart-total>{{ cart.total_price | money }}</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Btw</span>
+            <span>Ingesluit</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Aflewering</span>
+            <span>Bereken by betaalpunt</span>
+          </div>
+
+          <div class="summary-line total-row">
+            <strong>Totaal</strong>
+            <strong>{{ cart.total_price | money }}</strong>
+          </div>
+
+          <button class="button-primary full-width-checkout" name="checkout" type="submit">
+            Gaan voort na betaalpunt
+          </button>
+        </div>
+      </aside>
+    {% endif %}
+  </div>
+</form>
+
+{% schema %}
+{
+  "name": "t:sections.cart_page.name",
+  "class": "cart--section section--canonical",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "t:sections.cart_page.show_vendor.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "label": "t:sections.cart_page.show_sku.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_order_notes",
+      "label": "t:sections.cart_page.enable_order_notes.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cart_page.header_1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shipping_calc",
+      "label": "t:sections.cart_page.enable_shipping_calc.label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_calc_default_country",
+      "label": "t:sections.cart_page.shipping_calc_default_country.label",
+      "default": "United States"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "richtext",
+      "name": "t:sections.cart_page.blocks.rich_text.name",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "richtext",
+          "type": "richtext",
+          "label": "t:sections.cart_page.blocks.rich_text.richtext.label",
+          "default": "<p>Use this section to welcome customers to your store, say a bit about your brand, or share news and seasonal promotions.</p>"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "t:sections.cart_page.blocks.image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "t:sections.cart_page.blocks.image.image.label"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "t:sections.cart_page.blocks.page.name",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "page",
+          "type": "page",
+          "label": "t:sections.cart_page.blocks.page.page.label"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

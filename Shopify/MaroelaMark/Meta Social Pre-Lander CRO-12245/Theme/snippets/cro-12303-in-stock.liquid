@@ -1,0 +1,39 @@
+{% comment %}
+  CRO-12303 | In-Stock Indicator
+  ─────────────────────────────────────────────────────────────────────
+  Renders a green dot + "In stock" label.
+
+  Initial visibility:  driven by product.selected_or_first_available_variant
+  Real-time updates:   handled by cro-12303-buy-box.js via [data-variants] change event
+
+  Used by: snippets/cro-12303-trust-mount.liquid
+  Injected to DOM position: before .product-form--atc (via JS)
+{% endcomment %}
+
+{%- liquid
+  assign _variant = product.selected_or_first_available_variant
+  assign _initially_visible = false
+  if _variant.available
+    assign _initially_visible = true
+  endif
+-%}
+
+{%- capture _availability_json -%}
+  {
+    {%- for v in product.variants -%}
+      "{{ v.id }}": {{ v.available | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  }
+{%- endcapture -%}
+
+<div
+  class="cro-in-stock-indicator"
+  data-cro-in-stock
+  data-variant-availability='{{ _availability_json | strip }}'
+  {% unless _initially_visible %}style="display:none;"{% endunless %}
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <span class="cro-in-stock-indicator__dot" aria-hidden="true"></span>
+  <span class="cro-in-stock-indicator__label">In stock</span>
+</div>

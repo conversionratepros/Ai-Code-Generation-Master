@@ -1,0 +1,268 @@
+{%- comment -%}
+  ─────────────────────────────────────────────────────────────────────
+  Pre-lander Hero (CRP)
+  Self-contained section. All CSS inline + scoped to .pre-lander-crp-hero.
+  Drop into any theme's /sections folder — no external CSS asset needed.
+  Editable via Theme Customizer.
+  ─────────────────────────────────────────────────────────────────────
+{%- endcomment -%}
+
+{%- liquid
+  assign target_attr = ''
+  if section.settings.button_new_window
+    assign target_attr = ' target="_blank" rel="noopener"'
+  endif
+
+  assign logo_url = section.settings.logo_image | image_url: width: 560
+  if section.settings.logo_image == blank
+    assign logo_url = 'pre-lander-crp-logo.png' | asset_url
+  endif
+
+  assign hero_desktop_url = section.settings.feature_image_desktop | image_url: width: 1440
+  if section.settings.feature_image_desktop == blank
+    assign hero_desktop_url = 'pre-lander-crp-hero-desktop.png' | asset_url
+  endif
+
+  assign hero_mobile_url = section.settings.feature_image_mobile | image_url: width: 780
+  if section.settings.feature_image_mobile == blank
+    assign hero_mobile_url = 'pre-lander-crp-hero-mobile.png' | asset_url
+  endif
+
+  assign icon_url = section.settings.button_icon | image_url
+  if section.settings.button_icon == blank
+    assign icon_url = 'pre-lander-crp-arrow-right.svg' | asset_url
+  endif
+
+  assign bg_url = ''
+  if section.settings.background_image != blank
+    assign bg_url = section.settings.background_image | image_url: width: 2880
+  endif
+-%}
+
+<section
+  class="pre-lander-crp-hero"
+  data-section-id="{{ section.id }}"
+  style="--grad-1: {{ section.settings.gradient_color_1 }}; --grad-2: {{ section.settings.gradient_color_2 }}; --grad-3: {{ section.settings.gradient_color_3 }}; --accent-color: {{ section.settings.accent_text_color }}; --button-bg: {{ section.settings.button_color }}; --feature-pb: {{ section.settings.feature_image_bottom_padding | default: 0 }}px;"
+>
+  {%- if bg_url != blank -%}
+    <img class="pre-lander-crp-hero__bg" src="{{ bg_url }}" alt="" aria-hidden="true" loading="lazy" />
+  {%- endif -%}
+
+  {%- if logo_url != blank -%}
+    <img class="pre-lander-crp-hero__logo" src="{{ logo_url }}" alt="{{ shop.name | escape }}" width="280" height="50" loading="eager" />
+  {%- endif -%}
+
+  <div class="pre-lander-crp-hero__content">
+    {%- if section.settings.heading_text != blank or section.settings.heading_accent_text != blank -%}
+      <h1 class="pre-lander-crp-hero__heading">
+        {%- if section.settings.heading_text != blank -%}{{ section.settings.heading_text | escape }}{%- endif -%}
+        {%- if section.settings.heading_accent_text != blank %} <span class="pre-lander-crp-hero__heading-accent">{{ section.settings.heading_accent_text | escape }}</span>{%- endif -%}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.paragraph_text != blank -%}
+      <p class="pre-lander-crp-hero__subhead">{{ section.settings.paragraph_text | escape | newline_to_br }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_text != blank -%}
+      <a class="pre-lander-crp-hero__cta" href="{{ section.settings.button_link | default: '#' }}"{{ target_attr }}>
+        <span>{{ section.settings.button_text | escape }}</span>
+        {%- if icon_url != blank -%}
+          <img class="pre-lander-crp-hero__cta-icon" src="{{ icon_url }}" alt="" aria-hidden="true" />
+        {%- endif -%}
+      </a>
+    {%- endif -%}
+  </div>
+
+  {%- if hero_desktop_url != blank or hero_mobile_url != blank -%}
+    <picture class="pre-lander-crp-hero__feature">
+      {%- if hero_mobile_url != blank -%}
+        <source media="(max-width: 768px)" srcset="{{ hero_mobile_url }}" />
+      {%- endif -%}
+      <img src="{{ hero_desktop_url | default: hero_mobile_url }}" alt="" loading="eager" />
+    </picture>
+  {%- endif -%}
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+  .pre-lander-crp-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 676px;
+    padding: 20px 120px 0;
+    background: linear-gradient(-65deg, var(--grad-1, #EDDEE5) 4%, var(--grad-2, #E8F9FA) 38%, var(--grad-3, #FAF7F8) 94%);
+    overflow: hidden;
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    color: #1C1917;
+    box-sizing: border-box;
+  }
+
+  .pre-lander-crp-hero *,
+  .pre-lander-crp-hero *::before,
+  .pre-lander-crp-hero *::after { box-sizing: border-box; }
+
+  .pre-lander-crp-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+  }
+
+  .pre-lander-crp-hero__logo {
+    width: 280px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+    display: block;
+  }
+
+  .pre-lander-crp-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 875px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pre-lander-crp-hero__heading {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .pre-lander-crp-hero__heading-accent { color: var(--accent-color, #C982A5); }
+
+  .pre-lander-crp-hero__subhead {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 725px;
+  }
+
+  .pre-lander-crp-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 320px;
+    padding: 16px;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+    background: var(--button-bg, #E8862B);
+  }
+
+  .pre-lander-crp-hero__cta:hover { filter: brightness(0.92); }
+
+  .pre-lander-crp-hero__cta-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .pre-lander-crp-hero__feature {
+    display: block;
+    margin-top: 0;
+    max-width: 720px;
+    padding-bottom: var(--feature-pb, 0);
+    position: relative;
+    z-index: 1;
+  }
+
+  .pre-lander-crp-hero__feature img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-hero {
+      min-height: 680px;
+      padding: 50px 20px 0;
+      background: linear-gradient(-82deg, var(--grad-1, #EDDEE5) 4%, var(--grad-2, #E8F9FA) 38%, var(--grad-3, #FAF7F8) 94%);
+    }
+    .pre-lander-crp-hero__logo {
+      width: 224px;
+      margin-bottom: 0;
+      order: 1;
+    }
+    .pre-lander-crp-hero__feature {
+      order: 2;
+      margin: 24px 0 32px;
+      max-width: 390px;
+    }
+    .pre-lander-crp-hero__content {
+      order: 3;
+      gap: 30px;
+      width: 100%;
+    }
+    .pre-lander-crp-hero__heading { font-size: 32px; }
+    .pre-lander-crp-hero__heading-accent { display: block; }
+    .pre-lander-crp-hero__subhead { font-size: 16px; }
+    .pre-lander-crp-hero__cta { width: 100%; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Logo" },
+    { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
+
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "heading_text", "label": "Heading text", "default": "The blikbeker." },
+    { "type": "text", "id": "heading_accent_text", "label": "Highlighted text (appears after heading)", "default": "Just pink." },
+    { "type": "color", "id": "accent_text_color", "label": "Highlighted text colour", "default": "#C982A5" },
+
+    { "type": "header", "content": "Paragraph" },
+    { "type": "textarea", "id": "paragraph_text", "label": "Paragraph text", "default": "R95. 8cm tall, in cool enamel. For the long table outside, the picnic basket, the kitchen shelf people ask about." },
+
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Get mine now" },
+    { "type": "image_picker", "id": "button_icon", "label": "Button icon (SVG recommended)" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "checkbox", "id": "button_new_window", "label": "Open link in a new window", "default": false },
+    { "type": "color", "id": "button_color", "label": "Button colour", "default": "#E8862B" },
+
+    { "type": "header", "content": "Feature image" },
+    { "type": "image_picker", "id": "feature_image_desktop", "label": "Feature image (desktop)" },
+    { "type": "image_picker", "id": "feature_image_mobile", "label": "Feature image (mobile)" },
+    { "type": "range", "id": "feature_image_bottom_padding", "label": "Feature image bottom padding (0 = flush)", "min": 0, "max": 80, "step": 4, "default": 0, "unit": "px" },
+
+    { "type": "header", "content": "Background" },
+    { "type": "color", "id": "gradient_color_1", "label": "Gradient colour 1 (top-left)", "default": "#EDDEE5" },
+    { "type": "color", "id": "gradient_color_2", "label": "Gradient colour 2 (middle)", "default": "#E8F9FA" },
+    { "type": "color", "id": "gradient_color_3", "label": "Gradient colour 3 (bottom-right)", "default": "#FAF7F8" },
+    { "type": "image_picker", "id": "background_image", "label": "Background image (optional overlay)", "info": "Sits on top of the gradient at 30% opacity." }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Hero"
+    }
+  ]
+}
+{% endschema %}

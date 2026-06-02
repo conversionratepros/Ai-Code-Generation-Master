@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement-bar": {
+      "type": "static-announcement",
+      "disabled": true,
+      "settings": {
+        "show_announcement": true,
+        "homepage_announcement": true,
+        "announcement_text": "Wil jy jou produkte op maroela-mark verkoop? Kontak ons nou!",
+        "announcement_text_mobile": "",
+        "announcement_link": "https://maroelamark.co.za/pages/word-n-verskaffer",
+        "announcement_color": "{{ shop.brand.colors.secondary[0].foreground }}",
+        "announcement_background": "#007a80"
+      }
+    },
+    "utility-bar": {
+      "type": "static-utility-bar",
+      "disabled": true,
+      "settings": {
+        "use_full_width": true,
+        "background_color": "#ffffff",
+        "link_color": "#ffffff",
+        "link_hover_color": "#ffffff",
+        "border_color": "rgba(0,0,0,0)",
+        "menu": "main-menu",
+        "show_menu_mobile": true,
+        "mobile_layout": "above",
+        "show_locale_selector": true,
+        "show_currency_selector": true,
+        "show_social_icons": true
+      }
+    },
+    "header": {
+      "type": "static-header",
+      "blocks": {
+        "mega_menu": {
+          "type": "meganav_images",
+          "disabled": true,
+          "settings": {
+            "meganav_trigger": "",
+            "text_1": "",
+            "link_1": "",
+            "position_1": "last",
+            "size_1": "medium",
+            "text_2": "",
+            "link_2": "",
+            "position_2": "last",
+            "size_2": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu"
+      ],
+      "settings": {
+        "sticky_header": true,
+        "full_width_header": true,
+        "logo": "shopify://shop_images/Maroelamark_logo_2-03.png",
+        "logo_height": 100,
+        "logo_width": 250,
+        "filter_search_by": "disabled",
+        "enable_live_search": true,
+        "show_mobile_search_bar": false,
+        "enable_live_search_images": false,
+        "quick_links": "",
+        "menu": "main-menu",
+        "secondary_menu": "",
+        "small_promo_heading": "",
+        "small_promo_text": "",
+        "small_promo_text_mobile": "",
+        "small_promo_link": "shopify://pages/word-n-verskaffer",
+        "small_promo_icon": "icon-store",
+        "cart_icon": "icon-cart"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "utility-bar",
+    "header"
+  ]
+}

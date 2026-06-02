@@ -1,0 +1,616 @@
+<style>
+  /* Outer section */
+  #collections-slider-{{ section.id }} {
+    width: 100%;
+    text-align: center;
+  }
+  /* Container for heading & slider */
+  #collections-slider-{{ section.id }} .collections-slider-container {
+    margin: 0 auto;
+  }
+  /* Section Heading */
+  #collections-slider-{{ section.id }} .section-heading {
+    font-size: {% if section.settings.heading_size == 'small' %}24px{% elsif section.settings.heading_size == 'medium' %}32px{% elsif section.settings.heading_size == 'large' %}40px{% endif %};
+    text-align: {{ section.settings.heading_alignment }};
+    margin-bottom: 20px;
+  }
+  /* Slider Wrapper */
+  #collections-slider-{{ section.id }} .collections-slider-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  #collections-slider-{{ section.id }} .collections-slider {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  #collections-slider-{{ section.id }} .slider-track {
+    display: flex;
+    gap: 15px;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
+  /* Desktop: Slide width based on visible_slides */
+  #collections-slider-{{ section.id }} .slide {
+    flex: 0 0 calc((100% - ({{ section.settings.visible_slides | minus: 1 }} * 15px)) / {{ section.settings.visible_slides }});
+    box-sizing: border-box;
+    padding: 5px;
+    text-align: {{ section.settings.collection_title_alignment }};
+    {% if section.settings.card_shadow %}
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    {% endif %}
+  }
+  /* Mobile: Use visible_mobile setting */
+  @media (max-width: 767px) {
+    #collections-slider-{{ section.id }} .slide {
+      flex: 0 0 calc((100% - ({{ section.settings.visible_mobile | minus: 1 }} * 15px)) / {{ section.settings.visible_mobile }});
+    }
+  }
+  #collections-slider-{{ section.id }} .slide a {
+    text-decoration: none;
+    color: inherit;
+  }
+  #collections-slider-{{ section.id }} .collection-image {
+    width: 100%;
+    object-fit: cover;
+    {% case section.settings.card_design %}
+      {% when "square" %}
+        aspect-ratio: 1 / 1;
+      {% when "portrait" %}
+        aspect-ratio: 2 / 3;
+      {% when "circle" %}
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+      {% else %}
+        height: auto;
+    {% endcase %}
+  }
+  #collections-slider-{{ section.id }} .collection-title {
+    margin-top: 10px;
+    font-size: {{ section.settings.collection_title_font_size }}px;
+    text-align: {{ section.settings.collection_title_alignment }};
+    text-decoration: none;
+    {% if section.settings.hide_collection_title %}
+      display: none;
+    {% else %}
+      display: block;
+    {% endif %}
+  }
+  /* Arrow Buttons */
+  #collections-slider-{{ section.id }} .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: {{ section.settings.arrow_bg_color }};
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: {% if section.settings.arrow_shape == 'circle' %}50%{% else %}0{% endif %};
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0px;
+    width: 50px;
+    height: 50px;
+  }
+  #collections-slider-{{ section.id }} .left-arrow {
+    left: 10px;
+  }
+  #collections-slider-{{ section.id }} .right-arrow {
+    right: 10px;
+  }
+  /* Dot Indicators */
+   /* Dot Indicators - Hidden by default (Desktop) */
+  .slider-dots {
+    display: none; 
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  /* Show only on Mobile (up to 767px) */
+  @media (max-width: 767px) {
+    .slider-dots {
+      display: flex;
+    }
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+
+  .dot.active {
+    background-color: {{ section.settings.arrow_bg_color | default: '#000' }};
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+  .dot.active {
+    background-color: {{ section.settings.arrow_bg_color | default: '#000' }};
+  }
+</style>
+
+{% assign cloneCount = section.settings.visible_slides %}
+
+<div id="collections-slider-{{ section.id }}" class="page-width collections-slider-section" style="background-color: {{ section.settings.section_bg_color }}; padding-top: {{ section.settings.section_padding_top }}px; padding-bottom: {{ section.settings.section_padding_bottom }}px;">
+  <div class="collections-slider-container" style="width: {% if section.settings.full_width %}100%{% else %}95%{% endif %}; margin: 0 auto;">
+    {% if section.settings.section_title != blank %}
+      <div class="section-heading">
+        {{ section.settings.section_title }}
+      </div>
+    {% endif %}
+    <div class="collections-slider-wrapper">
+      {% if section.settings.show_arrows %}
+        <button class="arrow left-arrow">❮</button>
+      {% endif %}
+      <div class="collections-slider">
+        <div class="slider-track">
+          {%- comment -%}
+            Clone the last {{ cloneCount }} blocks (for infinite looping) at the beginning.
+          {%- endcomment -%}
+          {% assign total = section.blocks.size %}
+          {% if total > 0 %}
+            {% assign start_offset = total | minus: cloneCount %}
+            {% for block in section.blocks limit: cloneCount offset: start_offset %}
+              {% assign coll_handle = block.settings.collection %}
+              {% assign coll = collections[coll_handle] %}
+              {% if coll %}
+                <div class="slide clone">
+                  <a href="{{ coll.url }}">
+                    {% if coll.image %}
+                      <img class="collection-image" src="{{ coll.image | img_url: section.settings.card_size }}" alt="{{ coll.title }}">
+                    {% endif %}
+                    <h3 class="collection-title">{{ coll.title }}</h3>
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {%- comment -%}
+            Real slides (one per block)
+          {%- endcomment -%}
+          {% for block in section.blocks %}
+            {% assign coll_handle = block.settings.collection %}
+            {% assign coll = collections[coll_handle] %}
+            {% if coll %}
+              <div class="slide">
+                <a href="{{ coll.url }}">
+                  {% if coll.image %}
+                    <img class="collection-image" src="{{ coll.image | img_url: section.settings.card_size }}" alt="{{ coll.title }}">
+                  {% endif %}
+                  <h3 class="collection-title">{{ coll.title }}</h3>
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+          {%- comment -%}
+            Clone the first {{ cloneCount }} slides at the end.
+          {%- endcomment -%}
+          {% for block in section.blocks limit: cloneCount %}
+            {% assign coll_handle = block.settings.collection %}
+            {% assign coll = collections[coll_handle] %}
+            {% if coll %}
+              <div class="slide clone">
+                <a href="{{ coll.url }}">
+                  {% if coll.image %}
+                    <img class="collection-image" src="{{ coll.image | img_url: section.settings.card_size }}" alt="{{ coll.title }}">
+                  {% endif %}
+                  <h3 class="collection-title">{{ coll.title }}</h3>
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      {% if section.settings.show_arrows %}
+        <button class="arrow right-arrow">❯</button>
+      {% endif %}
+    </div>
+    
+    <div class="slider-dots" id="dots-{{ section.id }}">
+      {% for block in section.blocks %}
+        <button class="dot{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}"></button>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const container = document.getElementById("collections-slider-{{ section.id }}");
+  if (!container) return;
+  
+  const sliderTrack = container.querySelector(".slider-track");
+  const slider = container.querySelector(".collections-slider");
+  const dots = container.querySelectorAll(".dot");
+  const gap = 15; 
+  const totalRealSlides = {{ section.blocks.size }};
+  
+  let visibleSlides = window.innerWidth <= 767 ? {{ section.settings.visible_mobile }} : {{ section.settings.visible_slides }};
+  let cloneCount = visibleSlides;
+  let currentIndex = cloneCount; 
+  let isTransitioning = false;
+  let autoPlayInterval;
+
+  function updateSlider(animate = true) {
+    const sliderWidth = slider.offsetWidth;
+    const effectiveSlideWidth = (sliderWidth - ((visibleSlides - 1) * gap)) / visibleSlides;
+    const slideSlot = effectiveSlideWidth + gap;
+
+    sliderTrack.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+    sliderTrack.style.transform = `translateX(-${currentIndex * slideSlot}px)`;
+
+    let realIndex = (currentIndex - cloneCount) % totalRealSlides;
+    if (realIndex < 0) realIndex = totalRealSlides + realIndex;
+    
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === realIndex);
+    });
+  }
+
+  function nextSlide() {
+    if (isTransitioning) return;
+    currentIndex++;
+    updateSlider(true);
+
+    if (currentIndex >= totalRealSlides + cloneCount) {
+      isTransitioning = true;
+      setTimeout(() => {
+        currentIndex = cloneCount;
+        updateSlider(false);
+        isTransitioning = false;
+      }, 500);
+    }
+  }
+
+  function prevSlide() {
+    if (isTransitioning) return;
+    currentIndex--;
+    updateSlider(true);
+
+    if (currentIndex < cloneCount) {
+      isTransitioning = true;
+      setTimeout(() => {
+        currentIndex = totalRealSlides + cloneCount - 1;
+        updateSlider(false);
+        isTransitioning = false;
+      }, 500);
+    }
+  }
+
+  // --- AUTOPLAY LOGIC ---
+  function startAutoPlay() {
+    stopAutoPlay(); // Clear any existing
+    autoPlayInterval = setInterval(nextSlide, 2500); // 2500 = 2.5 seconds
+  }
+
+  function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+  }
+
+  // Event Listeners
+  container.querySelector('.right-arrow')?.addEventListener('click', () => {
+    nextSlide();
+    startAutoPlay(); // Restart timer on click
+  });
+
+  container.querySelector('.left-arrow')?.addEventListener('click', () => {
+    prevSlide();
+    startAutoPlay(); // Restart timer on click
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      if (isTransitioning) return;
+      currentIndex = index + cloneCount;
+      updateSlider(true);
+      startAutoPlay(); // Restart timer on click
+    });
+  });
+
+  // Pause on hover
+  container.addEventListener('mouseenter', stopAutoPlay);
+  container.addEventListener('mouseleave', startAutoPlay);
+
+  window.addEventListener("resize", () => {
+    visibleSlides = window.innerWidth <= 767 ? {{ section.settings.visible_mobile }} : {{ section.settings.visible_slides }};
+    cloneCount = visibleSlides;
+    updateSlider(false);
+  });
+
+  updateSlider(false);
+  startAutoPlay(); // Start on load
+});
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Collections Slider",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "<p>Collections</p>"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Section Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Section Title Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width Section (applies to heading & slider)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_full_width",
+      "label": "Full Width Section on Mobile",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_collection_title",
+      "label": "Hide Collection Title",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom (px)",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_slide",
+      "label": "Enable Auto Slide",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_slide_speed",
+      "label": "Auto Slide Speed (ms)",
+      "min": 1000,
+      "max": 7000,
+      "step": 500,
+      "default": 6000
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show Left/Right Arrows",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "arrow_shape",
+      "label": "Arrow Shape",
+      "options": [
+        { "value": "circle", "label": "Circle" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "circle"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Arrow Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "visible_slides",
+      "label": "Number of Visible Slides (Desktop)",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "visible_mobile",
+      "label": "Number of Visible Slides (Mobile)",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Collection Card Image Ratio",
+      "options": [
+        { "value": "portrait", "label": "Portrait (2:3)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "adapt", "label": "Adapt" },
+        { "value": "circle", "label": "Circle" }
+      ],
+      "default": "adapt"
+    },
+    {
+      "type": "select",
+      "id": "card_size",
+      "label": "Collection Card Size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "card_design",
+      "label": "Collection Card Design",
+      "options": [
+        { "value": "square", "label": "Square" },
+        { "value": "adapt", "label": "Adapt" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "circle", "label": "Circle" }
+      ],
+      "default": "adapt"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Collection Card Shadow",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "media_size",
+      "label": "Media Size (for images/videos)",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "media_design",
+      "label": "Media Design",
+      "options": [
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "adapt", "label": "Adapt" }
+      ],
+      "default": "adapt"
+    },
+    {
+      "type": "checkbox",
+      "id": "media_shadow",
+      "label": "Enable Media Shadow",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "collection_title_alignment",
+      "label": "Collection Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "collection_title_font_size",
+      "label": "Collection Title Font Size (px)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "default": 18
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+      ]
+    },
+    {
+      "type": "carousel_image",
+      "name": "Carousel Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "media",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "carousel_video",
+      "name": "Carousel Video",
+      "settings": [
+        {
+          "type": "url",
+          "id": "media",
+          "label": "Video URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Collections Slider"
+    }
+  ]
+}
+{% endschema %}
+

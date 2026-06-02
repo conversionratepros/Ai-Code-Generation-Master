@@ -1,0 +1,51 @@
+{% comment %}
+  CRO-12303 | USP Trust List
+  ─────────────────────────────────────────────────────────────────────
+  Renders vertically stacked trust items, each: [icon] [label text]
+  Wrapped with top and bottom divider lines.
+
+  Each row is a `usp_item` block in the section schema.
+  Icon can be a theme icon (select) OR an uploaded image (image_picker).
+  Image takes precedence over the select icon.
+
+  Used by: snippets/cro-12303-trust-mount.liquid
+  Injected to DOM position: after cro-payment-strip (via JS)
+{% endcomment %}
+
+{%- assign _has_usp = false -%}
+{%- for _b in section.blocks -%}
+  {%- if _b.type == 'usp_item' -%}
+    {%- assign _has_usp = true -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if _has_usp -%}
+<div class="cro-usp-list" data-cro-usp-list>
+  {%- for _b in section.blocks -%}
+    {%- if _b.type == 'usp_item' -%}
+      <div class="cro-usp-item" {{ _b.shopify_attributes }}>
+
+        <span class="cro-usp-item__icon" aria-hidden="true">
+          {%- if _b.settings.icon_image -%}
+            <img
+              src="{{ _b.settings.icon_image | img_url: '40x40' }}"
+              alt=""
+              width="20"
+              height="20"
+              loading="lazy"
+            >
+          {%- elsif _b.settings.icon != blank and _b.settings.icon != 'none' -%}
+            {%- render 'icon-library', id: _b.settings.icon, icon_class: 'cro-usp-item__icon-svg' -%}
+          {%- endif -%}
+        </span>
+
+        {%- if _b.settings.label != blank -%}
+          <span class="cro-usp-item__label">{{ _b.settings.label | escape }}</span>
+        {%- endif -%}
+
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+{%- endif -%}

@@ -1,0 +1,82 @@
+<div class="product-tabs-container">
+  <ul class="product-tabs__nav">
+    
+    {%- comment -%} TAB 1 (Existing) {%- endcomment -%}
+    {%- if product.metafields.shipturtle["sp_69f30d5cb2663"] != blank -%}
+      <li class="tab-link is-active" data-tab="tab-1">
+        {{ product.metafields.shipturtle["sp_69f30c90491b1"] | default: 'Besonderhede' }}
+      </li>
+    {%- endif -%}
+
+    {%- comment -%} TAB 2 {%- endcomment -%}
+    {%- if product.metafields.shipturtle["sp_69f31c40d2b82"] != blank -%}
+      <li class="tab-link" data-tab="tab-2">
+        {{ product.metafields.shipturtle["sp_69f31c405060c"] | default: 'Tab 2' }}
+      </li>
+    {%- endif -%}
+
+    {%- comment -%} TAB 3 {%- endcomment -%}
+    {%- if product.metafields.shipturtle["sp_69f31c41d98b7"] != blank -%}
+      <li class="tab-link" data-tab="tab-3">
+        {{ product.metafields.shipturtle["sp_69f31c415bc3c"] | default: 'Tab 3' }}
+      </li>
+    {%- endif -%}
+
+    {%- comment -%} TAB 4 {%- endcomment -%}
+    {%- if product.metafields.shipturtle["sp_69f31c42f3763"] != blank -%}
+      <li class="tab-link" data-tab="tab-4">
+        {{ product.metafields.shipturtle["sp_69f31c426dc01"] | default: 'Tab 4' }}
+      </li>
+    {%- endif -%}
+  </ul>
+
+  {%- comment -%} CONTENT 1 {%- endcomment -%}
+  {%- if product.metafields.shipturtle["sp_69f30d5cb2663"] != blank -%}
+    <div id="tab-1" class="tab-content is-active">
+      <div class="rte">{{ product.metafields.shipturtle["sp_69f30d5cb2663"] | newline_to_br }}</div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} CONTENT 2 {%- endcomment -%}
+  {%- if product.metafields.shipturtle["sp_69f31c40d2b82"] != blank -%}
+    <div id="tab-2" class="tab-content">
+      <div class="rte">{{ product.metafields.shipturtle["sp_69f31c40d2b82"] | newline_to_br }}</div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} CONTENT 3 {%- endcomment -%}
+  {%- if product.metafields.shipturtle["sp_69f31c41d98b7"] != blank -%}
+    <div id="tab-3" class="tab-content">
+      <div class="rte">{{ product.metafields.shipturtle["sp_69f31c41d98b7"] | newline_to_br }}</div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} CONTENT 4 {%- endcomment -%}
+  {%- if product.metafields.shipturtle["sp_69f31c42f3763"] != blank -%}
+    <div id="tab-4" class="tab-content">
+      <div class="rte">{{ product.metafields.shipturtle["sp_69f31c42f3763"] | newline_to_br }}</div>
+    </div>
+  {%- endif -%}
+</div>
+
+<style>
+  .product-tabs-container { margin: 30px 0; border-top: 1px solid #eee; width: 100%; clear: both; }
+  .product-tabs__nav { display: flex; list-style: none; padding: 0; border-bottom: 1px solid #eee; gap: 30px; margin: 0; overflow-x: auto; white-space: nowrap; }
+  .tab-link { padding: 15px 0; cursor: pointer; font-weight: bold; position: relative; color: #333; flex-shrink: 0; }
+  .tab-link.is-active { color: #004d40; }
+  .tab-link.is-active::after { content: ""; position: absolute; bottom: -1px; left: 0; width: 100%; height: 3px; background: #004d40; }
+  .tab-content { display: none; padding: 20px 0; line-height: 1.6; }
+  .tab-content.is-active { display: block; }
+</style>
+
+<script>
+  document.querySelectorAll('.tab-link').forEach(link => {
+    link.addEventListener('click', function() {
+      let container = this.closest('.product-tabs-container');
+      container.querySelectorAll('.tab-link, .tab-content').forEach(el => el.classList.remove('is-active'));
+      this.classList.add('is-active');
+      const targetId = this.getAttribute('data-tab');
+      container.querySelector('#' + targetId).classList.add('is-active');
+    });
+  });
+</script>

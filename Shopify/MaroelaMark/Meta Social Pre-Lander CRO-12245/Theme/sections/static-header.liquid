@@ -1,0 +1,1143 @@
+{% assign has_box_shadow = false %}
+{% if settings.color_background == settings.color_header_background  %}
+  {% assign has_box_shadow = true %}
+{% endif %}
+
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="static-header"
+  data-section-data>
+  {
+    "settings": {
+      "sticky_header": {{ section.settings.sticky_header | json }},
+      "has_box_shadow": {{ has_box_shadow | json }},
+      "live_search": {
+        "enable": {{ section.settings.enable_live_search | json }},
+        "money_format": {{ shop.money_format | strip_html | json }},
+        "show_mobile_search_bar": {{ section.settings.show_mobile_search_bar | json }}
+      }
+    }
+  }
+</script>
+
+{% assign logo_height = section.settings.logo_height | default: 100 %}
+{% assign logo_width = section.settings.logo_width | default: 200 %}
+{% assign logo_size = logo_width | prepend: 'x' %}
+
+{% style %}
+  .site-logo {
+    max-width: {{ logo_width }}px;
+  }
+
+  .site-logo-image {
+    max-height: {{ logo_height }}px;
+  }
+{% endstyle %}
+
+<header
+  class="site-header site-header-nav--open"
+  role="banner"
+  data-site-header
+>
+  <div
+    class="
+      site-header-main
+      {% if section.settings.full_width_header %}
+        site-header--full-width
+      {% endif %}
+    "
+    data-site-header-main
+    {% if section.settings.sticky_header %}data-site-header-sticky{% endif %}
+    {% if section.settings.show_mobile_search_bar %}
+      data-site-header-mobile-search-bar
+    {% else %}
+      data-site-header-mobile-search-button
+    {% endif %}
+  >
+    <button class="site-header-menu-toggle" data-menu-toggle>
+      <div class="site-header-menu-toggle--button" tabindex="-1">
+        <span class="toggle-icon--bar toggle-icon--bar-top"></span>
+        <span class="toggle-icon--bar toggle-icon--bar-middle"></span>
+        <span class="toggle-icon--bar toggle-icon--bar-bottom"></span>
+        <span class="visually-hidden">{{ 'general.accessibility.menu' | t }}</span>
+      </div>
+    </button>
+
+    <div class="site-header-logo">
+        <a
+          class="site-logo"
+          href="{{ routes.root_url }}">
+          {% if section.settings.logo %}
+            {% assign logo_alt = section.settings.logo.alt %}
+            {% if logo_alt == '' %}
+              {% assign logo_alt = shop.name | strip %}
+            {% endif %}
+
+            {%
+              render 'rimg',
+              img: section.settings.logo,
+              class: 'site-logo-image',
+              alt: logo_alt,
+              size: logo_size,
+              focal_point: section.settings.logo.presentation.focal_point,
+            %}
+          {% else %}
+            {% if template == 'index' %}
+              <h1 class="site-logo-text">
+                {{ shop.name }}
+              </h1>
+            {% else %}
+              <span class="site-logo-text">
+                {{ shop.name }}
+              </span>
+            {% endif %}
+          {% endif %}
+        </a>
+      </div>
+
+    <div
+      class="
+        site-header-main-content
+        {% if section.settings.small_promo_text != empty %}
+          small-promo-enabled
+        {% endif %}
+      "
+    >
+      
+
+      {%
+        render 'live-search-form',
+        quick_links: linklists[section.settings.quick_links],
+        enable_images: section.settings.enable_live_search_images,
+      %}
+
+      {% if section.settings.small_promo_text != blank or section.settings.small_promo_heading != blank %}
+        {% if section.settings.small_promo_link != blank %}
+          <a
+            class="small-promo-content--link"
+            href="{{ section.settings.small_promo_link }}"
+          >
+        {% endif %}
+        <div class="small-promo">
+          {% if section.settings.small_promo_icon != 'none' or section.settings.image %}
+            <span
+              class="
+                small-promo-icon
+                {% if section.settings.image %}
+                  small-promo-icon--custom
+                {% else %}
+                  small-promo-icon--svg
+                {% endif %}
+              "
+            >
+              {% if section.settings.image == blank %}
+                {% render 'icon-library', id: section.settings.small_promo_icon %}
+              {% else %}
+                {%
+                  render 'rimg',
+                  class: 'small-promo-custom-icon',
+                  img: section.settings.image,
+                  size: '60x',
+                  focal_point: section.settings.image.presentation.focal_point,
+                %}
+              {% endif %}
+            </span>
+          {% endif %}
+
+          <div class="small-promo-content">
+            {% if section.settings.small_promo_heading != blank %}
+              <span class="small-promo-content_heading">
+                {{ section.settings.small_promo_heading | escape }}
+              </span>
+            {% endif %}
+
+            {% if section.settings.small_promo_text_mobile != blank %}
+              <div class="small-promo-content--mobile">
+                {{ section.settings.small_promo_text_mobile }}
+              </div>
+            {% endif %}
+
+            {% if section.settings.small_promo_text != blank %}
+              <div class="small-promo-content--desktop">
+                {{ section.settings.small_promo_text }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        {% if section.settings.small_promo_link != blank %}
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <div class="site-header-right">
+      {% render 'site-header-actions' %}
+{% unless section.settings.show_mobile_search_bar %}
+  {% capture search_button %}
+    <div class="site-header-mobile-search-button--button" tabindex="-1">
+      {% render 'icon-search' %}
+      <span class="visually-hidden">
+        {{- 'general.accessibility.search' | t -}}
+      </span>
+    </div>
+  {% endcapture %}
+
+  {% comment %} 
+    We changed the button class and ID below to 'custom-trigger' 
+    to stop the theme's JS from turning the page blank.
+  {% endcomment %}
+  <button
+    type="button"
+    class="site-header-mobile-search-button custom-search-trigger-active"
+    id="myCustomSearchTrigger"
+  >
+    {{ search_button }}
+  </button>
+{% endunless %}
+
+
+      <div class="site-header-cart">
+        <a class="site-header-cart--button" href="{{ routes.cart_url }}">
+          <span
+            class="site-header-cart--count {% if cart.item_count > 0 %}visible{% endif %}"
+            data-header-cart-count="{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}">
+          </span>
+          <span class="site-header-cart-icon site-header-cart-icon--svg">
+            {% if section.settings.cart_icon == 'icon-bag' %}
+              {% render 'icon-library', id: 'icon-bag' %}
+            {% else %}
+              {% render 'icon-library', id: 'icon-cart' %}
+             {% endif %}
+          </span>
+          <span class="visually-hidden">{{ 'general.accessibility.cart' | t }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="
+      site-navigation-wrapper
+      {% if shop.customer_accounts_enabled %}
+        site-navigation--has-actions
+      {% endif %}
+      {% if section.settings.full_width_header %}
+        site-header--full-width
+      {% endif %}
+    "
+    data-site-navigation
+    id="site-header-nav"
+  >
+    <nav
+      class="site-navigation"
+      aria-label="{{ 'general.accessibility.nav_main' | t }}"
+    >
+      {%
+        render 'navmenu',
+        menu: section.settings.menu,
+        blocks: section.blocks,
+      %}
+
+      {% if section.settings.secondary_menu != blank %}
+        {%
+          render 'navlist',
+          menu_list: linklists[section.settings.secondary_menu].links,
+          depth: 1,
+          max_depth: 1,
+          aria_expanded: true,
+          navmenu_classes: 'site-navigation__secondary-menu',
+        %}
+      {% endif %}
+    </nav>
+  </div>
+
+  {%
+    render 'site-mobile-nav',
+    blocks: section.blocks,
+  %}
+</header>
+<div class="custom-search-row" id="customSearchRow">
+  <div class="site-header-main {% if section.settings.full_width_header %}site-header--full-width{% endif %}">
+    <form action="{{ routes.search_url }}" method="get" class="custom-search-form" role="search">
+      <input 
+        type="text" 
+        name="q" 
+        class="custom-search-input" 
+        placeholder="Waarna soek jy?" 
+        aria-label="Search"
+        required
+      >
+      <button type="submit" class="custom-search-submit">
+        {% render 'icon-search' %}
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+  /* Prevents the 'blank page' effect */
+  body.modal-open, body.search-opened, .live-search-overlay { 
+    display: none !important; 
+    opacity: 0 !important; 
+    pointer-events: none !important;
+  }
+
+  .custom-search-row {
+    display: none;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 0;
+    z-index: 999;
+  }
+
+  .custom-search-row.is-visible {
+    display: block !important;
+  }
+
+  .custom-search-form {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 15px; /* Adds side spacing on mobile */
+  }
+
+  .custom-search-input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    outline: none;
+  }
+
+  .custom-search-submit {
+    background-color: #008284; /* Teal */
+    color: #fff;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .custom-search-submit svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+  }
+  @media screen and (max-width: 1023px) {
+  /* 1. Set the main header container to flex */
+  .site-header-main {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 5px 15px !important;
+  }
+
+  /* 2. Set the Order of Elements */
+  
+  /* Menu Toggle to Position 1 (Left) */
+  .site-header-menu-toggle {
+    order: 1 !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Logo to Position 2 (Center-Left) */
+  .site-header-logo {
+    order: 2 !important;
+    margin: 0 0 0 10px !important; /* Adjust the 10px for gap after menu */
+    flex: 0 0 auto !important;
+  }
+
+  /* Force the Logo size back to your settings */
+  .site-logo-image {
+    max-width: {{ logo_width }}px !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Right Container to Position 3 (Far Right) */
+  .site-header-right {
+    order: 3 !important;
+    flex: 1 1 auto !important; /* Takes up remaining space to push things left */
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 15px !important; /* Space between Search and Cart */
+  }
+
+  /* Inside Right Container: Search icon is Position 1, Cart is Position 2 */
+  #myCustomSearchTrigger {
+    order: 1 !important;
+    display: flex !important;
+  }
+
+  .site-header-cart {
+    order: 2 !important;
+    display: flex !important;
+  }
+
+  /* Hide the "live-search-form" that creates the double logo/icon */
+  .site-header-main-content {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 1023px) {
+  /* 1. Main Container: Space between the left group, logo, and cart */
+  .site-header-main {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 15px !important;
+    height: auto !important;
+    min-height: 60px !important;
+  }
+
+  /* 2. Menu Icon */
+  .site-header-menu-toggle {
+    order: 1 !important;
+    margin: 0 15px 0 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* 3. Search Icon: Forced to stay next to the menu */
+  #myCustomSearchTrigger {
+    order: 2 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* 4. Logo: Centered in the remaining space */
+  .site-header-logo {
+    order: 3 !important;
+    flex: 1 1 auto !important; /* Takes up middle space */
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 10px !important;
+  }
+
+  .site-logo-image {
+    width: auto !important;
+    max-width: {{ logo_width }}px !important; /* Uses your theme width */
+    height: auto !important;
+    max-height: 45px !important; /* Adjust if logo feels too small */
+  }
+
+  /* 5. Cart: Far Right */
+  .site-header-right {
+    order: 4 !important;
+    flex: 0 0 auto !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+
+  /* 6. Cleanup: Hide original theme middle bar */
+  .site-header-main-content {
+    display: none !important;
+  }
+}
+/* Hide the Wishlist button in the header */
+.xb-wishlist-header-auto-container {
+  display: none !important;
+}
+/* Hide the Account/Login link (Meld aan) */
+.site-header-actions__account-link {
+  display: none !important;
+}
+
+/* Optional: Clean up any empty space left by the list */
+.site-header-actions {
+  display: none !important;
+}
+/* --- DESKTOP HIDE (Screens larger than 1023px) --- */
+@media screen and (min-width: 1024px) {
+  /* Hide Cart on Desktop */
+  .site-header-cart {
+    display: none !important;
+  }
+
+  /* Hide Account/Login Link on Desktop */
+  .site-header-actions__account-link {
+    display: none !important;
+  }
+  
+  /* Ensure the container doesn't create extra spacing */
+  .site-header-actions {
+    display: none !important;
+  }
+}
+
+/* --- MOBILE SHOW (Screens 1023px and smaller) --- */
+@media screen and (max-width: 1023px) {
+  /* Ensure Cart is visible on Mobile */
+  .site-header-cart {
+    display: flex !important;
+  }
+
+  /* Ensure Account/Login is visible on Mobile */
+  .site-header-actions__account-link {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 1023px) {
+  /* Ensure it stays hidden on mobile to avoid double bars */
+  .live-search { display: none !important; }
+}
+
+@media screen and (min-width: 1024px) {
+  /* 1. Shrink and Align Container to the Right */
+  .live-search {
+    display: block !important;
+    max-width: 300px !important; /* Makes the bar smaller */
+    margin-left: auto !important; /* Pushes it to the right */
+    margin-right: 0 !important;
+  }
+
+  /* 2. Adjust Form height and alignment */
+  .live-search-form {
+    display: flex !important;
+    align-items: center !important;
+    height: 40px !important; /* Makes the bar thinner */
+  }
+
+  .live-search-form-field {
+    height: 100% !important;
+    padding: 5px 12px !important;
+    font-size: 14px !important; /* Slightly smaller text */
+  }
+
+  /* 3. Adjust Button size */
+  .live-search-button {
+    height: 100% !important;
+    width: 45px !important;
+    min-width: 45px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 4. Ensure the flydown (results) doesn't stretch too wide */
+  .search-flydown {
+    width: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+  }
+}
+@media screen and (min-width: 1024px) {
+  /* 1. Hide the extra placeholder block/results flydown entirely */
+  .search-flydown, 
+  .search-flydown--placeholder, 
+  [data-live-search-flydown] {
+    display: none !important;
+  }
+
+  /* 2. Fix the alignment of the teal button and form */
+  .live-search-form {
+    overflow: hidden !important; /* Clips the extra white block */
+    border-radius: 4px !important;
+    display: flex !important;
+    width: 100% !important;
+  }
+
+  /* 3. Ensure the teal button stays at the very edge */
+  .live-search-button {
+    margin: 0 !important;
+    border-radius: 0 4px 4px 0 !important; /* Rounds only the outer corners */
+    flex-shrink: 0 !important;
+  }
+
+  /* 4. Remove any extra padding from the container peeking out */
+  .live-search {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+@media screen and (min-width: 1024px) {
+  /* 1. Force the inner wrapper to span the full width */
+  .live-search .form-field.no-label {
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 2. Force the input to take all available space up to the button */
+  .live-search-form-field {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    border-radius: 4px 0 0 4px !important;
+  }
+
+  /* 3. Lock the teal button to the right edge */
+  .live-search-button {
+    margin: 0 !important;
+    flex: 0 0 50px !important; /* Adjust width if needed */
+    border-radius: 0 4px 4px 0 !important;
+    position: relative !important;
+    right: 0 !important;
+    top: 0 !important;
+  }
+
+  /* 4. Hide the "Cancel" button that might be taking up space */
+  .live-search-takeover-cancel {
+    display: none !important;
+  }
+
+  /* 5. Ensure the results dropdown is hidden */
+  .search-flydown {
+    display: none !important;
+  }
+}
+
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const trigger = document.getElementById('myCustomSearchTrigger');
+  const searchRow = document.getElementById('customSearchRow');
+
+  if (trigger && searchRow) {
+    trigger.addEventListener('click', function(e) {
+      // 1. Stop the theme from seeing this click at all
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      
+      // 2. Toggle our custom row
+      searchRow.classList.toggle('is-visible');
+      
+      // 3. Focus the input
+      if (searchRow.classList.contains('is-visible')) {
+        searchRow.querySelector('input').focus();
+      }
+    }, true); // The 'true' ensures we catch the click before the theme scripts do
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Target the specific rating count text (e.g., "1 Resensie")
+  const ratingCount = document.querySelector('.product-block--rating .rating__count');
+
+  if (ratingCount) {
+    // Make it look clickable
+    ratingCount.style.cursor = 'pointer';
+    ratingCount.style.textDecoration = 'underline';
+
+    ratingCount.addEventListener('click', function() {
+      // Look for the Judge.me widget container
+      const reviewsSection = document.getElementById('judgeme_product_reviews') || 
+                             document.querySelector('.jdgm-rev-widg');
+      
+      if (reviewsSection) {
+        reviewsSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback: search for any app block that might be the reviews
+        const fallbackSection = document.querySelector('[id*="judgeme"]');
+        if (fallbackSection) fallbackSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "class": "site-header-wrapper",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "t:sections.header.sticky_header.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width_header",
+      "label": "t:sections.header.full_width_header.label",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.logo.label",
+      "info": "t:sections.header.logo.info"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "t:sections.header.logo_height.label",
+      "min": 40,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "t:sections.header.logo_width.label",
+      "min": 150,
+      "max": 250,
+      "step": 1,
+      "unit": "px",
+      "default": 150,
+      "info": "t:sections.header.logo_width.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.header_1.content"
+    },
+    {
+      "type": "select",
+      "id": "filter_search_by",
+      "label": "t:sections.header.filter_search_by.label",
+      "info": "t:sections.header.filter_search_by.info",
+      "options": [
+        {
+          "value": "disabled",
+          "label": "t:sections.header.filter_search_by.option_1"
+        },
+        {
+          "value": "product_type",
+          "label": "t:sections.header.filter_search_by.option_2"
+        },
+        {
+          "value": "tag",
+          "label": "t:sections.header.filter_search_by.option_3"
+        }
+      ],
+      "default": "product_type"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_live_search",
+      "label": "t:sections.header.enable_live_search.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_search_bar",
+      "label": "t:sections.header.show_mobile_search_bar.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_live_search_images",
+      "label": "t:sections.header.enable_live_search_images.label",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "quick_links",
+      "label": "t:sections.header.quick_links.label",
+      "info": "t:sections.header.quick_links.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.header_2.content"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.header.menu.label",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "secondary_menu",
+      "label": "t:sections.header.secondary_menu.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.header_3.content"
+    },
+    {
+      "type": "text",
+      "id": "small_promo_heading",
+      "label": "t:sections.header.small_promo_heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "small_promo_text",
+      "label": "t:sections.header.small_promo_text.label"
+    },
+    {
+      "type": "richtext",
+      "id": "small_promo_text_mobile",
+      "label": "t:sections.header.small_promo_text_mobile.label",
+      "info": "t:sections.header.small_promo_text_mobile.info"
+    },
+    {
+      "type": "url",
+      "id": "small_promo_link",
+      "label": "t:sections.header.small_promo_link.label"
+    },
+    {
+      "type": "select",
+      "id": "small_promo_icon",
+      "label": "t:sections.header.small_promo_icon.label",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.header.small_promo_icon.option_1"
+        },
+        {
+          "value": "icon-award-trophy",
+          "label": "t:sections.header.small_promo_icon.option_2"
+        },
+        {
+          "value": "icon-car",
+          "label": "t:sections.header.small_promo_icon.option_3"
+        },
+        {
+          "value": "icon-cell-phone",
+          "label": "t:sections.header.small_promo_icon.option_4"
+        },
+        {
+          "value": "icon-chat",
+          "label": "t:sections.header.small_promo_icon.option_5"
+        },
+        {
+          "value": "icon-chat-alternate",
+          "label": "t:sections.header.small_promo_icon.option_6"
+        },
+        {
+          "value": "icon-credit-card",
+          "label": "t:sections.header.small_promo_icon.option_7"
+        },
+        {
+          "value": "icon-delivery",
+          "label": "t:sections.header.small_promo_icon.option_8"
+        },
+        {
+          "value": "icon-delivery-cart",
+          "label": "t:sections.header.small_promo_icon.option_9"
+        },
+        {
+          "value": "icon-delivery-door",
+          "label": "t:sections.header.small_promo_icon.option_10"
+        },
+        {
+          "value": "icon-delivery-package",
+          "label": "t:sections.header.small_promo_icon.option_11"
+        },
+        {
+          "value": "icon-email",
+          "label": "t:sections.header.small_promo_icon.option_12"
+        },
+        {
+          "value": "icon-envelope",
+          "label": "t:sections.header.small_promo_icon.option_13"
+        },
+        {
+          "value": "icon-gift-card",
+          "label": "t:sections.header.small_promo_icon.option_14"
+        },
+        {
+          "value": "icon-heart",
+          "label": "t:sections.header.small_promo_icon.option_15"
+        },
+        {
+          "value": "icon-information",
+          "label": "t:sections.header.small_promo_icon.option_16"
+        },
+        {
+          "value": "icon-label-tag",
+          "label": "t:sections.header.small_promo_icon.option_17"
+        },
+        {
+          "value": "icon-lock",
+          "label": "t:sections.header.small_promo_icon.option_18"
+        },
+        {
+          "value": "icon-number-14",
+          "label": "t:sections.header.small_promo_icon.option_19"
+        },
+        {
+          "value": "icon-number-24",
+          "label": "t:sections.header.small_promo_icon.option_20"
+        },
+        {
+          "value": "icon-number-30",
+          "label": "t:sections.header.small_promo_icon.option_21"
+        },
+        {
+          "value": "icon-people",
+          "label": "t:sections.header.small_promo_icon.option_22"
+        },
+        {
+          "value": "icon-pin",
+          "label": "t:sections.header.small_promo_icon.option_23"
+        },
+        {
+          "value": "icon-question-mark",
+          "label": "t:sections.header.small_promo_icon.option_24"
+        },
+        {
+          "value": "icon-rating-five-star",
+          "label": "t:sections.header.small_promo_icon.option_25"
+        },
+        {
+          "value": "icon-rating-star",
+          "label": "t:sections.header.small_promo_icon.option_26"
+        },
+        {
+          "value": "icon-smile",
+          "label": "t:sections.header.small_promo_icon.option_27"
+        },
+        {
+          "value": "icon-store",
+          "label": "t:sections.header.small_promo_icon.option_28"
+        },
+        {
+          "value": "icon-tape-measure",
+          "label": "t:sections.header.small_promo_icon.option_29"
+        },
+        {
+          "value": "icon-thumbs-up",
+          "label": "t:sections.header.small_promo_icon.option_30"
+        },
+        {
+          "value": "icon-transfer",
+          "label": "t:sections.header.small_promo_icon.option_31"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.header.image.label",
+      "info": "t:sections.header.image.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.header_4.content"
+    },
+    {
+      "type": "select",
+      "id": "cart_icon",
+      "label": "t:sections.header.cart_icon.label",
+      "options": [
+        {
+          "value": "icon-bag",
+          "label": "t:sections.header.cart_icon.option_1"
+        },
+        {
+          "value": "icon-cart",
+          "label": "t:sections.header.cart_icon.option_2"
+        }
+      ],
+      "default": "icon-cart"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "meganav_images",
+      "name": "t:sections.header.blocks.mega_menu.name",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "meganav_trigger",
+          "label": "t:sections.header.blocks.mega_menu.meganav_trigger.label",
+          "info": "t:sections.header.blocks.mega_menu.meganav_trigger.info"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.header.blocks.mega_menu.header_1.content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "t:sections.header.blocks.mega_menu.image_1.label"
+        },
+        {
+          "type": "text",
+          "id": "text_1",
+          "label": "t:sections.header.blocks.mega_menu.text_1.label"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "t:sections.header.blocks.mega_menu.link_1.label"
+        },
+        {
+          "type": "select",
+          "id": "position_1",
+          "label": "t:sections.header.blocks.mega_menu.position_1.label",
+          "options": [
+            {
+              "value": "first",
+              "label": "t:sections.header.blocks.mega_menu.position_1.option_1"
+            },
+            {
+              "value": "last",
+              "label": "t:sections.header.blocks.mega_menu.position_1.option_2"
+            }
+          ],
+          "default": "last"
+        },
+        {
+          "type": "select",
+          "id": "size_1",
+          "label": "t:sections.header.blocks.mega_menu.size_1.label",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.header.blocks.mega_menu.size_1.option_1"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.header.blocks.mega_menu.size_1.option_2"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.header.blocks.mega_menu.size_1.option_3"
+            }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.header.blocks.mega_menu.header_2.content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "t:sections.header.blocks.mega_menu.image_2.label"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "t:sections.header.blocks.mega_menu.text_2.label"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "t:sections.header.blocks.mega_menu.link_2.label"
+        },
+        {
+          "type": "select",
+          "id": "position_2",
+          "label": "t:sections.header.blocks.mega_menu.position_2.label",
+          "options": [
+            {
+              "value": "first",
+              "label": "t:sections.header.blocks.mega_menu.position_2.option_1"
+            },
+            {
+              "value": "last",
+              "label": "t:sections.header.blocks.mega_menu.position_2.option_2"
+            }
+          ],
+          "default": "last"
+        },
+        {
+          "type": "select",
+          "id": "size_2",
+          "label": "t:sections.header.blocks.mega_menu.size_2.label",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.header.blocks.mega_menu.size_2.option_1"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.header.blocks.mega_menu.size_2.option_2"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.header.blocks.mega_menu.size_2.option_3"
+            }
+          ],
+          "default": "medium"
+        }
+      ]
+    },
+    {
+      "type": "meganav_sidenav",
+      "name": "t:sections.header.blocks.mega_menu_with_sidebar.name",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "meganav_trigger",
+          "label": "t:sections.header.blocks.mega_menu_with_sidebar.meganav_trigger.label",
+          "info": "t:sections.header.blocks.mega_menu_with_sidebar.meganav_trigger.info"
+        },
+        {
+          "type": "radio",
+          "id": "submenu_layout",
+          "label": "t:sections.header.blocks.mega_menu_with_sidebar.submenu_layout.label",
+          "options": [
+            {
+              "value": "text_columns",
+              "label": "t:sections.header.blocks.mega_menu_with_sidebar.submenu_layout.option_1"
+            },
+            {
+              "value": "product_images",
+              "label": "t:sections.header.blocks.mega_menu_with_sidebar.submenu_layout.option_2"
+            },
+            {
+              "value": "collection_images",
+              "label": "t:sections.header.blocks.mega_menu_with_sidebar.submenu_layout.option_3"
+            }
+          ],
+          "default": "text_columns"
+        },
+        {
+          "type": "select",
+          "id": "image_aspect_ratio",
+          "label": "t:sections.header.blocks.mega_menu_with_sidebar.image_aspect_ratio.label",
+          "options": [
+            {
+              "value": "natural",
+              "label": "t:sections.header.blocks.mega_menu_with_sidebar.image_aspect_ratio.option_1"
+            },
+            {
+              "value": "short",
+              "label": "t:sections.header.blocks.mega_menu_with_sidebar.image_aspect_ratio.option_2"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.header.blocks.mega_menu_with_sidebar.image_aspect_ratio.option_3"
+            },
+            {
+              "value": "tall",
+              "label": "t:sections.header.blocks.mega_menu_with_sidebar.image_aspect_ratio.option_4"
+            }
+          ],
+          "default": "natural"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_crop",
+          "label": "t:sections.header.blocks.mega_menu_with_sidebar.image_crop.label",
+          "info": "t:sections.header.blocks.mega_menu_with_sidebar.image_crop.info",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "multi_column_menu",
+      "name": "t:sections.header.blocks.multi-column_single_menu.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_trigger",
+          "label": "t:sections.header.blocks.multi-column_single_menu.menu_trigger.label",
+          "info": "t:sections.header.blocks.multi-column_single_menu.menu_trigger.info"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}
