@@ -1,0 +1,40 @@
+<details
+                        id="Details-Mobile-{{ filter.param_name | escape }}-{{ section.id }}"
+                        class="mobile-facets__details js-filter"
+                        data-index="mobile-{{ forloop.index }}"
+                      >
+                        <summary class="mobile-facets__summary focus-inset">
+                          <div>
+                            <span>Filter by Location</span>
+                            <span class="mobile-facets__arrow">
+                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                            </span>
+                          </div>
+                        </summary>
+                        <div
+                          id="FacetMobile-{{ forloop.index }}-{{ section.id }}"
+                          class="mobile-facets__submenu gradient"
+                        >
+                          <button
+                            class="mobile-facets__close-button link link--text focus-inset"
+                            aria-expanded="true"
+                            type="button"
+                          >
+                            {{- 'icon-arrow.svg' | inline_asset_content -}}
+                            <span>Filter by Location</span>
+                              {% comment %} <span class="facets__and-helptext">
+                                Locations
+                              </span> {% endcomment %}
+                          </button>
+                         {%- render 'location-collection-nav', mob_hide: false -%}
+                         <style>
+                          .mobile-facets__submenu .facets__summary{
+                            display: none;
+                          }
+                          .mobile-facets__submenu .sidebar-width{
+                            width: 100%;
+                            padding: 30px;
+                          }
+                         </style>
+                        </div>
+                      </details>

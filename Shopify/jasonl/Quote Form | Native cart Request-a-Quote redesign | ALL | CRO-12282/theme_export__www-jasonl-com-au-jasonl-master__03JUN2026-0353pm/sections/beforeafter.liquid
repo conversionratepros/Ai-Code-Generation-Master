@@ -1,0 +1,89 @@
+{{ 'beforeafter.css' | asset_url | stylesheet_tag }}
+
+<section class="before-after">
+   <div class="page-width">
+      <div class="before-after-wrapper">
+        <div id="before-after" class="twentytwenty-container">              
+          {%- if section.settings.before_image != blank -%}
+          {% comment %} <img 
+              src="{{ section.settings.before_image | image_url: width: 1540 }}" 
+              alt="Before"
+              > {% endcomment %}
+              <picture>
+                <source srcset="{{ section.settings.before_image | image_url: width: 1540 }}, {{ section.settings.before_image | image_url: width: 3080 }} 2x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+                <img src="{{ section.settings.before_image | image_url: width: 1540 }}" alt="Sydney fitout before" loading="lazy"/>
+              </picture>
+          {%- endif -%}
+          {%- if section.settings.after_image != blank -%}
+          {% comment %} <img 
+              src="{{ section.settings.after_image | image_url: width: 1540 }}" 
+              alt="After"
+              > {% endcomment %}
+              <picture>
+                <source srcset="{{ section.settings.after_image | image_url: width: 1540 }}, {{ section.settings.after_image | image_url: width: 3080 }} 2x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+                <img src="{{ section.settings.after_image | image_url: width: 1540 }}" alt="Sydney fitout after" loading="lazy"/>
+              </picture>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if section.settings.title != blank -%}
+        <h2 class="section-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+   </div>
+</section>
+
+<script src="{{ 'jquery.event.move.js' | asset_url }}" type="text/javascript" defer="defer"></script>
+<script src="{{ 'jquery.twentytwenty.js' | asset_url }}" type="text/javascript" defer="defer"></script>
+<script>
+  jQuery(document).ready(function($){
+    $("#before-after").twentytwenty({
+      before_label: 'Before',
+      after_label: 'After',
+      no_overlay: false,
+      default_offset_pct: 0.75,   // starts showing 25% after
+      reveal_on_scroll: true,
+      reveal_offset_pct: 0.15,    // animates to show 80% after
+      reveal_threshold: 1,      // triggers when 50% of container is on screen
+      reveal_duration: 1200,       // 800ms ease-in-out
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Before After",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Transformation"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "See the difference"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before After",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

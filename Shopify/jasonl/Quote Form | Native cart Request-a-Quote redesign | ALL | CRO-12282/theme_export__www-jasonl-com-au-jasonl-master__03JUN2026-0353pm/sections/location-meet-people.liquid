@@ -1,0 +1,185 @@
+{%- assign is_location_collection = false -%}
+{%- assign is_showroom_collection = false -%}
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split:','-%}
+
+{% if request.page_type == 'page' %}
+  {%- assign city = page.title | downcase | escape -%}
+  {%- assign is_showroom_collection = true -%}
+{% elsif request.page_type == 'collection' %}
+    {% for tagname in current_tags %}
+      {%- assign tag_name = tagname | downcase | escape -%}   
+      {%- if cities contains tag_name -%}
+          {%-assign is_location_collection = true -%}
+          {%-assign city = tagname | downcase | escape -%}
+        {%-break-%}
+      {%- endif -%}
+    {%- endfor -%}
+{% endif %}
+
+
+{% if is_location_collection == true or is_showroom_collection == true %}
+            <!-- get index for main - meet-people -->
+            {% for shopmeta_location in shop.metafields.custom_fields.location_collection_team_main_location %}
+                {% assign location_showroom = shopmeta_location | downcase | escape %}
+                {% if city == location_showroom %}
+                {% assign shopmeta_index = forloop.index0 %}
+                <!-- <p>tester : {{shopmeta_index}} - {{shop.metafields.custom_fields.location_collection_store_image[shopmeta_index]}}</p> -->
+                {% endif %}    
+            {% endfor %}
+
+
+
+
+{%- if shopmeta_index -%}
+            {% assign meet-people-header = shop.metafields.custom_fields.location_collection_team_main_header[shopmeta_index] %}
+            {% assign meet-people-description = shop.metafields.custom_fields.location_collection_team_main_description[shopmeta_index] %}
+            {% assign meet-people-signature = shop.metafields.custom_fields.location_collection_team_main_signature[shopmeta_index] %}
+            {% assign meet-people-image = shop.metafields.custom_fields.location_collection_team_main_image[shopmeta_index] %}
+
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css"> 
+            {{"landingpage-meetpeople.css" | asset_url | stylesheet_tag}}
+            {{"meetpeople-2.css" | asset_url | stylesheet_tag}}
+
+                    <div  class="meetpeople1-container">         
+                        <div  class="page-width page-width-override">
+                            <div class="">
+                                <div class="meetpeople-wrapper">
+                                    <div class="meetpeople1-left">
+                                        <div class="meetpeople-banner">
+                                            <div class="people-img">
+                                                {%- if meet-people-image != empty  -%}
+                                                <picture>
+                                                    <source media="(min-width: 1200px)" srcset="{{shop.metafields.custom_fields.location_collection_team_main_image[shopmeta_index] | file_img_url:'450x'}}, {{shop.metafields.custom_fields.location_collection_team_main_image[shopmeta_index] | file_img_url:'1042x'}} 2x">
+                                                    <img src="{{shop.metafields.custom_fields.location_collection_team_main_image[shopmeta_index] | file_img_url:'521x'}}" alt="Zac"/>
+                                                </picture>
+                                                {%- endif -%}
+                                            </div>
+                                            <div class="people-text">
+                                                {%- if meet-people-header != empty  -%}
+                                                    <h2>{{shop.metafields.custom_fields.location_collection_team_main_header[shopmeta_index] | replace:'.', '<span>.</span>'}}</h2>
+                                                {%- endif -%}
+                                                {%- if meet-people-description != empty  -%}
+                                                    <p>{{shop.metafields.custom_fields.location_collection_team_main_description[shopmeta_index]}}</p>
+                                                {%- endif -%}
+                                                 {%- if meet-people-signature != empty -%}
+                                                <img class="signature" loading="lazy" alt="signature" src="{{shop.metafields.custom_fields.location_collection_team_main_signature[shopmeta_index] | file_img_url:'master'}}"/>
+                                                {%- endif -%}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- get index for slider - meet-people assign team_member_index = forloop.index0  -->
+                                    {% for shopmeta_location_team_member_location in shop.metafields.custom_fields.location_collection_team_member_location %}
+                                        {% assign location_showroom = shopmeta_location_team_member_location | downcase | escape %}
+                                        {% if city == location_showroom %}
+                                               
+                                                    {% assign team_member_index_list =  team_member_index_list | append: forloop.index0 %}
+                                                
+                                        {% endif %}    
+                                    {% endfor %}
+                                    
+
+                        {% assign team_member_index_list_array = team_member_index_list | split:'' %}
+
+                                    <div class="meetpeople1-right">
+                                        <div class="swiffy-slider">
+                                            <div class="slider-container">
+
+                                                {% for team_member_index1 in team_member_index_list_array %}
+                                                    <div class="meetpeople-box" data-items="{{team_member_index_list_array.size}}">
+                                                        {% assign team_member_index = team_member_index1 | times : 1 %}
+                                                        {% if shop.metafields.custom_fields.location_collection_team_member_name[team_member_index] %}
+                                                        <p class="meetpeople-name"><strong>{{shop.metafields.custom_fields.location_collection_team_member_name[team_member_index]}}</strong></p>
+                                                        {% endif %}
+                                                        {% if shop.metafields.custom_fields.location_collection_team_member_position[team_member_index] %}
+                                                        <span class="meetpeople-position">{{shop.metafields.custom_fields.location_collection_team_member_position[team_member_index]}}</span>
+                                                        {% endif %}
+                                                        {% if shop.metafields.custom_fields.location_collection_team_member_description[team_member_index] %}
+                                                        <p class="meetpeople-text">{{ shop.metafields.custom_fields.location_collection_team_member_description[team_member_index] }}</p>
+                                                        {% endif %}
+                                                        {% if shop.metafields.custom_fields.location_collection_team_member_image[team_member_index] %}
+                                                        <img class="people-img" src="{{ shop.metafields.custom_fields.location_collection_team_member_image[team_member_index] | file_img_url: '164x'}}" alt="{{shop.metafields.custom_fields.location_collection_team_member_name[team_member_index]}} {{shop.metafields.custom_fields.location_collection_team_member_position[team_member_index]}}" />
+                                                        {% endif %}
+                                                    </div>
+                                                {% endfor %}
+                                                
+                                            </div>
+                                            {% if team_member_index_list_array.size > 1 %}
+                                            <div class="slider-indicators">
+                                                {% for team_member_index1 in team_member_index_list_array %}
+                                                <button {% if forloop.first %}class="active" {% endif %}></button>
+                                                {% endfor %}
+                                            </div>
+                                            {% endif %}
+
+                                        </div>                                      
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>         
+                    </div>
+    {% endif %}
+    {% else %}
+    	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    	{{"meet-people.css" | asset_url | stylesheet_tag}}
+    	<div class="meetpeople-container">
+    	<div class="page-width">
+    	<div class="">
+    	{%- assign current_page = template.name -%}
+    	{%- for message in shop.metafields.accentuate.main_text -%}
+    	{%- if shop.metafields.accentuate.page[forloop.index0] == "index" -%}
+    	<div class="meetpeople-wrapper">
+    	<div class="meetpeople-left">
+    	<div class="meetpeople-banner">
+    	<div class="people-img">
+    	<picture>
+    	<source media="(min-width: 1200px)"
+    	srcset="{{shop.metafields.accentuate.main_image[forloop.index0]| file_img_url:'1200x450_crop_center' }}, {{shop.metafields.accentuate.main_image[forloop.index0]| file_img_url:'1200x450_crop_center' }} 2x">
+    	<img src="{{shop.metafields.accentuate.main_image[forloop.index0]| file_img_url:'1200x450_crop_center' }}"
+    	alt="{{ shop.metafields.accentuate.main_title[forloop.index0] }}" height="455" 
+    	width="530" loading="lazy"/>
+    	</picture>
+    	</div>
+    	<div class="people-text-wrapper">
+    	<div class="people-text">
+    	<h2>{{ shop.metafields.accentuate.main_title[forloop.index0] | remove: "." }}<span>.</span></h2>
+    	<p>{{message}}</p>
+    	<img class="signature" loading="lazy" alt="signature"
+    	src="{{ shop.metafields.accentuate.main_signature[forloop.index0] | file_img_url:'master' }}"
+    	height="" width=""/>
+    	</div>
+    	</div>
+    	</div>
+    	</div>
+    	<div class="meetpeople-right">
+    	<div class="meet-box-holder">
+    	<div class="meetpeople-box">
+    	<p>
+    	{{ shop.metafields.accentuate.card_text[forloop.index0] }}
+    	</p>
+    	<strong class="peoplename">{{ shop.metafields.accentuate.card_name[forloop.index0] }}</strong>
+    	<span class="peoplepost">{{ shop.metafields.accentuate.card_designation[forloop.index0] }} at {{shop.metafields.accentuate.card_company[forloop.index0] }}</span>
+    	<img class="people-img"
+    	src="{{ shop.metafields.accentuate.card_image[forloop.index0] | file_img_url:'master' }}"
+    	alt="{{ shop.metafields.accentuate.card_name[forloop.index0] }} {{ shop.metafields.accentuate.card_designation[forloop.index0] }} at {{shop.metafields.accentuate.card_company[forloop.index0] }}" width="163" height="163" loading="lazy" />
+    	</div>
+    	</div>
+    	</div>
+    	</div>
+    	{%- endif -%}
+    	{%- endfor -%}
+    	</div>
+    	</div>
+    	</div>
+{% endif %}
+	
+
+{% schema %}
+    {
+        "name": "Meet People 2",
+        "class":"meetpeople-section meetpeople2-section"
+    }
+{% endschema %}

@@ -1,0 +1,72 @@
+{{ 'home-office-testimonials.css' | asset_url | stylesheet_tag }}
+{% capture star %}
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19px" height="19px" viewBox="0 0 19 19">
+        <path fill-rule="evenodd"  fill="rgb(237, 207, 95)" d="M12.691,6.900 C12.272,6.842 12.053,6.665 11.876,6.279 C11.131,4.655 10.359,3.048 9.594,1.437 C9.531,1.301 9.445,1.179 9.324,0.976 C9.156,1.322 9.025,1.587 8.899,1.854 C8.189,3.359 7.478,4.863 6.774,6.372 C6.650,6.637 6.520,6.835 6.194,6.874 C5.351,6.976 4.513,7.120 3.674,7.250 C2.627,7.412 1.581,7.580 0.406,7.765 C0.623,8.012 0.744,8.165 0.879,8.302 C2.081,9.529 3.278,10.764 4.496,11.976 C4.766,12.244 4.853,12.490 4.781,12.877 C4.561,14.050 4.381,15.227 4.189,16.403 C4.064,17.174 3.945,17.948 3.805,18.838 C4.091,18.687 4.277,18.596 4.459,18.497 C5.928,17.689 7.401,16.888 8.861,16.062 C9.202,15.869 9.474,15.855 9.823,16.054 C11.282,16.882 12.756,17.680 14.226,18.486 C14.409,18.587 14.597,18.675 14.844,18.803 C14.831,18.598 14.833,18.464 14.812,18.335 C14.519,16.519 14.237,14.703 13.917,12.893 C13.843,12.474 13.955,12.222 14.233,11.945 C15.449,10.731 16.646,9.498 17.848,8.268 C17.978,8.136 18.091,7.983 18.256,7.787 C18.078,7.746 17.989,7.718 17.899,7.705 C16.163,7.431 14.430,7.141 12.691,6.900 Z"/>
+    </svg>
+{% endcapture %}
+<div class="home-office-testimonials">
+    <div class="page-width">
+        <div class="testimonials-wrap">
+            <div class="testimonial-left">
+                <div class="testimonail-text">
+                    <h2 class="heading">Real Offices. <br>Real Inspiration.</h2>
+                    <p>See how thousands of remote workers are transforming their corners into productivity powerhouses. From cozy nooks to dedicated executive suites, find the look that matches your vibe.</p>
+                    <a href="/pages/inspired" class="button button-primary btn-round">
+                        GET INSPIRED
+                    </a>
+
+                    <div class="verified-reviews-wrap">
+                        <img src="{{ 'reviewers.png' | file_img_url: '172x' }}" alt="verified reviews from real home offices" width="172" height="auto"> 1,000+ verified reviews from real home offices
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-right">
+                <div class="review-img-wrap">
+                    <div class="left-wrap">
+                        <picture>
+                             <source srcset="{{ 'inspiration-review-1.png' | file_img_url: '740x' }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                            <img src="{{ 'inspiration-review-1.png' | file_img_url : '370x'}}" alt="Real Offices Real Inspiration" width="370" height="404">
+                        </picture>
+                        <picture>
+                            <source srcset="{{ 'inspiration-review-2.png' | file_img_url: '740x' }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                            <img src="{{ 'inspiration-review-2.png' | file_img_url : '370x'}}" alt="Real Offices Real Inspiration" width="370" height="404">
+                        </picture>
+                    </div>
+                    <div class="right-wrap">
+                        <picture>
+                            <source srcset="{{ 'inspiration-review-3.png' | file_img_url: '740x' }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                            <img src="{{ 'inspiration-review-3.png' | file_img_url : '370x'}}" alt="Real Offices Real Inspiration" width="370" height="404">
+                        </picture>
+                        <div class="card">
+                            <div class="stars">
+                                {% for i in (1..5) %}
+                                    {{ star }}
+                                {% endfor %}
+                            </div>
+                            <h3 class="card-title">Still the best chair option after 15 years</h3>
+                            <p>I've had a Gregory chair at work for the last 15 years and found it the most comfortable for my body shape. During the Covid lockdown I needed to find a work chair for home and was so happy to be able to find it at Gregory.</p>
+                            <p class="reviewer">- Christina Cassidy</p>
+                        </div>
+                        <div class="last-card-wrap">
+                            <div class="card lastcard">
+                                <div class="stars">
+                                    {% for i in (1..5) %}
+                                        {{ star }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <a href="/pages/reviews" class="link">READ REVIEWS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Home office testimonials",
+"settings": []
+}
+{% endschema %}

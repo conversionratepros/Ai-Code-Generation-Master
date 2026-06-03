@@ -1,0 +1,300 @@
+{{ 'careers-page.css' | asset_url | stylesheet_tag }}
+<div class="page-career">
+    <div class="hero-content">
+        <div class="page-width">
+            <div class="inner">
+                <div class="grid-content-box">
+                    <div class="image">
+
+                        {% comment %} <img src="{{ 'headerteam.webp' | image_url: width: 500, format: 'webp' }}" alt="{{ product.title }}" width="755px" height=""> {% endcomment %}
+
+                        {% comment %} <img src="{{ 'headerteam.webp' | file_url }}" 
+                            srcset="{{ 'headerteam.webp' | file_url }} 800w, 
+                                    {{ 'headerteam.webp' | file_url }} 1200w, 
+                                    {{ 'headerteam.webp' | file_url }} 1800w"
+                            sizes="(max-width: 600px) 600px, 
+                                   (max-width: 800px) 800px, 
+                                   1200px"
+                            alt="Join our team and help us make workplaces better." 
+                            width="755px" height="" > {% endcomment %}
+
+                            {% comment %} <img src="{{ 'jasonl-team.jpg' | file_img_url:'758x' }}" alt="Join our team and help us make workplaces better."> {% endcomment %}
+                        
+
+                            <picture>
+                                <!-- For 3x and above Retina Displays -->
+                                <source srcset="{{ 'careersheaderteam.jpg' | file_img_url:'2700x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 3), (min-width: 1200px) and (min-resolution: 288dpi)">
+                              
+                                <!-- For 2x Retina Displays -->
+                                <source srcset="{{ 'careersheaderteam.jpg' | file_img_url:'1800x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (min-resolution: 192dpi)">
+                              
+                                <!-- Normal desktops/laptops -->
+                                <source srcset="{{ 'careersheaderteam.jpg' | file_img_url:'900x', format: 'jpg' }}" media="(min-width: 768px)">
+                              
+                                <!-- Mobile devices -->
+                                <source srcset="{{ 'careersheaderteam.jpg' | file_img_url:'600x', format: 'jpg' }}" media="(max-width: 767px)">
+                              
+                                <!-- Fallback for older browsers -->
+                                <img src="{{ 'careersheaderteam.jpg' | file_img_url:'1200x', format: 'jpg' }}" alt="Join our team and help us make workplaces better." width="758px" height="">
+                              </picture>
+
+
+                    </div>
+                    <div class="content">
+                        <h1 class="h2">JasonL is about enabling people to do great work through creating successful work environments.</h1>
+                        <p>Join our team and help us make workplaces better.</p>
+                    </div>
+                    <span class="artwork">
+                        <svg id="Capa_1" data-name="Capa 1" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 130 180">
+                          <path class="cls-1" d="M120,55.16c4.43-11.49,4.37-26.64-1.91-37.58-8.8-15.33-37.49-15-49.7-15H61.6c-12.22,0-40.9-.28-49.71,15.05C5.61,28.52,5.55,43.67,10,55.16c3,7.86,7.81,14.9,15,19.37,1.37.85,2.77,1.61,4.2,2.33-3.4-.47-7,.07-9.3,2.4-1,1.11-3,3.23-3.18,9.73l-4.47,85.18h-.49l-.66,5.3h5.74l-.66-5.3h-.52l4.46-85c.12-5.62,2.65-7.67,2.65-7.67,2.81-3.1,11.23,0,14,1.32,10,5.47,24.55,5.74,27.37,5.74h1.76c2.82,0,17.38-.27,27.38-5.74C96,81.41,104.45,78,107.69,81.63c0,0,2.1,1.87,2.22,7.49l4.46,85h-.43l-.66,5.3H119l-.67-5.3h-.56L113.31,89c-.13-6.5-2.25-8.89-3.13-9.79-2.18-2.57-6-2.81-9.35-2.34,1.43-.72,2.83-1.48,4.2-2.33C112.21,70.06,117,63,120,55.16ZM30,32.46a4.2,4.2,0,1,1,4.19,4.19A4.2,4.2,0,0,1,30,32.46ZM96,63.6c-3.12,4.45-8.76,7.11-13.69,8.91-1.1.4-2.21.78-3.33,1.15-14.54,4.61-28.29-.13-28.29-.13l0,0c-1-.34-2.06-.69-3.07-1.06C42.75,70.71,37.1,68.05,34,63.6c-.75-1.07-1.43-2.31-1-3.6,2.46-7.2,32-7.39,32-7.39S94.54,52.8,97,60C97.44,61.29,96.76,62.53,96,63.6Zm-.09-26.95a4.19,4.19,0,1,1,4.19-4.19A4.19,4.19,0,0,1,95.92,36.65Z"/>
+                      </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="career-call-to-action">
+        <div class="page-width">
+            <div class="cta-box">
+                <div class="content">
+                    <h3>Become Part of the JasonL Team.</h3>
+                    <p>At the heart of the JasonL business is the essence of enabling people to do great work. We value this for our clients, customers as well as our internal teams. We are a family run business with family values. Ready to join the family?</p>
+                  <div class="career-job-btn-holder">
+                    <a href="https://www.linkedin.com/company/jason-l-office-furniture/jobs/" target="_blank" rel="noopener noreferrer" class="btn-2">
+                      View open positions on 
+                      <span>LinkedIn</span>
+                    </a>
+                  		<a href="https://www.seek.com.au/jasonl-jobs" target="_blank" rel="noopener noreferrer" class="btn-2">
+                          View open positions on 
+                          <span>Seek</span>
+                    </a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="job-widget-holder">
+        <div class="page-width">
+            <div id="ja-jobs-widget"></div>
+            <script>
+            var _jaJobsSettings = {
+            key: "AU5_ahhgcjkcnt7e7detokb2rpjooe",
+            applicationFormSettings: {
+            useExternalApplicationForm: true,
+            showExternalApplicationFormInNewWindow: false
+            }
+            };
+            </script>
+            <script src="//apps.jobadder.com/widgets/v1/jobs.min.js"></script>
+        </div>
+    </div>
+    
+    <div class="aricle-grid">
+        <div class="page-width">
+            <div class="grid-2">
+                <div class="item">
+                    <div class="image">
+                        <picture>
+                            <!-- For 3x and above Retina Displays -->
+                            <source srcset="{{ 'careersauthenticallydifferent.jpg' | file_img_url:'1800x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 3), (min-width: 1200px) and (min-resolution: 288dpi)">
+                            
+                            <!-- For 2x Retina Displays -->
+                            <source srcset="{{ 'careersauthenticallydifferent.jpg' | file_img_url:'1200x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (min-resolution: 192dpi)">
+                            
+                            <!-- Normal desktops/laptops -->
+                            <source srcset="{{ 'careersauthenticallydifferent.jpg' | file_img_url:'750x', format: 'jpg' }}" media="(min-width: 768px)">
+                            
+                            <!-- Mobile devices -->
+                            <source srcset="{{ 'careersauthenticallydifferent.jpg' | file_img_url:'600x', format: 'jpg' }}" media="(max-width: 767px)">
+                            
+                            <!-- Fallback for older browsers -->
+                            <img src="{{ 'careersauthenticallydifferent.jpg' | file_img_url:'600x', format: 'jpg' }}" alt="We Are Authentically Different." width="600px" height="" loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="content">
+                        <h3>We Are Authentically Different.</h3>
+                        <p>We add true value. We are honest to ourselves and our customers. There is no such thing as a type of person. We are a diverse bunch from all walks of life with unique quirks and differences. What we all have in common is honesty and reliability.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <picture>
+                            <!-- For 3x and above Retina Displays -->
+                            <source srcset="{{ 'careersgetitdone.jpg' | file_img_url:'1800x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 3), (min-width: 1200px) and (min-resolution: 288dpi)">
+                            
+                            <!-- For 2x Retina Displays -->
+                            <source srcset="{{ 'careersgetitdone.jpg' | file_img_url:'1200x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (min-resolution: 192dpi)">
+                            
+                            <!-- Normal desktops/laptops -->
+                            <source srcset="{{ 'careersgetitdone.jpg' | file_img_url:'750x', format: 'jpg' }}" media="(min-width: 768px)">
+                            
+                            <!-- Mobile devices -->
+                            <source srcset="{{ 'careersgetitdone.jpg' | file_img_url:'600x', format: 'jpg' }}" media="(max-width: 767px)">
+                            
+                            <!-- Fallback for older browsers -->
+                            <img src="{{ 'careersgetitdone.jpg' | file_img_url:'600x', format: 'jpg' }}" alt="We Get It Done. Hard Work. Fast Work. Smart Work" width="600px" height="" loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="content">
+                        <h3>We Get It Done. Hard Work. Fast Work. Smart Work.</h3>
+                        <p>We are a high performing team. We work hard for each other and our customers. We dont believe in facetime and staying late. We believe in balance and balance means you should be able to get done what you need to within normal work hours. We call this Hard work, fast work, smart work.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+
+                        <picture>
+                            <!-- For 3x and above Retina Displays -->
+                            <source srcset="{{ 'careerscandoattitude.jpg' | file_img_url:'1800x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 3), (min-width: 1200px) and (min-resolution: 288dpi)">
+                            
+                            <!-- For 2x Retina Displays -->
+                            <source srcset="{{ 'careerscandoattitude.jpg' | file_img_url:'1200x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (min-resolution: 192dpi)">
+                            
+                            <!-- Normal desktops/laptops -->
+                            <source srcset="{{ 'careerscandoattitude.jpg' | file_img_url:'750x', format: 'jpg' }}" media="(min-width: 768px)">
+                            
+                            <!-- Mobile devices -->
+                            <source srcset="{{ 'careerscandoattitude.jpg' | file_img_url:'600x', format: 'jpg' }}" media="(max-width: 767px)">
+                            
+                            <!-- Fallback for older browsers -->
+                            <img src="{{ 'careerscandoattitude.jpg' | file_img_url:'600x', format: 'jpg' }}" alt="We Have a Can Do Attitude, We Find Solutions." width="600px" height="" loading="lazy">
+                        </picture>
+
+                    </div>
+                    <div class="content">
+                        <h3>We Have a Can Do Attitude, We Find Solutions.</h3>
+                        <p>Sh*t happens but we are the type of people that dont turn our back on problems and say sorry cant help you. We will always come back with different options in order to find a solution.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+
+                        <picture>
+                            <!-- For 3x and above Retina Displays -->
+                            <source srcset="{{ 'careerswecare.jpg' | file_img_url:'1800x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 3), (min-width: 1200px) and (min-resolution: 288dpi)">
+                            
+                            <!-- For 2x Retina Displays -->
+                            <source srcset="{{ 'careerswecare.jpg' | file_img_url:'1200x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (min-resolution: 192dpi)">
+                            
+                            <!-- Normal desktops/laptops -->
+                            <source srcset="{{ 'careerswecare.jpg' | file_img_url:'750x', format: 'jpg' }}" media="(min-width: 768px)">
+                            
+                            <!-- Mobile devices -->
+                            <source srcset="{{ 'careerswecare.jpg' | file_img_url:'600x', format: 'jpg' }}" media="(max-width: 767px)">
+                            
+                            <!-- Fallback for older browsers -->
+                            <img src="{{ 'careerswecare.jpg' | file_img_url:'600x', format: 'jpg' }}" alt="We Care" width="600px" height="" loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="content">
+                        <h3>We Care.</h3>
+                        <p>We are a Team that supports each other and our customers. Team mates, Win and lose together. We are a team that succeeds together providing our customers an amazing, hassle free experience. We celebrate the wins but also support each other to improve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="our-story">
+        <div class="page-width">
+            <div class="grid-2">
+              	<div class="item story-block">
+                    <div class="banner-img">
+                        <picture>
+                            <!-- For 3x and above Retina Displays -->
+                            <source srcset="{{ 'careersourstory.jpg' | file_img_url:'1800x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 3), (min-width: 1200px) and (min-resolution: 288dpi)">
+                            
+                            <!-- For 2x Retina Displays -->
+                            <source srcset="{{ 'careersourstory.jpg' | file_img_url:'1200x', format: 'jpg' }}" media="(min-width: 1200px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (min-resolution: 192dpi)">
+                            
+                            <!-- Normal desktops/laptops -->
+                            <source srcset="{{ 'careersourstory.jpg' | file_img_url:'750x', format: 'jpg' }}" media="(min-width: 768px)">
+                            
+                            <!-- Mobile devices -->
+                            <source srcset="{{ 'careersourstory.jpg' | file_img_url:'600x', format: 'jpg' }}" media="(max-width: 767px)">
+                            
+                            <!-- Fallback for older browsers -->
+                            <img src="{{ 'careersourstory.jpg' | file_img_url:'600x', format: 'jpg' }}" alt="Our Story" width="600px" height="" loading="lazy">
+                        </picture>
+                    </div>
+                  	<div class="grid-background-box">
+                      <i class="icon"><img src="{{ 'icon-quote.png' | asset_url }}" alt="quote"></i>
+                      <h2>Our Story</h2>
+                      <p>Jason started the business in 2009 with the dream of building Australia’s best office furniture retailer. 
+                          I (Marc) joined Jason at the beginning of 2010, once Jason, had launched the official website of JasonL.com.au. The early days were very exciting for Jason and myself, and we worked out of a small back office in our father’s business. In fact in those days, Jason and myself would do 50 situps – every time an order came through on line. We were very lucky if we were doing anything more than 50 sit ups (1 order) a day, at the stage. </p>
+                      <p>The business has had wonderful growth over the years, and we have been able to expand our products, import and warehouse our own stock, expand our foot print through the East Coast of Australia, double down on our service and most important hire talented, motivated, exceptional people to join our team.</p>
+                      <p class="author">- Marc Levin</p>
+                      <span class="signature">
+                          <img src="{{ 'signature.png' | asset_url }}" alt="Signature"> 
+                      </span>
+                  	</div>
+                </div>
+                <div class="item timeline-block">
+                    <div class="timeline">
+                      	<div class="item current">
+                            <span class="year">2022</span>
+                          	<i class="icon-rocket"><img src="{{ 'icon-rocket.png' | asset_url }}" alt="rocket icon"></i>
+                            <ul class="event">
+                                <li>S.A Showroom & W.A showroom = National business</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2021</span>
+                            <ul class="event">
+                                <li>New warehouse and showroom - 7000m2 warehouse and open our Hospitality division</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2020</span>
+                            <ul class="event">
+                                <li>Alexandria marque showroom opens</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2018</span>
+                            <ul class="event">
+                                <li>Queensland showroom opens</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2017</span>
+                            <ul class="event">
+                                <li>Western Sydney showroom & Melbourne showroom opens</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2016</span>
+                            <ul class="event">
+                                <li>Botany showroom and warehouse opens</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2013</span>
+                            <ul class="event">
+                                <li>Moved to a bigger warehouse in Rosebery and larger showroom</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2011</span>
+                            <ul class="event">
+                                <li>Our first warehouse and showroom opens at Gardeners Road Alexandria</li>
+                            </ul>
+                        </div>
+                      	<div class="item">
+                            <span class="year">2010</span>
+                            <ul class="event">
+                                <li>Bell ringing multiple times a day... too many push-ups, turned off the bell</li>
+                            </ul>
+                        </div>
+                        <div class="item">
+                            <span class="year">2009</span>
+                            <ul class="event">
+                                <li>November JasonL started - 10 push-ups per order</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

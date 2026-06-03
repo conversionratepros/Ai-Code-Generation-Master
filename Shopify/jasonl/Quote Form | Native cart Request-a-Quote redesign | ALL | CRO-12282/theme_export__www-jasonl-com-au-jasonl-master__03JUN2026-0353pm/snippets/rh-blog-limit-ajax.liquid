@@ -1,0 +1,38 @@
+{%- comment -%}
+VARIABLES:
+- section_id = section.id
+- section_name =  Example rh_video, rh_featured_articles ... etc
+- section_tag = Example video, resources etc
+{%- endcomment -%}
+
+{% assign current_category = "business" %}
+{% if current_tags contains "home" %}
+  {% assign current_category = "home" %}
+{% elsif  current_tags contains "trade" %}
+   {% assign current_category = "trade" %}
+{% elsif  current_tags contains "education" %}
+   {% assign current_category = "education" %}
+{% endif %}
+
+<script>
+function loadBlogSection() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      let obj = this.responseText;
+      const parser = new DOMParser();
+      const sectionHTML = parser.parseFromString(obj, "text/html");
+      document.getElementById("shopify-section-{{section_id}}").innerHTML = sectionHTML.getElementById("shopify-section-{{section_id}}").innerHTML;
+      document.getElementById("shopify-section-{{section_id}}").classList.add('{{section_name}}_ajax_loaded');
+    }
+  };
+  xhttp.open("GET", '/blogs/main/tagged/{{section_tag}}+{{ current_category }}/?section_id={{section_id}}');
+  xhttp.send();
+}
+
+if(document.querySelectorAll('{{section_name}}_ajax_loaded').length == 0){
+  loadBlogSection();
+}
+  
+
+</script>

@@ -1,0 +1,204 @@
+{%-comment-%}Australian Schlorship Database{%-endcomment-%}
+{{ 'australian-schlorship.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
+    rel="stylesheet">
+<style>
+    html {
+        padding-top: 0px
+    }
+
+    #MainContent {
+        padding-top: 0 !important;
+    }
+</style>
+
+
+
+{%- capture data_studyfield -%}
+Humanities and social
+sciences::humanities-and-social-sciences,Accounting::accounting,Agriculture::agriculture,Architecture::architecture,Psychology::psychology,Built
+environment::built-environment,Business and management::business-and-management,Communications::communications,Computing
+and information technology::computing-and-information-technology,Creative
+arts::creative-arts,Dentistry::dentistry,Economics::economics,Education and training::education-and-training,Engineering
+and technology::engineering-and-technology,Environmental studies::environmental-studies,Tourism and
+hospitality::tourism-and-hospitality,Health services and
+support::health-services-and-support,Languages::languages,Law::law,Para-legal
+studies::para-legal-studies,Mathematics::mathematics,Medicine::medicine,Nursing::nursing,Pharmacy::pharmacy,Rehabilitation::rehabilitation,Sciences::sciences,Social
+work::social-work,Sport and leisure::sport-and-leisure,Surveying::surveying,Veterinary science::veterinary-science
+{%- endcapture -%}
+{%- assign studyfields = data_studyfield | split:',' -%}
+
+{%- capture data_level-%}
+Undergraduate::undergraduate,Postgraduate::postgraduate,VET::vet
+{%- endcapture -%}
+{%- assign levels = data_level | split:',' -%}
+
+{%- capture data_state-%}
+Australian Capital Territory::australian-capital-territory,New South Wales::new-south-wales,Northern
+Territory::northern-territory,Queensland::queensland,South
+Australia::south-australia,Tasmania::tasmania,Victoria::victoria,Western Australia::western-australia
+{%- endcapture -%}
+{%- assign states = data_state | split:',' -%}
+
+
+<!--  asd-holder--search-result  -->
+<div class="asd-holder">
+    <h1 class="asd-title">
+        <strong>Find a scholarship</strong>
+        <span>in Australia</span>
+    </h1>
+   <span class="asd-search-worthinfo">{{ shop.metafields['scholarship']['sumresult'] }}</span>
+    <div class="asd-search">
+        <div class="asd-search__item">
+            <div class="asd-search__label-holder dropdown_trigger">
+                <span class="icon-arrow1 icon-arrow1--down dropdown_trigger"></span>
+                <p class="asd-search__label dropdown_trigger">
+                    Listed by <span class="dropdown_trigger">State</span>
+                </p>
+            </div>
+            <div class="asd-search__list state_field">
+                {%- if states.size > 0 -%}
+                <ul {{states.size}}>
+                    {%- for state in states -%}
+                    {%- assign stateInfo = state | split: '::'-%}
+                    {%- assign state_name = stateInfo[0] -%}
+                    {%- assign state_handle = stateInfo[1] -%}
+                    <li data-stateHandle="{{state_handle}}"><span class="asd-checkbox"></span>
+                        <p>{{state_name}}</p>
+                    </li>
+                    {%- endfor -%}
+                </ul>
+                {%- endif-%}
+            </div>
+        </div>
+        <div class="asd-search__item">
+            <div class="asd-search__label-holder dropdown_trigger">
+                <span class="icon-arrow1 icon-arrow1--down dropdown_trigger"></span>
+                <p class="asd-search__label dropdown_trigger">
+                    Listed by <span class="dropdown_trigger">study level</span>
+                </p>
+            </div>
+            <div class="asd-search__list study_level">
+                {%- if levels.size > 0 -%}
+                <ul {{levels.size}}>
+                    {%- for level in levels -%}
+                    {%- assign levelInfo = level | split: '::'-%}
+                    {%- assign level_name = levelInfo[0] -%}
+                    {%- assign level_handle = levelInfo[1] -%}
+                    <li data-levelHandle="{{level_handle}}"><span class="asd-checkbox"></span>
+                        <p>{{level_name}}</p>
+                    </li>
+                    {%- endfor -%}
+                </ul>
+                {%- endif-%}
+            </div>
+        </div>
+        <div class="asd-search__item">
+            <div class="asd-search__label-holder dropdown_trigger">
+                <span class="icon-arrow1 icon-arrow1--down dropdown_trigger"></span>
+                <p class="asd-search__label dropdown_trigger">
+                    Listed by <span class="dropdown_trigger">study field</span>
+                </p>
+            </div>
+            <div class="asd-search__list study_field">
+                {%- if studyfields.size > 0 -%}
+                <ul {{studyfields.size}}>
+                    {%- for studyfield in studyfields -%}
+                    {%- assign studyfieldInfo = studyfield | split: '::'-%}
+                    {%- assign studyfield_name = studyfieldInfo[0] -%}
+                    {%- assign studyfield_handle = studyfieldInfo[1] -%}
+                    <li data-fieldHandle="{{studyfield_handle}}"><span class="asd-checkbox"></span>
+                        <p>{{studyfield_name}}</p>
+                    </li>
+                    {%- endfor -%}
+                </ul>
+                {%- endif-%}
+
+
+            </div>
+        </div>
+    </div>
+    <button class="button button--search">
+        Search
+    </button>
+
+    <div class="drawing">
+        {%- render 'scholarship-drawing' -%}
+    </div>
+    <div class="asd-search-overlay"></div>
+</div>
+
+
+<script>
+    const dropdown_btn = document.querySelectorAll('.asd-search__label-holder');
+    const search_wrapper = document.querySelector('.asd-holder');
+    const search_overlay = document.querySelector('.asd-search-overlay');
+    const search_button = document.querySelector('.button--search');
+    dropdown_btn.forEach(element => {
+        element.addEventListener("click", function () {
+            const _this = this;
+            const _parent = this.parentElement;
+            if (_parent.classList.contains('active')) {
+                dropdown_btn.forEach(item => item.parentElement.classList.remove("active"));
+                search_wrapper.removeAttribute('dropdown_open');
+            } else {
+                dropdown_btn.forEach(item => item.parentElement.classList.remove("active"));
+                setTimeout(function () {
+                    _parent.classList.add("active")
+                    search_wrapper.setAttribute('dropdown_open', '');
+                }, 300)
+            }
+        })
+    })
+    search_overlay.addEventListener("click", function () {
+        dropdown_close()
+    })
+    search_button.addEventListener("click", function () {
+        dropdown_close()
+    })
+
+    function dropdown_close() {
+        dropdown_btn.forEach(item => item.parentElement.classList.remove("active"));
+        search_wrapper.removeAttribute('dropdown_open');
+    }
+
+
+
+
+    const list_items = document.querySelectorAll('.asd-search__list');
+    list_items.forEach(element => {
+        const child_items = element.querySelectorAll('li');
+        child_items.forEach(item => {
+            item.addEventListener('click', function () {
+                this.classList.contains('selected') ? this.classList.remove("selected") : this.classList.add("selected");
+            })
+        })
+    })
+
+
+
+
+    /*
+    dropdown_item.forEach(element => {
+        element.addEventListener("click", function(){
+            const _this = this;
+            const nxtsibling = this.nextElementSibling;
+            console.log(nxtsibling);
+             if(nxtsibling.classList.contains('show')){
+               nxtsibling.classList.remove("active"); 
+             }else{
+                nxtsibling.classList.remove("active");
+                setTimeout(function(){
+                    nxtsibling.classList.add("active")
+                },300)
+               
+            }
+             
+        })
+    })
+    */
+
+</script>

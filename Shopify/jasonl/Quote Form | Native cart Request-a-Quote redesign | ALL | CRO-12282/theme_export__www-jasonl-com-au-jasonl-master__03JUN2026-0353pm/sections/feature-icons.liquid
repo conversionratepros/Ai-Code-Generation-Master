@@ -1,0 +1,144 @@
+{{ 'featureicon.css' | asset_url | stylesheet_tag }}
+
+<section class="feature-icons">
+  <div class="page-width">
+    <div class="section-header">
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="section-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+    <ul class="icons-grid">
+      {%- for block in section.blocks -%}
+        <li class="icon-card">
+          {%- if block.settings.icon_svg != blank -%}
+          <div class="icon-img">
+            {{ block.settings.icon_svg }}
+          </div>
+          {%- endif -%}
+          {%- if block.settings.title != blank -%}
+            <h4 class="icon-title">{{ block.settings.title }}</h4>
+          {%- endif -%}
+          {%- if block.settings.subtitle != blank -%}
+            <p class="icon-subtitle">{{ block.settings.subtitle }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    <div class="button-wrap fixed">
+        <div class="dot">&nbsp;</div>
+        {%- if section.settings.text != blank -%}
+        <div class="section-text">
+          <p>{{ section.settings.text }}</p>
+        </div>
+      {%- endif -%}
+      <a class="typeform-share getaquoteclick btn typeform-embed" {{ settings.typeformurls_url_1 }}
+        href="javascript:void(0)" data-tf-on-ready="ready" {% if button_id %} id="{{ button_id }}" {% endif %}>
+            Request a Quote
+        </a>
+    </div>
+    <div class="button-wrap normal">
+        <div class="dot">&nbsp;</div>
+        {%- if section.settings.text != blank -%}
+        <div class="section-text">
+          <p>{{ section.settings.text }}</p>
+        </div>
+      {%- endif -%}
+      <a class="typeform-share getaquoteclick btn typeform-embed" {{ settings.typeformurls_url_1 }}
+        href="javascript:void(0)" data-tf-on-ready="ready" {% if button_id %} id="{{ button_id }}" {% endif %}>
+            Request a Quote
+        </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const fixedEl = document.querySelector('.button-wrap.fixed');
+  const target = document.querySelector('.button-wrap.normal');
+  const section = document.querySelector('.feature-icons');
+  //const footer = document.querySelector('footer'); 
+
+  window.addEventListener('scroll', () => {
+    const sectionRect = section.getBoundingClientRect();
+
+    if (sectionRect.bottom <= 0) {
+      fixedEl.classList.remove('fixed');
+      fixedEl.classList.add('relative');
+      return;
+    }
+
+    const targetRect = target.getBoundingClientRect();
+
+    if (targetRect.top <= window.innerHeight) {
+      fixedEl.classList.remove('fixed');
+      fixedEl.classList.add('relative');
+    } else {
+      fixedEl.classList.add('fixed');
+      fixedEl.classList.remove('relative');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Feature Icons",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Designed for Adventure"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Popup Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Explore More"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Icon Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Short description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Icons",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

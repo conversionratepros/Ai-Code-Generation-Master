@@ -1,0 +1,27 @@
+{{ "landingpage-header.css" | asset_url | stylesheet_tag }}
+<div class="header1-container">
+    <div class="page-width">
+        <div class="header__heading">
+            <span class="svg-logo">{%- render 'i-logo',  logotype:'logo_with_icon'-%}</span>
+            <p>Trusted by Australia's top brands.  <span>Go from blank canvas to beautiful fitout. Fast!</span></p>
+        </div>
+        <div class="header__buttons small-hide">
+            {%- render 'landingpage-typeform', js:true-%}
+            
+
+            <a href="https://builder.jasonl.com.au/catalogue/" class="button button--border bold-text" target="_blank" rel="noopener noreferrer">Get the catalogue</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Landingpage Header",
+  "tag": "section",
+  "class": "section-header",
+  "settings": [
+  ]
+}
+{% endschema %}

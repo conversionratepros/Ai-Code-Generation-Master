@@ -1,0 +1,50 @@
+{%-comment-%}
+Removing icon from menu item. example : Office Chair|icon_1
+{%-endcomment-%}
+{%- if item contains '|' -%}
+    {%-assign title_with_icon = item | split:'|'-%}
+    {%-assign title_without_icon = title_with_icon[0] | strip-%}
+    {%-else-%}
+    {%-assign title_without_icon = item | strip -%}
+    {%-endif-%}
+    
+    {%-comment-%}
+    Hardcoded icon set
+    {%-endcomment-%}
+    <span class="icon-holder" data-link-title="{{title_without_icon}}" data-link-hanle="{{linklist.handle}}">
+    {% case title_without_icon %} 
+        {% when "Office Chairs" or "Chairs"%}
+            {% render 'i-chair', space:true %}
+        {% when "Office Desks" or "Desks"%}
+            {% render 'i-desk' , space:true%}
+        {% when "Office Workstations" or "Workstations"%}
+            {% render 'i-workstation', space:true %}
+        {% when "Office Storage" or "Storage"%}
+            {% render 'i-storage', space:true %}
+        {% when "Office Tables" or "Tables"%}
+            {% render 'i-table', space:true %}
+        {% when "Sofa & Collaborative Soft Furniture" or "Sofas, Lounges & Collaborative Soft Furniture"%}
+            {% render 'i-sofa', space:true %}
+        {% when "Whiteboards & Presentation Boards" %}
+            {% render 'i-whiteboard', space:true %}
+        {% when "Office Partitions" or "Partitions" or "Acoustic Office Partitions"%}
+            {% render 'i-partition', space:true %}
+        {% when "Safety & Crowd Control" %}
+            {% render 'i-barrier', space:true %}
+        {% when "Power & Data Management" %}
+            {% render 'i-socket', space:true %}
+        {% when "Office Decor, Pots & Plants" or "Pots & Plants"%}
+            {% render 'i-plant', space:true %}
+        {% when "Ergonomic Accessories" %}
+            {% render 'i-accessories', space:true %}
+        {% when "Home Office Furniture" %}
+            {% render 'i-desk1', space:true %}
+        {% when "Education Furniture" %}
+            {% render 'i-whiteboard1', space:true %}
+        {% when "Cafe & Hospitality Furniture" %}
+            {% render 'i-sofa-single-seat', space:true %}
+        {% else %}
+            {% render 'i-chair', space:true %}
+        {% endcase %}
+    </span>
+    

@@ -1,0 +1,133 @@
+.get-inspired-holder {
+    padding: 50px 0;
+  }
+  @media (max-width: 767px) {
+    .get-inspired-holder {
+      padding: 40px 0;
+    }
+  }
+  .get-inspired-holder h2 {
+    margin: 0px;
+    padding: 0 0 30px 0;
+  }
+  @media (max-width: 767px) {
+    .get-inspired-holder h2 {
+      padding: 0 0 20px 0;
+    }
+  }
+  .get-inspired-holder .item-holder {
+    position: relative;
+  }
+  .get-inspired-holder .item-holder ul {
+    margin: 0px;
+    padding: 0px;
+  }
+  .get-inspired-holder .item-holder ul li img {
+    display: block;
+  }
+  .get-inspired-holder .item-holder ul li .item-cnt h4 {
+    margin: 0px;
+  }
+  .get-inspired-holder img {
+    border-radius: 4px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .get-inspired-holder .item-cnt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 0 0 25px;
+  }
+  @media (max-width: 1100px) {
+    .get-inspired-holder .item-cnt {
+      padding: 10px 0 0 0px;
+      display: block;
+      line-height: 18px;
+    }
+  }
+  .get-inspired-holder .item-cnt h4, .get-inspired-holder .item-cnt span {
+    font-size: 14px;
+    margin: 0px;
+  }
+  @media (max-width: 1100px) {
+    .get-inspired-holder .item-cnt h4, .get-inspired-holder .item-cnt span {
+      font-size: 13px;
+      display: inline;
+      line-height: 14px;
+    }
+  }
+  @media (max-width: 767px) {
+    .get-inspired-holder .item-cnt h4, .get-inspired-holder .item-cnt span {
+      display: block;
+      line-height: 16px;
+      text-align: center;
+    }
+  }
+  .get-inspired-holder button#swiper-btn-next, .get-inspired-holder button.swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    margin-top: -45px;
+    border: 0px;
+    background: #000;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    z-index: 2;
+    border-radius: 3px;
+  }
+  @media(max-width:991px) and (min-width:768px){
+    .get-inspired-holder button#swiper-btn-next, .get-inspired-holder button.swiper-button-prev {
+      width: 26px;
+    }
+  }
+  .get-inspired-holder button#swiper-btn-next:before, .get-inspired-holder button.swiper-button-prev:before {
+    content: "";
+    height: 14px;
+    width: 14px;
+    border: 2px solid #fff;
+    border-top: 0px;
+    position: absolute;
+    top: calc(50% - 7px);
+  }
+  .get-inspired-holder button#swiper-btn-next:after, .get-inspired-holder button.swiper-button-prev:after {
+    display: none;
+  }
+  .get-inspired-holder button#swiper-btn-next {
+    right: -16px;
+  }
+  @media (max-width: 767px) {
+    .get-inspired-holder button#swiper-btn-next {
+      right: 5px;
+    }
+  }
+  .get-inspired-holder button#swiper-btn-next:before {
+    border-left: 0px;
+    left: calc(50% - 10px);
+    transform: rotate(-45deg);
+  }
+  .get-inspired-holder button.swiper-button-prev {
+    left: -16px;
+  }
+  .get-inspired-holder button.swiper-button-prev:before {
+    border-right: 0px;
+    right: calc(50% - 10px);
+    transform: rotate(45deg);
+  }
+  .get-inspired-holder .swiper-button-disabled {
+    display: none;
+  }
+  
+  .product-range-title-section {
+    padding-bottom: 0;
+  }
+  
+  .product-range-slider-section {
+    padding-top: 0;
+  }
+  @media (max-width: 767px) {
+    .product-range-slider-section .page-width {
+      padding-right: 0px;
+    }
+  }

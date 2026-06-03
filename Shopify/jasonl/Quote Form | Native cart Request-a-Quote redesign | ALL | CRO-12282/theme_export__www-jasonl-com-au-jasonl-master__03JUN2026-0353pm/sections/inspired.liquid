@@ -1,0 +1,716 @@
+{{ 'inspired.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+
+{%- comment -%}
+ Inspired slider
+ duplicate render in inspired page so removed from inspired page only
+ {% unless page.handle == 'inspired' %}
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+ <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% endunless %}
+{%- endcomment -%}
+    {{ 'inspired-slider.css' | asset_url | stylesheet_tag }}
+    {%- comment -%}END :: Inspired slider{%- endcomment -%}
+    
+{%- comment -%} ICONS {%- endcomment-%}
+{%- capture arrow-down -%}
+<svg viewBox="0 0 7 10">
+    <path fill="#121212" fill-rule="evenodd"
+        d="M6.8 6.2c.1 0 .1.1.2.1v.4c0 .1-.1.1-.1.2l-3.1 3-.1.1h-.1-.1s-.1 0-.1-.1L.1 6.8C0 6.7 0 6.6 0 6.5c0-.1 0-.2.1-.3.1-.1.2-.1.3-.1.1 0 .2 0 .3.1l2.4 2.4V.4c0-.1 0-.2.1-.3.1-.1.2-.1.3-.1.1 0 .2 0 .3.1.1.1.1.2.1.3v8.3l2.4-2.4c.1-.1.1-.1.2-.1.1-.1.2 0 .3 0z"
+        clip-rule="evenodd" />
+</svg>
+{%- endcapture -%}
+
+<div class="inspired-page-wrap">
+    {%- comment -%}
+    Here is duplicate h1 isuue and previously it was hidden using inline display :none;. Commented this for now, if not needed remove it 4/29/2026
+        
+    <!-- Hero section -->
+    <div class="hero-section" style="background-image: url('{{ "inspired-banner-bg-image.jpg" | asset_url }}'); display:none;" >
+        <div class=" page-width">
+            <div class="hero-cnt">
+                <div class="hero-cnt-left">
+                    <div>
+                        <h4>GET INSPIRED</h4>
+                        <h1>Where ideas <br>take their seat.</h1>
+                        <p>Transform your office into a work of art that fuels success and innovation with our infinite
+                            scroll of
+                            great ideas.</p> 
+                    </div>
+                </div>
+                <div class="hero-cnt-right">
+                    <picture>
+                        <img src="{{'inspired-hero-img1.png' |  file_img_url: '648x'}}" alt="Get Inspired" />
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {%- endcomment -%}
+<!-- Listing -->
+{% comment %} <span class="line active"></span>
+<span class="line1"></span>
+<span class="timer"></span> {% endcomment %}
+
+    
+    <div class="inspired-listing-container">
+        <a style="display: none;" id="inspired_gclids" class="typeform-share getaquoteclick button"
+            {{settings.typeformurls_url_1 | replace: 'data-tf-hidden=""' , newDataHidden }}
+            href="javascript:void(0)">Replicate this look</a>
+        <div class="page-width">
+            <div class="title-and-filter-wrap">
+                <div class="inspired-page-title-wrap"><h1 class="inspired-page-title">Get inspired</h1></div>
+                <div class="filter-menu" id="inspired-filter-menu">
+                    <ul>
+                        <li class="active"><span data-category="all">All</span></li>
+                        <li><span data-category="reception-areas">Receptions areas</span></li>
+                        <li><span data-category="hospitality">Hospitality</span></li>
+                        <li><span data-category="private-offices">Private offices</span></li>
+                        <li><span data-category="open-offices">Open offices</span></li>
+                        <li><span data-category="boardrooms">Boardrooms</span></li>
+                        <li><span data-category="breakout-spaces">Breakout spaces</span></li>
+                        <li><span data-category="education">Education</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="inspired-listing-masonry-wrap">
+            <div class="page-width">
+                <div class="inspired-listing listing-masonry grid">
+                    <div class="grid-sizer"></div>
+                    {% comment %} {%- assign fitouts = blogs['fitouts'].articles -%}
+                    {% render 'inspired-get-fitouts', fitout_articles: fitouts %} {% endcomment %}
+                </div>
+                <div id="loadmore" class="loadmore-list">
+                    <div class="autoload">LOADING ... <span class="loader" style="display: inline-block">&nbsp;</span></div>
+                    <div class="click-to-load">Load more</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+<script>
+
+    // -------------
+
+    const filterMenu = {
+        searchParams: new URLSearchParams(window.location.search),
+        menuItems: document.querySelectorAll('#inspired-filter-menu li'),
+        setActiveMenu: function () {
+            if (this.searchParams.get('filter')) {
+                let activeMenu = this.searchParams.get('filter');
+                this.menuItems.forEach((e, i) => {
+                    e.classList.remove('active');
+                    let categoryEle = e.querySelector('span');
+                    let category = categoryEle.getAttribute('data-category');
+                    if (category == activeMenu) {
+                        e.classList.add('active');
+                        return;
+                    }
+                })
+            }
+            return this.searchParams.get('filter');
+        }
+        //loadmore : function(){
+        //     let page = 1;
+        //     if(this.searchParams.get('page')){
+        //         page = this.searchParams.get('page');
+        //     }
+        //         this.btnLoadmore.addEventListener('click', function(){
+        //             page++;
+        //             getFitouts(page);
+        //         })
+        // }
+    }
+
+    filterMenu.setActiveMenu();
+    //filterMenu.loadmore();
+    //document.addEventListener("DOMContentLoaded", init_masonry);
+    init_masonry();
+    function init_masonry() {
+        var elem = document.querySelector('.listing-masonry');
+        var msnry = new Masonry(elem, {
+            // options
+            columnWidth: '.grid-sizer',
+            itemSelector: '.grid-item',
+            gutter: 20,
+            // columnWidth: 100,
+            percentPosition: true
+        });
+        // reload on image load
+        imagesLoaded(elem).on('progress', function () {
+            msnry.layout();
+            onModalOpenerClick();
+        });
+
+
+        function handleResponse() {
+            let response = JSON.parse(this.responseText);
+            let searchParams = new URLSearchParams(window.location.search);
+            let paramFilter = searchParams.get('filter');
+            let paramPage = searchParams.get('page');
+            let reponseURL = this.responseURL.split('?')[1];
+            let searchParamsResponse = new URLSearchParams(reponseURL);
+            if (searchParamsResponse.get('page')) {
+                var responseParamPage = searchParamsResponse.get('page');
+            }
+
+            let paginate = 7;
+            let isLastPage = false;
+
+            const masonryHolder = document.querySelector('.listing-masonry');
+            let responseHtml = response['inspired-fitouts'];
+
+            // remove parent sectio tag from response html
+            var temp = document.createElement('div');
+            temp.innerHTML = responseHtml;
+            //let tempHtml = temp.querySelector('.section-inspired-fitouts');
+            let items = temp.querySelectorAll('.grid-item');
+            if (items.length < 7) {
+                isLastPage = true;
+            }
+            if (temp.querySelector('.grid-item')) {
+
+
+                var elems = [];
+                var fragment = document.createDocumentFragment();
+                // if(items.length < 7 ){
+                //     isLastPage = true;
+                // }
+                items.forEach((item, index) => {
+                    fragment.appendChild(item);
+                    elems.push(item);
+                    // Callback foreach loop
+                    if (index == items.length - 1) {
+                        elem.appendChild(fragment);
+                        msnry.appended(elems);
+                        if (paramFilter == null) {
+                            // note: no need to update URL if no filter are set.
+                            if (paramPage == null) {
+                                imagesLoaded(elem).on('progress', function () {
+                                    msnry.layout();
+                                    onModalOpenerClick();
+                                });
+                            } else {
+                                if (responseParamPage < paramPage) {
+                                    getFitouts(parseInt(responseParamPage) + 1);
+                                    // lastpage load msnry layout
+                                    if (parseInt(responseParamPage) + 1 == paramPage) {
+                                        setTimeout(function () {
+                                            msnry.layout();
+                                            onModalOpenerClick();
+                                        }, 500)
+                                    }
+                                } else {
+                                    imagesLoaded(elem).on('progress', function () {
+                                        msnry.layout();
+                                        onModalOpenerClick();
+                                    });
+                                }
+                            }
+
+                        }
+
+                        // on page refresh/reload/onload, get filter parameter from URL and filter the list
+                        if (paramFilter != null) {
+                            let visibleItems = [];
+                            let visibleCounter = 0;
+                            let docItems = document.querySelectorAll('.grid-item');
+                            docItems.forEach((docItem, i) => {
+                                if (docItem.classList.contains(paramFilter)) {
+                                    docItem.style.display = 'block';
+                                    visibleCounter++;
+                                    visibleItems.push(visibleCounter);
+                                } else {
+                                    docItem.style.display = 'none';
+                                }
+                                if (i == docItems.length - 1) {
+                                    setTimeout(function () {
+                                        imagesLoaded(elem).on('progress', function () {
+                                            msnry.layout();
+                                            onModalOpenerClick();
+                                        });
+                                    }, 50);
+                                    //  console.log(visibleItems.length);
+                                    //if(visibleItems.length <= 50 && (paramPage != null || paramPage == null || responseParamPage < paramPage ) && isLastPage == false){
+                                    if (visibleItems.length <= 7 && isLastPage == false) {
+                                        console.log(111);
+                                        getFitouts(parseInt(responseParamPage) + 1);
+                                    } else if (visibleItems.length >= 8 || isLastPage == true) {
+                                        console.log(222);
+                                        searchParams.set('page', responseParamPage);
+                                        history.replaceState(null, null, "?" + searchParams.toString());
+                                        if (isLastPage == true) {
+                                            document.getElementById('loadmore').remove();
+                                        }
+
+                                    } else {
+                                        console.error('Condition missed. Please check.')
+                                        // do nothing
+                                    }
+                                    // if(visibleItems.length <= 50 && paramPage <= 5 ){
+                                    //     getFitouts(parseInt(responseParamPage)+1)
+                                    // }
+                                    // if(responseParamPage < paramPage){
+                                    //     getFitouts(parseInt(responseParamPage)+1)
+                                    // }
+
+                                    //update url parameter with current page number
+                                    // searchParams.set('page',responseParamPage);
+                                    // history.replaceState(null, null, "?"+searchParams.toString());
+                                }
+                            });
+                        }
+
+                    }
+                })
+
+                // elem.appendChild( fragment );
+                // msnry.appended( elems );
+                // imagesLoaded( elem ).on( 'progress', function() {
+                //     msnry.layout();
+                // });
+            }
+            if (isLastPage == true) {
+                if (document.getElementById('loadmore')) {
+                    document.getElementById('loadmore').remove();
+                }
+                if (searchParams.get('filter')) {
+                    doFilter(searchParams.get('filter'));
+                }
+            }
+
+        }
+
+        function getFitouts(page) {
+            const request = new XMLHttpRequest();
+            //let thisFilter = filter;
+            request.addEventListener('load', handleResponse);
+            request.open('GET', `/blogs/fitouts/?page=${page}&sections=inspired-fitouts`, true);
+            request.send();
+        }
+
+        function loadmore() {
+            let btnLoadmore = document.getElementById("loadmore");
+            let page = 1;
+            btnLoadmore.addEventListener('click', function () {
+                let searchParams = new URLSearchParams(window.location.search);
+                if (searchParams.get('page')) {
+                    page = searchParams.get('page');
+                    var currentPage = page;
+                }
+
+                page++;
+                var nextPage = page;
+
+                if (currentPage < nextPage) { }
+                getFitouts(nextPage);
+                searchParams.set('page', nextPage);
+                history.replaceState(null, null, "?" + searchParams.toString());
+
+            })
+        }
+
+        function autoLoadmore(){
+            let btnLoadmore = document.getElementById("loadmore");
+            let observer = new IntersectionObserver(entries => {
+                if(entries[0].isIntersecting){
+                    console.log('btn seen');
+                    btnLoadmore.click();
+                }
+            }, { threshold: 1});
+            if(btnLoadmore){
+                observer.observe(btnLoadmore);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            //autoLoadmore()
+        });
+
+
+        function onPageLoad() {
+            var searchParams = new URLSearchParams(window.location.search);
+            let paramFilter = searchParams.get('filter');
+            let paramPage = searchParams.get('page');
+
+            // Should not check filter in below conditions. 
+            // It is checked after ajax call completed on handleRespose function.
+            // if(paramPage != null){
+            //     if(paramPage < 2 ){
+            //         getFitouts(1);
+            //         return;
+            //     }
+            //     for (let i = 1; i <= paramPage; i++) {
+            //         getFitouts(i);
+            //         return;
+            //     }  
+            //     return;
+            // }else{
+            //     getFitouts(1);
+            //     return;
+            // }
+
+            getFitouts(1);
+
+
+
+        }
+        onPageLoad();
+
+
+
+        function filter() {
+            const filterMenu = document.getElementById('inspired-filter-menu');
+            const filterMenuItems = filterMenu.querySelectorAll('li');
+            filterMenuItems.forEach((item, index) => {
+                item.addEventListener('click', function (e) {
+                    // set active class
+                    filterMenu.querySelector('li.active').classList.remove('active');
+                    item.classList.add('active');
+                    // set URL parameter with filter name "?filter={categoryName}"
+                    let category = e.target.dataset['category'];
+                    var searchParams = new URLSearchParams(window.location.search);
+                    searchParams.set('filter', category);
+                    history.replaceState(null, null, "?" + searchParams.toString());
+                    // check if result less than min number, check other pages
+                    let filterTerm = searchParams.get('filter');
+                    let filterEle = document.querySelectorAll('.' + filterTerm);
+                    console.log(`filter: ${filterTerm} - ${filterEle.length}`);
+                    let filterPage = parseInt(searchParams.get('page'));
+                    let nextPage = 2;
+
+                    if (filterPage) {
+                        nextPage = filterPage + 1;
+                    }
+                    if (filterEle.length < 7) {
+                        getFitouts(nextPage);
+                        // doFilter( searchParams.get('filter'));
+
+                    } else {
+                        // Apply filter
+                        doFilter(searchParams.get('filter'));
+                    }
+
+                })
+            })
+
+            // const items = document.querySelectorAll('.grid-item');
+            // items.forEach((e,i) => {
+            //    if(e.classList.contains('all')){
+
+            //    } 
+            // })
+        }
+
+
+
+        loadmore();
+        filter();
+
+
+        function doFilter(filterTerm) {
+            const items = document.querySelectorAll('.grid-item');
+            var itemsCounter = 0;
+            items.forEach((item, i, array) => {
+                itemsCounter++;
+                if (item.classList.contains(filterTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+
+                if (itemsCounter === array.length) {
+                    imagesLoaded(elem).on('progress', function () {
+                        msnry.layout();
+                        onModalOpenerClick();
+                    });
+                }
+            })
+            //   const filteredItems = document.querySelectorAll(filterTerm);
+            //   if(filteredItems.length < 7){
+            //     getFitouts(1);
+            //   }else{
+            //     const items = document.querySelectorAll(filterTerm);
+            //     var itemsCounter = 0;
+            //     items.forEach((item,i,array) => {
+            //             itemsCounter++;
+            //             if(item.classList.contains(filterTerm)){
+            //                 item.style.display = 'block';
+            //             }else{
+            //                 item.style.display = 'none';
+            //             }
+
+            //             if(itemsCounter === array.length ){
+            //                 imagesLoaded( elem ).on( 'progress', function() {
+            //                     msnry.layout();
+            //                 });
+            //             }
+            //     })
+            //   }
+        }
+
+        msnry.once('layoutComplete', function () {
+            onModalOpenerClick();
+            console.log('layoutcomplete')
+            if (window.innerWidth > 1100) {
+                autoLoadmore();
+            } 
+        });
+
+
+        function initTypeformLibrary() {
+            if (document.getElementById('typeform_script')) {
+                document.getElementById('typeform_script').remove();
+            }
+            var typeform_script = document.createElement('script');
+            typeform_script.setAttribute('src', '//embed.typeform.com/next/embed.js');
+            typeform_script.setAttribute('id', 'typeform_script');
+            document.head.appendChild(typeform_script);
+        }
+
+        // Slider
+        function onModalOpenerClick() {
+            let modalBtns = document.querySelectorAll('modal-opener.svg-icon-holder');
+            modalBtns.forEach((modalBtn, index) => {
+                modalBtn.addEventListener('click', function (e) {
+                    let modalId = modalBtn.getAttribute('data-modal');
+                    let sliderId = modalBtn.getAttribute('data-slider');
+                    let sliderSlideIndex = parseInt(modalBtn.getAttribute('data-sliderSlideIndex'));
+                    modalId = modalId.replace("#", "");
+                    let docModalId = document.getElementById(modalId);
+                    if (docModalId.querySelectorAll('.slider_loaded').length == 0) {
+                        initSlider(sliderId, sliderSlideIndex);
+                        getInspiredProducts(docModalId);
+                        initTypeformLibrary()
+                        setGclids(docModalId);
+
+                    } else {
+                        //swiper.slideTo(sliderSlideIndex);
+                    }
+                })
+            })
+        }
+
+        function setGclids(id) {
+            const elem = document.getElementById('inspired_gclids');
+            const oldHidAttr = elem.getAttribute('data-tf-hidden');
+            let typeformBtns = id.querySelectorAll('.typeform-share');
+            typeformBtns.forEach((btn, i) => {
+                let newHidAttr = btn.getAttribute('data-tf-hidden');
+                let combineHidAttr = `${oldHidAttr},${newHidAttr}`;
+                btn.setAttribute('data-tf-hidden', combineHidAttr);
+            })
+        }
+
+
+        function initSlider(id, goToSlide) {
+            var sliderId = id.replace('#slider-', '');
+            const swiper = new Swiper(id, {
+                effect: "fade",
+                loop: true,
+                observer: true,
+                navigation: {
+                    nextEl: '.swiper-button-next-' + sliderId,
+                    prevEl: '.swiper-button-prev-' + sliderId,
+                },
+                on: {
+                    init: function (e) {
+                        //  console.log(e);
+                        // console.log('.swiper-button-next-'+sliderId);
+                        e.el.classList.add('slider_loaded');
+                        // swiper.slideTo(goToSlide);
+                    },
+                    slideChangeTransitionStart: function (e) {
+                        //console.log(e);
+                        let prevIndex = e.previousRealIndex;
+                        let activeIndex = e.realIndex;
+                        let sliderId = e.el.getAttribute('data-slider');
+                        let prodListItem = document.querySelectorAll(`.slider-products-holder[data-slider="${sliderId}"] .slider-products-item`);
+                        prodListItem[prevIndex].classList.remove('active');
+                        prodListItem[activeIndex].classList.add('active');
+                    },
+                    afterInit: function (swiper) {
+                        swiper.slideTo(goToSlide);
+                    }
+                }
+            });
+        }
+        function handleResponseGetProducts() {
+            let response = JSON.parse(this.responseText);
+            // let response  = this.responseText;
+            // console.log(response.variants);
+        }
+ 
+        function getInspiredProducts(id) {
+            // console.log(id);
+            //console.log(id.querySelectorAll('.prod-list-cnt').length);
+            if (id.classList.contains('inspiredProductLoaded')) {
+                //   console.log('Prod already loaded!');
+                return;
+            } else {
+                //  console.log(111);
+            }
+            let items = id.querySelectorAll('.prod-list-cnt');
+            //items.forEach((item,index) =>{
+            for (let i = 0; i < items.length; i++) {
+                let prodHandle = items[i].getAttribute('data-prodhandle');
+                let prodVariant = items[i].getAttribute('data-prodvariantid');
+
+                let url = 'https://www.jasonl.com.au/products/' + prodHandle + '.js';
+                // console.log(url);
+                const request = new XMLHttpRequest();
+                //let thisFilter = filter;
+                request.addEventListener('load', function () {
+                    let response = JSON.parse(this.responseText);
+                    let prodVariants = response.variants;
+                    let prodData = {
+                        title: '',
+                        img: '',
+                        price: '',
+                        url: '',
+                        variant_id: ''
+                    };
+                    // console.log(response);
+                    //  console.log(prodVariant);
+                    // exceptationl cases:
+                    // selected variant can be discontinued. 
+
+                    if (prodVariant == null || prodVariant == '' || prodVariant == '0' || prodVariants.length == 1) {
+                        prodData = {
+                            title: response.title,
+                            img: prodVariants[0].featured_image.src,
+                            price: prodVariants[0].price,
+                            url: response.url,
+                            variant_id: prodVariants[0].id
+                        }
+                    } else {
+                        for (let v = 0; v < prodVariants.length; v++) {
+                            //  console.log(prodVariants[v].id+'-'+prodVariant);
+                            if (prodVariants[v].id == prodVariant) {
+                                //let prodImg = prodVariants[v].featured_image.src;
+                                prodData = {
+                                    title: response.title,
+                                    img: prodVariants[v].featured_image.src,
+                                    price: prodVariants[v].price,
+                                    url: response.url,
+                                    variant_id: prodVariants[v].id
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    let truncateTitle = prodData.title.length > 20 ? prodData.title.substring(0, 20) + '...' : prodData.title;
+                    {% comment %} let removeDollar = Shopify.formatMoney(prodData.price).replace('$', '');
+                    let finalPrice = removeDollar.replace('.00', ''); {% endcomment %}
+                    let finalPrice = prodData.price/100;
+                    let htmlData = '<picture><img src="' + prodData.img + '" alt="' + prodData.title + '" /></picture>';
+                    htmlData += '<div class="prod-info">';
+                    htmlData += '<a href="' + prodData.url + '?variant=' + prodData.variant_id + '" target="_blank" rel="noopener noreferrer" title="' + prodData.title + '">';
+                    htmlData += '<h5>' + truncateTitle + '</h5>';
+                    htmlData += '<p>$' + finalPrice + '</p>';
+                    htmlData += '</a>';
+                    htmlData += '</div>';
+                    htmlData += '<a href="' + prodData.url + '?variant=' + prodData.variant_id + '" target="_blank" rel="noopener noreferrer" class="button button-primary">View product</a>';
+                    items[i].innerHTML = htmlData;
+
+
+                });
+                request.open('GET', url, true);
+                request.send();
+                // return;
+            }
+            id.classList.add('inspiredProductLoaded');
+        }
+
+
+
+
+    }
+
+
+
+
+
+    // doFilter(filterTerm){
+    //     const items = document.querySelectorAll('.grid-item');
+    //     var itemsCounter = 0;
+    //         items.forEach((item,i,array) => {
+    //         })
+    //  }
+
+    function mobileFilterMenu() {
+        const mobMenu = document.getElementById('inspired-filter-menu');
+        const holderWt = mobMenu.querySelector('ul').offsetWidth;
+        //console.log(holderWt);
+        //console.log(screen.width);
+        let menuOuterWt = holderWt - screen.width;
+        //console.log(menuOuterWt);
+    }
+    mobileFilterMenu();
+
+
+
+
+
+    {%- comment -%}Inspired slider{%- endcomment -%}
+
+    // init slider on popup open
+
+    var eyeIcon = {
+        modalBtns: document.querySelectorAll('.simple-popup-modal__opener'),
+        activeModal: document.querySelector('.popupModal-inspire-prods-modal[open]'),
+        getId: function () {
+            return
+        }
+    }
+    //  var getEyeId = eyeIcon.getId();
+    // -----
+
+
+
+
+
+
+    // swiper.on('slideChangeTransitionEnd', function (e) {
+    //     let prevIndex = e.previousRealIndex;
+    //     let activeIndex = e.realIndex;
+    //     let prodListItem = document.querySelectorAll('.slider-products-item');
+    //     prodListItem[prevIndex].classList.remove('active');
+    //     prodListItem[activeIndex].classList.add('active');
+
+    // });
+
+
+
+
+
+    // let modalBtns = document.querySelectorAll('.simple-popup-modal__opener');
+    // modalBtns.forEach((e,i) => {
+    //     e.addEventListener('click',function(){
+    //     })
+    // })
+
+
+</script>
+{%-comment-%} END :: Inspired slider{%- endcomment -%}
+
+
+
+
+
+
+
+
+{% schema %}
+{
+"name": "Inspired",
+"settings": []
+}
+{% endschema %}

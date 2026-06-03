@@ -1,0 +1,111 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner-b",
+      "settings": {
+        "hero_image": "shopify://shop_images/hero-img1.png",
+        "hero_image_mob": "shopify://shop_images/home-hero-banner-mob-img1_129a015e-b407-4295-aad3-cf5875defa78.png",
+        "hero_title": "Beautiful <br class=\"large-hide\"> fitouts <br class=\"small-hide\"> in <br class=\"large-hide\"> under 10 days. <br class=\"large-hide\"> <br class=\"small-hide\"> Easy. Fast!",
+        "button_link": "",
+        "button_link_text": "GET A QUOTE",
+        "button_class": "",
+        "hero_description": ""
+      }
+    },
+    "company_logo_slider": {
+      "type": "companies_list_slider-section",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections-products-theme-settings-v1",
+      "blocks": {
+        "repeater_block_LXrX3e": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Chairs? Clever Choice !",
+            "collection_handle": "office-chairs",
+            "tag_handle": ""
+          }
+        },
+        "repeater_block_cpEkYB": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Desks? Done!",
+            "collection_handle": "office-desks",
+            "tag_handle": ""
+          }
+        },
+        "repeater_block_3cam4h": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Workstations? Work Hard!",
+            "collection_handle": "office-workstations",
+            "tag_handle": ""
+          }
+        },
+        "repeater_block_ewqgg7": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Privacy Pods? Peace & Productivity!",
+            "collection_handle": "sofas-lounges-collaborative-soft-furniture",
+            "tag_handle": "office-work-pods-booths"
+          }
+        }
+      },
+      "block_order": [
+        "repeater_block_LXrX3e",
+        "repeater_block_cpEkYB",
+        "repeater_block_3cam4h",
+        "repeater_block_ewqgg7"
+      ],
+      "settings": {
+        "products_to_show": 3
+      }
+    },
+    "featured_services": {
+      "type": "featured-services-b",
+      "settings": {
+        "bg-color": "dark"
+      }
+    },
+    "recent_fitouts": {
+      "type": "featured-recent-fitouts-b",
+      "settings": {
+        "needafitout_fitout": "fitouts/mm-geomechanics"
+      }
+    },
+    "shop_by_room": {
+      "type": "shop-by-room-b",
+      "settings": {
+        "section_title": "Shop by room"
+      }
+    },
+    "locationMap": {
+      "type": "location-map-1-b_placeholder",
+      "settings": {}
+    },
+    "meetPeople": {
+      "type": "new-meet-people",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "company_logo_slider",
+    "featured_collections",
+    "featured_services",
+    "recent_fitouts",
+    "shop_by_room",
+    "locationMap",
+    "meetPeople"
+  ]
+}

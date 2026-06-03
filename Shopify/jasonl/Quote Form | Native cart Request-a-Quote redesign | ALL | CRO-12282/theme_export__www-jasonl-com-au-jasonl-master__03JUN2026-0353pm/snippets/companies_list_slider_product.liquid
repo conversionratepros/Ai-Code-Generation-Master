@@ -1,0 +1,51 @@
+
+
+{% comment %} {%- assign completed_fitouts = shop.metafields.fitoutlist.topfitoutlist -%} {% endcomment %}
+{%- assign completed_fitouts = product.metafields.productsegment.fitoutlist -%}
+{% comment %} <p>test: {{completed_fitouts}}</p> {% endcomment %}
+{% if completed_fitouts %}
+    {{ 'companies-slider-section.css' | asset_url | stylesheet_tag }}
+
+    {%- assign metaobj_fitout_logos = shop.metaobjects.completed_fitouts_logo.values -%}
+        {%- assign metaobj_data = '' -%}
+        {%- for item in metaobj_fitout_logos  -%}
+            {%- assign img_svg = item.logo_file |  file_url -%}
+            {%- assign metaobj_data = metaobj_data | append:item.fitout_name | append:':' | append:img_svg -%}
+            {%- unless forloop.last -%}
+                {%- assign metaobj_data = metaobj_data |  append: '|' %}
+            {%- endunless %}
+        {%- endfor %}
+
+    {%- assign metaobj_obj = metaobj_data |  split: '|' | json -%} 
+
+    <div class="companies-slider-section">
+        <div class="slider-title">
+            <div><span id="completed-fitouts-number"></span> Companies currently using this product</div>
+            <img src="{{ 'traiangle-bottom.svg' | asset_url }}" alt="icon" width="100" height="100" class="bottom-arrow">
+        </div>
+        {%- comment -%} <!-- Slider main container --> {%- endcomment %}
+        <div class="swiper companies-slider-swpier">
+            <div class="swiper-wrapper" id="companies-swiper-wrapper">
+                {%- comment -%} 
+                ---------------------------------------------------
+                Fitout will be injected here from Javascript
+                ---------------------------------------------------
+                {%- endcomment %}
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+
+    <script>
+        var metaobj_logos = {{metaobj_obj}};
+        var cities = {{ completed_fitouts | json }};
+    </script>
+    <script src="{{'companies_list_slider_product.js' | asset_url }}"></script>
+
+{% endif %}

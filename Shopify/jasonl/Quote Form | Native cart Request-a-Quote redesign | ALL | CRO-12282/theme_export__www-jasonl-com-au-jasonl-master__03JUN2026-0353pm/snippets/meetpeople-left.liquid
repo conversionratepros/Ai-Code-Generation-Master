@@ -1,0 +1,45 @@
+<div class="meetpeople1-left">
+    <div class="meetpeople-banner">
+      <div class="people-img">
+        {%- if meet-people-image != empty -%}
+          <picture>
+            <source
+              media="(min-width: 1200px)"
+              srcset="{{shop.metafields.custom_fields.location_collection_team_main_image[index] | file_img_url:'450x'}}, {{shop.metafields.custom_fields.location_collection_team_main_image[index] | file_img_url:'1042x'}} 2x"
+            >
+            <img
+              src="{{shop.metafields.custom_fields.location_collection_team_main_image[index] | file_img_url:'521x'}}"
+              alt="Zac"
+              width="530" 
+              height="455"
+              loading="lazy" 
+              style="max-height: 515px; object-fit: contain;"
+            >
+          </picture>
+        {%- endif -%}
+      </div>
+      <div class="people-text">
+        {%- if meet-people-header != empty -%}
+          <h2>
+            {{
+              shop.metafields.custom_fields.location_collection_team_main_header[index]
+              | replace: '.', '<span>.</span>'
+            }}
+          </h2>
+        {%- endif -%}
+        {%- if meet-people-description != empty -%}
+          <p>{{ shop.metafields.custom_fields.location_collection_team_main_description[index] }}</p>
+        {%- endif -%}
+        {%- if meet-people-signature != empty -%}
+          <img
+            class="signature"
+            loading="lazy"
+            alt="signature"
+            src="{{shop.metafields.custom_fields.location_collection_team_main_signature[index] | file_img_url:'180x'}}" 
+            srcset="{{ shop.metafields.custom_fields.location_collection_team_main_signature[index] | file_img_url: '180x' }} 1x, {{ shop.metafields.custom_fields.location_collection_team_main_signature[index] | file_img_url: 'master' }} 2x"
+            width="180"
+            height="80">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>

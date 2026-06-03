@@ -1,0 +1,410 @@
+{%-comment-%}
+  Documentation - https://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
+{%-endcomment%}
+
+{%-unless template == 'index' or template == 'cart'-%}
+  <ul class="breadcrumb-menu">
+     {%- unless template contains 'product' %}
+        <li>
+          <em><a href="{{shop.url}}" title="{{ 'general.breadcrumbs.home' | t }}">{{ 'general.breadcrumbs.home' | t }}</a></em>
+        </li> 
+    {%- endunless %}
+
+  {%-if template contains 'product'-%}
+      {%- comment -%}
+            Get the handle of the main product. In this way, even if product has sizes. 
+            Breadcrumb can be extracted from the its Main Product.
+      {%- endcomment -%}
+      {%- assign currentproduct_handle= product.handle | strip -%}
+      {%- assign currentproduct_description= product.description -%}
+
+         {%- assign parentexists = '' -%}
+         {%- assign childexists = '' -%}
+         {%- assign stringofcollection='' -%}
+         {%- assign taglisting ='' -%}
+         {%- assign cafelink ='' -%}
+         {%- assign newtagfound ='' -%}
+    
+    
+        {%- assign scripttag_first ='' -%}
+        {%- assign scripttag_second ='' -%}
+        {%- assign scripttag_third ='' -%}
+       {%- comment -%}
+          First get parent category 
+        {%- endcomment -%}
+            {%- for productcollection in all_products[currentproduct_handle].collections -%}
+            {%- assign collectiontitle = productcollection.title | strip -%}
+            {%- assign collectionhandle = productcollection.handle | strip -%}
+
+            {%- if collectiontitle =="Office Furniture" %}
+                <li><a href="{{shop.url}}"><span>{{ 'Office Furniture' }}</span></a></li>
+                {%- assign scripttag_first =shop.url | append: "::" | append: 'Office Furniture' -%}
+                {%- assign parentexists = collectionhandle | append:':' | append:collectiontitle -%}
+                {%- assign childexists = '' -%}
+                {%- break -%}
+            {%- endif -%}
+
+            {%- if collectiontitle =="Cafe & Hospitality Furniture" -%}
+
+                {%- assign scripttag_first =shop.url | append: productcollection.url | append: "::" | append: 'Cafe & Hospitality Furniture' -%}
+                {%- assign childexists = collectiontitle |strip -%}
+                {%- assign cafelink = productcollection.url -%}
+            {%- endif -%}
+         {%- endfor -%}
+    
+    {%- if parentexists == '' -%}
+      {%- if cafelink != '' -%}
+        <li><a href="{{ cafelink }}"><span>{{ 'Cafe & Hospitality Furniture' }}</span></a></li>
+      {%- else -%}
+        
+        {%- if currentproduct_description contains "[redirect]" -%}
+          {%- assign productDescription = currentproduct_description | split:"[redirect]" -%}
+          {%- assign handlevalue = productDescription[1] | split:"[/redirect]" -%}
+        {%- assign mainProductHandle = handlevalue[0] | strip -%}
+        {%- if currentproduct_handle != mainProductHandle -%}
+          {%- if all_products[mainProductHandle] != blank -%}
+            {%- assign currentproduct_handle= mainProductHandle | strip -%}
+            {%- assign newtagfound = 'newtag' -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+        
+        {%- if newtagfound !='' -%}
+            {%- comment -%}
+                    First Step of the Breadcrumb. In this list, Parent Category will be displayed.
+             {%-endcomment-%}
+                   {%- for productcollection in all_products[currentproduct_handle].collections -%}
+                      {%- assign collectiontitle = productcollection.title | strip -%}
+                      {%- assign collectionhandle = productcollection.handle | strip -%}
+
+                      {%- if collectiontitle =="Office Furniture" %}
+                          <li><a href="{{shop.url}}"><span>{{ 'Office Furniture' }}</span></a></li>
+                          {%- assign scripttag_first =shop.url | append: "::" | append: 'Office Furniture' -%}
+                          {%- assign parentexists = collectionhandle | append:':' | append:collectiontitle -%}
+                          {%- assign childexists = '' -%}
+                          {%- break -%}
+                      {%- endif -%}
+
+                      {%- if collectiontitle =="Cafe & Hospitality Furniture" -%}
+
+                          {%- assign scripttag_first =shop.url | append: productcollection.url | append: "::" | append: 'Cafe & Hospitality Furniture' -%}
+                          {%- assign childexists = collectiontitle |strip -%}
+                          {%- assign cafelink = productcollection.url -%}
+                      {%- endif -%}
+                   {%- endfor -%}
+    
+             {%- if parentexists == '' -%}
+              {%- if cafelink != '' %}
+                <li><a href="{{ cafelink }}"><span>{{ 'Cafe & Hospitality Furniture' }}</span></a></li>
+              {%- endif -%}
+            {%- endif -%}
+        {%- endif -%}
+    
+      {%- endif -%}
+    {%- endif -%}
+    {%- comment -%}
+      Get all the Collection assigned to the Products. 
+      {%- endcomment -%}
+     {%- for productcollection in all_products[currentproduct_handle].collections -%}
+           {%- assign collectiontitle = productcollection.title | strip -%}
+           {%- if stringofcollection =='' -%}
+               {%- assign stringofcollection=collectiontitle -%}
+           {%- else -%}
+               {%- assign stringofcollection=stringofcollection| append:',,' | append:collectiontitle -%}
+           {%- endif -%}
+     {%- endfor -%}
+    
+     {%- assign arrayofCollection = stringofcollection | split: ',,'%}
+    
+    
+    {%- comment -%}
+     This is Second Step of Breadcrumb. In this step collection will be displayed. 
+    {%- endcomment -%}
+    {%- if parentexists !='' -%}
+      {%- for link in linklists['shop-by-workspaces'].links -%}
+        {%- assign mainmenutitle = link.title -%}
+        {%- assign menutitleonly = mainmenutitle | split: "|" -%}
+        {%- if menutitleonly[0] == 'Office Furniture' -%}
+          {%- for childlink in link.links -%}
+                  {%- assign leveltwo_collectiontitle = childlink.title | strip -%}
+
+            {%- for allcollection in arrayofCollection -%}
+
+              {%- if allcollection == leveltwo_collectiontitle -%}
+                <li><a  href="{{ childlink.url }}"><span>{{ childlink.title }}</span></a></li>
+                {%- assign scripttag_second =shop.url | append: childlink.url | append: "::" | append: childlink.title -%}
+                {%- assign childexists = childlink.title | strip -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+                    {%- if childexists !='' -%}
+                        {%- break -%}
+                    {%- endif -%}
+              {%- endfor -%}
+        {%- endif -%}
+        {%- if childexists !='' -%}
+              {%- break -%}
+            {%- endif -%}
+    {%-endfor-%}
+    {%- endif -%}
+    {%- comment -%}
+     This is Third Step of Breadcrumb. In this step Sub Collection Tags will be calculated. 
+    {%- endcomment -%}
+    {%- if childexists !='' -%}
+      {% comment %} {%- for link in linklists['shop-by-products'].links -%} {% endcomment %}
+      {%- for link in linklists['main-menu-image'].links -%}
+        {%- assign tagmenutitle = link.title -%}
+        {%- assign tagmenutitleonly = tagmenutitle | split: "|" -%}
+        {%- assign comparetitle = tagmenutitleonly[0] | strip -%}
+        {% comment %} <p>tester:1 {{comparetitle}}</p>
+        <p>tester:2 {{childexists}}</p> {% endcomment %}
+        {% comment %} {%- if comparetitle == childexists -%} {% endcomment %}
+        {%- if childexists contains comparetitle -%}
+          {%- for childlink in link.links -%}
+            {% comment %} {%- assign levelthree_tagstitle = childlink.title | strip -%} {% endcomment %}
+            {%- assign levelthree_tagstitle_split = childlink.title | split:'|' -%}
+            {%- assign levelthree_tagstitle = levelthree_tagstitle_split[0] | strip -%}
+            {% comment %} <p>tester: {{levelthree_tagstitle}}</p> {% endcomment %}
+            {%- assign levelthree_tagsurl = childlink.url | strip -%}
+            {%- assign urllistArray = levelthree_tagsurl | split: "/" -%}
+            {%- assign interestedtags = urllistArray | last | strip -%}
+            {%- if all_products[currentproduct_handle].tags contains interestedtags -%}
+              {%- assign listdata= levelthree_tagstitle | append: '::' | append: levelthree_tagsurl -%}
+              {%- if taglisting !='' -%}
+                {%- assign taglisting= taglisting |append:',' -%}
+              {%- endif -%}
+              {%- assign taglisting= taglisting |append:listdata -%}
+            {%- endif -%}
+            
+              {%- endfor -%}
+        {%- endif -%}
+        {%- if taglisting !='' -%}{%- break -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    
+    {%- comment -%}
+     This is Third Step of Breadcrumb. In this step Sub Collection Tags will be displayed from the list calulated above. 
+    {%- endcomment -%}
+    {%- if taglisting !='' -%}
+      {%- assign tagbreadcrumb = '' -%}
+      {%- assign taglistingarray = taglisting | split: ',' -%}
+      {%- if taglistingarray.size == 1 -%}
+        {%- assign tagbreadcrumb =taglistingarray[0] -%}
+      {%- else -%}
+        {%- assign productwordArray = product.title | split: ' ' -%}
+        {%- assign firstwordsize = productwordArray[0].size -%}
+        {%- assign firstword_index = firstwordsize | minus:1 -%}
+        {%- assign taglistsize =taglistingarray.size -%}
+        {%- if taglistsize >= firstwordsize -%}
+          {%- assign tagbreadcrumb =taglistingarray[firstword_index] -%}
+        {%- endif -%}
+    
+        {%- assign totalbreadcrumbcounter = 0 -%}
+        {%- assign loopcounter = 0 -%}
+        {%- for taglist_one in  taglistingarray-%}
+          {%- if loopcounter >= firstword_index -%}
+            {% if tagbreadcrumb == '' %}
+              {%- assign tagbreadcrumb =taglist_one -%}
+            {% else %}
+              {%- assign tagbreadcrumb =tagbreadcrumb | append:',' | append: taglist_one -%}
+            {% endif %}
+            
+            {%- assign totalbreadcrumbcounter = totalbreadcrumbcounter | plus:1 -%}
+            {%- if totalbreadcrumbcounter  >= 5 -%}
+              {%- break -%}
+            {% endif %}
+            {%- assign loopcounter = loopcounter | plus:1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+    
+        {%- if totalbreadcrumbcounter < 5 -%}
+              {%- assign loopcounter = 0 -%}
+              {%- for taglist_one in  taglistingarray-%}
+                  {%- if loopcounter < firstword_index -%}
+            {%- if tagbreadcrumb == '' -%}
+                {%- assign tagbreadcrumb =taglist_one -%}
+              {% else %}
+                {%- assign tagbreadcrumb =tagbreadcrumb | append:',' | append: taglist_one -%}
+              {%- endif -%}
+                      {%- assign totalbreadcrumbcounter = totalbreadcrumbcounter | plus:1 -%}
+                      {%- if totalbreadcrumbcounter  >= 5 -%}
+                          {%- break -%}
+                      {%- endif -%}
+                      {%- assign loopcounter = loopcounter | plus:1 -%}
+                  {%- endif -%}
+              {%- endfor -%}
+        {%- endif -%}
+    
+      {%- endif -%}
+    
+      {%- if tagbreadcrumb !='' -%}
+        {%- assign counter = 1 -%}
+        {%- assign breadcrumbarray = tagbreadcrumb | split:',' -%}
+        
+        {%- for approvedbreadcrumb in breadcrumbarray -%}
+          
+          {%- assign finalbreadcrumb = approvedbreadcrumb | split: '::' -%}
+           {%comment%}{% if counter != 1%} {{ '|' }} {% endif %}{%endcomment%}
+           <li class="breadcrumb-child-collection {% if forloop.first %}child-collection-first{% endif %}"><a  href="{{ finalbreadcrumb[1] }}"><span>{{ finalbreadcrumb[0] }}</span></a></li>
+          {%- if counter == 1 -%} 
+            {%- assign scripttag_third =shop.url | append: finalbreadcrumb[1] | append: "::" | append: finalbreadcrumb[0] -%}
+          {%- endif -%}
+           {%- assign counter = counter | plus:1 -%}
+           {%- if counter > 5 -%} {%- break -%} {%- endif -%}
+        {%- endfor -%}
+      
+      {%- endif%}
+
+    {%- endif -%}
+
+
+  {%-elsif template contains 'collection' and collection.handle-%}
+
+
+    {%-if current_tags-%}
+      {%-capture url-%}/collections/{{ collection.handle }}{%- endcapture %}
+    <li>
+      <a href="{{ collection.url }}" ><span>{{ collection.title }}</span></a> 
+    </li>
+      <li>
+        <a href="{{ shop.url }}{{url}}/{{ current_tags | join: " + " }}" >
+          <span>{{ current_tags | join: " + " }}</span>
+        </a>
+    </li>
+    {%- else -%}
+    {%-comment-%}
+     {%-assign current_parent_menutitle =  collection.title-%}
+  {%-capture parent_menutitle-%}
+
+{%-for link in linklists.main-menu.links-%}
+ {%-assign child_list_handle = link.title | handleize-%}
+  {%-for childlink in linklists[child_list_handle].links-%}
+     {%-assign hasChildren = childlink.url-%}
+       {%-if childlink.title == current_parent_menutitle-%}
+    <li><a href="{{link.url}}">{{link.title}}</a></li>
+       {%-endif-%}
+      {%-endfor-%}
+ {%-endfor-%}
+{%-endcapture-%}
+    {{parent_menutitle}}
+    {%-endcomment-%}
+      <li>
+        <a href="{{ shop.url }}/collections/{{collection.handle}}"><span>{{ collection.title }}</span></a>
+    </li>
+    {%-endif-%}
+
+  {%-elsif template == 'blog'-%}
+
+   
+    {%-if current_tags-%}
+      {{ blog.title | link_to: blog.url }}
+
+      <li>{{ current_tags | join: " + " }}</li>
+    {%-else-%}
+    <li>{{ blog.title }}</li>
+    {%-endif-%}
+
+  {%-elsif template == 'article'-%}
+
+  
+    {{ blog.title | link_to: blog.url }}
+
+    <li>{{ article.title }}</li>
+
+  {%-elsif template contains 'page'-%}
+
+
+   <li>{{ page.title }}</li>
+
+  {%-else-%}
+
+
+   <li>{{ page_title }}</li>
+
+  {%-endif-%}
+</ul>
+{%-endunless-%}
+
+{%- if template contains 'product'-%}
+  {%- if scripttag_first !='' and scripttag_second !='' and scripttag_third !='' -%}
+
+       {%- assign firstArray = scripttag_first | split:"::" -%}
+           {%- assign secondArray = scripttag_second | split:"::" -%}
+           {%- assign thirdArray = scripttag_third | split:"::" -%}
+          <script type="application/ld+json">
+          {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{ firstArray[1] }}",
+          "item": "{{ firstArray[0] }}"
+          },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ secondArray[1] }}",
+          "item": "{{ secondArray[0] }}"
+          },{
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ thirdArray[1] }}",
+          "item": "{{ thirdArray[0] }}"
+          }]
+          }
+          </script>
+  {%- elsif scripttag_first !='' and scripttag_second !='' -%}
+      {%- assign firstArray = scripttag_first | split:"::" -%}
+          {%- assign secondArray = scripttag_second | split:"::" -%}
+          <script type="application/ld+json">
+          {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList22",
+          "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{ firstArray[1] }}",
+          "item": "{{ firstArray[0] }}"
+          },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ secondArray[1] }}",
+          "item": "{{ secondArray[0] }}"
+          }]
+          }
+          </script>
+  {%- elsif scripttag_first !='' and scripttag_third !='' -%}
+      {%- assign firstArray = scripttag_first | split:"::" -%}
+          {%- assign thirdArray = scripttag_third | split:"::" -%}
+          <script type="application/ld+json">
+          {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{ firstArray[1] }}",
+          "item": "{{ firstArray[0] }}"
+          },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ thirdArray[1] }}",
+          "item": "{{ thirdArray[0] }}"
+          }]
+          }
+          </script>
+  {%- else -%}
+    <script type="application/ld+json">
+          {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Office Furniture",
+          "item": "https://www.jasonl.com.au"
+          }]
+          }
+           </script>
+  {%- endif -%}
+{%- endif -%}

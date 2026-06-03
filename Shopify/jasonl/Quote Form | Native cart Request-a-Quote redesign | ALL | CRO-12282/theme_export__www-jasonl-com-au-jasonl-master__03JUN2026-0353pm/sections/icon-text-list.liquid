@@ -1,0 +1,64 @@
+{{ 'icon-text.css' | asset_url | stylesheet_tag }}
+
+<section class="icon-text">
+  <div class="page-width">
+    <ul class="icon-grid">
+      {%- for block in section.blocks -%}
+        <li class="icon-item">
+            <div class="icon-block">
+              {%- if block.settings.icon_svg != blank -%}
+              <div class="icon-image">
+                {{ block.settings.icon_svg }}
+              </div>
+              {%- endif -%}
+          {%- if block.settings.title != blank -%}
+            <h3 class="icon-title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+          {%- if block.settings.subtitle != blank -%}
+            <p class="icon-subtitle">{{ block.settings.subtitle }}</p>
+          {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Icon Text List",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Icon Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon Image"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Short description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon Text List",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

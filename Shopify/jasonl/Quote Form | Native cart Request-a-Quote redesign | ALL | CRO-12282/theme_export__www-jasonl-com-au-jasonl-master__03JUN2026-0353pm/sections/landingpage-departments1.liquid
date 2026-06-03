@@ -1,0 +1,33 @@
+{{ "landingpage-department.css" | asset_url | stylesheet_tag }}
+<div class="department1-container">
+    <div class="page-width">
+        <div class="container">
+            <h2>Our complete<br> range for your<br> next beautiful<br> fitout<span>.</span></h2>
+            <nav class="svg-circle">
+                <ul>
+                    {%- for link in linklists.shop-by-department.links -%}
+                    <li>
+                        <div class="circle-holder">{%- render 'main-nav-icons', item: link.title -%}</div>
+                        {%- if link.title contains "Whiteboards & Presentation Boards"-%}
+                            <p>Whiteboards</p>
+                        {%- elsif link.title contains "Sofa & Collaborative Soft Furniture" -%}
+                            <p>Sofa & lounges</p>
+                        {%- elsif link.title contains "Safety & Crowd Control" -%}
+                            <p>Sofa</p>
+                        {%- elsif link.title contains "Power & Data Management" -%}
+                            <p>Cabling</p>
+                        {%- elsif link.title contains "Pots & Plants" -%}
+                            <p>Decor</p>
+                        {%- elsif link.title contains "Ergonomic Accessories" -%}
+                            <p>Accessories</p>
+                        {%- else -%}
+                            <p>{{ link.title }}</p>
+                        {%- endif -%}
+
+                    </li>
+                    {%- endfor -%}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

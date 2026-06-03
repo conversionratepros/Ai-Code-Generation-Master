@@ -1,0 +1,71 @@
+function renderCompletedFitouts(){
+    //console.log(null )
+    // let metaobj_logos = ;
+    // let cities = null;
+    let data_items = cities;
+    // document.getElementById('completed-fitouts-number').innerText = cities.totalfitout;
+    let container = document.getElementById("companies-swiper-wrapper");
+        data_items.forEach(data => {
+             let slide = document.createElement("div");
+             slide.className = "swiper-slide logo-with-description";
+             let cityname = data.city;
+             if(!data.city){
+                cityname = data.state;
+             }
+             let is_today = data.day == 0 ? true : false;
+             let day_format = data.day === 1 ? 'day ago' : 'days ago';
+             let fitout_complete_time = is_today === true ? 'Today' : `${data.day} ${day_format}`;
+             let item_count = data.totalitemcode === 1 ? `${data.totalitemcode} item` : `${data.totalitemcode} items`;
+
+
+             //let final_logo_img = data.logo_image;
+             // let final_logo_img = data.logo;
+            let final_logo_img = data.logo_data ?? data.logo;
+            
+             // replace poor quality original image by fine SVG logo image
+             for(const key in metaobj_logos ){
+                let fitout_data = metaobj_logos[key].split(':');
+
+                if(fitout_data[0] == data.companyname ){
+                    final_logo_img = fitout_data[1];
+                }
+             }
+             // --------
+
+             slide.innerHTML = data.companyname === "INTEGRATED PROJECT GROUP" ? 
+            `<div class="swiper-slide-inner">
+             <img src="${final_logo_img}" alt="${data.companyname} logo" width="100" height="100">
+             <div class="slide-description">
+             <span class="orange-text">${fitout_complete_time}</span><br /> 
+             <strong class="company-name">Integrated Project Group</strong><br /> 
+             ${cityname}</div></div>` : 
+             `<div class="swiper-slide-inner">
+             <img src="${final_logo_img}" alt="${data.companyname} logo" width="100" height="100">
+             <div class="slide-description">
+             <span class="orange-text">${fitout_complete_time}</span><br /> 
+             <strong class="company-name">${data.companyname}</strong><br />
+             ${cityname}</div></div>` ;
+             container.appendChild(slide);
+
+        });
+    }
+    renderCompletedFitouts();
+    const swiperlogo = new Swiper('.companies-slider-swpier', {
+        slidesPerView: "auto",
+        spaceBetween: 30,
+        speed: 400,
+        autoplay: {
+            delay:3000,
+            pauseOnMouseEnter:true
+        },
+        loop:true,
+        breakpoints: {
+            768: {  // For screens **768px and above**
+                slidesPerView: "auto"
+            },
+            0: {  // For **mobile screens (0px to 767px)**
+                slidesPerView: 1,
+                spaceBetween: 10 // Adjust space for mobile if needed
+            }
+        }
+    });

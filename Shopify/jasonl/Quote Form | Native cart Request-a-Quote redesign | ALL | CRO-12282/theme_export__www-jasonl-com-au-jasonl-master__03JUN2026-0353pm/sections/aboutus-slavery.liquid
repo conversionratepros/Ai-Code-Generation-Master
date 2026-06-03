@@ -1,0 +1,114 @@
+{{ 'aboutus-slavery.css' | asset_url | stylesheet_tag }}
+<!-- Modern Slavery -->
+<section id="modern-slavery" class="slavery">
+  {% comment %} <link rel="stylesheet" href="css/slavery.css"> {% endcomment %}
+  <div class="page-width">
+    <div class="slavery-wrapper">
+      <div class="slavery__img bg-img-holder-left">
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcset="{{ 'aboutus-slavery-small.png' | file_img_url:'master'}}"
+          >
+          {%- comment -%}
+            <source
+              media="(min-width: 768px) and (max-width: 1199px)"
+              srcset="{{ 'aboutus-slavery.png' | file_img_url:'master'}}"
+            >
+          {%- endcomment -%}
+          <source
+            media="(min-width: 768px)"
+            srcset="{{ 'aboutus-slavery-1540.png' | file_img_url:'master' }}"
+          >
+          <img
+            src="{{ 'aboutus-slavery-1540.png' | file_img_url:'master'}}"
+            width="1000"
+            height=""
+            alt="Slavery"
+            loading="lazy"
+          >
+        </picture>
+      </div>
+      <div class="slavery__info">
+        <h3>Modern slavery</h3>
+        <div class="slavery__primary-grid">
+          <div class="description">
+            <div class="slavery__grid-inner">
+            <strong>
+              As part of our ethical commitment, we have lodged our Modern Slavery Statement for FY 22/23, reinforcing
+              our dedication to eradicating modern slavery. Some of our executive team visit out suppliers annually.
+              Reviewing and assessing our global suppliers. In order to ensure we follow our supply chain and modern
+              slavery review process.
+            </strong>
+            <p class="slavery__attorney">
+              JasonL has voluntarily uploaded our modern slavery statement to the
+              <a href="https://modernslaveryregister.gov.au/statements/17274/" target="_blank" rel="noopener noreferrer"
+                ><strong>Attorney-General's Registery.</strong></a
+              >
+            </p>
+          </div>
+        </div>
+          <div>
+            <div class="slavery__grid-inner-right">
+              <p class="description">
+                Follow our progress as we pursue our 2025 goals with transparency and ethical standards. At Jasonl, we
+                uphold the highest standards in Modern Slavery compliance and labor rights, fostering inclusivity and
+                providing opportunities through apprenticeships and long-term employment. Aligned with the UN Sustainable
+                Development Goals, we continuously evaluate and enhance our supply chain to eradicate Modern Slavery,
+                conducting thorough assessments through supplier questionnaires and on-site visits.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="slavery__secondary-grid description">
+          <div>
+            <div class="slavery__grid-inner">
+              <strong>Bribery and corruption prevention</strong>
+              <p>
+                Jasonl, is dedicated to eliminating bribery and corruption within our supply chain. We actively seek
+                compliance statements from our suppliers, extending to two tiers, and implement comprehensive staff
+                policies and training programs to uphold integrity across our organization.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="slavery__grid-inner-right">
+              <strong> Human and labour rights assurance </strong>
+              <p>
+                We strive to verify that all employees within our supply chain, up to two tiers, have the fundamental
+                rights to choose their employer, work in safe conditions, receive fair compensation, enjoy unrestricted
+                movement, and are not subjected to child labor.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="slavery__grid-inner">
+              <strong> Supply chain compliance measures </strong>
+              <p>
+                Our commitment extends to surveying both local and international major suppliers, requesting them to do
+                the same with their top suppliers. To facilitate clear communication, our compliance survey documents are
+                available in multiple languages, including Mandarin.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="slavery__grid-inner-right">
+              <strong> Dynamic supply chain monitoring </strong>
+              <p>
+                Our supply chain monitoring is an evolving process. As our supply chain expands, we remain vigilant in
+                verifying compliance with Human Rights and Anti-Corruption legislation. We measure our progress against
+                global standards such as the Global Compact and Sustainable Development Goals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Aboutus Slavery",
+  "settings": []
+}
+{% endschema %}

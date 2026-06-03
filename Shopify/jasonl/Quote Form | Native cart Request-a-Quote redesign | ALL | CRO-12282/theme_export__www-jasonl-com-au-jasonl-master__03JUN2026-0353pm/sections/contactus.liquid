@@ -1,0 +1,131 @@
+{{ "contact.css" | asset_url | stylesheet_tag }}
+<div class="page-width contactpage">
+    <div class="contact-wrapper">
+        <div class="contact-main">
+            <div class="section-header">
+                <h1 class="section-header__title">{{ page.title }}</h1>
+            </div>
+           {%-comment-%} <div class="typeform-widget" data-url="https://jsnl.typeform.com/to/WZCqPa"
+                style="width: 100%; height: 500px;"></div>
+                {%-endcomment-%}
+               
+                {% comment %} old typeform 
+                <div id="contactpage-contact-typeform" class="typeform-snippet typeform-share typeform-widget typeform-embed" data-url="https://jsnl.typeform.com/to/ctUucWe4"
+                style="width: 100%; height: 500px;"></div> 
+                {% endcomment %}
+                <div id="typeform-ctUucWe4-1" class="typeform-snippet typeform-share typeform-embed" data-tf-on-submit="submit" data-tf-widget="ctUucWe4" data-tf-iframe-props="title=Hi, how can we help you today?" data-tf-medium="snippet" data-tf-hidden="" style="width: 100%; height: 500px;"></div>
+
+
+              
+            <script> (function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) } })()</script>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="contact-right">
+        <h3 class="contact-right-title">Where to Find Out Showrooms</h3>
+        {%- render 'store-locator' -%}
+
+
+
+
+
+
+
+{%- comment -%}
+-------------------------------------
+        <div>
+            <!-- 
+            <div id="showRoomWrap" class="details">
+                <h3>East Coast Distribution Centre</h3>
+                <p><a title="JasonL Office Furniture Sydney"
+                        href="https://www.google.com.au/maps/place/JasonL+Office+Furniture/@-33.9499451,151.200695,17z/data=!4m6!1m3!3m2!1s0x6b12b054b74b46a5:0x129bb2e0a12617fd!2sJasonL+Office+Furniture!3m1!1s0x6b12b054b74b46a5:0x129bb2e0a12617fd">1a/30
+                        Sir Joseph Banks St<br>Botany NSW 2019</a><br>Monday to Friday, 8am - 4.00pm<br>call: 02 9700
+                    9511</p>
+            </div>
+        -->
+            <div id="showRoomWrap" class="details">
+                <h3>Sydney City Showroom</h3>
+                <p><a title="JasonL Office Furniture Sydney"
+                        href="https://www.google.com/maps/place/3%2F29-31+O'Riordan+St,+Alexandria+NSW+2015,+Australia/@-33.9104508,151.1972512,18z/data=!4m5!3m4!1s0x6b12b1b769e3d591:0xe72d2970adff75cf!8m2!3d-33.9105451!4d151.1975633">Shop
+                        3, 29-31 O'Riordan St<br>Alexandria NSW 2015</a><br> Monday to Thursday, 9am - 5.00pm<br>Friday,
+                    by appointment only<br>call: 02 9011 5573</p>
+            </div>
+           <!-- 
+            <div id="showRoomWrap-two" class="details">
+                <h3>Western Sydney Showroom</h3>
+                <p><a href="https://www.google.com.au/maps/place/138+Parramatta+Rd,+Granville+NSW+2142,+Australia/@-33.8305682,151.0092223,17z/data=!3m1!4b1!4m5!3m4!1s0x6b12a32fce311da1:0x75510873c125e0d!8m2!3d-33.8305727!4d151.0114163"
+                        title="JasonL Office Furniture Sydney">
+                        138 Parramatta Rd<br>Granville NSW 2142</a><br>
+                    Monday to Tuesday, 9am - 5.00pm<br>
+                    Wednesday, Closed<br>Thursday to Friday, 9am - 5.00pm<br>
+                    call: 02 9078 8511</p>
+            </div>
+        -->
+            <div id="showRoomWrap-two" class="details">
+                <h3>Melbourne Showroom</h3>
+                <p><strong>Click &amp; Collect </strong>Only available Wednesday and Fridays.</p>
+                <p><a href="https://www.google.com.au/maps/place/329-331+Ferrars+St,+South+Melbourne+VIC+3205/@-37.8391296,144.9560726,17z/data=!3m1!4b1!4m5!3m4!1s0x6ad667e32a54a789:0x9ca7403c9030aa82!8m2!3d-37.8391296!4d144.9582613"
+                        title="JasonL Office Furniture Melbourne">329-331 Ferrars St<br>South Melbourne VIC 3205</a></p>
+                <!-- <p><strong>Click &amp; Collect Available:</strong> Wednesday &amp; Friday<br>9am - 4.00pm</p> -->
+                <p><strong>Please call for further information around what is available for "click and collect"
+                    </strong>03 9238 1705<br></p>
+            </div>
+            <div id="showRoomWrap-two" class="details">
+                <h3>Brisbane Showroom</h3>
+                <p><a href="https://www.google.com/maps/place/728+Ann+St,+Fortitude+Valley+QLD+4006,+Australia/@-27.4576909,153.034639,18z/data=!4m5!3m4!1s0x6b9159f2f8d37e53:0x264cdf5e86d8dfe7!8m2!3d-27.4573851!4d153.0355226"
+                        title="JasonL Office Furniture Sydney">728 Ann Street<br>Fortitude Valley, Brisbane, Qld
+                        4006</a><br> Monday to Friday, 9am - 5.00pm<br>FREE Customer Parking Upstairs(McWhirters Car
+                    Park)<br />call: 07 3152 7119</p>
+            </div>
+            <div id="showRoomWrap-two" class="details">
+                <h3>Western Sydney Showroom</h3>
+                <p><a href="https://www.google.com/maps/place/2a%2F149+McCredie+Rd,+Smithfield+NSW+2164,+Australia/@-33.8473231,150.9543643,17z/data=!3m1!4b1!4m5!3m4!1s0x6b12bd6053d401cf:0xfe382b183eee6385!8m2!3d-33.8473276!4d150.956553"
+                        title="JasonL Office Furniture Sydney">2A/149 McCredie Road Smithfield, NSW 2164</a>
+                        <!-- <br> Monday to Friday, 9am - 5.00pm -->
+                      <br> <strong>Opening March 2022</strong>
+                       <br> call: 02 9700 9511
+                </p>
+            </div>
+            <div id="showRoomWrap-two" class="details">
+                <h3>East Coast Distribution Centre</h3>
+                <p><a href="https://www.google.com/maps/place/2a%2F149+McCredie+Rd,+Smithfield+NSW+2164,+Australia/@-33.8473231,150.9543643,17z/data=!3m1!4b1!4m5!3m4!1s0x6b12bd6053d401cf:0xfe382b183eee6385!8m2!3d-33.8473276!4d150.956553"
+                        title="JasonL Office Furniture Sydney">2A/149 McCredie Road Smithfield, NSW 2164</a>
+                         <br>Monday to Friday, 8am - 4.00pm
+                        <br />call: 02 9700 9511
+                    </p>
+            </div>
+           <!-- 
+            <div id="showRoomWrap-two" class="details">
+                <h3>Outlet Factory Seconds and Second Hand Office Furniture Showroom</h3>
+                <p><span>(Looking for a deal we have hundreds of chairs, desks and workstations looking for a new
+                        home)</span><br />
+                    <a
+                        href="https://www.google.com.au/maps/place/138+Parramatta+Rd,+Granville+NSW+2142,+Australia/@-33.8305682,151.0092223,17z/data=!3m1!4b1!4m5!3m4!1s0x6b12a32fce311da1:0x75510873c125e0d!8m2!3d-33.8305727!4d151.0114163">
+                        138 Parramatta Rd<br>Granville, NSW 2142
+                    </a><br>
+                    Monday to Tuesday, 9am - 5.00pm<br>
+                    Wednesday, Closed<br>Thursday to Friday, 9am - 5.00pm<br>
+                    call: 02 9078 8511
+                </p>
+            </div>
+        -->
+            <div id="callUsWrap" class="details">
+                <h3>Call us on</h3>
+                <h2><a href="tel:1300527665" rel="nofollow">1300 527 665</a></h2>
+                <p>Monday to Friday, 9am - 5.00pm</p>
+            </div>
+            <div id="mailUsWrap" class="details">
+                <h3>Sales Enquiry</h3>
+                <p><a href="mailto:sales@jasonl.com.au">sales@jasonl.com.au</a></p>
+                <br>
+                <h3>Customer Service</h3>
+                <p><a href="https://jsnl.typeform.com/to/WZCqPa">c̲o̲n̲t̲a̲c̲t̲ ̲c̲u̲s̲t̲o̲m̲e̲r̲ ̲s̲e̲r̲v̲i̲c̲e̲</a>
+                </p>
+            </div>
+        </div>
+        ----------------------------------------------------------
+        {%-endcomment-%}
+
+
+    </div>
+</div>

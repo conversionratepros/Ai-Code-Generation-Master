@@ -1,0 +1,169 @@
+{{ 'component-popular.css' | asset_url | stylesheet_tag }}
+{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+{{ 'product-listing.css' | asset_url | stylesheet_tag }}
+
+
+{%- unless section.settings.quick_add == 'none' -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- if section.settings.quick_add == 'bulk' -%}
+  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{{ 'custom-color-option.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-color-option.js' | asset_url }}" defer="defer"></script>
+
+<link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+<link rel="stylesheet" href="{{ 'range-collection-product-listing.css' | asset_url }}" media="print" onload="this.media='all'">
+<section class="collection-product-listing">
+  <div class="page-width">
+    <div class="collection-product-wrapper">
+      <div class="products">
+        <h2 class="section-title"><span>Products in the</span> {{ page_title}} Range</h2>
+      <ul id="product-grid" class="grid product-grid">
+        {%- assign forloop_counter = 0 -%}
+        {%- for product in collection.products -%}
+            <li class="grid__item moreinfo-poz-abs {% if hasShowAllProducts == true and forloop_counter >= 6 %}showmore-item showmore-hide{% endif %}">
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                skip_styles: false,
+                quick_add: 'standard',
+                section_id: section.id
+              %}
+            </li>
+        {% if forloop_counter == 2 %}
+        <li class="call-to-action mobile">
+          <div class="looking-fitouts" style="background-image:url({{ 'cta-background.jpg' | file_url }})">
+            <h3>Need a Fitout?</h3>        
+           <a 
+            {{settings.typeformurls_url_1}}
+           href="javascript:void(0)" 
+           class="button button--primary typeform-share typeform_custom_parameter ga_fitouts_typeform ">Get a Quote</a>
+          </div>
+        </li>
+        {% endif %}
+        {% if forloop_counter == 5 %}
+        <li class="call-to-action">
+          <div class="looking-fitouts" style="background-image:url({{ 'cta-background.jpg' | file_url }})">
+            <h3>Need a Fitout?</h3>        
+            <a 
+            {{settings.typeformurls_url_1}}
+           href="javascript:void(0)" 
+            class="button button--primary typeform-share typeform_custom_parameter ga_fitouts_typeform ">Get a quote</a>
+          </div>
+        </li>
+        {% endif %}
+        {%- assign forloop_counter = forloop_counter | plus:1 -%}
+        {%- endfor -%}
+        </ul>
+      </div>
+      <aside class="related-collection">
+        <h2 class="section-title"><span>Our Other</span> Ranges</h2>
+        <ul>
+          {%- assign range_counter = 0-%}
+          {%- for collection in collections -%}
+            {%- if collection.image -%}
+              {%- assign collection_image = collection.image -%}
+            {%- elsif collection.products.first and collection.products.first.images != empty -%}
+              {%- assign collection_image = collection.products.first.featured_image -%}
+            {%- else -%}
+              {%- assign collection_image = blank -%} 
+            {%- endif -%}
+
+                  {% if collection.template_suffix == "range" and collection.title != page_title and collection_image != blank %}
+            <li>
+              <a href="{{ collection.url }}">        
+                <span class="title">{{ collection.title }}</span>
+                <img src="{{ collection_image | img_url: '480x' }}" alt="{{ collection.title }}">
+              </a>
+            </li>
+            {%- assign range_counter =  range_counter | plus:1 -%}
+            {%- if range_counter > 30 -%}
+              {%- break -%}
+            {%- endif -%}
+                  {% endif %}
+          {%- endfor -%}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    {% comment %} mobile add to quote button {% endcomment %}
+    document.querySelectorAll('.add-to-quote-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const formButton = this.closest('.card-wrapper').querySelector('.product-form__submit');
+        formButton.click();
+      });
+    });
+    {% comment %} mobile add to quote button {% endcomment %}
+
+   function customColorOption(data){
+  
+  if(!window.matchMedia("(pointer: coarse)").matches) { // if not touch devices
+       // color option image change on listing
+        //let listing_product_item = document.querySelectorAll('#main-collection-product-grid .grid__item');
+        let listing_product_item = document.querySelectorAll('#product-grid .grid__item');
+        for(let i = 0; i<listing_product_item.length; i++){
+  
+            let listing_color_item = listing_product_item[i].querySelectorAll('.color-list .option-color[data-variant_img]');
+            let colorImgHolder = listing_product_item[i].querySelector('.active-color-img');
+            for(let x = 0; x<listing_color_item.length; x++){
+
+                listing_color_item[x].addEventListener('mouseenter', () => {
+                  // show loader on first time hover 
+                  if(listing_color_item[x].getAttribute('data-visited') == 'false'){
+                      listing_product_item[i].classList.add('first-time-hover');
+                      listing_color_item[x].setAttribute('data-visited','true');
+                      setTimeout(function(){
+                          listing_product_item[i].classList.remove('first-time-hover');
+                      },500)
+                    }
+                    // -----
+                    let colorImgSrc = listing_color_item[x].getAttribute('data-variant_img');
+                    console.log(colorImgHolder);
+                    colorImgHolder.setAttribute('src',colorImgSrc);
+                    listing_product_item[i].classList.add('color-img-active');
+                  });
+
+                  listing_color_item[x].addEventListener('mouseleave', () => {
+                      if(listing_color_item[x].getAttribute('data-visited') == 'true'){
+                          listing_product_item[i].classList.remove('first-time-hover');
+                      }
+                     listing_product_item[i].classList.remove('color-img-active');
+                  });
+              }
+          }
+      }
+}
+
+customColorOption();
+});
+
+
+</script>
+{% render "collection-schema" %}
+{% schema %}
+  {
+    "name": "Range Product listing",
+    "settings": []
+  }
+{% endschema %}

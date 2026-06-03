@@ -1,0 +1,80 @@
+
+{{ "fitouts-companies-with-img.css" | asset_url | stylesheet_tag }}
+{{ "landingpage-fitoutsfast.css" | asset_url | stylesheet_tag }}
+<div class="fitoutsfast1-container">
+    <div class="page-width">
+        <div class="fitoutsImg__col3">
+            <div class="fitoutImg__heading">
+                <h2>Fitouts?<br>Fast<span>.</span></h2>
+                <p>With the widest range of stocked <br>commercial-grade office furniture in Australia we deliver quality fitouts fast, nationwide.</p>
+                <div class="fitoutsImg__banner large-up-hide medium-hide medium-hide-sm">
+                    <img loading="lazy" src="https://cdn.shopify.com/s/files/1/1249/7859/files/fitout-banner-sm.png?v=1672985785" alt="Fitouts Fast" />
+                </div>
+                <div class="assist-fitouts">
+                    <div class="assist-fitouts-container">
+                        <h3>We assist<br> you through<br> every step.</h3>
+                        <ul>
+                            <li>Free floor plan & quote</li>
+                            <li>Dedicated project manager</li>
+                            <li>Australia's widest stocked range</li>
+                            <li>Delivery & complete assembly</li>
+                        </ul>
+                        {%- render 'landingpage-typeform'-%}
+                    </div>
+                </div>
+            </div>
+            <div class="fitoutsImg__banner small-hide">
+                <img loading="lazy" src="https://cdn.shopify.com/s/files/1/1249/7859/files/fitout-banner.png?v=1672985785" alt="Fitouts Fast 2" />
+            </div>
+            <div class="fitoutlist-holder swiffy-slider slider-nav-autopause slider-indicators-round title-logo-visible bold-text-title" id="fitoutfastlist-holder">
+                <div class="fitoutsImg__list slider-container">
+
+                    {%- assign fitoutlist = 'prospa,creditor-watch-sydney-nsw,pet-circle' -%}
+                    {%- assign fitouts = fitoutlist | split:',' -%}    
+                    {%- for fitout in fitouts -%}
+                            {%- assign fitout_articles = blogs['fitouts'].articles -%}
+                            {%- for fitout_article in  fitout_articles -%}
+                                
+                                {%- assign fitout_handle = 'fitouts/' | append:fitout-%}
+                                {%- if fitout_article.handle == fitout_handle -%}
+                                    {%- if template == 'page.landing-page-1' or template == 'page.landing-page-2' or template == 'page.landing-page-3' -%}
+                                         {%- render 'landingpage-fitout-card', article:fitout_article -%}
+                                    {%- else -%}
+                                        {%- render 'fitout-card', article:fitout_article -%}
+                                    {%- endif -%}
+                                {%- endif -%}
+                            {%- endfor -%}
+                        {%- endfor -%}
+        
+                </div>
+                <div class="slider-indicators large-up-hide medium-hide">
+                    <button class="active"></button>
+                    <button></button>
+                    <button></button>
+                </div>
+            </div>
+            {%- if template == 'index' or template == 'product'-%}
+                <div class="viewall-holder">
+                <a href="/blogs/fitouts" class="link viewall">View all fitouts {% render 'icon-arrow' %}</a>
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        //Use only one of the loading options below!
+        //loads all sliders
+        //swiffyslider.init();
+        //loads specific slider
+         
+        swiffyslider.initSlider(document.getElementById('fitoutfastlist-holder'));
+    });
+</script>
+{% schema %} 
+{ "name": "Fitoutsfast 1",
+"tag": "section",
+"class":"section-fitoutsfast-1"
+} 
+{% endschema %}

@@ -1,0 +1,77 @@
+{%- comment -%}
+Date: Thu 30 Oct 2025
+
+This is "Thank you" message page just for the Quote Automation process. Once the payment is made from the payment page, the user will be redirected to this page.
+This page contains a custom message that aligns with the Quote Automation process.
+
+However, It is not comfirmed whether the user's payment was successful when they land on this page. They need to folloup via email to confirm the payment status.
+
+{%- endcomment -%}
+
+{%- comment -%} {{'payment.css' |  asset_url |  stylesheet_tag}} {%- endcomment -%}
+
+{% comment %} backup design  {% endcomment %}
+{% comment %} {% render 'strip-payment-success' %} {% endcomment %}
+
+{{ 'payment_thankyou.css' |  asset_url |  stylesheet_tag }}
+<div class="payment-thankyou-body">
+    <div class="page-width">
+        <div class="payment-thankyou-msg">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37px" height="37px" viewBox="0 0 37 37">
+                <path fill-rule="evenodd"  fill="rgb(193, 215, 46)"d="M31.584,31.584 C28.089,35.079 23.443,37.004 18.500,37.004 C13.557,37.004 8.911,35.079 5.416,31.584 C1.921,28.089 -0.004,23.443 -0.004,18.500 C-0.004,13.557 1.921,8.911 5.416,5.416 C8.911,1.921 13.557,-0.004 18.500,-0.004 C23.443,-0.004 28.089,1.921 31.584,5.416 C35.079,8.911 37.004,13.557 37.004,18.500 C37.004,23.443 35.079,28.089 31.584,31.584 ZM18.500,2.970 C9.937,2.970 2.970,9.937 2.970,18.500 C2.970,27.063 9.937,34.030 18.500,34.030 C27.063,34.030 34.030,27.063 34.030,18.500 C34.030,9.937 27.063,2.970 18.500,2.970 ZM16.664,26.778 C16.083,27.359 15.142,27.359 14.561,26.778 L8.656,20.874 C8.076,20.293 8.076,19.351 8.656,18.771 C9.237,18.190 10.178,18.190 10.759,18.771 L15.612,23.624 L26.884,12.353 C27.174,12.062 27.555,11.917 27.935,11.917 C28.316,11.917 28.696,12.062 28.986,12.353 C29.567,12.933 29.567,13.875 28.986,14.455 L16.664,26.778 Z"/>
+                </svg>
+            </div>
+            <strong>Thank you for your payment submission. </strong>
+
+            <div class="row order-row" id="order-row">
+                <div class="order-contnet">
+                    Order <span id="orderid"></span> <br> 
+                    Amount <span id="order_amount"></span> 
+                </div>
+            </div>
+
+            <p>We appreciate your business! Please keep an eye on your inbox for a confirmation email once your payment has been successfully processed.</p>
+            <p>
+                In the meantime, if you have any urgent queries, <br>please feel free to email us at  {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'ga4-sales-email' %} or 
+                <br>call us on <a href="tel:1300-527-665">1300-527-665</a>.
+                
+            </p>
+        </div>
+            
+    </div>
+    <div class="bs-body-item page-thankyou">
+        <div class="bs-body-cnt">
+            <div class="thankyou-box"><strong id="thankyou-msg" style="opacity: 1;">Thank you for <span>your business!</span></strong><svg id="thankyou-svg" style="opacity: 1;" width="110" height="114" viewBox="0 0 110 114" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_71_693)"><path d="M54.6098 0.929932C18.9098 0.929932 -0.000151455 17.9399 0.579849 34.6899C0.729849 38.8999 1.95985 44.0599 5.07985 49.0599C7.10985 52.3299 9.92985 55.5299 13.7698 58.3599C15.5598 59.6799 17.5598 60.9199 19.8098 62.0399C19.8398 62.0499 19.8598 62.0699 19.8898 62.0799C26.8398 65.5399 37.0498 67.9499 49.2298 68.3899L52.1198 74.1899H53.1298H53.7498V81.3699C52.3498 81.4799 51.3698 81.7499 51.3698 82.0499V104.27C37.9998 105.79 28.2298 108.14 28.2298 110.27C28.2298 110.35 28.2198 110.44 28.2298 110.52C28.2198 110.6 28.2298 110.68 28.2298 110.77C28.2298 112.33 40.4098 113.99 55.4298 113.99C70.4498 113.99 82.5198 112.34 82.5198 110.77C82.5198 110.69 82.5499 110.6 82.5398 110.52C82.5499 110.44 82.5198 110.35 82.5198 110.27C82.5198 108 72.5199 105.28 59.2498 104.26V82.0499C59.2498 81.7399 58.2698 81.4799 56.8698 81.3699V74.1899H57.3998H57.0898H58.6798L61.1798 68.6999C79.8699 69.1199 90.8098 64.5799 98.2898 58.3499C100.18 56.7799 101.79 55.0999 103.15 53.3699C108.14 46.9999 109.81 39.8999 110 34.6699C110.58 17.9399 91.1998 0.929932 54.6098 0.929932ZM83.6498 14.2499C85.2398 14.2499 86.5298 15.5399 86.5298 17.1299C86.5298 18.7199 85.2398 20.0099 83.6498 20.0099C82.0599 20.0099 80.7698 18.7199 80.7698 17.1299C80.7698 15.5399 82.0599 14.2499 83.6498 14.2499ZM26.7798 14.2499C28.3698 14.2499 29.6598 15.5399 29.6598 17.1299C29.6598 18.7199 28.3698 20.0099 26.7798 20.0099C25.1898 20.0099 23.8998 18.7199 23.8998 17.1299C23.8998 15.5399 25.1898 14.2499 26.7798 14.2499ZM100.04 43.7199C99.8699 44.1399 99.6898 44.5399 99.4998 44.9299C98.4998 46.9699 97.2398 48.9199 95.8898 50.7899C95.3098 51.5999 94.4998 52.3599 93.7798 53.0699C91.4798 55.3899 88.8699 57.0999 86.0398 58.3599C79.0998 61.4599 70.8698 61.8599 62.8698 61.8599C56.5098 61.8599 50.1698 62.2499 43.8098 61.9999C37.4298 61.7499 30.4898 60.8799 24.6098 58.3599C20.6698 56.6799 17.1998 54.2499 14.6998 50.7799C13.3498 48.9099 12.0798 46.9599 11.0898 44.9199C11.0298 44.8099 10.9898 44.6999 10.9298 44.5899C9.86985 42.2999 9.08985 39.4099 9.06985 36.9599C8.99985 29.2899 21.1098 28.8199 27.3198 28.8199H83.2698C89.4798 28.8199 101.59 29.2899 101.52 36.9599C101.5 39.0999 100.9 41.5799 100.04 43.7099V43.7199Z" fill="white"></path></g><defs><clipPath id="clip0_71_693"><rect width="109.43" height="113.07" fill="white" transform="translate(0.569824 0.929932)"></rect></clipPath></defs></svg></div></div></div>
+</div>
+<style>
+    .payment-thankyou-msg strong{
+        text-transform: none;
+    }
+   .payment-thankyou-msg .hiddenemail, .payment-thankyou-msg .hiddenemail strong{
+    color:rgba(var(--color-foreground), 0.75) !important;
+    font-size:16px;
+    font-weight: 400;
+    
+    }
+    .payment-thankyou-msg .hiddenemail{
+    text-decoration:underline;
+    }
+    .payment-thankyou-msg .hiddenemail:hover,.payment-thankyou-msg .hiddenemail:hover strong{
+   color:#000 !important;
+    }
+</style>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get("amount");
+    const order_id = params.get("orderid");
+    if(amount && order_id ){
+        document.getElementById('order-row').classList.add('show-order-row');
+    }
+    if(amount){
+        document.getElementById("order_amount").innerText = `$${amount}`;
+    }
+    if(order_id){
+        document.getElementById("orderid").innerText = `#${order_id}`;
+    }
+</script>

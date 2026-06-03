@@ -1,0 +1,146 @@
+{%- if settings.assembly_1_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_1_title}}">
+    {%- if settings.assembly_1_icon != '' and settings.assembly_1_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_1_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_1_title}}?
+      {%- if settings.assembly_1_subtitle != '' and settings.assembly_1_subtitle != 'null' -%}
+      <span>{{settings.assembly_1_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = settings.assembly_1_title | append:'=' | append:settings.assembly_1_subtitle | append:'='| append: icon_url -%}  
+{%- endif -%}
+{%- if settings.assembly_2_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_2_title}}">
+    {%- if settings.assembly_2_icon != '' and settings.assembly_2_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_2_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_2_title}}?
+      {%- if settings.assembly_2_subtitle != '' and settings.assembly_2_subtitle != 'null' -%}
+      <span>{{settings.assembly_2_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_2_title | append:'=' | append:settings.assembly_2_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+{%- if settings.assembly_3_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_3_title}}">
+    {%- if settings.assembly_3_icon != '' and settings.assembly_3_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_3_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_3_title}}?
+      {%- if settings.assembly_3_subtitle != '' and settings.assembly_3_subtitle != 'null' -%}
+      <span>{{settings.assembly_3_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_3_title | append:'=' | append:settings.assembly_3_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+{%- if settings.assembly_4_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_4_title}}">
+    {%- if settings.assembly_4_icon != '' and settings.assembly_4_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_4_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_4_title}}?
+      {%- if settings.assembly_4_subtitle != '' and settings.assembly_4_subtitle != 'null' -%}
+      <span>{{settings.assembly_4_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_4_title | append:'=' | append:settings.assembly_4_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+{%- if settings.assembly_5_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_5_title}}">
+    {%- if settings.assembly_5_icon != '' and settings.assembly_5_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_5_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_5_title}}?
+      {%- if settings.assembly_5_subtitle != '' and settings.assembly_5_subtitle != 'null' -%}
+      <span>{{settings.assembly_5_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_5_title | append:'=' | append:settings.assembly_5_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+{%- if settings.assembly_6_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_6_title}}">
+    {%- if settings.assembly_6_icon != '' and settings.assembly_6_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_6_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_6_title}}?
+      {%- if settings.assembly_6_subtitle != '' and settings.assembly_6_subtitle != 'null' -%}
+      <span>{{settings.assembly_6_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_6_title | append:'=' | append:settings.assembly_6_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+{%- if settings.assembly_7_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_7_title}}">
+    {%- if settings.assembly_7_icon != '' and settings.assembly_7_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_7_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_7_title}}?
+      {%- if settings.assembly_7_subtitle != '' and settings.assembly_7_subtitle != 'null' -%}
+      <span>{{settings.assembly_7_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_7_title | append:'=' | append:settings.assembly_7_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+{%- if settings.assembly_8_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_8_title}}">
+    {%- if settings.assembly_8_icon != '' and settings.assembly_8_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_8_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_8_title}}?
+      {%- if settings.assembly_8_subtitle != '' and settings.assembly_8_subtitle != 'null' -%}
+      <span>{{settings.assembly_8_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_8_title | append:'=' | append:settings.assembly_8_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+{%- if settings.assembly_9_title != blank -%}
+<li>
+  <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{settings.assembly_9_title}}">
+    {%- if settings.assembly_9_icon != '' and settings.assembly_9_icon != 'null' -%}
+    {%- assign icon_url = settings.assembly_9_icon -%}
+    {%- render icon_url | prepend: '' | downcase -%}
+    {%- endif -%}
+    <h4>{{settings.assembly_9_title}}?
+      {%- if settings.assembly_9_subtitle != '' and settings.assembly_9_subtitle != 'null' -%}
+      <span>{{settings.assembly_9_subtitle}}</span>
+      {%- endif -%}
+    </h4>
+  </a>
+</li>
+{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_9_title | append:'=' | append:settings.assembly_9_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{% comment %}{{-assemblyinfo-}}{% endcomment %}

@@ -1,0 +1,76 @@
+<a
+  href="{{ card_product.url }}"
+  id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
+  class="full-unstyled-link"
+  aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+  title="{{card_product.title}}"
+>
+<picture>
+  <source srcset="{{ card_product.featured_media | image_url: width:646 }} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+  <img src="{{ card_product.featured_media | image_url: width: 323 }}" alt="{{ card_product.featured_media.alt | escape }}" width="{{ card_product.featured_media.width }}" height="{{ card_product.featured_media.height }}" loading="lazy" class="motion-reduce">
+</picture>
+</a>
+<h3 class="card__heading"
+    {% if card_product.featured_media == null and settings.card_style == 'standard' %}
+    id="title-{{ section_id }}-{{ card_product.id }}"
+    {% endif %}>
+<a
+  href="{{ card_product.url }}"
+  id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
+  class="full-unstyled-link"
+  aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+  title="{{card_product.title}}"
+>
+  {{ card_product.title | truncatewords:8, '...' |  escape}}
+</a>
+</h3>
+{% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+{%- comment -%}
+==========================================================================================
+https://trello.com/c/EbNi6wOt/2337-website-star-quote-sign-revive
+Task Description:
+We want the add to quote functionality back in collection page and other product listing block.
+Expected outcome:
+1. We get add to quote star back in collection page and other product listing blocks.
+2. The quote button will add product (default variant) to basket and open up add to quote tab
+3. The quote functionality is not required for out of stock or contact us products.
+4. These events are tracked in such a way that we know how many clicked this.
+=========================================================================================================
+{%- endcomment -%}
+                  {%- assign is_contactTag = false -%}
+                  {%- if card_product.tags contains 'contact-to-purchase' or card_product.available == false -%}
+                          {%- assign is_contactTag = true -%}
+                  {%- endif %}
+{%- unless is_contactTag == true -%}
+    <div class="add-to-quote-button">
+            {%- assign variant = card_product.selected_or_first_available_variant -%}
+            {%- assign minQty = 1 -%} 
+            {%- if variant.metafields.custom.min_order_quantity_variant -%}
+              {%- assign minQty = variant.metafields.custom.min_order_quantity_variant -%}
+            {%- elsif card_product.metafields.custom.min_order_quantity -%}
+              {%- assign minQty = card_product.metafields.custom.min_order_quantity -%}
+            {%- else -%}
+              {%- assign minQty = 1 -%}
+            {%- endif -%}
+            {%- if minQty != 1 -%}
+                {%- assign validation_status = 'false' -%}
+            {%- else %}
+                {% assign validation_status = 'non-moq-product' -%}
+            {%- endif -%}
+
+            {%- if minQty != 1 -%}
+                <div class="moq-info moq-info--main info" id="moq-info-{{card_product.id}}" style="display:none">
+                          <span>
+                            {% render 'icon-moq' %}
+                        </span>
+                          <div class="info-wrapper" >
+                              <span class="info-icon">?</span>
+                              <div class="info-msg">
+                                  The minimum order quantity (MOQ) for this product is set at 10 units.
+                              </div>
+                          </div>
+                </div>
+             {%- endif -%}
+            {%- render 'buy-buttons', block: "card", product: card_product, product_form_id: product_form_id, section_id: section.id, skip_styles: true  -%}
+</div>
+{%- endunless -%}

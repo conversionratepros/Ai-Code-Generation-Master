@@ -1,0 +1,67 @@
+{
+   "sections": {
+       "navbar": {
+         "type": "rh-navbar",
+         "settings": {}
+      },
+      "main":{
+         "type":"main-blog-v1",
+         "settings":{}
+      },
+      "featured-articles": {
+         "type": "rh-featured-articles",
+         "settings": {
+            "featured_tag": "featured",
+            "exclude_tag": "resources,video,design-inspiration,case-studies"
+         }
+      },
+      "latest-blog": {
+         "type": "rh-latest-blog",
+         "settings": {
+            "exclude_tag": ""
+         }
+      },
+      "resources": {
+         "type": "rh-resources",
+         "settings": {
+            "resource_tag": "resources",
+            "exclude_tag": "design-inspiration,case-studies,video"
+         }
+      },
+      "videos": {
+         "type": "rh-videos",
+         "settings": {
+            "video_tag": "video",
+            "exclude_tag": "design-inspiration,case-studies,resources"
+         }
+      },
+      "design-inspiration": {
+         "type": "rh-design-inspiration",
+         "settings": {
+            "design_inspiration_tag": "design-inspiration",
+            "exclude_tag": ""
+         }
+      },
+      "case-studies": {
+         "type": "rh-case-studies",
+         "settings": {
+            "exclude_tag": ""
+         }
+      },
+      "columnBlock": {
+         "type": "landingpage-columnBlock1",
+         "settings": {}
+      }
+   },
+   "order": [
+      "navbar",
+      "main",
+      "featured-articles",
+      "latest-blog",
+      "resources",
+      "videos",
+      "design-inspiration",
+      "case-studies",
+      "columnBlock"
+   ]
+}

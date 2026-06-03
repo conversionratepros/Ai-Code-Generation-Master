@@ -1,0 +1,13 @@
+{%- assign parent_collection = '' -%}
+{%- for link in linklists.main-menu-image-without-more-testing.links -%}
+    {%- for collection in product.collections -%}
+        {%- if link.object.title == collection.title-%}
+            {%- assign parent_collection = collection.title -%}
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- if parent_collection != '' -%}
+        {% break %}
+    {%- endif -%}
+{%- endfor -%}
+{{- parent_collection -}}

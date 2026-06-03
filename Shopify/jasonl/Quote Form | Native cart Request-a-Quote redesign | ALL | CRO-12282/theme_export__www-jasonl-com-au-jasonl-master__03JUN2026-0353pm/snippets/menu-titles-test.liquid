@@ -1,0 +1,26 @@
+{%- case forloopindex -%}
+  {%- when 1 -%}
+    Chairs
+  {%- when 2 -%}
+    Desks
+  {%- when 3 -%}
+    Workstations
+    {%- when 4 -%}
+    Storage
+    {%- when 5 -%}
+    Tables
+    {%- when 6 -%}
+    Cafe & Breakout
+    {%- when 7 -%}
+    Pods & Acoustics
+    {%- when 8 -%}
+    Monitor Arms
+    {%- when 9 -%}
+      Sofas & Lounges
+    {%- when 10 -%}
+      Cabling
+    {%- when 11 -%}
+      Whiteboards
+  {%- else -%}
+    {{- menutitle -}}
+{%- endcase -%}

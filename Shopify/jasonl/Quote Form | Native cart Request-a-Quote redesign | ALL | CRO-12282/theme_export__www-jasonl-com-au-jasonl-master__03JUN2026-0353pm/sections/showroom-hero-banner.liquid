@@ -1,0 +1,50 @@
+{%- comment -%} 
+ DO not show the banner on following templates:
+  1. /colllections/parent-collection
+  2. /colllections/parent-collection/perth
+{%- endcomment -%}
+{%- assign is_collection_filteredby_perth = false -%}
+{%- for collection_tag in current_tags -%}
+    {%- assign c_tag = collection_tag |  downcase -%}
+    {%- if c_tag == 'perth' -%}
+            {%- assign is_collection_filteredby_perth = true -%}
+        {%- break -%}
+    {%- endif  -%}
+{%- endfor -%}
+
+{% comment %} {%- if current_tags and is_collection_filteredby_perth == false -%} {% endcomment %}
+        {%- assign is_collection_location = false -%}
+        {%- assign is_showroom_location = false -%}
+        {%- assign cities = shop.metafields.custom_fields.location_collection__locations | split:','-%}
+
+        {%- if request.page_type == 'page' -%}
+        {%- assign tagName = page.title  -%}
+        {%- assign is_showroom_location = true -%}
+        {%- elsif request.page_type == 'collection' -%}
+            {% for tagname in current_tags %}
+                {%- assign tag_name = tagname | downcase | escape -%}   
+                {%- if cities contains tag_name -%}
+                    {%- assign is_collection_location = true -%}
+                    {%-assign tagName = tagname -%}
+                    {%-break-%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+
+
+
+        {%- if is_showroom_location == true -%}
+            {%- assign city = tagName | downcase | escape -%}
+            {%- render 'select-showroom', cities: cities, city: city, showroom : is_showroom_location -%}
+        {%- elsif is_collection_location == true -%}
+            {%- render 'collection-location' %}
+        {%- endif -%}
+
+{% comment %} {%- endif -%} {% endcomment %}
+
+{% schema %}
+{
+"name": "Hero banner",
+"class": "shopify-section--hero-banner"
+}
+{% endschema %}

@@ -1,0 +1,31 @@
+{{'banner-header-spend-n-save.css' |  asset_url |  stylesheet_tag }}
+<style>
+   .header-banner-save-n-send .options-cols{
+    background-image: url({{'banner-header-spend-n-save.png' |  file_img_url:'master'}});
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+}
+@media(max-width:767px){
+    .header-banner-save-n-send .options-cols{
+        background-image: url({{'banner-header-spend-n-save-mob.jpg' |  file_img_url:'master'}});
+        background-size:contain;
+    }
+}
+</style>
+<div class="banner-payment-options-header header-banner-save-n-send">
+    <div class="page-width">
+        <div class="options-cols">
+            <div class="col col--fade">
+
+                <div class="col-cnt">
+                    <h4>Spend & Save!</h4>
+                    <p><span class="highlight"><span>Flat shipping</span></span> of $149 on all orders between $2000 and $10000!</p>
+                </div>
+
+            </div>
+            <div class="col">
+                {% comment %} <img src="{{'banner-header-spend-n-save.png' |  file_img_url:'master'}}" alt=""  /> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>

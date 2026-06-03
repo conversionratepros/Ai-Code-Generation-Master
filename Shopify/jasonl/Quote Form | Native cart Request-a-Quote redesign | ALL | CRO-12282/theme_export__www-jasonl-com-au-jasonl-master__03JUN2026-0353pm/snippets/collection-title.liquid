@@ -1,0 +1,35 @@
+{%- unless current_tags -%}
+  {% assign collection_title = collection.title | strip | downcase %}
+  {% if collection_title == "all" %}
+    Products
+  {% else %}
+    {{- collection.title | rstrip -}}
+  {% endif %} 
+{%- else -%}
+      {%- assign is_tag_perth = false -%}  
+      {%- if current_tags contains 'Perth' or current_tags contains 'perth'-%}
+          {%- assign is_tag_perth = true -%} 
+      {%- endif -%}
+      
+    {%- for ctag in current_tags -%}
+        {%- assign datavalue = ctag | downcase -%}
+        {%- assign datavalue = datavalue | replace: " ","" -%}
+        {%- assign datavalue = datavalue | slice: 0, 24 -%}
+        {%- assign colnamevalue = datavalue | append: "_t" -%}
+        {%- assign coldescription = datavalue | append: "_ex" -%}
+        {%- assign tagprod = 'tagproducts' -%}
+        {%- if shop.metafields[tagprod][colnamevalue] -%}
+              {%- assign tagtitlevalue= shop.metafields[tagprod][colnamevalue] -%}
+              {%- assign is_metaFieldTag = true -%}
+              {%- assign collection_hero_title = tagtitlevalue -%}
+              {{- tagtitlevalue | rstrip -}}
+      {%- endif -%}
+              {%- comment -%} ISSUE: repeated when multiple tags on URL: {%- render 'collection-title-suffix' -%} {%- endcomment -%}
+              {%- break -%}
+      {%- endfor -%}
+      {%- unless tagtitlevalue  -%}
+          {%- if is_tag_perth == true -%}
+            {{- collection.title | rstrip -}}
+          {%- endif -%}
+        {%- endunless -%}
+{%- endunless -%}

@@ -1,0 +1,86 @@
+{{"fitouts-trade_hero.css" | asset_url | stylesheet_tag }}
+<div class="hero-container hero-container-2">
+        <div class="hero-main-wrapper">
+                {% comment %} <picture class="hero-picture white-overlay"> {% endcomment %}
+                    <picture class="hero-picture">
+                  {% comment %}  <source media="(max-width:465px)" srcset="{{'landingpage2-hero-img-mob.png' | file_img_url:'master'}}">
+                     <img   src="{{'landingpage2-hero-img.png' | file_img_url:'master'}}" alt="" /> {% endcomment %}
+                     <img src="{{ page.metafields.fitouts_trade.background_image | file_img_url:'800x'}}" alt="Fitout Trade" />
+                </picture>
+            <div class="page-width">
+            <div class="hero-text">
+                {%- if page.metafields.fitouts_trade.title  -%}
+                    <h1 class="h1-style">{{ page.metafields.fitouts_trade.title }}</h1>
+                {%- endif  -%}
+                {%- if page.metafields.fitouts_trade.description -%}
+                   {{ page.metafields.fitouts_trade.description }}
+                {%- endif -%}
+                <a class="typeform-share getaquoteclick button"
+                          {{settings.typeformurls_url_1}} 
+                          href="javascript:void(0)">
+                          {% if page.url == '/pages/fitouts-trade-con'  %}
+                         Experience hassle free projects
+                         {% else %}
+                         Experience stress free design
+                          {% endif %}
+                      </a>
+            </div>
+            </div>
+        </div>
+            <div class="hero-column-wrapper {% if page.metafields.fitouts_trade.background_image_2 contains 'fitouts-trade_chair.png' %}yellowBlock{% endif %}">
+            <div class="page-width">
+                <div class="hero-column">
+                    <div class="hero-column-left">
+                        {%- if page.metafields.fitouts_trade.description_2 -%}
+                            {{ page.metafields.fitouts_trade.description_2 }}
+                        {%- endif -%}
+                    </div>
+                    <div class="hero-column-right">
+                        <div class="img-holder">
+                            {%- if page.metafields.fitouts_trade.background_image_2 -%}
+                                <img src="{{ page.metafields.fitouts_trade.background_image_2 | file_img_url : 'master' }}" alt="Fitout Trade 2" />
+                            {%- endif -%}
+                        </div>
+
+<div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-embed" data-tf-on-submit="submit" data-tf-widget="rvv9MINp" data-tf-iframe-props="title=JasonL - Get A Quote - Inbound" data-tf-medium="snippet" data-tf-hidden="" style="width:390px;height:550px;"></div>
+                        {%- comment -%}
+                        ================================
+<div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-embed" data-tf-on-submit="submit" data-tf-widget="rvv9MINp" data-tf-iframe-props="title=JasonL - Get A Quote - Inbound" data-tf-medium="snippet" data-tf-hidden="" style="width:390px;height:470px;"></div>
+
+                            <div data-tf-on-ready="ready" class="typeform-snippet typeform-share typeform-embed" data-tf-widget="bd7huXC5" data-tf-opacity="100" data-tf-on-submit="submit" data-tf-iframe-props="title=Test" data-tf-transitive-search-params data-tf-medium="snippet" style="width:100%;height:500px;"></div>
+                            <div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-widget" data-url="https://jsnl.typeform.com/to/rvv9MINp" style="width: 390px; height: 500px;"></div>
+                            <script> (function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) } })()</script>
+                        ====================================
+                        {%- endcomment -%}
+                    </div>
+                </div>
+            </div>
+       </div>
+</div>
+<style>
+    /* .shopify-section{
+        display: none;
+    }
+    .shopify-section#shopify-section-template--17460601061664__hero,#shopify-section-header-light,
+    #shopify-section-template--17460601061664__client,
+    #shopify-section-template--17460601061664__thumbnailBanner,
+    #shopify-section-template--17460601061664__departments,
+    #shopify-section-template--17460601061664__howFitoutsDone,
+    #shopify-section-template--17460601061664__customerReviews,
+    #shopify-section-template--17460601061664__fitoutsFast,
+    #shopify-section-template--17460601061664__meetPeople,
+    #shopify-section-template--17460601061664__columnBlock,
+    #shopify-section-template--17460601061664__header{
+        display: block;
+    } */
+</style>
+
+{% schema %}
+{
+  "name": "Hero 2",
+  "tag": "section",
+  "class": "section-hero2",
+  "settings": [
+  ]
+}
+{% endschema %}

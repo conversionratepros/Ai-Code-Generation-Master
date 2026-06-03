@@ -1,0 +1,94 @@
+{%- unless  current_tags contains 'resource-hub' -%}
+  {%- assign article_limit = 3 -%}
+<div class="page-width" id="section-blogs">
+  <div class="row">
+    <h2 class="list-heading">Latest Articles</h2>
+    <ul class="listing listing--grid hover-effect-li">
+      {%- assign exclude_tags = section.settings.exclude_tag | split: "," -%}
+      {%- assign filtered_articles = "" -%}
+
+      {%- comment -%} <!-- Check if current tags are present --> {%- endcomment -%}
+      {%- if current_tags -%}
+        {%- assign tags_to_include = current_tags -%}
+      {%- else %}
+        {%- comment -%} <!-- If not, append the fallback tag --> {%- endcomment -%}
+        {%- assign tags_to_include = "business" -%}
+      {%- endif -%} 
+
+      {%- comment -%} {% assign tags_to_include = tags_to_include | split: "," %} {%- endcomment -%}
+
+      {%- comment -%} <!-- Loop through articles and exclude those with the specified tags --> {%- endcomment -%}
+      {%- for article in blog.articles -%}
+        {%- assign exclude = false -%}
+
+        {%- comment -%} <!-- Check if the article contains any of the excluded tags --> {%- endcomment -%}
+        {%- for tag in exclude_tags -%}
+          {%- if article.tags contains tag -%}
+            {%- assign exclude = true -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} <!-- Check if the article contains any of the tags to include --> {%- endcomment -%}
+        {%- assign include_article = false -%}
+        {%- for tag in tags_to_include -%}
+          {%- if article.tags contains tag -%}
+            {%- assign include_article = true -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} <!-- If the article is not excluded and contains an include tag, add it to the filtered list as a string --> {%- endcomment -%}
+        {%- if exclude == false and include_article -%}
+          {%- assign filtered_articles = filtered_articles | append: article.url | append: "||" -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- comment -%} <!-- Split the filtered articles into an array --> {%- endcomment -%}
+      {%- assign filtered_articles = filtered_articles | split: "||" -%}
+
+      {%- comment %} <!-- Display only the latest 4 articles --> {%- endcomment -%}
+      {%- assign articles_shown = 0 -%}
+      {%- for article_url in filtered_articles limit: article_limit -%}
+        {%- assign article = blog.articles | where: "url", article_url | first -%}
+        <li>
+          <a href="{{ article.url }}" class="img-holder" style="background-image:url({{ article.image | img_url: 'large' }})"></a>
+          <a class="cnt-holder spacing" href="{{ article.url }}">
+          <h3>{{ article.title }}</h3>
+          <div class="row-col">
+            <p class="date">{{ article.published_at | date: "%B %d, %Y" }} 
+            </p>
+            {%- render 'rh-blog-tag', tags: article.tags -%}
+          </div>
+            </a>
+        </li>
+        {%- assign articles_shown = articles_shown | plus : 1 -%}
+      {%- endfor -%}
+
+      {%- comment -%} {%- if articles_shown < 4 -%}  
+       {%- render 'rh-blog-limit-ajax', section_id:section.id, section_name:'rh-latest-blog', section_tag:'resources' -%}
+      {%- endif %} {%- endcomment -%}
+
+    </ul>
+    {%- if articles_shown >= article_limit -%} 
+        {%- render 'rh-viewall-link' -%}
+    {%- endif -%}
+  </div>
+</div>
+
+    {%- endunless -%}
+
+{%- schema -%}
+{
+  "name": "Latest Blog",
+  "class": "rh-latest-blog",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "exclude_tag",
+      "label": "Enter tags to exclude (comma-separated)"
+    }
+  ]
+}
+{%- endschema -%}

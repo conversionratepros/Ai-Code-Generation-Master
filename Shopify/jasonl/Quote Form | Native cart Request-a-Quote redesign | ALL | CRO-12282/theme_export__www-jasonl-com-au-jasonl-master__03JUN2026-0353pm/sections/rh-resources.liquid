@@ -1,0 +1,105 @@
+{%- comment -%}
+Overview ::
+- This section should not be visible if URL contains "resource-hub" as blog tag
+- If article count less than 4, it will have ajax request on business article to get articles
+{%- endcomment -%}
+
+
+
+{%- unless current_tags contains 'resource-hub' -%}
+    {%- assign resource_tag = section.settings.resource_tag -%}
+    {%- assign exclude_tags = section.settings.exclude_tag | split: "," -%}
+    <div class="page-width" id="section-resources">
+        <h2 class="list-heading">Resources</h2>
+        <div class="row">
+            <div class="left-side">
+                <ul class="listing listing--list">
+                    {%- assign articles_shown = 0 -%}
+                    {%- if current_tags -%}
+                      {%- if resource_tag == blank -%}
+                          {%- assign tags_to_include = current_tags -%}
+                      {%- else -%}
+                          {%- assign resource_tag = resource_tag  -%}
+                      {%- endif -%}
+                    {%- else -%}
+                        {%- if resource_tag == blank -%}
+                          {%- assign resource_tag = "business" -%}
+                        {%- else -%}
+                          {%- assign resource_tag = resource_tag | append: ",business" -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                    {%- assign tags_to_include = resource_tag | split: "," -%}
+                    {%- for article in blog.articles limit:250  -%}
+                            {%- if articles_shown >= 4 -%}
+                              {%- break -%}
+                            {%- endif -%}
+                            {%- assign exclude = false -%}
+                            {%- for tag in exclude_tags -%}
+                                {%- if article.tags contains tag -%}
+                                  {%- assign exclude = true -%}
+                                  {%- break -%}
+                                {%- endif -%}
+                            {%- endfor -%}
+                            {%- assign all_tags_present = true -%}
+          
+                            {%- for tag in tags_to_include -%}
+                              {%- unless article.tags contains tag -%}
+                                {%- assign all_tags_present = false -%}
+                                {%- break -%}
+                              {%- endunless -%}
+                            {%- endfor -%}
+
+                            {%- if exclude == false and all_tags_present -%}
+                                <li class="{% if forloop.last %}last{% endif %}">
+                                  <a class="cnt-holder" href="{{ article.url }}">
+                                    <h3>{{ article.title }}</h3>
+                                    {%- comment -%} <p>{{ article.content | strip_html | truncate: 50 }}</p> {%- endcomment -%}
+                                    <p class="date">{{ article.published_at | date: "%B %d, %Y" }} 
+                                      {%- comment -%} {% render 'rh-blog-tag', tags: article.tags %} {%- endcomment -%}
+                                    </p>
+                                  </a>
+                                </li>
+                                {%- assign articles_shown = articles_shown | plus: 1 -%}
+                            {%- endif -%}
+                    {%- endfor -%}
+
+                    {%- if articles_shown < 4 -%}
+                      {%- render 'rh-blog-limit-ajax', section_id:section.id, section_name:'rh-resources', section_tag:'resources' -%}
+                    {%- endif -%}
+                </ul>
+            </div>
+     
+            <div class="right-side">
+                <div class="resource-img">
+                    <img src="{{'grid-col-img.png' | file_img_url: 'master' }}" alt="grid chair" width="" height="" />
+                     <a class="button button--primary download-btn-3d" target="_blank" href="https://drive.google.com/drive/folders/1MNyTgGFc_G5gJSyun_92DOybuiB0MyGI?usp=drive_link" rel="noopener noreferrer">
+                          Download Our 3D Library 
+                          <span class="icon-holder">
+                              {%- render 'icon-download' -%}
+                          </span>
+                      </a>
+                </div>
+            </div>
+          </div>
+        </div>
+{%- endunless -%}
+
+{%- schema -%}
+{
+  "name": "Resources",
+  "class": "rh-resources",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "resource_tag",
+      "label": "Enter a tag"
+    },
+    {
+      "type": "text",
+      "id": "exclude_tag",
+      "label": "Enter tags to exclude (comma-separated)"
+    }
+  ]
+}
+{%- endschema -%}

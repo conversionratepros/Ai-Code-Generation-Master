@@ -1,0 +1,39 @@
+{%- comment -%} 
+The snippet (location_collections_secondary__content.liquid) was added on 21st Aug 2025. 
+Jarred added addition secondary cities like Bendigo..... 
+This should be SEO purposes 
+{%- endcomment -%}
+{%- if  is_location_collection_secondary == true -%}
+    <div class="page-heading location-secondary-cities">
+        {%- assign all_city_desp = collection.metafields.collectionmeta.location_collection_description -%}
+        {%- assign cities_all =   collection.metafields.collectionmeta.location_collection_select_city | split:' ' -%}
+        {%- assign is_found_active_city = false -%}
+
+        {%- for active_city in  current_tags -%} 
+            {%- for selected_city in cities_all -%}
+                {%- assign selected_city_handle = selected_city | handleize -%}
+                {%- if active_city == selected_city_handle -%}
+                    {%- assign is_found_active_city = true -%}
+                    {%- assign active_city_index = forloop.index0 -%}
+                {%- break -%}
+                {%- endif -%}
+            {%- endfor -%}
+
+            {%- if is_found_active_city == true -%}
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- assign current_secondary_city = selected_city_handle | replace: '-', ' ' |  capitalize | remove: "." -%}
+        {% unless request.path contains '+' %}
+        <h1>{{- collection.title -}} <span style="padding-left: 8px;">in</span> <span class="city">{{current_secondary_city | replace: "Gold coast", "Gold Coast"}}</span></h1>
+        <p>{{ all_city_desp[active_city_index] }}</p>
+        {% else %}
+            {% render 'secondary-cities-subcollection-data', current_secondary_city:current_secondary_city  %}
+        {% endunless %}
+    </div>
+{%- endif -%}
+
+
+
+
+

@@ -1,0 +1,223 @@
+<style>
+  .sidebar-width{
+    width: 27.7rem;
+    margin-top: 10px;
+    border-top: 1px solid #ececec;
+    padding-top: 30px;
+  }
+  .section-info{
+    font-size: 13px;
+    line-height: 21px;
+    margin-top: 0;
+  }
+  .location-collection-nav #showroom-locations li{
+    position: relative;
+    display: block;
+    padding: 4px 25px 10px 37px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+  .location-collection-nav #showroom-locations li.active svg{
+    display: block;
+  }
+  .location-collection-nav .facets__summary{
+    padding-top: 0;
+  }
+</style>
+{%- unless template == 'collection.rewards' or collection.products_count == 0 -%}
+        <div class="location-collection-nav sidebar-width {% if mob_hide %}small-hide{% endif %}">
+          <div class="facets__summary">Filter by <strong>Location</strong></div>
+          <p class="section-info">We deliver and install Australia-wide, but we have showrooms for your convenience at these locations:</p>
+          <ul id="showroom-locations">
+            <!-- {%- assign locationName_all = 'Sydney,Melbourne,Brisbane,Adelaide' -%} -->
+            {%- assign locationName_all = shop.metafields.custom_fields.location_collection__locations -%}
+
+
+            {% comment %}
+            -----------------
+            Date: 25 Aug 2025
+            This has been updated to reolve the issue.
+            The issue was like: "/office-chairs/bendigo+sydney" should not appear secondary cities like bendigo on URLs
+            --------------------- 
+            {%- assign navItems = locationName_all  | split:',' -%} {% endcomment %}
+            {%- assign cities_secondary =  shop.metafields.custom_fields.location_collection__locations__secondary  -%}
+            {%- assign navItems = locationName_all | append:',' | append:cities_secondary  | split:',' -%}
+
+             
+
+
+            {% assign is_location_added = false %}
+
+            <!-- check parent collection or child collection  -->
+              {%- for navItem1 in  navItems -%}
+                  {% if current_tags %}
+                            {%- assign navItem1_downcase = navItem1 | downcase -%}  
+                            {%- assign parent_location = '/' | append : navItem1_downcase -%}
+
+                            {%- assign request_path = request.path | downcase -%}
+                            {% if request_path contains parent_location %}
+                                {% assign is_parent_collection = true %}
+                                {% break %}
+                            {% else %}
+                                {% assign is_parent_collection = false  %}
+                            {% endif %}
+                    {% else %}
+                            {% assign is_parent_collection = true %}
+                            {% break %}
+                        {% endif %}
+              {% endfor %}
+
+              <!-- get active location  -->
+
+              {%- for navItem2 in  navItems -%}
+                  {% if current_tags %}
+                            {%- assign navItem2_location = navItem2 | downcase -%}
+
+
+                            {%- assign request_path = request.path | downcase -%}
+                            {% if request_path contains navItem2_location %}
+                                {% assign active_location = navItem2_location %}
+                                {% break %}
+                            {% endif %}
+                    {% endif %}
+              {% endfor %}
+
+    
+                {%- for navItem in  navItems -%}
+
+                  {% assign cities_secondary_array = cities_secondary | split:',' %}
+                  {% unless cities_secondary_array contains navItem %}
+                  {%- assign locationName = navItem | downcase -%} 
+                  {% assign query_param = '' %}
+                  {% if locationName == 'perth' %}
+                    {% assign query_param = '?location=true' %}
+                  {% endif %}
+                        
+                      {% if is_parent_collection %}
+                            {%- if active_location -%}
+                                <li {% if active_location == locationName %} class="active" {%- endif -%} data-location="{{locationName}}"><a href="{{routes.collections_url | append:'/' | append:collection.handle | append:'/' | append:locationName | append: query_param }}">{{navItem | capitalize}}
+                              
+                                <div class="custom-checkbox-holder">
+                                  <svg class="icon icon-checkmark"
+                                      width="11"
+                                      height="7"
+                                      viewBox="0 0 11 7"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+
+                                      <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
+                                      stroke="currentColor"
+                                      stroke-width="1.75"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+
+                              </a>
+                              </li>
+                            {% else %}
+                                <li data-location="{{locationName}}"><a href="{{request.path | append:'/' | append: locationName | append: query_param}}">{{navItem  | capitalize}}
+                              
+                                <div class="custom-checkbox-holder">
+                                  <svg class="icon icon-checkmark"
+                                      width="11"
+                                      height="7"
+                                      viewBox="0 0 11 7"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+
+                                      <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
+                                      stroke="currentColor"
+                                      stroke-width="1.75"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+                              </a></li>
+                            {% endif %}
+                      {%- else -%} 
+                            {%- if active_location -%}
+                              <li {% if active_location == locationName %} class="active" {%- endif -%} data-location="{{locationName}}"><a href="{{request.path | remove: active_location | append : locationName | append: query_param}}">{{navItem | capitalize}}
+                              
+                              <div class="custom-checkbox-holder">
+                                <svg class="icon icon-checkmark"
+                                    width="11"
+                                    height="7"
+                                    viewBox="0 0 11 7"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+
+                                    <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
+                                    stroke="currentColor"
+                                    stroke-width="1.75"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </svg>
+                              </div>
+                            </a></li>
+                            {% else %}                    
+                              <li data-location="{{locationName}}"><a href="{{request.path | downcase | append:'+' | append : locationName | append: query_param}}">{{navItem | capitalize}}
+                                <div class="custom-checkbox-holder">
+                                  <svg class="icon icon-checkmark"
+                                      width="11"
+                                      height="7"
+                                      viewBox="0 0 11 7"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg">
+
+                                      <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
+                                      stroke="currentColor"
+                                      stroke-width="1.75"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                                  </svg>
+                                </div>    
+                            </a></li>
+                            {% endif %}
+                      {%- endif -%}  
+
+
+
+                    {% endunless %}
+                {%- endfor -%}
+
+                
+
+
+                
+                
+                {%- assign pathWithoutLocation = request.path | downcase -%}
+                {%-assign locations = locationName_all | split:',' -%}
+                {%- for location in locations -%}
+                    {% if pathWithoutLocation contains location %}
+                          {% assign locationWithPlus = '+' | append: location %}
+                          {%- if pathWithoutLocation contains locationWithPlus -%}
+                              {%- assign pathWithoutLocation = request.path | remove:locationWithPlus -%}
+                          {%- else -%}
+                              {%- assign pathWithoutLocation = request.path | remove:location -%}
+                          {%- endif -%}
+                        {% break %}
+                    {% endif %}
+                {%- endfor -%}
+
+               <li data-location="australia-wide" {% if pathWithoutLocation == request.path %}class="active"{% endif %}><a href="{{pathWithoutLocation}}">Australia-wide
+                <div class="custom-checkbox-holder">
+                  <svg class="icon icon-checkmark"
+                      width="11"
+                      height="7"
+                      viewBox="0 0 11 7"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+
+                      <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>  
+              </a></li>
+
+          </ul>
+        </div>
+        {%- endunless -%}

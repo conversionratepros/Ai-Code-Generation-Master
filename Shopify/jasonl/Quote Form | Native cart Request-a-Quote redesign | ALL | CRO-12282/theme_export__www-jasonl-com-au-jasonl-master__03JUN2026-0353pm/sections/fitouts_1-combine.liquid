@@ -1,0 +1,28 @@
+{{"fitouts_1-combine.css" |  asset_url | stylesheet_tag}}
+<div class="fitouts_1-combine-wrapper">
+    <div class="page-width">
+        <div class="combine-cnt">
+            <div class="combine-cnt-left">
+                {%- if article.metafields.fitout_blog.fitouts_1_header  -%}
+                    <h2>{{ article.metafields.fitout_blog.fitouts_1_header }}</h2>
+                {%- else -%}
+                    <h2>Combining materials<br>and multifuncionality</h2>
+                {%- endif -%}
+                <div class="combine-cnt-center">
+                    {%- if article.metafields.fitout_blog.fitouts_1_description -%}
+                        {{ article.metafields.fitout_blog.fitouts_1_description }}
+                    {%- else-%}
+                        <p>Incorporating well-designed ad hoc meeting areas, integration spaces, and brainstorming zones is vital. These areas should be equipped with durable and adjustable furniture that maximizes the usability of each space, allowing for optimal utilization.</p>
+                    {%- endif -%}
+                </div>
+            </div>
+            
+            <div class="combine-cnt-right">
+                <div class="box-getaquote">
+                    <strong>Did you like<br> this style?</strong>
+                    <a href="#" class="button">Get a quote</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

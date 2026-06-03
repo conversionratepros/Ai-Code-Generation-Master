@@ -1,0 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "custom-pages-image-banner",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections-products",
+      "settings": {
+        "products_to_show": 5
+      }
+    },
+    "get_inspired": {
+      "type": "custom-get-inspired",
+      "settings": {}
+    },
+    "featured_services": {
+      "type": "featured-services",
+      "settings": {
+        "bg-color": "dark"
+      }
+    },
+    "client_experiences": {
+      "type": "client-experiences",
+      "settings": {
+        "section_title": "Our client's experience"
+      }
+    },
+    "locationMap": {
+      "type": "location-map-1-b_placeholder",
+      "settings": {}
+    },
+    "meetPeople": {
+      "type": "new-meet-people",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "featured_collections",
+    "get_inspired",
+    "featured_services",
+    "client_experiences",
+    "locationMap",
+    "meetPeople"
+  ]
+}

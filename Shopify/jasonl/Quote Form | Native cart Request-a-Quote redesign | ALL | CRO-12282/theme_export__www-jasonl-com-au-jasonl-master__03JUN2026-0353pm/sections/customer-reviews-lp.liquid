@@ -1,0 +1,29 @@
+{% comment %} 
+Check if template is collection
+Check if it is location collection page except perth
+
+{% endcomment %}
+
+
+
+{{ 'customer-reviews-lp.css' | asset_url | stylesheet_tag }}
+<div class="customer-reviews-lp-section">
+    <div
+      class="customer-reviews"
+      {% if template == 'collection' or template == 'collection.rewards' %}
+        {%- unless has_city_tag %}
+          style="display: none;"
+        {% endunless %}
+      {% endif %}
+    >
+      <div class="page-width">
+        <h2 class="section-title">Why Australia still loves Gregory</h2>
+        {%- render 'customer-reviews-v2', reviewsLimit: 3 -%}
+        <div class="view-all-reviews-link-wrap"><a href="/pages/reviews">View all reviews</a></div>
+      </div>
+    </div>
+</div>
+
+{% schema %}
+{ "name": "Customer Reviews", "tag": "section", "class": "section--customer-reviews left-shadow" }
+{% endschema %}

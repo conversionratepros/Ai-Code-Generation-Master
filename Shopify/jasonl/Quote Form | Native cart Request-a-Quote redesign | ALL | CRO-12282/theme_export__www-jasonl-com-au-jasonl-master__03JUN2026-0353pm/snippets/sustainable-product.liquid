@@ -1,0 +1,43 @@
+{%- capture sustainable_block -%}
+{%- assign is_sustainable_product = false -%}
+
+{%- if product.tags contains "sustainable-product" -%}
+    {%- assign is_sustainable_product = true -%}
+{%- endif -%}
+
+{%- comment -%}
+{%- for badge in product_badges -%}
+    {%- if badge contains 'yr' -%}
+        {%- assign badge_num = badge |  remove: 'yr' |  times: 1 -%}
+        {%- if badge_num >= 10  -%}
+        {%- assign is_sustainable_product = true -%}
+        {%- endif  -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- endcomment -%}
+
+{%- assign product_badges =  product.metafields.productmeta.badges | split:'|' -%}
+{%- assign sustainable_badges = 'greenguard,greenlabel,LCA,rohscompliant,greentagglobal,greenguardgold,afrdigreen' |  downcase |  split: ',' -%}
+
+{%- for badge in product_badges -%}
+    {%- if sustainable_badges contains badge -%}
+        {%- assign badge_name = badge-%}
+        {%- assign is_sustainable_product = true -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{%- if is_sustainable_product == true -%}
+<div class="card-with-icon" data-eco-friendly-badge="{{badge_name}}">
+    <div class="icon">
+        <svg data-name="Layer 2" viewBox="0 0 758.91 781.62"><defs><style>.sustainable-icon-cls-1{fill:none;stroke:#a9b2bb;stroke-linejoin:round;stroke-width:20px}</style></defs><g data-name="Capa 1"><path d="M322.31 772.44S557.7 671 650.62 474.33M308.61 693.68C140.13 671.78 10 527.73 10 353.28 10 163.69 163.69 10 353.28 10c145.57 0 269.98 90.61 319.9 218.5" class="sustainable-icon-cls-1"/><path d="M249 26.65s75.3 53.94 9.74 115.89-74.85 86.72-48.01 109.95c26.84 23.23 84.14-5.16 84.14-5.16s54.2-29.42 82.59 21.16c28.39 50.59-44.91 83.63-44.91 83.63s-56.78 28.39-14.97 108.92-48.52 129.05-48.52 129.05-45.94 20.65-46.46-38.2-7.23-51.1-28.91-68.66c-21.68-17.55-46.97-35.1-52.14-87.76-5.16-52.65-4.65-52.14-126.47-99.11M509.63 47.94s-118.34 60.4-79.11 135.76c0 0 22.2 39.75 92.4 12.91S633.9 175.45 653 185.77M435.68 707.14s-96.53-146.09-2.06-254.49c0 0 44.91-53.94 120.79-78.21s150.22-58.33 166.74-81.56c0 0 95.11 259.27-66.72 393.48-93.52 77.56-218.74 21.29-218.74 21.29" class="sustainable-icon-cls-1"/></g></svg>
+    </div>
+    <div class="icon-card-body">
+        <div class="icon-card-body-title"><h3>ECO-FRIENDLY PRODUCT</h3></div>
+        <div class="icon-card-body-content">
+            This product is certified with eco-conscious standards to minimize environmental impact and reduce its carbon footprint.
+        </div>
+    </div>
+</div>
+{%- endif -%}
+{%- endcapture -%}
+{{ sustainable_block |  strip_newlines | remove:'   '}}

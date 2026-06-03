@@ -1,0 +1,70 @@
+
+       
+
+
+      {%- comment -%}
+      ----------------
+            {%- assign contentBlock2_title = '{{metadata_collage1.}}' %}  
+            {%- assign videoBlock1_img = '{{metadata_collage1.}}' -%}
+            {%- assign videoBlock1_videoid = '{{metadata_collage1.}}' -%}
+      ----------------
+      {%- endcomment -%}  
+
+
+
+
+
+
+{%- comment -%}
+{% case tag %}
+  {% when "height-adjustable-workstations" %}
+        {% assign collage_heading = 'Height adjustable desks?<br>How many!' %}
+        {%- assign collage_heroimg = 'collage1-height-adjustable-env.png' -%}
+        {%- assign contentBlock1_title = 'Why Jason.l for your next <br>height adjustable desk' -%}
+        {%- capture contentBlock1_text %} 
+        <ul>
+              <li>Commercial Quality, 10 year warranties</li>
+              <li>Modular so you can make it your own</li>
+              <li>Australia’s widest stocked range</li>
+              <li>Delivery and complete assembly. Nationwide.</li>
+        </ul>
+        {%- endcapture -%}
+        {%- assign contentBlock1_img = 'contentblock1-height-adjustable-img.png' %}
+        {%- assign contentBlock3_title = 'Our latest fitout' -%}
+        {%- assign contentBlock2_title = 'We do Height Adjustable Workstations and so much more' %}
+
+        {%- comment -%}
+            {%- assign contentBlock2_title = '' %}
+            {%- assign contentBlock3_img = '' -%}
+            {%- assign contentBlock3_logo = '' -%}
+            {%- assign contentBlock3_url = '' -%}
+        
+        {%- assign videoBlock1_img = '' -%}
+        {%- assign videoBlock1_videoid = '' -%}
+     {%- endcomment -%}   
+   
+  {% when "acoustic-panels" %}
+          {% assign collage_heading = 'Acoustic panels?<br>Tailored acoustic solutions for happy spaces!' %}
+          {%- assign collage_heroimg = 'collage1-acoustic-env.png' -%}
+          {%- assign contentBlock1_title = 'Why Jason.l for your <br>acoustic solution?' -%}
+          {%- capture contentBlock1_text %} 
+              <ul>
+                      <li>Australia’s widest stocked range</li>
+                      <li>Your one stop shop from supply to install</li>
+                      <li>Deal with a true acoustic specialist</li>
+                      <li>Get fast turnaround from start to happy</li>
+              </ul>
+        {%- endcapture -%}
+        {%- assign contentBlock1_img = 'contentblock1-acoustic-img.png' %}
+        {%- assign contentBlock2_title ='We do acoustics and so much more' %}
+        {%- assign contentBlock3_title = 'Our latest fitout' -%}
+            {%- comment -%}    
+                  {%- assign contentBlock3_img = '' -%}
+                  {%- assign contentBlock3_logo = '' -%}
+                  {%- assign contentBlock3_url = '' -%}
+            {%- endcomment -%}
+  {% else %}
+    
+{% endcase %}
+
+{%- endcomment -%}

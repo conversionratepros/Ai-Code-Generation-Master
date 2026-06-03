@@ -1,0 +1,39 @@
+{% comment %} this template is for Perth showroom landing page only  {% endcomment %}
+ {{ 'showroom-full-width-hero-banner.css' | asset_url | stylesheet_tag }}
+ {% assign video_poster = 'banner-video-thumb-perth.jpg' | file_img_url:'1900x' %}
+ {% unless video_poster contains "http" %}
+    {% assign video_poster = 'banner-video-thumb-perth.jpg' | file_img_url:'1900x' | prepend: "https:"%}
+ {% endunless %}
+<div class="showroom-full-width-hero-banner">
+    <video id="heroVideo" 
+       poster="{{ video_poster }}" 
+       preload="none" 
+       playsinline 
+       muted 
+       autoplay 
+       loop>
+        <source src="{{ 'perth-header-video.mp4' | file_url }}" type="video/mp4">
+    </video>
+</div>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Adelaide Showroom Hero Video",
+        "description": "Need a fitout or office furniture in Adelaide? We're right here, local and ready to help.",
+        "thumbnailUrl": "{{ video_poster }}",
+        "uploadDate": "2026-03-16T00:00:00Z",
+        "contentUrl": "{{ 'perth-header-video.mp4' | file_url }}",
+        "embedUrl": "{{ 'perth-header-video.mp4' | file_url }}",
+        "publisher": {
+            "@type": "Organization",
+            "name": "JasonL"
+        }
+    }
+</script>
+{% schema %}
+{
+"name": "Hero banner",
+"class": "shopify-section--hero-banner"
+}
+{% endschema %}

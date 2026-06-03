@@ -1,0 +1,96 @@
+<!-- fitout team listing start -->
+{{ 'fitouts-team-listing.css' | asset_url | stylesheet_tag }}
+
+<div class="fitouts-team-listing {% if template == 'article.fitouts' %} remove-scroll {% endif %}">
+  <div class="page-width">
+    <div class="fitouts-team-listing-wrap">
+      <div class="section-header">
+        <h2>The Team on This Project</h2>
+      </div>
+      <div class="fitouts-team-holder">
+          {% assign managerperson = article.metafields.fitout_blog.choose_manager | strip %}
+          {% assign salesperson = article.metafields.fitout_blog.choose_sales | strip %}
+          {% assign randomnum_string ='' %}
+          {% assign sales_id ='' %}
+
+          {% for name in blogs['fitouts'].metafields.fitout_team.member_name %}
+            {% assign indexvalue= forloop.index0 %}
+            {% assign name = name | strip %}
+            {% if managerperson == name %}
+              {% assign randomnum_string =indexvalue %}
+            {% endif %} 
+
+            {% if salesperson == name %}
+              {% assign sales_id =indexvalue %}
+            {% endif %}
+          {% endfor %}
+
+          {% if sales_id !='' %}
+            {% assign randomnum_string =randomnum_string | append:"," | append:sales_id %}
+          {% endif %}
+
+
+          {%- assign max = blogs['fitouts'].metafields.fitout_team.member_name.size -%}
+
+          {%- assign min = 1 -%}
+          {%- assign diff = max | minus: min -%}
+
+          {% for i in (1..20) %}
+              {%- assign random_number = "now" | date: "%N" | modulo: diff | plus: min -%}
+              {%- assign random_number_clean = random_number | strip -%}
+              {% if randomnum_string =='' %}
+                {% assign randomnum_string =random_number_clean %}
+              {% else %}
+                {% assign randomarray =randomnum_string | split:"," %}
+                {% if randomarray.size >=5 %}
+                    {% break %}
+                {% endif %}
+                {% if randomarray contains random_number_clean %}
+                    {% continue %}
+                {% endif %}
+                    {% assign randomnum_string =randomnum_string | append:"," | append:random_number_clean %}
+              {% endif %}
+          {% endfor %}
+
+
+        {% assign review_indexarray = randomnum_string | split: "," %}
+      
+          <ul>
+            {% assign signature_count = 0 %}
+            
+            {% for memberindex in review_indexarray %}
+            {% assign memberindexnum = memberindex | plus:0 %}
+            
+            {% if blogs['fitouts'].metafields.accentuate.signature[memberindexnum] != blank %}
+              {% assign signature_count = signature_count | plus: 1 %}
+            {% endif %}
+
+            <li class="team-item {% if blogs['fitouts'].metafields.accentuate.signature[memberindexnum] != blank %} has-signature{{- signature_count -}} {% endif %}">
+              <div class="team-image-wrap">
+                {% for picture in blogs['fitouts'].metafields.fitout_team.member_picture[memberindexnum] %}
+                <div class="image-wrapper">
+                  <img src="{{ picture | file_img_url:'x140' }}" alt="{%- if blogs['fitouts'].metafields.fitout_team.member_name[memberindexnum] -%}{{ blogs['fitouts'].metafields.fitout_team.member_name[memberindexnum] }} {%- else -%} Profile {%- endif -%}" width="140" height="140">
+                </div>
+                {% endfor %}
+                {% for signature in blogs['fitouts'].metafields.accentuate.signature[memberindexnum] %}
+                  <img src="{{ signature.src }}" alt="signature" width="" height="" class="signature-img">
+                {% endfor %}
+              </div>
+              <div class="content">
+              <h6 class="name">{{ blogs['fitouts'].metafields.fitout_team.member_name[memberindexnum] }}</h6>
+                <div class="content__item">{{ blogs['fitouts'].metafields.fitout_team.title[memberindexnum] }}</div>
+              {%-comment %}
+              <div class="content__item position"><strong>Position: </strong> {{ blogs['fitouts'].metafields.fitout_team.position[memberindexnum] }}</div>
+              {% endcomment-%}
+              {% comment %} {%- if blogs['fitouts'].metafields.fitout_team.linkedin_url[memberindexnum] != empty-%}
+                <div class="content__item linkedin"><a href="{{ blogs['fitouts'].metafields.fitout_team.linkedin_url[memberindexnum] }}" target="_blank">LinkedIn</a></div>
+                {%- endif -%} {% endcomment %}
+              </div>
+              </li>
+            {% endfor %}
+          </ul>
+      
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+
+<div class="widget about">
+    {%- capture widget_about -%}
+<a href="https://www.jasonl.com.au">
+{%- assign jason_footer_logo = section.settings.footer_logo -%}
+<img src="{{ jason_footer_logo | image_url : width:'92'}}" alt="JasonL Office Furniture" width="92" 
+height="28"></a>
+{%- if template != 'page.australian-scholarship' -%}
+<p>
+{{ section.settings.footer_article }}
+<br>
+</p>
+{%- else -%}
+<p style="line-height: 18px;">
+This project is proudly brought to you by JasonL, a leader in education and institutional furniture.
+</p>
+<p class="scholarship-source">
+Source:
+<a href="https://www.gooduniversitiesguide.com.au/scholarships/" target="_blank" rel="noopener noreferrer">Good Universities Guide </a>
+</p>
+{% comment %} <style>
+#main-footer .scholarship-source a {
+text-decoration: underline;
+text-underline-offset: 2px;
+color: #fff;
+}
+
+#main-footer .scholarship-source a:hover {
+color: var(--color-base-color);
+}
+</style> {% endcomment %}
+{%- endif -%}
+{%- endcapture -%}
+    {{widget_about |  strip_newlines}}
+    <div class="call-and-greview-button">
+        {%- render 'social-widget' -%}
+        {%- render 'google-customer-review' -%}
+    </div>
+</div>

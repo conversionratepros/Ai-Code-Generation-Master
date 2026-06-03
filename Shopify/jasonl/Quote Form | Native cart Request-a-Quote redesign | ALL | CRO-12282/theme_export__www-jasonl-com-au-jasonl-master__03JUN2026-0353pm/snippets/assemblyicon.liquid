@@ -1,0 +1,27 @@
+{%- for block in data -%}
+	{%- if block.settings.assembly-cat-title != '' -%}
+		{%- assign assemblyTitle = block.settings.assembly-cat-title -%}
+	{%-else%}
+		{%- assign assemblyTitle = 'null' -%}
+	{%- endif -%}
+
+	{%- if block.settings.assembly-cat-subtitle != ''-%}
+		{%- assign assemblySubtext = block.settings.assembly-cat-subtitle -%}
+	{%-else-%}
+		{%- assign assemblySubtext = '' -%}
+	{%- endif -%}
+
+	{%- if block.settings.assembly-icon-id != ''-%}
+		{%- assign assemblyIcon = block.settings.assembly-icon-id -%}
+	{%-else-%}
+		{%- assign assemblyIcon = 'null' -%}
+	{%- endif -%}
+
+			{%-comment-%}<!-- save all in a single variable -->{%-endcomment-%}
+	{%- if forloop.first == true -%}
+  		{%- assign assemblyinfo = assemblyTitle | append:'=' | append:assemblySubtext | append:'='| append: assemblyIcon -%}  
+  	{%- else -%}
+  		{%- assign assemblyinfo = assemblyinfo | append:'|' | append:assemblyTitle | append:'=' | append:assemblySubtext | append:'='| append: assemblyIcon -%}
+  	{%- endif -%}
+{%- endfor -%}
+			{% comment %}{{-assemblyinfo-}} {% endcomment %}

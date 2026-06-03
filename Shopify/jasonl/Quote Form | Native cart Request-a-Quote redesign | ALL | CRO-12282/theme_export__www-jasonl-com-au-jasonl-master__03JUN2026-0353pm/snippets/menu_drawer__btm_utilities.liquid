@@ -1,0 +1,28 @@
+{% comment %} <style>
+
+</style> {% endcomment %}
+<div class="menudrawer-catalogue">
+        <a href="https://builder.jasonl.com.au/catalogue/" target="_blank" rel="noopener noreferrer">
+        <div>
+            View our brand new 
+            <strong>2026 catalogue</strong>
+        </div>
+            <svg fill="#fff" aria-hidden="true" class="icon icon-arrow" viewBox="0 0 14 10" style="width:15px"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" clip-rule="evenodd"/></svg>
+
+            <img class="icon-magazine" 
+                src="{{'menu-catalogue.png' |  file_img_url: width: 166 }}" 
+                srcset="{{'menu-catalogue.png' |  file_img_url: width: 166 }} 1x, {{'menu-catalogue.png' |  file_img_url: 'master'}} 2x" 
+                alt="JasonL 2026 Catalogue" width="166" height="74" 
+            />
+        </a>
+</div>
+<div class="menudrawer-bottom-menu">
+    {%- for link in linklists.menudrawer-bottom-menu.links-%}
+        {% unless link.title contains 'Showrooms' %}
+            <a {% if link.title contains 'Showrooms' %}onclick="triggerClick_burguricon()" {% endif %}  href="{{link.url}}">{{link.title}}</a>
+            {%- unless forloop.last -%}
+            <span class="sep"></span>
+            {%- endunless-%}
+        {% endunless %}
+    {%- endfor-%}
+</div>

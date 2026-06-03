@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="{{ 'range-collection-banner.css' | asset_url }}" media="print" onload="this.media='all'">
+<section class="section-collection-banner">
+  <div class="page-width">
+    <div class="col-wrapper">
+      <div class="content-col">
+        <div class="content">
+          {% if section.settings.banner_heading %}
+          <h1><span class="prefix">Meet the</span>{{ section.settings.banner_heading }}<span class="sufix">Range</span></h1>
+          {% endif %}
+          {{ collection.metafields.accentuate.collection_banner_description }}
+        </div>      
+      </div>
+      <div class="image-col">
+        {%- assign banner_image = collection.metafields.accentuate.collection_banner_image -%}
+        {% for image in banner_image %}
+          {%- assign bannerImage = image.src-%} 
+          {%-break-%} 
+        {% endfor %}
+        {% if bannerImage %}
+        <div class="banner-image-wrapper">
+          <img src="{{bannerImage}}" alt="{{ page_title }}"/>
+        </div>
+        {% endif %}
+        
+
+        {% if collection.metafields.accentuate.title %}
+        <div class="image-tiles">
+			{% for tile in collection.metafields.accentuate.title %}
+      {% if tile != blank or collection.metafields.accentuate.image[forloop.index0] != blank %}
+              <div class="image-tiles-item">
+                <div class="item-content">
+                  {% if tile != blank %}
+                  <h3 class="title">{{ tile }}</h3>
+                  {% endif %}
+                  {% if collection.metafields.accentuate.sub_title[forloop.index0] != blank%}
+                      <p class="sub-title">{{ collection.metafields.accentuate.sub_title[forloop.index0] }}</p>
+                  {% endif %}
+                  {% if collection.metafields.accentuate.link[forloop.index0] != blank%}
+                      <div class="view"><a href="{{ collection.metafields.accentuate.link[forloop.index0] }}">View</a></div>
+                  {% endif %}
+                </div>
+                {% if collection.metafields.accentuate.image[forloop.index0] != blank %}
+                <div class="item-image">
+                  <img src="{{ collection.metafields.accentuate.image[forloop.index0] }}" alt="{{ tile }}"/>
+                </div>
+                {% endif %}
+              </div>
+              {%-endif-%}
+            {% endfor %}
+        </div>
+        {% endif %}
+      
+
+    
+        </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "name": "Collection Banner",
+    "settings": [
+    {
+          "type": "text",
+          "id": "banner_heading",
+          "label": "Heading title"
+        }
+    ]
+  }
+{% endschema %}

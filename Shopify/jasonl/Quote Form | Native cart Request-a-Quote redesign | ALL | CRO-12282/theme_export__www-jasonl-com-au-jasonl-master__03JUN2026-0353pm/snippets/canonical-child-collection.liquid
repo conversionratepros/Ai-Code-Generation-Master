@@ -1,0 +1,26 @@
+{%- assign current_path_title = request.path | split : '/' | last -%}
+{%- if current_path_title contains "+" -%}
+    {%- render 'canonical-child-location-collection' -%}
+{%- else -%}
+    {%- assign child_collection_found = false -%}
+    {%- for link in linklists.main-menu-image-without-more-testing.links -%}
+        {%- for childlink in link.links -%}
+            {%- assign menu_title =  childlink.url | split: "/" | last -%}
+            {%- if current_path_title == menu_title -%}
+                {%- assign child_collection_found = true -%}
+                {{- request.origin -}}{{- childlink.url -}}
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if child_collection_found == true -%}
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
+{%- comment -%} 
+for the case child and location
+cafe-chairs+melbourne
+{%- endcomment -%}
+{%- if child_collection_found == false -%}
+    {{- canonical_url -}}
+{%- endif -%}

@@ -1,0 +1,29 @@
+{%- capture header_right -%}
+<ul class="header-top-right">
+<li class="call-number">
+<strong class="label">Call </strong>
+<a class="value" href="tel:{{shop.phone}}">{{ shop.phone }}</a>
+</li>
+<li class="header-top-right-getaquote">
+    <a class="get-a-quote-btn-ab get-a-quote-btn-a typeform-share getaquoteclick btn header-getaquote typeform-embed" {{ settings.typeformurls_url_1 }}
+    href="javascript:void(0)" data-tf-on-ready="ready" {% if button_id %} id="{{ button_id }}" {% endif %}>
+        {%- if button_text -%} 
+            {{- button_text -}}
+        {%- else -%}
+            Get a quote
+        {%- endif -%}
+    </a>
+</li>
+{% comment %} 
+<li class="header-top-right-contactus newdesign-desktop-hide newdesign-tablet-lg-hide">
+<button class="link typeform-share  gclid-contact-typeform" {{ settings.cotactus_typeformurls_url_1 }}>
+Contact us
+</button>
+</li> 
+{% endcomment %}
+<li class="header-top-right-email-wrap">
+    {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'ga4-sales-email' %}
+</li>
+</ul>
+{%- endcapture -%}
+{{header_right | strip_newlines}}

@@ -1,0 +1,66 @@
+{% comment %} 
+Check if template is collection
+Check if it is location collection page except perth
+
+{% endcomment %}
+{{ 'lp-custom-section.css' | asset_url | stylesheet_tag }}
+ <div class="product-custom-section">
+    <div class="page-width">
+      <div class="product-custom-section-container" id="p-custom-section">
+          <div class="custom-section-item">
+            <div class="custom-section-text">
+              <h3>Customisable comfort, made smarter</h3>
+              <p>Everybody is different - that's why every Gregory can be adjusted to suit you. From seat height and lumbar support to arm rests and finishes, Gregory office chairs are built around your comfort. And with JasonL, that flexibility now extends to your entire workspace - chairs, desks, layouts and all.</p>
+            </div>
+            <div class="item-img">
+                {% comment %} 
+                 {% comment %} this is for video {% endcomment %}
+                 <div class="enviro-video-wrap">
+                    <video autoplay muted loop playsinline style="width: 100%;" poster="{{ product.metafields.accentuate.enviro_image[forloop.index0] | file_img_url:'1537x' }}">
+                        {% comment %} <source src="{{'Video-Homepage-LowQ.webm' | file_url }}" type="video/webm" /> {% endcomment %}
+                        <source src="{{ product.metafields.accentuate.enviro_video[forloop.index0] | file_url }}" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div> {% endcomment %}
+                <picture>
+                  <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                  <source srcset="{{ "customize-comfort.jpg" | file_img_url:'3074x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                  <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                  <source srcset="{{ "customize-comfort.jpg" | file_img_url:'1537x' }}" media="(min-width: 768px)">
+                  <img src="{{ "customize-comfort.jpg" | file_img_url:'1537x' }}" alt="Customisable comfort, made smarter" width='1537px' height="480px" loading="lazy">
+                </picture>
+            </div>
+          </div>
+          <div class="custom-section-item">
+            <div class="custom-section-text">
+              <h3>Proudly <br>Australian <br>Made</h3>
+              <p>Gregory office chairs have been designed, engineered and built right here in Australia for more than three decades - supporting local manufacturing and Australian jobs every step of the way. Now, through JasonL, that same homegrown quality is available nationwide with faster delivery, local support and real people who know your business.</p>
+            </div>
+            <div class="item-img">
+                <picture>
+                  <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                  <source srcset="{{ "proudly-img.jpg" | file_img_url:'3074x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                  <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                  <source srcset="{{ "proudly-img.jpg" | file_img_url:'1537x' }}" media="(min-width: 768px)">
+                  <img src="{{ "proudly-img.jpg" | file_img_url:'1537x' }}" alt="Proudly Australian Made" width='1537px' height="480px" loading="lazy">
+                </picture>
+            </div>
+          </div>
+          <div class="custom-section-item">
+            <div class="custom-section-text">
+              <h3>Design with purpose</h3>
+              <p>Gregory has always stood for better design for people, with a rich history of collaboration with Indigenous artists and suppliers. JasonL is proud to keep that legacy alive, through our <strong>Reconciliation Action Plan</strong> and support of Indigenous businesses such as National Dynamic Supplies and AES Aboriginal Employment Services. We're committed to creating spaces that work better, feel better and do better.</p>
+            </div>
+            <div class="item-img">
+                <picture>
+                  <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                  <source srcset="{{ "design-with-purpose.jpg" | file_img_url:'3074x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                  <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                  <source srcset="{{ "design-with-purpose.jpg" | file_img_url:'1537x' }}" media="(min-width: 768px)">
+                  <img src="{{ "design-with-purpose.jpg" | file_img_url:'1537x' }}" alt="Design with purpose" width='1537px' height="480px" loading="lazy">
+                </picture>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

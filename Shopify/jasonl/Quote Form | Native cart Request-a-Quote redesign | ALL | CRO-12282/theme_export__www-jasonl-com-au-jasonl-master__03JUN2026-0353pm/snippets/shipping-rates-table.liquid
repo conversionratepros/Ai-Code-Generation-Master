@@ -1,0 +1,106 @@
+{{ "shipping-rate-table.css" | asset_url | stylesheet_tag }}
+<div class="shipping-rate-table quick-add-hidden">
+    <ul>
+        <li class="srt-heading">
+            <div class="heading-range">
+                Basket value
+            </div>
+            <div class="heading-rate">
+                
+                <div class="info">
+                  
+                    <div class="info-label">
+                      Shipping
+                    <!-- wrapper -->
+                    {% comment %} <div class="info-wrapper" id="shipping-info"> {% endcomment %}
+                        {% comment %} <span class="info-icon">?</span> {% endcomment %}
+                        {% comment %} 
+                         <a style="display: none;" class="typeform-share getaquoteclick link" 
+                            data-tf-popup="SPqugn2G" 
+                            data-tf-iframe-props="title=Marketing - Get A Quote" 
+                            data-tf-medium="snippet" 
+                            data-tf-hidden="" 
+                            data-tf-on-submit="submit"
+                            href="javascript:void(0)" >
+                            Contact
+                            </a>  
+                        {% endcomment %}
+                        {% comment %} <div class="info-msg">
+                            <strong>Ground floor only.</strong>
+                            If more options are required please 
+                            <a class="typeform-share getaquoteclick link" 
+                            data-tf-popup="SPqugn2G" 
+                            data-tf-iframe-props="title=Marketing - Get A Quote" 
+                            data-tf-medium="snippet" 
+                            data-tf-hidden="" 
+                            data-tf-on-submit="submit"
+                            href="javascript:void(0)" >
+                            Contact
+                            </a> 
+                            us for a quote.
+                        </div> {% endcomment %}
+                    {% comment %} </div> {% endcomment %}
+                     <!-- end wrapper -->
+                    </div>
+                
+                </div>
+            </div>
+        </li>
+        <li class="srt-item">
+            <div class="range">
+                <span class="range-start">$0</span>
+                <span class="range-end">$1000</span>
+            </div>
+            <div class="rate">$49</div>
+        </li>
+        <li class="srt-item">
+            <div class="range">
+                <span class="range-start">$1000</span>
+                <span class="range-end">$2000</span>
+            </div>
+            <div class="rate">$149</div>
+        </li>
+        <li class="srt-item">
+            <div class="range">
+                <span class="range-start">$2000</span>
+                <span class="range-end">$10,000</span>
+            </div>
+            <div class="rate">$199</div>
+        </li>
+        <li class="srt-item">
+            <div class="range">
+                <span class="range-start">$10,000 +</span>
+            </div>
+            <div class="rate">
+                        {% comment %} <a class="typeform-share  gclid-contact-typeform link" 
+                            data-tf-popup="ctUucWe4" 
+                            data-tf-iframe-props="title=Hi, how can we help you today?" 
+                            data-tf-medium="snippet" 
+                            data-tf-hidden="" 
+                            data-tf-on-submit="submit"
+                            href="javascript:void(0)" >
+                            Contact
+                        </a>     {% endcomment %}
+                        <a class="get-a-quote-btn-ab get-a-quote-btn-a typeform-share getaquoteclick link" 
+                            data-tf-popup="SPqugn2G" 
+                            data-tf-iframe-props="title=Marketing - Get A Quote" 
+                            data-tf-medium="snippet" 
+                            data-tf-hidden="" 
+                            data-tf-on-submit="submit"
+                            href="javascript:void(0)" >
+                            Contact
+                            </a>
+            for a quote</div>
+        </li>
+        <li class="shippingdetail_list">
+            <div class="shippingdetail-wrap">
+                <span class="info-icon">&excl;</span>
+                <div><strong>Metro areas & Ground floor only.</strong></div>
+                <div>Extra needs? 
+                    <a class="link typeform-share getaquoteclick typeform-embed get-a-quote-btn-ab get-a-quote-btn-a" {{ settings.typeformurls_url_1 }} href="javascript:void(0)"><i>Contact us</i>
+                    </a> 
+                    or check our <a href="/pages/shipping-and-returns" class="link"><i>Shipping &amp; Returns</i></a>.</div>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,320 @@
+{% comment %}
+  note :
+  To handle the perth location we have listed the product that contains Perth tag.THis is best approach then ajax and duplicate sections separatly for perth.
+{% endcomment %}
+
+{{ 'featured-collection-products.css' | asset_url | stylesheet_tag }}
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split: ',' -%}
+{%- assign is_location_collection = false -%}
+
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split: ',' -%}
+
+{% if request.page_type == 'page' %}
+  {%- assign city = page.title -%}
+  {%- assign is_showroom_collection = true -%}
+{% elsif request.page_type == 'collection' %}
+  {% for tagname in current_tags %}
+    {%- assign tag_name = tagname | downcase | escape -%}
+    {%- if cities contains tag_name -%}
+      {%- assign is_location_collection = true -%}
+      {%- assign city = tagname | downcase | escape -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endif %}
+
+{% if is_location_collection == true or is_showroom_collection == true or blog.handle == "shop-by-rooms" %}
+  <div class="featured-collection-products-holder" id="featured-collection-products">
+    <div class="page-width">
+      {%- if template.name == 'collection' -%}
+        {%- assign featured_collections = collection.metafields.custom.featured_collections.value -%}
+        <h4 class="h2 section-title">
+          {{ collection.title }} and so much more <span class="text-italic-fade">in {{ city | capitalize}}</span>
+        </h4>
+      {%- elsif template.name == 'page' -%}
+        {%- assign featured_collections = page.metafields.custom.featured_collections.value -%}
+      {%- elsif blog.handle == "shop-by-rooms"  -%}
+        {%- assign featured_collections = article.metafields.custom.blog_post_featured_collections.value -%}
+      {%- endif -%}
+
+      <ul class="featured-collection-tab-menu top-spacing">
+        {%- if featured_collections -%}
+          {% for featured_collection in featured_collections %}
+            <li class="{%- if forloop.index == 1 -%}active{%- endif -%}" data-target="block{{forloop.index}}">
+              
+              {{ featured_collection.block_title }}
+            </li>
+          {% endfor %}
+        {%- endif -%}
+      </ul>
+
+      <div class="col-wrapper">
+       {%- if template.name == 'page' and page.metafields.custom_fields.title != blank -%}
+          {% for data in page.metafields.custom_fields.title %}
+            {% assign block_title = data %}
+            {% assign nsw_products = page.metafields.custom_fields.product_nsw[forloop.index0] | remove: " " | split: ',' %}
+            {% assign wa_products  = page.metafields.custom_fields.product_wa[forloop.index0] | remove: " " | split: ',' %}
+            {% assign view_all_link = page.metafields.custom_fields.link[forloop.index0] %}
+
+            {% assign max_products = section.settings.products_to_show | default: 4 %}
+            {% assign products_displayed = 0 %}
+            {% assign filtered_count = 0 %}
+
+            {% render 'featured-collection-manual',
+              block_title: block_title,
+              nsw_products: nsw_products,
+              wa_products: wa_products,
+              view_all_link: view_all_link,
+              max_products: max_products,
+              products_displayed: products_displayed,
+              filtered_count: filtered_count
+            %}
+          {% endfor %}
+        
+        {%- elsif blog.handle == "shop-by-rooms" and article.metafields.custom_fields.title != blank -%}
+          {% for data in article.metafields.custom_fields.title %}
+            {% assign block_title = data %}
+            {% assign nsw_products = article.metafields.custom_fields.product_nsw[forloop.index0] | remove: " " | split: ',' %}
+            {% assign wa_products  = article.metafields.custom_fields.product_wa[forloop.index0] | remove: " " | split: ',' %}
+            {% assign view_all_link = article.metafields.custom_fields.link[forloop.index0] %}
+
+            {% assign max_products = section.settings.products_to_show | default: 4 %}
+            {% assign products_displayed = 0 %}
+            {% assign filtered_count = 0 %}
+
+            {% render 'featured-collection-manual',
+              block_title: block_title,
+              nsw_products: nsw_products,
+              wa_products: wa_products,
+              view_all_link: view_all_link,
+              max_products: max_products,
+              products_displayed: products_displayed,
+              filtered_count: filtered_count
+            %}
+          {% endfor %}
+        
+        {%- else -%}
+  
+        {%- if featured_collections -%}
+          {%- assign custom_block_title =  page.metafields.custom.featured_collection_custom_title.value | split : "||" -%}
+          {%- for featured_collection in featured_collections -%}
+            {%- if featured_collection -%}
+              {%- assign block_title = featured_collection.block_title.value -%}
+              {%- assign collection_handle = featured_collection.select_collection.value.handle -%}
+              {%- assign tag_handle = featured_collection.tag_handle.value -%}
+              {%- assign max_products = section.settings.products_to_show | default: 4 -%}
+              {%- assign products_displayed = 0 -%}
+              {%- assign filtered_count = 0 -%}
+              <div class="col" id="block{{forloop.index}}">
+                {% assign dec_index = forloop.index | minus: 1 %}
+                {% if custom_block_title[dec_index] != blank %}
+                  <h3>{{ custom_block_title[dec_index] }}</h3>
+                {% else %}
+                  <h3>{{ block_title }}</h3>
+                {% endif %}
+                {%- if collection_handle -%}
+                  {%- assign filtered_products = collections[collection_handle].products -%}
+                  {%- if tag_handle != blank -%}
+                    {%- comment -%}product listing by tag (sub collection by tag handle){%- endcomment -%}
+                    <ul>
+                      {% assign listed_products = "" %}
+
+                      {%- for product in filtered_products -%}
+                        {%- if products_displayed < max_products and product.tags contains tag_handle -%}
+                           {% assign listed_products = listed_products | append: ',' | append: product.handle %}
+                          <li class="product-item all-products nsw-products {% if product.tags contains 'Perth' %} perth-products {% endif %}">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">
+                                <picture>
+                                  <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                  <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="70">
+                                </picture>
+                                {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- assign products_displayed = products_displayed | plus: 1 -%}
+                        {%- endif -%}
+
+                        {%- if filtered_count < max_products
+                          and product.tags contains 'Perth'
+                          and product.tags contains tag_handle
+                        -%}
+                          {% unless listed_products contains product.handle %}
+                            <li class="product-item perth-products {% if product.tags contains 'Perth' %} perth-products {% endif %}">
+                              <a href="{{ product.url }}">
+                                <div class="item-img">
+                                  <picture>
+                                    <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                    <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="70">
+                                  </picture>
+                                  {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                                </div>
+                                <div class="item-details">
+                                  <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                  <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                </div>
+                              </a>
+                            </li>
+                          {% endunless %}
+                          {%- assign filtered_count = filtered_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                      {%- if products_displayed == max_products -%}
+                        <li class="view-all">
+                          <a href="{{collections[collection_handle].url}}/{{tag_handle}}" class="link">View all</a>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {%- else -%}
+                    {%- comment -%}product listing by collection {%- endcomment -%}
+                    <ul>
+                      {% comment %}
+                        {%- for product in filtered_products limit: max_products -%}
+                          <li class="product-item">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">{{ product.featured_image | image_url: width: 107 | image_tag : loading: 'lazy' }}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros}}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- if forloop.index == max_products -%}
+                              <li class="view-all"><a href="{{collections[collection_handle].url}}" class="link">View all</a></li>
+                          {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                        {%- assign products_displayed = products_displayed | plus: 1 -%}
+                      {% endcomment %}
+                       {% assign listed_products = "" %}
+                      {%- for product in filtered_products -%}
+                        {%- if products_displayed < max_products -%}
+                        {% assign listed_products = listed_products | append: ',' | append: product.handle %}
+                          <li class="product-item all-products nsw-products {% if product.tags contains 'Perth' %} perth-products {% endif %}">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">
+                                <picture>
+                                  <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                  <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="70">
+                                </picture>
+                                {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- assign products_displayed = products_displayed | plus: 1 -%}
+                        {%- endif -%}
+
+                        {%- if filtered_count < max_products and product.tags contains 'Perth' -%}
+                          {% unless listed_products contains product.handle %}
+                            <li class="product-item perth-products {% if product.tags contains 'Perth' %} perth-products {% endif %}">
+                              <a href="{{ product.url }}">
+                                <div class="item-img">
+                                  <picture>
+                                    <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                    <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="70">
+                                  </picture>
+                                  {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                                </div>
+                                <div class="item-details">
+                                  <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                  <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                </div>
+                              </a>
+                            </li>
+                          {% endunless %}
+                          {%- assign filtered_count = filtered_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      <li class="view-all">
+                        <a href="{{ collections[collection_handle].url }}" class="link">View all</a>
+                      </li>
+                    </ul>
+                  {%- endif -%}
+
+                  {%- if products_displayed == 0 -%}
+                    <p>No products found with the selected filter.</p>
+                  {%- endif -%}
+                {%- else -%}
+                  <p>Collection handle is required to display products.</p>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <p>Failed to load metaobject data.</p>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          <p>No featured collections found in the metafield.</p>
+        {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<script>
+  document.querySelectorAll('.featured-collection-tab-menu li').forEach((button) => {
+    button.addEventListener('click', () => {
+      const targetId = button.getAttribute('data-target');
+      const targetElement = document.getElementById(targetId);
+      document.querySelector('.featured-collection-tab-menu li.active').classList.remove('active');
+      button.classList.add('active');
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth', // Smooth scroll animation
+          block: 'nearest', // Ensure it aligns correctly
+          inline: 'center', // Horizontally center the block
+        });
+      }
+    });
+  });
+</script>
+
+{% if template == 'collection' %}
+  <script>
+    (function () {
+      const url = new URL(window.location.href);
+      const hasLocationParam = url.searchParams.has('location');
+
+      let featuredCollectionSections = document.getElementById('featured-collection-products');
+      if (featuredCollectionSections) {
+        if (hasLocationParam) {
+          featuredCollectionSections.style.display = 'block';
+        } else {
+          featuredCollectionSections.style.display = 'none';
+        }
+      }
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "class": "featured_collections-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Instruction",
+      "info": "Home Page data source blocks. Other pages data source is metafield."
+    },
+    {
+      "type": "number",
+      "id": "products_to_show",
+      "label": "Number of products per column",
+      "default": 4
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,110 @@
+{%- assign sortingCounter = 0 -%}
+{%- for block in section.blocks -%}
+	{%- assign colTitle = block.settings.ai_collection_title -%}
+	{%- assign rowTitle  = block.settings.ai_row_title -%}
+	{%- if rowTitle != empty-%}
+        {%- if forloop.index0 == 0 -%}
+            {%- assign aiData =  colTitle |append:'&&' | append: rowTitle -%}
+        {%-else-%}
+                {%- assign aiData = aiData | append:'|' | append: colTitle |append:'&&' | append: rowTitle -%}
+        {%- endif -%}
+		{%- assign sortingCounter = sortingCounter | plus:1 -%}
+	{%- endif-%}
+{%- endfor -%}
+
+
+
+{% schema %}
+  {
+    "name": "assembly-instruction-sort",
+	"blocks": [
+	{
+	"type": "assembly-data",
+	"name": "assembly instructions",
+	"settings": [
+		{
+		"type": "text",
+		"id": "ai_collection_title",
+		"label": "Collection title"
+		},
+		{
+		"type": "textarea",
+		"id": "ai_row_title",
+		"label": "Title to sort",
+"info":"Example: 'row-title-1','row-title-2'. Note: single quote and comma are required. "
+		}
+		]
+	}
+	]
+  }
+{% endschema %}
+
+
+{%- if sortingCounter > 0 -%}
+<script>
+$(function(){
+var url_string = window.location.href
+var url = new URL(url_string);
+var url_parameter = url.searchParams.get("category");
+    var props = {
+{%- for block in section.blocks -%}
+	{%- assign colTitle = block.settings.ai_collection_title -%}
+      {%- assign rowTitle = block.settings.ai_row_title | strip_newlines -%}
+    {%- if rowTitle != empty-%}
+        {{colTitle | remove:' '}}: [{{rowTitle}}],
+	{%- endif-%}
+{%- endfor -%}
+  }
+    
+    
+
+  
+ 
+    function doSort(){
+      var urlParameter = url_parameter.replaceAll(/\s/g, '');
+      var sortData = props[urlParameter];
+      var sorted = 'sorted'; 
+      var i;
+      console.log(sortData);
+      var finalHtml = [];
+      
+      for (i = 0; i < sortData.length; i++) {
+        $('#assembly-table .table-wrapper table tr').each(function(index,value){
+          if(index > 0 ){
+            if(!$(this).hasClass(sorted)){
+              if(sortData[i] == $(this).find('.title-holder').text()){
+                var item = $(this).html();
+                finalHtml.push('<tr class="'+sorted+'">'+item+'</tr>');
+                $(this).remove();
+              }
+            }
+          }
+        });
+
+      }
+    
+      finalHtml = finalHtml.join(" ");
+      $('#assembly-table .table-wrapper table').prepend(finalHtml);
+
+    };
+  
+
+  
+  var checkCounter = 0;
+  var checkTableData = setInterval(function(){
+    if($('#assembly-table .table-wrapper table tr').length>0 || checkCounter > 60){
+       var urlParameter = url_parameter.replaceAll(/\s/g, '');
+      if(props[urlParameter] != undefined ){
+         doSort();
+         console.log('Sort data found.'+checkCounter+' sec');
+      }else{
+        console.log('No Sorting.'+checkCounter+' sec');
+      }
+      clearInterval(checkTableData);
+    }  
+    checkCounter++;
+  }, 2000);
+   
+  })
+</script>
+{%-endif-%}

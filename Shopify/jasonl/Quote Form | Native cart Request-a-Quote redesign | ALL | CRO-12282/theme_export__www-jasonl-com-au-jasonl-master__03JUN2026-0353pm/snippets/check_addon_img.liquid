@@ -1,0 +1,32 @@
+{%- comment -%} 
+  {%- render 'check_addon_img', optionforloopindex : optionforloopindex, forloopindex : forloop.index  -%}
+{%- endcomment -%}
+
+{%- comment -%} {%- assign addonimg = "imagename" -%}
+{%- assign isborder = 1 -%}
+{{ addonimg }} | {{ isborder }} {%- endcomment -%}
+
+{%- assign seperator = "no_divider" -%}
+{%- assign addon_slider_img = false -%}
+
+{%- assign optionforloopindex = optionforloopindex -%}
+{%- assign forloopindex = forloopindex | minus : 1 -%}
+{% comment %} product.metafields.accentuate.addon_json is in two file check_addon_img.liquid and addon_data.liquid {% endcomment %}
+{%- assign data = product.metafields.accentuate.addon_json.value -%}
+{%-  for datalist in data.addon -%}
+    {%- if datalist.addonIndex == optionforloopindex -%}
+        {%- comment -%} check for divider {%- endcomment -%}
+        {%- if datalist.addonItems[forloopindex].addonDivider == 1 -%} 
+            {%- if datalist.addonItems[forloopindex].addonDivider == 1 -%}
+                {%- assign seperator = "has_divider" -%}
+            {%- endif -%}
+        {%- endif -%}
+        
+        {%- comment -%} check for addon image url {%- endcomment -%}
+        {%- if datalist.addonItems[forloopindex].addonImage != '' -%} 
+            {%- assign addon_slider_img = datalist.addonItems[forloopindex].addonImage -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{{ seperator }} | {{ addon_slider_img }}

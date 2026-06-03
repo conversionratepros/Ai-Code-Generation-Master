@@ -1,0 +1,35 @@
+<div class="meetpeople1-right">
+    <div class="swiffy-slider slider-nav-round slider-nav-animation slider-indicators-outside slider-indicators-dark slider-indicators-round">
+        <div class="slider-container">
+
+            {% for team_member_index1 in team_member_index_list_array %}
+                <div class="meetpeople-box-wrap" data-items="{{team_member_index_list_array.size}}">
+                    <div class="meetpeople-box">
+                        {% assign team_member_index = team_member_index1 | times : 1 %}
+                        {% if shop.metafields.custom_fields.location_collection_team_member_name[team_member_index] %}
+                        <p class="meetpeople-name"><strong>{{shop.metafields.custom_fields.location_collection_team_member_name[team_member_index]}}</strong></p>
+                        {% endif %}
+                        {% if shop.metafields.custom_fields.location_collection_team_member_position[team_member_index] %}
+                        <span class="meetpeople-position">{{shop.metafields.custom_fields.location_collection_team_member_position[team_member_index]}}</span>
+                        {% endif %}
+                        {% if shop.metafields.custom_fields.location_collection_team_member_description[team_member_index] %}
+                        <p class="meetpeople-text">{{ shop.metafields.custom_fields.location_collection_team_member_description[team_member_index] }}</p>
+                        {% endif %}
+                        {% if shop.metafields.custom_fields.location_collection_team_member_image[team_member_index] %}
+                        <img class="people-img" src="{{ shop.metafields.custom_fields.location_collection_team_member_image[team_member_index] | file_img_url: '164x'}}" width="110" height="110" alt="{{shop.metafields.custom_fields.location_collection_team_member_name[team_member_index]}} {{shop.metafields.custom_fields.location_collection_team_member_position[team_member_index]}}" loading="lazy" />
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+        {% if team_member_index_list_array.size > 1 %}
+        <div class="slider-indicators">
+            {% for team_member_index1 in team_member_index_list_array %}
+            <button {% if forloop.first %}class="active" {% endif %}></button>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>                                      
+</div>

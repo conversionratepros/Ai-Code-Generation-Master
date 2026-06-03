@@ -1,0 +1,69 @@
+{{ "aboutus-proposition.css" | asset_url | stylesheet_tag }}
+ <!-- Proposition -->
+    <section id="section-proposition" class="proposition right-dark-bg">
+      <div class="page-width">
+        <div class="proposition__grid">
+          <div class="proposition__image">
+            <!-- <img src="images/Proposition.png" alt="Proposition" /> -->
+
+
+            <!-- video -->
+{% render 'aboutus-video' %}
+            <!-- end video -->
+            
+          </div>
+          <div class="proposition__info">
+            <h3>
+              Our unique value <br />
+              proposition
+            </h3>
+            <div class="proposition__info-grid description">
+              <div>
+                <strong>Tailored set of stocked products</strong>
+                <p>
+                  We import and warehouse a tailored set of quality products.
+                  With close to 10,000 sq metres of warehousing on both the east
+                  and west coast, our wide selection of modular, stocked
+                  inventory allows us to deliver a unique solution to every
+                  customer.
+                </p>
+              </div>
+              <div>
+                <strong>Honesty always</strong>
+                <p>
+                  Integrity is the cornerstone of our business. We are committed
+                  to transparency, honesty, and ethical conduct in all aspects
+                  of our operations and interactions.
+                </p>
+              </div>
+              <div>
+                <strong>Fitouts? Fast!</strong>
+                <p>
+                  With a substantial inventory holdings, skilled logistics team
+                  and world class technology, we pride ourselves on our ability
+                  to deliver solutions swiftly and efficiently to our customers.
+                  Our streamlined processes ensure that projects are completed
+                  on time, every time.
+                </p>
+              </div>
+              <div>
+                <strong>People first</strong>
+                <p>
+                  Our team members are the heartbeat of our company. We
+                  prioritize their well-being, professional growth, and
+                  development. By fostering a supportive and inclusive
+                  environment, we empower our team to deliver exceptional
+                  service and support to our customers.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% schema %}
+  {
+    "name": "Proposition",
+    "settings": []
+  }
+{% endschema %}

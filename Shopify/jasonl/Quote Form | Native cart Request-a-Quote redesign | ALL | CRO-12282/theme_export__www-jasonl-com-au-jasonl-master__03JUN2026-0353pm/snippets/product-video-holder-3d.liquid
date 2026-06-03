@@ -1,0 +1,37 @@
+{%- if product.metafields.productmeta.threed_render_video -%}
+    <div class="video-holder video-3d quick-add-hidden">
+        {%- assign video_url = product.metafields.productmeta.threed_render_video -%}
+        {%- assign video_cover_img_from_meta = product.featured_image | img_url: '550x' -%}
+        {%- assign video_url_idonly = video_url | split: '/' | slice: 4 -%}
+        {%- render "video-product-3d",
+                  video_url: video_url,
+                  video_id: video_url_idonly,
+                  video_img: video_cover_img_from_meta,
+                  poster_type = poster-type2 -%}
+          {% comment %} <span class="loader"></span> {% endcomment %}
+          <span class="icon-skectchfab">
+            {% render 'i-sketchfab' %}
+          </span>
+          <span class="icon-handgesture">
+            <img src="{{'hand-gesture.png' | file_img_url:'65x'}}" alt="3D model swipe left right"   width='' height=''/>
+          </span>
+      </div>
+  {%- endif -%}
+  <style>
+    .video-holder.video-3d{
+      margin-top: 30px;
+      max-width: 500px;
+      position: relative;
+      z-index: 1;
+    }
+      .video-3d .deferred-media__poster-button{
+        background-color: rgba(0,0,0,0.7);
+      }
+      .video-3d .deferred-media__poster-button svg{
+         height: 20px !important;
+         fill: #fff;
+      }
+      .video-3d .deferred-media__poster-button svg path{
+        fill: #fff;
+      }
+  </style>

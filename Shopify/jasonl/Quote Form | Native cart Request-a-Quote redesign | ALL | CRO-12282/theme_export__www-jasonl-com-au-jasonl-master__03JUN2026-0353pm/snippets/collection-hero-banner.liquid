@@ -1,0 +1,413 @@
+{%- assign tagName = '' %}
+{% if current_tags %}
+{% for tagname in current_tags %}
+{%-assign ctag = tagname -%}
+{%- assign tagName = ctag -%}
+{%-break-%}
+{%- endfor -%}
+{% assign datavalue = ctag | downcase %}
+{% assign datavalue = datavalue | replace: " ","" %}
+{% assign datavalue = datavalue | slice: 0, 24 %}
+{% assign collage1_metadata = datavalue | append: "_c1" %}
+{%-assign tagproducts = 'tagproducts' -%}
+{% assign metadata_collage1 = shop.metafields.tagproducts[collage1_metadata] %}
+{% assign collage_heading = metadata_collage1.col_heading %}
+{%- assign collage_heroimg = metadata_collage1.col_imagename -%}
+{% else %}
+{%- assign collage_heading = collection.metafields.coln-collage1.collage1-heading -%}
+{%- assign collage_heroimg = collection.metafields.coln_collage1.collage1_image -%}
+{% endif %}
+{%- comment -%} check to enable new design or old design {%- endcomment -%}
+{% assign is_enable = false %}
+
+{%- if collage_heading and collage_heroimg -%}
+{%- assign is_enable = true -%}
+{%- endif -%}
+
+
+
+{% assign oldDesign = true %}
+{% unless oldDesign == true %}
+{%- if is_enable != true -%}
+<div class="page-width breadcrumb-holder">
+    {% render 'breadcrumb' %}
+</div>
+
+
+
+<style>
+    @media (min-width: 992px){
+        .breadcrumb-holder {
+            padding-top:20px;
+            padding-bottom:20px;
+            margin-bottom: -30px;
+            position: relative;
+            z-index: 1;
+            top: -2px;
+        }
+    }
+        
+</style>
+{% endif %}
+{% endunless %}
+
+{% render 'collection-location-check' %}
+
+{% if is_collection_location == true  %}
+    {% render 'collection-location' %}
+{% else %} 
+    {{"collection-hero-banner.css" | asset_url | stylesheet_tag }}
+    {{ 'simple-popup-modal.css' | asset_url | stylesheet_tag }} 
+    {%- unless current_tags -%}
+                {%- assign heroImage = collection.metafields.collectionmeta.hero_image -%}
+            {%-comment-%}Tile 1{%-endcomment-%}
+                {%- assign tileBlock1_title = collection.metafields.collectionmeta.collection_tile_block_1_title -%}
+                {%- assign tileBlock1_subtitle = collection.metafields.collectionmeta.collection_tile_block_1_subtit-%}
+                {%- if collection.metafields.collectionmeta.collection_tile_block_1_link_all_1 -%}
+                    {%- assign tileBlock1_link = collection.metafields.collectionmeta.collection_tile_block_1_link_all_1 -%}
+                {%- else -%}
+                    {%- assign tileBlock1_link = collection.metafields.collectionmeta.collection_tile_block_1_link-%}
+                {%- endif -%}
+                {%- assign tileBlock1_img = collection.metafields.collectionmeta.collection_tile_block_1_image -%}
+                {%- assign tileBlock1_showParent = true -%}
+                {%-comment-%}layout present or not{%-endcomment-%}
+                    {%- assign tileBlock1_present = false -%}
+                    {% for tile1_title in tileBlock1_title %} 
+                        {%- if tileBlock1_title != blank and tileBlock1_subtitle[forloop.index0]  != blank  -%}
+                            {%- assign tileBlock1_present = true -%}
+                            {%- break -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+            {%-comment-%}Tile 2{%-endcomment-%}
+                {%- assign tileBlock2_title = collection.metafields.collectionmeta.collection_tile_block_2_title -%}
+                {%- assign tileBlock2_subtitle = collection.metafields.collectionmeta.collection_tile_block_2_subtit-%}
+                {%- if collection.metafields.collectionmeta.collection_tile_block_2_link_all -%}
+                    {%- assign tileBlock2_link = collection.metafields.collectionmeta.collection_tile_block_2_link_all -%}
+                {%- else -%}
+                    {%- assign tileBlock2_link = collection.metafields.collectionmeta.collection_title_block_2_link-%}
+                {%- endif -%}
+                {%- assign tileBlock2_img = collection.metafields.collectionmeta.collection_tile_block_2_image -%}
+                {%- assign tileBlock2_showParent = true -%}
+                {%-comment-%}layout present or not{%-endcomment-%}
+                    {%- assign tileBlock2_present = false -%}
+                    {%- if tileBlock2_title and tileBlock2_img -%}
+                        {%- assign tileBlock2_present = true -%}
+                    {%- endif -%}
+            {%-comment-%}Tile 3{%-endcomment-%}
+                {%- assign tileBlock3_title = collection.metafields.collectionmeta.coln_tile_block_3_title -%}
+                {%- assign tileBlock3_videoId = collection.metafields.collectionmeta.coln_tile_block_3_video_id -%}
+                {%-comment-%}layout present or not{%-endcomment-%}
+                    {%- assign tileBlock3_present = false -%}
+                    {%- if tileBlock3_videoId -%}
+                        {%- assign tileBlock3_present = true -%}
+                    {%- endif -%}
+
+    {%- else -%}
+
+            {% for tagname in current_tags %}
+                {%-assign ctag = tagname -%}
+                {%-break-%}
+            {%- endfor -%}
+            {%- assign tagprod = 'tagproducts' -%}
+            {% assign datavalue= ctag | downcase %}
+            {% assign datavalue= datavalue | replace: " ","" %}
+            {% assign datavalue= datavalue | slice: 0, 24 %}
+
+            {%-comment-%}Hero banner subcollection.{%-endcomment-%}
+                {% assign heroIcon_metaKey= datavalue | append: "_ti" %}
+                {% assign heroImage_metaKey= datavalue | append: "_tm" %}
+
+                {%- if shop.metafields[tagprod][heroIcon_metaKey] -%}
+                    {%- assign heroIcon = shop.metafields[tagprod][heroIcon_metaKey] -%}
+                {%- endif -%}
+                {%- if shop.metafields[tagprod][heroImage_metaKey] -%}
+                    {%- assign heroImage = shop.metafields[tagprod][heroImage_metaKey] -%}
+                {%- endif -%}
+            {%-comment-%}Tile 1 [subcollection].{%-endcomment-%}
+                {% assign tile1_metaKey = datavalue | append: "_t1" %}
+                {%- assign tile1_metaValues = shop.metafields[tagprod][tile1_metaKey] -%}
+                {%- if tile1_metaValues  -%}
+                    {%- assign tileBlock1_showParent = false -%}
+                {%- endif -%}
+
+
+                {%-comment-%}layout present or not{%-endcomment-%}
+                    {%-comment-%}Fallback  {%- assign tileBlock1_present = false -%}{%-endcomment-%}
+                    {%- assign tileBlock1_present = false -%}
+                    {%- if tile1_metaValues -%}
+                        {%- assign tileBlock1_present = true -%}
+                    {%- endif -%}
+
+            {%-comment-%}Tile 2 [subcollection].{%-endcomment-%}
+                    {% assign tile2_metaKey= datavalue | append: "_t2" %}
+                    {%- assign tile2_metaValues = shop.metafields[tagprod][tile2_metaKey] -%}
+                    {%- if tile2_metaValues.title and tile2_metaValues.link and tile2_metaValues.image-%}
+                        {%- assign tileBlock2_title = tile2_metaValues.title -%}
+                        {%- assign tileBlock2_subtitle = tile2_metaValues.subtitle-%}
+                        {%- assign tileBlock2_link = tile2_metaValues.link-%}
+                        {%- assign tileBlock2_img = tile2_metaValues.image -%}
+                    {%- endif -%}
+                    {%-comment-%}layout present or not{%-endcomment-%}
+                        {%-comment-%}Fallback{%- assign tileBlock2_present = false -%}{%endcomment%}
+                        {%- assign tileBlock2_present = false -%}
+                        {%- if tileBlock2_title and tileBlock2_img -%}
+                            {%- assign tileBlock2_present = true -%}
+                        {%- endif -%}
+
+            {%-comment-%}Tile 3 [subcollection].{%-endcomment-%}
+                    {% assign tile3_metaKey= datavalue | append: "_t3" %}
+                    {%- assign tile3_metaValues = shop.metafields[tagprod][tile3_metaKey] -%}
+                    {%- assign tileBlock3_videoId = tile3_metaValues.link -%}
+                    {%- assign tileBlock3_title = tile3_metaValues.title-%}
+                    {%-comment-%}layout present or not{%-endcomment-%}
+                        {%-comment-%}Fallback{%- assign tileBlock3_present = false -%}{%-endcomment-%}
+                        {%- assign tileBlock3_present = false -%}
+                        {%- if tileBlock3_videoId -%}
+                            {%- assign tileBlock3_present = true -%}
+                        {%- endif -%}
+
+    {%- endunless -%}
+
+
+    {%-comment-%}layout classname{%-endcomment-%}
+        {%- assign layoutClass = "" -%}
+        {%- if tileBlock1_present == true and tileBlock2_present == true and tileBlock3_present == true -%}
+            {%- assign layoutClass = "collection-tile-1-2-3" -%}
+        {% elsif tileBlock1_present == true and tileBlock2_present == true and tileBlock3_present == false%}
+            {%- assign layoutClass = "collection-tile-1-2-3" -%}
+        {% elsif tileBlock1_present == true and tileBlock2_present == false and tileBlock3_present == true %}
+            {%- assign layoutClass = "collection-tile-1-2-3" -%}
+        {% elsif tileBlock1_present == true and tileBlock2_present == false and tileBlock3_present == false %}
+            {%- assign layoutClass = "collection-tile-1-2 collection-tile-1-3" -%}
+        {%-endif -%}
+
+
+
+{%- assign tagName = '' -%}
+{%- if current_tags -%}
+        {%- for tagname in current_tags -%}
+            {%-assign ctag = tagname -%}
+             {%- assign tagName = ctag -%}
+            {%- break -%}
+        {%- endfor -%}
+        {%- assign datavalue = ctag | downcase -%}
+        {%- assign datavalue = datavalue | replace: " ","" -%}
+        {%- assign datavalue = datavalue | slice: 0, 24 %}
+        {%- assign collage1_metadata = datavalue | append: "_c1" -%} 
+        {%-assign tagproducts = 'tagproducts' -%}  
+        {%- assign metadata_collage1 = shop.metafields.tagproducts[collage1_metadata]  -%} 
+        {%- assign collage_heroimg = metadata_collage1.col_imagename -%}
+{%- else -%}
+        {%- assign collage_heroimg = collection.metafields.coln_collage1.collage1_image -%}
+{%- endif -%}
+
+{%- assign b2bcollection_isEnable = false -%}
+{%- if collage_heroimg -%}
+      {%- assign b2bcollection_isEnable = true -%}
+ {%- endif -%}
+
+        <!-- or collection.handle contains 'workstations' or collection.handle contains 'whiteboards' or collection.handle contains 'office-partitions'  -->
+{% assign oldDesign = true %}
+{% unless oldDesign == true %}
+    {%- unless template == 'collection.rewards'  or b2bcollection_isEnable == true -%}
+       
+        {%- render 'collection-hero-banner', heroImage: heroImage -%}
+       
+    {% endunless %}
+{% endunless %}
+
+    {%- comment -%} If range (first block) not present, do not show rest of block {%- endcomment -%}
+
+{% assign oldDesign = true  %}
+    {%- if tileBlock1_present and oldDesign == false -%}
+        {%- assign is_present_any_one_block = false -%}
+        <div class="collection-tile-wrapper">
+            <div class="page-width">
+                <div class="collection-tile {{layoutClass}}">
+
+                    {%- comment-%}
+                    Tile block 1
+                    ================================================================================================
+                    {%- endcomment-%}
+
+                {%- unless current_tags -%}
+                    {%- comment-%}Parent Collection{%- endcomment -%}
+                    {%- if tileBlock1_title -%}
+                        {%- assign is_present_any_one_block = true -%}
+                        <div  class="collection-tile-item swiffy-slider collection-tile-splide">
+                            
+                                <div class="slider-container">
+                                    {% for tile1_title in tileBlock1_title %}
+
+
+                                        {%- comment -%}
+                                        ----------------
+                                        2023 apr 6. Bug reported. Metafield blank value was not detected. Then error occured.
+                                        Error = Link of tile block 1 was not working.
+                                        Solution = checking string size. if less than 1 mean blank else not blank field 
+                                        ------------------
+                                        {%- endcomment -%}
+
+                                        {%- if tileBlock1_link[forloop.index0].size < 1 -%}
+                                            {%- assign metaCollectionHandle = collection.metafields.collectionmeta.collection_tile_block_1_link[forloop.index0] -%}
+                                            {%- assign tileBlock1_finalLink =  collections[metaCollectionHandle].url -%}
+                                        {%- else -%}
+                                            {%- assign tileBlock1_finalLink = tileBlock1_link[forloop.index0] -%}
+                                        {%- endif -%}
+
+                                    <a  href="{{tileBlock1_finalLink}}">
+                                        <div class="collection-tile-cnt collection-tile-item-1">
+                                            <h3>{{tile1_title}}</h3>
+                                            <span class="sub-title">{{tileBlock1_subtitle[forloop.index0]}}</span>
+                                            <span class="button button--primary">show</span>
+                                        </div>
+                                        {%- assign tile1_img = tileBlock1_img[forloop.index0] | file_img_url: "master" -%}
+                                        <img src="{{tile1_img}}" alt="{{tile1_title | remove:'?'}}">
+                                    </a>
+                                    {%- endfor -%}
+                                </div>
+                                {%- if tileBlock1_title.size > 1 -%}
+                                <div class="slider-indicators slider-indicators--left">
+                                    {%- for tile1_title in tileBlock1_title -%} 
+                                        <button class="{% if forloop.first %}active{% endif %}"></button>
+                                    {%- endfor -%}
+                                </div>
+                                {%- endif -%}
+                                    
+                        </div>
+                    {%-endif-%}
+                {%- else -%}
+                        {%- comment-%}Sub Collection{%- endcomment -%}
+                        <div  class="collection-tile-item  swiffy-slider collection-tile-splide">
+                            <div class="slider-container">
+                                {% for tile1_value in tile1_metaValues %} 
+                                    <a class="" href="{{tile1_value.link}}" >
+                                        <div class="collection-tile-cnt collection-tile-item-1">
+                                            <h3>{{tile1_value.title}}</h3>
+                                            <span class="sub-title">{{tile1_value.subtitle}}</span>
+                                            {%-comment-%}
+                                            {%- if tileBlock1_link[forloop.index0] -%}
+                                                <a href="{{tileBlock1_link[forloop.index0]}}" class="button button--primary">show</a>
+                                            {%-endif-%}
+                                            {%-endcomment-%}
+                                            {%- if tile1_value.link !=""-%}
+                                            <span class="button button--primary">show</span>
+                                            {%-endif-%}
+                                        </div>
+                                        {%- assign tile1_img = tile1_value.image | file_img_url: "master" -%}
+                                        <img src="{{tile1_img}}" alt="{{tile1_title | remove:'?'}}">
+                                    </a>
+                                {%- endfor -%}
+                            </div>
+                            {%- if tile1_metaValues.size > 1 -%}
+                            <div class="slider-indicators slider-indicators--left">
+                                {%- for tile1_title in tile1_metaValues -%} 
+                                    <button class="{% if forloop.first %}active{% endif %}"></button>
+                                {%- endfor -%}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                {%- endunless-%}
+
+
+
+
+                    {%- comment-%}
+                    Tile block - Catalog
+                    ===============================================================================================
+                    {%- endcomment -%}
+                    {%- unless tileBlock2_present and tileBlock3_present-%}
+                    <a href="https://builder.jasonl.com.au/catalogue/" class="collection-tile-item collection-tile-item-2" target="_blank" rel="noopener noreferrer">
+                        <div class="collection-tile-cnt">
+                            <h3>Office Furniture<br>Catalogue 2022</h3>
+                            <span class="sub-title">Oh Yeah!</span>
+                            <span class="button button--primary">view</span>
+                        </div>
+                        <img loading="lazy" class="catalogue-img--small" src="{{'banner-catalogue.png' | file_img_url: '660x'}}" alt="Office Furniture Catalogue 2022" />
+                        <img loading="lazy" class="catalogue-img--big" src="{{'Collection_catalogue-banner.jpg' | file_img_url: '660x'}}" alt="Office Furniture Catalogue 2022" />
+                    </a>
+                    {%- endunless-%}
+                    {%- comment-%}
+                    Tile block 2
+                    ================================================================================================
+                    {%- endcomment-%}
+                    {%- if tileBlock2_title and tileBlock2_img -%}
+                        {%- assign is_present_any_one_block = true -%}
+                        <a href="{{tileBlock2_link}}" class="collection-tile-item collection-tile-item-2">
+                        <div class="collection-tile-cnt">
+                            <h3>{{tileBlock2_title}}</h3>
+                            <span class="sub-title">{{tileBlock2_subtitle}}</span>
+                            <span class="button button--primary">show</span>
+                        </div>
+                        <img src="{{tileBlock2_img | file_img_url : '660x'}}" alt="{{tileBlock2_title | remove:'?'}}">
+                        </a>
+                    {%-endif-%}
+
+
+                    {%- comment-%}
+                    Tile block 3
+                    ================================================================================================
+                    {%- endcomment-%}
+                    {%- if tileBlock3_videoId -%}
+                    {%- assign is_present_any_one_block = true -%}
+                    <div class="collection-tile-item collection-tile-item-3 collection-tile-video">
+                        <div class="collection-tile-cnt">
+                            {% if tileBlock3_title %}
+                                <h3>{{tileBlock3_title}}</h3>
+                            {%- endif -%}
+                            <modal-opener class="simple-popup-modal__opener no-js-hidden" data-modal="#PopupModal-watchvideo" >
+                                <button id="ProductPopup-watchvideo" 
+                                        class="simple-popup-modal__button link" 
+                                        type="button" 
+                                        aria-haspopup="dialog">Watch video {%- render 'icon-arrow' -%}</button>
+                            </modal-opener>
+                            {%-capture video -%}
+                            <deferred-media class="collage-video__modal-video template-popup">
+                                <template>
+                                <iframe src="https://www.youtube.com/embed/{{tileBlock3_videoId}}?enablejsapi=1&autoplay=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title=""></iframe>
+                                </template>
+                            </deferred-media>
+                            {%- endcapture -%}
+                            {%- render 'simple-popup-modal' , 
+                                        modal_id : 'watchvideo',
+                                        modal_size:'cover', 
+                                        modal_content : video
+                            -%}
+                        </div>
+                        <img class="video-jason" src="{{'json.png' | file_img_url: '245x'}}" alt="Jason Levin">
+                    </div>
+                    {%- endif -%}
+                    {%- comment-%}
+                    ================================================================================================
+                    {%- endcomment-%}
+                {%- if is_present_any_one_block == true-%}
+                    <span id="viewallproducts" class="link viewallproducts" onclick="coln_allProductIntoView()">View all products {%- render 'icon-arrow' -%}</span>
+                    <script>
+                    function coln_allProductIntoView(){
+                            //let deliveryReturns = document.getElementById("main-collection-product-grid");
+                            let deliveryReturns = document.getElementById("product-grid");
+                            let topScrollPosition = deliveryReturns.getBoundingClientRect().top + window.pageYOffset - 150 ;
+                            window.scrollTo({
+                                top: topScrollPosition,
+                                behavior: 'smooth',
+                            })  
+                        }
+                    </script>
+                {%- endif -%}
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            window.addEventListener("load", () => {
+                window.swiffyslider.init();
+            });
+        </script>
+    {% endif %}
+
+
+
+
+{%- endif -%}

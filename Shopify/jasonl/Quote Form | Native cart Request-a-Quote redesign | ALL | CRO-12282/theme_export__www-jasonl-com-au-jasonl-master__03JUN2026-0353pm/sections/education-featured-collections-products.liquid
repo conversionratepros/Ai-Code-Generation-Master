@@ -1,0 +1,431 @@
+{% comment %}
+  note :
+  To handle the perth location we have listed the product that contains Perth tag.THis is best approach then ajax and duplicate sections separatly for perth.
+{% endcomment %}
+
+{{ 'education-featured-collections-products.css' | asset_url | stylesheet_tag }}
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split: ',' -%}
+{%- assign is_location_collection = false -%}
+
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split: ',' -%}
+
+
+{% if request.page_type == 'page' %}
+  {%- assign city = page.title -%}
+  {%- assign is_showroom_collection = true -%}
+{% elsif request.page_type == 'collection' %}
+  {% for tagname in current_tags %}
+    {%- assign tag_name = tagname | downcase | escape -%}
+    {%- if cities contains tag_name -%}
+      {%- assign is_location_collection = true -%}
+      {%- assign city = tagname | downcase | escape -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endif %}
+<div class="eduction-product-list-section">
+    <div class="page-width">
+        <div class="product-with-banner-wrap">
+            <div class="product-list-wrap">
+                <h3 class="product-wrap-title">Products</h3>
+                <div class="product-group-wrap">
+                    {% for link in linklists.education-products-list.links %}
+                      <div class="product-group">
+                          <div class="product-icon-title">
+                              <div class="product-icon">
+                                {% assign parent_link_title = link.title | downcase %}
+                                {% case parent_link_title %}
+                                  {% when "desks" %}
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="80px" height="50px">
+                                        <path fill-rule="evenodd"  fill="rgb(45, 45, 45)"
+                                        d="M-0.000,3.000 L-0.000,0.000 L79.1000,0.000 L79.1000,3.000 L-0.000,3.000 ZM5.000,3.1000 L5.000,42.000 L3.000,42.000 L3.000,3.1000 L5.000,3.1000 ZM6.000,3.1000 L74.000,3.1000 L74.000,21.1000 L6.000,21.1000 L6.000,3.1000 ZM61.280,13.507 C61.974,13.507 62.537,12.942 62.537,12.243 C62.537,11.545 61.974,10.979 61.280,10.979 C60.586,10.979 60.023,11.545 60.023,12.243 C60.023,12.942 60.586,13.507 61.280,13.507 ZM19.048,13.507 C19.742,13.507 20.304,12.942 20.304,12.243 C20.304,11.545 19.742,10.979 19.048,10.979 C18.354,10.979 17.791,11.545 17.791,12.243 C17.791,12.942 18.354,13.507 19.048,13.507 ZM6.000,45.000 L5.000,45.000 L5.000,45.1000 L6.000,45.1000 L6.000,47.000 L5.000,47.000 L5.000,50.000 C5.000,50.010 3.008,49.986 3.000,50.000 L3.000,47.000 L1.1000,47.000 L1.1000,45.1000 L3.000,45.1000 L3.000,45.000 L1.1000,45.000 L1.1000,42.1000 L6.000,42.1000 L6.000,45.000 ZM77.000,3.1000 L77.000,42.000 L75.000,42.000 L75.000,3.1000 L77.000,3.1000 ZM77.1000,45.000 L77.000,45.000 L77.000,45.1000 L77.1000,45.1000 L77.1000,47.000 L77.000,47.000 L77.000,50.000 C77.000,50.010 75.008,49.986 75.000,50.000 L75.000,47.000 L74.000,47.000 L74.000,45.1000 L75.000,45.1000 L75.000,45.000 L74.000,45.000 L74.000,42.1000 L77.1000,42.1000 L77.1000,45.000 Z"/>
+                                    </svg>
+                                  {% when "chairs" %}
+                                    <svg 
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                                      width="37px" height="61px">
+                                      <path fill-rule="evenodd"  fill="rgb(45, 45, 45)"
+                                      d="M36.628,27.369 C35.554,26.462 34.029,21.644 33.179,17.847 C32.274,14.164 29.278,4.869 29.278,4.869 C29.126,4.425 28.872,3.984 28.653,3.570 C28.447,3.182 28.217,2.804 27.944,2.460 C27.444,1.830 26.799,1.362 26.078,1.017 C25.404,0.693 24.687,0.449 23.959,0.275 C23.234,0.100 22.496,0.036 21.752,0.018 C20.540,-0.012 19.326,0.034 18.115,0.025 C17.385,0.019 16.656,-0.005 15.926,-0.005 C15.696,-0.004 15.466,-0.001 15.237,0.009 C14.543,0.039 13.850,0.127 13.169,0.252 C12.440,0.384 11.738,0.593 11.081,0.936 C10.402,1.287 9.743,1.727 9.211,2.282 C8.594,2.926 8.210,3.733 7.860,4.544 C7.812,4.651 7.758,4.758 7.719,4.869 C7.719,4.869 4.723,14.164 3.818,17.847 C2.970,21.644 1.444,26.462 0.370,27.369 C0.370,27.369 -0.479,28.729 0.370,29.353 C0.370,29.353 2.630,30.389 8.543,31.045 L0.973,60.131 L0.973,60.133 L0.961,60.182 L0.964,60.183 C0.896,60.492 0.998,60.588 1.197,60.618 C1.305,60.839 1.571,61.000 1.894,61.000 C2.218,61.000 2.485,60.838 2.591,60.616 C2.713,60.585 2.815,60.502 2.865,60.389 L2.892,60.297 L7.301,45.969 L18.148,36.982 L28.996,45.969 L33.402,60.297 L33.431,60.389 C33.486,60.515 33.606,60.603 33.748,60.622 C33.858,60.840 34.120,60.999 34.441,60.999 C34.767,60.999 35.036,60.835 35.140,60.611 C35.311,60.574 35.394,60.470 35.332,60.183 L35.335,60.182 L35.321,60.133 L35.321,60.131 L27.770,31.115 C34.193,30.470 36.628,29.353 36.628,29.353 C37.476,28.729 36.628,27.369 36.628,27.369 M26.467,19.262 C27.292,19.262 27.961,19.933 27.961,20.759 C27.961,21.587 27.292,22.259 26.467,22.259 C25.639,22.259 24.973,21.587 24.973,20.759 C24.973,19.933 25.639,19.262 26.467,19.262 M10.530,19.262 C11.357,19.262 12.026,19.933 12.026,20.759 C12.026,21.587 11.357,22.259 10.530,22.259 C9.704,22.259 9.036,21.587 9.036,20.759 C9.036,19.933 9.704,19.262 10.530,19.262 M7.619,44.930 L11.706,31.644 L17.681,36.594 L7.619,44.930 ZM11.801,31.336 L11.801,31.333 L11.802,31.333 L11.801,31.336 ZM12.308,31.369 C12.438,31.375 18.098,31.561 18.499,31.561 C18.866,31.561 23.976,31.414 24.106,31.406 L18.186,36.212 L12.308,31.369 ZM28.675,44.930 L18.615,36.594 L24.590,31.644 L28.675,44.930 ZM31.528,27.725 C31.467,27.738 25.397,28.981 19.386,28.981 L18.634,28.981 C12.625,28.981 5.549,27.739 5.478,27.727 C5.310,27.696 5.195,27.521 5.222,27.337 C5.248,27.150 5.404,27.020 5.576,27.054 C5.646,27.066 12.676,28.298 18.634,28.298 L19.386,28.298 C25.341,28.298 31.354,27.067 31.413,27.055 C31.583,27.019 31.744,27.141 31.775,27.326 C31.806,27.512 31.695,27.691 31.528,27.725 "/>
+                                    </svg>
+                                  {% when "storage" %}
+                                    <svg 
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                                      width="66px" height="49px">
+                                      <path fill-rule="evenodd"  fill="rgb(45, 45, 45)"
+                                      d="M0.000,0.000 L65.1000,0.000 L65.1000,1.1000 L0.000,1.1000 L0.000,0.000 ZM31.1000,3.000 L31.1000,42.000 L2.1000,42.000 L2.1000,3.000 L31.1000,3.000 ZM29.892,24.644 C30.181,24.644 30.415,24.432 30.415,24.173 C30.415,23.913 30.181,23.701 29.892,23.701 C29.603,23.701 29.369,23.913 29.369,24.173 C29.369,24.432 29.603,24.644 29.892,24.644 ZM8.103,10.087 C8.887,10.087 9.523,9.450 9.523,8.666 C9.523,7.883 8.887,7.246 8.103,7.246 C7.318,7.246 6.684,7.883 6.684,8.666 C6.684,9.450 7.318,10.087 8.103,10.087 ZM63.000,3.000 L63.000,42.000 L33.000,42.000 L33.000,3.000 L63.000,3.000 ZM58.040,10.087 C58.824,10.087 59.460,9.451 59.460,8.666 C59.460,7.883 58.824,7.247 58.040,7.247 C57.255,7.247 56.621,7.883 56.621,8.666 C56.621,9.451 57.255,10.087 58.040,10.087 ZM35.077,24.644 C35.365,24.644 35.597,24.432 35.597,24.173 C35.597,23.913 35.365,23.701 35.077,23.701 C34.785,23.701 34.554,23.913 34.554,24.173 C34.554,24.432 34.785,24.644 35.077,24.644 ZM2.090,42.986 L63.1000,43.000 L63.1000,3.000 L65.971,3.014 L65.1000,48.1000 L63.1000,48.1000 L63.1000,45.000 L1.1000,45.000 L1.1000,48.1000 L0.000,48.1000 L0.000,3.000 L1.1000,3.000 L2.090,42.986 Z"/>
+                                    </svg>
+                                  {% when "accessories" %}
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="63px" height="66px">
+                                        <path fill-rule="evenodd"  fill="rgb(45, 45, 45)"
+                                        d="M63.000,61.1000 L63.000,63.000 L62.000,63.000 L62.000,64.996 C61.930,64.992 61.873,64.939 61.873,64.875 L61.873,63.015 L61.541,63.015 L61.541,64.875 C61.541,64.942 61.479,64.999 61.402,64.999 L61.000,64.999 L61.000,63.000 L59.1000,63.000 L59.1000,61.1000 L61.000,61.1000 L61.000,60.1000 L59.1000,60.1000 L59.1000,60.000 L63.000,60.000 L63.000,60.1000 L62.000,60.1000 L62.000,61.1000 L63.000,61.1000 ZM62.675,64.999 C62.746,64.999 62.000,65.067 62.000,64.1000 L62.000,64.996 C62.003,64.996 62.004,64.999 62.007,64.999 L62.675,64.999 ZM60.716,64.999 L61.000,64.999 L61.000,64.1000 C61.000,65.067 60.640,64.999 60.716,64.999 ZM61.000,-0.000 L62.000,-0.000 L62.000,58.1000 L61.000,58.1000 L61.000,-0.000 ZM2.1000,-0.000 L59.1000,-0.000 L59.1000,38.1000 L2.1000,38.1000 L2.1000,-0.000 ZM51.121,25.787 C51.764,25.787 52.286,25.264 52.286,24.619 C52.286,23.977 51.764,23.455 51.121,23.455 C50.478,23.455 49.956,23.977 49.956,24.619 C49.956,25.264 50.478,25.787 51.121,25.787 ZM11.759,25.787 C12.403,25.787 12.925,25.264 12.925,24.619 C12.925,23.977 12.403,23.455 11.759,23.455 C11.116,23.455 10.596,23.977 10.596,24.619 C10.596,25.264 11.116,25.787 11.759,25.787 ZM1.000,-0.000 L2.000,-0.000 L2.000,58.1000 L1.000,58.1000 L1.000,-0.000 ZM2.1000,41.1000 L58.1000,41.1000 L58.1000,43.000 L2.1000,43.000 L2.1000,41.1000 ZM2.1000,60.1000 L2.000,60.1000 L2.000,61.1000 L2.1000,61.1000 L2.1000,63.000 L2.000,63.000 L2.000,64.999 L1.642,64.999 C1.568,64.999 1.509,64.942 1.509,64.875 L1.509,63.015 L1.174,63.015 L1.174,64.875 C1.174,64.942 1.113,64.999 1.036,64.999 L1.000,64.1000 L1.000,63.000 L0.000,63.000 L0.000,61.1000 L1.000,61.1000 L1.000,60.1000 L0.000,60.1000 L0.000,60.000 L2.1000,60.000 L2.1000,60.1000 ZM2.000,64.1000 L2.000,64.999 L2.308,64.999 C2.382,64.999 2.000,65.067 2.000,64.1000 Z"/>
+                                    </svg>
+                                {% endcase %}
+                              </div>
+                              <div class="group-title"><strong>{{ link.title }}</strong></div>
+                          </div>
+                          {% if link.links != blank %}
+                          <ul>
+                            {% for childlink in link.links %}
+                              {% assign childtitle_downcase = childlink.title | downcase %}
+                              {% if childtitle_downcase == "more" %}
+                                <li><a href="{{ childlink.url }}" class="link">{{ childlink.title }} &gt;</a></li>
+                              {% else %}
+                                <li><a href="{{ childlink.url }}">{{ childlink.title }}</a></li>
+                              {% endif %}
+                            {% endfor %}
+                          </ul>
+                          {% endif %}
+                      </div> 
+                    {% endfor %}
+                    {% comment %} 
+                    <div class="product-group">
+                        <div class="product-icon-title">
+                            <div class="product-icon">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="37px" height="61px">
+                                    <path fill-rule="evenodd"  fill="rgb(45, 45, 45)"
+                                    d="M36.628,27.369 C35.554,26.462 34.029,21.644 33.179,17.847 C32.274,14.164 29.278,4.869 29.278,4.869 C29.126,4.425 28.872,3.984 28.653,3.570 C28.447,3.182 28.217,2.804 27.944,2.460 C27.444,1.830 26.799,1.362 26.078,1.017 C25.404,0.693 24.687,0.449 23.959,0.275 C23.234,0.100 22.496,0.036 21.752,0.018 C20.540,-0.012 19.326,0.034 18.115,0.025 C17.385,0.019 16.656,-0.005 15.926,-0.005 C15.696,-0.004 15.466,-0.001 15.237,0.009 C14.543,0.039 13.850,0.127 13.169,0.252 C12.440,0.384 11.738,0.593 11.081,0.936 C10.402,1.287 9.743,1.727 9.211,2.282 C8.594,2.926 8.210,3.733 7.860,4.544 C7.812,4.651 7.758,4.758 7.719,4.869 C7.719,4.869 4.723,14.164 3.818,17.847 C2.970,21.644 1.444,26.462 0.370,27.369 C0.370,27.369 -0.479,28.729 0.370,29.353 C0.370,29.353 2.630,30.389 8.543,31.045 L0.973,60.131 L0.973,60.133 L0.961,60.182 L0.964,60.183 C0.896,60.492 0.998,60.588 1.197,60.618 C1.305,60.839 1.571,61.000 1.894,61.000 C2.218,61.000 2.485,60.838 2.591,60.616 C2.713,60.585 2.815,60.502 2.865,60.389 L2.892,60.297 L7.301,45.969 L18.148,36.982 L28.996,45.969 L33.402,60.297 L33.431,60.389 C33.486,60.515 33.606,60.603 33.748,60.622 C33.858,60.840 34.120,60.999 34.441,60.999 C34.767,60.999 35.036,60.835 35.140,60.611 C35.311,60.574 35.394,60.470 35.332,60.183 L35.335,60.182 L35.321,60.133 L35.321,60.131 L27.770,31.115 C34.193,30.470 36.628,29.353 36.628,29.353 C37.476,28.729 36.628,27.369 36.628,27.369 M26.467,19.262 C27.292,19.262 27.961,19.933 27.961,20.759 C27.961,21.587 27.292,22.259 26.467,22.259 C25.639,22.259 24.973,21.587 24.973,20.759 C24.973,19.933 25.639,19.262 26.467,19.262 M10.530,19.262 C11.357,19.262 12.026,19.933 12.026,20.759 C12.026,21.587 11.357,22.259 10.530,22.259 C9.704,22.259 9.036,21.587 9.036,20.759 C9.036,19.933 9.704,19.262 10.530,19.262 M7.619,44.930 L11.706,31.644 L17.681,36.594 L7.619,44.930 ZM11.801,31.336 L11.801,31.333 L11.802,31.333 L11.801,31.336 ZM12.308,31.369 C12.438,31.375 18.098,31.561 18.499,31.561 C18.866,31.561 23.976,31.414 24.106,31.406 L18.186,36.212 L12.308,31.369 ZM28.675,44.930 L18.615,36.594 L24.590,31.644 L28.675,44.930 ZM31.528,27.725 C31.467,27.738 25.397,28.981 19.386,28.981 L18.634,28.981 C12.625,28.981 5.549,27.739 5.478,27.727 C5.310,27.696 5.195,27.521 5.222,27.337 C5.248,27.150 5.404,27.020 5.576,27.054 C5.646,27.066 12.676,28.298 18.634,28.298 L19.386,28.298 C25.341,28.298 31.354,27.067 31.413,27.055 C31.583,27.019 31.744,27.141 31.775,27.326 C31.806,27.512 31.695,27.691 31.528,27.725 "/>
+                                </svg>
+                            </div>
+                            <div class="group-title"><strong>Chairs</strong></div>
+                        </div>
+                        <ul>
+                            <li><a href="#">Classroom</a></li>
+                            <li><a href="#">Multi-Purpose</a></li>
+                            <li><a href="#">Teachers Desks</a></li>
+                            <li><a href="#">Fixed Height</a></li>
+                            <li><a href="#" class="link">More &gt; </a></li>
+                        </ul>
+                    </div>
+                    <div class="product-group">
+                        <div class="product-icon-title">
+                            <div class="product-icon">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="66px" height="49px">
+                                    <path fill-rule="evenodd"  fill="rgb(45, 45, 45)"
+                                    d="M0.000,0.000 L65.1000,0.000 L65.1000,1.1000 L0.000,1.1000 L0.000,0.000 ZM31.1000,3.000 L31.1000,42.000 L2.1000,42.000 L2.1000,3.000 L31.1000,3.000 ZM29.892,24.644 C30.181,24.644 30.415,24.432 30.415,24.173 C30.415,23.913 30.181,23.701 29.892,23.701 C29.603,23.701 29.369,23.913 29.369,24.173 C29.369,24.432 29.603,24.644 29.892,24.644 ZM8.103,10.087 C8.887,10.087 9.523,9.450 9.523,8.666 C9.523,7.883 8.887,7.246 8.103,7.246 C7.318,7.246 6.684,7.883 6.684,8.666 C6.684,9.450 7.318,10.087 8.103,10.087 ZM63.000,3.000 L63.000,42.000 L33.000,42.000 L33.000,3.000 L63.000,3.000 ZM58.040,10.087 C58.824,10.087 59.460,9.451 59.460,8.666 C59.460,7.883 58.824,7.247 58.040,7.247 C57.255,7.247 56.621,7.883 56.621,8.666 C56.621,9.451 57.255,10.087 58.040,10.087 ZM35.077,24.644 C35.365,24.644 35.597,24.432 35.597,24.173 C35.597,23.913 35.365,23.701 35.077,23.701 C34.785,23.701 34.554,23.913 34.554,24.173 C34.554,24.432 34.785,24.644 35.077,24.644 ZM2.090,42.986 L63.1000,43.000 L63.1000,3.000 L65.971,3.014 L65.1000,48.1000 L63.1000,48.1000 L63.1000,45.000 L1.1000,45.000 L1.1000,48.1000 L0.000,48.1000 L0.000,3.000 L1.1000,3.000 L2.090,42.986 Z"/>
+                                </svg>
+                            </div>
+                            <div class="group-title"><strong>Storage</strong></div>
+                        </div>
+                        <ul>
+                            <li><a href="#">Classroom</a></li>
+                            <li><a href="#">Multi-Purpose</a></li>
+                            <li><a href="#">Teachers Desks</a></li>
+                            <li><a href="#">Fixed Height</a></li>
+                            <li><a href="#" class="link">More &gt; </a></li>
+                        </ul>
+                    </div>
+                    <div class="product-group">
+                        <div class="product-icon-title">
+                            <div class="product-icon">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="63px" height="66px">
+                                    <path fill-rule="evenodd"  fill="rgb(45, 45, 45)"
+                                    d="M63.000,61.1000 L63.000,63.000 L62.000,63.000 L62.000,64.996 C61.930,64.992 61.873,64.939 61.873,64.875 L61.873,63.015 L61.541,63.015 L61.541,64.875 C61.541,64.942 61.479,64.999 61.402,64.999 L61.000,64.999 L61.000,63.000 L59.1000,63.000 L59.1000,61.1000 L61.000,61.1000 L61.000,60.1000 L59.1000,60.1000 L59.1000,60.000 L63.000,60.000 L63.000,60.1000 L62.000,60.1000 L62.000,61.1000 L63.000,61.1000 ZM62.675,64.999 C62.746,64.999 62.000,65.067 62.000,64.1000 L62.000,64.996 C62.003,64.996 62.004,64.999 62.007,64.999 L62.675,64.999 ZM60.716,64.999 L61.000,64.999 L61.000,64.1000 C61.000,65.067 60.640,64.999 60.716,64.999 ZM61.000,-0.000 L62.000,-0.000 L62.000,58.1000 L61.000,58.1000 L61.000,-0.000 ZM2.1000,-0.000 L59.1000,-0.000 L59.1000,38.1000 L2.1000,38.1000 L2.1000,-0.000 ZM51.121,25.787 C51.764,25.787 52.286,25.264 52.286,24.619 C52.286,23.977 51.764,23.455 51.121,23.455 C50.478,23.455 49.956,23.977 49.956,24.619 C49.956,25.264 50.478,25.787 51.121,25.787 ZM11.759,25.787 C12.403,25.787 12.925,25.264 12.925,24.619 C12.925,23.977 12.403,23.455 11.759,23.455 C11.116,23.455 10.596,23.977 10.596,24.619 C10.596,25.264 11.116,25.787 11.759,25.787 ZM1.000,-0.000 L2.000,-0.000 L2.000,58.1000 L1.000,58.1000 L1.000,-0.000 ZM2.1000,41.1000 L58.1000,41.1000 L58.1000,43.000 L2.1000,43.000 L2.1000,41.1000 ZM2.1000,60.1000 L2.000,60.1000 L2.000,61.1000 L2.1000,61.1000 L2.1000,63.000 L2.000,63.000 L2.000,64.999 L1.642,64.999 C1.568,64.999 1.509,64.942 1.509,64.875 L1.509,63.015 L1.174,63.015 L1.174,64.875 C1.174,64.942 1.113,64.999 1.036,64.999 L1.000,64.1000 L1.000,63.000 L0.000,63.000 L0.000,61.1000 L1.000,61.1000 L1.000,60.1000 L0.000,60.1000 L0.000,60.000 L2.1000,60.000 L2.1000,60.1000 ZM2.000,64.1000 L2.000,64.999 L2.308,64.999 C2.382,64.999 2.000,65.067 2.000,64.1000 Z"/>
+                                </svg>
+                            </div>
+                            <div class="group-title"><strong>Accessories</strong></div>
+                        </div>
+                        <ul>
+                            <li><a href="#">Classroom</a></li>
+                            <li><a href="#">Multi-Purpose</a></li>
+                            <li><a href="#">Teachers Desks</a></li>
+                            <li><a href="#">Fixed Height</a></li>
+                            <li><a href="#" class="link">More &gt; </a></li>
+                        </ul>
+                    </div>  
+                    {% endcomment %}
+                </div>
+            </div>
+            <div class="product-list-banner">
+                <div class="banner-ad-top">
+                    <picture class="bannerimg">
+                        <source srcset="{{ 'education-list-banner-img.png' | file_img_url: '885x' }}" media="(min-width: 768px)">
+                        <img src="{{ 'education-list-banner-img-sm.png' | file_img_url: '335x' }}" alt="Education Lookbook" width="885px" height="298px">
+                    </picture>
+                    <div class="banner-title">
+                        <div class="banner-title-text-arrow">
+                            Education <br> Lookbook
+                        </div>
+                        <a href="https://cdn.shopify.com/s/files/1/1249/7859/files/Education_Lookbook.pdf?v=1757492970" class="btn" target="_blank">VIEW</a>
+                    </div>
+                </div>
+                <div class="banner-bottom-section">
+                    <div class="bottom-heading-info-col">
+                        <div class="bottom-title-wrap">
+                            <h3 class="bottom-title">
+                                No mismatched furniture. Ever.
+                            </h3>
+                        </div>
+                        <div class="bottom-info">
+                            Keep your campus cohesive for years. Download our free checklist to avoid mismatched furniture — and reorder the same reliable items as you grow.
+                            <a href="https://www.jasonl.com.au/how-avoid-mismatched-furniture-campus-forever" class="btn view-btn" target="_blank">VIEW</a>
+                        </div>
+                    </div>
+                    <div class="brochure-col">
+                        <a href="https://www.jasonl.com.au/how-avoid-mismatched-furniture-campus-forever" class="brochure-download-btn" target="_blank">Free Resource</a>
+                        <div class="brouchure-img">
+                            <picture>
+                                <img src="{{ 'brochure-thumb.png' | file_img_url: '104x' }}" alt="brochure thumbnail" width="104px" height="145px" >
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% comment %} 
+{% if is_location_collection == true or is_showroom_collection == true or blog.handle == "shop-by-rooms" %}
+  <div class="featured-collection-products-holder" id="featured-collection-products">
+    <div class="page-width">
+      {%- if template.name == 'collection' -%}
+        {%- assign featured_collections = collection.metafields.custom.featured_collections.value -%}
+        <h4 class="h2 section-title">
+          {{ collection.title }} and so much more <span class="text-italic-fade">in {{ city | capitalize}}</span>
+        </h4>
+      {%- elsif template.name == 'page' -%}
+        {%- assign featured_collections = page.metafields.custom.featured_collections.value -%}
+      {%- elsif blog.handle == "shop-by-rooms"  -%}
+        {%- assign featured_collections = article.metafields.custom.blog_post_featured_collections.value -%}
+      {%- endif -%}
+
+      <ul class="featured-collection-tab-menu top-spacing">
+        {%- if featured_collections -%}
+          {% for featured_collection in featured_collections %}
+            <li class="{%- if forloop.index == 1 -%}active{%- endif -%}" data-target="block{{forloop.index}}">
+              {{ featured_collection.block_title }}
+            </li>
+          {% endfor %}
+        {%- endif -%}
+      </ul>
+
+      <div class="col-wrapper">
+        {%- if featured_collections -%}
+          {%- for featured_collection in featured_collections -%}
+            {%- if featured_collection -%}
+              {%- assign block_title = featured_collection.block_title.value -%}
+              {%- assign collection_handle = featured_collection.select_collection.value.handle -%}
+              {%- assign tag_handle = featured_collection.tag_handle.value -%}
+              {%- assign max_products = section.settings.products_to_show | default: 4 -%}
+              {%- assign products_displayed = 0 -%}
+              {%- assign filtered_count = 0 -%}
+              <div class="col" id="block{{forloop.index}}">
+                <h3>{{ block_title }}</h3>
+
+                {%- if collection_handle -%}
+                  {%- assign filtered_products = collections[collection_handle].products -%}
+                  {%- if tag_handle != blank -%}
+                    {%- comment -%}product listing by tag (sub collection by tag handle){%- endcomment -%}
+                    <ul>
+                      {%- for product in filtered_products -%}
+                        {%- if products_displayed < max_products and product.tags contains tag_handle -%}
+                          <li class="product-item all-products">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">
+                                <picture>
+                                  <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                  <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="auto">
+                                </picture>
+                                {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- assign products_displayed = products_displayed | plus: 1 -%}
+                        {%- endif -%}
+
+                        {%- if filtered_count < max_products
+                          and product.tags contains 'Perth'
+                          and product.tags contains tag_handle
+                        -%}
+                          <li class="product-item perth-products hidden">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">
+                                <picture>
+                                  <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                  <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="auto">
+                                </picture>
+                                {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- assign filtered_count = filtered_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                      {%- if products_displayed == max_products -%}
+                        <li class="view-all">
+                          <a href="{{collections[collection_handle].url}}/{{tag_handle}}" class="link">View all</a>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {%- else -%}
+                    {%- comment -%}product listing by collection {%- endcomment -%}
+                    <ul>
+                      {% comment %}
+                        {%- for product in filtered_products limit: max_products -%}
+                          <li class="product-item">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">{{ product.featured_image | image_url: width: 107 | image_tag : loading: 'lazy' }}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros}}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- if forloop.index == max_products -%}
+                              <li class="view-all"><a href="{{collections[collection_handle].url}}" class="link">View all</a></li>
+                          {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                        {%- assign products_displayed = products_displayed | plus: 1 -%}
+                      {% endcomment %}
+
+                      {%- for product in filtered_products -%}
+                        {%- if products_displayed < max_products -%}
+                          <li class="product-item all-products">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">
+                                <picture>
+                                  <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                  <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="auto">
+                                </picture>
+                                {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- assign products_displayed = products_displayed | plus: 1 -%}
+                        {%- endif -%}
+
+                        {%- if filtered_count < max_products and product.tags contains 'Perth' -%}
+                          <li class="product-item perth-products hidden">
+                            <a href="{{ product.url }}">
+                              <div class="item-img">
+                                <picture>
+                                  <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                  <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="auto">
+                                </picture>
+                                {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag: loading: 'lazy' }} {% endcomment %}
+                              </div>
+                              <div class="item-details">
+                                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                              </div>
+                            </a>
+                          </li>
+                          {%- assign filtered_count = filtered_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      <li class="view-all">
+                        <a href="{{ collections[collection_handle].url }}" class="link">View all</a>
+                      </li>
+                    </ul>
+                  {%- endif -%}
+
+                  {%- if products_displayed == 0 -%}
+                    <p>No products found with the selected filter.</p>
+                  {%- endif -%}
+                {%- else -%}
+                  <p>Collection handle is required to display products.</p>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <p>Failed to load metaobject data.</p>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          <p>No featured collections found in the metafield.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}  
+{% endcomment %}
+
+{% comment %} 
+ <script>
+  document.querySelectorAll('.featured-collection-tab-menu li').forEach((button) => {
+    button.addEventListener('click', () => {
+      const targetId = button.getAttribute('data-target');
+      const targetElement = document.getElementById(targetId);
+      document.querySelector('.featured-collection-tab-menu li.active').classList.remove('active');
+      button.classList.add('active');
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth', // Smooth scroll animation
+          block: 'nearest', // Ensure it aligns correctly
+          inline: 'center', // Horizontally center the block
+        });
+      }
+    });
+  });
+</script> 
+{% endcomment %}
+{% comment %} 
+{% if template == 'collection' %}
+  <script>
+    (function () {
+      const url = new URL(window.location.href);
+      const hasLocationParam = url.searchParams.has('location');
+
+      let featuredCollectionSections = document.getElementById('featured-collection-products');
+      if (featuredCollectionSections) {
+        if (hasLocationParam) {
+          featuredCollectionSections.style.display = 'block';
+        } else {
+          featuredCollectionSections.style.display = 'none';
+        }
+      }
+    })();
+  </script>
+{% endif %}
+{% endcomment %}
+{% schema %}
+{
+  "name": "Featured Collections",
+  "class": "featured_collections-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Instruction",
+      "info": "Home Page data source blocks. Other pages data source is metafield."
+    },
+    {
+      "type": "number",
+      "id": "products_to_show",
+      "label": "Number of products per column",
+      "default": 4
+    }
+  ]
+}
+{% endschema %}

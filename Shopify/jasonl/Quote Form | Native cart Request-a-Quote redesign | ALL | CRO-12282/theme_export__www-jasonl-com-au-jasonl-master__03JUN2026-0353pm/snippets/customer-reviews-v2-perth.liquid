@@ -1,0 +1,63 @@
+
+<div class="googlereviews">
+    <div class="googlereviews-item">
+        <div class="reviewer-top">
+            <div class="reviewer-info">
+                    <div class="starholder">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <h3 class="review-title">Outstanding service and smooth delivery from the Perth team</h3>
+                    <div class="review-body">
+                        <p>We recently ordered new office furniture through JasonL. The service and turnaround time were extraordinary. From the moment the order was placed to the delivery and set up was done with professionalism. The furniture quality is fantastic, and we were particularly pleased with the excellent colour choice, which not only matched our expectations but also showed a deep understanding of our aesthetic preferences. We don't have a picture now as we are still arranging everything in the office, but we wouldn't mind supplying one once it's ready. Once again, thank you on behalf of my company and I to the amazing Perth Team from JasonL for all the help.</p>
+                    </div>
+                    <p class="reviewer-name">- Vivian Romic</p>
+                    {%comment%} END::timeago {%endcomment%}
+            </div>
+        </div>
+        {%- if reviewno_counter_index == 1 -%}
+            <p class="reviewer-review">{{ reviewdata.review | truncatewords: 23, "..." }}</p>
+        {%-else-%}
+            <p class="reviewer-review">{{ reviewdata.review | truncatewords: 23, "..." }}</p>
+        {%-endif-%}
+    </div>
+    <div class="googlereviews-item">
+        <div class="reviewer-top">
+            <div class="reviewer-info">
+                    <div class="starholder">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <h3 class="review-title">Helpful guidance made choosing the right chair simple</h3>
+                    <div class="review-body">
+                        <p>I needed a new chair for my home office and was really impressed with the service at JasonL Perth. Sophia Evans was incredibly helpful — no sales pressure, just clear explanations and the chance to try out the different chairs at our own pace. All of them were very comfortable, but we settled on the Falcon for its excellent back support and great finish. I'd thoroughly recommend JasonL to anyone looking for quality office furniture and friendly, professional service.</p>
+                    </div>
+                    <p class="reviewer-name">- Peter Skinner</p>
+            </div>
+        </div>
+    </div>
+    <div class="googlereviews-item">
+        <div class="reviewer-top">
+            <div class="reviewer-info">
+                    <div class="starholder">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <h3 class="review-title">Friendly team delivered the perfect filing cabinet solution</h3>
+                    <div class="review-body">
+                        <p>We have been looking for the right type of filing cabinet for a long time and finally found one at an affordable price at JasonL. The people at JasonL were super friendly and very accommodating and arranged delivery on the day I was home. They do all sorts of other office furniture as well but I couldn't be more happy with their support and willingness to assist you and the end outcome. Something rare these days. Thanks heaps to the entire team for going out of their way to arrange delivery of a super product.</p>
+                    </div>
+                    <p class="reviewer-name">- Joe Foley</p>
+            </div>
+        </div>
+    </div>
+</div>

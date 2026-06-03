@@ -1,0 +1,110 @@
+{% comment %} {%- assign video_id_with_params = video_url | split: "v=" | last -%} {% endcomment %}
+{% comment %} {%- assign video_url_id = video_id_with_params | split: "&" | first -%} {% endcomment %}
+{%- assign video_url_id = youtube_id -%}
+{%- if video_url contains "youtube" -%}
+  {%- assign video_type = "youtube" -%}
+{%- elsif video_url contains "vimeo" -%}
+  {%- assign video_type = "vimeo" -%}
+{%- else -%}
+  {%- assign video_type = "unknown" -%}
+{%- endif -%}
+
+{% if youtube_title and youtube_uploaded_date %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+          "@type": "VideoObject",
+          "name": "{{youtube_title}}",
+          "description": "{{youtube_description}}",
+          "thumbnailUrl": [
+              "https://img.youtube.com/vi/{{youtube_id}}/default.jpg", 
+            "https://img.youtube.com/vi/{{youtube_id}}/hqdefault.jpg", 
+            "https://img.youtube.com/vi/{{youtube_id}}/mqdefault.jpg", 
+              "https://img.youtube.com/vi/{{youtube_id}}/sddefault.jpg"
+          ], 
+          "uploadDate": "{{youtube_uploaded_date}}",
+          "embedUrl": "https://www.youtube.com/embed/{{youtube_id}}"
+          }
+    </script>
+{%- endif -%}
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+              <modal-opener data-modal="#PopupModal-var-id">
+                  <div class="deferred-media">
+                    <button
+                      class="deferred-media__poster full-unstyled-link"
+                      type="button"
+                      aria-label="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
+                      aria-haspopup="dialog"
+                      data-media-id="{{ video_url_id }}"
+                    >
+                      <div class="media media--transparent ratio">
+                        <span class="deferred-media__poster-button motion-reduce">
+                          <span class="svg-wrapper">
+                            {{- 'icon-play.svg' | inline_asset_content -}}
+                          </span>
+                        </span>
+
+                        {%- if cover_image != blank -%}
+
+                         
+                          
+                         <img src="{{cover_image}}" {% if cover_image_lazy %}loading="lazy"{% endif %} width="{{cover_image_width}}" height="" alt="{{cover_image_alt}}" />
+                            
+                        {%- else -%}
+                          {% comment %} {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }} {% endcomment %}
+                          <img src="https://img.youtube.com/vi/{{youtube_id}}/sddefault.jpg" alt="thumbnail" loading="lazy"/>
+                        {%- endif -%}
+                      </div>
+                    </button>
+                  </div>
+                </modal-opener>
+                <modal-dialog
+                  id="PopupModal-var-id"
+                  class="modal-video media-modal color-{{ settings.color_schemes | first }}"
+                >
+                  <div
+                    class="modal-video__content"
+                    role="dialog"
+                    aria-label="{{ block.settings.description | escape }}"
+                    aria-modal="true"
+                    tabindex="-1"
+                  >
+                    <button
+                      id="ModalClose-{{ block.id }}"
+                      type="button"
+                      class="modal-video__toggle"
+                      aria-label="{{ 'accessibility.close' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-close.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                    <div class="modal-video__content-info">
+                      <deferred-media class="modal-video__video template-popup">
+                        <template>
+                          {%- if video_type == 'youtube' -%}
+                            <iframe
+                              src="https://www.youtube.com/embed/{{ video_url_id }}?enablejsapi=1&rel=0"
+                              class="js-youtube"
+                              allow="autoplay; encrypted-media"
+                              allowfullscreen
+                              title="{{ block.settings.description | escape }}"
+                            ></iframe>
+                          {%- else -%}
+                            <iframe
+                              src="https://player.vimeo.com/video/{{ video_url_id }}"
+                              class="js-vimeo"
+                              allow="autoplay; encrypted-media"
+                              allowfullscreen
+                              title="{{ block.settings.description | escape }}"
+                            ></iframe>
+                          {%- endif -%}
+                        </template>
+                      </deferred-media>
+                    </div>
+                  </div>
+                </modal-dialog>

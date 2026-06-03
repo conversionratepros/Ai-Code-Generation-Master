@@ -1,0 +1,182 @@
+ {%- unless current_tags contains 'resource-hub' -%}
+      {{ 'rh-navbar.css' | asset_url | stylesheet_tag }}
+      <div class="rh-navbar section-scroll-menu">
+          <div class="page-width">
+              <nav id="rh-nav" class="">
+                  {%- comment -%} <!-- Left side of the navbar --> {%- endcomment -%}
+                  <div class="scroll-menu" >
+                    <h1  class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+                      Resource Hub
+                    </h1>
+                  </div>
+                    {%- comment -%} <!-- Right side of the navbar --> {%- endcomment -%}
+                    <div class="navbar-rt" id="navbar-rt">
+                      <ul class="tab-button-list">
+                        {% comment %} <li><a href="/blogs/main/tagged/featured" class="{% if current_tags contains "featured" %} current {% endif %} {% unless current_tags %} current {% endunless %}">  Home office</a></li> {% endcomment %}
+                        <li><a href="/blogs/main/tagged/business" class="{% if current_tags contains "business" %} current {% endif %} {% unless current_tags %} current {% endunless %} business">Business</a></li>
+                        <li><a href="/blogs/main/tagged/trade" class="{% if current_tags contains "trade" %} current {% endif %}">Trade</a></li>
+                      </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+{%- endunless -%}
+
+ {%- unless current_tags -%}
+  {%- comment -%} This script should run just on main blog. Not on tagged and detail blog  {%- endcomment -%}
+<script>
+  function update_view_all_link(){
+    let path = window.location.pathname;
+    const viewall_btn = document.querySelectorAll('.viewall');
+    for(let i=0; i<viewall_btn.length;i++){
+      viewall_btn[i].setAttribute('href','/blogs/main/tagged/resource-hub+featured');
+    }
+  }
+  window.addEventListener('load', () => {
+      update_view_all_link();
+  });
+
+
+</script>
+ {%- endunless -%}
+  {% schema %}
+    {
+      "name": "Nav Bar",
+      "settings": []
+    }
+{%- endschema -%}
+
+
+                        {%- comment -%} 
+                        <!-- Search bar -->
+                          <div class="blog-search" id="blog-search">
+                          <form method="get" action="/search">
+                              <input type="hidden" name="type" value="article" />
+                              <input type="text" name="q" value="" placeholder="search" required/>
+                              <div class="blog-search-submit-holder">
+                                  <input  type="submit" value="Search" />
+                                {% render 'icon-search' %}
+                              </div>
+                              
+                          </form>
+                          <script>
+                              function blogSearch(){
+                                  let btn = document.getElementById("blog-search");
+                                  let nav = document.getElementById("rh-nav");
+                                  // on click
+                                  btn.addEventListener('click', function(){
+                                      if(!nav.classList.contains('blog-search-open')){
+                                          nav.classList.add('blog-search-open');
+                                      }
+                                  })
+                                  // event listener for focus out from search field
+                                  btn.querySelector('input[name="q"]').addEventListener('focusout', function(event) {
+                                    if(nav.classList.contains('blog-search-open')){
+                                          nav.classList.remove('blog-search-open');
+                                      }
+                                  });
+                              }
+                              blogSearch()
+                          </script>
+                        </div> {%- endcomment -%}
+                      
+                        {%- comment -%}
+                        <!-- Default category as a dropdown -->
+                        {%- assign blog_main_categories = "Business,Home Office,Trade" -%}
+                        {%- assign blog_main_categories_array =  blog_main_categories | split: ',' -%}
+                        <p>tester {{current_tags}} - {{request.host}}{{request.path}}</p>
+
+
+
+                  {% if request.path contains '/blog/main' %}
+                        {% for cat in  blog_main_categories_array %}
+                        
+                        <div class="dropdown">
+                          <div class="dropdown-label">
+                          {% if current_tags %}
+                              {% if current_tags contains "Business" %}
+                                <a href="/blogs/main/tagged/business">Business</a>
+                                <span class="arrow-down"></span>
+                            {% else %}
+                                <a href="/blogs/main/tagged/business">Business</a>
+                                <span class="arrow-down"></span>
+                          {% endif %}
+                          </div> 
+
+
+                          <div class="dropdown-content">
+                            <a href="/blogs/main/tagged/featured">Home Office</a>
+                            <a href="/blogs/main/tagged/featured">Trade</a>
+                          </div>
+                        </div>
+                        {% endfor %}
+                  {% endif %} 
+                  {%- endcomment -%}
+
+
+                  {%- comment -%} 
+                    {%- assign blog_main_categories = "Business,Home,Trade" -%}
+                    {%- assign blog_main_categories_array =  blog_main_categories | split: ',' -%}
+
+                    <div class="dropdown" id="blog-category-dropdown">
+                    <div class="dropdown-label">
+                      <div class="active" id="blogs-filteredby-tag">
+                        {%- assign currentPageURL = "https://" | append:request.host |  append:request.path   -%}
+                        {%- assign blog_main_business = "https://" | append:request.host |  append:'/blogs/main'  -%}
+                        {%- assign blog_main_home = "https://" | append:request.host |  append:'/blogs/main/tagged/home'  -%}
+                        {%- assign blog_main_trade = "https://" | append:request.host |  append:'/blogs/main/tagged/trade'  -%}
+                      
+                      
+                      
+                      <!--
+                        {% if currentPageURL == blog_main_business %}
+                          Business
+                        {%  elsif  currentPageURL == blog_main_home %}
+                          Home
+                        {% elsif currentPageURL == blog_main_trade %}
+                          Trade -->
+                      
+
+
+
+                      {%- if currentPageURL contains "home" and current_tags -%}
+                            Home
+                            {%- elsif currentPageURL contains "trade" and current_tags -%}
+                            Trade
+                            {%- elsif currentPageURL contains "education" and current_tags -%}
+                            Education
+                            {%- else -%}
+                            Business
+                        {%- endif -%}
+                      </div>
+                      <span class="arrow-down"></span>
+                    </div> 
+                    <div class="dropdown-content">
+                      {% for b in blog_main_categories_array %}
+                        {% assign getHandle  = b | handleize %}
+                        {% assign bDowncase = b | downcase  %}
+                        {% if bDowncase == "business" %}
+                          {% assign url = 'blogs/main'%}
+                        {% else %}
+                          {%- assign url = 'blogs/main/tagged/' | append:getHandle -%}
+                        {% endif %}
+                        {%- assign currentPageURL = "https://" | append:request.host |  append:request.path   -%}
+                        {%- assign redirectURL =  shop.url | append:'/' | append: url  -%}
+
+                        {% if currentPageURL == redirectURL %}
+                          <span class="disabled" data-current-page-url="{{currentPageURL}}" data-href="{{redirectURL}}">{{b}}</span>
+                        {% else %}
+                          <a data-current-page-url="{{currentPageURL}}" href="{{redirectURL}}">{{b}}</a>
+                        {% endif %}
+                      {% endfor %} 
+                    </div>
+                  </div>
+
+                    <script>
+                      function blogs_filtered_dropdown(){
+                        document.getElementById('blog-category-dropdown').addEventListener('click',function(){
+                          document.getElementById('navbar-rt').classList.toggle('dropdown-open')
+                        })
+                      }
+                      blogs_filtered_dropdown();
+                    </script> {%- endcomment -%}

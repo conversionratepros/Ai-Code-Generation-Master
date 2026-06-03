@@ -1,0 +1,47 @@
+
+{% comment -%}
+modal_id : example: sku
+modal_size : default/small/
+modal_label : example: Show SKU
+modal_content : HTML example '<h2>title</h2><p>content</p>'
+
+
+EXAMPLE code to place on code:
+
+{%- capture modal_content -%}
+<h2>Heading</h2>
+<p>Test content for modalbox</p>
+{%- endcapture -%}
+{%- render 'simple-popup-modal', 
+modal_id: 'showsku', 
+modal_class: '',
+modal_size:'small', 
+modal_label:'Get a Quote' , 
+modal_button_class:'button link'
+modal_content: modal_content -%}
+
+NOTE:
+button tag required under modal-opener
+
+{%- endcomment %}
+{% comment %} {{ 'simple-popup-modal.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{%- if modal_label != empty and modal_label-%}
+    <modal-opener class="simple-popup-modal__opener no-js-hidden" 
+          data-modal="#PopupModal-{{modal_id}}" 
+          {% if modal_button_data_attributes %}
+            {%- comment -%}this attribute is used in perth.js.liquid in showsku_stocks() function {%- endcomment -%}
+            {{modal_button_data_attributes}}
+          {% endif %}>
+          <button {% if modal_button_class %}class="{{modal_button_class}}"{% endif %}>{{modal_label}}</button>
+    </modal-opener>
+    {%- endif -%}
+    
+    
+    <modal-dialog id="PopupModal-{{modal_id}}" class="simple-popup-modal simple-popup-modal--{{modal_size}} {% if modal_class %}popupModal-{{modal_class}}{% endif %}" >
+          <div role="dialog" aria-label="{{modal_label}}" aria-modal="true" class="simple-popup-modal__content" tabindex="-1">
+            <button id="ModalClose-{{modal_id}}" type="button" class="simple-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close-thick' %}</button>
+            <div class="simple-popup-modal__content-info">
+           {{modal_content}}
+            </div>
+          </div>
+    </modal-dialog>

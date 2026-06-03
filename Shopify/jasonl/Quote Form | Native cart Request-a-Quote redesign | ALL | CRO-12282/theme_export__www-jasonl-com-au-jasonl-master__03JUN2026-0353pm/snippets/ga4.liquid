@@ -1,0 +1,201 @@
+
+{%- unless template contains 'page.blocked_customer'-%}
+    <script> 
+      {%- comment -%}
+      <!-- TODO: need to check this function. Does not seems to be call anywhere. -->
+      {%- endcomment -%}
+      /* product listing */
+function toggleMoreInfo(parent){
+  var getClassName = parent.className;
+  //console.log(getClassName);
+  if(getClassName.includes('active')){
+    parent.classList.remove('active');
+  }else{    
+    parent.classList.add('active');
+  }
+}
+// var elements = document.getElementsByClassName("moreinfo-btn");
+// for(var i= 0; i < elements.length; i++){
+//   elements[i].addEventListener('click',toggleMoreInfo);
+// }
+    </script>
+{% endunless %}
+
+
+{%- unless template contains 'page.blocked_customer'-%}
+<script>
+
+  {%- if template.name == 'collection' -%}
+      function ga_popularProduct(){
+        let popularProd = document.getElementsByClassName('popular-item');
+        let from = 'From: '+window.location.pathname;
+        for (var x = 0; x < popularProd.length; x++) {
+          //console.log(popularProd[x].childNodes.length);
+              popularProd[x].addEventListener('click',function(){
+                for (var i = 0; i < this.childNodes.length; i++) {
+                  if (this.childNodes[i].className == "card-wrapper") {
+                    let holder = this.childNodes[i];
+                    let topCat = '';
+                    //let topCategory = holder.querySelector("tag");
+                      
+                      {% comment %} 
+                          if(holder.dataset.popular == 0)  topCat = 'Popular';
+                          if(holder.dataset.popular == 1)  topCat = 'New';
+                          if(holder.dataset.popular == 2)  topCat = 'Recommended'; 
+                      {% endcomment %}
+                      
+                        // ga4 event through tagmanager 
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                        'event' : 'TopCategory',
+                        'GA4_eventAction':'New',
+                        'GA4_eventLabel':from
+                        });
+                    break;
+                  }        
+                }
+          });
+        }
+      }
+      ga_popularProduct();
+    {%- endif %}
+
+
+
+  {% comment -%} 
+    function ga_nav(){
+    let nav = document.getElementsByClassName('menu-drawer__menu'); 
+     popularProd[x].addEventListener('click',function(){
+     })
+  }
+ {%- endcomment -%}
+  {%- if template.name == 'product' -%}
+            function ga_comparison(){
+            let from = 'From: '+window.location.pathname;
+            let item = document.getElementsByClassName('compare-product-item');
+
+            for (var i = 0; i < item.length; i++) {
+            item[i].addEventListener('click',function(){
+              let title = this.dataset.product;
+              let position = this.dataset.position;
+              let titlePosition = `${title} - ProductPosition ${position}`;
+
+
+              // ga4 event through tagmanager 
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event' : 'Comparison',
+                    'GA4_eventAction':titlePosition,
+                    'GA4_eventLabel':from
+                });
+
+
+            }); 
+            }
+          }
+          ga_comparison();
+
+          function ga_goeswellwith(){
+            let from = 'From: '+window.location.pathname;
+            let item = document.getElementsByClassName('crossell__item');
+
+            for (var i = 0; i < item.length; i++) {
+            item[i].addEventListener('click',function(){
+              let title = this.dataset.product;
+              let position = this.dataset.position;
+              let titlePosition = `${title} - ProductPosition ${position}`;
+              //console.log(titlePosition);
+              
+
+                // ga4 event through tagmanager 
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                'event' : 'GoesWellWith',
+                'GA4_eventAction':titlePosition,
+                'GA4_eventLabel':from
+            });
+
+
+            }); 
+            }
+          }
+          ga_goeswellwith();
+
+            function ga_similarproducts(){
+              let from = 'From: '+window.location.pathname;
+              let item = document.getElementsByClassName('similar-products__ga');
+
+              for (var i = 0; i < item.length; i++) {
+              item[i].addEventListener('click',function(){
+                let title = this.dataset.gaproduct;
+                let position = this.dataset.gaposition;
+                let titlePosition = `${title} - ProductPosition ${position}`;
+                //console.log(titlePosition);
+              }); 
+              }
+            }
+            ga_similarproducts();
+
+    {% endif %}
+
+
+
+            function ga_nav(){
+            let from = 'From: '+window.location.pathname;
+            let item = document.getElementsByClassName('menu-drawer__menu-item');
+
+                for (var i = 0; i < item.length; i++) {
+                      item[i].addEventListener('click',function(){
+                        let title = this.getAttribute("title");
+                        
+
+                        // ga4 event through tagmanager 
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({
+                          'event' : 'Nav',
+                          'GA4_eventAction':title,
+                          'GA4_eventLabel':from
+                          })
+
+                      });
+                    }
+              }
+            ga_nav();
+
+            function ga_navchild(){
+                let from = 'From: '+window.location.pathname;
+                let item = document.getElementsByClassName('site-nav__link');
+                let parent = "{{collection.title}}";
+
+                for (var i = 0; i < item.length; i++) {
+                item[i].addEventListener('click',function(){
+                  let child = this.dataset.collectiontag;
+                  let parentChild = `${parent} - ${child}`;
+                  
+
+                  // ga4 event through tagmanager 
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                    'event' : 'Nav',
+                    'GA4_eventAction':parentChild,
+                    'GA4_eventLabel':from
+                    })
+
+
+                }); 
+                }
+              }
+              ga_navchild();
+          // on hover
+    </script>
+{% endunless %} <!-- end blocked customers -->
+<script>
+// send typform opened id to gtm
+function ready({ formId }) {
+  let form_id = { formId };
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event' : `typeform_opened_${form_id.formId}`
+  });
+}
+</script>

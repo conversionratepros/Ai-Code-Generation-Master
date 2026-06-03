@@ -1,0 +1,17 @@
+<svg class="icon icon-cart icon-cart-empty" id="cartCapa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <defs>
+    <style>
+      .cart-cls {
+        fill: #1d1d1b;
+      }
+      @media(max-width:767px){
+        .cart-cls {
+        fill: #ffffff;
+      }
+      }
+    </style>
+  </defs>
+  <path class="cart-cls" d="M53.11,15.05H16.06l-1.53-6.18h-7.64v2.54h5.65l7.78,31.49h24.26v-2.54h-22.27l-1.47-5.94h26.53l5.74-19.37ZM34.51,17.59h5.9l-1.53,14.28h-4.37v-14.28ZM31.97,31.87h-4.37l-1.53-14.28h5.91v14.28ZM16.69,17.59h6.81l1.53,14.28h-4.82l-3.53-14.28ZM41.44,31.87l1.53-14.28h6.74l-4.23,14.28h-4.04Z"/>
+  <circle class="cart-cls" cx="24.55" cy="48.01" r="3.12"/>
+  <circle class="cart-cls" cx="41.47" cy="48.01" r="3.12"/>
+</svg>

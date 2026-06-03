@@ -1,0 +1,70 @@
+
+
+{%- capture meet_people -%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+{{"meet-people.css" | asset_url | stylesheet_tag}}
+<div class="meetpeople-container">
+<div class="page-width">
+<div class="">
+{%- assign current_page = template.name -%}
+{%- for message in shop.metafields.accentuate.main_text -%}
+{%- if current_page == shop.metafields.accentuate.page[forloop.index0] or current_page == "product" or template == "page.showroom-landing-page" or template == "page.furniture_for_landing_pages" 
+    or template == "blog.fitouts"
+     or template == "page.trade"
+     or template == "page.landing-page-1"
+     or template == "page.landing-page-2"
+     or template == "page.landing-page-3"
+     or template == "page.fitouts-trade-con"
+     or template == "page.fitouts-trade" 
+     or template == "page.trade-con" 
+     -%}
+<div class="meetpeople-wrapper">
+<div class="meetpeople-left">
+<div class="meetpeople-banner">
+<div class="people-img">
+<picture>
+<source srcset="{{ shop.metafields.accentuate.main_image[forloop.index0] | file_img_url: '1200x' }} 2x, {{ shop.metafields.accentuate.main_image[forloop.index0] | file_img_url: '2400x' }} 3x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+<img src="{{shop.metafields.accentuate.main_image[forloop.index0]| file_img_url:'600x' }}"
+alt="{{ shop.metafields.accentuate.main_title[forloop.index0] }}" height="455"  
+width="530" loading="lazy"/>
+</picture>
+</div>
+<div class="people-text-wrapper">
+<div class="people-text">
+<h2>{{ shop.metafields.accentuate.main_title[forloop.index0] }}<span>.</span></h2>
+<p>{{message}}</p>
+<img class="signature" loading="lazy" alt="signature"
+src="{{ shop.metafields.accentuate.main_signature[forloop.index0] | file_img_url:'master' }}"
+height="" width=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="meetpeople-right">
+<div class="meet-box-holder">
+<div class="meetpeople-box">
+<p>
+{{ shop.metafields.accentuate.card_text[forloop.index0] }}
+</p>
+<strong class="peoplename">{{ shop.metafields.accentuate.card_name[forloop.index0] }}</strong>
+<span class="peoplepost">{{ shop.metafields.accentuate.card_designation[forloop.index0] }} at {{shop.metafields.accentuate.card_company[forloop.index0] }}</span>
+<img class="people-img"
+src="{{ shop.metafields.accentuate.card_image[forloop.index0] | file_img_url:'master' }}"
+alt="{{ shop.metafields.accentuate.card_name[forloop.index0] }} {{ shop.metafields.accentuate.card_designation[forloop.index0] }} at {{shop.metafields.accentuate.card_company[forloop.index0] }}" width="163px" height="163px" loading="lazy"/>
+</div>
+</div>
+</div>
+</div>
+{%- endif -%}
+{%- endfor -%}
+</div>
+</div>
+</div>
+{%- endcapture -%}
+{{ meet_people |  strip_newlines}}
+{%- schema -%}
+{
+"name": "Meet People",
+"class":"meetpeople-section"
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+{{ 'custom-checkout.css' | asset_url | stylesheet_tag }}
+<div class="custom-checkout-holder">
+  {% render 'custom-checkout--header' %}
+  <div class="custom-checkout-main">
+    <div class="page-width">
+      {%- if cart != empty -%}
+        <div class="custom-checkout-cols">
+          <div class="cols-item cols-left">
+            {%- render 'custom-checkout--form' -%}
+          </div>
+          <div class="cols-item cols-right">
+            {%- render 'custom-checkout--cart-products' -%}
+          </div>
+        </div>
+      {%- else -%}
+        <h3>Your cart is currently empty.</h3>
+        <p>
+          Continue browsing
+          <a href="https://www.jasonl.com.au/">here</a>.
+        </p>
+        <style>
+          h3 {
+            margin-top: 30px;
+            margin-bottom: 0;
+          }
+          .custom-checkout-main:after {
+            display: none;
+          }
+        </style>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="page-width">
+    {% render 'form-thankyou-msg' %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Custom Checkout",
+    "settings": []
+  }
+{% endschema %}

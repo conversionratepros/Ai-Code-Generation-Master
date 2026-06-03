@@ -1,0 +1,213 @@
+{%- capture featured_collection_products_holder -%}
+      {{ 'featured-collection-products.css' | asset_url | stylesheet_tag }}
+      <div class="featured-collection-products-holder">
+          <div class="page-width">
+               <ul class="featured-collection-tab-menu">
+                  {%- for block in section.blocks -%}
+                      {%- if block.type == 'repeater_block' -%}
+                          <li class="{%- if forloop.index == 1 -%}active{%- endif -%}" data-target="block{{forloop.index}}">
+                            {{ block.settings.block_title | split: "?" | first }}
+                          </li>
+                      {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+                <div class="col-wrapper">
+                    {%- for block in section.blocks -%}
+                          {%- if block.type == 'repeater_block' -%}
+                                <div class="col" id="block{{forloop.index}}">
+                                    <h3>{{ block.settings.block_title | replace : "?", "?<br >" }}</h3>
+                                    {%- assign collection_handle = block.settings.collection_handle -%}
+                                    {%- assign tag_handle = block.settings.tag_handle -%}
+                                    {%- assign max_products = section.settings.products_to_show | default: 4 -%}
+                                    {%- assign products_displayed = 0 -%}
+                                    {%- assign filtered_count = 0 -%}
+                                    {%- if collection_handle -%}
+                                            {%- assign filtered_products = collections[collection_handle].products -%}
+
+                                            
+                                            {%- if tag_handle != blank -%}
+                                                  {%- comment -%}product listing by tag (sub collection by tag handle){%- endcomment -%}
+                                                  <ul>
+                                                    {%- for product in filtered_products -%}
+                                                          {%- if products_displayed < max_products and product.tags contains tag_handle -%}
+                                                              <li class="product-item all-products">
+                                                                <a href="{{ product.url }}">
+                                                                  <div class="item-img">
+                                                                    <picture>
+                                                                      <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                                                                      <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                                                                    </picture>
+                                                                  </div>
+                                                                  <div class="item-details">
+                                                                    <h4>{{ product.title | strip_html | truncatewords: 8  }}</h4>
+                                                                    <span class="price">{{ product.price | money_without_trailing_zeros}}</span>
+                                                                  </div>
+                                                                </a>
+                                                              </li>
+                                                              {%- assign products_displayed = products_displayed | plus: 1 -%}
+                                                            {%- endif -%}
+
+                                                            {%- if filtered_count < max_products and product.tags contains 'Perth' and product.tags contains tag_handle -%}
+                                                              <li class="product-item perth-products hidden">
+                                                                <a href="{{ product.url }}">
+                                                                  <div class="item-img">
+                                                                    <picture>
+                                                                      <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                                                                      <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                                                                    </picture>
+                                                                    {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag : loading: 'lazy'}} {% endcomment %}
+                                                                  </div>
+                                                                  <div class="item-details">
+                                                                    <h4>{{ product.title | strip_html | truncatewords: 8  }}</h4>
+                                                                    <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                                  </div>
+                                                                </a>
+                                                              </li>
+                                                              {%- assign filtered_count = filtered_count | plus: 1 -%}
+                                                            {%- endif -%}
+                                                            
+                                                      {%- endfor -%}
+                                                      {%- if products_displayed == max_products -%}
+                                                            <li class="view-all">
+                                                                <a href="{{collections[collection_handle].url}}/{{tag_handle}}" class="link">View all</a>
+                                                            </li>
+                                                      {%- endif -%}
+                                                  </ul>
+                                        {%- else -%}
+                                                    {%- comment -%}product listing by collection {%- endcomment -%}
+                                                    <ul>
+                                                      {% comment %} {%- for product in filtered_products limit: max_products -%}
+                                                      <li class="product-item">
+                                                        <a href="{{ product.url }}">
+                                                          <div class="item-img">{{ product.featured_image | image_url: width: 107 | image_tag : loading: 'lazy' }}
+                                                          </div>
+                                                          <div class="item-details">
+                                                            <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                                            <span class="price">{{ product.price | money_without_trailing_zeros}}</span>
+                                                          </div>
+                                                        </a>
+                                                      </li>
+                                                      {%- if forloop.index == max_products -%}
+                                                          <li class="view-all"><a href="{{collections[collection_handle].url}}" class="link">View all</a></li>
+                                                      {%- endif -%}
+                                                      {%- endfor -%}
+                                                    </ul>
+                                                    {%- assign products_displayed = products_displayed | plus: 1 -%} {% endcomment %}
+
+                                                    
+                                                      {%- for product in filtered_products -%}
+                                                        {%- if products_displayed < max_products -%}
+                                                            <li class="product-item all-products">
+                                                              <a href="{{ product.url }}">
+                                                                <div class="item-img">
+                                                                  <picture>
+                                                                    <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                                                                    <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                                                                  </picture>
+                                                                  {% comment %} {{ product.featured_image | image_url: width: 150 | image_tag : loading: 'lazy' }} {% endcomment %}
+                                                                </div>
+                                                                <div class="item-details">
+                                                                  <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                                                                  <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                                </div>
+                                                              </a>
+                                                            </li>
+                                                            {%- assign products_displayed = products_displayed | plus: 1 -%}
+                                                        {%- endif -%}
+                                                    
+                                                        {%- if filtered_count < max_products and product.tags contains 'Perth' -%}
+                                                          <li class="product-item perth-products hidden">
+                                                            <a href="{{ product.url }}">
+                                                              <div class="item-img">
+                                                                <picture>
+                                                                  <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                                                                  <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                                                                </picture>
+                                                                {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag : loading: 'lazy'}} {% endcomment %}
+                                                              </div>
+                                                              <div class="item-details">
+                                                                <h4>{{ product.title | strip_html | truncatewords: 8  }}</h4>
+                                                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                              </div>
+                                                            </a>
+                                                          </li>
+                                                          {%- assign filtered_count = filtered_count | plus: 1 -%}
+                                                        {%- endif -%}
+                                                      {%- endfor -%}
+                                                    
+                                                      <li class="view-all">
+                                                        <a href="{{ collections[collection_handle].url }}" class="link">View all</a>
+                                                      </li>
+                                                    </ul>
+                                                    
+                                                    
+                                            {%- endif -%}
+            {%- if products_displayed == 0 or filtered_count == 0 -%}
+                    <p>No products found with the selected filter.</p>
+            {%- endif -%}
+  {%- else -%}
+        <p>Collection handle is required to display products.</p>
+  {%- endif -%}
+</div>
+{%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endcapture -%}
+{{ featured_collection_products_holder | strip_newlines }}
+<script>
+  document.querySelectorAll('.featured-collection-tab-menu li').forEach(button => {
+    button.addEventListener('click', () => {
+
+      const targetId = button.getAttribute('data-target');
+      const targetElement = document.getElementById(targetId);
+      document.querySelector('.featured-collection-tab-menu li.active').classList.remove('active');
+      button.classList.add('active');
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth', // Smooth scroll animation
+          block: 'nearest',   // Ensure it aligns correctly
+          inline: 'center'    // Horizontally center the block
+        });
+      }
+    });
+  });
+</script>
+{% schema %}
+{
+"name": "Featured Collections",
+"settings": [
+{
+"type": "number",
+"id": "products_to_show",
+"label": "Number of Products per column",
+"default": 4
+}
+],
+"blocks": [
+{
+"type": "repeater_block",
+"name": "Repeater Item",
+"settings": [
+{
+"type": "text",
+"id": "block_title",
+"label": "Block Title"
+},
+{
+"type": "collection",
+"id": "collection_handle",
+"label": "Select Collection"
+},
+{
+"type": "text",
+"id": "tag_handle",
+"label": "Tag Handle"
+}
+]
+}
+]
+}
+{% endschema %}

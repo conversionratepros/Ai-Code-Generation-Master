@@ -152,6 +152,98 @@ Confirm the files have been created and show the folder path.
 
 ## Learnings & Patterns
 
+### waitForElement — always double-chain on async pages
+
+Never call `injectSomething()` directly inside `init()` if the target elements may not yet be in the DOM. Use a second `waitForElement` call inside `init()`:
+
+```js
+// ✅ Correct — waits for page shell, then waits for actual card elements
+function init() {
+    addClass('body', variation_name);
+    waitForElement('.product-item', injectBadges); // second wait inside init
+}
+waitForElement('.page-wrapper', init);
+
+// ❌ Wrong — .product-item may not exist yet when init fires
+function init() {
+    addClass('body', variation_name);
+    injectBadges(); // fires too early, finds no elements
+}
+waitForElement('.page-wrapper', init);
+```
+
+---
+
+### MutationObserver — always watch the stable parent, never the re-rendered child
+
+When AJAX loads new content (infinite scroll, "View More", filter changes), the platform typically **replaces** the inner list element entirely. Observing the inner list means your observer dies on first replacement.
+
+Always observe the **nearest ancestor that survives re-renders**, and debounce to avoid firing mid-render:
+
+```js
+var debounceTimer = null;
+var stableParent = document.querySelector('#stable-container');
+if (stableParent) {
+    var observer = new MutationObserver(function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(injectThings, 150);
+    });
+    observer.observe(stableParent, { childList: true, subtree: true });
+}
+```
+
+---
+
+### Double-inject guard — required on every injection function
+
+Any function that inserts HTML must check for its own output before running. The function may be called by `waitForElement`, the MutationObserver, or filter/sort re-renders:
+
+```js
+function injectBadge(card) {
+    if (card.querySelector('.cro-XXXX-badge')) return; // guard
+    // ... inject
+}
+```
+
+---
+
+### Parsing dimensions from product titles
+
+Product titles often embed dimensions in inconsistent formats. Use a regex that handles all known variants:
+
+```
+"Floor Tile - 600 x 600mm"       → 600, 600
+"Floor Tile - 600mm x 600mm"     → 600, 600  (mm between numbers)
+"Mosaic - 300 x 300 x 4mm"       → 300, 300  (third number = thickness, ignored)
+```
+
+Regex:
+```js
+var match = title.match(/(\d+)\s*(?:mm)?\s*[xX×]\s*(\d+)(?:\s*[xX×]\s*\d+)?\s*(?:mm)?/);
+```
+
+Always take `Math.max` / `Math.min` of the two captured values so the larger is always treated as the longest side regardless of title order.
+
+---
+
+### Using Figma MCP / API for icon accuracy
+
+Never hand-craft icon SVGs from memory. Always fetch the actual Figma SVG export:
+
+1. Get node IDs from Figma file data: `GET /v1/files/{key}/nodes?ids={nodeId}`
+2. Export as SVG: `GET /v1/images/{key}?ids={nodeId}&format=svg`
+3. Copy the paths/structure exactly — especially mask types, stroke colors, spacing
+
+This avoids subtle visual differences (e.g. diagonal hatching vs grid lines, mask vs clipPath, exact stroke colors).
+
+---
+
+### Removing unused boilerplate functions
+
+After building a test, audit which helper functions are actually called. Remove any that are not used — `live`, `insertHtml`, `innerHTMLContent`, `innerChildContent`, `toggleClass`, `removeClass`, `scroll`, `waitForSwiper`, `addScript`, `initializeSwiper` are all boilerplate that should be stripped if not needed. Lean code is easier to QA and deploy.
+
+---
+
 ### Replacing a native `<select>` with a custom stepper
 
 When a test replaces a dropdown quantity selector with a custom ±1 stepper:

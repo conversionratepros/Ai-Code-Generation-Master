@@ -1,0 +1,20 @@
+{% assign menutitle_downcase = menutitle | downcase | replace: "&", "and" %}
+{% assign menutitle_downcase = menutitle_downcase | strip %}
+{% case menutitle_downcase %}
+{% when "chairs" %}
+    Office Chairs
+{% when "desks" %}
+    Office Desks
+{% when "workstations" %}
+    Office Workstations
+{% when "storage" %}
+    Office Storage
+{% when "tables" %}
+    Office Tables
+{% when "pods and acoustics" %}
+    Office Pods and Acoustics
+{% when "sofas and lounges" %}
+    Office Sofas and Lounges
+{% else %}
+  {{ menutitle }}
+{% endcase %}

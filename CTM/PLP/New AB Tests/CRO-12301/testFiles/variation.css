@@ -1,0 +1,83 @@
+/* CRO-12301 | Recipe | PLP Card | Size Differentiation Visual Cue | ALL */
+
+/* ── Price row: flex so badge sits inline to the right of price ── */
+html body.cro12301 .product-item-details-action {
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 8.5px; */
+}
+
+/* ── Size badge container ── */
+/* Figma: layout:HORIZONTAL, gap:8px, 130×43px */
+html body.cro12301 .cro12301-size-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    position: relative;
+    top: -12px;
+}
+
+/* ── Circle icon: 43×43 — rendered entirely inside the SVG ── */
+html body.cro12301 .cro12301-tile-icon {
+    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
+    display: block;
+}
+
+/* ── Text block: vertical stack with 8px gap ── */
+/* Figma: Container [77×26], layout:VERTICAL, gap:8 */
+html body.cro12301 .cro12301-size-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ── Size label: "Size: M" ── */
+/* Figma: Source Sans Pro 14px w700 lh:11px #161616 */
+html body.cro12301 .cro12301-size-label {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 11px;
+    color: #161616;
+    display: block;
+}
+
+/* ── Dimensions: "60 × 60cm" ── */
+/* Figma: Source Sans Pro 14px w400 lh:14px #737373 */
+html body.cro12301 .cro12301-size-dims {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    color: #737373;
+    display: block;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    html body.cro12301 .cro12301-tile-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    html body.cro12301 .cro12301-size-badge {
+        gap: 6px;
+    }
+
+    html body.cro12301 .cro12301-size-text {
+        gap: 6px;
+    }
+
+    html body.cro12301 .cro12301-size-label {
+        font-size: 11px;
+        line-height: 1;
+    }
+
+    html body.cro12301 .cro12301-size-dims {
+        font-size: 10px;
+        line-height: 1;
+    }
+}

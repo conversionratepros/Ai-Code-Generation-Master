@@ -1,0 +1,18 @@
+<div class="widget links">
+{%- capture widget_footer_menu -%}
+      <ul>
+        {%- if template != 'page.australian-scholarship'-%}
+        {%-assign fmenu = section.settings.footer-menu-%}
+        {% else %}
+        {%-assign fmenu = 'scholarship-footer-menu' -%}
+        {%- endif -%}
+
+        {% for link in linklists[fmenu].links %}
+        <li {% if link.title=='jay.pay' %}style="display:none" {% endif %}><a href="{{link.url}}">{{link.title}}</a>
+        </li>
+        {%- endfor -%}
+      </ul>
+      {%- endcapture -%}
+      {{ widget_footer_menu |  strip_newlines }}
+      {%- render 'social-widget' classname:'small-hide'-%}
+    </div>

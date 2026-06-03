@@ -1,0 +1,180 @@
+<!-- Modal -->
+<!-- id="myModal"  -->
+<div id="contact-purchase-form" class="modal fade myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="contactPurchaseModal()"><span aria-hidden="true">&times;</span></button>
+          <p class="modal-title" id="myModalLabel">Please fill the form below</p>
+        </div>
+        {%-comment-%} live url and dev url {%-endcomment-%}
+        {%-if shop.url contains 'jasonl.com.au' -%}
+        {%- assign request_purchase_url = 'https://prnt.jasonl.com.au/contact/nostockcontact' -%}
+        {%-else-%}
+        {%- assign request_purchase_url = 'https://poptopdesk.com/contact/nostockcontact' -%}
+        {%- endif -%}
+  <form class="form-horizontal" id="request_purchase" method="POST" action="{{request_purchase_url}}">
+    <div class="modal-body">
+      <fieldset>
+        <!-- Form Name -->
+        <!-- Text input-->
+  <div class="form-group">
+  <!-- for="textinput" remove from <label> tag to fix W#C validate error -->
+  <label class="col-md-4 control-label">Name</label>  
+  <div class="col-md-4">
+  <input name="textinput" id="cname" placeholder="Name" class="form-control input-md" required="" type="text">
+  </div>
+  </div>
+  
+  <!-- Text input-->
+  <div class="form-group">
+  <!-- for="textinput" remove from <label> tag to fix W#C validate error -->
+  <label class="col-md-4 control-label">Email</label>  
+  <div class="col-md-4">
+  <input name="textinput" id="cemail" placeholder="Email" class="form-control input-md" required="" type="email">
+  </div>
+  </div>
+  
+  <!-- Text input-->
+  <div class="form-group">
+  <!-- for="textinput" remove from <label> tag to fix W#C validate error -->
+  <label class="col-md-4 control-label">Phone</label>  
+  <div class="col-md-4">
+  <input name="textinput" id="cphone" placeholder="Phone" class="form-control input-md" required="" type="text">
+  </div>
+  </div>
+        
+  <div class="form-group">
+  <label class="col-md-4 control-label">State</label>  
+  <div class="col-md-4 select-holder states-holder">
+  <select name="state" id="cstate" class="form-control input-md" required>
+    <option value="" disabled selected>State</option>
+    <option value="New South Wales">New South Wales</option>
+    <option value="Victoria">Victoria</option>
+    <option value="Queensland">Queensland</option>
+    <option value="South Australia">South Australia</option>
+    <option value="Australian Capital Territory">Australian Capital Territory</option>
+    <option value="Western Australia">Western Australia</option>
+    <option value="Tasmania">Tasmania</option>
+  </select>
+  </div>
+  </div>
+  
+  <!-- Text input-->
+  <div class="form-group">
+  <!-- for="textinput" remove from <label> tag to fix W#C validate error -->
+  <label class="col-md-4 control-label">Product</label>  
+  <div class="col-md-4">
+  <input disabled="disabled" id="cproduct" value="{{ product.title }}" name="textinput" placeholder="Product name" class="form-control input-md cproducturl" required="" type="text" product-category= "{% render 'get_product_category' %}">
+  <input type="hidden" disabled="disabled" id="cproduct_category" value="{% render 'get_product_category' %}" name="cproduct_category">
+  </div>
+  </div>
+  <input type="hidden" id="backorder-product_url" value="" name="product_url">
+  <input type="hidden" id="backorder-variant-id" value="{{ card_product.selected_or_first_available_variant.id }}" name="variant-id">
+  <div class="form-group">
+  <div class="col-md-4">
+  <div id="re-captcha"></div>
+  </div>
+  </div> 
+  <div class="legend"></div>
+  </fieldset>
+  
+  </div>
+  
+  <div class="modal-footer">
+  <button type="button" class="btn btn-inverse" data-dismiss="modal" onClick="contactPurchaseModal()">Cancel</button>
+  <button type="submit" class="btn btn-primary submitforpurchase">Submit</button>
+  </div>
+  
+  </form>
+  </div>
+  </div>
+  <div id="contctPurchase-overlay" class="modal-backdrop fade" onClick="contactPurchaseModal()">.</div>
+  </div>
+  
+  
+  
+  <script src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
+      <script>
+  let requestPurchase = document.getElementById('request_purchase');
+  var actCallback = function (response) {
+    if(requestPurchase.length > 0){
+      requestPurchase.disabled = false;
+    }
+  };
+  
+  var expCallback = function() {
+      if(requestPurchase.length > 0){
+        requestPurchase.disabled = true;
+      }
+  };
+  
+  var onloadCallback = function () {
+      if(requestPurchase.length > 0){
+      var contactpurchase = grecaptcha.render(document.getElementById("re-captcha"), {
+      'sitekey' : "6LfNrcwUAAAAAOmjQMwI5MlkCOrTe5anAXSK2Z_-", // Sitekey, Retrieving from reCaptcha
+      'theme': "light",
+      'callback': actCallback,
+      'expired-callback': expCallback
+    });
+    }
+  }
+  
+  
+  function loadRecaptch(){
+    let ele_captchaloaded = document.getElementsByClassName('contactToPurchase_recaptcha_loaded');
+    let ele_recpatcha = document.getElementById('re-captcha');
+      if(ele_captchaloaded.length < 1){
+          setTimeout(function(){
+              onloadCallback();
+              ele_recpatcha.classList.add('contactToPurchase_recaptcha_loaded');
+          },400)
+        }
+   }
+  
+    function contactPurchaseModal(productTitle, productUrl, variantId){
+      loadRecaptch();
+      //let btn = document.getElementsByClassName('btn-preorder');
+      let modalBox = document.getElementById('contact-purchase-form');
+      let isOpen = document.getElementsByClassName('modal-open');
+      let body = document.getElementsByTagName('body');
+      let overlay = document.getElementById('contctPurchase-overlay');
+      if(isOpen.length > 0){
+          body[0].classList.remove('modal-open');
+          modalBox.classList.remove('in');
+          overlay.classList.remove('in');
+      }else{
+          body[0].classList.add('modal-open');
+          modalBox.classList.add('in');
+          overlay.classList.add('in');
+      }
+
+      const contactPopup = document.getElementById('contact-purchase-form');
+      const producturl = document.getElementById('backorder-product_url');
+      const variant_id = document.getElementById('backorder-variant-id');
+      if (contactPopup) {
+        const titleElement = document.getElementById('cproduct');
+        if (titleElement) titleElement.value = productTitle;
+        if (producturl) producturl.value = "{{ shop.url }}" +productUrl;
+        if (variant_id && variant_id.value === '' ) variant_id.value = variantId;
+      }
+    }
+  
+      </script>
+    {% comment %} <style>
+     .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+  }
+  .alert-success {
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+  }
+    </style> {% endcomment %}
+  
+  
+  
+  

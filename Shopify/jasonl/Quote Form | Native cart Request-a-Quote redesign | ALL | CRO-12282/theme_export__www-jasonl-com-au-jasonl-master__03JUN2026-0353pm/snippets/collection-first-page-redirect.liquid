@@ -1,0 +1,14 @@
+{%- comment -%} 
+Collection first page redirection 
+issue:
+1. resolved duplicate content issue for /collections/?page=1 with /collections/
+{%- endcomment -%}
+{%- if request.path contains '/collections' -%}
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("page") === "1") {
+        const baseUrl = window.location.pathname;
+        window.location.replace(baseUrl);
+    }
+    </script>
+{%- endif -%}

@@ -1,0 +1,26 @@
+<!-- fitout team listing start -->
+{{ 'cta-dark.css' | asset_url | stylesheet_tag }}
+<style>
+    .cta-dark-section{
+        background-image: url('{{ 'cta-bg-dark.jpg' | file_img_url: '375x' }}');
+    }
+    @media(min-width: 768px){
+        .cta-dark-section{
+            background-image: url('{{ 'cta-bg-dark.jpg' | file_img_url: '1901x' }}');
+        }
+    }
+</style>
+
+<div class="cta-dark-section">
+  <div class="page-width">
+    <h2><i>Ready to design</i> <br> a better office?</h2>
+    <p>Let's make it happen</p>
+    <div class="callout-btn-wrap">
+        <span class="callout-btn-inwrap">
+             <a class="typeform-share callout-btn" data-tf-popup="l8LdiA6t" data-tf-iframe-props="title=JasonL - Book a consultation" data-tf-medium="snippet" data-tf-hidden="" data-tf-on-submit="submit" href="javascript:void(0)">BOOK YOUR FREE SESSION</a>
+            {% comment %} <div data-tf-live="01KD266WGGT79GN41NRASSS9QR" data-tf-button-text="Book your free session"></div> {% endcomment %}
+        </span>
+
+    </div>
+  </div>
+</div>

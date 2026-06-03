@@ -1,0 +1,165 @@
+        {%- if current_tags -%}
+                {% for tagname in current_tags %}
+                    {%-assign ctag = tagname -%}
+                    {%-break-%}
+                {%- endfor -%}
+                {% assign datavalue= ctag | downcase %}
+                {% assign datavalue= datavalue | replace: " ","" %}
+                {% assign datavalue= datavalue | slice: 0, 24 %}
+                {% assign colnamevalue= datavalue | append: "_im" %} 
+                {% assign fitforpurpose_suffix= '_f1,_f2,_f3,_f4' | split:','%} 
+                {%-assign t = 'tagproducts' -%}
+                {% assign meta = shop.metafields.t[colnamevalue]  %} 
+
+                {%- assign submenu_imgsrc = meta | file_img_url: 'medium' -%}
+                {% assign loopmeta='' %}
+
+                {% for suffix in fitforpurpose_suffix limit:4%}
+                      {% assign ffp_metafield_product_keys = datavalue | append: suffix %}
+                      {% assign meta_product_data = shop.metafields.tagproducts[ffp_metafield_product_keys]  %}
+                      {% if meta_product_data %}
+                            {% assign loopmeta=true %}
+                            {% break %}
+                      {% endif  %}
+                {% endfor %}
+                {% if loopmeta !='' %}
+                      {{ 'component-fitforpurpose.css' | asset_url | stylesheet_tag }}
+                      <div class="fitforpurpose-wrapper page-width">
+                          <h2>{{section.settings.fitforpurpose_heading}}</h2>
+                          {%- assign ffp_metafield_grn_tagname = collection.metafields.coln_fitforpupose.tag -%}
+                          <ul  class="grid product-grid grid-fitforpurpose">
+                          {% for suffix in fitforpurpose_suffix limit:4%} 
+                                {% assign ffp_metafield_product_keys = datavalue | append: suffix %}
+                                {% assign meta_product_data = shop.metafields.tagproducts[ffp_metafield_product_keys]  %} 
+                                {% if meta_product_data %}
+                                    {% assign meta_product_array = meta_product_data | split: '|||' %}
+                                    {% assign meta_product_tag = meta_product_array[0] %} 
+                                    {% assign meta_product_handle = meta_product_array[1] %} 
+
+                                    {%-assign product = all_products[meta_product_handle]-%}
+                                    {%- if product !=blank -%}
+                                          <li class="grid__item moreinfo-poz-abs" data-phandle="{{meta_product_handle}}">
+                                              {% render 'card-product',
+                                                        card_product: product,
+                                                        media_size: section.settings.image_ratio,
+                                                        show_secondary_image: section.settings.show_secondary_image,
+                                                        add_image_padding: section.settings.add_image_padding,
+                                                        show_vendor: section.settings.show_vendor,
+                                                        show_image_outline: section.settings.show_image_outline,
+                                                        show_rating: section.settings.show_rating,
+                                                        green_tagname: meta_product_tag
+                                                %}
+                                          </li> 
+                                      {%- endif -%}
+                                  {% endif %}
+                            {%- endfor -%}
+                        </ul>
+                      </div>
+                  {% endif %}
+
+
+        {%-else-%}
+                  {%-comment-%} FOR PARENT COLLECTION {%-endcomment-%}
+                  {%-if collection.metafields.coln_fitforpupose.product -%}
+                        {{ 'component-fitforpurpose.css' | asset_url | stylesheet_tag }}
+                        <div class="fitforpurpose-wrapper page-width">
+                            <h2>{{section.settings.fitforpurpose_heading}}</h2>
+                            {%- assign ffp_metafield_grn_tagname = collection.metafields.coln_fitforpupose.tag -%}
+                            {%- assign ffp_metafield_product = collection.metafields.coln_fitforpupose.product -%}
+                            <ul  class="grid product-grid grid-fitforpurpose">
+                                  {% for sc_meta_product in ffp_metafield_product limit:4%} 
+                                        {%-assign product = all_products[sc_meta_product]-%}
+                                        {%- if product !=blank -%}
+                                            <li class="grid__item moreinfo-poz-abs">
+                                              {% render 'card-product',
+                                                        card_product: product,
+                                                        media_size: section.settings.image_ratio,
+                                                        show_secondary_image: section.settings.show_secondary_image,
+                                                        add_image_padding: section.settings.add_image_padding,
+                                                        show_vendor: section.settings.show_vendor,
+                                                        show_image_outline: section.settings.show_image_outline,
+                                                        show_rating: section.settings.show_rating,
+                                                        green_tagname: ffp_metafield_grn_tagname[forloop.index0]
+                                              %}
+                                          </li>  
+                                        {%-endif-%}
+                                    {%- endfor -%}
+                                </ul>
+                            </div>
+                    {%-endif-%}
+        {%-endif-%}
+
+
+
+
+
+
+{% schema %} 
+{
+"name": "Fit for purpose", 
+"tag": "section",
+"class":"fitforpurpose-section left-shadow",
+  "settings": [
+    {
+      "type": "text",
+      "id": "fitforpurpose_heading",
+      "label": "Heading title"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_image_padding",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.add_image_padding.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image_outline",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.show_image_outline.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    }
+  ]
+} 
+{% endschema %}
