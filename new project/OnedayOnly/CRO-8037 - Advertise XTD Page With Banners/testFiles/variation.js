@@ -190,11 +190,11 @@
       // If it's not ready yet and visual fallback isn't allowed, return without updating
       // lastCardCount so the next retry re-checks rather than skipping.
       var nextProps = window.__NEXT_DATA__ && window.__NEXT_DATA__.props && window.__NEXT_DATA__.props.pageProps;
-      var page = nextProps && (nextProps.categoryPage || nextProps.shopPage);
+      var page = nextProps && (nextProps.categoryPage || nextProps.shopPage || nextProps.clearanceSale);
       var dataItems = page && Array.isArray(page.items) ? page.items : null;
 
       if (!dataItems && !allowVisualFallback) {
-        // if (debug)  console.log("[CRO-8037] __NEXT_DATA__ not ready — will retry");
+        if (debug) console.log("[CRO-8037] __NEXT_DATA__ not ready — will retry");
         return;
       }
 
@@ -214,7 +214,7 @@
         var groupsSeen = 0;
         var found = false;
 
-        // if (debug) console.log("[CRO-8037] __NEXT_DATA__ total products:", totalProducts, "| targeting #" + targetN);
+        if (debug) console.log("[CRO-8037] __NEXT_DATA__ total products:", totalProducts, "| targeting #" + targetN);
 
         for (var si = 0; si < dataItems.length && !found; si++) {
           var sectionProds = (dataItems[si] && dataItems[si].props && dataItems[si].props.items) || [];
@@ -224,7 +224,7 @@
             count++;
             if (count === targetN) {
               var prod = sectionProds[pi];
-              // if (debug) console.log("[CRO-8037] #" + targetN + " (via __NEXT_DATA__): \"" + (prod.shortName || prod.id) + "\" | inGroup=" + isGroup + " | groupIdx=" + (isGroup ? groupsSeen : "n/a"));
+              if (debug) console.log("[CRO-8037] #" + targetN + " (via __NEXT_DATA__): \"" + (prod.shortName || prod.id) + "\" | inGroup=" + isGroup + " | groupIdx=" + (isGroup ? groupsSeen : "n/a"));
 
               if (isGroup) {
                 // Find product in DOM by URL match
@@ -244,8 +244,9 @@
                       break;
                     }
                   }
-                  // 2. Not in a section group — look for a div-based group wrapper
-                  if (!afterEl) {
+                  // 2. Only walk up for a div-based group wrapper when section groups exist on this page.
+                  // If shopMoreEls is empty the page has no DOM grouping — treat as free card instead.
+                  if (!afterEl && shopMoreEls.length > 0) {
                     var totalDomCards = document.querySelectorAll(CRO.cardSel).length;
                     var cur = matchedCard.parentElement;
                     while (cur && cur !== document.body) {
@@ -254,7 +255,7 @@
                       cur = cur.parentElement;
                     }
                   }
-                  // 3. __NEXT_DATA__ says group but DOM renders it individually — treat as free card
+                  // 3. No DOM group found — insert after the 16th product's visual row
                   if (!afterEl) afterEl = findFreeCardRowEl(prod.id);
                 }
                 // Product not yet in DOM (collapsed/hidden) → fall back to positional index

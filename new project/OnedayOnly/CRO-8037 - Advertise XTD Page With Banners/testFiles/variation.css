@@ -27,3 +27,28 @@ html body.CRO-8037_Banner_After_Every_4th_Row .cro-xtd-banner {
         padding-left: 16px;
     }
 }
+
+html[pagepath="clearancesale"] body .cro-xtd-banner.cro-xtd-banner--flexItem {
+    padding-left: 32px;
+    margin-bottom: 32px;
+}
+
+@media screen and (max-width: 767px) {
+
+    html[pagepath="clearancesale"] body .cro-xtd-banner.cro-xtd-banner--flexItem {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        /* margin-bottom: 32px; */
+        padding-left: 0;
+
+    }
+
+    html[pagepath="clearancesale"] body .cro-xtd-banner.cro-xtd-banner--flexItem a {
+        padding-left: 16px;
+    }
+
+    html[pagepath="clearancesale"] body .cro-xtd-banner.cro-xtd-banner--flexItem img {
+        max-width: 340px;
+    }
+}
