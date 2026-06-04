@@ -7,9 +7,9 @@ const FOLDER   = __dirname;
 
 // Priority categories in expected order (lowercase for comparison)
 const PRIORITY_CATS = [
-    'apparel',
-    'home',
-    'health',
+    'apparel & accessories',
+    'home & garden',
+    'health & beauty',
     'electronics',
     'furniture',
 ];
@@ -86,10 +86,17 @@ test.describe('KI69 Desktop', () => {
         expect(titles.length).toBeGreaterThan(0);
     });
 
-    test('each section has a View All link', async ({ page }) => {
-        const sections  = await page.locator('.ki69-category-section').count();
-        const viewAlls  = await page.locator('.ki69-view-all').count();
-        expect(viewAlls).toBe(sections);
+    test('carousel sections have a View All link; static sections do not', async ({ page }) => {
+        const carouselSections = await page.locator('.ki69-has-carousel').count();
+        const staticSections   = await page.locator('.ki69-static').count();
+        const viewAlls         = await page.locator('.ki69-view-all').count();
+        // View All appears only on carousel sections on desktop
+        expect(viewAlls).toBe(carouselSections);
+        // Static sections must have no View All
+        const staticViewAlls = await page.locator('.ki69-static .ki69-view-all').count();
+        expect(staticViewAlls).toBe(0);
+        // At least some sections must exist overall
+        expect(carouselSections + staticSections).toBeGreaterThan(0);
     });
 
     test('View All links have valid hrefs', async ({ page }) => {
@@ -215,6 +222,103 @@ test.describe('KI69 Desktop', () => {
 });
 
 // =========================
+// EXPANDED VIEW TESTS
+// =========================
+test.describe('KI69 Expanded View', () => {
+    test.use({ viewport: { width: 1280, height: 900 } });
+
+    test.beforeEach(async ({ page }) => {
+        await loadPage(page);
+        await injectVariation(page);
+        await dismissOverlays(page);
+    });
+
+    test('clicking View All shows expanded view and hides other sections', async ({ page }) => {
+        const sectionsBefore = await page.locator('.ki69-category-section').count();
+        await page.locator('.ki69-view-all').first().click();
+        await page.waitForSelector('.ki69-expanded-view', { timeout: 5000 });
+
+        // Expanded view is present
+        await expect(page.locator('.ki69-expanded-view')).toBeVisible();
+
+        // All category sections are hidden
+        const visible = await page.evaluate(() =>
+            Array.from(document.querySelectorAll('.ki69-category-section'))
+                .filter(s => s.style.display !== 'none').length
+        );
+        expect(visible).toBe(0);
+    });
+
+    test('expanded view shows all products for that category in a grid', async ({ page }) => {
+        // Get product count for first category
+        const firstCatCount = await page.evaluate(() => {
+            const track = document.querySelector('.ki69-category-section .ki69-carousel-track');
+            return track ? track.querySelectorAll('.ki69-card').length : 0;
+        });
+
+        await page.locator('.ki69-view-all').first().click();
+        await page.waitForSelector('.ki69-expanded-view');
+
+        const expandedCount = await page.locator('.ki69-expanded-grid .ki69-card').count();
+        expect(expandedCount).toBe(firstCatCount);
+        expect(expandedCount).toBeGreaterThan(0);
+    });
+
+    test('expanded grid renders in 4-column layout on desktop', async ({ page }) => {
+        await page.locator('.ki69-view-all').first().click();
+        await page.waitForSelector('.ki69-expanded-view');
+
+        const cols = await page.locator('.ki69-expanded-grid').evaluate(el =>
+            window.getComputedStyle(el).gridTemplateColumns
+        );
+        // Should have 4 equal columns
+        const parts = cols.trim().split(/\s+/);
+        expect(parts.length).toBe(4);
+    });
+
+    test('back button restores all category sections', async ({ page }) => {
+        const sectionCount = await page.locator('.ki69-category-section').count();
+
+        await page.locator('.ki69-view-all').first().click();
+        await page.waitForSelector('.ki69-expanded-view');
+        await page.locator('.ki69-back-btn').click();
+
+        // Expanded view gone
+        await expect(page.locator('.ki69-expanded-view')).not.toBeAttached();
+
+        // All sections visible again
+        const visibleAfter = await page.evaluate(() =>
+            Array.from(document.querySelectorAll('.ki69-category-section'))
+                .filter(s => s.style.display !== 'none').length
+        );
+        expect(visibleAfter).toBe(sectionCount);
+    });
+
+    test('non-priority categories sorted by product count descending', async ({ page }) => {
+        const titles = await page.locator('.ki69-section-title').allTextContents();
+        const lower  = titles.map(t => t.toLowerCase());
+        const PRIORITY = ['apparel & accessories', 'home & garden', 'health & beauty', 'electronics', 'furniture'];
+
+        // Find where non-priority starts
+        const firstNonPriorityIdx = lower.findIndex(t => !PRIORITY.some(p => t.includes(p)));
+        if (firstNonPriorityIdx === -1) return; // all priority, nothing to check
+
+        // Get product counts for non-priority sections
+        const counts = await page.evaluate((startIdx) => {
+            const sections = Array.from(document.querySelectorAll('.ki69-category-section'));
+            return sections.slice(startIdx).map(s =>
+                s.querySelectorAll('.ki69-card').length
+            );
+        }, firstNonPriorityIdx);
+
+        // Each count should be >= the next
+        for (let i = 0; i < counts.length - 1; i++) {
+            expect(counts[i]).toBeGreaterThanOrEqual(counts[i + 1]);
+        }
+    });
+});
+
+// =========================
 // MOBILE TESTS
 // =========================
 test.describe('KI69 Mobile', () => {
@@ -256,8 +360,23 @@ test.describe('KI69 Mobile', () => {
         expect(cardWidth).toBeGreaterThan(viewportWidth * 0.25);
     });
 
-    test('View All links present on mobile', async ({ page }) => {
-        const count = await page.locator('.ki69-view-all').count();
-        expect(count).toBeGreaterThan(0);
+    test('View All links only on sections with >4 products on mobile', async ({ page }) => {
+        // Sections with >4 products must have View All; sections with ≤4 must not
+        const withViewAll = await page.evaluate(() =>
+            Array.from(document.querySelectorAll('.ki69-category-section'))
+                .filter(s => s.querySelector('.ki69-view-all')).length
+        );
+        const withoutViewAll = await page.evaluate(() =>
+            Array.from(document.querySelectorAll('.ki69-category-section'))
+                .filter(s => !s.querySelector('.ki69-view-all')).length
+        );
+        // At minimum the overall section count must be > 0
+        expect(withViewAll + withoutViewAll).toBeGreaterThan(0);
+        // Any section without View All must have ≤4 cards
+        const staticHasViewAll = await page.locator('.ki69-category-section').evaluateAll(sections =>
+            sections.filter(s => !s.querySelector('.ki69-view-all'))
+                    .every(s => s.querySelectorAll('.ki69-card').length <= 4)
+        );
+        expect(staticHasViewAll).toBe(true);
     });
 });

@@ -1,0 +1,15 @@
+{
+  "name": "recipe-ki19-add-conventional-elements-to-checkout-cro-7505",
+  "version": "1.0.0",
+  "description": "",
+  "main": "playwright.config.js",
+  "scripts": {
+    "test": "playwright test variation.test.js --reporter=line"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

@@ -23,6 +23,10 @@
     html body.cro_My_Bag #Cart .card>.grid.u-border-top .grid__col-sm-9 {
         display: none;
     }
+
+    html body.cro_My_Bag #Block__StepNavigation .card {
+        width: 69%;
+    }
 }
 
 html body.cro_My_Bag #Cart .card {
@@ -77,36 +81,76 @@ html body.cro_My_Bag #Cart .card>table tbody>tr:last-child {
 }
 
 html body.cro_My_Bag #Block__StepNavigation button {
-    display: none;
-}
-
-html body.cro_My_Bag #Block__StepNavigation a span i {
-    display: none;
-}
-
-html body.cro_My_Bag #Block__StepNavigation a span {
     display: flex;
     min-height: 38px;
     padding: 7.8px 29.8px;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid #1841C4;
-    color: #1841C4;
-    text-align: center;
+    background: #212121;
+    color: #fff;
+    border: none;
+    cursor: pointer;
     font-family: inherit;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
-    /* 142.857% */
     letter-spacing: 1px;
+}
+
+html body.cro_My_Bag #Block__StepNavigation button:after {
+    content: 'Continue' !important;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+html body.cro_My_Bag #Block__StepNavigation button {
+    font-size: 0;
+    letter-spacing: 0;
+}
+
+html body.cro_My_Bag #Block__StepNavigation a span i {
+    font-size: 11px;
+    margin-right: 6px;
+}
+
+html body.cro_My_Bag #Block__StepNavigation a span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #1841C4;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 1px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    min-height: unset;
+    cursor: pointer;
 }
 
 html body.cro_My_Bag #Block__StepNavigation .card {
     padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    width: 69%;
 }
 
+html body.cro_My_Bag #Block__StepNavigation .card .u-pull--left:not(.u-clear--left) {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+html body.cro_My_Bag #Block__StepNavigation .card .u-pull--left a span {
+    gap: 0 !important;
+}
 
 html body.cro_My_Bag .cro_checkout_btn {
     display: flex;
@@ -214,6 +258,40 @@ html body.cro_My_Bag .cro_checkout_btn span {
     html body.cro_My_Bag #Cart .card>table tr[id*="Orderline"]:not(.table__row--no-border, :first-child) td {
         padding-top: 32px;
     }
+
+    html body.cro_My_Bag .cro_checkout_btn {
+        display: none;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .card {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .u-pull--left.u-clear--left {
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .card .u-pull--left {
+        width: 100%;
+        /* margin-top: 10px; */
+        justify-content: center;
+        /* margin-top: 10px; */
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .card .u-pull--left button {
+        width: 100%;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .card a .u-pull--left {
+        margin-top: 10px;
+    }
+
+    html body.cro_My_Bag #Block__StepNavigation .card .u-pull--left:not(.u-clear--left) {
+        gap: 0 !important;
+    }
 }
 
 /* ----------------- */
@@ -276,31 +354,59 @@ html body.cro_Delivery .u-billing-card-body button[title*="Already a customer?"]
     background-color: transparent;
 }
 
-html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) {
-    display: none;
+html body.cro_Delivery #Block__OrderContainerRow .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
 }
 
-html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left.u-clear--left button {
+
+
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) button {
     display: flex;
     min-height: 38px;
     padding: 7.8px 29.8px;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid #1841C4;
-    color: #1841C4;
-    text-align: center;
+    background: #212121;
+    color: #fff;
+    border: none;
+    cursor: pointer;
     font-family: inherit;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
-    /* 142.857% */
     letter-spacing: 1px;
 }
 
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left.u-clear--left button {
+    color: #1841C4;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
 html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left.u-clear--left button i {
-    display: none;
+    font-size: 11px;
+    margin-right: 6px;
 }
 
 html body.cro_Delivery #Block__AddressContainer .grid {
@@ -411,8 +517,30 @@ html body.cro_Delivery .cro_payment_btn span {
         margin-bottom: 0;
         padding-bottom: 0;
     }
+
+    html body.cro_Delivery #Block__StepNavigation .card {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.cro_Delivery #Block__StepNavigation .card .u-pull--left.u-clear--left button {
+        align-items: center;
+        justify-content: center;
+    }
 }
 
+
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) button:after {
+    content: 'Continue' !important;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+html body.cro_Delivery #Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) button {
+    font-size: 0;
+    letter-spacing: 0;
+}
 
 html body.cro_Payment div#Block__SummaryContainerRow {
     background: #FAFAFA;
@@ -594,39 +722,64 @@ html body.cro_Payment #Block__ClicksClubCard .card.dw-mod>div:not(.form__field-g
 }
 
 
+html body.cro_Payment #Block__StepNavigation .card {
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
 html body.cro_Payment #Block__StepNavigation .card .u-pull--left:not(.u-clear--left) {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
-html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button i {
-    display: none;
-}
-
-html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button {
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left:not(.u-clear--left) button {
     display: flex;
     min-height: 38px;
     padding: 7.8px 29.8px;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid #1841C4;
-    color: #1841C4;
-    text-align: center;
+    background: #212121;
+    color: #fff;
+    border: none;
+    cursor: pointer;
     font-family: inherit;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
-    /* 142.857% */
     letter-spacing: 1px;
 }
 
-html body.cro_Payment #Block__StepNavigation .card {
+
+
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left {
     padding-left: 0;
 }
 
-html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left {
-    padding-left: 1.2em;
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button {
+    color: #1841C4;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button i {
+    font-size: 11px;
+    margin-right: 6px;
 }
 
 html body.cro_Payment .cro_pay_btn span {
@@ -838,6 +991,17 @@ html body.cro_Payment .u-payment-card-header.dw-mod {
     html body.cro_Payment .card.u-color-light--bg.order-summary-body-container.dw-mod table {
         margin-top: 10px;
     }
+
+    html body.cro_Payment #Block__StepNavigation .card {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    html body.cro_Payment #Block__StepNavigation .card .u-pull--left.u-clear--left button {
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .cro-progress-wrap {
@@ -877,6 +1041,7 @@ html body.cro_Payment .u-payment-card-header.dw-mod {
     z-index: 2;
     text-align: center;
     min-width: 80px;
+    cursor: pointer;
 }
 
 .cro-step-circle {
@@ -974,4 +1139,52 @@ html body.cro_Payment .u-payment-card-header.dw-mod {
 
 .cro-step.active .cro-step-circle .cro-step-number {
     color: #1841C4;
+}
+
+/* ── Price display (desktop only, next to forward nav button) ── */
+
+.cro_price_display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 7px 0;
+}
+
+.cro_total_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cro_label,
+.cro_value {
+    color: #212121;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cro_savings_row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.cro_savings_label,
+.cro_savings_value {
+    color: #ED5EAA;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* Mobile: hide price display */
+@media (max-width: 1023px) {
+    .cro_price_display {
+        display: none;
+    }
 }

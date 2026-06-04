@@ -59,23 +59,7 @@
         "home-and-garden",
         "health-and-beauty",
         "electronics",
-        "furniture",
-        "food-and-beverages",
-        "sporting-goods",
-        "media",
-        "hardware",
-        "toys-and-games",
-        "baby-and-toddler",
-        "luggage-and-bags",
-        "animal-and-pet-supplies",
-        "arts-and-entertainment",
-        "office-supplies",
-        "cameras-and-optics",
-        "vehicles-and-parts",
-        "business-and-industrial",
-        "software",
-        "mature",
-        "travel"
+        "furniture"
     ];
 
     var CARDS_PER_PAGE = 4;
@@ -166,7 +150,7 @@
         });
 
         prioritized.sort(function (a, b) { return priorityMap[a.id] - priorityMap[b.id]; });
-        others.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        others.sort(function (a, b) { return b.products.length - a.products.length; });
 
         return prioritized.concat(others);
     }
@@ -240,14 +224,18 @@
             '</button>';
 
         var sectionClass = "ki69-category-section" + (hasCarousel ? " ki69-has-carousel" : " ki69-static");
+        // Show View All only when there are more products than fit in one page (desktop and mobile)
+        var showViewAll = group.products.length > CARDS_PER_PAGE;
 
         return '<div class="' + sectionClass + '" data-category-id="' + cssSafe(group.id) + '">' +
             '<div class="ki69-section-header">' +
             '<h2 class="ki69-section-title">' + categoryLabel + '</h2>' +
-            '<a href="' + viewAllUrl + '" class="ki69-view-all">' +
-            'View all ' +
-            '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>' +
-            '</a>' +
+            (showViewAll ?
+                '<a href="' + viewAllUrl + '" class="ki69-view-all" data-category-id="' + cssSafe(group.id) + '">' +
+                'View all ' +
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>' +
+                '</a>'
+                : "") +
             '</div>' +
             '<div class="ki69-carousel-wrapper">' +
             (hasCarousel ? prevBtn : "") +
@@ -297,6 +285,54 @@
     }
 
     // =========================
+    // EXPANDED CATEGORY VIEW
+    // =========================
+    function expandCategory(group, container) {
+        document.body.classList.add("ki69-category-expanded");
+
+        // Hide all carousel sections
+        container.querySelectorAll(".ki69-category-section").forEach(function (s) {
+            s.style.display = "none";
+        });
+
+        // Remove any pre-existing expanded view
+        var existing = container.querySelector(".ki69-expanded-view");
+        if (existing) existing.remove();
+
+        var categoryLabel = prettySlugLabel(group.name || group.id);
+        var cardsHTML = group.products.map(buildCardHTML).join("");
+
+        container.insertAdjacentHTML("beforeend",
+            '<div class="ki69-expanded-view">' +
+            '<div class="ki69-section-header">' +
+            '<h2 class="ki69-section-title">' + categoryLabel + '</h2>' +
+            '<button class="ki69-back-btn" type="button" aria-label="Back to all categories">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>' +
+            ' Back' +
+            '</button>' +
+            '</div>' +
+            '<div class="ki69-expanded-grid">' + cardsHTML + '</div>' +
+            '</div>'
+        );
+
+        container.querySelector(".ki69-back-btn").addEventListener("click", function () {
+            var expandedView = container.querySelector(".ki69-expanded-view");
+            expandedView.style.animation = "ki69-fadeSlideOut 0.2s ease both";
+            setTimeout(function () {
+                expandedView.remove();
+                document.body.classList.remove("ki69-category-expanded");
+                container.classList.add("ki69-sections-restored");
+                container.querySelectorAll(".ki69-category-section").forEach(function (s) {
+                    s.style.display = "";
+                });
+                setTimeout(function () {
+                    container.classList.remove("ki69-sections-restored");
+                }, 450);
+            }, 200);
+        });
+    }
+
+    // =========================
     // HIDE CONTROL PRODUCTS
     // =========================
     function hideControlProducts() {
@@ -342,6 +378,18 @@
             });
         }
 
+        // View All click → expanded grid view
+        if (container) {
+            container.querySelectorAll(".ki69-view-all").forEach(function (link) {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    var catId = link.getAttribute("data-category-id");
+                    var group = validGroups.find(function (g) { return cssSafe(g.id) === catId; });
+                    if (group) expandCategory(group, container);
+                });
+            });
+        }
+
         if (debug) {
             console.log("✅ KI69: " + validGroups.length + " carousels built, " + products.length + " products total");
         }
@@ -354,17 +402,19 @@
         addClass("body", recipe_name);
 
 
-        waitForElement('h1[color="black"]', function () {
-            var heading = document.querySelector('h1[color="black"]');
-            var outer = heading && heading.closest('[width="1"]');
-            if (outer && !outer.classList.contains("ki69-page-heading")) {
-                outer.classList.add("ki69-page-heading");
-            }
-        }, 50, 20000);
+
 
         waitForElement('[data-unbxd-identifier="unbxdanalyticsProduct"]', function () {
             var doneTypingInterval = 5000;  //time in ms, 5 seconds for example
             var intervalCallAgain = setInterval(function () {
+                waitForElement('h1[color="black"]', function () {
+                    var heading = document.querySelector('h1[color="black"]');
+                    var outer = heading && heading.closest('[width="1"]');
+                    if (outer && !outer.classList.contains("ki69-page-heading")) {
+                        outer.classList.add("ki69-page-heading");
+                    }
+                }, 50, 20000);
+
                 var product = document.querySelector('[data-unbxd-identifier="unbxdanalyticsProduct"]');
                 var outer = product && product.closest('[width="1"]');
                 if (outer && !outer.classList.contains("ki69-product-container")) {
