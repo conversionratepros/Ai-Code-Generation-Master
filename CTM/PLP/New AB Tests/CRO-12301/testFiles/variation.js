@@ -58,6 +58,8 @@
         /* Figma-spec: 43×43 circle + white tile shape + 45° diagonal hatching masked to tile */
         function getShapeSVG(shape, category) {
             var uid = 'cro12301-' + (++cro12301uid);
+            var clipId = uid + '-clip';
+            var maskId = uid + '-mask';
 
             /* XL uses the same icon size as L */
             var iconSize = (category === 'XL') ? 'L' : category;
@@ -82,7 +84,7 @@
 
             var txF = parseFloat((21.5 - tw / 2).toFixed(1));
             var tyF = parseFloat((21.5 - th / 2).toFixed(1));
-            var rx  = 1;
+            var rx = 1;
 
             /* 45° diagonal hatching lines spaced 3px — matches Figma exactly */
             var lines = '';
@@ -100,35 +102,41 @@
 
             return (
                 '<svg class="cro12301-tile-icon" viewBox="0 0 43 43" xmlns="http://www.w3.org/2000/svg">' +
-                    '<defs>' +
-                        '<mask id="' + uid + '" style="mask-type:luminance" maskUnits="userSpaceOnUse" ' +
-                            'x="' + txF + '" y="' + tyF + '" width="' + tw + '" height="' + th + '">' +
-                            '<rect ' + tR + ' fill="white" stroke="white"/>' +
-                        '</mask>' +
-                    '</defs>' +
-                    '<circle cx="21.5" cy="21.5" r="21.5" fill="#EAEAEA"/>' +
-                    '<rect ' + tR + ' fill="white"/>' +
-                    '<g mask="url(#' + uid + ')">' + lines + '</g>' +
-                    '<rect ' + tR + ' fill="none" stroke="#404040" stroke-width="2"/>' +
+                '<defs>' +
+                /* Circle clipPath keeps all tile content within the circle boundary */
+                '<clipPath id="' + clipId + '">' +
+                '<circle cx="21.5" cy="21.5" r="21.5"/>' +
+                '</clipPath>' +
+                '<mask id="' + maskId + '" style="mask-type:luminance" maskUnits="userSpaceOnUse" ' +
+                'x="' + txF + '" y="' + tyF + '" width="' + tw + '" height="' + th + '">' +
+                '<rect ' + tR + ' fill="white" stroke="white"/>' +
+                '</mask>' +
+                '</defs>' +
+                '<circle cx="21.5" cy="21.5" r="21.5" fill="#EAEAEA"/>' +
+                '<g clip-path="url(#' + clipId + ')">' +
+                '<rect ' + tR + ' fill="white"/>' +
+                '<g mask="url(#' + maskId + ')">' + lines + '</g>' +
+                '<rect ' + tR + ' fill="none" stroke="#404040" stroke-width="2"/>' +
+                '</g>' +
                 '</svg>'
             );
         }
 
         function buildSizeBadge(dims) {
             var category = getSizeCategory(dims.h);
-            var shape    = getShape(dims.w, dims.h);
-            var svg      = getShapeSVG(shape, category);
-            var label    = 'Size: ' + category;
+            var shape = getShape(dims.w, dims.h);
+            var svg = getShapeSVG(shape, category);
+            var label = 'Size: ' + category;
             /* display raw mm values, larger dimension first */
             var dimText = dims.h + 'mm × ' + dims.w + 'mm';
 
             return (
                 '<div class="cro12301-size-badge">' +
-                    svg +
-                    '<div class="cro12301-size-text">' +
-                        '<span class="cro12301-size-label">' + label + '</span>' +
-                        '<span class="cro12301-size-dims">' + dimText + '</span>' +
-                    '</div>' +
+                svg +
+                '<div class="cro12301-size-text">' +
+                '<span class="cro12301-size-label">' + label + '</span>' +
+                '<span class="cro12301-size-dims">' + dimText + '</span>' +
+                '</div>' +
                 '</div>'
             );
         }
@@ -154,13 +162,7 @@
         }
 
         /* Variation Init */
-        function init() {
-            addClass("body", variation_name);
-
-            /* Wait for product cards to be in the DOM before first inject */
-            waitForElement('.product-item-info', injectSizeBadges);
-
-            /* Watch the stable Amasty list wrapper for View More AJAX loads */
+        function setupObserver() {
             var debounceTimer = null;
             var listingContainer = document.querySelector('#amasty-shopby-product-list');
             if (listingContainer) {
@@ -170,6 +172,16 @@
                 });
                 observer.observe(listingContainer, { childList: true, subtree: true });
             }
+        }
+
+        function init() {
+            addClass("body", variation_name);
+
+            /* Wait for product cards to be in the DOM before first inject */
+            waitForElement('.product-item-info', injectSizeBadges);
+
+            /* Wait for the stable Amasty wrapper before setting up the View More observer */
+            waitForElement('#amasty-shopby-product-list', setupObserver);
         }
 
         /* Initialise variation */
