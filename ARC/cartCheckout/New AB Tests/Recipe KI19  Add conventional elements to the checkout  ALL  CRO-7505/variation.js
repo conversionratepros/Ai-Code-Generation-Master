@@ -373,8 +373,11 @@
 		}
 
 		function getCroSavings() {
-			// ARC site: div-based discount price
-			var savingsEl = document.querySelector('.u-discount-price');
+			// ARC site: summary-level combined discount (not per-item row)
+			var savingsEl = document.querySelector('.cart-summary__subtotals.u-discount-price');
+			if (savingsEl) return savingsEl.textContent.replace(/\u00a0/g, ' ').trim();
+			// Fallback: any discount price div
+			savingsEl = document.querySelector('.u-discount-price');
 			if (savingsEl) return savingsEl.textContent.replace(/\u00a0/g, ' ').trim();
 			// Fallback: table-based
 			var tableRows = document.querySelectorAll(
@@ -400,7 +403,7 @@
 			html += '</div>';
 			if (savings) {
 				html += '<div class="cro_savings_row">';
-				html += '<span class="cro_savings_label">Treats &amp; Savings:</span>';
+				html += '<span class="cro_savings_label">Savings:</span>';
 				html += '<span class="cro_savings_value">' + savings + '</span>';
 				html += '</div>';
 			}
