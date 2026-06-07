@@ -1,13 +1,10 @@
 /* ─── Fast Ship Strip ─────────────────────────────────────────────────────── */
 
-body.cro-t-odo-12089 .crp-12089-fast-ship {
-    display: flex !important;
-    /* overrides injected style="display:none" */
+body.cro-t-odo-12281 .crp-12281-fast-ship {
+    display: flex !important; /* overrides injected style="display:none" */
     align-items: center;
     gap: 10px;
     padding: 10px 14px;
-    /* background: #EBF7ED; */
-    /* border-radius: 8px; */
     width: 100%;
     box-sizing: border-box;
     font-family: inherit;
@@ -19,19 +16,18 @@ body.cro-t-odo-12089 .crp-12089-fast-ship {
     background: var(--color-grey-9650, rgba(236, 253, 245, 0.50));
 }
 
-.crp-12089-fs-icon circle {
-    fill: var(--color-spring-green-36, #16A34A) !important;
-}
-
-body.cro-t-odo-12089 .crp-12089-fs-icon {
+body.cro-t-odo-12281 .crp-12281-fs-icon {
     display: flex;
     align-items: center;
     flex-shrink: 0;
 }
 
-body.cro-t-odo-12089 .crp-12089-fs-mid {
-    font-weight: 500;
-    color: var(--preview-deal-delivery-boost-lovable-app-ebony, var(--color-azure-11, #0F172A));
+.crp-12281-fs-icon circle {
+    fill: var(--color-spring-green-36, #16A34A) !important;
+}
+
+body.cro-t-odo-12281 .crp-12281-fs-mid {
+    color: var(--color-azure-11, #0F172A);
     font-family: var(--font-family-Font-2, Montserrat);
     font-size: var(--font-size-13, 13px);
     font-style: normal;
@@ -40,8 +36,8 @@ body.cro-t-odo-12089 .crp-12089-fs-mid {
     letter-spacing: var(--letter-spacing-0_2, 0.2px);
 }
 
-body.cro-t-odo-12089 .crp-12089-fast-ship strong {
-    color: var(--preview-deal-delivery-boost-lovable-app-ebony, var(--color-azure-11, #0F172A));
+body.cro-t-odo-12281 .crp-12281-fast-ship strong {
+    color: var(--color-azure-11, #0F172A);
     font-family: inherit;
     font-size: var(--font-size-13, 13px);
     font-style: normal;
@@ -49,17 +45,6 @@ body.cro-t-odo-12089 .crp-12089-fast-ship strong {
     line-height: var(--line-height-19_5, 19.5px);
     letter-spacing: var(--letter-spacing-0_2, 0.2px);
 }
-
-.crp-12089-fs-icon circle {
-    fill: var(--color-spring-green-36, #16A34A);
-}
-
-/* @media (max-width: 1023px) {
-    body.cro-t-odo-12089 .crp-12089-shipping-wrapper {
-        padding: 0 !important;
-        border: none;
-    }
-} */
 
 /* ─── Payflex (KI61 / CRO-4798) ──────────────────────────────────────────── */
 

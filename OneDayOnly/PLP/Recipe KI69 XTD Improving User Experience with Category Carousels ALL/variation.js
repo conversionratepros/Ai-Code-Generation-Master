@@ -287,8 +287,47 @@
     // =========================
     // EXPANDED CATEGORY VIEW
     // =========================
-    function expandCategory(group, container) {
+    function restoreFromExpanded(container) {
+        var expandedView = container.querySelector(".ki69-expanded-view");
+        if (!expandedView) return;
+        var lastCatId = container.dataset.ki69LastCat;
+        document.body.classList.remove("ki69-category-expanded");
+        expandedView.style.animation = "ki69-fadeSlideOut 0.2s ease both";
+        setTimeout(function () {
+            if (expandedView.parentNode) expandedView.remove();
+            container.classList.add("ki69-sections-restored");
+            container.querySelectorAll(".ki69-category-section").forEach(function (s) {
+                s.style.display = "";
+            });
+            // Scroll back to the section the user expanded from
+            if (lastCatId) {
+                var section = container.querySelector('[data-category-id="' + lastCatId + '"]');
+                if (section) {
+                    setTimeout(function () {
+                        var offset = section.getBoundingClientRect().top + window.pageYOffset - 90;
+                        window.scrollTo({ top: offset, behavior: "smooth" });
+                    }, 50);
+                }
+            }
+            setTimeout(function () {
+                container.classList.remove("ki69-sections-restored");
+            }, 450);
+        }, 200);
+    }
+
+    function expandCategory(group, container, skipHistory) {
         document.body.classList.add("ki69-category-expanded");
+
+        // Push a new history entry so the browser back button can restore the grid
+        if (!skipHistory) {
+            var url = new URL(window.location.href);
+            url.searchParams.set("crp_filter", cssSafe(group.id));
+            history.pushState({ ki69Expanded: cssSafe(group.id) }, "", url.toString());
+        }
+
+        // Remember which section was expanded so we can scroll back to it on restore
+        container.dataset.ki69LastCat = cssSafe(group.id);
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
         // Hide all carousel sections
         container.querySelectorAll(".ki69-category-section").forEach(function (s) {
@@ -315,20 +354,9 @@
             '</div>'
         );
 
+        // Manual back button — delegate to browser history; popstate handles the DOM
         container.querySelector(".ki69-back-btn").addEventListener("click", function () {
-            var expandedView = container.querySelector(".ki69-expanded-view");
-            expandedView.style.animation = "ki69-fadeSlideOut 0.2s ease both";
-            setTimeout(function () {
-                expandedView.remove();
-                document.body.classList.remove("ki69-category-expanded");
-                container.classList.add("ki69-sections-restored");
-                container.querySelectorAll(".ki69-category-section").forEach(function (s) {
-                    s.style.display = "";
-                });
-                setTimeout(function () {
-                    container.classList.remove("ki69-sections-restored");
-                }, 450);
-            }, 200);
+            history.back();
         });
     }
 
@@ -390,6 +418,21 @@
             });
         }
 
+        // Browser back/forward button — restore grid when crp_filter is removed from URL
+        window.addEventListener("popstate", function () {
+            var params = new URL(window.location.href).searchParams;
+            if (!params.get("crp_filter")) {
+                restoreFromExpanded(container);
+            }
+        });
+
+        // Auto-expand if the page loaded with ?crp_filter already in the URL
+        var initialFilter = new URL(window.location.href).searchParams.get("crp_filter");
+        if (initialFilter) {
+            var matchedGroup = validGroups.find(function (g) { return cssSafe(g.id) === initialFilter; });
+            if (matchedGroup) expandCategory(matchedGroup, container, true);
+        }
+
         if (debug) {
             console.log("✅ KI69: " + validGroups.length + " carousels built, " + products.length + " products total");
         }
@@ -400,6 +443,23 @@
     // =========================
     function init() {
         addClass("body", recipe_name);
+        waitForElement('h1[color="black"]', function () {
+            var doneTypingInterval = 5000;  //time in ms, 5 seconds for example
+            var intervalCallAgain = setInterval(function () {
+                var heading = document.querySelector('h1[color="black"]');
+                var outer = heading && heading.closest('[width="1"]');
+                if (outer && !outer.classList.contains("ki69-page-heading")) {
+                    outer.classList.add("ki69-page-heading");
+                }
+            }, 400);
+
+            //start the countdown
+            var Timer = setTimeout(function () {
+                clearInterval(intervalCallAgain);
+            }, doneTypingInterval);
+
+        }, 50, 20000);
+
 
 
 
@@ -407,14 +467,6 @@
         waitForElement('[data-unbxd-identifier="unbxdanalyticsProduct"]', function () {
             var doneTypingInterval = 5000;  //time in ms, 5 seconds for example
             var intervalCallAgain = setInterval(function () {
-                waitForElement('h1[color="black"]', function () {
-                    var heading = document.querySelector('h1[color="black"]');
-                    var outer = heading && heading.closest('[width="1"]');
-                    if (outer && !outer.classList.contains("ki69-page-heading")) {
-                        outer.classList.add("ki69-page-heading");
-                    }
-                }, 50, 20000);
-
                 var product = document.querySelector('[data-unbxd-identifier="unbxdanalyticsProduct"]');
                 var outer = product && product.closest('[width="1"]');
                 if (outer && !outer.classList.contains("ki69-product-container")) {

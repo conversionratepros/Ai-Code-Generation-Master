@@ -1,8 +1,8 @@
-// CRO-12089 | OOD PDP — Fast-Ship Highlight | ALL
-// Build session: 2026-05-20
+// CRO-12281 | OOD PDP — Fast-Ship Dated | ALL
+// Build session: 2026-06-07
 (function () {
     try {
-        var VARIATION = 'cro-t-odo-12089';
+        var VARIATION = 'cro-t-odo-12281';
 
         // ─── Helpers ──────────────────────────────────────────────────────────────
 
@@ -49,28 +49,60 @@
             });
         }
 
+        // ─── ETA detection + date calculation ────────────────────────────────────
+
+        // Returns the base working-day count for the product's ETA tier,
+        // or null if no recognised ETA class is found (test should not activate).
+        function getEtaDays() {
+            if (document.querySelector('.cro_3_5_Working_Days')) return 3;
+            if (document.querySelector('.cro_5_10_Working_Days')) return 5;
+            if (document.querySelector('.cro_10_20_Working_Days')) return 10;
+            return null;
+        }
+
+        // Advances `workingDays` business days from today, skipping Sat/Sun.
+        // Weekend days that fall within the window are naturally added to the
+        // calendar total (per spec: "include weekends and add to the days above").
+        function calcDeliveryDate(workingDays) {
+            var date = new Date();
+            var added = 0;
+            while (added < workingDays) {
+                date.setDate(date.getDate() + 1);
+                var d = date.getDay();
+                if (d !== 0 && d !== 6) added++;
+            }
+            return date;
+        }
+
+        function formatDeliveryDate(date) {
+            var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var dd = ('0' + date.getDate()).slice(-2);
+            return dayNames[date.getDay()] + ', ' + dd + ' ' + monthNames[date.getMonth()];
+        }
+
         // ─── Fast Ship HTML ───────────────────────────────────────────────────────
 
-        function buildFastShipStrip() {
+        function buildFastShipStrip(dateStr) {
             var el = document.createElement('div');
-            el.className = 'crp-12089-fast-ship';
-            el.style.display = 'none'; // revealed by body.cro-t-odo-12089 CSS rule
+            el.className = 'crp-12281-fast-ship';
+            el.style.display = 'none'; // revealed by body.cro-t-odo-12281 CSS rule
             el.innerHTML =
-                '<span class="crp-12089-fs-icon" aria-hidden="true">' +
+                '<span class="crp-12281-fs-icon" aria-hidden="true">' +
                 '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">' +
                 '<circle cx="10" cy="10" r="10" fill="#1A9B3C"/>' +
                 '<path d="M5.5 10L8.5 13L14.5 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
                 '</svg>' +
                 '</span>' +
-                '<span class="crp-12089-fs-label">' +
+                '<span class="crp-12281-fs-label">' +
                 '<strong>Fast Ship</strong>' +
-                '<span class="crp-12089-fs-mid"> - Arrives in </span>' +
-                '<strong>2-3 working days</strong>' +
+                '<span class="crp-12281-fs-mid"> - Get it by </span>' +
+                '<strong>' + dateStr + '</strong>' +
                 '</span>';
             return el;
         }
 
-        // ─── Payflex HTML ─────────────────────────────────────────────────────────
+        // ─── Payflex HTML (KI61 / CRO-4798) ──────────────────────────────────────
 
         var payment_61 = '<div class="cro-ki61_payment cro-ki61_paymentDesktop" style="display:none;">' +
             '<div class="cro-ki61_payment-wrapper">' +
@@ -183,7 +215,6 @@
                 }
             });
 
-
             waitForElement('h2#product-price', function () {
                 var element = document.querySelector('h1[font-family="header"]');
                 var closestAncestor = element
@@ -195,7 +226,6 @@
                     closestAncestor.setAttribute('cro-heading', 'cro-heading-Parent');
                 }
             });
-
         }
 
         // ─── Payflex expand/collapse click handler ────────────────────────────────
@@ -217,64 +247,8 @@
             });
         }
 
-        // ─── Init ─────────────────────────────────────────────────────────────────
+        // ─── Hide ETA and affordability rows; update "Excludes shipping" text ─────
 
-        function init() {
-            document.body.classList.add(VARIATION);
-            document.body.classList.add('cro-oneDay-ki_61');
-
-            croOneDayCustom();
-            shipping();
-
-            // Payflex — mobile (<1024px): inside [cro-quantity="cro-product"]
-            if (window.innerWidth < 1024) {
-                waitForElement('[cro-quantity="cro-product"]', function () {
-                    if (!document.querySelector('.cro-ki61_paymentMobile')) {
-                        insertHtml('[cro-quantity="cro-product"]', payment_61_mobile, 'beforeend');
-                    }
-                });
-                waitForElement('[pagepath="gift-vouchers"] [cro-price_61="cro-productPrice_61"]+div', function () {
-                    if (!document.querySelector('.cro-ki61_paymentMobile')) {
-                        insertHtml('[pagepath="gift-vouchers"] [cro-price_61="cro-productPrice_61"]+div', payment_61_mobile, 'beforebegin');
-                    }
-                });
-            } else {
-                // Payflex — desktop (≥1024px): inside price block
-                waitForElement('[cro-price_61="cro-productPrice_61"]', function () {
-                    if (!document.querySelector('.cro-ki61_paymentDesktop')) {
-                        insertHtml('[cro-price_61="cro-productPrice_61"]', payment_61, 'beforeend');
-                    }
-                });
-            }
-
-            // Instalment price calculation
-            waitForElement('.cro-ki61_payment-text span', function () {
-                var priceText = document.querySelector('#product-price').textContent.replace(/[^\d.]/g, '');
-                var instalment = (parseFloat(priceText) / 4).toFixed(2);
-                document.querySelector('.cro-ki61_payment-text span').textContent = 'R' + instalment;
-            });
-
-            if (window.innerWidth > 1023) {
-                // Fast Ship strip — inserted after Payflex section
-                waitForElement('.cro-ki61_payment', function () {
-                    if (document.querySelector('.crp-12089-fast-ship')) return;
-                    var anchor = document.querySelector('.cro-ki61_payment');
-                    var strip = buildFastShipStrip();
-                    anchor.insertAdjacentElement('afterend', strip);
-                });
-            } else {
-                // Fast Ship strip — inserted after heading section
-                waitForElement('[cro-heading="cro-heading-Parent"]', function () {
-                    if (document.querySelector('.crp-12089-fast-ship')) return;
-                    var anchor = document.querySelector('[cro-heading="cro-heading-Parent"]');
-                    var strip = buildFastShipStrip();
-                    anchor.insertAdjacentElement('beforeend', strip);
-                });
-            }
-
-        }
-
-        // Hide ETA and affordability teaser rows; if all children are hidden also hide "Excludes shipping" sibling
         function shipping() {
             waitForElement('[cro-price_61="cro-productPrice_61"] button div[font-weight="normal"]', function () {
                 var items = document.querySelectorAll('[cro-price_61="cro-productPrice_61"] button div[font-weight="normal"]');
@@ -288,7 +262,6 @@
                     }
                 }
 
-                // If every button in the container is now hidden, hide the "Excludes shipping" text sibling
                 if (buttonsContainer) {
                     var allButtons = buttonsContainer.querySelectorAll('button');
                     var allHidden = true;
@@ -304,26 +277,108 @@
                         for (var k = 0; k < siblings.length; k++) {
                             if (siblings[k] !== buttonsContainer) {
                                 siblings[k].textContent = 'Shipping calculated at checkout';
-                                // siblings[k].style.display = 'none';
-
                             }
                         }
 
-                        // Tag the padded parent so CSS can remove mobile padding
                         if (outerDiv.parentNode) {
-                            outerDiv.parentNode.classList.add('crp-12089-shipping-wrapper');
+                            outerDiv.parentNode.classList.add('crp-12281-shipping-wrapper');
                         }
                     }
                 }
             });
         }
 
+        // ─── Init ─────────────────────────────────────────────────────────────────
+
+        function init() {
+            var etaDays = getEtaDays();
+            if (etaDays === null) return;
+
+            document.body.classList.add(VARIATION);
+            document.body.classList.add('cro-oneDay-ki_61');
+
+            var dateStr = formatDeliveryDate(calcDeliveryDate(etaDays));
+
+            croOneDayCustom();
+            shipping();
+
+            if (window.innerWidth < 1024) {
+                // Mobile layout:
+                // 1. Fast Ship strip inserted BEFORE the variant/quantity block
+                // 2. Payflex inserted AFTER the variant/quantity block
+                waitForElement('[cro-quantity="cro-product"]', function () {
+                    if (!document.querySelector('.crp-12281-fast-ship')) {
+                        var anchor = document.querySelector('[cro-quantity="cro-product"]');
+                        anchor.insertAdjacentElement('beforebegin', buildFastShipStrip(dateStr));
+                    }
+                    if (!document.querySelector('.cro-ki61_paymentMobile')) {
+                        insertHtml('[cro-quantity="cro-product"]', payment_61_mobile, 'afterend');
+                    }
+                });
+
+                // Gift voucher pages use a different structure
+                waitForElement('[pagepath="gift-vouchers"] [cro-price_61="cro-productPrice_61"]+div', function () {
+                    if (!document.querySelector('.cro-ki61_paymentMobile')) {
+                        insertHtml('[pagepath="gift-vouchers"] [cro-price_61="cro-productPrice_61"]+div', payment_61_mobile, 'beforebegin');
+                    }
+                });
+
+            } else {
+                // Desktop layout:
+                // 1. Payflex inserted inside the price block (below price, above Fast Ship)
+                // 2. Fast Ship inserted immediately after Payflex
+                waitForElement('[cro-price_61="cro-productPrice_61"]', function () {
+                    if (!document.querySelector('.cro-ki61_paymentDesktop')) {
+                        insertHtml('[cro-price_61="cro-productPrice_61"]', payment_61, 'beforeend');
+                    }
+                });
+
+                waitForElement('.cro-ki61_paymentDesktop', function () {
+                    if (!document.querySelector('.crp-12281-fast-ship')) {
+                        var anchor = document.querySelector('.cro-ki61_paymentDesktop');
+                        anchor.insertAdjacentElement('afterend', buildFastShipStrip(dateStr));
+                    }
+                });
+            }
+
+            // Instalment price: product price ÷ 4, applied to all Payflex instances
+            waitForElement('.cro-ki61_payment-text span', function () {
+                var priceEl = document.querySelector('#product-price');
+                if (!priceEl) return;
+                var instalment = (parseFloat(priceEl.textContent.replace(/[^\d.]/g, '')) / 4).toFixed(2);
+                var spans = document.querySelectorAll('.cro-ki61_payment-text span');
+                for (var i = 0; i < spans.length; i++) {
+                    spans[i].textContent = 'R' + instalment;
+                }
+            });
+        }
+
+        // ─── Activation ───────────────────────────────────────────────────────────
+        // Fires on any recognised ETA class: 3-5, 5-10, or 10-20 working days.
+        // getEtaDays() re-reads the DOM at init time to determine the correct tier.
+
+        var cro12281Started = false;
+        // var etaSelectors = ['.cro_3_5_Working_Days', '.cro_5_10_Working_Days', '.cro_10_20_Working_Days'];
+        // for (var i = 0; i < etaSelectors.length; i++) {
+        //     (function (sel) {
+        //         waitForElement(sel, function () {
+        //             if (!cro12281Started) {
+        //                 cro12281Started = true;
+        //                 init();
+        //             }
+        //         });
+        //     })(etaSelectors[i]);
+        // }
+
         waitForElement('.cro_3_5_Working_Days', function () {
-            init();
+            if (!cro12281Started) {
+                cro12281Started = true;
+                init();
+            }
         });
 
-        if (!window.cro_12089) {
-            window.cro_12089 = true;
+        if (!window.cro_12281) {
+            window.cro_12281 = true;
             croEventHandler();
         }
 
