@@ -4,7 +4,8 @@
   "description": "",
   "main": "playwright.config.js",
   "scripts": {
-    "test": "playwright test variation.test.js --reporter=line"
+    "test": "playwright test variation.test.js --reporter=line",
+    "host": "npx fecli host config.json"
   },
   "keywords": [],
   "author": "",

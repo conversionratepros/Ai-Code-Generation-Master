@@ -797,7 +797,7 @@ html body.cro_Payment .cro_pay_btn span {
 
 html body.cro_Payment .order-summary-body-container>.u-ta-left {
     padding-bottom: 20.4px;
-    border-bottom: 1px solid #d3d3d3;
+    /* border-bottom: 1px solid #d3d3d3; */
 }
 
 html body .card-header.u-no-border.dw-mod.cro_delivery_heading>span {
@@ -1180,6 +1180,10 @@ html body.cro_Payment .u-payment-card-header.dw-mod {
     font-size: 13px;
     font-weight: 700;
     line-height: normal;
+}
+
+.cro_custom_accept a {
+    color: #1841C4;
 }
 
 /* Mobile: hide price display */

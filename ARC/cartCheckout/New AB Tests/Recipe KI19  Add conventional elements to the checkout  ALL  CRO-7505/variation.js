@@ -169,7 +169,12 @@
 
 
 
-		var payBTN = `<div class="cro_pay_btn"><span>Pay</span></div>`;
+		var payBTN = `<div class="cro_custom_accept">
+                            <div class="form__field-group dw-mod">
+        <input id="Cro_EcomOrderCustomerAccepted"  name="EcomOrderCustomerAccepted" type="checkbox" class="form__control  dw-mod">
+            <label for="Cro_EcomOrderCustomerAccepted" class="dw-mod">I accept <a href="/customer/t-cs/website-terms">the terms and conditions</a></label>
+    </div>
+                    </div><div class="cro_pay_btn"><span>Pay</span></div>`;
 
 		var croPaymentIcon = `<div class="card-header u-no-border dw-mod cro_payment_heading">
             <span><svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
@@ -225,7 +230,31 @@
 
 			injectPriceDisplay('#Block__StepNavigation .card .u-pull--left:not(.u-clear--left)');
 			observeCartTotals();
+			initAcceptCheckbox();
 
+		}
+
+		function initAcceptCheckbox() {
+			waitForElement('#EcomOrderCustomerAccepted', function () {
+				var control = document.querySelector('#EcomOrderCustomerAccepted');
+				var custom = document.querySelector('.cro_custom_accept input');
+				if (!control || !custom) return;
+
+				custom.checked = control.checked;
+
+				custom.addEventListener('change', function () {
+					// console.log('custom change')
+					control.checked = custom.checked;
+					control.dispatchEvent(new Event('change', { bubbles: true }));
+					control.dispatchEvent(new Event('input', { bubbles: true }));
+				});
+
+				control.addEventListener('change', function () {
+					custom.checked = control.checked;
+					// console.log('control change')
+
+				});
+			});
 		}
 
 		function croEventHandkler() {
