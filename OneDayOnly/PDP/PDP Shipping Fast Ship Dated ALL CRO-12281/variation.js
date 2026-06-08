@@ -51,13 +51,42 @@
 
         // ─── ETA detection + date calculation ────────────────────────────────────
 
-        // Returns the base working-day count for the product's ETA tier,
-        // or null if no recognised ETA class is found (test should not activate).
-        function getEtaDays() {
-            if (document.querySelector('.cro_3_5_Working_Days')) return 3;
-            if (document.querySelector('.cro_5_10_Working_Days')) return 5;
-            if (document.querySelector('.cro_10_20_Working_Days')) return 10;
+        // Reads the lower bound from "ETA: X-X working days" text on the page
+        // using XPath (fast, no JS loop over all elements).
+        // Returns 3, 5, or 10 based on the detected range, or null if not found.
+        function readEtaDaysFromPage() {
+            try {
+                var xpResult = document.evaluate(
+                    '//*[contains(translate(text(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "working days")]',
+                    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
+                );
+                var node = xpResult.singleNodeValue;
+                if (node) {
+                    var match = node.textContent.match(/(\d+)\s*[-–]\s*(\d+)\s*working\s*days/i);
+                    if (match) {
+                        var lower = parseInt(match[1], 10);
+                        if (lower <= 3)  return 3;
+                        if (lower <= 5)  return 5;
+                        return 10;
+                    }
+                }
+            } catch (e) {}
             return null;
+        }
+
+        // Polls until the ETA text is found on the page, then calls cb(days).
+        function waitForEtaText(cb, maxTries) {
+            var tries = 0;
+            var max = maxTries || 200;
+            var timer = setInterval(function () {
+                var days = readEtaDaysFromPage();
+                if (days !== null) {
+                    clearInterval(timer);
+                    cb(days);
+                } else if (++tries >= max) {
+                    clearInterval(timer);
+                }
+            }, 100);
         }
 
         // Advances `workingDays` business days from today, skipping Sat/Sun.
@@ -95,7 +124,7 @@
                 '</svg>' +
                 '</span>' +
                 '<span class="crp-12281-fs-label">' +
-                '<strong>Fast Ship</strong>' +
+                '<strong>Fast Shipping</strong>' +
                 '<span class="crp-12281-fs-mid"> - Get it by </span>' +
                 '<strong>' + dateStr + '</strong>' +
                 '</span>';
@@ -290,10 +319,7 @@
 
         // ─── Init ─────────────────────────────────────────────────────────────────
 
-        function init() {
-            var etaDays = getEtaDays();
-            if (etaDays === null) return;
-
+        function init(etaDays) {
             document.body.classList.add(VARIATION);
             document.body.classList.add('cro-oneDay-ki_61');
 
@@ -354,26 +380,14 @@
         }
 
         // ─── Activation ───────────────────────────────────────────────────────────
-        // Fires on any recognised ETA class: 3-5, 5-10, or 10-20 working days.
-        // getEtaDays() re-reads the DOM at init time to determine the correct tier.
+        // Parses "ETA: X-X working days" text directly from the DOM —
+        // no reliance on injected CSS classes which don't exist on the live page.
 
         var cro12281Started = false;
-        // var etaSelectors = ['.cro_3_5_Working_Days', '.cro_5_10_Working_Days', '.cro_10_20_Working_Days'];
-        // for (var i = 0; i < etaSelectors.length; i++) {
-        //     (function (sel) {
-        //         waitForElement(sel, function () {
-        //             if (!cro12281Started) {
-        //                 cro12281Started = true;
-        //                 init();
-        //             }
-        //         });
-        //     })(etaSelectors[i]);
-        // }
-
-        waitForElement('.cro_3_5_Working_Days', function () {
+        waitForEtaText(function (days) {
             if (!cro12281Started) {
                 cro12281Started = true;
-                init();
+                init(days);
             }
         });
 
