@@ -65,12 +65,12 @@
                     var match = node.textContent.match(/(\d+)\s*[-–]\s*(\d+)\s*working\s*days/i);
                     if (match) {
                         var lower = parseInt(match[1], 10);
-                        if (lower <= 3)  return 3;
-                        if (lower <= 5)  return 5;
+                        if (lower <= 3) return 3;
+                        if (lower <= 5) return 5;
                         return 10;
                     }
                 }
-            } catch (e) {}
+            } catch (e) { }
             return null;
         }
 
@@ -329,17 +329,18 @@
             shipping();
 
             if (window.innerWidth < 1024) {
-                // Mobile layout:
-                // 1. Fast Ship strip inserted BEFORE the variant/quantity block
-                // 2. Payflex inserted AFTER the variant/quantity block
+                // Mobile: Payflex inside quantity block (same anchor as CRO-12089)
                 waitForElement('[cro-quantity="cro-product"]', function () {
-                    if (!document.querySelector('.crp-12281-fast-ship')) {
-                        var anchor = document.querySelector('[cro-quantity="cro-product"]');
-                        anchor.insertAdjacentElement('beforebegin', buildFastShipStrip(dateStr));
-                    }
                     if (!document.querySelector('.cro-ki61_paymentMobile')) {
-                        insertHtml('[cro-quantity="cro-product"]', payment_61_mobile, 'afterend');
+                        insertHtml('[cro-quantity="cro-product"]', payment_61_mobile, 'beforeend');
                     }
+                });
+
+                // Mobile: Fast Ship strip inside heading parent (same anchor as CRO-12089)
+                waitForElement('[cro-heading="cro-heading-Parent"]', function () {
+                    if (document.querySelector('.crp-12281-fast-ship')) return;
+                    var anchor = document.querySelector('[cro-heading="cro-heading-Parent"]');
+                    anchor.insertAdjacentElement('beforeend', buildFastShipStrip(dateStr));
                 });
 
                 // Gift voucher pages use a different structure

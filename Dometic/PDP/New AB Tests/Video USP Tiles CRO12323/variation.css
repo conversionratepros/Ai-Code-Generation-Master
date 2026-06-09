@@ -1,0 +1,266 @@
+/* CRO-12323 — Video USP Tiles — Variation B */
+
+/* ── Hide the existing Videos panel (right column of second-fold flex row) ── */
+body.CRO_12323_Video_USP_Tiles .product-details .product-content {
+    display: none !important;
+}
+
+/* ── Collapse the second-fold flex row to block so the accordion column goes full-width ── */
+body.CRO_12323_Video_USP_Tiles .product-details .lmd\:flex-row {
+    display: block !important;
+}
+
+/* ── Accordion column: stretch to full container width ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-accordion-col {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* ── Widen the accordion inner container to match section width ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-accordion-inner {
+    max-width: 1220px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
+
+/* ════════════════════════════════════
+   New Video USP Section
+════════════════════════════════════ */
+body.CRO_12323_Video_USP_Tiles .cro-12323-section {
+    background: #f7f6f4;
+    padding: 64px 0;
+    width: 100%;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ── Section header ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-title {
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #0d0d0d;
+    line-height: 1.2;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-subtitle {
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #6b6b6b;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 540px;
+}
+
+/* ── Tile grid — 3 columns desktop ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+/* ── Individual tile ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+}
+
+/* ── Badge ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-badge {
+    display: inline-block;
+    background: #0d0d0d;
+    color: #ffffff;
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    width: fit-content;
+}
+
+/* ── Tile heading ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile__heading {
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0d0d0d;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* ── Video thumbnail wrapper ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile__video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #e4e4e4;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile__video:hover .cro-12323-thumb {
+    transform: scale(1.04);
+}
+
+/* ── Play button ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.92;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-play svg {
+    width: 56px;
+    height: 56px;
+    display: block;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile__video:hover .cro-12323-play {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+}
+
+/* ── Embedded iframe (after play click) ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile__video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ── Placeholder thumbnail ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #e4e4e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-thumb-placeholder::after {
+    content: 'Video coming soon';
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #999;
+    letter-spacing: 0.04em;
+}
+
+/* ── Tile supporting copy ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile__copy {
+    font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #6b6b6b;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── Placeholder tile — muted styling ── */
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile--placeholder .cro-12323-badge {
+    background: #bbb;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile--placeholder .cro-12323-tile__heading {
+    color: #aaa;
+}
+
+body.CRO_12323_Video_USP_Tiles .cro-12323-tile--placeholder .cro-12323-tile__video {
+    cursor: default;
+}
+
+/* ════════════════════════════════════
+   Mobile — single column stack
+════════════════════════════════════ */
+@media (max-width: 1023px) {
+    body.CRO_12323_Video_USP_Tiles .cro-12323-section {
+        padding: 40px 0;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-inner {
+        padding: 0 20px;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-header {
+        margin-bottom: 28px;
+        text-align: left;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-title {
+        font-size: 22px;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-subtitle {
+        font-size: 14px;
+        max-width: none;
+        margin: 0;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-tiles {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-tile {
+        padding: 0;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-play {
+        width: 48px;
+        height: 48px;
+    }
+
+    body.CRO_12323_Video_USP_Tiles .cro-12323-play svg {
+        width: 48px;
+        height: 48px;
+    }
+}
