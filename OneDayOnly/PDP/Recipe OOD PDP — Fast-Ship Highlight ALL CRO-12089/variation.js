@@ -51,10 +51,20 @@
 
         // ─── Fast Ship HTML ───────────────────────────────────────────────────────
 
-        function buildFastShipStrip() {
+        function getDeliveryEta() {
+            if (document.body.classList.contains('cro_delivery_3_5'))  return '3-5 working days';
+            if (document.body.classList.contains('cro_delivery_5_10')) return '5-10 working days';
+            if (document.body.classList.contains('cro_delivery_10_20')) return '10-20 working days';
+            return null;
+        }
+
+        function buildFastShipStrip(etaText) {
             var el = document.createElement('div');
             el.className = 'crp-12089-fast-ship';
             el.style.display = 'none'; // revealed by body.cro-t-odo-12089 CSS rule
+            var labelHtml = etaText === '3-5 working days'
+                ? '<strong>Fast Shipping</strong><span class="crp-12089-fs-mid"> - Arrives in </span><strong>2-3 working days</strong>'
+                : '<span class="crp-12089-fs-mid">Arrives in </span><strong>' + etaText + '</strong>';
             el.innerHTML =
                 '<span class="crp-12089-fs-icon" aria-hidden="true">' +
                 '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">' +
@@ -62,12 +72,24 @@
                 '<path d="M5.5 10L8.5 13L14.5 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
                 '</svg>' +
                 '</span>' +
-                '<span class="crp-12089-fs-label">' +
-                '<strong>Fast Ship</strong>' +
-                '<span class="crp-12089-fs-mid"> - Arrives in </span>' +
-                '<strong>2-3 working days</strong>' +
-                '</span>';
+                '<span class="crp-12089-fs-label">' + labelHtml + '</span>';
             return el;
+        }
+
+        function insertFastShipStrip(etaText) {
+            if (window.innerWidth > 1023) {
+                waitForElement('.cro-ki61_payment', function () {
+                    if (document.querySelector('.crp-12089-fast-ship')) return;
+                    var anchor = document.querySelector('.cro-ki61_payment');
+                    anchor.insertAdjacentElement('afterend', buildFastShipStrip(etaText));
+                });
+            } else {
+                waitForElement('[cro-heading="cro-heading-Parent"]', function () {
+                    if (document.querySelector('.crp-12089-fast-ship')) return;
+                    var anchor = document.querySelector('[cro-heading="cro-heading-Parent"]');
+                    anchor.insertAdjacentElement('beforeend', buildFastShipStrip(etaText));
+                });
+            }
         }
 
         // ─── Payflex HTML ─────────────────────────────────────────────────────────
@@ -223,8 +245,11 @@
             document.body.classList.add(VARIATION);
             document.body.classList.add('cro-oneDay-ki_61');
 
+            var etaText = getDeliveryEta();
+
             croOneDayCustom();
             shipping();
+            if (etaText) insertFastShipStrip(etaText);
 
             // Payflex — mobile (<1024px): inside [cro-quantity="cro-product"]
             if (window.innerWidth < 1024) {
@@ -253,24 +278,6 @@
                 var instalment = (parseFloat(priceText) / 4).toFixed(2);
                 document.querySelector('.cro-ki61_payment-text span').textContent = 'R' + instalment;
             });
-
-            if (window.innerWidth > 1023) {
-                // Fast Ship strip — inserted after Payflex section
-                waitForElement('.cro-ki61_payment', function () {
-                    if (document.querySelector('.crp-12089-fast-ship')) return;
-                    var anchor = document.querySelector('.cro-ki61_payment');
-                    var strip = buildFastShipStrip();
-                    anchor.insertAdjacentElement('afterend', strip);
-                });
-            } else {
-                // Fast Ship strip — inserted after heading section
-                waitForElement('[cro-heading="cro-heading-Parent"]', function () {
-                    if (document.querySelector('.crp-12089-fast-ship')) return;
-                    var anchor = document.querySelector('[cro-heading="cro-heading-Parent"]');
-                    var strip = buildFastShipStrip();
-                    anchor.insertAdjacentElement('beforeend', strip);
-                });
-            }
 
         }
 
@@ -315,10 +322,11 @@
                         }
                     }
                 }
+
             });
         }
 
-        waitForElement('.cro_3_5_Working_Days', function () {
+        waitForElement('h2#product-price', function () {
             init();
         });
 

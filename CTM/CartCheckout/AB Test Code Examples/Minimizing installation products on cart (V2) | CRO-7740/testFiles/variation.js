@@ -168,7 +168,7 @@
                                 <img src="https://crp-clients-images.s3.af-south-1.amazonaws.com/CTM/Recipe+114+_CTM_hammerIcon.svg" alt="">
                             </div>
                             <div class="cro-114-v2-installation-header-text">
-                                <p>Required Installation Products (<span class="cro-114-v2-addons">${numberOfAddons.length}</span>)</p>
+                                <p>Required Installation Products</p>
                             </div>
                         </div>
                     </div>`;
@@ -208,6 +208,22 @@
                         e.insertAdjacentHTML('beforeend', subtotalHtml);
                     }
                 }
+            });
+            observeInstallationPrices();
+        }
+
+        function observeInstallationPrices() {
+            document.querySelectorAll('span.show-ins-price').forEach(function (el) {
+                if (el._cro114Observed) return;
+                el._cro114Observed = true;
+                var debounceTimer = null;
+                new MutationObserver(function () {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(function () {
+                        if (debug) console.log('[CRO-7740] show-ins-price changed → updatePrices');
+                        cro_114_v2_updatePrices();
+                    }, 300);
+                }).observe(el, { childList: true, subtree: true, characterData: true });
             });
         }
 
@@ -297,6 +313,7 @@
             waitForElement('.cart-summary-wrapper #cart-totals .grand.totals .price', observer);
             watchQtyControls();
             waitForElement('.cart-container', init);
+            waitForElement('span.show-ins-price', observeInstallationPrices);
             window.cro_t_ctm_114_v2 = true;
         }
 
