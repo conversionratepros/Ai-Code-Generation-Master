@@ -1,0 +1,223 @@
+/* ============================================================
+   CRO-7740 | Minimizing Installation Products on Cart V2
+   Body class: .cro-t-ctm-114-v2
+   ============================================================ */
+
+
+/* ── Hide original subtotal in the main product row ───────── */
+html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .item:not(.addon-product) .col.subtotal .price-wrapper,
+html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .item:not(.addon-product) .col.subtotal .price {
+    visibility: hidden;
+}
+
+
+/* ── Desktop: hide qty column; qty + tile-calc sit in the subtotal column ── */
+@media (min-width: 1200px) {
+    html body.cro-t-ctm-114-v2 .cart.items .grouped-item .cart.item.addoncount .item-info .updated-price {
+        display: none;
+    }
+
+    html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .item:not(.addon-product) .col.subtotal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 6px;
+    }
+}
+
+
+/* ── Installation header ──────────────────────────────────── */
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header {}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-img {
+    max-width: 21px;
+    max-height: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-text p {
+    margin: 0;
+    color: #333;
+    font-family: "Source Sans Pro", 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Hide the native installation-span text (keep .show-ins-price visible) */
+html body.cro-t-ctm-114-v2 .installation-span>span:not(.show-ins-price) {
+    font-size: 0;
+}
+
+
+/* ── Accordion toggle arrow ──────────────────────────────── */
+html body.cro-t-ctm-114-v2 .accardion-title.list-seperator {
+    padding: 10px 32px 10px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+html body.cro-t-ctm-114-v2 .accardion-title::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    transition: transform 0.25s ease-in-out;
+    width: 16px;
+    height: 16px;
+    background-image: url('https://crp-clients-images.s3.af-south-1.amazonaws.com/CTM/Recipe+114+_CTM_chevron-down.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center 1px;
+    background-color: #333;
+    border-radius: 50%;
+}
+
+html body.cro-t-ctm-114-v2 .accardion-title.flip::after {
+    transform: translateY(-50%);
+}
+
+
+/* ── Pricing breakdown section ───────────────────────────── */
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-section {
+    width: 100%;
+    flex: 0 0 100%;
+    clear: both;
+    box-sizing: border-box;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #E6E6E6;
+    margin: 12px 0;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 16px;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-label {
+    color: #333;
+    font-family: "Source Sans Pro", 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-value {
+    color: #333;
+    font-family: "Source Sans Pro", 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Subtotal row — bold */
+html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-label,
+html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-value {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
+/* ── Tablet ──────────────────────────────────────────────── */
+@media (max-width: 1199px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-text p {
+        font-size: 15px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-value {
+        font-size: 14px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-value {
+        font-size: 15px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-inner {
+        gap: 8px;
+    }
+}
+
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 767px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-rows {
+        gap: 6px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-divider {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 385px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-inner {
+        gap: 4px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-text p {
+        font-size: 13px;
+    }
+
+    html body.cro-t-ctm-114-v2 .accardion-title.list-seperator {
+        padding: 10px 15px 10px 5px;
+    }
+
+    html body.cro-t-ctm-114-v2 .accardion-title::after {
+        right: 5px;
+        width: 13px;
+        height: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-img {
+        max-width: 17px;
+        max-height: 17px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-value {
+        font-size: 13px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-value {
+        font-size: 14px;
+    }
+}
