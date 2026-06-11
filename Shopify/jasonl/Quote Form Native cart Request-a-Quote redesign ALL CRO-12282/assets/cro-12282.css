@@ -5,6 +5,18 @@
    ========================================================== */
 
 /* ----------------------------------------------------------
+   SITE CHROME SUPPRESSION
+   This file only loads on page.crp-custom-checkout, so these
+   rules are safe — they will never affect any other page.
+   ---------------------------------------------------------- */
+
+.shopify-section-group-header-group,
+.pdp-header-banner,
+#shopify-section-footer-custom {
+  display: none !important;
+}
+
+/* ----------------------------------------------------------
    Design tokens
    #9bbd2e  — brand green (underline, button, logo)
    #f1f5f9  — aside background
@@ -49,10 +61,7 @@
 
 .cro-highlight-text {
   font-weight: 700;
-  background-color: #9bbd2e;
-  color: #ffffff;
-  padding: 1px 5px;
-  border-radius: 3px;
+  color: #FF9F19;
 }
 
 /* Mobile delivery strip — hidden on desktop */
@@ -80,6 +89,24 @@
     color: #62748e;
     text-align: left;
   }
+
+  .cro-delivery-strip strong {
+    color: #FF9F19;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   LAYOUT — page width + main background
+   ---------------------------------------------------------- */
+
+.custom-checkout-holder .page-width {
+  max-width: 1400px;
+  padding: 0 24px;
+}
+
+.custom-checkout-main {
+  background: #fff;
 }
 
 
@@ -98,16 +125,22 @@
   }
 
   .cro-12282-holder .custom-checkout-cols .cols-right {
-    background-color: #f1f5f9;
+    background-color: #fff;
     min-height: calc(100vh - 73px);
     border-left: none;
+    padding: 0;
+    padding-top: 34px;
+  }
+
+  .custom-checkout-cols .cols-left {
+    border-right: none;
   }
 }
 
-/* Extend aside background on desktop using ::after */
+/* ::after extends right-column bg — now white to match */
 @media (min-width: 768px) {
   .cro-12282-holder .custom-checkout-main::after {
-    background: #f1f5f9;
+    background: #fff;
   }
 }
 
@@ -115,13 +148,21 @@
 @media (max-width: 767px) {
   .cro-12282-holder .custom-checkout-cols .cols-left {
     order: 1;
-    padding: 0 24px;
+    padding: 0;
   }
 
   .cro-12282-holder .custom-checkout-cols .cols-right {
     order: 2;
     padding: 0 24px 40px;
     background-color: transparent;
+  }
+
+  .custom-checkout-holder .page-width {
+    padding-bottom: 40px;
+  }
+
+  .cart-products {
+    max-height: 100%;
   }
 }
 
@@ -179,7 +220,14 @@
 }
 
 .cro-form-holder .fields-block {
-  padding: 40px 40px 0 0;
+  padding: 36px 40px 0 0;
+}
+
+.checkout-form-holder .btn-quote {
+  background-color: #9BBD2E;
+  border-radius: 8px;
+  width: 100%;
+  text-transform: uppercase;
 }
 
 @media (max-width: 767px) {
@@ -366,6 +414,8 @@
 
 .cro-order-summary {
   padding: 24px;
+  border-radius: 8px;
+  background: var(--color-grey-96, #f1f5f9);
 }
 
 @media (max-width: 767px) {
@@ -528,7 +578,7 @@
 .cro-order-summary .cart-total-holder {
   border-top: 1px solid #e2e8f0;
   padding: 16px 0 0;
-  margin-top: 0;
+  margin-top: 24px;
 }
 
 .cro-order-summary .cart-total-item {

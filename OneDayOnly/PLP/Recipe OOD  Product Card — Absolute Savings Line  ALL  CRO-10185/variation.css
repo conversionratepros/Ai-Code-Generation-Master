@@ -1,0 +1,360 @@
+/* ── Image wrapper: stacking context ────────────────────────────────────── */
+
+body.cro-t-odo-10185 .image-wrapper {
+    position: relative !important;
+    overflow: hidden;
+}
+
+/* ── Hide native savings badge ──────────────────────────────────────────── */
+
+body.cro-t-odo-10185 .savings-badge {
+    display: none !important;
+}
+
+/* ── Hide original ATC button wrapper (our custom one replaces it) ──────── */
+
+body.cro-t-odo-10185 .cro-10185-native-atc-wrap {
+    display: none !important;
+}
+
+/* ── Equal card heights ─────────────────────────────────────────────────────
+   .cro-10185-grid-cell is stamped by JS onto the flex cell that wraps each card.
+   Threading display:flex down the tree makes the title link expand (flex:1)
+   so the price block always sits at the same distance from the bottom.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10185 .cro-10185-grid-cell {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 40px !important;
+}
+
+body.cro-t-odo-10185 .cro-10185-grid-cell>section {
+    flex: 1 1 auto;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+body.cro-t-odo-10185 .measure-this {
+    flex: 1 1 auto;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Title link grows to fill remaining space — price always at bottom */
+/* position:relative scopes the absolute Best Seller badge */
+body.cro-t-odo-10185 a.cro-10185-title-link {
+    flex: 1 1 auto;
+    position: relative !important;
+    padding-top: 14px !important;
+    position: relative;
+}
+
+/* ── Price + savings block: force column so savings line stacks below ────── */
+/* .cro-10185-price-block is stamped by JS (native class is CSS-in-JS hash)   */
+
+body.cro-t-odo-10185 .cro-10185-price-block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
+    width: 100%;
+    position: relative;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SAVE BADGE — figma: 58×57 desktop (stacked) / 67×21 mobile (inline)
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10185 .cro-10185-save-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+    background: #e50e62;
+    border-radius: 8px;
+    padding: 4px 7px;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+body.cro-t-odo-10185 .cro-10185-save-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+}
+
+body.cro-t-odo-10185 .cro-10185-save-pct {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .cro-10185-save-badge {
+        top: 10px;
+        right: 10px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        padding: 10px 8px;
+        width: 58px;
+        min-height: 52px;
+        text-align: center;
+    }
+
+    body.cro-t-odo-10185 .cro-10185-save-label {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    body.cro-t-odo-10185 .cro-10185-save-pct {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ATC BUTTON — figma: 44×44 desktop / 28×28 mobile, #26900b full circle
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10185 .cro-10185-atc {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    z-index: 10;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #26900b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: background 0.15s;
+}
+
+body.cro-t-odo-10185 .cro-10185-atc svg {
+    width: 14px;
+    height: 14px;
+}
+
+body.cro-t-odo-10185 .cro-10185-atc:hover {
+    background: #1e700a;
+}
+
+body.cro-t-odo-10185 .cro-10185-atc--disabled {
+    background: #b0b0b0 !important;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .cro-10185-atc {
+        bottom: 10px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
+    }
+
+    body.cro-t-odo-10185 .cro-10185-atc svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PILLS CONTAINER — bottom-left of image
+   .cro-10185-pills-container stamped by JS (native class is CSS-in-JS hash)
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10185 .cro-10185-pills-container {
+    position: absolute !important;
+    bottom: 8px !important;
+    left: 8px !important;
+    top: auto !important;
+    right: auto !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: calc(100% - 48px);
+}
+
+/* Pill base */
+body.cro-t-odo-10185 .pill.cro-10185-pill {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18) !important;
+    border-radius: 100px !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px !important;
+    font-weight: 600 !important;
+    padding: 3px 7px !important;
+    height: 18px !important;
+    display: inline-flex !important;
+    align-items: center;
+    white-space: nowrap;
+    text-transform: none !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+    color: #F26D2E !important;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .pill.cro-10185-pill {
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        padding: 4px 9px !important;
+        height: 24px !important;
+    }
+}
+
+body.cro-t-odo-10185 .pill.cro-10185-pill-more-options {
+    color: #0093d0 !important;
+}
+
+/* Stock count pill: visible on mobile (native pill), hidden on desktop (avail row shown instead) */
+body.cro-t-odo-10185 .pill.cro-10185-pill-stock {
+    display: inline-flex !important;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .pill.cro-10185-pill-stock {
+        display: none !important;
+    }
+}
+
+body.cro-t-odo-10185 .pill.cro-10185-pill-size {
+    color: inherit;
+}
+
+body.cro-t-odo-10185 .pill.cro-10185-pill-hidden {
+    display: none !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BEST SELLER BADGE — absolute inside title anchor
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10185 .cro-10185-bs-badge {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+}
+
+body.cro-t-odo-10185 .cro-10185-bs-flame {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 12px;
+    height: 16px;
+}
+
+body.cro-t-odo-10185 .cro-10185-bs-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: #e2081b;
+    line-height: 1;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .cro-10185-bs-text {
+        font-size: 12px;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   AVAILABILITY ROW — "Selling fast - X left"
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Avail row: hidden on mobile (native pill shown instead), visible on desktop */
+body.cro-t-odo-10185 .cro-10185-avail {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .cro-10185-avail {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 0 2px;
+        position: absolute;
+        bottom: -25px;
+    }
+}
+
+body.cro-t-odo-10185 .cro-10185-avail-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+body.cro-t-odo-10185 .cro-10185-avail-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    color: #6f389b;
+    line-height: 1;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .cro-10185-avail-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    body.cro-t-odo-10185 .cro-10185-avail-text {
+        font-size: 12px;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SAVINGS LINE
+   Always injected — empty/invisible on cards with no saving so price rows
+   stay vertically aligned across all cards in the same row.
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.cro-t-odo-10185 .cro-10185-savings-line {
+    display: block;
+    width: 100%;
+    align-self: stretch;
+    box-sizing: border-box;
+    background: #eaf2eb;
+    border-radius: 4px;
+    padding: 5px 8px;
+    margin-top: 6px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #2e7d32;
+    line-height: 1.3;
+}
+
+body.cro-t-odo-10185 .cro-10185-savings-line--empty {
+    visibility: hidden;
+    padding: 13px 10px !important;
+}
+
+@media (min-width: 1024px) {
+    body.cro-t-odo-10185 .cro-10185-savings-line {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
