@@ -449,6 +449,11 @@
   flex-direction: column;
   gap: 16px;
   margin-bottom: 0;
+  position: static;
+}
+
+.cro-label[for="ccf_quote_enquiry"] {
+  margin-top: 10px;
 }
 
 /* Card — override every control .cart-products ul li rule */
