@@ -1,0 +1,2190 @@
+<!-- SWYM_PAGE_VERSION:2.7 -->
+<!-- PLEASE DO NOT EDIT THIS VERSION -->
+<!-- Colors -->
+{% assign settingswymtemp = settings.swym_registry_page_content_color %}
+{% assign settingswymtemp = settings.swym_registry_page_header_color %}
+{% assign settingswymtemp = settings.swym_registry_page_header_background_color %}
+{% assign settingswymtemp = settings.swym_registry_page_content_background_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_text_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_background_color %}
+
+<!-- Page Fonts -->
+{% assign header_font = settings.swym_registry_page_font_family %}
+
+<!-- Page Links -->
+{% assign settingswymtemp = settings.swym_registry_add_products_link %}
+
+<!-- Page Strings -->
+{% assign settingswymtemp = settings.swym_registry_event_type_label %}
+{% assign settingswymtemp = settings.swym_registry_send_thanks_label  %}
+{% assign settingswymtemp = settings.swym_registry_gifts_added_label  %}
+{% assign settingswymtemp = settings.swym_registry_orders_placed_label %}
+{% assign settingswymtemp = settings.swym_registry_all_option_label  %}
+{% assign settingswymtemp = settings.swym_registry_still_need_option_label  %}
+{% assign settingswymtemp = settings.swym_registry_fulfilled_option_label  %}
+{% assign settingswymtemp = settings.swym_registry_sold_out_option_label  %}
+{% assign settingswymtemp = settings.swym_registry_event_date_label %}
+{% assign settingswymtemp = settings.swym_registry_reg_id_label %}
+{% assign settingswymtemp = settings.swym_registry_reg_name_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_name_label %}
+{% assign settingswymtemp = settings.swym_registry_coregistrant_name_label %}
+{% assign settingswymtemp = settings.swym_registry_days_label %}
+{% assign settingswymtemp = settings.swym_registry_products_label %}
+{% assign settingswymtemp = settings.swym_registry_want_label %}
+{% assign settingswymtemp = settings.swym_registry_purchase_label %}
+{% assign settingswymtemp = settings.swym_registry_gifter_grid_update_qty_btn %}
+{% assign settingswymtemp = settings.swym_registry_gifter_grid_add_products_btn %}
+{% assign settingswymtemp = settings.swym_registry_share_title %}
+{% assign settingswymtemp = settings.swym_registry_share_description %}
+{% assign settingswymtemp = settings.swym_registry_share_label %}
+{% assign settingswymtemp = settings.swym_registry_copy_button_label %}
+{% assign settingswymtemp = settings.swym_registry_copied_button_label %}
+{% assign settingswymtemp = settings.swym_registry_order_modal_list_title %}
+{% assign settingswymtemp = settings.swym_registry_order_modal_purchased_title %}
+{% assign settingswymtemp = settings.swym_registry_order_modal_message_title %}
+{% assign settingswymtemp = settings.swym_registry_sold_out_label %}
+{% assign settingswymtemp = settings.swym_registry_no_orders_yet_label %}
+{% assign settingswymtemp = settings.swym_registry_share_registry_label %}
+{% assign settingswymtemp = settings.swym_registry_send_thanks_modal_order_label %}
+{% assign settingswymtemp = settings.swym_registry_send_thanks_modal_items_label %}
+{% assign settingswymtemp = settings.swym_registry_send_thanks_modal_on_label %}
+{% assign settingswymtemp = settings.swym_registry_send_thanks_modal_send_thanks_label %}
+{% assign settingswymtemp = settings.swym_registry_send_thanks_modal_track_order_label %}
+{% assign settingswymtemp = settings.swym_registry_purchased_label %}
+
+<!-- Page Custom Classes -->
+{% assign settingswymtemp = settings.swym_registry_custom_btn_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_label_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_title_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_para_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_link_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_section_class %}
+
+<!-- Page Font Size -->
+{% assign settingswymtemp = settings.swym_registry_font_very_small %}
+{% assign settingswymtemp = settings.swym_registry_font_small %}
+{% assign settingswymtemp = settings.swym_registry_font_regular %}
+{% assign settingswymtemp = settings.swym_registry_font_large %}
+{% assign settingswymtemp = settings.swym_registry_font_very_large %}
+{% assign settingswymtemp = settings.swym_registry_font_sub_title %}
+{% assign settingswymtemp = settings.swym_registry_font_main_title %}
+{% assign settingswymtemp = settings.swym_registry_font_btn %}
+
+
+{% schema %}
+  {
+    "name": "Swym Registry Owner",
+    "settings": []
+  }
+{% endschema %}
+<style>
+{{ header_font | font_face }}
+input#swym-registry-copy-text {
+    height: var(--buttons-height);
+}
+/* swym font start */
+.swym-registry-order-modal-container .swym-registry-font-very-small,
+.swym-registry-share-modal-container .swym-registry-font-very-small,
+.swym-registry-owner-container .swym-registry-font-very-small {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(11px + ({{ settings.swym_registry_font_very_small }} - 11) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 25px;
+    color: inherit;
+  }
+.swym-registry-order-modal-container .swym-registry-font-small,
+.swym-registry-share-modal-container .swym-registry-font-small,
+.swym-registry-owner-container .swym-registry-font-small {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(13px + ({{ settings.swym_registry_font_small }} - 13) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 30px;
+    color: inherit;
+  }
+.swym-registry-order-modal-container .swym-registry-font-regular,
+.swym-registry-share-modal-container .swym-registry-font-regular,
+.swym-registry-owner-container .swym-registry-font-regular {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 34px;
+    color: inherit;
+  }
+.swym-registry-order-modal-container .swym-registry-font-large,
+.swym-registry-share-modal-container .swym-registry-font-large,
+.swym-registry-owner-container .swym-registry-font-large {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(18px + ({{ settings.swym_registry_font_large }} - 18) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 38px;
+    color: inherit;
+  }
+.swym-registry-order-modal-container .swym-registry-font-very-large,
+.swym-registry-share-modal-container .swym-registry-font-very-large,
+.swym-registry-owner-container .swym-registry-font-very-large {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(22px + ({{ settings.swym_registry_font_very_large }} - 22) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 40px;
+    color: inherit;
+  }
+.swym-registry-order-modal-container .swym-registry-font-sub-title,
+.swym-registry-share-modal-container .swym-registry-font-sub-title,
+.swym-registry-owner-container .swym-registry-font-sub-title {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(24px + ({{ settings.swym_registry_font_sub_title }} - 24) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 42px;
+    color: inherit;
+  }
+.swym-registry-order-modal-container .swym-registry-font-title,
+.swym-registry-share-modal-container .swym-registry-font-title,
+.swym-registry-owner-container .swym-registry-font-title {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(28px + ({{ settings.swym_registry_font_main_title }} - 28) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 44px;
+    color: inherit;
+  }
+.swym-registry-order-modal-container .swym-registry-font-btn,
+.swym-registry-share-modal-container .swym-registry-font-btn,
+.swym-registry-owner-container .swym-registry-font-btn {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(14px + ({{ settings.swym_registry_font_btn }} - 14) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 44px;
+    color: inherit;
+  }
+/* swym font end */
+.swym-registry-order-table .swym-registry-font-order-id {
+    color: {{settings.swym_registry_page_content_color}};
+}
+.swym-registry-owner-container {
+  font-family: {{ header_font.family }};
+  min-height: 100vh;
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-owner-container button {
+  cursor: pointer;
+}
+.swym-registry-order-table tr td:after {
+    border-bottom: none;
+}
+.swym-registry-owner-container .swym-registry-wrapper {
+  width: 82.28%;
+  margin: 0 auto;
+  max-width: 1287px;
+}
+.swym-registry-owner-container p,
+.swym-registry-owner-container h1,
+.swym-registry-owner-container ul,
+.swym-registry-owner-container figure,
+.swym-registry-owner-container h2 {
+  font-family: {{ header_font.family }};
+  margin: 0;
+  padding: 0;
+}
+.swym-registry-owner-container .swym-registry-owner-banner {
+  color: {{ settings.swym_registry_page_header_color }};
+  background: {{ settings.swym_registry_page_header_background_color }};
+}
+.swym-registry-owner-container .swym-registry-owner-banner ul li,
+.swym-registry-owner-container .swym-registry-owner-grid ul li {
+  list-style: none;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-registry-detail {
+  width: 77%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-registry-detail li {
+  text-transform: uppercase;
+  margin-right: 25px;  
+}
+.swym-registry-owner-container .swym-registry-owner-banner .swym-registry-wrapper {
+  width: 90.15%;
+  margin: 0 auto;
+  max-width: 1410px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+.swym-registry-owner-container .swym-registry-owner-grid {
+  padding: 25px 0; 
+  color: {{ settings.swym_registry_page_content_color }};
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-owner-container .swym-registry-owner-grid .swym-registry-wrapper {
+    width: 82.28%;
+    margin: 0 auto;
+    max-width: 1287px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-content {
+  width: 69%;
+  display: flex;
+  flex-direction: column; 
+}
+.swym-registry-owner-container .swym-registry-owner-banner-circle {
+    display: inline-block;
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    align-self: center;
+    position: relative;
+    max-width: 148px;
+    max-height: 151px;
+    min-width: 60px;
+    min-height: 60px;
+    border: 1px solid {{ settings.swym_registry_page_header_color }};
+    align-self: flex-start;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner .swym-registry-owner-banner-user {
+    margin: 0;
+    font-weight: 500;
+    color: {{ settings.swym_registry_page_header_color }};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.swym-registry-owner-container .swym-registry-owner-banner-message-container {
+  width: 86%;
+  padding: 21px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-message strong {
+  position: absolute;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 25px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-message strong:first-child {
+  left: 0;
+  top: 33px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-message strong:last-child {
+  left: 17%;
+  bottom: 0;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-stats-container {
+  align-self: end;
+  margin-bottom: 30px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-value {
+  font-weight: 600;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-stats {
+  display: flex;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(12px + (12 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: calc(18px + (18 - 18) * ((100vw - 320px) / (1564 - 320)));
+}
+.swym-registry-owner-container .swym-registry-owner-banner-stats li:first-child {
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 1px solid {{ settings.swym_registry_page_header_color }};
+}
+.swym-registry-owner-container .swym-registry-owner-banner-bottom-days {
+  color: {{ settings.swym_registry_page_header_color }};
+  margin-right: 15px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-bottom-days strong {
+  font-weight: 500;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-items .swym-registry-owner-grid-item {
+  margin-bottom: 17px;
+  display: flex;
+  padding: 15px 0px 23px 17px;
+  background: {{ settings.swym_registry_page_content_background_color }};
+  border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+  border-radius: 20px;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item a {
+    width: 15.5%;
+    height: 161px;
+    overflow: hidden;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item figure {
+  height: 200px;
+  position: relative;
+  background-position: inherit;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item a {
+  width: 15.5%;
+  height: 161px;
+  overflow: hidden;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item figure img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-position: center;
+}
+.swym-registry-owner-container.swym-registry-design-mode .swym-registry-owner-grid-item figure img {
+  top: 5%;
+  transform: initial;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-center {
+  display: flex;
+  align-items: center;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-bottom {
+  display: flex;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-bottom li:first-child {
+  width: 13.3%;
+  border: 1px solid {{ settings.swym_registry_page_content_color }};
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(13px + (13 - 13) * ((100vw - 320px) / (1564 - 320)));
+  line-height: calc(16px + (16 - 16) * ((100vw - 320px) / (1564 - 320)));
+  letter-spacing: 0.03em;
+  align-items: center;
+  border-radius: 4px;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-detail {
+  width: 84.5%;
+  padding: 8px 0;
+  margin-left: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-detail h2 {
+  text-transform: uppercase;
+}
+.swym-registry-owner-container .swym-registry-owner-update-btn-container {
+  margin-left: 33px;
+}
+.swym-registry-owner-container .swym-registry-owner-update-btn-container button {
+  border: none;
+  padding: 0px 16px;
+  font-family: {{ header_font.family }};
+  text-transform: capitalize;
+  color: {{ settings.swym_registry_btn_text_color }};
+  background: {{ settings.swym_registry_btn_background_color }};
+  border-radius: 4px;  
+  transition: 0.24s ease;
+  position: relative;
+}
+.swym-registry-owner-container .swym-registry-owner-update-btn-container button:hover {
+  transform: scale(1.06,1.06);
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-price {
+    margin-right: 32px;
+    text-transform: uppercase;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-top .swym-registry-owner-grid-top-add-products button {
+  display: flex; 
+  padding: 2px 16px;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  color: {{ settings.swym_registry_btn_text_color }};
+  background: {{ settings.swym_registry_btn_background_color }};
+  transition: 0.24s ease;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-top .swym-registry-owner-grid-top-add-products button:hover{
+    transform: scale(1.06,1.06);
+  }
+.swym-registry-owner-container ul.swym-registry-owner-grid-top {
+  margin-bottom: 31px;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-top .swym-registry-owner-grid-top-add-products  {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(14px + (14 - 14) * ((100vw - 320px) / (1564 - 320)));
+    line-height: calc(20px + (20 - 30) * ((100vw - 320px) / (1564 - 320)));
+}
+h4.swym-registry-owner-grid-product-count.swym-registry-font-small {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+.swym-registry-owner-container li.swym-registry-owner-grid-top-add-products{
+  margin-top: 20px;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-product-count span:first-child {
+  margin-right: 5px; 
+}
+.swym-registry-owner-container .swym-registry-owner-banner-edit,
+.swym-registry-owner-container .swym-registry-owner-banner-share {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   position: absolute;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+  cursor: pointer;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-edit {
+  right: 46px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-share {
+  right: 0;
+}
+.swym-registry-owner-container input.swym-registry-owner-grid-item-bottom-qty::-webkit-outer-spin-button,
+.swym-registry-owner-container input.swym-registry-owner-grid-item-bottom-qty::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.swym-registry-owner-container input.swym-registry-owner-grid-item-bottom-qty[type=number] {
+  text-align:center;
+  font-family: inherit;
+  padding: 0px;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-bottom-qty {
+  width: 100%;
+  appearance: textfield;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-owner-container .swym-registry-owner-qty-design-span{
+  appearance: textfield;
+  width: fit-content;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-bottom-reduce,
+.swym-registry-owner-container .swym-registry-owner-grid-item-bottom-increase {
+  cursor: pointer;
+}
+.swym-registry-owner-container .swym-registry-wrapper .swym-registry-owner-span-max-content{
+  width: max-content;
+}
+.swym-registry-owner-container .swym-registry-registrant-grid-nav { 
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    letter-spacing: -0.333333px;
+    text-transform: uppercase;
+    color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-owner-container .swym-registry-registrant-grid-nav button {
+  border: none;
+  background: none;
+  padding: 0 20px;
+}
+.swym-registry-owner-container .swym-registry-registrant-grid-nav .swym-registry-border-btm-active {
+  border-color: {{ settings.swym_registry_page_header_background_color }};
+}
+.swym-registry-owner-container .swym-registry-registrant-grid-nav button{
+    border-bottom: 3.5px solid transparent;
+}
+.swym-registry-owner-container .swym-registry-registrant-grid-nav div,
+.swym-registry-owner-container .swym-registry-registrant-grid-nav button {
+  padding-bottom: 5px;    
+}
+.swym-registry-owner-container .swym-registry-product-banner {
+  background: {{ settings.swym_registry_page_header_background_color }};;
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(14px + (12 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: calc(30px + (28 - 28) * ((100vw - 320px) / (1564 - 320)));
+  letter-spacing: -0.333333px;
+  color: {{ settings.swym_registry_page_header_color }};
+  position: absolute;
+  right: 0;
+  padding: 0 15px;
+  text-transform: capitalize;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-askqty-container,
+.swym-registry-owner-container .swym-registry-owner-grid-item-boughtqty-container {
+  display: flex;
+  align-items: center;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-askqty-container {
+  margin-right: 12px;
+}
+.swym-registry-owner-container .swym-registry-owner-grid-item-want-value {
+  margin-left: 5px;
+}
+.swym-registry-owner-container .swym-registry-hidden {
+  display: none
+}
+.swym-registry-owner-container .swym-registry-mobile {
+  display: none;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-bottom-send-thanks {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-bottom-send-thanks span {
+  margin-right: 6px; 
+}
+.swym-registry-owner-container .swym-registry-owner-banner-message:before, 
+.swym-registry-owner-container .swym-registry-owner-banner-message:after {
+  content: '"';
+  font-size: 42px;
+  vertical-align: text-top;
+}
+.swym-registry-owner-container .swym-registry-owner-banner-bottom {
+    display: flex;
+  align-items: center; 
+}
+.swym-registry-order-table td,.swym-registry-order-table th{
+  border:none ;
+}
+.swym-registry-order-table .swym-registry-font-order-id-link,
+.swym-registry-order-table .swym-registry-order-card-msg-accordion {
+  border-bottom: none;
+}
+.swym-registry-order-table .swym-registry-order-card-msg-accordion span {
+    text-decoration: none ;
+
+}
+.swym-registry-order-table span{
+  text-decoration: none ;
+}
+.swym-registry-order-table td .swym-registry-order-button {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid {{settings.swym_registry_page_content_color}} ;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: inherit;
+    background: none;
+    text-decoration: none;
+    transition: 0.24s ease;
+}
+.swym-registry-order-table td .swym-registry-order-button-1 {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid {{settings.swym_registry_page_content_color}} ;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: inherit;
+    background: none;
+    text-decoration: none;
+    margin-right: 4%;
+    transition: 0.24s ease;
+}
+
+.swym-registry-order-table td .swym-registry-order-button-1:hover,.swym-registry-order-table td .swym-registry-order-button:hover{
+  color: inherit;
+  transform: scale(1.06,1.06) ;
+}
+.swym-registry-order-table td .swym-registry-font-order-id-link:hover{
+  color: inherit;
+}
+.swym-registry-order-modal .swym-registry-font-large{
+  color: {{settings.swym_registry_page_content_color}};
+}
+.swym-registry-owner-grid input.swym-registry-owner-grid-item-bottom-qty{
+  color: {{settings.swym_registry_page_content_color}};
+}
+
+/* Popup changes */
+/* Share Modal */
+.swym-registry-share-modal-container .swym-registry-share-modal .swym-registry-share-registry-name {
+ font-family: {{  header_font.family }};
+}
+.swym-registry-share-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    animation-name: animateopacity;
+    animation-duration: 0.5s;
+    z-index: 9999;
+}
+
+@keyframes animateopacity {
+    from {
+        background-color: rgba(0, 0, 0, 0.0)
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.7)
+    }
+}
+.swym-registry-share-modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+   font-family: {{ header_font.family }};
+}
+.swym-registry-share-modal-container .swym-registry-share-modal {
+    position: relative;
+    margin: 0 auto;
+    background-color: {{ settings.swym_registry_page_content_background_color }};
+    width: 45%;
+    max-width: 1440px;
+    height: auto;
+    padding: calc(20px + (70 - 20) * ((100vw - 320px) / (1564 - 320)));
+    animation: drop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translate(0%, -25%);
+    top: 25%;
+    font-family: inherit;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content #swym-registry-share-mail-link{
+  cursor: pointer;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal .swym-modal-close {
+    position: absolute;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+    top: 12px;
+    font-family: inherit;
+    color: #fff;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li {
+    list-style-type: none;
+    font-family: {{ header_font.family }};
+    font-weight: 500;
+    font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 24px;
+    color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li:first-child {
+    margin-bottom: 20px;
+    font-size: calc(12px + (15 - 12) * ((100vw - 320px) / (1564 - 320)));
+    font-family: inherit;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li:first-child span:first-child {
+      font-family: inherit;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li:nth-child(2) {
+    font-family: {{ header_font.family }};
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    color: {{ settings.swym_registry_page_content_color }};
+    margin-bottom: 20px;
+}
+
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li:nth-child(3) {
+    margin-bottom: 40px;       
+    color: {{ settings.swym_registry_page_content_color}};
+    font-weight: 600;
+    text-align: center;
+    line-height: 24px;
+    font-family: inherit;
+}
+.swym-registry-owner-container .swym-registry-wrapper .swym-registry-owner-banner-bottom-send-thanks{
+  cursor:pointer;
+  font-family: inherit;
+}
+.swym-registry-email-icon {
+    font-weight: 600;
+    font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+    color: {{ settings.swym_registry_page_content_color }};
+    font-family: inherit;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li:nth-child(5) button {
+    border: none;
+    padding: 12px 19px;
+    color: {{ settings.swym_registry_btn_text_color}};
+    background: {{settings.swym_registry_btn_background_color }};
+    font-family: {{ header_font.family }};
+    font-style: normal;
+    font-weight: 500;
+    text-align: center;
+    width: fit-content;
+    cursor: pointer;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li:nth-child(5) {
+    width: 90%;
+    display: flex;
+    margin-top: 30px;
+    font-family: inherit;
+    justify-content: center;
+}
+.swym-registry-share-modal-container .swym-registry-share-modal-content ul li:nth-child(5) input {
+    width: 70%;
+    outline: none;
+    border: none;
+    background: none;
+    border: 1px solid #2A2827;
+    padding: 12px;
+    margin: 0;
+    font-family: inherit;
+    font-style: unset;
+}
+#swym-registry-unordered-list::-webkit-scrollbar {
+    width: 8px;
+    font-family: inherit;
+}
+
+/* Track */
+#swym-registry-unordered-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+/* Handle */
+#swym-registry-unordered-list::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+/* Handle on hover */
+#swym-registry-unordered-list::-webkit-scrollbar-thumb:hover {
+  background: gray;
+  font-family: inherit;
+}
+
+/* Order Modal */
+.swym-registry-order-modal-container {
+  font-family: {{ header_font.family }}
+}
+.swym-registry-order-card-data .swym-registry-order-table .swym-registry-order-button {
+    padding: 8px 16px;
+    border: 1px solid #4b4b4b;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: inherit;
+    background: none;
+    text-decoration: none;
+    font-family: inherit;
+}
+.swym-registry-order-card-data .swym-registry-order-table .swym-registry-order-button-1 {
+    padding: 8px 16px;
+    border: 1px solid #4b4b4b;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: inherit;
+    background: none;
+    text-decoration: none;
+    margin-right: 4%;
+    font-family: inherit;
+}
+.swym-registry-order-card-data .swym-registry-order-table {
+    border: none;
+    width: 100%;
+    font-family: inherit;
+    background: unset;
+}
+.swym-registry-order-modal-container .swym-registry-order-font-xs-small {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: calc(12px + ({{ settings.swym_registry_font_small }} - 12) * ((100vw - 320px) / (1540 - 320)));
+    line-height: 25px;
+    color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-order-modal-container .swym-registry-order-font-regular {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 34px;
+    color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-order-modal-container .swym-registry-order-none {
+    text-align: center;
+    align-items: center;
+    font-family: inherit;
+}
+.swym-registry-order-modal-container .swym-registry-order-card {
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid {{ settings.swym_registry_page_content_color }};
+      font-family: inherit;
+}
+.swym-registry-order-modal-container .swym-registry-order-card-data {
+    display: inline-table;
+    width: 85%;
+    margin-left: 2%;
+    font-family: inherit;
+}
+.swym-registry-order-modal-container .swym-registry-order-card-data a {
+    color: {{ settings.swym_registry_page_content_color }};
+    cursor:pointer;
+    font-family: inherit;
+}
+.swym-registry-order-modal-container .swym-registry-order-card-data td {
+    padding: 0.1em 0.1em;
+    font-family: inherit;
+}
+.swym-registry-order-modal-container .swym-registry-order-card-msg-accordion {
+    cursor: pointer;
+    transition: 0.4s;
+    font-family: inherit;
+}
+.swym-registry-order-modal-container .swym-registry-order-card-msg-panel {
+    background-color: {{ settings.swym_registry_page_content_background_color }};
+    padding:0.6em;
+    display: none;
+    font-family: inherit;
+}
+.swym-registry-order-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+    animation-name: animateopacity;
+    animation-duration: 0.5s;
+    z-index: 9999;
+}
+.swym-registry-order-modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+}
+.swym-registry-order-modal-container .swym-registry-order-modal {
+    position: relative;
+    margin: 0 auto;
+    background-color: {{ settings.swym_registry_page_content_background_color }};
+    width: 60%;
+    height: auto;
+    padding: 20px 40px 50px 40px;
+    animation: drop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translate(0%, -25%);
+    top: 25%;
+    font-family: inherit;
+}
+.swym-registry-order-modal-container .swym-order-modal-close {
+    position: absolute;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: inherit;
+    color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-order-modal-container .swym-registry-order-modal-content {
+    max-height: 70vh;
+    min-height: 30vh;
+    overflow-y: scroll;
+    font-family: inherit;
+}
+.swym-registry-owner-container .swym-registry-wrapper .swym-registry-owner-banner-edit,.swym-registry-owner-container .swym-registry-wrapper .swym-registry-owner-banner-share{
+    width: 25px;
+    font-family: inherit;
+}
+.swym-registry-owner-container .swym-registry-wrapper .swym-registry-owner-banner-bottom-send-thanks svg {
+    fill: {{ settings.swym_registry_page_header_color }};
+    margin-top: 4px;
+}
+.swym-registry-owner-container .swym-registry-wrapper .swym-registry-owner-banner-edit svg {
+  fill: {{ settings.swym_registry_page_header_color }};
+}
+.swym-registry-owner-container .swym-registry-wrapper .swym-registry-owner-banner-share svg {
+  fill: {{ settings.swym_registry_page_header_color }};
+}
+.swym-registry-share-modal-container .swym-registry-share-modal #swym-registry-copy-text {
+  color: {{ settings.swym_registry_page_content_color }};
+  outline: none;
+  box-shadow: none;
+}
+@keyframes drop-in {
+    from {
+        top: 10%;
+    }
+
+    to {
+        top: 25%
+    }
+}
+
+/* Button Loading CSS*/
+.swym-registry-owner-container .swym-registry-btn-dot-collision {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.swym-registry-owner-container .swym-registry-btn-dot-collision::before,.swym-registry-owner-container .swym-registry-btn-dot-collision::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.swym-registry-owner-container .swym-registry-btn-dot-collision::before {
+  left: -10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  animation: dotCollisionBefore 2s infinite ease-in;
+}
+
+.swym-registry-owner-container .swym-registry-btn-dot-collision::after {
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  animation: dotCollisionAfter 2s infinite ease-in;
+  animation-delay: 1s;
+}
+
+@keyframes dotCollisionBefore {
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-15px);
+  }
+}
+
+@keyframes dotCollisionAfter {
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(15px);
+  }
+}
+
+.swym-registry-share-modal-container .swym-registry-share-modal .swym-registry-envelop-icon{
+  width: 20px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .swym-registry-owner-container .swym-registry-owner-banner-stats li {
+    font-size: 11px;
+  }
+}
+
+@media(max-width: 1040px) {
+    .swym-registry-share-modal-container .swym-registry-share-modal-content ul li:first-child {
+        display: flex;
+        flex-direction: column;
+    }
+    .swym-registry-order-modal-container .swym-registry-order-modal {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 1024px) {
+  .swym-registry-owner-container .swym-registry-owner-banner {
+     padding: 0;
+     padding-top: 40px;
+    position: relative;
+  }
+  .swym-registry-owner-container .swym-registry-mobile {
+    display: block;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-title {
+    text-align: center;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-bottom-days .swym-registry-desktop {
+    display: none;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner .swym-registry-wrapper {
+      flex-direction: column;
+      align-items: center;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-stats-container {
+      align-self: initial;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-bottom {
+    text-align: center;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-circle {
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-bottom-days.swym-registry-mobile {
+    position: absolute;
+      top: 40px;
+      left: 20px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-registry-detail {
+     width: 100%;
+     justify-content: center;
+  }
+  .swym-registry-owner-container .swym-registry-desktop {
+    display: none;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-stats-container {
+    width: initial;
+    margin-bottom: 80px;
+  }
+
+  .swym-registry-owner-container .swym-registry-owner-banner-bottom-send-thanks {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translate(-50%);
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid .swym-registry-wrapper {
+    width: 90%;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-top {
+    margin-top: 20px;
+  }
+  .swym-registry-owner-container .swym-registry-registrant-grid-nav button {
+      padding: 0 8px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-message-container {
+    width: 100%;
+    justify-content: center;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-bottom li:first-child {
+    width: 17.3%;
+  }
+  .swym-registry-owner-container .swym-registry-registrant-wrapper {
+      width: 90%;
+    }
+  .swym-registry-owner-container .swym-registry-owner-banner-message {
+      text-align: center;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+   .swym-registry-owner-container .swym-registry-owner-grid-item a{
+       width: 180px;
+   }
+}
+@media screen and (max-width: 790px) {
+  .swym-registry-owner-container .swym-registry-owner-grid-item figure{
+      height: 400px;
+  }
+ .swym-registry-owner-container .swym-registry-owner-grid-item {
+    flex-direction: column;
+  }
+ .swym-registry-owner-container .swym-registry-owner-grid-item a {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
+ .swym-registry-owner-container .swym-registry-owner-grid-item-bottom li:first-child {
+     width: 25%; 
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-items .swym-registry-owner-grid-item {
+    padding-right: 20px;
+  }
+      .swym-registry-share-modal-container .swym-registry-share-modal {
+        width: 80%;
+    }
+    .swym-registry-order-modal-container .swym-registry-order-modal {
+      width: 95%; 
+    }
+}
+
+@media(max-width: 768px) {
+  .swym-registry-order-modal-container .swym-registry-order-modal {
+    width: 95%;
+    padding: 20px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-detail {
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 0;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-bottom {
+    margin-top: 10px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-registry-detail {
+    flex-direction: column;
+    align-items: center;
+  }
+  .swym-registry-owner-container .swym-registry-owner-banner-registry-detail li {
+    margin-right: 0;
+  }
+  .swym-registry-order-modal-container .swym-registry-order-card {
+    padding: 0;
+    padding-bottom: 15px;
+    padding-top: 10px;
+  }
+  .swym-registry-order-modal-container .swym-registry-order-card-data {
+    margin-left: 0;
+    padding: 0 10px;
+  }
+  .swym-registry-order-card-data .swym-registry-font-order-id td {
+    width: initial;
+  }
+}
+@media screen and (max-width: 560px) {
+  .swym-registry-owner-container .swym-registry-owner-banner-content {
+    width: 100%;
+    text-align: center;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item {
+    flex-direction: column;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item figure {
+    width: 100%;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-detail .swym-registry-owner-grid-item-bottom li{
+    width: 100%;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-detail {
+   margin-left: 0; 
+  }
+  .swym-registry-owner-container .swym-registry-owner-update-btn-container {
+    margin-left: 15px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid {
+   padding-top: 25px; 
+  }
+  .swym-registry-owner-container .swym-registry-registrant-grid-nav {
+    justify-content: center;
+  }
+  .swym-registry-owner-container ul.swym-registry-owner-grid-top {
+    margin-top: 20px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-detail {
+    width: 100%;  
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-items .swym-registry-owner-grid-item {
+    padding-right: 15px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-bottom {
+    display: flex;
+    flex-direction: column;
+  }
+  .swym-registry-owner-container .swym-registry-owner-update-btn-container {
+    margin-left: 0;
+    padding-top: 15px;
+  }
+  .swym-registry-owner-container .swym-registry-owner-update-btn-container button {
+    width: 100%;
+  }
+  .swym-registry-owner-container .swym-registry-owner-update-btn-container button:hover {
+    transform: scale(1.022,1.022);
+  }
+  .swym-registry-owner-container .swym-gr-registry-detail-header-stats li {
+    width: 34vw;
+    height: 30.4vw;
+  }
+  .swym-registry-owner-container .swym-gr-registrant-wrapper {
+    width: 80%;
+  }
+  .swym-registry-owner-container .swym-gr-registry-detail-header-desc{
+    padding: 0;
+  }
+  .swym-registry-owner-container .swym-registry-owner-grid-item-detail .swym-registry-owner-grid-item-bottom li:first-child {
+    padding: 8px;
+  } 
+  .swym-registry-order-modal-container td .swym-registry-order-button-1,
+  .swym-registry-order-modal-container td .swym-registry-order-button {
+   width: 100%; 
+  }
+  .swym-registry-order-modal-container td .swym-registry-order-button-1 {
+    margin-bottom: 15px;
+  }
+  .swym-registry-order-modal-container .swym-registry-order-row-1 {
+    display: flex;
+    flex-direction: column;
+  }
+  .swym-registry-order-modal-container td .swym-registry-order-button-1:hover,.swym-registry-order-modal-container td .swym-registry-order-button:hover{
+    transform: scale(1.022,1.022);
+  }
+}
+
+@media(max-width: 480px) {
+.swym-registry-order-modal-container .swym-registry-order-modal{
+      margin-top: 40px;
+    }
+}
+@media(max-width: 470px) {
+    .swym-registry-share-modal-container .swym-registry-share-modal {
+        width: 95%;
+        padding: 20px 20px 30px;
+    }
+
+    .swym-registry-share-modal-container .swym-registry-share-modal-content ul li:nth-child(5) {
+        width: 100%;
+    }
+    .swym-registry-order-modal-container .swym-registry-order-card-data {
+        display: inline-block;
+        width: 85%;
+    }
+
+    .swym-registry-order-modal-container .swym-registry-order-modal {
+        width: 95%;
+        padding: 20px 20px 30px;
+    }
+
+    .swym-registry-order-modal-container .swym-registry-order-card-data td {
+        width: 50%;
+    }
+}
+    
+.swym-registry-share-modal {
+  background-image: url('https://cdn.shopify.com/s/files/1/0927/5224/9201/files/background.jpg?v=1763538445');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+} 
+.swym-registry-share-modal-content * {
+  color: white !important;
+}
+  
+    @media screen and (min-width: 996px) {
+      div#swym-registry-owner-banner {
+        background-image: url('https://cdn.shopify.com/s/files/1/0927/5224/9201/files/background_shopify_test.jpg?v=1762369642');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+      } 
+    }
+  
+</style>
+<link rel="dns-prefetch" href="https://cdn.swymregistry.com/swym-registry-common-cdn.js">
+<link
+  rel="preconnect"
+  href="https://cdn.swymregistry.com/swym-registry-common-cdn.js"
+>
+<script
+  src="https://cdn.swymregistry.com/swym-registry-common-cdn.js"
+></script>
+<link rel="dns-prefetch" href="https://cdn.swymregistry.com/swym-registry-owner-cdn.js">
+<link
+  rel="preconnect"
+  href="https://cdn.swymregistry.com/swym-registry-owner-cdn.js"
+>
+<script
+  src="https://cdn.swymregistry.com/swym-registry-owner-cdn.js"
+></script>
+<script type="text/javascript" src="https://cloudfront.loggly.com/js/loggly.tracker-latest.min.js" async></script>
+<script>
+  var _LTracker = _LTracker || [];
+  _LTracker.push({
+    'logglyKey': '7a2be593-4080-4ce0-b039-cee174ba8365',
+    'sendConsoleErrors' : true,
+    'tag' : 'error,template,owner' 
+  });
+</script>
+<script>
+const swymRegistry_lsName = "swymKeys";
+const swym_currency = "{{ cart.currency.symbol }}"
+function swymRegistryAddProduct(product, registry) {
+  try{
+    var giftProduct = document.createElement('li');
+    giftProduct.classList.add("swym-registry-owner-grid-item");
+    giftProduct.innerHTML = `
+      <a href="${product.du}" class="{{ settings.swym_registry_custom_link_class }}">
+            <figure id="swym-registry-product-${product.epi}">
+              <img src="${product.iu}" alt="swym-registry-product">
+          </figure>
+        </a>
+          <div class="swym-registry-owner-grid-item-detail swym-registry-owner-grid-item-container-${product.epi}">
+            <h2 class="swym-registry-font-regular">${product.dt}</h2>
+            <ul class="swym-registry-owner-grid-item-center">
+              <li><span class="swym-registry-owner-grid-item-price swym-registry-font-large">${swym_currency}${product.pr}</span></li>
+              <li class="swym-registry-owner-grid-item-askqty-container swym-registry-font-very-small">
+                <span class="swym-registry-owner-grid-item-want">{{ settings.swym_registry_want_label }}</span>
+                <span class="swym-registry-owner-grid-item-want-value"> ${product.askQuantity}</span>
+              </li>
+              <li class="swym-registry-owner-grid-item-boughtqty-container swym-registry-font-very-small">
+                <span class="swym-registry-owner-grid-item-purchased">{{ settings.swym_registry_purchase_label }}</span>
+                <span class="swym-registry-owner-grid-item-want-value"> ${product.boughtQuantity}</span>
+              </li>
+            </ul>
+            <ul class="swym-registry-owner-grid-item-bottom">
+              <li>
+                <span class="swym-registry-owner-grid-item-bottom-reduce" onclick="swymRegistryChangeQty(this)">-</span>
+                 <input type="number" value="${product.askQuantity}" class="swym-registry-owner-grid-item-bottom-qty" pattern="[0-9]*" aria-label="quantity">
+                <span class="swym-registry-owner-grid-item-bottom-increase" onclick="swymRegistryChangeQty(this, 'increase')">+</span>
+              </li>
+              <li class="swym-registry-owner-update-btn-container">
+                <button class="swym-registry-font-btn {{ settings.swym_registry_custom_btn_class }}" onclick="swymUpdateQtyValue(this, ${product.epi})" class="swym-registry-registrant-update-btn">
+                <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision_${product.epi}" style="display: none">
+                  <div class="swym-registry-snippet" data-title=".dot-collision">
+                    <div class="swym-registry-stage">
+                      <div class="swym-registry-dot-collision"></div>
+                    </div>
+                  </div>
+                </div>
+                <span class="swym-registry-update-qty-btn-txt" id="swym-registry-update-qty-btn-txt_${product.epi}">{{ settings.swym_registry_gifter_grid_update_qty_btn }}</span> 
+                </button>
+              </li>
+            </ul>
+             <input type="hidden" value=${product.epi} class="swym-registry-product-meta-epi">
+              <input type="hidden" value=${product.empi} class="swym-registry-product-meta-empi">
+              <input type="hidden" value=${product.du} class="swym-registry-product-meta-du">
+          </div>`;
+    
+      var productGrid = document.querySelector(".swym-registry-owner-grid-items");
+      productGrid.appendChild(giftProduct);
+      if(giftProduct.querySelector(".swym-registry-owner-grid-item-bottom-qty")){
+       giftProduct.querySelector(".swym-registry-owner-grid-item-bottom-qty").addEventListener("input", ( event ) => {
+          let targetValue = event.target.value;
+          if(targetValue < 0){
+            event.target.value = 0;
+          }
+        });
+      }
+      if(product && product.inventoryPolicy == 'DENY' && product.inventoryQuantity != undefined && product.inventoryQuantity != null &&  product.inventoryQuantity <= 0 && product.inventoryTracked === true){
+        var image = document.getElementById(`swym-registry-product-${product.epi}`)
+        var imageTag = document.createElement('span');
+        imageTag.classList.add('swym-registry-product-banner', 'swym-registry-font-small');
+        imageTag.innerHTML=`{{ settings.swym_registry_sold_out_label }}`;
+        image.appendChild(imageTag);
+      } else if(product.boughtQuantity >= product.askQuantity){
+        var image = document.getElementById(`swym-registry-product-${product.epi}`)
+        var imageTag = document.createElement('span');
+        imageTag.classList.add('swym-registry-product-banner', 'swym-registry-font-small');
+        imageTag.innerHTML=`{{ settings.swym_registry_purchased_label }}`
+        image.appendChild(imageTag)
+    }
+  } catch(error) {
+      console.log("Error in showing registry pages", error);
+  }    
+}
+async function swymRegistryOnloadHandler() {
+     if(!Shopify.designMode) {
+       if(document.querySelector(".swym-registry-owner-container").clientWidth<1024 && window.outerWidth!=document.querySelector(".swym-registry-owner-container").clientWidth){
+         document.querySelector(".swym-registry-owner-banner-content").style.width="60%";
+       }
+       if(document.querySelector('.swym-registry-order-button-1')){
+         document.querySelector('.swym-registry-order-button-1').addEventListener('click',() => {
+            _LTracker.push({
+              'eventInfo': 'Send thanks button clicked - Owner',
+              'tag': 'event'
+            });
+            Shopify.analytics.publish("swym_registry_registrant_view",{"eventAction": "Send thanks button clicked","customerInfo":{
+              "name"  : "{{ customer.name }}",
+              "email" : "{{ customer.email }}",
+              "id"    : "{{ customer.id }}"
+            }});
+         });
+         }
+      if(document.querySelector('.swym-registry-order-button')){
+       document.querySelector('.swym-registry-order-button').addEventListener('click',() => {
+          _LTracker.push({
+            'eventInfo': 'Track order button clicked - Owner',
+            'tag': 'event'
+          });
+          Shopify.analytics.publish("swym_registry_registrant_view",{"eventAction": "Track order button clicked","customerInfo":{
+            "name"  : "{{ customer.name }}",
+            "email" : "{{ customer.email }}",
+            "id"    : "{{ customer.id }}"
+          }});
+       });
+         }
+      if(document.querySelector('#swym-registry-share-mail-link')){
+       document.querySelector('#swym-registry-share-mail-link').addEventListener('click',() => {
+          _LTracker.push({
+            'eventInfo': 'Share by mail button clicked - Owner',
+            'tag': 'event'
+          });
+          Shopify.analytics.publish("swym_registry_registrant_view",{"eventAction": "Share by mail button clicked","customerInfo":{
+            "name"  : "{{ customer.name }}",
+            "email" : "{{ customer.email }}",
+            "id"    : "{{ customer.id }}"
+          }});
+        });
+      }
+       window.swymRegistryCustomer = {
+        "customerId": "{{ customer.id }}",
+        "email": "{{ customer.email }}",
+        "firstName": "{{ customer.first_name }}",
+        "lastName": "{{ customer.last_name }}",
+        "phone": "{{ customer.phone }}",
+        "acceptsMarketing": "{{ customer.accepts_marketing }}"
+      }
+        var swymRegistry_lsInit = JSON.parse(localStorage.getItem(swymRegistry_lsName));
+        const swymRegistry_authData = await swymRegistry_refreshAuth(swymRegistryCustomer, swymRegistry_lsInit);
+        const token = swymRegistry_authData.swym_registry.jwt.token;
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const registryId = urlParams.has('registryId') ? urlParams.get('registryId') : "";
+        const customerEmail = "{% if customer %}{{ customer.email }}{% endif %}";
+        window.swymgr = {};
+        window.swymgr.pid = swymRegistry_authData.swym_registry.pid;
+        window.swymgr.registryId = registryId;
+        window.swymgr.addProductsLink = "{{ settings.swym_registry_add_products_link }}";
+        
+       swymRegistry_getRegistry_owner(registryId,customerEmail,token).then(response => response.json())
+        .then(resp => {
+          window.swymgr.registryDetails = resp;
+          var productList = swymgr.registryDetails.associatedListedProducts;
+          if(productList.length >= 0){
+          var registryInfo = swymgr.registryDetails;
+          for(let i =0; i<productList.length; i++){
+            swymRegistryAddProduct(productList[i], registryInfo);
+          } 
+
+        var registrantView = document.querySelector("#swym-registry-registrant-view");
+       
+        registrantView.innerHTML = `
+          <div class="swym-registry-registrant-grid-parent">
+            <div class="swym-registry-registrant-grid-nav">
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small swym-registry-border-btm-active" onclick="swymRegistryFilterProducts('all',this,'owner')">
+                {{ settings.swym_registry_all_option_label }}
+              </button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small" onclick="swymRegistryFilterProducts('stillneed',this,'owner')">{{ settings.swym_registry_still_need_option_label }}</button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small" onclick="swymRegistryFilterProducts('fullfilled',this,'owner')">{{ settings.swym_registry_fulfilled_option_label }}</button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small" onclick="swymRegistryFilterProducts('soldout',this,'owner')">{{ settings.swym_registry_sold_out_option_label }}</button>
+            </div>
+             <ul class="swym-registry-owner-grid-top">
+              <li class="swym-registry-owner-grid-top-add-products">
+            <h4 class="swym-registry-owner-grid-product-count swym-registry-font-small"><span class="swym-registry-owner-grid-product-count-number">${swymgr.registryDetails.associatedListedProducts.length}</span><span> {{ settings.swym_registry_products_label }}</span></h4>
+              <button class="swym-registry-font-btn {{ settings.swym_registry_custom_btn_class }}" onclick="swymRegistryRedirectToCollection()">+ {{ settings.swym_registry_gifter_grid_add_products_btn }}</button>
+            </li>
+              
+            </ul>
+          </div>`;
+          document.getElementById("swym-registry-owner-banner").classList.remove('swym-registry-hidden');
+           if(!swymgr.registryDetails.coCreatorName || swymgr.registryDetails.coCreatorName.trim().length === 0){
+              document.querySelector('.swym-registry-coregistrant-name-label').remove();
+           }
+
+          let expiryDate = swymDaysBetween(swymgr.registryDetails.expiryDate);
+          swymCounterAnim(".swym-registry-owner-banner-bottom-days.swym-registry-desktop strong", 0, expiryDate, 1500);
+          swymCounterAnim(".swym-registry-owner-banner-bottom-days.swym-registry-mobile strong", 0, expiryDate, 1500);
+          document.getElementById("swym-registry-event-type-value").textContent = swymgr.registryDetails.occasion;
+          document.getElementById("swym-registry-event-date-value").textContent = swymgr.registryDetails.expiryDate;
+          document.getElementById("swym-registry-id-value").textContent = swymgr.registryDetails.Id;
+          document.getElementById("swym-registry-registrant-name-value").textContent = swymgr.registryDetails.creatorName;
+          document.getElementById("swym-registry-coregistrant-name-value").textContent = swymgr.registryDetails.coCreatorName;
+          document.querySelector(".swym-registry-owner-banner-bottom-days strong").textContent = swymDaysBetween(swymgr.registryDetails.expiryDate);
+          document.querySelector(".swym-registry-owner-banner-bottom-days strong").textContent = swymDaysBetween(swymgr.registryDetails.expiryDate);
+          document.querySelector("#swym-registry-owner-gifts-added").textContent = swymgr.registryDetails.associatedListedProducts.length;
+          document.querySelector("#swym-registry-owner-orders-placed").textContent = swymgr.registryDetails.associatedBoughtProducts? swymgr.registryDetails.associatedBoughtProducts.length : 0;
+         
+          let swymRegistry_fname = swymgr.registryDetails.address.firstName, swymRegistry_lname = swymgr.registryDetails.address.lastName, swymRegistry_initials;
+          if(swymRegistry_fname && swymRegistry_lname) {
+            swymRegistry_initials = swymRegistry_fname.charAt(0) + swymRegistry_lname.charAt(0);
+          }
+          else {
+             swymRegistry_initials = swymgr.registryDetails.creatorName.charAt(0);
+          }
+          document.querySelector(".swym-registry-owner-banner-user").textContent = swymRegistry_initials;
+          document.querySelector(".swym-registry-owner-banner-title").textContent = swymgr.registryDetails.registryName;
+          document.querySelector("#swym-registry-share-registry-name").value = swymgr.registryDetails.registryName;
+          document.querySelector("#swym-registry-share-registry-id").value = swymgr.registryId;
+          document.querySelector(".swym-registry-owner-banner-message").textContent = swymgr.registryDetails.description;
+          if(swymgr.registryDetails.description.trim().length===0){
+              document.querySelector(".swym-registry-owner-banner-message").style.display='none';
+          }
+        }
+      }).catch(error => {
+          _LTracker.push({
+            'ErrorLocation': 'Get registry details for owner API call - Owner Template',
+            'ErrorInfo': {
+              "error": {
+                "msg": error.message,
+                "Reference_stack": error.stack
+              }
+            },
+           'MerchantInfo': {
+            'pid': swymRegistry_authData.swym_registry.pid,
+            'shop': Shopify.shop,
+            'themeId': Shopify.theme.id,
+            'themeName': Shopify.theme.name
+          },
+          'CustomerInfo': {
+            'registryId': swymgr.registryId,
+            'customerId': swymRegistry_authData.swym_registry.customerId,
+            'customerEmail': swymRegistryCustomer.email,
+            'userAgent': navigator.userAgent 
+          }
+          }); 
+      });
+     }
+}   
+swymRegistryAddOnloadEvent(swymRegistryOnloadHandler);
+</script>
+{% if request.design_mode %}
+<div class="swym-registry-owner-container swym-registry-design-mode">
+  <div class="swym-registry-owner-banner">
+    <div class="swym-registry-wrapper">
+      <span class="swym-registry-owner-banner-edit">
+        <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewbox="0 0 50 50"><path d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z"/></svg>
+      </span>
+     <span class="swym-registry-owner-banner-share" onclick="swymRegistryOpenShareModalDesignMode()">
+  <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewbox="0 0 50 50"><path d="M36.35 44q-2.35 0-4.025-1.675Q30.65 40.65 30.65 38.3q0-.35.075-.825t.225-.875L15.8 27.8q-.75.85-1.85 1.375t-2.25.525q-2.35 0-4.025-1.675Q6 26.35 6 24q0-2.4 1.675-4.05T11.7 18.3q1.15 0 2.2.45 1.05.45 1.9 1.3l15.15-8.7q-.15-.35-.225-.8-.075-.45-.075-.85 0-2.4 1.675-4.05T36.35 4q2.4 0 4.05 1.65t1.65 4.05q0 2.35-1.65 4.025-1.65 1.675-4.05 1.675-1.15 0-2.225-.375Q33.05 14.65 32.3 13.8l-15.15 8.4q.1.4.175.925.075.525.075.875t-.075.75q-.075.4-.175.8l15.15 8.6q.75-.7 1.75-1.125 1-.425 2.3-.425 2.4 0 4.05 1.65t1.65 4.05q0 2.35-1.65 4.025Q38.75 44 36.35 44Zm0-31.6q1.15 0 1.925-.775.775-.775.775-1.925t-.775-1.925Q37.5 7 36.35 7t-1.925.775q-.775.775-.775 1.925t.775 1.925q.775.775 1.925.775ZM11.7 26.7q1.15 0 1.925-.775.775-.775.775-1.925t-.775-1.925Q12.85 21.3 11.7 21.3t-1.925.775Q9 22.85 9 24t.775 1.925q.775.775 1.925.775ZM36.35 41q1.15 0 1.925-.775.775-.775.775-1.925t-.775-1.925Q37.5 35.6 36.35 35.6t-1.925.775q-.775.775-.775 1.925t.775 1.925Q35.2 41 36.35 41Zm0-31.3ZM11.7 24Zm24.65 14.3Z"/></svg>
+  </span>
+      <div class="swym-registry-owner-banner-circle">
+        <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-owner-banner-user swym-registry-font-very-large">JD</p>
+      </div>
+      <div class="swym-registry-owner-banner-content">
+        <h1 class="swym-registry-owner-banner-title swym-registry-font-sub-title {{ settings.swym_registry_custom_title_class }}">My Awesome Baby Registry</h1>
+        <ul class="swym-registry-owner-banner-registry-detail">
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_event_type_label }}: </span><span class="swym-registry-owner-banner-value">New Born</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_event_date_label }}: </span><span class="swym-registry-owner-banner-value">OCT 20, 2022</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_reg_id_label }}: </span><span class="swym-registry-owner-banner-value">786575754</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_registrant_name_label }}: </span><span class="swym-registry-owner-banner-value">Jane Doe</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_coregistrant_name_label }}: </span><span class="swym-registry-owner-banner-value">John Doe</span></li>
+        </ul>
+        <div class="swym-registry-owner-banner-message-container">
+          <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-owner-banner-message swym-registry-font-very-small">Little Sophia is arriving soon and we are so excited to introduce her to you. For everyone who has been asking us what they could bring for her...</p>
+        </div>   
+        <div class="swym-registry-owner-banner-bottom">
+          <span class="swym-registry-owner-banner-bottom-days swym-registry-font-very-large swym-registry-desktop"><strong>100</strong> <span class="swym-registry-font-small">{{ settings.swym_registry_days_label }}</span></span>
+          <span class="swym-registry-owner-banner-bottom-send-thanks swym-registry-font-very-small" onclick="swymRegistryDesignModeSendThanks()"><svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewbox="0 0 50 50"><path d="M12 28.05h15.65v-3H12Zm0-6.5h24v-3H12Zm0-6.5h24v-3H12ZM4 44V7q0-1.15.9-2.075Q5.8 4 7 4h34q1.15 0 2.075.925Q44 5.85 44 7v26q0 1.15-.925 2.075Q42.15 36 41 36H12Zm3-7.25L10.75 33H41V7H7ZM7 7v29.75Z"/></svg><span class="{{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_send_thanks_label }} </span></span>
+        </div>
+      </div>
+      <div class="swym-registry-owner-banner-stats-container">
+        <ul class="swym-registry-owner-banner-stats">
+          <li><span id="swym-registry-owner-gifts-added" class="swym-registry-owner-banner-stats-count swym-registry-font-very-large">2</span><span class="swym-registry-font-very-small swym-registry-owner-span-max-content {{ settings.swym_registry_custom_label_class }}"> {{ settings.swym_registry_gifts_added_label }} </span></li>
+          <li><span id="swym-registry-owner-orders-placed" class="swym-registry-owner-banner-stats-count swym-registry-font-very-large">3</span><span class="swym-registry-font-very-small swym-registry-owner-span-max-content {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_orders_placed_label }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="swym-registry-owner-grid">
+    <div class="swym-registry-wrapper">
+    <div id="swym-registry-registrant-view">
+      <div class="swym-registry-registrant-grid-parent">
+            <div class="swym-registry-registrant-grid-nav">
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small swym-registry-border-btm-active">
+                {{ settings.swym_registry_all_option_label }}
+              </button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small">{{ settings.swym_registry_still_need_option_label }}</button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small">{{ settings.swym_registry_fulfilled_option_label }}</button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small">{{ settings.swym_registry_sold_out_option_label }}</button>
+            </div>
+          </div>
+    </div>
+    <ul class="swym-registry-owner-grid-top">
+        <li class="swym-registry-owner-grid-top-add-products">
+  <h4 class="swym-registry-owner-grid-product-count swym-registry-font-small"><span>2</span><span>{{ settings.swym_registry_products_label }}</span></h4>
+  <button class="swym-registry-font-btn {{ settings.swym_registry_custom_btn_class }}">+ {{ settings.swym_registry_gifter_grid_add_products_btn }}</button></li>
+      </ul>
+      <ul class="swym-registry-owner-grid-items">
+        <li class="swym-registry-owner-grid-item ">
+                <a href="#" class="{{ settings.swym_registry_custom_link_class }}">
+
+          <figure>
+            <img src="https://cdn.shopify.com/s/files/1/0577/1247/6319/products/bis4_1024x1024@2x.png?v=1624520585" alt="swym-registry-product">
+          </figure>
+                </a>
+          <div class="swym-registry-owner-grid-item-detail">
+            <h2 class="swym-registry-font-regular">Gust blanket - 100% Merino wool - Medium thick knit</h2>
+            <ul class="swym-registry-owner-grid-item-center">
+              <li><span class="swym-registry-owner-grid-item-price swym-registry-font-large">{{ cart.currency.symbol }}149.95</span></li>
+              <li class="swym-registry-owner-grid-item-askqty-container swym-registry-font-very-small">
+                <span class="swym-registry-owner-grid-item-want">{{ settings.swym_registry_want_label }}</span>
+                <span class="swym-registry-owner-grid-item-want-value"> 1</span>
+              </li>
+              <li class="swym-registry-owner-grid-item-boughtqty-container swym-registry-font-very-small">
+                <span class="swym-registry-owner-grid-item-purchased">{{ settings.swym_registry_purchase_label }}</span>
+                <span class="swym-registry-owner-grid-item-want-value"> 0</span>
+              </li>
+            </ul>
+            <ul class="swym-registry-owner-grid-item-bottom">
+              <li>
+                <span class="swym-registry-owner-grid-item-bottom-reduce" onClick="swymRegistryChangeQty(this)">-</span>
+                 <span class="swym-registry-owner-grid-item-bottom-qty swym-registry-owner-qty-design-span">1</span>
+                <span class="swym-registry-owner-grid-item-bottom-increase" onClick="swymRegistryChangeQty(this, 'increase')">+</span>
+              </li>
+              <li class="swym-registry-owner-update-btn-container">
+                <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-font-btn swym-registry-registrant-update-btn">{{ settings.swym_registry_gifter_grid_update_qty_btn }}</button>
+              </li>
+            </ul>
+          </div>
+        </li>
+         <li class="swym-registry-owner-grid-item">
+        <a href="#" class="{{ settings.swym_registry_custom_link_class }}">
+          <figure>
+            <img src="https://cdn.shopify.com/s/files/1/0577/1247/6319/products/bis4_1024x1024@2x.png?v=1624520585" alt="swym-registry-product">
+          </figure>
+        </a>
+          <div class="swym-registry-owner-grid-item-detail">
+            <h2 class="swym-registry-font-regular">Gust blanket - 100% Merino wool - Medium thick knit</h2>
+            <ul class="swym-registry-owner-grid-item-center">
+              <li><span class="swym-registry-owner-grid-item-price swym-registry-font-large">{{ cart.currency.symbol }}149.95</span></li>
+              <li class="swym-registry-owner-grid-item-askqty-container swym-registry-font-very-small">
+                <span class="swym-registry-owner-grid-item-want">{{ settings.swym_registry_want_label }}</span>
+                <span class="swym-registry-owner-grid-item-want-value"> 1</span>
+              </li>
+              <li class="swym-registry-owner-grid-item-boughtqty-container swym-registry-font-very-small">
+                <span class="swym-registry-owner-grid-item-purchased">{{ settings.swym_registry_purchase_label }}</span>
+                <span class="swym-registry-owner-grid-item-want-value"> 0</span>
+              </li>
+            </ul>
+            <ul class="swym-registry-owner-grid-item-bottom">
+              <li>
+                <span class="swym-registry-owner-grid-item-bottom-reduce" onClick="`swymRegistryChangeQty(this)">-</span>
+                                 <span class="swym-registry-owner-grid-item-bottom-qty swym-registry-owner-qty-design-span">1</span>
+                <span class="swym-registry-owner-grid-item-bottom-increase" onClick="swymRegistryChangeQty(this, 'increase')">+</span>
+              </li>
+              <li class="swym-registry-owner-update-btn-container">
+                <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-font-btn swym-registry-registrant-update-btn">{{ settings.swym_registry_gifter_grid_update_qty_btn }}</button>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+    const themeId = (Shopify.theme.id).toString();
+    const shopDomain = Shopify.shop;
+    var swymRegistry_styles_payload = JSON.stringify({
+        "themeId": themeId,
+        "shopDomain": shopDomain,
+        "type": "styles",
+        "globalConfig": {
+          "color": {
+            "swym_registry_page_header_color": "{{ settings.swym_registry_page_header_color }}",
+            "swym_registry_page_header_background_color": "{{ settings.swym_registry_page_header_background_color }}",
+            "swym_registry_page_content_color": "{{ settings.swym_registry_page_content_color }}",
+            "swym_registry_page_content_background_color": "{{ settings.swym_registry_page_content_background_color }}",
+            "swym_registry_btn_background_color": "{{ settings.swym_registry_btn_background_color }}",
+            "swym_registry_btn_text_color": "{{ settings.swym_registry_btn_text_color }}"
+          },
+          "fontFamily": "{{ settings.swym_registry_page_font_family }}",
+          "fontSize": {
+            "swym_registry_font_very_small": "{{ settings.swym_registry_font_very_small }}",
+            "swym_registry_font_small": "{{ settings.swym_registry_font_small }}",
+            "swym_registry_font_regular": "{{ settings.swym_registry_font_regular }}",
+            "swym_registry_font_large": "{{ settings.swym_registry_font_large }}",
+            "swym_registry_font_very_large": "{{ settings.swym_registry_font_very_large }}",
+            "swym_registry_font_sub_title": "{{ settings.swym_registry_font_sub_title }}",
+            "swym_registry_font_main_title": "{{ settings.swym_registry_font_main_title }}",
+            "swym_registry_font_btn": "{{ settings.swym_registry_font_btn }}"
+          },
+          "titleAllign": "center",
+          "cssClasses": {
+            "buttonClass": "{{ settings.swym_registry_custom_btn_class }}",
+            "labelClass": "{{ settings.swym_registry_custom_label_class }}",
+            "titleClass": "{{ settings.swym_registry_custom_title_class }}",
+            "paraClass": "{{ settings.swym_registry_custom_para_class }}",
+            "linkClass": "{{ settings.swym_registry_custom_link_class }}",
+            "sectionClass": "{{ settings.swym_registry_custom_section_class }}"
+          }
+        }
+      });
+    var swymRegistry_strings_payload = JSON.stringify({
+        "themeId": themeId,
+        "shopDomain": shopDomain,
+        "type": "strings",
+        "globalConfig": {
+          "swym_registry_gifter_grid_add_products_btn": "{{ settings.swym_registry_gifter_grid_add_products_btn }}",
+          "swym_registry_gifter_grid_update_qty_btn": "{{ settings.swym_registry_gifter_grid_update_qty_btn }}",
+          "swym_registry_event_type_label": "{{ settings.swym_registry_event_type_label }}",
+          "swym_registry_event_date_label": "{{ settings.swym_registry_event_date_label }}",
+          "swym_registry_reg_id_label": "{{ settings.swym_registry_reg_id_label }}",
+          "swym_registry_reg_name_label": "{{ settings.swym_registry_reg_name_label }}",
+          "swym_registry_registrant_name_label": "{{ settings.swym_registry_registrant_name_label }}",
+          "swym_registry_coregistrant_name_label": "{{ settings.swym_registry_coregistrant_name_label }}",
+          "swym_registry_days_label": "{{ settings.swym_registry_days_label }}",
+          "swym_registry_products_label": "{{ settings.swym_registry_products_label }}",
+          "swym_registry_want_label": "{{ settings.swym_registry_want_label }}",
+          "swym_registry_purchase_label": "{{ settings.swym_registry_purchase_label }}",
+          "swym_registry_send_thanks_label": "{{ settings.swym_registry_send_thanks_label }}",
+          "swym_registry_gifts_added_label": "{{ settings.swym_registry_gifts_added_label }}",
+          "swym_registry_orders_placed_label": "{{ settings.swym_registry_orders_placed_label }}",
+          "swym_registry_all_option_label": "{{ settings.swym_registry_all_option_label }}",
+          "swym_registry_still_need_option_label": "{{ settings.swym_registry_still_need_option_label }}",
+          "swym_registry_fulfilled_option_label": "{{ settings.swym_registry_fulfilled_option_label }}",
+          "swym_registry_sold_out_option_label": "{{ settings.swym_registry_sold_out_option_label }}",
+          "swym_registry_sold_out_label": "{{ settings.swym_registry_sold_out_label }}",
+          "swym_registry_no_orders_yet_label": "{{ settings.swym_registry_no_orders_yet_label }}",
+          "swym_registry_share_registry_label": "{{ settings.swym_registry_share_registry_label }}", 
+          "swym_registry_purchased_label": "{{ settings.swym_registry_purchased_label }}",
+          "swym_registry_send_thanks_modal_order_label": "{{ settings.swym_registry_send_thanks_modal_order_label }}",
+          "swym_registry_send_thanks_modal_items_label": "{{ settings.swym_registry_send_thanks_modal_items_label }}",
+          "swym_registry_send_thanks_modal_on_label": "{{ settings.swym_registry_send_thanks_modal_on_label }}",
+          "swym_registry_send_thanks_modal_send_thanks_label": "{{ settings.swym_registry_send_thanks_modal_send_thanks_label }}",
+          "swym_registry_send_thanks_modal_track_order_label": "{{ settings.swym_registry_send_thanks_modal_track_order_label }}"
+        }
+      });
+    function swymRegistry_stylesApi(swymRegistry_styles_payload) {   
+      swymRegistry_uploadConfig(swymRegistry_styles_payload);
+    }
+
+    function swymRegistry_stringsApi(swymRegistry_strings_payload) {   
+      swymRegistry_uploadConfig(swymRegistry_strings_payload);
+    }
+    swymRegistry_stylesApi(swymRegistry_styles_payload);
+    swymRegistry_stringsApi(swymRegistry_strings_payload);
+
+function swymRegistryCloseShareModal() {
+    document.getElementById("swym-registry-copy-btn").textContent = "{{ settings.swym_registry_copy_button_label}}";
+    document.querySelector(".swym-registry-share-modal-overlay").style.display = "none";
+    document.querySelector(".swym-registry-share-modal-container").style.display = "none";
+}
+
+function swymRegistryCopyRegistryLink() {
+    let copyText = document.getElementById("swym-registry-copy-text");
+    let copyTextBtn = document.getElementById("swym-registry-copy-btn");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value);
+    copyTextBtn.textContent = "{{ settings.swym_registry_copied_button_label }}"
+}
+
+if (document.querySelector("#swym-registry-share-modal-close")) {
+    document.querySelector("#swym-registry-share-modal-close").addEventListener("click", function (e) {
+        swymRegistryHideShareOverlay();
+        swymRegistryHideShareModal();
+    });
+}
+// end share modal
+
+// order modal
+function swymRegistryShowOrderOverlay() {
+  document.querySelector(".swym-registry-order-modal-overlay").style.display = "block";
+} 
+function swymRegistryShowDesignModeOrderModal() {
+    document.querySelector(".swym-registry-order-modal-container").style.display = "block";
+    document.querySelector(".swym-registry-order-modal-container").innerHTML =
+        `<div class="swym-registry-order-modal">
+  <button class="swym-order-modal-close" onclick="swymRegistryCloseOrderModal()" id="swym-registry-order-modal-close">&#x2715;</button>
+  <div class="swym-registry-font-large">
+      {{ settings.swym_registry_order_modal_list_title }}
+    </div>
+    <div class="swym-registry-order-font-xs-small">
+      My Registry  |  {{ settings.swym_registry_id_lable }} 12345
+    </div>
+  <br>
+  <div class="swym-registry-order-modal-content">
+  </div>
+</div>`
+    let boughtProducts = [{
+        "orderId": "4998552912127",
+        "id": "41",
+        "registryId": "1989250",
+        "productId": "7916543344893",
+        "variantId": "43463798849789",
+        "quantity": "1",
+        "adminGraphqlApiId": "gid://shopify/LineItem/12648711094525",
+        "name": "Baby Jellies - Purple/Blue/Green",
+        "price": 14.99,
+        "pid": "wJB1CP19LcO8Ocmp3zCex4ZJ8UD3cNN1gaMgkV28QY4=",
+        "variantTitle": "Purple/Blue/Green",
+        "Order": {
+            "Id": "4998552912127",
+            "registryId": "1989250",
+            "cartToken": "7d00e18cd3fb74d4c18213ed72a6a0ff",
+            "checkoutId": "33646468038909",
+            "email": "johnDoe@email.com",
+            "landingSite": "/cart/43463798849789:1?checkout%5Bemail%5D=johnDoe%40email.com&checkout%5Bshipping_address%5D%5Bfirst_name%5D=john&checkout%5Bshipping_address%5D%5Blast_name%5D=Doe&checkout%5Bshipping_address%5D%5Baddress1%5D=4483+Ardath+Street&checkout%5Bshipping_address%5D%5Baddress2%5D=test&checkout%5Bshipping_address%5D%5Bcity%5D=Austin&checkout%5Bshipping_address%5D%5Bprovince%5D=Texas&checkout%5Bshipping_address%5D%5Bzip%5D=78757&checkout%5Bshipping_address%5D%5Bcountry%5D=United+States&checkout%5Bshipping_address%5D%5BcountryCode%5D=US&ref=Dev1989250&note=happy+birthday&attributes%5BDev%5D=1989250&attributes%5Bgifter%5D=johnDoe&attributes%5BgifterEmail%5D=johnDoe%40swymcorp.com",
+            "landingSiteRef": "Dev1989250",
+            // "referringSite": "https://swym-gift-registry-demo.myshopify.com/pages/gifter?view-registry=true&registryid=1989250&token=VTJGc2RHVmtYMStDT3hzZy9IRDg3N1E5Y1h6UlAzZDh3ZmlZRy9BYmZJOD0=",
+            "createdAt": "2022-11-09T10:08:26.000Z",
+            "totalPriceUsd": 21.54,
+            // "orderStatusUrl": "https://swym-gift-registry-demo.myshopify.com/66776531197/orders/15020ed3fba81020df88b731f6c8a6f4/authenticate?key=9ef81572983fc30d13052faa725646f0",
+            "pid": "wJB1CP19LcO8Ocmp3zCex4ZJ8UD3cNN1gaMgkV28QY4=",
+            "contactEmail": "johnDoe@email.com",
+            "primeShopperEmail": "johnDoe@email.com",
+            "note": "happy birthday",
+            "gifterName": "johnDoe",
+            "gifterEmail": "johnDoe@email.com",
+            "thanksSent": false,
+            "isDummy": false
+        }
+    },
+    {
+        "orderId": "4998552912125",
+        "id": "41",
+        "registryId": "1989250",
+        "productId": "7916543344893",
+        "variantId": "43463798849789",
+        "quantity": "1",
+        "adminGraphqlApiId": "gid://shopify/LineItem/12648711094525",
+        "name": "Baby Jellies - Purple/Blue/Green",
+        "price": 14.99,
+        "pid": "wJB1CP19LcO8Ocmp3zCex4ZJ8UD3cNN1gaMgkV28QY4=",
+        "variantTitle": "Purple/Blue/Green",
+        "Order": {
+            "Id": "4998552912125",
+            "registryId": "1989250",
+            "cartToken": "7d00e18cd3fb74d4c18213ed72a6a0ff",
+            "checkoutId": "33646468038909",
+            "email": "johnDoe@email.com",
+            "landingSite": "/cart/43463798849789:1?checkout%5Bemail%5D=johnDoe%40email.com&checkout%5Bshipping_address%5D%5Bfirst_name%5D=john&checkout%5Bshipping_address%5D%5Blast_name%5D=Doe&checkout%5Bshipping_address%5D%5Baddress1%5D=4483+Ardath+Street&checkout%5Bshipping_address%5D%5Baddress2%5D=test&checkout%5Bshipping_address%5D%5Bcity%5D=Austin&checkout%5Bshipping_address%5D%5Bprovince%5D=Texas&checkout%5Bshipping_address%5D%5Bzip%5D=78757&checkout%5Bshipping_address%5D%5Bcountry%5D=United+States&checkout%5Bshipping_address%5D%5BcountryCode%5D=US&ref=Dev1989250&note=happy+birthday&attributes%5BDev%5D=1989250&attributes%5Bgifter%5D=johnDoe&attributes%5BgifterEmail%5D=johnDoe%40email.com",
+            "landingSiteRef": "Dev1989250",
+            // "referringSite": "https://swym-gift-registry-demo.myshopify.com/pages/gifter?view-registry=true&registryid=1989250&token=VTJGc2RHVmtYMStDT3hzZy9IRDg3N1E5Y1h6UlAzZDh3ZmlZRy9BYmZJOD0=",
+            "createdAt": "2022-11-09T10:08:26.000Z",
+            "totalPriceUsd": 21.54,
+            // "orderStatusUrl": "https://swym-gift-registry-demo.myshopify.com/66776531197/orders/15020ed3fba81020df88b731f6c8a6f4/authenticate?key=9ef81572983fc30d13052faa725646f0",
+            "pid": "wJB1CP19LcO8Ocmp3zCex4ZJ8UD3cNN1gaMgkV28QY4=",
+            "contactEmail": "johnDoe@email.com",
+            "primeShopperEmail": "johnDoe@email.com",
+            "note": "happy birthday",
+            "gifterName": "johnDoe",
+            "gifterEmail": "johnDoe@email.com",
+            "thanksSent": false,
+            "isDummy": false
+        }
+    },
+    {
+        "orderId": "4998552912126",
+        "id": "41",
+        "registryId": "1989250",
+        "productId": "7916543344893",
+        "variantId": "43463798849789",
+        "quantity": "1",
+        "adminGraphqlApiId": "gid://shopify/LineItem/12648711094525",
+        "name": "Baby Jellies - Purple/Blue/Green",
+        "price": 14.99,
+        "pid": "wJB1CP19LcO8Ocmp3zCex4ZJ8UD3cNN1gaMgkV28QY4=",
+        "variantTitle": "Purple/Blue/Green",
+        "Order": {
+            "Id": "4998552912126",
+            "registryId": "1989250",
+            "cartToken": "7d00e18cd3fb74d4c18213ed72a6a0ff",
+            "checkoutId": "33646468038909",
+            "email": "johnDoe@email.com",
+            "landingSite": "/cart/43463798849789:1?checkout%5Bemail%5D=johnDoe%40email.com&checkout%5Bshipping_address%5D%5Bfirst_name%5D=john&checkout%5Bshipping_address%5D%5Blast_name%5D=Doe&checkout%5Bshipping_address%5D%5Baddress1%5D=4483+Ardath+Street&checkout%5Bshipping_address%5D%5Baddress2%5D=test&checkout%5Bshipping_address%5D%5Bcity%5D=Austin&checkout%5Bshipping_address%5D%5Bprovince%5D=Texas&checkout%5Bshipping_address%5D%5Bzip%5D=78757&checkout%5Bshipping_address%5D%5Bcountry%5D=United+States&checkout%5Bshipping_address%5D%5BcountryCode%5D=US&ref=Dev1989250&note=happy+birthday&attributes%5BDev%5D=1989250&attributes%5Bgifter%5D=johnDoe&attributes%5BgifterEmail%5D=johnDoe%40email.com",
+            "landingSiteRef": "Dev1989250",
+            // "referringSite": "https://swym-gift-registry-demo.myshopify.com/pages/gifter?view-registry=true&registryid=1989250&token=VTJGc2RHVmtYMStDT3hzZy9IRDg3N1E5Y1h6UlAzZDh3ZmlZRy9BYmZJOD0=",
+            "createdAt": "2022-11-09T10:08:26.000Z",
+            "totalPriceUsd": 21.54,
+            // "orderStatusUrl": "https://swym-gift-registry-demo.myshopify.com/66776531197/orders/15020ed3fba81020df88b731f6c8a6f4/authenticate?key=9ef81572983fc30d13052faa725646f0",
+            "pid": "wJB1CP19LcO8Ocmp3zCex4ZJ8UD3cNN1gaMgkV28QY4=",
+            "contactEmail": "johnDoe@email.com",
+            "primeShopperEmail": "johnDoe@email.com",
+            "note": "happy birthday",
+            "gifterName": "johnDoe",
+            "gifterEmail": "johnDoe@email.com",
+            "thanksSent": false,
+            "isDummy": false
+        }
+    }
+    ]
+    if (boughtProducts && boughtProducts.length) {
+        let dict = {}
+        boughtProducts.forEach((element) => {
+            if (dict[element.orderId]) {
+                dict[element.orderId].push(element);
+            }
+            else {
+                dict[element.orderId] = [element];
+            }
+        })
+        for (var key in dict) {
+            var orderItem = document.createElement('div');
+            orderItem.classList.add('swym-registry-order-card');
+            orderItem.innerHTML = `
+<span class="swym-registry-order-card-data">
+  <table class="swym-registry-order-table">
+    <tr class="swym-registry-order-row-1">
+      <td class="swym-registry-font-order-id swym-registry-font-small">{{ settings.swym_registry_send_thanks_modal_order_label }} - <a class="swym-registry-font-order-id-link {{ settings.swym_registry_custom_link_class }}" target="_blank">${key}</a></td>
+      <td><span class="swym-registry-font-order-id swym-registry-font-small">${dict[key].length}</span>
+        <span class="swym-registry-order-font-xs-small"> {{ settings.swym_registry_send_thanks_modal_items_label }}</span></td>
+    </tr>
+    <tr>
+      <td class="swym-registry-order-font-xs-small" colspan="2">{{ settings.swym_registry_order_modal_purchased_title }} ${dict[key][0].Order.gifterName} {{ settings.swym_registry_send_thanks_modal_on_label }} ${new Date(dict[key][0].Order.createdAt).toDateString()} </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding-bottom:2%;">
+        <a class="swym-registry-order-card-msg-accordion {{ settings.swym_registry_custom_link_class }}" style="text-decoration: underline;" onclick="swymRegistryopenClose(this)"><span class="swym-registry-order-font-xs-small">{{settings.swym_registry_order_modal_message_title}} ${dict[key][0].Order.gifterName} </span></a> 
+        <div class="swym-registry-order-card-msg-panel swym-registry-order-font-xs-small">
+          "${dict[key][0].Order.note}"
+        </div>
+      </td>               
+    </tr>
+    <tr>
+      <td colspan="2" class="swym-registry-order-font-xs-small">
+        <a class="{{ settings.swym_registry_custom_link_class }} swym-registry-order-button-1 swym-registry-font-small" target="_blank" rel="noopener noreferrer">{{ settings.swym_registry_send_thanks_modal_send_thanks_label }}</a><a class="swym-registry-order-button swym-registry-font-small" target="_blank">{{ settings.swym_registry_send_thanks_modal_track_order_label }}</a>
+      </td>
+    </tr>
+  </table>
+</span>`
+            document.querySelector(".swym-registry-order-modal-content").appendChild(orderItem);
+        }
+    }
+    else {
+        var emptyState = document.createElement('div');
+        emptyState.classList.add('swym-registry-order-none');
+        emptyState.innerHTML = `<p class='{{ settings.swym_registry_custom_para_class }} swym-registry-order-font-regular'>{{ settings.swym_registry_no_orders_yet_label }}</p>
+ <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-order-font-regular">{{ settings.swym_registry_share_registry_label }}</p>`
+        document.querySelector(".swym-registry-order-modal-content").appendChild(emptyState);
+    }
+}
+  </script>
+{% else %}
+{% if customer %}
+<div class="swym-registry-owner-container">
+  <div id="swym-registry-owner-banner" class="swym-registry-owner-banner swym-registry-hidden">
+  <span class="swym-registry-owner-banner-bottom-days swym-registry-mobile swym-registry-font-very-large"><strong>25</strong> <span class="swym-registry-font-small">{{ settings.swym_registry_days_label }}</span></span>
+    <div class="swym-registry-wrapper">
+    <span class="swym-registry-owner-banner-edit" onclick="swymRegistry_manageEditRegistryBtn()">
+  <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewbox="0 0 50 50"><path d="M9 39h2.2l22.15-22.15-2.2-2.2L9 36.8Zm30.7-24.3-6.4-6.4 2.1-2.1q.85-.85 2.1-.85t2.1.85l2.2 2.2q.85.85.85 2.1t-.85 2.1Zm-2.1 2.1L12.4 42H6v-6.4l25.2-25.2Zm-5.35-1.05-1.1-1.1 2.2 2.2Z"/></svg>
+  </span>
+      <span class="swym-registry-owner-banner-share" onclick = "swymRegistryOpenShareModal()">
+  <svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewbox="0 0 50 50"><path d="M36.35 44q-2.35 0-4.025-1.675Q30.65 40.65 30.65 38.3q0-.35.075-.825t.225-.875L15.8 27.8q-.75.85-1.85 1.375t-2.25.525q-2.35 0-4.025-1.675Q6 26.35 6 24q0-2.4 1.675-4.05T11.7 18.3q1.15 0 2.2.45 1.05.45 1.9 1.3l15.15-8.7q-.15-.35-.225-.8-.075-.45-.075-.85 0-2.4 1.675-4.05T36.35 4q2.4 0 4.05 1.65t1.65 4.05q0 2.35-1.65 4.025-1.65 1.675-4.05 1.675-1.15 0-2.225-.375Q33.05 14.65 32.3 13.8l-15.15 8.4q.1.4.175.925.075.525.075.875t-.075.75q-.075.4-.175.8l15.15 8.6q.75-.7 1.75-1.125 1-.425 2.3-.425 2.4 0 4.05 1.65t1.65 4.05q0 2.35-1.65 4.025Q38.75 44 36.35 44Zm0-31.6q1.15 0 1.925-.775.775-.775.775-1.925t-.775-1.925Q37.5 7 36.35 7t-1.925.775q-.775.775-.775 1.925t.775 1.925q.775.775 1.925.775ZM11.7 26.7q1.15 0 1.925-.775.775-.775.775-1.925t-.775-1.925Q12.85 21.3 11.7 21.3t-1.925.775Q9 22.85 9 24t.775 1.925q.775.775 1.925.775ZM36.35 41q1.15 0 1.925-.775.775-.775.775-1.925t-.775-1.925Q37.5 35.6 36.35 35.6t-1.925.775q-.775.775-.775 1.925t.775 1.925Q35.2 41 36.35 41Zm0-31.3ZM11.7 24Zm24.65 14.3Z"/></svg>
+  </span>
+      <div class="swym-registry-owner-banner-circle">
+        <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-owner-banner-user swym-registry-font-very-large">JD</p>
+      </div>
+      <div class="swym-registry-owner-banner-content">
+        <h1 class="swym-registry-owner-banner-title swym-registry-font-sub-title {{ settings.swym_registry_custom_title_class }}">My awesome baby time</h1>
+        <ul class="swym-registry-owner-banner-registry-detail">
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_event_type_label }}: </span><span id="swym-registry-event-type-value"class="swym-registry-owner-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_event_date_label }}: </span><span id="swym-registry-event-date-value" class="swym-registry-owner-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_reg_id_label }}: </span><span id="swym-registry-id-value" class="swym-registry-owner-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_registrant_name_label }}: </span><span id="swym-registry-registrant-name-value" class="swym-registry-owner-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-owner-banner-label swym-registry-coregistrant-name-label  {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_coregistrant_name_label }}: </span><span id="swym-registry-coregistrant-name-value" class="swym-registry-owner-banner-value"></span></li>
+        </ul>
+        <div class="swym-registry-owner-banner-message-container">
+          <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-owner-banner-message swym-registry-font-very-small">""</p>
+        </div>   
+        <div class="swym-registry-owner-banner-bottom">
+          <span class="swym-registry-owner-banner-bottom-days swym-registry-desktop swym-registry-font-very-large"><strong>100</strong> <span class="swym-registry-font-small">{{ settings.swym_registry_days_label }}</span></span>
+            <span class="swym-registry-owner-banner-bottom-send-thanks swym-registry-font-very-small" onclick="swymRegistrySendThanks()"><svg xmlns="http://www.w3.org/2000/svg" height="25" width="25" viewbox="0 0 50 50"><path d="M12 28.05h15.65v-3H12Zm0-6.5h24v-3H12Zm0-6.5h24v-3H12ZM4 44V7q0-1.15.9-2.075Q5.8 4 7 4h34q1.15 0 2.075.925Q44 5.85 44 7v26q0 1.15-.925 2.075Q42.15 36 41 36H12Zm3-7.25L10.75 33H41V7H7ZM7 7v29.75Z"/></svg><span class="{{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_send_thanks_label }} </span></span>
+        </div>
+      </div>
+      <div class="swym-registry-owner-banner-stats-container">
+        <ul class="swym-registry-owner-banner-stats">
+          <li><span id="swym-registry-owner-gifts-added" class="swym-registry-owner-banner-stats-count swym-registry-font-very-large">0</span><span class="swym-registry-font-very-small swym-registry-owner-span-max-content {{ settings.swym_registry_custom_label_class }}"> {{ settings.swym_registry_gifts_added_label }}</span></li>
+          <li><span id="swym-registry-owner-orders-placed" class="swym-registry-owner-banner-stats-count swym-registry-font-very-large">0</span><span class="swym-registry-font-very-small swym-registry-owner-span-max-content {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_orders_placed_label }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="swym-registry-owner-grid">
+    <div class="swym-registry-wrapper">
+      <div id="swym-registry-registrant-view"></div>
+      <ul class="swym-registry-owner-grid-items">
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+{% else %}
+    <script>
+      window.location = "/account/login?return_url=" + encodeURIComponent(location.href);
+    </script>
+{% endif %}
+{% endif %}
+<div class="swym-registry-order-modal-overlay" id="swym-registry-order-modal-overlay" style="display: none"></div>
+<div class="swym-registry-order-modal-container" style="display: none">
+</div>
+
+<div class="swym-registry-share-modal-overlay" id="swym-registry-share-modal-overlay" style="display: none"></div>
+<div class="swym-registry-share-modal-container" style="display: none">
+  <div class="swym-registry-share-modal">
+    <button class="swym-modal-close" id="swym-registry-share-modal-close" onclick="swymRegistryCloseShareModal()">&#x2715;</button>
+    <div class="swym-registry-share-modal-content">
+      <ul>
+        <li><span class="swym-registry-share-registry-name swym-registry-font-regular"> <span id="swym-registry-share-registry-name">Registry Name</span> | <span id="swym-registry-share-registry-id"></span>12345</span></li>
+        <li><span class="swym-registry-font-regular">{{ settings.swym_registry_share_title }}</span></li>
+        <li><span class="swym-registry-font-regular">{{ settings.swym_registry_share_description }}</span></li>
+        <li style="display: flex;align-items: center;">
+            <span class="swym-registry-font-regular" style="margin-right: 10px;">{{ settings.swym_registry_share_label }}</span>
+          <a class='swym-registry-mail-link' id="swym-registry-share-mail-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 50 20" fill="none" class="swym-registry-envelop-icon">
+              <path fill="#fff" fill-rule="evenodd" clip-rule="evenodd" d="M3.46836 0.0948555C1.82084 0.41972 0.420349 1.85497 0.101057 3.54578C-0.0336855 4.25893 -0.0336855 30.4156 0.101057 31.1287C0.427931 32.8596 1.81988 34.2573 3.54351 34.5856C4.25791 34.7216 44.8849 34.7216 45.5993 34.5856C47.323 34.2573 48.7149 32.8596 49.0418 31.1287C49.1765 30.4156 49.1765 4.25893 49.0418 3.54578C48.7149 1.81497 47.323 0.417215 45.5993 0.0889771C44.9569 -0.0334133 4.08967 -0.0277278 3.46836 0.0948555ZM35.7536 11.3258C29.9984 17.0744 27.1412 19.8625 26.7804 20.0822C25.4354 20.9009 23.7074 20.9009 22.3625 20.0822C22.0016 19.8625 19.1444 17.0744 13.3893 11.3258L4.94553 2.89172H24.5714H44.1973L35.7536 11.3258ZM11.4711 13.4763L15.3095 17.3374L10.5114 22.1621C7.87243 24.8156 5.07624 27.5961 4.29773 28.3408L2.88218 29.6949V17.3369V4.97891L5.25744 7.297C6.56388 8.57199 9.35997 11.3527 11.4711 13.4763ZM46.2374 23.5291L46.2127 29.7209L40.0226 23.527L33.8325 17.3331L40.0226 11.1503L46.2127 4.96744L46.2374 11.1524C46.251 14.5541 46.251 20.1235 46.2374 23.5291ZM18.3832 20.4267C20.1199 22.1842 21.1262 22.8839 22.5561 23.3281C23.1586 23.5154 23.487 23.5518 24.5714 23.5518C26.0469 23.5518 26.8165 23.3714 27.9304 22.7648C28.7553 22.3154 29.1911 21.9575 30.5896 20.5805L31.7613 19.4269L34.0445 21.6524C35.3003 22.8764 38.0982 25.6589 40.2621 27.8354L44.1965 31.7928L24.5709 31.7887L4.94553 31.7845L11.1173 25.621C14.5117 22.2311 17.3197 19.4574 17.3572 19.4574C17.3946 19.4574 17.8563 19.8936 18.3832 20.4267Z" fill="#503E35"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <input type="text" class="swym-registry-font-small" id="swym-registry-copy-text">
+          <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-font-small" id="swym-registry-copy-btn" onclick="swymRegistryCopyRegistryLink()">{{ settings.swym_registry_copy_button_label }}</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+    function swymRegistryCloseShareModal() {
+        document.getElementById("swym-registry-copy-btn").textContent = "{{ settings.swym_registry_copy_button_label}}";
+        document.querySelector(".swym-registry-share-modal-overlay").style.display = "none";
+        document.querySelector(".swym-registry-share-modal-container").style.display = "none";
+    }                                                                                                                                                 
+  function swymRegistryCopyRegistryLink() {
+        _LTracker.push({
+          'eventInfo': 'Copy button clicked - Owner',
+          'tag': 'event'
+        });
+        Shopify.analytics.publish("swym_registry_registrant_view",{"eventAction": "Copy button clicked","customerInfo":{
+          "name"  : "{{ customer.name }}",
+          "email" : "{{ customer.email }}",
+          "id"    : "{{ customer.id }}"
+        }});
+        let copyText = document.getElementById("swym-registry-copy-text");
+        let copyTextBtn = document.getElementById("swym-registry-copy-btn");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+        navigator.clipboard.writeText(copyText.value);
+        copyTextBtn.textContent = "{{ settings.swym_registry_copied_button_label }}"
+    }
+
+    if (document.querySelector("#swym-registry-share-modal-close")) {
+        document.querySelector("#swym-registry-share-modal-close").addEventListener("click", function (e) {
+            swymRegistryHideShareOverlay();
+            swymRegistryHideShareModal();
+        });
+    }                                                                                                                                                  // 
+function swymRegistryShowOrderModal() {
+    document.querySelector(".swym-registry-order-modal-container").style.display = "block";
+    document.querySelector(".swym-registry-order-modal-container").innerHTML =
+        `<div class="swym-registry-order-modal">
+  <button class="swym-order-modal-close" onclick="swymRegistryCloseOrderModal()" id="swym-registry-order-modal-close">&#x2715;</button>
+  <div class="swym-registry-font-large">
+      {{ settings.swym_registry_order_modal_list_title }}
+    </div>
+    <div class="swym-registry-order-font-xs-small">
+      ${swymgr.registryDetails.registryName}   |  {{ settings.swym_registry_id_lable }} ${swymgr.registryId}
+    </div>
+  <br>
+  <div class="swym-registry-order-modal-content">
+  </div>
+</div>`
+    let boughtProducts = swymgr.registryDetails.associatedBoughtProducts;
+    if (boughtProducts && boughtProducts.length) {
+        let dict = {}
+        boughtProducts.forEach((element) => {
+            if (dict[element.orderId]) {
+                dict[element.orderId].push(element);
+            }
+            else {
+                dict[element.orderId] = [element];
+            }
+        })
+        for (var key in dict) {
+            var orderItem = document.createElement('div');
+            orderItem.classList.add('swym-registry-order-card');
+            orderItem.innerHTML = `
+<span class="swym-registry-order-card-data">
+  <table class="swym-registry-order-table">
+    <tr class="swym-registry-order-row-1">
+      <td class="swym-registry-font-order-id swym-registry-font-small">{{ settings.swym_registry_send_thanks_modal_order_label }} - <a class="{{ settings.swym_registry_custom_link_class }}" href="${dict[key][0].Order.orderStatusUrl}" target="_blank">${key}</a></td>
+      <td><span class="swym-registry-font-order-id swym-registry-font-small">${dict[key].length}</span>
+        <span class="swym-registry-order-font-xs-small"> {{ settings.swym_registry_send_thanks_modal_items_label }}</span></td>
+    </tr>
+    <tr>
+      <td class="swym-registry-order-font-xs-small" colspan="2" id="swym-registry-td-order-modal-title-${key}">{{ settings.swym_registry_order_modal_purchased_title }} ${dict[key][0].Order.gifterName} On ${new Date(dict[key][0].Order.createdAt).toDateString()} </td>
+    </tr>
+    <tr>
+      <td colspan="2"  style="padding-bottom:2%;">
+        <a class="{{ settings.swym_registry_custom_link_class }} swym-registry-order-card-msg-accordion" id="swym-registry-order-card-msg-accordion-${key}" onclick="swymRegistryopenClose(this)"><span class="swym-registry-order-font-xs-small" style="text-decoration: underline;">{{settings.swym_registry_order_modal_message_title}} ${dict[key][0].Order.gifterName} </span> </a> 
+        <div class="swym-registry-order-card-msg-panel swym-registry-order-font-xs-small" id="swym-registry-order-card-msg-panel-${key}">
+          ${dict[key][0].Order.note}
+        </div>
+      </td>               
+    </tr>
+    <tr>
+      <td colspan="2" class="swym-registry-order-font-xs-small">
+        <a class="{{ settings.swym_registry_custom_link_class }} swym-registry-order-button-1 swym-registry-font-small" id="swym-registry-order-button-1-${key}" href="mailto:${dict[key][0].Order.gifterEmail}?subject=${swymgr.registryDetails.registryName.replace(" ", "%20")} - ${encodeURIComponent(swymRegistryCapitalize(swymgr.registryDetails.occasion))}%20-%20Thanks" target="_blank" rel="noopener noreferrer">{{ settings.swym_registry_send_thanks_modal_send_thanks_label }}</a><a class="swym-registry-order-button swym-registry-font-small" id="" href="${dict[key][0].Order.orderStatusUrl}" target="_blank">{{ settings.swym_registry_send_thanks_modal_track_order_label }}</a>
+      </td>
+    </tr>
+  </table>
+</span>`
+            document.querySelector(".swym-registry-order-modal-content").appendChild(orderItem);
+            if(!dict[key][0].Order.gifterName){
+              document.querySelector(`#swym-registry-td-order-modal-title-${key}`).style.display='none';
+              document.querySelector(`#swym-registry-order-card-msg-accordion-${key}`).style.display='none';
+            }
+            else if(!dict[key][0].Order.note){
+              document.querySelector(`#swym-registry-order-card-msg-accordion-${key}`).style.display='none';
+            }
+            if(!dict[key][0].Order.gifterEmail){
+              document.querySelector(`#swym-registry-order-button-1-${key}`).href =`mailto:?subject=${swymgr.registryDetails.registryName.replace(" ", "%20")} - ${encodeURIComponent(swymRegistryCapitalize(swymgr.registryDetails.occasion))}%20-%20Thanks` ;
+            }
+        }
+    }
+    else {
+        var emptyState = document.createElement('div');
+        emptyState.classList.add('swym-registry-order-none');
+        emptyState.innerHTML = `<p class='{{ settings.swym_registry_custom_para_class }} swym-registry-order-font-regular'>{{ settings.swym_registry_no_orders_yet_label }}</p>
+ <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-order-font-regular">{{ settings.swym_registry_share_registry_label }}</p>`
+        document.querySelector(".swym-registry-order-modal-content").appendChild(emptyState);
+    }
+}
+</script>
+{% capture snippet_content %}{% render 'swym-registry-custom-snippet' %}{% endcapture %}
+{% if snippet_content contains "Could not find asset" %}
+    {% comment %} do nothing {% endcomment %}
+{% else %}
+    {% render 'swym-registry-custom-snippet' %}
+{% endif %}

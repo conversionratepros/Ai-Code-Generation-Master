@@ -1,0 +1,1269 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "custom_css": [
+        "@media (min-width: 1280px) {.breadcrumbs {padding-inline: 5rem; }}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "start",
+        "padding_top": 16,
+        "padding_bottom": 20
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "badges": {
+          "type": "badges",
+          "settings": {
+            "show_soldout_badge": true,
+            "show_sale_badge": true,
+            "sale_badge_type": "percentage"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "meta": {
+          "type": "meta",
+          "settings": {
+            "link_color": "#000000",
+            "show_vendor": false,
+            "show_product_type": true,
+            "show_sku": true,
+            "show_barcode": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "icon_with_text_BH8z9B": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "title_font": "body-bolder",
+            "title_size": "text-base",
+            "icon_1": "truck",
+            "heading_1": "Fast Delivery",
+            "icon_2": "lightning",
+            "heading_2": "2- 3 days",
+            "icon_3": "check",
+            "heading_3": "To Your Door"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_type": "shopify_swatch",
+            "swatch_style": "square",
+            "swatch_size": 32,
+            "button_style": "normal",
+            "size_title": "Size",
+            "size_chart_from_page": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "custom_liquid_VAF73c": {
+          "type": "custom_liquid",
+          "name": "Payment Method",
+          "settings": {
+            "custom_liquid": "<style>\n.icon-list-custom {\n    display: flex;\n    flex-wrap: wrap;\n    list-style: none;\n    justify-content: center;\n    margin: 0;\n    gap: 8px;\n    padding: 0;\n    margin-top: -1rem;\n}\n\n.icon-list-custom li a {\n    display: inline-block;\n    cursor: pointer;\n}\n\n.payment-modal {\n    display: none; /* Hidden by default */\n    position: fixed;\n    z-index: 1000;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    overflow: auto;\n    background-color: rgba(0,0,0,0.6);\n}\n\n.payment-modal-content {\n    background-color: #fff;\n    margin: 10% auto;\n    padding: 20px;\n    border-radius: 8px;\n    max-width: 400px;\n    text-align: center;\n    position: relative;\n}\n\n.payment-modal-content img {\n    max-width: 100%;\n    height: auto;\n}\n\n.payment-modal-close {\n    position: absolute;\n    top: 10px;\n    right: 15px;\n    font-size: 20px;\n    font-weight: bold;\n    cursor: pointer;\n}\n</style>\n\n<ul class=\"icon-list-custom\" role=\"list\">\n    {% assign enabled_payment_types = 'visa,master,apple_pay,google_pay,klarna' | remove: ' ' | split: ',' %}\n\n    {%- assign payment_links = \n        'https://visa.com,\n         https://mastercard.com,\n         https://apple.com/apple-pay,\n         https://pay.google.com,\n         https://www.klarna.com' | split: ',' -%}\n\n    {%- assign payment_images = \n        'https://cb-m2t.digitradenow.com/media/wysiwyg/LarryImagesForCode/New_Landing_Page_Assets-02.png,\n         https://via.placeholder.com/300x200?text=Mastercard+Info,\n         https://via.placeholder.com/300x200?text=Apple+Pay+Info,\n         https://via.placeholder.com/300x200?text=Google+Pay+Info,\n         https://via.placeholder.com/300x200?text=Klarna+Info' | split: ',' -%}\n\n    {% for type in enabled_payment_types %}\n        <li>\n            <a href=\"javascript:void(0);\" class=\"payment-icon\" data-image=\"{{ payment_images[forloop.index0] | strip }}\">\n                {{ type | payment_type_svg_tag: class: 'icon-svg' }}\n            </a>\n        </li>\n    {% endfor %}\n</ul>\n\n<!-- Popup Modal -->\n<div class=\"payment-modal\" id=\"paymentModal\">\n    <div class=\"payment-modal-content\">\n        <span class=\"payment-modal-close\" id=\"paymentModalClose\">&times;</span>\n        <img id=\"paymentModalImage\" src=\"\" alt=\"Payment Info\">\n    </div>\n</div>\n\n<script>\ndocument.addEventListener('DOMContentLoaded', function () {\n    var paymentIcons = document.querySelectorAll('.payment-icon');\n    var modal = document.getElementById('paymentModal');\n    var modalImage = document.getElementById('paymentModalImage');\n    var closeBtn = document.getElementById('paymentModalClose');\n\n    paymentIcons.forEach(function (icon) {\n        icon.addEventListener('click', function () {\n            var imageSrc = this.getAttribute('data-image');\n            modalImage.src = imageSrc;\n            modal.style.display = 'block';\n        });\n    });\n\n    closeBtn.addEventListener('click', function () {\n        modal.style.display = 'none';\n    });\n\n    window.addEventListener('click', function (event) {\n        if (event.target == modal) {\n            modal.style.display = 'none';\n        }\n    });\n});\n</script>"
+          }
+        },
+        "wishlist_plus_wishlist_pdp_button_nEENy9": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-pdp-button/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "settings": {
+            "swym_atw_button_icon": "heart",
+            "swym_atw_icon_thickness": 1.7,
+            "swym_atw_display_btn_text": true,
+            "swym_button_position": "default",
+            "swym_atw_button_vertical_offset": 0,
+            "swym_atw_full_width": true,
+            "swym_atw_button_alignment": "center",
+            "swym_add_to_wishlist_color": "#000000",
+            "swym_added_to_wishlist_color": "#222222",
+            "swym_button_text_color": "#ffffff",
+            "swym_atw_border_color": "#000000",
+            "swym_atw_border_thickness": 0,
+            "swym_atw_button_border_radius": 4,
+            "swym_enable_hover_customization": true,
+            "swym_hover_add_to_wishlist_color": "#000000",
+            "swym_hover_added_to_wishlist_color": "#222222",
+            "swym_hover_button_text_color": "#ffffff",
+            "swym_hover_atw_border_color": "#000000",
+            "swym_hover_atw_border_thickness": 0,
+            "swym_hover_atw_button_border_radius": 0,
+            "swym_custom_css": ""
+          }
+        },
+        "icon_with_text_UAYgQU": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "vertical",
+            "title_font": "body",
+            "title_size": "text-base",
+            "icon_1": "currency-circle-dollar",
+            "heading_1": "Many Ways To Pay",
+            "icon_2": "arrow-up-left",
+            "heading_2": "30 days Return Policy",
+            "icon_3": "star-four",
+            "heading_3": ""
+          }
+        },
+        "icon_with_text_gAT7Cm": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "vertical",
+            "title_font": "body",
+            "title_size": "text-base",
+            "icon_1": "globe",
+            "heading_1": "Worldwide Shipping",
+            "icon_2": "truck",
+            "heading_2": "Fast Delivery with DHL",
+            "icon_3": "heart",
+            "heading_3": "Safe and Secure Checkout"
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "settings": {}
+        },
+        "promotion_alert_L7ipQp": {
+          "type": "promotion_alert",
+          "settings": {
+            "text_color": "#049b6e",
+            "icon": "lightning",
+            "heading": "Limited time offer",
+            "description": "<p>Sign up to our Newsletter and get 10% off your first order above £125. </p>"
+          }
+        },
+        "complementary": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Perfect Match With",
+            "heading_size": "h4",
+            "show_below_product_media": false,
+            "make_collapsible_row": false,
+            "icon": "tag",
+            "product_list_limit": 6,
+            "layout": "grid",
+            "columns": 3,
+            "image_ratio": "1/1",
+            "enable_quick_add": true
+          }
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Specifications",
+            "heading_size": "h4",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.specifications | metafield_tag }}</p>",
+            "page": "content",
+            "default_open": true,
+            "show_below_product_media": true
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product Details",
+            "heading_size": "h4",
+            "icon": "none",
+            "content": "<p>Designed with care and crafted from premium materials, our products combine durability, comfort, and timeless style. Each piece is thoughtfully made to enhance your living space, offering a perfect balance of functionality and elegance that complements any home and suits your unique lifestyle.</p>",
+            "page": "",
+            "default_open": false,
+            "show_below_product_media": true
+          }
+        },
+        "collapsible-row-3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Materials & Care",
+            "heading_size": "h4",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.care_and_usage_instructions | metafield_tag }}</p>",
+            "page": "",
+            "default_open": false,
+            "show_below_product_media": true
+          }
+        },
+        "payment_info": {
+          "type": "payment_info",
+          "settings": {
+            "color_scheme": "scheme-info",
+            "heading": "Payment & Security",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "description": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.</p>",
+            "show_payment_icons": true,
+            "show_below_product_media": true
+          }
+        },
+        "divider_pPz3Kw": {
+          "type": "divider",
+          "settings": {
+            "show_below_product_media": false
+          }
+        },
+        "social_sharing": {
+          "type": "social_sharing",
+          "settings": {}
+        },
+        "sticky_atc_bar_7HgNgP": {
+          "type": "sticky-atc-bar",
+          "settings": {
+            "visibility": "all",
+            "style": "standard",
+            "container": "full",
+            "show_atc_button": true,
+            "show_dynamic_checkout_buttons": false,
+            "show_quantity": true
+          }
+        }
+      },
+      "block_order": [
+        "badges",
+        "title",
+        "meta",
+        "price",
+        "icon_with_text_BH8z9B",
+        "inventory",
+        "description",
+        "variant_picker",
+        "buy_buttons",
+        "custom_liquid_VAF73c",
+        "wishlist_plus_wishlist_pdp_button_nEENy9",
+        "icon_with_text_UAYgQU",
+        "icon_with_text_gAT7Cm",
+        "pickup_availability",
+        "promotion_alert_L7ipQp",
+        "complementary",
+        "collapsible-row-1",
+        "collapsible-row-2",
+        "collapsible-row-3",
+        "payment_info",
+        "divider_pPz3Kw",
+        "social_sharing",
+        "sticky_atc_bar_7HgNgP"
+      ],
+      "custom_css": [
+        "@media (min-width: 1280px) {.product {padding-inline: 5rem; }}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "use_color_scheme_in_container": false,
+        "enable_sticky_info": true,
+        "media_size": "large",
+        "gallery_layout": "vertical-carousel",
+        "mobile_thumbnails": "show",
+        "show_image_border": false,
+        "enable_image_zoom": true,
+        "enable_video_looping": true,
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "testimonials_8JHr3L": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_dhi3Xf": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "none",
+            "heading": "Testimonials",
+            "text": "<p>“I am extremely happy about both design and comfort. I am a furniture designer myself, and your product makes me happy.”</p>",
+            "author": "Stephanie L.",
+            "bio": "Verified Buyer",
+            "product": ""
+          }
+        },
+        "testimonial_D7Mq7i": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "none",
+            "heading": "Testimonials",
+            "text": "<p>The story behind, sustainable production, and the risk-free feeling with the free return policy make this a great choice.</p>",
+            "author": "Rachel M.",
+            "bio": "Verified Buyer",
+            "product": ""
+          }
+        },
+        "testimonial_33tAjm": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "none",
+            "heading": "Testimonials",
+            "text": "<p>“High-quality furniture, crafted with passion and care, fantastic in appearance and use, reasonably priced, and excellent custome.”</p>",
+            "author": "Emily J.",
+            "bio": "Verified Buyer",
+            "product": ""
+          }
+        },
+        "testimonial_dDRMwy": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "none",
+            "heading": "Testimonials",
+            "text": "<p>The craftsmanship, eco-friendly materials, and excellent customer service truly make this product an outstanding standout.</p>",
+            "author": "Sarah T.",
+            "bio": "Verified Buyer",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_dhi3Xf",
+        "testimonial_D7Mq7i",
+        "testimonial_33tAjm",
+        "testimonial_dDRMwy"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-10",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Clients Love Us",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "layout": "standard",
+        "card_color_scheme": "",
+        "card_content_color_scheme": "",
+        "card_image_ratio": "adapt",
+        "card_heading_size": "h4",
+        "card_text_size": "text-base",
+        "author_info_layout": "vertical",
+        "card_trigger_behavior": "click",
+        "show_image": true,
+        "show_author_image": true,
+        "columns_desktop": 3,
+        "column_gap": "2xs",
+        "row_gap": "inherit",
+        "enable_slider": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "tabs_content_8rnbnj": {
+      "type": "tabs-content",
+      "blocks": {
+        "image_with_text_iLTdLe": {
+          "type": "image_with_text",
+          "settings": {
+            "navigation_title": "Specifications",
+            "image": "shopify://shop_images/Screenshot_2025-07-09_130254.png",
+            "desktop_image_position": "left",
+            "image_aspect_ratio": "adapt",
+            "heading": "The Iconic Carrol Boyes Bread Bin Loafer",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "subheading": "",
+            "description": "<p>Inspired to create a chair where the back and arms are moulded from a single piece of plywood, Hecht and Colin describe employing a process similar to that a tailor might use to cut a pattern in fabric. This approach resulted in the beautiful structure wherein the moulded back and arms component is supported by a simple A-frame wood dowel construction. One of the benefits of this design is an increase in comfort due to natural movement in the plywood back.</p>",
+            "description_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "icon_1": "check",
+            "heading_1": "Heading",
+            "icon_2": "check",
+            "heading_2": "Heading",
+            "icon_3": "check",
+            "heading_3": "Heading"
+          }
+        },
+        "image_with_text_LQUEir": {
+          "type": "image_with_text",
+          "settings": {
+            "navigation_title": "About Brand",
+            "image": "shopify://shop_images/Screenshot_2025-07-09_131000.png",
+            "desktop_image_position": "left",
+            "image_aspect_ratio": "adapt",
+            "heading": "Present Day",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "subheading": "",
+            "description": "<p>After more than 30 years, the business is continually growing with an offering of over 1 000 products available. More than 27 countries currently stock the Carrol Boyes brand with some big names such as Bloomingdales and Nieman Marcus in the USA and David Jones in Australia among these retailers and stockists.</p>",
+            "description_size": "text-base",
+            "button_label": "About Carrol Boyes",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "icon_1": "check",
+            "heading_1": "Heading",
+            "icon_2": "check",
+            "heading_2": "Heading",
+            "icon_3": "check",
+            "heading_3": "Heading"
+          }
+        },
+        "tab_xGBJeM": {
+          "type": "tab",
+          "settings": {
+            "navigation_title": "Shipping & Return",
+            "content": "",
+            "custom_liquid": "",
+            "page": "shipping-return"
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_iLTdLe",
+        "image_with_text_LQUEir",
+        "tab_xGBJeM"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (min-width: 1024px) {.tabs__panel {padding-inline: 5rem; }}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "navigation_style": "headings",
+        "navigation_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "multicolumn_Mxt4d3": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_ppme79": {
+          "type": "column",
+          "settings": {
+            "title": "Make it yours",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Personalize your furniture to match your unique style, with customizable options for colors, finishes, materials, and fabrics.</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_6eYcFq": {
+          "type": "column",
+          "settings": {
+            "title": "Climate footprint",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Discover the eco-impact with insights into our materials, production processes, and commitment to sustainable practices.</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_6mMR7m": {
+          "type": "column",
+          "settings": {
+            "title": "Sustainability",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Learn how our furniture supports a greener future through responsible sourcing and eco-friendly manufacturing practices.</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_Lix6qc": {
+          "type": "column",
+          "settings": {
+            "title": "All eco-certified",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Rest assured knowing every piece is crafted with care, meeting rigorous eco-certification standards for sustainability.</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "column_ppme79",
+        "column_6eYcFq",
+        "column_6mMR7m",
+        "column_Lix6qc"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Take A Closer Look",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "content_alignment": "left",
+        "show_col_count": true,
+        "show_image": true,
+        "columns_desktop": 4,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "lookbook_banner_UAnED3": {
+      "type": "lookbook-banner",
+      "blocks": {
+        "hotspot_t4Nc8t": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-07-09_141608.png",
+            "heading": "MUG SET OF 4 -Distant Memory",
+            "description": "<p>A charming Mug from the Sketchbook range named ‘distant memory’. An expertly crafted porcelain mug to enjoy your daily cup of coffee or tea. Capacity 340ml.<br/></p>",
+            "top": 78,
+            "left": 27,
+            "top_mobile": 45,
+            "left_mobile": 30
+          }
+        },
+        "hotspot_wMUrEx": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-2.png",
+            "heading": "Hotspot",
+            "description": "<p>Each piece is built for longevity, ensuring durability, repairability, flexibility, and resale value.</p>",
+            "top": 30,
+            "left": 80,
+            "top_mobile": 9,
+            "left_mobile": 63
+          }
+        },
+        "hotspot_fHtLKP": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-07-09_141820.png",
+            "heading": "BREAD KNIFE- Man",
+            "description": "<p>The Bread Knife - man features a longer blade, precisely engineered to cut larger portioned breads. Designed and engineered to make the slicing process more ergonomic.</p>",
+            "top": 82,
+            "left": 70,
+            "top_mobile": 62,
+            "left_mobile": 48
+          }
+        },
+        "hotspot_49RxPq": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-07-09_141349.png",
+            "heading": "BOARD SMALL - Ram",
+            "description": "<p>A lovely smaller board featuring an intricate laser cut stainless steel ram, that will have guests flocking around your cocktail table. Crafted from American oak and ideal for serving cheeses. * Colour of the wood and grain may vary.</p>",
+            "top": 99,
+            "left": 91,
+            "top_mobile": 9,
+            "left_mobile": 63
+          }
+        },
+        "hotspot_c7HYKy": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-07-09_141918.png",
+            "heading": "STOVETOP KETTLE -Diver",
+            "description": "<p>The Iconic touch every stovetop needs. This sculptural masterpiece brings sophistication and functionality to every kitchen - a whistling kettle designed to be a showstopper featuring figurative design 'diver'.</p>",
+            "top": 24,
+            "left": 17,
+            "top_mobile": 9,
+            "left_mobile": 63
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_t4Nc8t",
+        "hotspot_wMUrEx",
+        "hotspot_fHtLKP",
+        "hotspot_49RxPq",
+        "hotspot_c7HYKy"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "In Your Space",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "description_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "image": "shopify://shop_images/CB23_July_Aug_New_Arrival_Bread_Bin_Web_Banner_1800x600_078d92d6-7014-42d4-a814-3a43c4bcae53.jpg",
+        "image_mobile": "shopify://shop_images/CB23_July_Aug_New_Arrival_Bread_Bin_Mobi_Banner_960x460_fa5ed62d-f38c-413d-83a4-7e04522b1d9d.jpg",
+        "icon_style": "plus",
+        "icon_color": "light",
+        "card_color_scheme": "",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 10,
+        "padding_bottom": 0
+      }
+    },
+    "quick_comparison_table_p9rdxW": {
+      "type": "quick-comparison-table",
+      "blocks": {
+        "info_pEKVwb": {
+          "type": "info",
+          "settings": {
+            "show_view_details_button": true
+          }
+        },
+        "description_ym9hXF": {
+          "type": "description",
+          "settings": {
+            "text_line_limit": "3-lines",
+            "show_view_more_button": false
+          }
+        },
+        "price_adCEcV": {
+          "type": "price",
+          "settings": {}
+        },
+        "variants_Q6kD7j": {
+          "type": "variants",
+          "disabled": true,
+          "settings": {}
+        },
+        "vendor_kN7AnX": {
+          "type": "vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "type_ttCzqK": {
+          "type": "type",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "info_pEKVwb",
+        "description_ym9hXF",
+        "price_adCEcV",
+        "variants_Q6kD7j",
+        "vendor_kN7AnX",
+        "type_ttCzqK"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "heading": "Compare With Similar Items",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "description_size": "text-base",
+        "limit": 4,
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "image_with_text_kqXfRQ": {
+      "type": "image-with-text",
+      "blocks": {
+        "subheading_taVjEY": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "All eco-certified"
+          }
+        },
+        "heading_ngPQi3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Inspired to create a chair where the back",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_nF69XB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Made entirely of oak, the Bow Chair is comfortable, visually pleasing and brimming with character.  The moulded plywood seat is unusually wide in proportion to its depth and a waterfall edge at the front softens contact with the hamstrings. </p>",
+            "subtext_color": true
+          }
+        },
+        "button_fQzFTq": {
+          "type": "button",
+          "settings": {
+            "button_label": "Explore More Details",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_taVjEY",
+        "heading_ngPQi3",
+        "text_nF69XB",
+        "button_fQzFTq"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (min-width: 1024px) {.image-with-text__wrapper {padding-inline: 5rem; } .image-with-text__content {--text-margin-top: 2rem; }}",
+        ".image-with-text__content {max-width: 52rem;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "image_position": "right",
+        "image_width": 50,
+        "desktop_content_position": "center",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "inherit",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "custom_content_aJPNXb": {
+      "type": "custom-content",
+      "blocks": {
+        "lookbook_card_hotspot_rJaXPd": {
+          "type": "lookbook_card_hotspot",
+          "settings": {
+            "icon_style": "dot",
+            "icon_color": "light",
+            "image": "shopify://shop_images/CB25_JULY_SPACE_Breadbin_3.png",
+            "image_ratio": "adapt",
+            "product_1": "spoke-sofa-armrest",
+            "top_1": 43,
+            "left_1": 43,
+            "product_2": "turn-table",
+            "top_2": 64,
+            "left_2": 60,
+            "product_3": "",
+            "top_3": 0,
+            "left_3": 0,
+            "product_4": "",
+            "top_4": 0,
+            "left_4": 0,
+            "width": "33%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        },
+        "lookbook_card_hotspot_p44hjW": {
+          "type": "lookbook_card_hotspot",
+          "settings": {
+            "icon_style": "dot",
+            "icon_color": "light",
+            "image": "shopify://shop_images/CB25_JULY_SPACE_Breadbin.png",
+            "image_ratio": "adapt",
+            "product_1": "torso-table-lamp",
+            "top_1": 17,
+            "left_1": 15,
+            "product_2": "spoke-sofa-limited",
+            "top_2": 34,
+            "left_2": 56,
+            "product_3": "side-table",
+            "top_3": 70,
+            "left_3": 50,
+            "product_4": "",
+            "top_4": 9,
+            "left_4": 63,
+            "width": "33%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        },
+        "lookbook_card_hotspot_3GJzqy": {
+          "type": "lookbook_card_hotspot",
+          "settings": {
+            "icon_style": "dot",
+            "icon_color": "light",
+            "image": "shopify://shop_images/CB25_JULY_SPACE_Breadbin_2.png",
+            "image_ratio": "adapt",
+            "product_1": "cross-table-light",
+            "top_1": 40,
+            "left_1": 20,
+            "product_2": "dining-table-small",
+            "top_2": 53,
+            "left_2": 61,
+            "product_3": "",
+            "top_3": 62,
+            "left_3": 43,
+            "product_4": "",
+            "top_4": 9,
+            "left_4": 63,
+            "width": "33%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        }
+      },
+      "block_order": [
+        "lookbook_card_hotspot_rJaXPd",
+        "lookbook_card_hotspot_p44hjW",
+        "lookbook_card_hotspot_3GJzqy"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".swipe-mobile {--column-width-mobile: 82vw;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "enable_sticky_column": false,
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Get Inspired by Spaces",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "column_gap": "medium",
+        "row_gap": "large",
+        "swipe_on_mobile": true,
+        "columns_mobile": "1",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "You May Also Like",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "limit": 6,
+        "columns": 5,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "enable_slider": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 30,
+        "padding_bottom": 10,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "175887544324c33934": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_qmgmEf": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_qmgmEf"
+      ],
+      "settings": {
+        "include_margins": true,
+        "padding_top": 0,
+        "padding_bottom": 10
+      }
+    },
+    "multicolumn_icon_3qbxHn": {
+      "type": "multicolumn-icon",
+      "blocks": {
+        "column_9Xh69D": {
+          "type": "column",
+          "settings": {
+            "icon": "truck",
+            "max_width": 60,
+            "max_width_mb": 60,
+            "title": "DHL Shipping",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_font": "heading",
+            "text": "<p>Worldwide shipping with DHL </p>",
+            "text_size": "text-base",
+            "button_label": "Shipping Details",
+            "button_link": "",
+            "button_style": "btn--plain",
+            "button_icon": "caret-right"
+          }
+        },
+        "column_EapCmy": {
+          "type": "column",
+          "settings": {
+            "icon": "package",
+            "max_width": 60,
+            "max_width_mb": 60,
+            "title": "30-Days Free Returns",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_font": "heading",
+            "text": "<p>Enjoy the freedom of stress-free shopping with our hassle-free and return policy.</p>",
+            "text_size": "text-base",
+            "button_label": "Return Policy",
+            "button_link": "",
+            "button_style": "btn--plain",
+            "button_icon": "caret-right"
+          }
+        },
+        "column_y3rE9Y": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "max_width": 60,
+            "max_width_mb": 60,
+            "title": "Secure Payment",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_font": "heading",
+            "text": "<p>Shop with confidence knowing your payments are secure and your information</p>",
+            "text_size": "text-base",
+            "button_label": "More About Payment",
+            "button_link": "",
+            "button_style": "btn--plain",
+            "button_icon": "caret-right"
+          }
+        }
+      },
+      "block_order": [
+        "column_9Xh69D",
+        "column_EapCmy",
+        "column_y3rE9Y"
+      ],
+      "custom_css": [
+        ".multicolumn-card__text p {max-width: 33rem;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "header_layout": "vertical",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Worldwide Shipping",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "enable_sticky": false,
+        "card_color_scheme": "",
+        "content_alignment": "center",
+        "image_position": "top",
+        "icon_color": "#000000",
+        "columns_desktop": 3,
+        "column_gap": "large",
+        "row_gap": "inherit",
+        "show_divider_col": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "scrolling_gallery_image_wJyLJr": {
+      "type": "scrolling-gallery-image",
+      "blocks": {
+        "gallery_zMzedj": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "thisisaaccount"
+          }
+        },
+        "gallery_PALf8b": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "furniturelover"
+          }
+        },
+        "gallery_t8EfbE": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "thisisaaccount"
+          }
+        },
+        "gallery_HjXBVX": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "baddyjam"
+          }
+        },
+        "gallery_Hdq7y7": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "liamwealthy"
+          }
+        },
+        "gallery_xaTeHP": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "baddyjam"
+          }
+        },
+        "gallery_gf99Q7": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "liamwealthy"
+          }
+        }
+      },
+      "block_order": [
+        "gallery_zMzedj",
+        "gallery_PALf8b",
+        "gallery_t8EfbE",
+        "gallery_HjXBVX",
+        "gallery_Hdq7y7",
+        "gallery_xaTeHP",
+        "gallery_gf99Q7"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-inverse",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "We’re on Gram",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "text_size": "text-base",
+        "show_button_on_top": false,
+        "button_label": "@garage_store",
+        "button_link": "https://instagram.com/shopify",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "direction": "left",
+        "speed": 0.1,
+        "pause_on_hover": true,
+        "column_gap": "medium",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "17543904586ab15105": {
+      "type": "apps",
+      "blocks": {
+        "wishlist_plus_wishlist_pdp_button_6jAwCm": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-pdp-button/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "settings": {
+            "swym_atw_button_icon": "heart",
+            "swym_atw_icon_thickness": 1.7,
+            "swym_atw_display_btn_text": true,
+            "swym_button_position": "default",
+            "swym_atw_button_vertical_offset": 0,
+            "swym_atw_full_width": true,
+            "swym_atw_button_alignment": "center",
+            "swym_add_to_wishlist_color": "#000000",
+            "swym_added_to_wishlist_color": "#222222",
+            "swym_button_text_color": "#ffffff",
+            "swym_atw_border_color": "#000000",
+            "swym_atw_border_thickness": 0,
+            "swym_atw_button_border_radius": 0,
+            "swym_enable_hover_customization": false,
+            "swym_hover_add_to_wishlist_color": "#000000",
+            "swym_hover_added_to_wishlist_color": "#222222",
+            "swym_hover_button_text_color": "#ffffff",
+            "swym_hover_atw_border_color": "#000000",
+            "swym_hover_atw_border_thickness": 0,
+            "swym_hover_atw_button_border_radius": 0,
+            "swym_custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "wishlist_plus_wishlist_pdp_button_6jAwCm"
+      ],
+      "settings": {
+        "include_margins": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "testimonials_8JHr3L",
+    "tabs_content_8rnbnj",
+    "multicolumn_Mxt4d3",
+    "lookbook_banner_UAnED3",
+    "quick_comparison_table_p9rdxW",
+    "image_with_text_kqXfRQ",
+    "custom_content_aJPNXb",
+    "related-products",
+    "175887544324c33934",
+    "multicolumn_icon_3qbxHn",
+    "scrolling_gallery_image_wJyLJr",
+    "17543904586ab15105"
+  ]
+}

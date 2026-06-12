@@ -1,0 +1,24 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "swym-registry-find",
+      "custom_css": [
+        ".swym-registry-search-registry #searchText {width: 100%; /* full width within its container */ max-width: 400px; /* limit width if you want */ padding: 10px 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; line-height: 1.4; background-color: #fff; color: #333; transition: border-color 0.3s ease, box-shadow 0.3s ease;}",
+        ".swym-registry-search-registry #swym-registry-search-btn {border-radius: 8px !important;}"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

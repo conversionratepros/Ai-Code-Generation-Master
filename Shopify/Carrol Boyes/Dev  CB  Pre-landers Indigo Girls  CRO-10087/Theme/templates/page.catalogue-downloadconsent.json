@@ -1,0 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "custom_liquid_eaiVzG": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<!-- CATALOGUE Signup + Download (Single Block) Dont fuck with this ites working -->\n<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap\" rel=\"stylesheet\">\n\n<div class=\"cb-catalogue\">\n  <style>\n    .cb-catalogue {\n      font-family:'Poppins',sans-serif;\n      color:#2b2b2b;\n      max-width:1100px;\n      margin:0 auto;\n      padding:24px 16px;\n    }\n\n    .catalogue-block {\n      display:grid;\n      grid-template-columns:1.05fr 1fr;\n      gap:28px;\n      align-items:center;\n      margin:36px 0;\n    }\n\n    .catalogue-media {\n      position:relative;\n      border-radius:12px;\n      overflow:hidden;\n      background:#f0f0f2;\n      box-shadow:0 14px 28px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.05);\n    }\n    .catalogue-media img {\n      width:100%;\n      height:100%;\n      display:block;\n      object-fit:cover;\n    }\n\n    .catalogue-card {\n      position:relative;\n      background:#fff;\n      border-radius:12px;\n      border:1px solid #eee;\n      padding:22px 24px;\n      box-shadow:0 14px 28px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.05);\n    }\n\n    /* Form styling */\n    .catalogue-download-subtitle { opacity:.9; margin-top:4px; }\n    .catalogue-download-label { display:block; font-size:14px; margin:12px 0 4px; font-weight:500; }\n\n    .catalogue-download-input {\n      width:100%;\n      padding:10px 12px;\n      border-radius:8px;\n      border:1px solid #d2d2d7;\n      font-size:14px;\n      outline:none;\n    }\n    .catalogue-download-input:focus { border-color:#101010; }\n\n    .catalogue-download-consent {\n      display:flex;\n      gap:8px;\n      align-items:flex-start;\n      font-size:13px;\n      margin-top:10px;\n    }\n    .catalogue-download-consent input[type=\"checkbox\"] { margin-top:3px; }\n\n    /* Activation animation */\n    .catalogue-download-button {\n      margin-top:14px;\n      padding:10px 18px;\n      border-radius:999px;\n      border:none;\n      cursor:pointer;\n      font-size:14px;\n      font-weight:600;\n      text-transform:uppercase;\n      letter-spacing:.06em;\n      background:#000;\n      color:#fff;\n      transition:opacity .25s ease, transform .25s ease, background .25s ease;\n    }\n\n    .catalogue-download-button[disabled] {\n      background:#bfbfbf;\n      cursor:not-allowed;\n      opacity:0.6;\n      transform:scale(1);\n    }\n\n    .catalogue-download-button:not([disabled]) {\n      opacity:1;\n      transform:scale(1.03); /* subtle pop */\n    }\n\n    .catalogue-download-errors {\n      margin-bottom:10px;\n      font-size:13px;\n      color:#b00020;\n    }\n\n    @media (max-width: 900px) {\n      .catalogue-block {\n        grid-template-columns:1fr;\n      }\n    }\n  </style>\n\n  <!-- IMAGE + FORM -->\n  <section class=\"catalogue-block\">\n\n    <!-- Left Image -->\n    <figure class=\"catalogue-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/CB24_CatalogueOutercover_rev3_CASELINING_4f0ab9c8-625d-4684-ab1e-7710b3f0bb7f.jpg?v=1757677139\" alt=\"Catalogue download visual\">\n    </figure>\n\n    <!-- Right Card -->\n    <article class=\"catalogue-card\">\n      {% form 'customer', id: 'CatalogueDownloadForm' %}\n        \n        {% if form.posted_successfully? %}\n          <div class=\"catalogue-download-success\">\n            <h3>Thank you, you’re in! 🎉</h3>\n            <p>Your download will start automatically.</p>\n            <p>\n              If it doesn’t,&nbsp;\n             <a id=\"catalogue-download-link\"\n                  href=\"https://delivery.shopifyapps.com/-/19a49f580e962d30/d96df00f18ed0ccb\" download >click here to download manually\n            </a>\n            </p>\n          </div>\n\n          <script>\n            document.addEventListener('DOMContentLoaded', function() {\n              var link = document.getElementById('catalogue-download-link');\n              if (link) { link.click(); }\n            });\n          </script>\n\n        {% else %}\n\n          {% if form.errors %}\n            <div class=\"catalogue-download-errors\">{{ form.errors | default_errors }}</div>\n          {% endif %}\n\n          <h3>Get the Catalogue digital download</h3>\n          <p class=\"catalogue-download-subtitle\">\n            Enter your email to access the free Catalogue download and receive updates from Carrol Boyes.\n          </p>\n\n          <label for=\"CatalogueDownloadEmail\" class=\"catalogue-download-label\">Email address</label>\n          <input\n            id=\"CatalogueDownloadEmail\"\n            type=\"email\"\n            name=\"contact[email]\"\n            required\n            placeholder=\"you@example.com\"\n            class=\"catalogue-download-input\"\n          >\n\n          <!-- Shopify Subscriber Tagging -->\n          <input type=\"hidden\" name=\"contact[tags]\" value=\"newsletter,digital-download,catalogue\">\n\n          <label class=\"catalogue-download-consent\">\n            <input\n              type=\"checkbox\"\n              name=\"consent_checkbox\"\n              id=\"CatalogueDownloadConsent\"\n              required\n            >\n            <span>I agree to receive marketing emails from Carrol Boyes.</span>\n          </label>\n\n          <!-- Disabled until consent -->\n          <button\n            type=\"submit\"\n            class=\"catalogue-download-button\"\n            id=\"CatalogueDownloadButton\"\n            disabled\n          >\n            Get my free download\n          </button>\n\n          <!-- JavaScrpit: enable button only when checkbox is ticked -->\n          <script>\n            document.addEventListener('DOMContentLoaded', function() {\n              var consent = document.getElementById('CatalogueDownloadConsent');\n              var button = document.getElementById('CatalogueDownloadButton');\n\n              if (consent && button) {\n                button.disabled = true;\n\n                consent.addEventListener('change', function() {\n                  button.disabled = !consent.checked;\n                });\n              }\n            });\n          </script>\n\n        {% endif %}\n      {% endform %}\n    </article>\n\n  </section>\n</div>",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_eaiVzG"
+  ]
+}

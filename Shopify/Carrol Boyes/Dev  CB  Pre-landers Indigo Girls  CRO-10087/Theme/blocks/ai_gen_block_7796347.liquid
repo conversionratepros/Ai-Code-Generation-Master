@@ -1,0 +1,688 @@
+{% doc %}
+  @prompt
+    i would like a section with with nine text input fields. These nine input fields must allow me to change the text in them independently and allow me to connect a dynamic source such as a meta field. 
+    The title must be on the right and next to it must be the meta field input. 
+    So side by side to read as a the following: 
+    Designer :  Carrol Boyes. 
+    Collection : Dancing Girls 
+    Finish : Clear Glaze
+    Microwave Safe: Yes
+    Food Safe: Yes
+    Oven Safe: No 
+    Dishwasher Safe: Yes, Can you add the option to apply padding to the mobile section. It is too tigh against the left boarder of the mobile device screen, Can you add a heading to this section by using the styling of the H2 heading. Then turn it into a collapsable row ( accordian ) with a + button to expand it. The same styling the current collapsable rows has in the theme. , i need this section to be able to go into the product information secction as a collapsable row, revert the last instruction , for desktop can you add more padding so that the heading is not against the left boarder. Needs to be away from the boarder on the left for both the heading and the content. Make them the same spacing as you did on the moble version
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-specs-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px {{ block.settings.desktop_horizontal_padding }}px;
+  }
+
+  .ai-product-specs-accordion-{{ ai_gen_id }} {
+    border-top: 1px solid {{ block.settings.divider_color }};
+    border-bottom: 1px solid {{ block.settings.divider_color }};
+  }
+
+  .ai-product-specs-summary-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: {{ block.settings.heading_padding }}px 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .ai-product-specs-summary-{{ ai_gen_id }}::-webkit-details-marker {
+    display: none;
+  }
+
+  .ai-product-specs-heading-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: calc(var(--font-heading-scale) * 2rem);
+    line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: calc(var(--font-heading-scale) * var(--heading-letter-spacing));
+    {% if settings.heading_uppercase %}
+      text-transform: uppercase;
+    {% endif %}
+  }
+
+  .ai-product-specs-icon-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-left: 190px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-product-specs-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .ai-product-specs-details-{{ ai_gen_id }}[open] .ai-product-specs-icon-{{ ai_gen_id }} {
+    transform: rotate(45deg);
+  }
+
+  .ai-product-specs-content-{{ ai_gen_id }} {
+    overflow: hidden;
+    padding-bottom: {{ block.settings.content_padding_bottom }}px;
+  }
+
+  .ai-product-specs-list-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.row_gap }}px;
+    max-width: {{ block.settings.max_width }}px;
+  }
+
+  .ai-product-specs-row-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: {{ block.settings.label_width }}% 1fr;
+    gap: {{ block.settings.column_gap }}px;
+    align-items: {{ block.settings.vertical_alignment }};
+    padding: {{ block.settings.row_padding }}px 0;
+    {% if block.settings.show_divider %}
+      border-bottom: {{ block.settings.divider_thickness }}px {{ block.settings.divider_style }} {{ block.settings.divider_color }};
+    {% endif %}
+  }
+
+  .ai-product-specs-row-{{ ai_gen_id }}:last-child {
+    {% if block.settings.hide_last_divider %}
+      border-bottom: none;
+    {% endif %}
+  }
+
+  .ai-product-specs-label-{{ ai_gen_id }} {
+    font-family: {{ block.settings.label_font.family }}, {{ block.settings.label_font.fallback_families }};
+    font-weight: {{ block.settings.label_font.weight }};
+    font-size: {{ block.settings.label_font_size }}px;
+    color: {{ block.settings.label_color }};
+    text-align: {{ block.settings.label_alignment }};
+  }
+
+  .ai-product-specs-value-{{ ai_gen_id }} {
+    font-family: {{ block.settings.value_font.family }}, {{ block.settings.value_font.fallback_families }};
+    font-weight: {{ block.settings.value_font.weight }};
+    font-size: {{ block.settings.value_font_size }}px;
+    color: {{ block.settings.value_color }};
+    text-align: {{ block.settings.value_alignment }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-product-specs-{{ ai_gen_id }} {
+      padding-left: {{ block.settings.mobile_horizontal_padding }}px;
+      padding-right: {{ block.settings.mobile_horizontal_padding }}px;
+    }
+
+    .ai-product-specs-heading-{{ ai_gen_id }} {
+      font-size: calc(var(--font-heading-scale) * 2rem * var(--heading-mobile-scale));
+    }
+
+    .ai-product-specs-row-{{ ai_gen_id }} {
+      {% if block.settings.mobile_stack %}
+        grid-template-columns: 1fr;
+        gap: {{ block.settings.mobile_gap }}px;
+      {% endif %}
+    }
+
+    .ai-product-specs-label-{{ ai_gen_id }} {
+      font-size: {{ block.settings.label_font_size | times: 0.9 }}px;
+      {% if block.settings.mobile_stack %}
+        text-align: left;
+      {% endif %}
+    }
+
+    .ai-product-specs-value-{{ ai_gen_id }} {
+      font-size: {{ block.settings.value_font_size | times: 0.9 }}px;
+      {% if block.settings.mobile_stack %}
+        text-align: left;
+      {% endif %}
+    }
+  }
+{% endstyle %}
+
+<div class="ai-product-specs-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <details class="ai-product-specs-details-{{ ai_gen_id }} ai-product-specs-accordion-{{ ai_gen_id }}" {% if block.settings.open_by_default %}open{% endif %}>
+    <summary class="ai-product-specs-summary-{{ ai_gen_id }}">
+      <h2 class="ai-product-specs-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+      <span class="ai-product-specs-icon-{{ ai_gen_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </span>
+    </summary>
+    <div class="ai-product-specs-content-{{ ai_gen_id }}">
+      <div class="ai-product-specs-list-{{ ai_gen_id }}">
+        {% if block.settings.field_1_label != blank or block.settings.field_1_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_1_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_1_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_2_label != blank or block.settings.field_2_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_2_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_2_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_3_label != blank or block.settings.field_3_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_3_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_3_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_4_label != blank or block.settings.field_4_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_4_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_4_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_5_label != blank or block.settings.field_5_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_5_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_5_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_6_label != blank or block.settings.field_6_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_6_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_6_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_7_label != blank or block.settings.field_7_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_7_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_7_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_8_label != blank or block.settings.field_8_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_8_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_8_value }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.field_9_label != blank or block.settings.field_9_value != blank %}
+          <div class="ai-product-specs-row-{{ ai_gen_id }}">
+            <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_9_label }}</div>
+            <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_9_value }}</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </details>
+</div>
+
+{% schema %}
+{
+  "name": "Product specifications",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Product Specifications"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_by_default",
+      "label": "Open by default",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "heading_padding",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Content bottom padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Field 1"
+    },
+    {
+      "type": "text",
+      "id": "field_1_label",
+      "label": "Label",
+      "default": "Designer"
+    },
+    {
+      "type": "text",
+      "id": "field_1_value",
+      "label": "Value",
+      "default": "Carrol Boyes"
+    },
+    {
+      "type": "header",
+      "content": "Field 2"
+    },
+    {
+      "type": "text",
+      "id": "field_2_label",
+      "label": "Label",
+      "default": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "field_2_value",
+      "label": "Value",
+      "default": "Dancing Girls"
+    },
+    {
+      "type": "header",
+      "content": "Field 3"
+    },
+    {
+      "type": "text",
+      "id": "field_3_label",
+      "label": "Label",
+      "default": "Finish"
+    },
+    {
+      "type": "text",
+      "id": "field_3_value",
+      "label": "Value",
+      "default": "Clear Glaze"
+    },
+    {
+      "type": "header",
+      "content": "Field 4"
+    },
+    {
+      "type": "text",
+      "id": "field_4_label",
+      "label": "Label",
+      "default": "Microwave Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_4_value",
+      "label": "Value",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Field 5"
+    },
+    {
+      "type": "text",
+      "id": "field_5_label",
+      "label": "Label",
+      "default": "Food Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_5_value",
+      "label": "Value",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Field 6"
+    },
+    {
+      "type": "text",
+      "id": "field_6_label",
+      "label": "Label",
+      "default": "Oven Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_6_value",
+      "label": "Value",
+      "default": "No"
+    },
+    {
+      "type": "header",
+      "content": "Field 7"
+    },
+    {
+      "type": "text",
+      "id": "field_7_label",
+      "label": "Label",
+      "default": "Dishwasher Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_7_value",
+      "label": "Value",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Field 8"
+    },
+    {
+      "type": "text",
+      "id": "field_8_label",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "field_8_value",
+      "label": "Value"
+    },
+    {
+      "type": "header",
+      "content": "Field 9"
+    },
+    {
+      "type": "text",
+      "id": "field_9_label",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "field_9_value",
+      "label": "Value"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "label_width",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "label": "Label column width",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Row gap",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "row_padding",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Row padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Label style"
+    },
+    {
+      "type": "font_picker",
+      "id": "label_font",
+      "label": "Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "select",
+      "id": "label_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Value style"
+    },
+    {
+      "type": "font_picker",
+      "id": "value_font",
+      "label": "Font",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "range",
+      "id": "value_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "value_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "value_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Dividers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show dividers",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "divider_thickness",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Thickness",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Color",
+      "default": "#E6E6E6"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_last_divider",
+      "label": "Hide last divider",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "desktop_horizontal_padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop horizontal padding",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_stack",
+      "label": "Stack on mobile",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile gap",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "mobile_horizontal_padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile horizontal padding",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product specifications"
+    }
+  ]
+}
+{% endschema %}

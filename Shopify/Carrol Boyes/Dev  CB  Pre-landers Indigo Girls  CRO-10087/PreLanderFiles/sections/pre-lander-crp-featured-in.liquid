@@ -1,0 +1,231 @@
+<section
+  class="pre-lander-crp-featured-in"
+  style="--pl-fi-bg: {{ section.settings.background_color }}; --pl-fi-text: {{ section.settings.text_color }};"
+>
+  {%- if section.settings.show_top_divider -%}
+    <hr class="pre-lander-crp-featured-in__divider">
+  {%- endif -%}
+
+  {%- if section.settings.heading != blank -%}
+    <p class="pre-lander-crp-featured-in__heading">{{ section.settings.heading | escape }}</p>
+  {%- endif -%}
+
+  <div class="pre-lander-crp-featured-in__logos">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'logo' -%}
+        {%- assign fallback_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+        {%- assign fallback_filename = 'pre-lander-crp-featured-logo-0' | append: fallback_index | append: '.png' -%}
+        {%- assign fallback_class = 'pre-lander-crp-featured-in__logo--fallback-' | append: fallback_index -%}
+
+        {%- if block.settings.logo -%}
+          {%- assign img_src = block.settings.logo | image_url: width: 280 -%}
+          {%- assign img_extra_class = '' -%}
+        {%- else -%}
+          {%- assign img_src = fallback_filename | asset_url -%}
+          {%- assign img_extra_class = fallback_class -%}
+        {%- endif -%}
+
+        {%- if block.settings.link != blank -%}
+          <a class="pre-lander-crp-featured-in__link" href="{{ block.settings.link }}" target="_blank" rel="noopener noreferrer" {{ block.shopify_attributes }}>
+            <img class="pre-lander-crp-featured-in__logo {{ img_extra_class }}" src="{{ img_src }}" alt="{{ block.settings.alt_text | escape }}" loading="lazy">
+          </a>
+        {%- else -%}
+          <img class="pre-lander-crp-featured-in__logo {{ img_extra_class }}" src="{{ img_src }}" alt="{{ block.settings.alt_text | escape }}" {{ block.shopify_attributes }} loading="lazy">
+        {%- endif -%}
+
+        {%- if section.settings.show_separators and forloop.last == false -%}
+          <span class="pre-lander-crp-featured-in__separator" aria-hidden="true">|</span>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {%- if section.settings.show_bottom_divider -%}
+    <hr class="pre-lander-crp-featured-in__divider">
+  {%- endif -%}
+</section>
+
+<style>
+  .pre-lander-crp-featured-in {
+    background: var(--pl-fi-bg, #fff);
+    color: var(--pl-fi-text, #000);
+    padding: 30px 10px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .pre-lander-crp-featured-in__divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    background: #EAEAEA;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    height: 1px;
+    margin: 0;
+  }
+
+  .pre-lander-crp-featured-in__heading {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.44px;
+    color: inherit;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .pre-lander-crp-featured-in__logos {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    justify-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    cursor: grab;
+    width: 100%;
+    max-width: 1024px;
+  }
+
+  .pre-lander-crp-featured-in__logos::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pre-lander-crp-featured-in__logo,
+  .pre-lander-crp-featured-in__separator,
+  .pre-lander-crp-featured-in__link {
+    flex-shrink: 0;
+  }
+
+  .pre-lander-crp-featured-in__logo {
+    height: 28px;
+    width: auto;
+    max-height: 60px;
+    max-width: 160px;
+    object-fit: contain;
+    display: inline-block;
+  }
+
+  .pre-lander-crp-featured-in__logo--fallback-1 { width: 113.219px; height: 38.439px; max-height: none; max-width: none; }
+  .pre-lander-crp-featured-in__logo--fallback-2 { width: 93.591px; height: 48.561px; max-height: none; max-width: none; }
+  .pre-lander-crp-featured-in__logo--fallback-3 { width: 122px; height: 51px; max-height: none; max-width: none; }
+  .pre-lander-crp-featured-in__logo--fallback-4 { width: 58.608px; height: 44.147px; max-height: none; max-width: none; }
+
+  .pre-lander-crp-featured-in__separator {
+    font-family: "PT Serif", serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 1.6px;
+    color: rgba(102, 102, 102, 0.60);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-featured-in__logos {
+      gap: 25px;
+    }
+
+    .pre-lander-crp-featured-in__logo--fallback-1 { width: 80.374px; height: 27.287px; }
+    .pre-lander-crp-featured-in__logo--fallback-2 { width: 66.44px; height: 34.474px; }
+    .pre-lander-crp-featured-in__logo--fallback-3 { width: 86.69px; height: 36.354px; }
+    .pre-lander-crp-featured-in__logo--fallback-4 { width: 42px; height: 31px; }
+  }
+
+  @media (max-width: 500px) {
+    .pre-lander-crp-featured-in__logos {
+      justify-content: flex-start;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Featured In",
+  "tag": "section",
+  "class": "section-pre-lander-crp-featured-in",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "AS FEATURED IN"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text colour",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_divider",
+      "label": "Show top divider line",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom_divider",
+      "label": "Show bottom divider line",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separators",
+      "label": "Show separators between logos",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image",
+          "info": "If empty, falls back to a bundled logo by block position (1st → logo 1, 2nd → logo 2, etc.)."
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL (optional)",
+          "info": "If empty, the logo is not clickable. If filled, opens in a new tab."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Pre-lander Featured In",
+      "blocks": [
+        { "type": "logo", "settings": { "alt_text": "House & Garden" } },
+        { "type": "logo", "settings": { "alt_text": "ELLE" } },
+        { "type": "logo", "settings": { "alt_text": "Vogue Living" } },
+        { "type": "logo", "settings": { "alt_text": "AD/Surface" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

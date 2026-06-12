@@ -1,0 +1,981 @@
+{% doc %}
+  @prompt
+    i would like a section with with nine text input fields. These nine input fields must allow me to change the text in them independently and allow me to connect a dynamic source such as a meta field. 
+    The title must be on the right and next to it must be the meta field input. 
+    So side by side to read as a the following: 
+    Designer :  Carrol Boyes. 
+    Collection : Dancing Girls 
+    Finish : Clear Glaze
+    Microwave Safe: Yes
+    Food Safe: Yes
+    Oven Safe: No 
+    Dishwasher Safe: Yes, 
+    
+    Can you add the option to apply padding to the mobile section. It is too tigh against the left boarder of the mobile device screen, Can you add a heading to this section by using the styling of the H2 heading. Then turn it into a collapsable row ( accordian ) with a + button to expand it. The same styling the current collapsable rows has in the theme. , 
+    
+    For desktop can you add more padding so that the heading is not against the left boarder. Needs to be away from the boarder on the left for both the heading and the content. Make them the same spacing as you did on the moble version from the boarder. 
+    also allow the option to input the margins and padding for this whole block and expandable section. , add 190px padding right and left to the section, Turn this section into a tab section with headings. Generate 5 tabs where i can control how many tabs i show at any given time. I must be able to add the headings in based on dynamic source or text input. Include the margin and padding options for the overall section and the headings and content. 
+    
+    , The first tab heading will be Product Details. With these fields we used named 
+    Designer :  Carrol Boyes. 
+    Collection : Dancing Girls 
+    Finish : Clear Glaze
+    Microwave Safe: Yes
+    Food Safe: Yes
+    Oven Safe: No 
+    Dishwasher Safe: Yes 
+    
+    The second tab name will be descriton
+    with the ability to connect dynamic data source. 
+    
+    The third tab name will be Care & Use
+    With the ability to connect dynamic data source. 
+    
+    The forth tabe and fith you can leave blank. 
+    
+    Remeber to leave the ability to decide what can be displayed or hide. , Canyou add some spacing on the left and right side. So that it is not so tight to the edge, Change the font to Poppins.
+    complete the button effect to inidcate which tab the users in on by using the theme styling. Make it more visible. , move the dropdown content under the tabs to the centre of the page, move the content you just centered more to the left so that it can fit in with the distance that the tab heading is from the left, add spacing to the left side of this content please. I dont want it against the edge , For mobile only can you change the layout to collapsable rows, add some space to the left side of the block so that it is not tight against the edge , make the font Poppins
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-tabs-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+    padding-left: {{ block.settings.padding_left_mobile }}px;
+    padding-right: {{ block.settings.padding_right_mobile }}px;
+    font-family: 'Poppins', var(--font-body-family);
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-product-tabs-{{ ai_gen_id }} {
+      padding-left: {{ block.settings.padding_left_desktop }}px;
+      padding-right: {{ block.settings.padding_right_desktop }}px;
+    }
+  }
+
+  .ai-product-tabs-wrapper-{{ ai_gen_id }} {
+    border-top: 1px solid rgba(var(--color-border), 1);
+  }
+
+  .ai-product-tabs-nav-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-product-tabs-nav-{{ ai_gen_id }} {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid rgba(var(--color-border), 1);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+  .ai-product-tabs-nav-item-{{ ai_gen_id }} {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .ai-product-tabs-button-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.tab_padding_top }}px {{ block.settings.tab_padding_horizontal }}px {{ block.settings.tab_padding_bottom }}px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    font-size: calc(var(--font-body-scale) * 1.6rem);
+    font-family: 'Poppins', var(--font-body-family);
+    font-weight: 400;
+    color: rgba(var(--color-foreground), 0.6);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    margin-bottom: -2px;
+  }
+
+  .ai-product-tabs-button-{{ ai_gen_id }}:hover {
+    color: rgb(var(--color-foreground));
+  }
+
+  .ai-product-tabs-button-{{ ai_gen_id }}.active {
+    border-bottom-color: rgb(var(--color-foreground));
+    font-weight: 600;
+    color: rgb(var(--color-foreground));
+  }
+
+  .ai-product-tabs-accordion-{{ ai_gen_id }} {
+    display: block;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-product-tabs-accordion-{{ ai_gen_id }} {
+      display: none;
+    }
+  }
+
+  .ai-product-tabs-accordion-item-{{ ai_gen_id }} {
+    border-bottom: 1px solid rgba(var(--color-border), 1);
+  }
+
+  .ai-product-tabs-accordion-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: {{ block.settings.tab_padding_top }}px {{ block.settings.accordion_padding_horizontal }}px {{ block.settings.tab_padding_bottom }}px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: calc(var(--font-body-scale) * 1.4rem);
+    font-family: 'Poppins', var(--font-body-family);
+    font-weight: 500;
+    color: rgb(var(--color-foreground));
+  }
+
+  .ai-product-tabs-accordion-icon-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-left: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-product-tabs-accordion-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: rgb(var(--color-foreground));
+    stroke-width: 2;
+  }
+
+  .ai-product-tabs-accordion-header-{{ ai_gen_id }}[aria-expanded="true"] .ai-product-tabs-accordion-icon-{{ ai_gen_id }} {
+    transform: rotate(45deg);
+  }
+
+  .ai-product-tabs-accordion-content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .ai-product-tabs-accordion-content-{{ ai_gen_id }}.active {
+    max-height: 2000px;
+  }
+
+  .ai-product-tabs-accordion-inner-{{ ai_gen_id }} {
+    padding: 0 {{ block.settings.accordion_padding_horizontal }}px {{ block.settings.content_padding_bottom }}px;
+  }
+
+  .ai-product-tabs-content-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-product-tabs-content-wrapper-{{ ai_gen_id }} {
+      display: block;
+    }
+  }
+
+  .ai-product-tabs-panel-{{ ai_gen_id }} {
+    display: none;
+    padding: {{ block.settings.content_padding_top }}px {{ block.settings.content_padding_horizontal }}px {{ block.settings.content_padding_bottom }}px;
+  }
+
+  .ai-product-tabs-panel-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-product-tabs-list-{{ ai_gen_id }} {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ai-product-tabs-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: baseline;
+    padding: 8px 0;
+    font-size: calc(var(--font-body-scale) * 1.4rem);
+    line-height: 1.6;
+  }
+
+  .ai-product-tabs-label-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    min-width: 140px;
+    font-weight: 500;
+    color: rgb(var(--color-foreground));
+    font-family: 'Poppins', var(--font-body-family);
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-product-tabs-label-{{ ai_gen_id }} {
+      min-width: 180px;
+    }
+  }
+
+  .ai-product-tabs-value-{{ ai_gen_id }} {
+    flex-grow: 1;
+    color: rgb(var(--color-foreground));
+    font-family: 'Poppins', var(--font-body-family);
+  }
+
+  .ai-product-tabs-text-content-{{ ai_gen_id }} {
+    font-size: calc(var(--font-body-scale) * 1.4rem);
+    line-height: 1.6;
+    color: rgb(var(--color-foreground));
+    font-family: 'Poppins', var(--font-body-family);
+  }
+{% endstyle %}
+
+<product-tabs-{{ ai_gen_id }} class="ai-product-tabs-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-product-tabs-wrapper-{{ ai_gen_id }}">
+    <ul class="ai-product-tabs-nav-{{ ai_gen_id }}" role="tablist">
+      {% if block.settings.show_tab_1 %}
+        <li class="ai-product-tabs-nav-item-{{ ai_gen_id }}" role="presentation">
+          <button
+            class="ai-product-tabs-button-{{ ai_gen_id }} active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="ai-product-tabs-panel-1-{{ ai_gen_id }}"
+            data-tab="1"
+          >
+            {{ block.settings.tab_1_heading }}
+          </button>
+        </li>
+      {% endif %}
+
+      {% if block.settings.show_tab_2 %}
+        <li class="ai-product-tabs-nav-item-{{ ai_gen_id }}" role="presentation">
+          <button
+            class="ai-product-tabs-button-{{ ai_gen_id }}"
+            role="tab"
+            aria-selected="false"
+            aria-controls="ai-product-tabs-panel-2-{{ ai_gen_id }}"
+            data-tab="2"
+          >
+            {{ block.settings.tab_2_heading }}
+          </button>
+        </li>
+      {% endif %}
+
+      {% if block.settings.show_tab_3 %}
+        <li class="ai-product-tabs-nav-item-{{ ai_gen_id }}" role="presentation">
+          <button
+            class="ai-product-tabs-button-{{ ai_gen_id }}"
+            role="tab"
+            aria-selected="false"
+            aria-controls="ai-product-tabs-panel-3-{{ ai_gen_id }}"
+            data-tab="3"
+          >
+            {{ block.settings.tab_3_heading }}
+          </button>
+        </li>
+      {% endif %}
+
+      {% if block.settings.show_tab_4 and block.settings.tab_4_heading != blank %}
+        <li class="ai-product-tabs-nav-item-{{ ai_gen_id }}" role="presentation">
+          <button
+            class="ai-product-tabs-button-{{ ai_gen_id }}"
+            role="tab"
+            aria-selected="false"
+            aria-controls="ai-product-tabs-panel-4-{{ ai_gen_id }}"
+            data-tab="4"
+          >
+            {{ block.settings.tab_4_heading }}
+          </button>
+        </li>
+      {% endif %}
+
+      {% if block.settings.show_tab_5 and block.settings.tab_5_heading != blank %}
+        <li class="ai-product-tabs-nav-item-{{ ai_gen_id }}" role="presentation">
+          <button
+            class="ai-product-tabs-button-{{ ai_gen_id }}"
+            role="tab"
+            aria-selected="false"
+            aria-controls="ai-product-tabs-panel-5-{{ ai_gen_id }}"
+            data-tab="5"
+          >
+            {{ block.settings.tab_5_heading }}
+          </button>
+        </li>
+      {% endif %}
+    </ul>
+
+    <div class="ai-product-tabs-accordion-{{ ai_gen_id }}">
+      {% if block.settings.show_tab_1 %}
+        <div class="ai-product-tabs-accordion-item-{{ ai_gen_id }}">
+          <button
+            class="ai-product-tabs-accordion-header-{{ ai_gen_id }}"
+            aria-expanded="false"
+            aria-controls="ai-product-tabs-accordion-1-{{ ai_gen_id }}"
+            data-accordion="1"
+          >
+            <span>{{ block.settings.tab_1_heading }}</span>
+            <span class="ai-product-tabs-accordion-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div
+            id="ai-product-tabs-accordion-1-{{ ai_gen_id }}"
+            class="ai-product-tabs-accordion-content-{{ ai_gen_id }}"
+          >
+            <div class="ai-product-tabs-accordion-inner-{{ ai_gen_id }}">
+              <ul class="ai-product-tabs-list-{{ ai_gen_id }}">
+                {% if block.settings.designer != blank %}
+                  <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                    <span class="ai-product-tabs-label-{{ ai_gen_id }}">Designer:</span>
+                    <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.designer }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.collection != blank %}
+                  <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                    <span class="ai-product-tabs-label-{{ ai_gen_id }}">Collection:</span>
+                    <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.collection }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.finish != blank %}
+                  <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                    <span class="ai-product-tabs-label-{{ ai_gen_id }}">Finish:</span>
+                    <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.finish }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.microwave_safe != blank %}
+                  <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                    <span class="ai-product-tabs-label-{{ ai_gen_id }}">Microwave Safe:</span>
+                    <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.microwave_safe }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.food_safe != blank %}
+                  <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                    <span class="ai-product-tabs-label-{{ ai_gen_id }}">Food Safe:</span>
+                    <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.food_safe }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.oven_safe != blank %}
+                  <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                    <span class="ai-product-tabs-label-{{ ai_gen_id }}">Oven Safe:</span>
+                    <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.oven_safe }}</span>
+                  </li>
+                {% endif %}
+                {% if block.settings.dishwasher_safe != blank %}
+                  <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                    <span class="ai-product-tabs-label-{{ ai_gen_id }}">Dishwasher Safe:</span>
+                    <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.dishwasher_safe }}</span>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_2 %}
+        <div class="ai-product-tabs-accordion-item-{{ ai_gen_id }}">
+          <button
+            class="ai-product-tabs-accordion-header-{{ ai_gen_id }}"
+            aria-expanded="false"
+            aria-controls="ai-product-tabs-accordion-2-{{ ai_gen_id }}"
+            data-accordion="2"
+          >
+            <span>{{ block.settings.tab_2_heading }}</span>
+            <span class="ai-product-tabs-accordion-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div
+            id="ai-product-tabs-accordion-2-{{ ai_gen_id }}"
+            class="ai-product-tabs-accordion-content-{{ ai_gen_id }}"
+          >
+            <div class="ai-product-tabs-accordion-inner-{{ ai_gen_id }}">
+              {% if block.settings.tab_2_content != blank %}
+                <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+                  {{ block.settings.tab_2_content }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_3 %}
+        <div class="ai-product-tabs-accordion-item-{{ ai_gen_id }}">
+          <button
+            class="ai-product-tabs-accordion-header-{{ ai_gen_id }}"
+            aria-expanded="false"
+            aria-controls="ai-product-tabs-accordion-3-{{ ai_gen_id }}"
+            data-accordion="3"
+          >
+            <span>{{ block.settings.tab_3_heading }}</span>
+            <span class="ai-product-tabs-accordion-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div
+            id="ai-product-tabs-accordion-3-{{ ai_gen_id }}"
+            class="ai-product-tabs-accordion-content-{{ ai_gen_id }}"
+          >
+            <div class="ai-product-tabs-accordion-inner-{{ ai_gen_id }}">
+              {% if block.settings.tab_3_content != blank %}
+                <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+                  {{ block.settings.tab_3_content }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_4 and block.settings.tab_4_heading != blank %}
+        <div class="ai-product-tabs-accordion-item-{{ ai_gen_id }}">
+          <button
+            class="ai-product-tabs-accordion-header-{{ ai_gen_id }}"
+            aria-expanded="false"
+            aria-controls="ai-product-tabs-accordion-4-{{ ai_gen_id }}"
+            data-accordion="4"
+          >
+            <span>{{ block.settings.tab_4_heading }}</span>
+            <span class="ai-product-tabs-accordion-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div
+            id="ai-product-tabs-accordion-4-{{ ai_gen_id }}"
+            class="ai-product-tabs-accordion-content-{{ ai_gen_id }}"
+          >
+            <div class="ai-product-tabs-accordion-inner-{{ ai_gen_id }}">
+              {% if block.settings.tab_4_content != blank %}
+                <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+                  {{ block.settings.tab_4_content }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_5 and block.settings.tab_5_heading != blank %}
+        <div class="ai-product-tabs-accordion-item-{{ ai_gen_id }}">
+          <button
+            class="ai-product-tabs-accordion-header-{{ ai_gen_id }}"
+            aria-expanded="false"
+            aria-controls="ai-product-tabs-accordion-5-{{ ai_gen_id }}"
+            data-accordion="5"
+          >
+            <span>{{ block.settings.tab_5_heading }}</span>
+            <span class="ai-product-tabs-accordion-icon-{{ ai_gen_id }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </button>
+          <div
+            id="ai-product-tabs-accordion-5-{{ ai_gen_id }}"
+            class="ai-product-tabs-accordion-content-{{ ai_gen_id }}"
+          >
+            <div class="ai-product-tabs-accordion-inner-{{ ai_gen_id }}">
+              {% if block.settings.tab_5_content != blank %}
+                <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+                  {{ block.settings.tab_5_content }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-product-tabs-content-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.show_tab_1 %}
+        <div
+          id="ai-product-tabs-panel-1-{{ ai_gen_id }}"
+          class="ai-product-tabs-panel-{{ ai_gen_id }} active"
+          role="tabpanel"
+          aria-labelledby="ai-product-tabs-button-1-{{ ai_gen_id }}"
+        >
+          <ul class="ai-product-tabs-list-{{ ai_gen_id }}">
+            {% if block.settings.designer != blank %}
+              <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                <span class="ai-product-tabs-label-{{ ai_gen_id }}">Designer:</span>
+                <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.designer }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.collection != blank %}
+              <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                <span class="ai-product-tabs-label-{{ ai_gen_id }}">Collection:</span>
+                <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.collection }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.finish != blank %}
+              <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                <span class="ai-product-tabs-label-{{ ai_gen_id }}">Finish:</span>
+                <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.finish }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.microwave_safe != blank %}
+              <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                <span class="ai-product-tabs-label-{{ ai_gen_id }}">Microwave Safe:</span>
+                <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.microwave_safe }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.food_safe != blank %}
+              <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                <span class="ai-product-tabs-label-{{ ai_gen_id }}">Food Safe:</span>
+                <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.food_safe }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.oven_safe != blank %}
+              <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                <span class="ai-product-tabs-label-{{ ai_gen_id }}">Oven Safe:</span>
+                <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.oven_safe }}</span>
+              </li>
+            {% endif %}
+            {% if block.settings.dishwasher_safe != blank %}
+              <li class="ai-product-tabs-item-{{ ai_gen_id }}">
+                <span class="ai-product-tabs-label-{{ ai_gen_id }}">Dishwasher Safe:</span>
+                <span class="ai-product-tabs-value-{{ ai_gen_id }}">{{ block.settings.dishwasher_safe }}</span>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_2 %}
+        <div
+          id="ai-product-tabs-panel-2-{{ ai_gen_id }}"
+          class="ai-product-tabs-panel-{{ ai_gen_id }}"
+          role="tabpanel"
+          aria-labelledby="ai-product-tabs-button-2-{{ ai_gen_id }}"
+        >
+          {% if block.settings.tab_2_content != blank %}
+            <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+              {{ block.settings.tab_2_content }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_3 %}
+        <div
+          id="ai-product-tabs-panel-3-{{ ai_gen_id }}"
+          class="ai-product-tabs-panel-{{ ai_gen_id }}"
+          role="tabpanel"
+          aria-labelledby="ai-product-tabs-button-3-{{ ai_gen_id }}"
+        >
+          {% if block.settings.tab_3_content != blank %}
+            <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+              {{ block.settings.tab_3_content }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_4 and block.settings.tab_4_heading != blank %}
+        <div
+          id="ai-product-tabs-panel-4-{{ ai_gen_id }}"
+          class="ai-product-tabs-panel-{{ ai_gen_id }}"
+          role="tabpanel"
+          aria-labelledby="ai-product-tabs-button-4-{{ ai_gen_id }}"
+        >
+          {% if block.settings.tab_4_content != blank %}
+            <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+              {{ block.settings.tab_4_content }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_tab_5 and block.settings.tab_5_heading != blank %}
+        <div
+          id="ai-product-tabs-panel-5-{{ ai_gen_id }}"
+          class="ai-product-tabs-panel-{{ ai_gen_id }}"
+          role="tabpanel"
+          aria-labelledby="ai-product-tabs-button-5-{{ ai_gen_id }}"
+        >
+          {% if block.settings.tab_5_content != blank %}
+            <div class="ai-product-tabs-text-content-{{ ai_gen_id }}">
+              {{ block.settings.tab_5_content }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</product-tabs-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductTabs{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.tabButtons = this.querySelectorAll('.ai-product-tabs-button-{{ ai_gen_id }}');
+        this.tabPanels = this.querySelectorAll('.ai-product-tabs-panel-{{ ai_gen_id }}');
+        this.accordionButtons = this.querySelectorAll('.ai-product-tabs-accordion-header-{{ ai_gen_id }}');
+        
+        this.tabButtons.forEach(button => {
+          button.addEventListener('click', this.switchTab.bind(this));
+        });
+
+        this.accordionButtons.forEach(button => {
+          button.addEventListener('click', this.toggleAccordion.bind(this));
+        });
+      }
+
+      switchTab(event) {
+        const clickedButton = event.currentTarget;
+        const targetTab = clickedButton.getAttribute('data-tab');
+        
+        this.tabButtons.forEach(button => {
+          button.classList.remove('active');
+          button.setAttribute('aria-selected', 'false');
+        });
+        
+        this.tabPanels.forEach(panel => {
+          panel.classList.remove('active');
+        });
+        
+        clickedButton.classList.add('active');
+        clickedButton.setAttribute('aria-selected', 'true');
+        
+        const targetPanel = this.querySelector('#ai-product-tabs-panel-' + targetTab + '-{{ ai_gen_id }}');
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+      }
+
+      toggleAccordion(event) {
+        const clickedButton = event.currentTarget;
+        const targetId = clickedButton.getAttribute('aria-controls');
+        const targetContent = this.querySelector('#' + targetId);
+        const isExpanded = clickedButton.getAttribute('aria-expanded') === 'true';
+        
+        clickedButton.setAttribute('aria-expanded', !isExpanded);
+        targetContent.classList.toggle('active');
+      }
+    }
+
+    customElements.define('product-tabs-{{ ai_gen_id }}', ProductTabs{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product tabs",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Tab 1 - Product Details"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tab_1",
+      "label": "Show tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_1_heading",
+      "label": "Heading",
+      "default": "Product Details"
+    },
+    {
+      "type": "text",
+      "id": "designer",
+      "label": "Designer",
+      "default": "Carrol Boyes"
+    },
+    {
+      "type": "text",
+      "id": "collection",
+      "label": "Collection",
+      "default": "Dancing Girls"
+    },
+    {
+      "type": "text",
+      "id": "finish",
+      "label": "Finish",
+      "default": "Clear Glaze"
+    },
+    {
+      "type": "text",
+      "id": "microwave_safe",
+      "label": "Microwave Safe",
+      "default": "Yes"
+    },
+    {
+      "type": "text",
+      "id": "food_safe",
+      "label": "Food Safe",
+      "default": "Yes"
+    },
+    {
+      "type": "text",
+      "id": "oven_safe",
+      "label": "Oven Safe",
+      "default": "No"
+    },
+    {
+      "type": "text",
+      "id": "dishwasher_safe",
+      "label": "Dishwasher Safe",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Tab 2 - Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tab_2",
+      "label": "Show tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_2_heading",
+      "label": "Heading",
+      "default": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_2_content",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Tab 3 - Care & Use"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tab_3",
+      "label": "Show tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab_3_heading",
+      "label": "Heading",
+      "default": "Care & Use"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_3_content",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Tab 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tab_4",
+      "label": "Show tab",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "tab_4_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_4_content",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Tab 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tab_5",
+      "label": "Show tab",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "tab_5_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "tab_5_content",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding left (mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding right (mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "min": 0,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding left (desktop)",
+      "default": 190
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "min": 0,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding right (desktop)",
+      "default": 190
+    },
+    {
+      "type": "header",
+      "content": "Tab heading spacing"
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_horizontal",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Content spacing"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_padding_horizontal",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile accordion spacing"
+    },
+    {
+      "type": "range",
+      "id": "accordion_padding_horizontal",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Accordion padding horizontal",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product tabs"
+    }
+  ]
+}
+{% endschema %}

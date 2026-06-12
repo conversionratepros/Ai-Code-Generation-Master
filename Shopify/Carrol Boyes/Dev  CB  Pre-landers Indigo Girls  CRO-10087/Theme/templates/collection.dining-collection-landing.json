@@ -1,0 +1,336 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs_Gxg9wp": {
+      "type": "breadcrumbs",
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "start",
+        "padding_top": 16,
+        "padding_bottom": 20
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "blocks": {
+        "collection_info_zUNyKV": {
+          "type": "collection_info",
+          "settings": {
+            "heading_size": "h3",
+            "heading_tag": "h3",
+            "show_description": false,
+            "padding_top": 20,
+            "padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "collection_info_zUNyKV"
+      ],
+      "custom_css": [],
+      "settings": {
+        "container": "full",
+        "color_scheme": "scheme-inverse",
+        "text_alignment": "center",
+        "show_collection_image": false,
+        "image": "shopify://shop_images/inidigo.webp",
+        "image_overlay_opacity": 0,
+        "image_position": "top",
+        "image_height": "extra-small",
+        "enable_parallax": true,
+        "parallax_direction": "vertical",
+        "image_height_mobile": "auto",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_list_slider_P3ttUL": {
+      "type": "collection-list-slider",
+      "blocks": {
+        "featured_collection_3waftB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dining-sets",
+            "image": "shopify://shop_images/Untitled-2_3.webp",
+            "title": ""
+          }
+        },
+        "featured_collection_4hxmr9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dinner-plates",
+            "image": "shopify://shop_images/dp_indigoblue860085ac34a7f1d4461af32ae6e9207e0b5faf3d0eb836ff9e6aadbb433f4844_65ae4e1b-4616-40da-91ad-768570ee6116.webp",
+            "title": ""
+          }
+        },
+        "featured_collection_pKA87i": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "side-plates",
+            "image": "shopify://shop_images/cb_product_mix_set_side_plate_da3f45ea-a601-4ce3-8970-3ab8b886bdd1.webp",
+            "title": ""
+          }
+        },
+        "featured_collection_YWRnAc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cereal-soup-bowls",
+            "image": "shopify://shop_images/0n-cb-skbb_cereal_soup_bowls_4bowls_topview_2021_a97dcc35-69be-4738-bcd5-226ac944334b.webp",
+            "title": ""
+          }
+        },
+        "featured_collection_L7d9Wn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "breakfast-sets",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_3waftB",
+        "featured_collection_4hxmr9",
+        "featured_collection_pKA87i",
+        "featured_collection_YWRnAc",
+        "featured_collection_L7d9Wn"
+      ],
+      "custom_css": [],
+      "name": "t:sections.collection-list-slider.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "card_color_scheme": "",
+        "card_style": "standard",
+        "card_heading_size": "text-base",
+        "card_image_ratio": "1/1",
+        "card_image_width": "full",
+        "card_image_padding": "none",
+        "rounded_card_image": false,
+        "mobile_layout": "vertical",
+        "carousel_item_size": "fixed",
+        "columns_desktop": 6,
+        "carousel_control_color_scheme": "",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "featured_collection_9LXYdJ": {
+      "type": "featured-collection",
+      "blocks": {
+        "collection_iP7AFk": {
+          "type": "collection",
+          "settings": {
+            "collection": "most-loved-in-dining",
+            "title": "Most Loved In Dinnerware",
+            "show_banner": false,
+            "color_scheme": "",
+            "card_link": "",
+            "image_overlay_opacity": 0,
+            "content_position": "top-left",
+            "content_alignment": "center",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Collections",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Button label",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "collection_iP7AFk"
+      ],
+      "name": "t:sections.featured-collection.presets__2.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Most Loved In Dinnerware",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "limit": 8,
+        "columns": 4,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "enable_slider": true,
+        "content_overflow": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "1/1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 6,
+        "padding_bottom": 6,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "image_card_mwkyJy": {
+          "type": "image_card",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image_position": 8,
+            "image": "shopify://shop_images/blue_72e2bb379b600e456f1273a2bc9de0b4c9f817626f0c9c0702982edaaec104b16_3.webp",
+            "image_ratio": "adapt",
+            "image_overlay_opacity": 10,
+            "content_position": "split-bottom-button",
+            "content_alignment": "center",
+            "content_spacing": "small",
+            "content_gap": "fitted",
+            "card_link": "",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Indigo Blues",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Shop Now",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "order_first": false,
+            "enable_preload_image": false
+          }
+        },
+        "image_card_kyhjcC": {
+          "type": "image_card",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image_position": 14,
+            "image": "shopify://shop_images/CB25_UKRange-0P-DP-SKBB-4_1_e865bc12-05d2-42ca-9c19-7c2086900f10.png",
+            "image_ratio": "adapt",
+            "image_overlay_opacity": 0,
+            "content_position": "bottom-center",
+            "content_alignment": "center",
+            "content_spacing": "medium",
+            "content_gap": "fitted",
+            "card_link": "",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Sketchbook Black",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_style": "btn--secondary",
+            "button_icon": "none",
+            "order_first": false,
+            "enable_preload_image": false
+          }
+        }
+      },
+      "block_order": [
+        "image_card_mwkyJy",
+        "image_card_kyhjcC"
+      ],
+      "custom_css": [],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "products_per_page": 30,
+        "columns_desktop": 5,
+        "column_gap": "medium",
+        "row_gap": "large",
+        "pagination": "number",
+        "enable_filtering": true,
+        "enable_color_swatch": true,
+        "filter_type": "vertical",
+        "expand_filter_groups": "Availability, Price, Color, Size, Category",
+        "enable_sorting": true,
+        "enable_layout_switching": true,
+        "columns_mobile": "2",
+        "padding_top": 28,
+        "padding_bottom": 60,
+        "show_section_divider": true,
+        "divider_width": "fixed"
+      }
+    },
+    "ss_back_to_top_zkKzmQ": {
+      "type": "ss-back-to-top",
+      "name": "SS - Back to top #3",
+      "settings": {
+        "horizontal_position": "right",
+        "horizontal_dst_to_edge": 30,
+        "horizontal_dst_to_edge_mobile": 20,
+        "vertical_dst_to_edge": 50,
+        "vertical_dst_to_edge_mobile": 50,
+        "circle_size": 46,
+        "circle_size_mobile": 46,
+        "progress_thickness": 4,
+        "circle_bg_color": "#ffffff",
+        "circle_bg_hover_color": "#cbbeb0",
+        "progress_color": "#f5f5f5",
+        "progress_active_color": "#000000",
+        "arrow_color": "#000000",
+        "arrow_hover_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_Gxg9wp",
+    "banner",
+    "collection_list_slider_P3ttUL",
+    "featured_collection_9LXYdJ",
+    "product-grid",
+    "ss_back_to_top_zkKzmQ"
+  ]
+}

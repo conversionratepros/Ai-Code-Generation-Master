@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "spacer_4KMFr8": {
+      "type": "spacer",
+      "name": "t:sections.spacer.name",
+      "settings": {
+        "color_scheme": "",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 6,
+        "padding_bottom": 6,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 10
+      }
+    },
+    "rich_text_mk9Lzp": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_c8dDgW": {
+          "type": "heading",
+          "settings": {
+            "heading": "Meet Our Designers",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_c8dDgW"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-inverse",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 6,
+        "padding_bottom": 6,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "custom_liquid_FgJbRJ": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap\" rel=\"stylesheet\">\n\n<div class=\"cb-designers\">\n  <style>\n    .cb-designers {\n      font-family: 'Poppins', sans-serif;\n      color: #333;\n      max-width: 1100px;\n      margin: 0 auto;\n      padding: 2rem 1.5rem;\n    }\n    .cb-designers p { font-size: 16px; line-height: 1.65; }\n    .cb-designers a { color: #555; text-decoration: underline; transition: color .2s ease; }\n    .cb-designers a:hover { color: #000; }\n\n    /* --- Hero section --- */\n    .cb-hero {\n      display: grid;\n      grid-template-columns: 1fr 1.1fr;\n      gap: 28px;\n      align-items: center;\n      margin: 18px 0 32px;\n    }\n    .cb-hero.reverse { grid-template-columns: 1.1fr 1fr; }\n    .cb-hero .media { border-radius: 10px; overflow: hidden; background: #eee; }\n    .cb-hero img { width: 100%; height: 100%; display: block; object-fit: cover; }\n    .cb-hero .card {\n      background: #f6f6f8;\n      border-radius: 10px;\n      padding: 22px 24px;\n      box-shadow: 0 1px 0 rgba(0,0,0,.04);\n    }\n\n    /* Small signature image above hero text */\n    .cb-hero .sig{\n      display:block;\n      max-width:160px;\n      height:auto;\n      margin:0 0 12px;\n      opacity:.85;\n    }\n\n    /* --- Designer grid --- */\n    .cb-row {\n      display: grid;\n      grid-template-columns: repeat(3, 1fr);\n      gap: 22px;\n      margin: 10px 0 6px;\n    }\n    .cb-person {\n      background: #f9f9fb;\n      border-radius: 10px;\n      overflow: hidden;\n      box-shadow: 0 1px 0 rgba(0,0,0,.04);\n      display: flex;\n      flex-direction: column-reverse;\n      opacity: 0;\n      transform: translateY(40px);\n      animation: fadeUp 0.8s ease forwards;\n    }\n    .cb-person:nth-child(1){animation-delay:.1s}\n    .cb-person:nth-child(2){animation-delay:.2s}\n    .cb-person:nth-child(3){animation-delay:.3s}\n    .cb-person:nth-child(4){animation-delay:.4s}\n    .cb-person:nth-child(5){animation-delay:.5s}\n    .cb-person:nth-child(6){animation-delay:.6s}\n\n    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }\n\n    .cb-person .ph { aspect-ratio: 4/5; background:#eee; }\n    .cb-person img { width:100%; height:100%; object-fit:cover; display:block; }\n    .cb-person figcaption { padding:10px 12px; text-align:center; font-weight:500; font-size:16px; }\n\n    /* --- Responsive --- */\n    @media (max-width:980px){\n      .cb-hero, .cb-hero.reverse { grid-template-columns:1fr; }\n      .cb-row { grid-template-columns:repeat(2,1fr); }\n    }\n\n    /* Mobile layout: move Hero 2 image ABOVE text */\n    @media (max-width:640px){\n      .cb-designers { padding:1.5rem 1rem; }\n      .cb-row { grid-template-columns:1fr; }\n      .cb-person { flex-direction:column; }\n      .cb-person figcaption { padding:12px 12px 6px; }\n\n      /* Flip order for Hero 2 only */\n      .cb-hero.reverse {\n        display: flex;\n        flex-direction: column;\n      }\n      .cb-hero.reverse .media {\n        order: -1; /* image goes above */\n      }\n    }\n  </style>\n\n  <!-- Hero 1 (image left, text right + signature) -->\n  <section class=\"cb-hero\">\n    <figure class=\"media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Carrol.webp?v=1760450592\" alt=\"Portrait of Carrol Boyes\">\n    </figure>\n    <div class=\"card\">\n      <img class=\"sig\" src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/CB_CarrolSignature_Black.webp?v=1760450592\" alt=\"Carrol Boyes signature\">\n      <p>Carrol is an iconic South African artist who is widely recognized and globally celebrated. Carrol created and founded the brand that many collectors love today with her incomparable designs that elevate the ordinary to the extraordinary. Carrol was meticulous about the quality of the materials she used and spent countless hours honing her creativity into functional art pieces that are passed down from generation to generation. She graduated with a Degree in Fine Arts and first pursued teaching as a career before returning to sculpting and design which was her true love and passion. Since then, Carrol has been the recipient of countless awards in both art, design, and entrepreneurship. Even after Carrol’s untimely passing, she remains the heart and soul of the brand and our designers are constantly striving to hit the creative mark – just like she taught them.</p>\n      <p style=\"margin:.8rem 0 0;\"><a href=\"https://tqvz23-up.myshopify.com/pages/about-carrol-boyes\" aria-label=\"Read Carrol Boyes full story\">Click here to see her full story</a></p>\n    </div>\n  </section>\n\n  <!-- Hero 2 (image RIGHT, text LEFT + signature) -->\n  <section class=\"cb-hero reverse\">\n    <div class=\"card\">\n      <img class=\"sig\" src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Caro_Signature_57f9c042-6141-4c49-aeda-54a883123f97.jpg?v=1761720650\" alt=\"Caro signature\">\n      <p>As the Creative Director of Carrol Boyes, Caro Boyes carries forward the legacy of artistry and innovation established by her aunt, Carrol Boyes. With a deep understanding of form, function and emotional design, she shapes collections that honour the brand’s sculptural heritage while reimagining it for the modern world. Caro leads all things creative, from concept and product design to visual storytelling, ensuring that every piece reflects the brand’s timeless elegance, human touch and commitment to craftsmanship.</p>\n      <p style=\"margin:.8rem 0 0;\"><a href=\"https://tqvz23-up.myshopify.com/pages/caro-story\" aria-label=\"Read Carrol Boyes full story\">Click here to see her full story</a></p>\n    </div>\n    <figure class=\"media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Caro.webp?v=1760450592\" alt=\"Carrol Boyes design team in studio\">\n    </figure>\n  </section>\n\n  <!-- Designers — Row 1 -->\n  <section class=\"cb-row\">\n    <figure class=\"cb-person\">\n      <div class=\"ph\"><img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Madi.webp?v=1760450592\" alt=\"Portrait of Madi Morgan\"></div>\n      <figcaption>Madi Morgan</figcaption>\n    </figure>\n    <figure class=\"cb-person\">\n      <div class=\"ph\"><img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Greg.webp?v=1760450592\" alt=\"Portrait of Greg Visagie\"></div>\n      <figcaption>Greg Visagie</figcaption>\n    </figure>\n    <figure class=\"cb-person\">\n      <div class=\"ph\"><img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/HOLLY2_1.jpg?v=1761716895\" alt=\"Portrait of Holly Birkby\"></div>\n      <figcaption>Holly Birkby</figcaption>\n    </figure>\n  </section>\n\n  <!-- Designers — Row 2 -->\n  <section class=\"cb-row\">\n    <figure class=\"cb-person\">\n      <div class=\"ph\"><img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Jacques.webp?v=1760450592\" alt=\"Portrait of Jacques Steenkamp\"></div>\n      <figcaption>Jacques Steenkamp</figcaption>\n    </figure>\n    <figure class=\"cb-person\">\n      <div class=\"ph\"><img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Sayuri.webp?v=1760450592\" alt=\"Portrait of Sayuri Naidoo\"></div>\n      <figcaption>Sayuri Naidoo</figcaption>\n    </figure>\n    <figure class=\"cb-person\">\n      <div class=\"ph\"><img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Jessica.webp?v=1760450592\" alt=\"Portrait of Jessica Fenwick\"></div>\n      <figcaption>Jessica Fenwick</figcaption>\n    </figure>\n  </section>\n</div>",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "spacer_4KMFr8",
+    "rich_text_mk9Lzp",
+    "custom_liquid_FgJbRJ"
+  ]
+}

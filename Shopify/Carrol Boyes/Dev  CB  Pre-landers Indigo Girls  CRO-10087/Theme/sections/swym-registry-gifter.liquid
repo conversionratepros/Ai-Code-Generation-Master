@@ -1,0 +1,2790 @@
+<!-- SWYM_PAGE_VERSION:2.7 -->
+<!-- PLEASE DO NOT EDIT THIS VERSION -->
+<!-- Colors -->
+{% assign settingswymtemp = settings.swym_registry_page_content_color %}
+{% assign settingswymtemp = settings.swym_registry_page_header_color %}
+{% assign settingswymtemp = settings.swym_registry_page_header_background_color %}
+{% assign settingswymtemp = settings.swym_registry_page_content_background_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_text_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_background_color %}
+
+<!-- Page Fonts -->
+{% assign header_font = settings.swym_registry_page_font_family %}
+
+<!-- Page Strings -->
+{% assign settingswymtemp = settings.swym_registry_event_type_label %}
+{% assign settingswymtemp = settings.swym_registry_event_date_label %}
+{% assign settingswymtemp = settings.swym_registry_reg_id_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_name_label %}
+{% assign settingswymtemp = settings.swym_registry_coregistrant_name_label %}
+{% assign settingswymtemp = settings.swym_registry_products_label %}
+{% assign settingswymtemp = settings.swym_registry_days_label %}
+{% assign settingswymtemp = settings.swym_registry_want_label %}
+{% assign settingswymtemp = settings.swym_registry_purchase_label %}
+{% assign settingswymtemp = settings.swym_registry_tooltip_label %}
+{% assign settingswymtemp = settings.swym_registry_gifter_grid_addtobag_btn %}
+{% assign settingswymtemp = settings.swym_registry_gifter_grid_chip %}
+{% assign settingswymtemp = settings.swym_registry_gifter_grid_checkout_btn %}
+{% assign settingswymtemp = settings.swym_registry_gifter_grid_addedtobag_btn %}
+{% assign settingswymtemp = settings.swym_registry_gifter_modal_title %}
+{% assign settingswymtemp = settings.swym_registry_gifter_modal_name %}
+{% assign settingswymtemp = settings.swym_registry_gifter_modal_email%}
+{% assign settingswymtemp = settings.swym_registry_description_label %}
+{% assign settingswymtemp = settings.swym_registry_gifter_modal_proceed_to_buy %}
+{% assign settingswymtemp = settings.swym_registry_all_option_label %}
+{% assign settingswymtemp = settings.swym_registry_still_need_option_label %}
+{% assign settingswymtemp = settings.swym_registry_fulfilled_option_label %}
+{% assign settingswymtemp = settings.swym_registry_sold_out_option_label %}
+{% assign settingswymtemp = settings.swym_registry_sold_out_label %}
+{% assign settingswymtemp = settings.swym_registry_purchased_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_title %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_subtitle_1 %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_subtitle_2 %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_product_quantity_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_product_remove_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_shipping_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_change_button_text %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_price_details_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_order_subtotal_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_shipping_fee_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_tax_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_order_total_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_total_value_label %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_proceed_buy_button_text %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_add_more_button_text %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_choose_shipping_title %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_choose_shipping_save_button_text %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_choose_shipping_cancel_button_text %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_continue_to_payment_button_text %}
+{% assign settingswymtemp = settings.swym_registry_sidenav_back_to_giftcard_button_text %}
+{% assign settingswymtemp = settings.swym_registry_cart_button_text %}
+{% assign settingswymtemp = settings.swym_registry_toast_notify_text %}
+{% assign settingswymtemp = settings.swym_registry_toast_notify_view_cta %}
+{% assign settingswymtemp = settings.swym_registry_overlay_loader_text %}
+
+<!-- Page Custom Classes -->
+{% assign settingswymtemp = settings.swym_registry_custom_btn_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_label_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_title_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_link_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_para_class %}
+
+<!-- Page Font Size -->
+{% assign settingswymtemp = settings.swym_registry_font_very_small %}
+{% assign settingswymtemp = settings.swym_registry_font_small %}
+{% assign settingswymtemp = settings.swym_registry_font_regular %}
+{% assign settingswymtemp = settings.swym_registry_font_large %}
+{% assign settingswymtemp = settings.swym_registry_font_very_large %}
+{% assign settingswymtemp = settings.swym_registry_font_sub_title %}
+{% assign settingswymtemp = settings.swym_registry_font_main_title %}
+{% assign settingswymtemp = settings.swym_registry_font_btn %}
+
+{% schema %}
+  {
+    "name": "Swym Registry Gifter",
+    "settings": []
+  }
+{% endschema %}
+<style>
+{{ header_font | font_face }}
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup-continue-button{
+  position: relative;
+}
+/* Button Loading CSS*/
+.swym-registry-btn-dot-collision {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.swym-registry-btn-dot-collision::before,.swym-registry-btn-dot-collision::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.swym-registry-btn-dot-collision::before {
+  left: -10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  animation: dotCollisionBefore 2s infinite ease-in;
+}
+.swym-registry-btn-dot-collision::after {
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  animation: dotCollisionAfter 2s infinite ease-in;
+  animation-delay: 1s;
+}
+@keyframes dotCollisionBefore {
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-15px);
+  }
+}
+@keyframes dotCollisionAfter {
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(15px);
+  }
+}
+.swym-registry-gifter-modal-sidenav input,
+.swym-registry-gifter-modal-sidenav label,
+.swym-registry-gifter-modal-sidenav figure,
+.swym-registry-gifter-modal-sidenav textarea,
+.swym-registry-gifter-modal-sidenav h1,
+.swym-registry-gifter-modal-sidenav h2,
+.swym-registry-gifter-modal-sidenav h3,
+.swym-registry-gifter-modal-sidenav h4,
+.swym-registry-gifter-modal-sidenav p,
+.swym-registry-gifter-modal-Sidenav-design-mode input,
+.swym-registry-gifter-modal-Sidenav-design-mode label,
+.swym-registry-gifter-modal-Sidenav-design-mode figure,
+.swym-registry-gifter-modal-Sidenav-design-mode textarea,
+.swym-registry-gifter-modal-Sidenav-design-mode h1,
+.swym-registry-gifter-modal-Sidenav-design-mode h2,
+.swym-registry-gifter-modal-Sidenav-design-mode h3,
+.swym-registry-gifter-modal-Sidenav-design-mode h4, 
+.swym-registry-gifter-modal-Sidenav-design-mode p {
+  font-family: {{ header_font.family }};
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+/* swym font start */
+.swym-registry-gifter-container .swym-registry-font-very-small, .swym-registry-gifter-modal-sidenav .swym-registry-font-very-small,
+.swym-registry-gifter-container .swym-registry-font-very-small, .swym-registry-gifter-modal-Sidenav-design-mode .swym-registry-font-very-small {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(12px + ({{ settings.swym_registry_font_very_small }} - 12) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 25px;
+    color: inherit;
+  }
+.swym-registry-gifter-container .swym-registry-font-small, .swym-registry-gifter-modal-sidenav .swym-registry-font-small,
+.swym-registry-gifter-container .swym-registry-font-small, .swym-registry-gifter-modal-Sidenav-design-mode .swym-registry-font-small  {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(12px + ({{ settings.swym_registry_font_small }} - 12) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 30px;
+    color: inherit;
+  }
+.swym-registry-gifter-container .swym-registry-font-regular, .swym-registry-gifter-modal-sidenav .swym-registry-font-regular,
+.swym-registry-gifter-container .swym-registry-font-regular, .swym-registry-gifter-modal-Sidenav-design-mode .swym-registry-font-regular {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 30px;
+    color: inherit;
+  }
+.swym-registry-gifter-container .swym-registry-font-large, .swym-registry-gifter-modal-sidenav .swym-registry-font-large,
+.swym-registry-gifter-container .swym-registry-font-large, .swym-registry-gifter-modal-Sidenav-design-mode .swym-registry-font-large {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(18px + ({{ settings.swym_registry_font_large }} - 18) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 38px;
+    color: inherit;
+  }
+.swym-registry-gifter-container .swym-registry-font-very-large {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(22px + ({{ settings.swym_registry_font_very_large }} - 22) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 40px;
+    color: inherit;
+  }
+.swym-registry-gifter-container .swym-registry-font-sub-title {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(24px + ({{ settings.swym_registry_font_sub_title }} - 24) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 42px;
+    color: inherit;
+  }
+.swym-registry-gifter-container .swym-registry-font-title {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(28px + ({{ settings.swym_registry_font_main_title }} - 28) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 44px;
+    color: inherit;
+  }
+.swym-registry-gifter-container .swym-registry-font-btn, .swym-registry-gifter-modal-sidenav .swym-registry-font-btn, .swym-registry-gifter-modal-Sidenav-design-mode .swym-registry-font-btn {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(14px + ({{ settings.swym_registry_font_btn }} - 14) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 44px;
+  }
+/* mani changes end */
+/* swym font end */
+.swym-registry-gifter-container {
+  font-family: {{ header_font.family }};
+  min-height: 100vh;
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-gifter-container button {
+  cursor: pointer;
+}
+.swym-registry-gifter-container .swym-registry-wrapper {
+  width: 82.28%;
+  margin: 0 auto;
+  max-width: 1287px;
+}
+.swym-registry-gifter-container p,
+.swym-registry-gifter-container h1,
+.swym-registry-gifter-container ul,
+.swym-registry-gifter-container figure,
+.swym-registry-gifter-container h2 {
+  font-family: {{ header_font.family }};
+  margin: 0;
+  padding: 0;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner {
+  padding: 42px 23px;
+  color: {{ settings.swym_registry_page_header_color }};
+  background: {{ settings.swym_registry_page_header_background_color }};
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner ul li,
+.swym-registry-gifter-container .swym-registry-gifter-grid ul li {
+  list-style: none;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-registry-detail {
+  width: 64%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-registry-detail li {
+  font-style: normal;
+  font-weight: 500;
+  line-height: calc(22px + (22 - 12) * ((100vw - 320px) / (1564 - 320)));
+  text-transform: uppercase;
+  margin-right: 25px;  
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner .swym-registry-wrapper {
+  width: 90.15%;
+  margin: 0 auto;
+  max-width: 1410px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid {
+  padding: 25px 0; 
+  color: {{ settings.swym_registry_page_content_color }};
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid .swym-registry-wrapper {
+    width: 82.28%;
+    margin: 0 auto;
+    max-width: 1287px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-content {
+  width: 81%;
+  display: flex;
+  flex-direction: column; 
+}
+.swym-registry-gifter-container.swym-registry-design-mode .swym-registry-gifter-banner-content {
+  width: 87%;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-circle {
+    display: inline-block;
+    width: 8vw;
+    height: 8.15vw;
+    border-radius: 50%;
+    align-self: center;
+    position: relative;
+    max-width: 148px;
+    max-height: 151px;
+    min-width: 60px;
+    min-height: 60px;
+    border: 1px solid {{ settings.swym_registry_page_header_color }};
+    align-self: flex-start;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner .swym-registry-gifter-banner-user {
+    margin: 0;
+    color: {{ settings.swym_registry_page_header_color }};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-message-container {
+  width: 61%;
+  padding: 21px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-message strong {
+   position: absolute;
+   font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 25px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-message strong:first-child {
+  left: 0;
+  top: 33px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-message strong:last-child {
+  left: 17%;
+  bottom: 0;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-stats-container {
+  align-self: end;
+  margin-bottom: 82px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-value {
+  font-weight: 600;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-stats {
+  display: flex;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(12px + (12 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: calc(18px + (18 - 18) * ((100vw - 320px) / (1564 - 320)));
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-stats li:first-child {
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 1px solid #fff;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-bottom-days {
+  color: {{ settings.swym_registry_page_header_color }};
+  margin-right: 15px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-items .swym-registry-gifter-grid-item {
+  margin-bottom: 17px;
+  display: flex;
+  padding: 15px 0px 23px 17px;
+  background: {{ settings.swym_registry_page_content_background_color }};
+  border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+  border-radius: 20px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item a {
+    width: 15.5%;
+    height: 161px;
+    overflow: hidden;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item figure {
+  height: 200px;
+  position: relative;
+  background-position: inherit;
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item figure img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  object-fit: cover;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-position: center;
+}
+
+.swym-registry-gifter-container.swym-registry-design-mode .swym-registry-gifter-grid-item figure img {
+  top: 5%;
+  transform: initial;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-center {
+  display: flex;
+  align-items: center;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom {
+  display: flex;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom li:first-child {
+  border: 1px solid #D0D0D0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(13px + (13 - 13) * ((100vw - 320px) / (1564 - 320)));
+  line-height: calc(16px + (16 - 16) * ((100vw - 320px) / (1564 - 320)));
+  letter-spacing: 0.03em;
+  align-items: center;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-detail {
+  width: 84.5%;
+  padding: 8px 0;
+  margin-left: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-detail h2 {
+  text-transform: uppercase;
+}
+.swym-registry-gifter-container .swym-registry-gifter-update-btn-container {
+  margin-left: 33px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-update-btn-container button {
+  border: none;
+  padding: 0px 16px;
+  font-family: {{ header_font.family }};
+  letter-spacing: -0.333333px; 
+  text-transform: capitalize;
+  color: {{ settings.swym_registry_btn_text_color }};
+  background: {{ settings.swym_registry_btn_background_color }};
+  border-radius: 4px;  
+  transition: 0.24s ease;
+}
+.swym-registry-gifter-container .swym-registry-gifter-update-btn-container button:hover{
+    transform: scale(1.06,1.06);
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-price {
+    margin-right: 32px;
+    text-transform: uppercase;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-boughtqty-container {
+  margin-right: 32px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-cartqty-container {
+  display: none;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-cartqty-container > span {
+  padding: 4px 8px;
+  background-color: {{ settings.swym_registry_btn_background_color | color_modify: 'alpha', 0.1 }};
+  color: {{ settings.swym_registry_page_content_color }};
+  border-radius: 3px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-top .swym-registry-gifter-grid-top-add-products button {
+  display: flex; 
+  padding: 0px 16px;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  color: {{ settings.swym_registry_btn_text_color }};
+  background: {{ settings.swym_registry_btn_background_color }};
+  transition: 0.24s ease;
+}
+.swym-registry-gifter-container div.swym-registry-gifter-cart-btn-container {
+  display: none; 
+  justify-content: space-around;
+}
+.swym-registry-gifter-container div.swym-registry-gifter-cart-btn-container button {
+  display: flex; 
+  padding: 0px 12.1rem;;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  color: {{ settings.swym_registry_btn_text_color }};
+  background: {{ settings.swym_registry_btn_background_color }};
+  transition: 0.24s ease;
+  margin-top: 20px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-top .swym-registry-gifter-grid-top-add-products button:hover{
+  transform: scale(1.06,1.06);
+}
+.swym-registry-gifter-container .swym-registry-gifter-container ul.swym-registry-gifter-grid-top {
+  margin-bottom: 31px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-top .swym-registry-gifter-grid-top-add-products  {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(14px + (14 - 14) * ((100vw - 320px) / (1564 - 320)));
+    line-height: calc(20px + (20 - 30) * ((100vw - 320px) / (1564 - 320)));
+}
+.swym-registry-gifter-grid .swym-registry-wrapper h4.swym-registry-gifter-grid-product-count.swym-registry-font-small {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.swym-registry-gifter-grid .swym-registry-wrapper li.swym-registry-gifter-grid-top-add-products {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  align-items: center;
+}
+.swym-registry-gifter-grid .swym-registry-wrapper h4.swym-registry-gifter-grid-product-count {
+    margin: 0;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: inherit;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-product-count span:first-child {
+  margin-right: 5px; 
+}
+.swym-registry-gifter-container input.swym-registry-gifter-grid-item-bottom-qty::-webkit-outer-spin-button,
+.swym-registry-gifter-container input.swym-registry-gifter-grid-item-bottom-qty::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.swym-registry-gifter-container input.swym-registry-gifter-grid-item-bottom-qty[type=number] {
+  -moz-appearance: textfield;
+  text-align:center;
+  font-family: inherit;
+  padding: 0px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom-qty {
+  appearance: textfield;
+  width: 100%;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-gifter-container .swym-registry-gifter-qty-design-span{
+  appearance: textfield;
+  width: fit-content;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom-reduce,
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom-increase {
+  cursor: pointer;
+}
+.swym-registry-gifter-container .swym-registry-registrant-grid-nav { 
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    letter-spacing: -0.333333px;
+    text-transform: uppercase;
+    color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-gifter-container .swym-registry-registrant-grid-nav button {
+  border: none;
+  background: none;
+  padding: 0 15px;
+}
+.swym-registry-gifter-container .swym-registry-registrant-grid-nav .swym-registry-border-btm-active {
+  border-color: {{ settings.swym_registry_page_header_background_color }};
+}
+.swym-registry-gifter-container .swym-registry-registrant-grid-nav button{
+    border-bottom: 3.5px solid transparent;
+}
+.swym-registry-gifter-container .swym-registry-product-banner {
+  background: {{ settings.swym_registry_page_header_background_color }};;
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(14px + (12 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: calc(30px + (28 - 28) * ((100vw - 320px) / (1564 - 320)));
+  letter-spacing: -0.333333px;
+  color: {{ settings.swym_registry_page_header_color }};
+  position: absolute;
+  right: 0;
+  padding: 0 15px;
+  text-transform: capitalize;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-askqty-container,
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-boughtqty-container {
+  display: flex;
+  align-items: center;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-askqty-container {
+  margin-right: 12px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-want-value {
+  margin-left: 5px;
+}
+.swym-registry-gifter-container .swym-registry-hidden {
+  display: none
+}
+.swym-registry-gifter-container .swym-registry-mobile {
+  display: none;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-bottom-send-thanks {
+  cursor: pointer;
+}
+.swym-registry-gifter-container .swym-registry-gifter-banner-message:before, 
+.swym-registry-gifter-container .swym-registry-gifter-banner-message:after {
+  content: '"';
+  font-size: 42px;
+  vertical-align: text-top;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-top-add-products .swym-registry-gifters-checkout-container.swym-registry-gifters-btn-disabled {
+  position: relative;
+  display: inline-block;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-top-add-products .swym-registry-gifters-checkout-container .swym-registry-gifters-tooltiptext {
+  visibility: hidden;
+  width: 250px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  line-height: 20px;
+  top: -50px;
+  right: 0;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-top-add-products .swym-registry-gifters-checkout-container.swym-registry-gifters-btn-disabled:hover .swym-registry-gifters-tooltiptext {
+  visibility: visible;
+}
+#swym-registry-unordered-list::-webkit-scrollbar {
+    width: 8px;
+}
+  
+/* Track */
+#swym-registry-unordered-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+/* Handle */
+#swym-registry-unordered-list::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 5px;
+}
+/* Handle on hover */
+#swym-registry-unordered-list::-webkit-scrollbar-thumb:hover {
+    background: gray;
+}
+@keyframes drop-in {
+    from {
+        top: 10%;
+    }
+
+    to {
+        top: 25%
+    }
+}
+/* Gifter Modal */
+.swym-registry-gifter-modal-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    top: 0;
+    right: 0;
+  }
+.swym-registry-gifter-modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+  }
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal {
+    position: relative;
+    margin: 0 auto;
+    background-color: {{settings.swym_registry_page_content_background_color}};
+    width: 500px;
+    height: auto;
+    padding: 40px;
+    animation: drop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translate(0%, -25%);
+    top: 25%;
+    text-align: center;
+  }
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-modal-title{
+    margin-bottom:3%;
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-field-input::placeholder {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  margin-bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: top .1s ease,font-size .1s ease;
+  left: 12px;
+  letter-spacing: .04rem;
+  color: {{settings.swym_registry_page_content_color}};
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-message::placeholder {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  margin-bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: top .1s ease,font-size .1s ease;
+  left: 12px;
+  letter-spacing: .04rem;
+  color: {{settings.swym_registry_page_content_color}};
+  font-family:{{ header_font.family }} ;
+  opacity: inherit;
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-fields .swym-registry-gifter-field-input {
+    border: solid 1px {{ settings.swym_registry_page_content_color}};
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    padding: 14px 10.08px;
+    position: relative;
+    width: 100%;
+    color: {{settings.swym_registry_page_content_color}};
+    font-family:{{ header_font.family }} ;
+    background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-fields .swym-registry-gifter-field-input::placeholder{
+  color: {{settings.swym_registry_page_content_color}};
+  opacity: inherit;
+  font-family:{{ header_font.family }} ;
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-fields .swym-registry-gifter-field-input:focus{
+  border: solid 1px {{ settings.swym_registry_page_content_color}};
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-message {
+    margin-bottom: 35px;
+    border: solid 1px {{ settings.swym_registry_page_content_color}};
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    padding: 14px 10.08px;
+    position: relative;
+    color: {{settings.swym_registry_page_content_color}};
+    font-family:{{ header_font.family }} ;
+    width: 100%;
+    background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal{
+  font-family: {{header_font.family}};
+}
+
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-form li {
+    list-style: none ;
+}
+
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-form {
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+}
+
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-fields {
+    display: flex;
+    flex-direction: column;
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal textarea#swym-registry-gifter-message:focus{
+  outline: none ;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-fields .field {
+    margin-bottom: 20px ;
+    padding: 0 ;
+    position: initial;
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-fields input:focus{
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-fields .field{
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+  .swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-form{
+    margin:0
+  }
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifters-modal-buy-btn{
+  border-radius: 3px;
+  text-transform: uppercase;
+  background: {{settings.swym_registry_btn_background_color}};
+  color: {{settings.swym_registry_btn_text_color}};
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  font-family: {{header_font.family}};
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: 30px;
+    transition: 0.24s;
+}
+.swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifters-modal-buy-btn:hover{
+    transform:scale(1.06,1.06);
+    cursor:pointer;
+  }
+  .swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-gifter-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border:none;
+    background:none;
+    font-size: 18px;
+    cursor: pointer;
+    color: {{settings.swym_registry_page_content_color}};
+  }
+
+  .swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-modal-content{
+    max-height:70vh;
+    overflow-y:scroll;
+  }
+  .swym-registry-gifter-modal-container .swym-registry-gifter-modal .swym-registry-gifter-modal-title{
+    color: {{settings.swym_registry_page_content_color}}
+  }
+.swym-registry-gifter-container .swym-registry-wrapper input.swym-registry-gifter-grid-item-bottom-qty{
+  color: {{settings.swym_registry_page_content_color}};
+}
+.swym-registry-gifter-container .swym-registry-wrapper input.swym-registry-gifter-grid-item-bottom-qty{
+  padding: 0px;
+}
+.swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom li:first-child {
+  width: 13.3%;
+  border: 1px solid {{ settings.swym_registry_page_content_color }};
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(13px + (13 - 13) * ((100vw - 320px) / (1564 - 320)));
+  line-height: calc(16px + (16 - 16) * ((100vw - 320px) / (1564 - 320)));
+  letter-spacing: 0.03em;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.swym-registry-gifter-container .swym-registry-gifter-grid-top-add-products .swym-registry-gifters-btn-disabled button {
+  display: flex;
+  padding: 0px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #fff;
+  text-align: center;
+  color: {{ settings.swym_registry_btn_text_color }};
+  background: {{ settings.swym_registry_btn_background_color }};
+  opacity: 0.4;
+  transition: 0.24s ease;
+}
+.swym-registry-gifter-container .swym-registry-gifters-btn-disabled button {
+  opacity: 0.4;
+}
+@keyframes animateopacity {
+    from {
+        background-color: rgba(0, 0, 0, 0.0)
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.7)
+    }
+}
+
+.swym-registry-sidenav-secondary-btn {
+  border: 1.5px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.4 }};
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+  color: {{ settings.swym_registry_page_content_color }};
+  cursor: pointer;
+  transition: 0.24s ease;
+  font-family: inherit;
+  font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+}
+.swym-registry-gifter-modal-sidenav,
+.swym-registry-gifter-modal-Sidenav-design-mode {
+  max-width: 430px;
+  min-width: 320px;
+  width: 27.80%;
+  background: {{ settings.swym_registry_page_content_background_color }};
+  position: fixed;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+  overflow-y: scroll;
+  color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-active {
+  transform: translateX(0);
+}
+.swym-registry-gifter-modal-checkout-container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.swym-registry-gifter-modal-checkout-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0;
+}
+.swym-registry-gifter-modal-checkout-gifter-address-heading {
+  padding-left: 0;
+  color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-gifter-modal-checkout-gifter-checkout-product-container {
+  padding-bottom: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 180px);
+  box-sizing: border-box;
+  color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-registry-gifter-modal-checkout-main {
+  display: flex;
+  margin: 12px 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 8px;
+  flex-direction: column;
+  border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+}
+.swym-registry-gifter-modal-checkout-main .swym-registry-gifter-modal-checkout-main-product-container > div:nth-child(2) {
+ max-width: 205px;
+  margin-left: 15px
+}
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup {
+    animation: slideInFromBottom 0.5s ease forwards;
+    display: none;
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    background: {{ settings.swym_registry_page_content_background_color }};
+    bottom: 0;
+    padding: 24px;
+    border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+}
+.swym-registry-remove-animation {
+  animation: slideInFromTop 0.5s ease forwards;
+}
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup .swym-registry-gifter-modal-checkout-gifter-checkout-popup-input {
+  border: 1px solid {{ settings.swym_registry_page_content_color }};
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin: 0.5rem 0;
+  position: relative;
+  width: 100%;
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+  margin-bottom: 12px;
+}
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup .swym-registry-gifter-modal-checkout-gifter-checkout-popup-input input,
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup .swym-registry-gifter-modal-checkout-gifter-checkout-popup-input textarea {
+  border: none;
+  outline: 0;
+  width: 100%;
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+ .swym-registry-gifter-modal-checkout-gifter-checkout-popup .swym-registry-gifter-modal-checkout-gifter-checkout-popup-input input:focus,
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup .swym-registry-gifter-modal-checkout-gifter-checkout-popup-input textarea:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+.swym-registry-gifter-modal-checkout-image {
+  width: 100px;
+  height: 100px;
+}
+.swym-registry-gifter-modal-checkout-close-btn {
+  cursor: pointer;
+}
+.swym-registry-container-heading {
+  border-bottom: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+
+  padding: 16px 20px;
+}
+.swym-registry-gifter-modal-checkout-heading {
+  font-weight: 600;
+}
+.swym-registry-gifter-modal-checkout-main-product-container {
+  display: flex;
+  border-bottom: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+}
+.swym-registry-gifter-modal-checkout-main-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.swym-registry-gifter-modal-checkout-qty {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.swym-registry-gifter-modal-checkout-main-actions .swym-registry-gifter-modal-checkout-qty div {
+    width: 74px;
+    height: 36px;
+    border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(13px + (13 - 13) * ((100vw - 320px) / (1564 - 320)));
+    line-height: calc(16px + (16 - 16) * ((100vw - 320px) / (1564 - 320)));
+    letter-spacing: 0.03em;
+    align-items: center;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+.swym-registry-gifter-modal-checkout-main-actions .swym-registry-gifter-modal-checkout-qty div input::-webkit-inner-spin-button,
+.swym-registry-gifter-modal-checkout-main-actions .swym-registry-gifter-modal-checkout-qty div input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.swym-registry-gifter-modal-checkout-main-actions .swym-registry-gifter-modal-checkout-qty div input {
+    appearance: textfield;
+    width: 100%;
+    margin: 0;
+    outline: none;
+    border: none;
+    background: {{ settings.swym_registry_page_content_background_color }};
+    color: {{ settings.swym_registry_page_content_color }};
+    padding: 0px;
+}
+.swym-registry-gifter-modal-checkout-main-actions .swym-registry-gifter-modal-checkout-qty div span {
+  cursor: pointer;
+}
+.swym-registry-gifter-modal-checkout-main-actions .swym-registry-gifter-modal-checkout-qty div input[type=number] {
+  -moz-appearance: textfield;
+    text-align: center;
+    font-family: inherit;
+}
+.swym-registry-gifter-modal-checkout-main-actions span:nth-child(2){
+  text-decoration: underline;
+  cursor: pointer; 
+}
+.swym-registry-gifter-shipping-method {
+    margin: 20px 12px;
+    padding: 10px 8px;
+    border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+.swym-registry-gifter-shipping-method button {
+  padding: 0px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.swym-registry-gifter-shipping-method h3 {
+  margin: 0;
+}
+.swym-registry-gifter-price-details {
+    margin: 20px 12px;
+    padding: 10px 8px;
+    border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+    display: flex;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border-radius: 8px;
+}
+.swym-registry-gifter-price-details h3 {
+    margin: 0;
+    margin-bottom: 8px;
+}
+.swym-registry-gifter-price-details ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.swym-registry-gifter-price-details ul li {
+    display: flex;
+    justify-content: space-between;
+}
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slideInFromTop {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(100%);
+  }
+}
+.swym-registry-delivery-option {
+  animation: slideInFromBottom 0.5s ease forwards;
+    display: none;
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    background: {{ settings.swym_registry_page_content_background_color }};
+    bottom: 0;
+    padding: 24px;
+    border-top: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+    color: {{ settings.swym_registry_page_content_color }};
+}
+.swym-delivery-option input {
+  cursor: pointer;
+}
+.swym-registry-delivery-option ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 24px;
+  margin-top: 10px;
+}
+.swym-registry-delivery-option ul li {
+    display: flex;
+    justify-content: space-between;
+}
+.swym-registry-delivery-option ul li .swym-delivery-option {
+ display: flex;   
+}
+.swym-registry-delivery-option ul li .swym-delivery-option .swym-delivery-option-text {
+  margin-left: 8px;
+}
+.swym-registry-gifter-modal-checkout-gifter-footer-container {
+  padding: 12px 24px;
+  border-top: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.2 }};
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: {{ settings.swym_registry_page_content_background_color }};
+  height: 200px;
+}
+.swym-registry-gifter-modal-checkout-gifter-buy-button-container button,
+.swym-registry-gifter-modal-checkout-gifter-add-gifts-button-container button,
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container button,
+.swym-registry-gifter-modal-shipping-method-button-container button {
+    width: 100%;
+    background: none;
+    padding: 0px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.swym-registry-gifter-modal-checkout-gifter-buy-button-container button,
+.swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container-type-1 button,
+.swym-registry-gifter-modal-shipping-method-button-container-type-1 button {
+  margin-bottom: 12px;
+  background: {{ settings.swym_registry_btn_background_color }};
+  width: 100%;
+  border: none;
+  padding: 0px 16px;
+  border-radius: 4px;
+  color: {{ settings.swym_registry_btn_text_color }};
+  cursor: pointer;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1440 - 320)));
+}
+
+.swym-registry-gifter-modal-checkout-gifter-text {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.swym-registry-gifter-modal-checkout-gifter-text span {
+    height: 14px;
+    width: 14px;
+    border: 1px solid {{ settings.swym_registry_page_content_color }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.swym-registry-gifter-modal-checkout-gifter-total-container {
+      display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.swym-overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.swym-overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.swym-spinner {
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-top-color: #fff;
+    animation: spin 1s infinite linear;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.swym-registry-loading-messages {
+     margin-top: 15px; 
+}
+.swymRegistryToastContainer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+.swym-registry-toast {
+  display: flex;
+}
+.swymRegistryToastContainer p {
+  margin: 0;
+  margin-right: 20px;
+}
+.swymRegistryToastContainer span {
+  color: #999CA0;   
+  font-weight: 500;
+  cursor: pointer;
+}
+.swym-registry-toast {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.swym-registry-toast-notify {
+  opacity: 0;
+  display: none;
+}
+.swym-registry-toast-notify.swym-registry-show {
+  opacity: 1;
+  display: block;
+}
+/*  address-masking-css */
+.swym-registry-gifters-modal-buy-btn{
+  border-radius: 3px;
+  text-transform: uppercase;
+  background: {{settings.swym_registry_btn_background_color}};
+  color: {{settings.swym_registry_btn_text_color}};
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  font-family: {{header_font.family}};
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: 30px;
+  transition: 0.24s;
+}
+
+.swym-registry-gifter-grid-item-detail .swym-registry-gifter-grid-item-bottom .swym-registry-gifter-chip{
+  border: 1px solid {{settings.swym_registry_btn_background_color}};
+  color: {{settings.swym_registry_btn_background_color}};
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+#PageContainer {
+  -webkit-transform: initial;
+  transform: initial;
+}
+@media only screen and (max-width: 1200px) {
+  .swym-registry-gifter-container .swym-registry-gifter-banner-stats li {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .swym-registry-gifter-container .swym-registry-gifter-banner {
+     padding: 40px 0;
+    position: relative;
+  }
+  .swym-registry-gifter-container .swym-registry-mobile {
+    display: block;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-title {
+    text-align: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-bottom-days .swym-registry-desktop {
+    display: none;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner .swym-registry-wrapper {
+      flex-direction: column;
+      align-items: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-stats-container {
+      align-self: initial;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-bottom {
+    text-align: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-circle {
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-bottom-days.swym-registry-mobile {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-registry-detail {
+     width: 100%;
+     justify-content: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-bottom-days{
+    margin-right: 0px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-stats-container {
+    width: initial;
+    margin-bottom: 80px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-bottom-send-thanks {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translate(-50%);
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid .swym-registry-wrapper {
+    width: 90%;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-top {
+    margin-top: 20px;
+  }
+  .swym-registry-gifter-container .swym-registry-registrant-grid-nav button {
+      padding: 0 8px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-message-container {
+    width: 100%;
+    justify-content: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom li:first-child {
+    width: 17.3%;
+  }
+  .swym-registry-gifter-container .swym-registry-registrant-wrapper {
+    width: 90%;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-content {
+    width: 64%;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-stats-container {
+    display: none;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-message {
+      text-align: center;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+   .swym-registry-gifter-container .swym-registry-gifter-grid-item a{
+       width: 180px;
+   }
+}
+@media screen and (max-width: 790px) {
+  .swym-registry-gifter-grid-item-detail .swym-registry-gifter-grid-item-bottom .swym-registry-gifter-chip{
+    width: 100%;
+    text-align: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item figure{
+    height: 400px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-container .swym-registry-gifter-grid-item {
+    flex-direction: column;
+    padding-right: 20px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item a {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom li:first-child {
+     width: 25%; 
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-items .swym-registry-gifter-grid-item {
+    flex-direction: column;
+    padding-right: 20px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-detail {
+    margin-left: 0;
+    width: 100%;
+  }
+  .swym-registry-gifter-modal-container .swym-registry-gifter-modal{
+    width: 70% ;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .swym-registry-gifter-container .swym-registry-gifter-banner-content {
+    width: 100%;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-items li.swym-registry-gifter-grid-item {
+    padding-right: 15px;
+    flex-direction: column;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item figure {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;  
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-detail .swym-registry-gifter-grid-item-bottom li{
+    width: 100%;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-detail {
+    width: 100%;
+    margin-left: 0; 
+    padding-bottom: 0;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-update-btn-container {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-update-btn-container button {
+    width: 100%;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-update-btn-container button:hover{
+    transform: scale(1.022,1.022);
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid {
+   padding-top: 25px; 
+  }
+  .swym-registry-gifter-container .swym-registry-registrant-grid-nav {
+    justify-content: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-container ul.swym-registry-gifter-grid-top {
+    margin-top: 20px;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-registry-detail {
+    flex-direction: column;
+    align-items: center;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-banner-registry-detail li {
+    margin-right: 0;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-bottom li:first-child {
+    width: 100%;
+    padding: 8px;
+  }
+  .swymRegistryToastContainer {
+    width: max-content;
+  }
+  .swym-registry-toast-notify {
+    width: max-content;
+  }
+}
+  
+@media(max-width: 480px) {
+  .swym-registry-gifter-modal-container .swym-registry-gifter-modal {
+    width: 95% ;
+    padding: 20px 20px 30px ;
+  }
+  .swym-registry-gifter-container .swym-registry-gifter-grid-item-center {
+    flex-wrap: wrap;
+  }
+}
+</style>
+
+<link rel="dns-prefetch" href="https://cdn.swymregistry.com/swym-registry-common-cdn.js">
+<link
+  rel="preconnect"
+  href="https://cdn.swymregistry.com/swym-registry-common-cdn.js"
+ >
+<script
+  src="https://cdn.swymregistry.com/swym-registry-common-cdn.js"
+></script>
+<link rel="dns-prefetch" href="https://cdn.swymregistry.com/swym-registry-gifter-cdn.js">
+<link
+  rel="preconnect"
+  href="https://cdn.swymregistry.com/swym-registry-gifter-cdn.js"
+>
+<script
+  src="https://cdn.swymregistry.com/swym-registry-gifter-cdn.js"
+></script>
+
+<script type="text/javascript" src="https://cloudfront.loggly.com/js/loggly.tracker-latest.min.js" async></script>
+<script>
+  var _LTracker = _LTracker || [];
+  _LTracker.push({
+    'logglyKey': '7a2be593-4080-4ce0-b039-cee174ba8365',
+    'sendConsoleErrors' : true,
+    'tag' : 'error,template,gifter' 
+  });
+</script>
+<script>
+const swymRegistry_lsName = "swymKeys";
+const swym_currency = "{{ cart.currency.symbol }}"
+function swymRegistryInventoryController(productEpi){
+  const swymRegistryQuantity = document.querySelector(`.swym-registry-gifter-grid-item-bottom-qty-${productEpi}`).value;
+  let disableCheckoutOnInventoryLapse = false;
+  {%- if shop.metafields.swym_registry.disableCheckoutOnInventoryLapse != blank -%}
+     disableCheckoutOnInventoryLapse = {{ shop.metafields.swym_registry.disableCheckoutOnInventoryLapse }}
+  {%- endif -%}
+  if(disableCheckoutOnInventoryLapse){
+    let swymRegistryObj = swymgr.registryDetails.associatedListedProducts.find(swymObj => swymObj.epi == productEpi);
+    if(swymRegistryQuantity > swymRegistryObj.inventoryQuantity){
+      document.querySelector(`.swym-registry-registrant-update-btn-${productEpi}`).style.opacity = "0.4"
+      document.querySelector(`.swym-registry-registrant-update-btn-${productEpi}`).disabled=true;
+    }else{
+      document.querySelector(`.swym-registry-registrant-update-btn-${productEpi}`).style.opacity = "1"
+      document.querySelector(`.swym-registry-registrant-update-btn-${productEpi}`).disabled=false;
+    }
+  }
+}
+function swymRegistryChangeQtyOnClick(productEpi,swymRegistryChangeQtySpan,action = 'reduce'){
+  document.querySelector(`#product-${productEpi}-btn`).childNodes['1'].textContent = "{{ settings.swym_registry_gifter_grid_addtobag_btn }}";
+  if(action=='reduce'){
+    swymRegistryChangeQty(swymRegistryChangeQtySpan);
+  }
+  else{
+    swymRegistryChangeQty(swymRegistryChangeQtySpan, 'increase');
+  }
+  swymRegistryInventoryController(productEpi)
+}
+  
+
+async function swymRegistryChangeQtyOnClickCartPage(productEpi,swymRegistryChangeQtySpan,action = 'reduce'){
+  let disableCheckoutOnInventoryLapse = false;
+  {%- if shop.metafields.swym_registry.disableCheckoutOnInventoryLapse != blank -%}
+     disableCheckoutOnInventoryLapse = {{ shop.metafields.swym_registry.disableCheckoutOnInventoryLapse }}
+  {%- endif -%}
+  document.querySelector(`#product-${productEpi}-btn`).childNodes['1'].textContent = "{{ settings.swym_registry_gifter_grid_addtobag_btn }}";
+  const swymRegistryQuantity = document.querySelector(`.swym-registry-gifter-grid-item-bottom-qty-gifter-cart-${productEpi}`).value;
+  if(action=='reduce' && swymRegistryQuantity > 1){
+    swymRegistryChangeQty(swymRegistryChangeQtySpan);
+  }
+  else{
+    if(disableCheckoutOnInventoryLapse){
+      let swymRegistryObj = swymgr.registryDetails.associatedListedProducts.find(swymObj => swymObj.epi == productEpi);
+      if(parseInt(swymRegistryQuantity) + 1 > swymRegistryObj.inventoryQuantity){
+        return false; 
+      }else{
+        swymRegistryChangeQty(swymRegistryChangeQtySpan, 'increase');
+      }
+    }else{
+      swymRegistryChangeQty(swymRegistryChangeQtySpan, 'increase');
+    }
+  }
+  swymgr.checkoutProducts[productEpi].quantity = document.querySelector(`.swym-registry-gifter-grid-item-bottom-qty-gifter-cart-${productEpi}`).value;
+  if(swymRegistryQuantity >= 1){
+    await showSwymRegistryGifterModal("qty");
+  }
+}
+async function swymRegistryRemoveListItem(productEpi){
+  document.querySelector(`#product-${productEpi}-btn`).childNodes['1'].textContent = "{{ settings.swym_registry_gifter_grid_addtobag_btn }}";
+  delete swymgr.checkoutProducts[productEpi];
+  await showSwymRegistryGifterModal("remove");
+  const swymRegistryCartProduct = Object.keys(swymgr.checkoutProducts).length;
+  document.getElementById("swym-registry-gifters-cart-count").innerHTML = `&nbsp;(${swymRegistryCartProduct})`;    
+}
+async function swymRegistryHandleQtyChange(productEpi, mode=""){
+  if(mode == 'gifter'){
+    swymRegistryInventoryController(productEpi);
+  }else if(mode == 'cart'){
+    const swymRegistryQuantity = document.querySelector(`.swym-registry-gifter-grid-item-bottom-qty-gifter-cart-${productEpi}`).value;
+    let disableCheckoutOnInventoryLapse = false;
+    {%- if shop.metafields.swym_registry.disableCheckoutOnInventoryLapse != blank -%}
+       disableCheckoutOnInventoryLapse = {{ shop.metafields.swym_registry.disableCheckoutOnInventoryLapse }}
+    {%- endif -%}
+    if(disableCheckoutOnInventoryLapse){
+      let swymRegistryObj = swymgr.registryDetails.associatedListedProducts.find(swymObj => swymObj.epi == productEpi);
+      if(swymRegistryQuantity > swymRegistryObj.inventoryQuantity){
+        document.querySelector(`.swym-registry-gifter-grid-item-bottom-qty-gifter-cart-${productEpi}`).value = swymRegistryObj.inventoryQuantity;
+        swymgr.checkoutProducts[productEpi].quantity = swymRegistryObj.inventoryQuantity;
+      }else{
+        swymgr.checkoutProducts[productEpi].quantity = document.querySelector(`.swym-registry-gifter-grid-item-bottom-qty-gifter-cart-${productEpi}`).value;
+      }
+    }else{
+      swymgr.checkoutProducts[productEpi].quantity = document.querySelector(`.swym-registry-gifter-grid-item-bottom-qty-gifter-cart-${productEpi}`).value;
+    }
+    await showSwymRegistryGifterModal("qty");
+  }
+  
+}
+  
+function swymRegistryIsAvailableInOnlineStore(product){
+  let inPOS=false;
+  let inOnlineStore=false;
+  product.salesChannels.map(channel => {
+      if(channel.name === "Online Store"){
+        inOnlineStore=true;
+      }
+      else if(channel.name === "Point of Sale"){
+        inPOS=true;
+      }
+  })
+  return !(inPOS && !inOnlineStore);
+}
+
+function swymRegistryAddProduct(product, registry) {
+  try{
+    var swymRegistryGiftProduct = document.createElement('li');
+    swymRegistryGiftProduct.classList.add("swym-registry-gifter-grid-item");
+    const isAvailable = swymRegistryIsAvailableInOnlineStore(product);
+    swymRegistryGiftProduct.innerHTML = `
+          <a href="${product.du}" class="{{ settings.swym_registry_custom_link_class }}">
+            <figure id="swym-registry-product-${product.epi}">
+              <img src="${product.iu}" alt="swym-registry-product" class="swym-registry-product-image-${product.epi}">
+            </figure>
+          </a>
+          <div class="swym-registry-gifter-grid-item-detail swym-registry-gifter-grid-item-container-${product.epi}">
+            <h2 class="swym-registry-font-regular">${product.dt}</h2>
+            <ul class="swym-registry-gifter-grid-item-center">
+              <li><span class="swym-registry-gifter-grid-item-price swym-registry-font-large">${swym_currency}${product.pr}</span></li>
+              <li class="swym-registry-gifter-grid-item-askqty-container swym-registry-font-very-small">
+                <span class="swym-registry-gifter-grid-item-want">{{ settings.swym_registry_want_label }}</span>
+                <span class="swym-registry-gifter-grid-item-want-value"> ${product.askQuantity}</span>
+              </li>
+              <li class="swym-registry-gifter-grid-item-boughtqty-container swym-registry-font-very-small">
+                <span class="swym-registry-gifter-grid-item-purchased">{{ settings.swym_registry_purchase_label }}</span>
+                <span class="swym-registry-gifter-grid-item-want-value"> ${product.boughtQuantity}</span>
+              </li>
+              <li class="swym-registry-gifter-grid-item-cartqty-container">
+                <span class="swym-registry-font-small">
+                  <strong>
+                    <span class="swym-registry-cart-item-quantity">0</span> {{ settings.swym_registry_gifter_grid_addedtobag_btn }}
+                  </strong>
+                </span>
+              </li>
+            </ul>
+            <ul class="swym-registry-gifter-grid-item-bottom">
+              ${
+                 isAvailable ? 
+                `<li>
+                <span class="swym-registry-gifter-grid-item-bottom-reduce" onclick="swymRegistryChangeQtyOnClick(${product.epi},this)">-</span>
+                <input type="number" value="1" class="swym-registry-gifter-grid-item-bottom-qty swym-registry-gifter-grid-item-bottom-qty-${product.epi}" pattern="[0-9]*" aria-label="quantity" onChange="swymRegistryHandleQtyChange(${product.epi}, 'gifter')">
+                <span class="swym-registry-gifter-grid-item-bottom-increase" onclick="swymRegistryChangeQtyOnClick(${product.epi},this, 'increase')">+</span>
+              </li>
+              <li class="swym-registry-gifter-update-btn-container" id="product-${product.epi}-btn">
+                <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-font-btn swym-registry-registrant-update-btn-${product.epi}" onclick="swymUpdateCheckoutProducts(this, ${product.epi})" class="swym-registry-registrant-update-btn">{{ settings.swym_registry_gifter_grid_addtobag_btn }}</button>
+              </li>` 
+              : 
+              `<div class="swym-registry-gifter-chip swym-registry-font-regular">
+                <span>{{ settings.swym_registry_gifter_grid_chip }}</span>
+              </div>`
+              }
+            </ul>
+            <input type="hidden" value="${product.epi}" class="swym-registry-gifters-product-meta-epi">
+            <input type="hidden" value="${product.empi}" class="swym-registry-gifters-product-meta-empi">
+            <input type="hidden" value="${product.du}" class="swym-registry-gifters-product-meta-du">
+            <input type="hidden" value="${product.inventoryPolicy}" class="swym-registry-gifters-product-meta-inventoryPolicy">
+            <input type="hidden" value="${product.inventoryQuantity}" class="swym-registry-gifters-product-meta-inventoryQuantity">
+          </div>`;
+      
+      var swymRegistryProductGrid = document.querySelector(".swym-registry-gifter-grid-items");
+      swymRegistryProductGrid.appendChild(swymRegistryGiftProduct);
+      
+      if(isAvailable && swymRegistryGiftProduct.querySelector(".swym-registry-gifter-grid-item-bottom-qty")){
+       swymRegistryGiftProduct.querySelector(".swym-registry-gifter-grid-item-bottom-qty").addEventListener("input", ( event ) => {
+          let swymRegsitryTargetValue = event.target.value;
+          if(swymRegsitryTargetValue<0){
+            event.target.value = 0;
+          }
+        });
+      }
+      if(product && product.inventoryPolicy == 'DENY' && product.inventoryQuantity != undefined && product.inventoryQuantity != null &&  product.inventoryQuantity <= 0 && product.inventoryTracked === true){
+        let swymRegistryImage = document.getElementById(`swym-registry-product-${product.epi}`)
+        let swymRegistryImageTag = document.createElement('span');
+        swymRegistryImageTag.classList.add('swym-registry-product-banner', 'swym-registry-font-small');
+        swymRegistryImageTag.innerHTML=`{{ settings.swym_registry_sold_out_label }}`;
+        swymRegistryImage.appendChild(swymRegistryImageTag);
+      } else if(product.boughtQuantity >= product.askQuantity){
+        let swymRegistryImage = document.getElementById(`swym-registry-product-${product.epi}`)
+        let swymRegistryImageTag = document.createElement('span');
+        swymRegistryImageTag.classList.add('swym-registry-product-banner', 'swym-registry-font-small');
+        swymRegistryImageTag.innerHTML=`{{ settings.swym_registry_purchased_label }}`;
+        swymRegistryImage.appendChild(swymRegistryImageTag)
+      }
+    if(isAvailable) swymRegistryInventoryController(product.epi);
+  } catch(error) {
+      console.log("Error in showing registry pages", error);
+  }
+}
+function swymUpdateCheckoutProducts(button, epi){
+    try {
+      _LTracker.push({
+        'eventInfo': 'Add to bag button clicked - Gifter',
+        'tag': 'event'
+      });
+      Shopify.analytics.publish("swym_registry_gifter_view",{"eventAction": "Add to bag button clicked","customerInfo":{
+        "name"  : "{{ customer.name }}",
+        "email" : "{{ customer.email }}",
+        "id"    : "{{ customer.id }}"
+      }});
+      if(!swymgr.checkoutProducts)
+      {
+        swymgr.checkoutProducts = {};
+      }
+      button.classList.remove('swym-gr-gifters-btn-secondary', 'swym-gr-font-small');
+      button.classList.add('swym-gr-gifters-btn-inverse-secondary', 'swym-gr-font-small-light');
+      if(document.querySelector(`.swym-registry-gifter-grid-item-container-${epi} .swym-registry-gifter-grid-item-bottom-qty`).value==0){
+        delete swymgr.checkoutProducts[`${epi}`];
+      }
+      else{
+        let swymRegistryProductDetails = {
+          image: document.querySelector(`.swym-registry-product-image-${epi}`).src,
+          description: document.querySelector(`.swym-registry-gifter-grid-item-container-${epi} .swym-registry-font-regular`).innerHTML,
+          quantity: document.querySelector(`.swym-registry-gifter-grid-item-container-${epi} .swym-registry-gifter-grid-item-bottom-qty`).value,
+          price: document.querySelector(`.swym-registry-gifter-grid-item-container-${epi} .swym-registry-gifter-grid-item-price`).innerHTML,
+          inventoryPolicy: document.querySelector(`.swym-registry-gifter-grid-item-container-${epi} .swym-registry-gifters-product-meta-inventoryPolicy`).value,
+          inventoryQuantity: document.querySelector(`.swym-registry-gifter-grid-item-container-${epi} .swym-registry-gifters-product-meta-inventoryQuantity`).value,
+        }
+        swymgr.checkoutProducts[document.querySelector(`.swym-registry-gifter-grid-item-container-${epi} .swym-registry-gifters-product-meta-epi`).value] = swymRegistryProductDetails;
+         
+        const swymRegistryCartProduct = Object.keys(swymgr.checkoutProducts).length;
+      }
+
+      /* Add to Shopify Cart if enabled */
+      if(window.swymGrSettings && window.swymGrSettings.isShopifyCartEnabled) {
+        swymRegistryAddToShopifyCart(swymgr.checkoutProducts).then(addedToCart => {
+          if(addedToCart) {
+            // Add / modify the cart badges in gifter page
+            swymRegistryAddCartBadge();
+        
+            swymRegistryShowToast();
+          }
+          else 
+            console.log("Error in adding to Shopify Cart");
+        })
+      } else {
+        // Open side cart as well
+        const swymRegistryCartProduct = Object.keys(swymgr.checkoutProducts).length;
+        document.getElementById("swym-registry-gifters-cart-count").innerHTML = `&nbsp;(${swymRegistryCartProduct})`;
+        swymRegistryShowToast();
+        openSwymRegistryGifterModal();
+      }
+    } catch(error) {
+      console.log("Error in creating checkout", error);
+    }
+    if(!window.swymGrSettings || !window.swymGrSettings?.isShopifyCartEnabled) {
+      if(Object.keys(swymgr.checkoutProducts).length===0){
+        let checkoutBtn = document.querySelector(".swym-registry-gifters-checkout");
+        checkoutBtn.parentElement.classList.add("swym-registry-gifters-btn-disabled");
+        checkoutBtn.disabled=true;
+      }
+      else{
+        let swymCheckoutPageButton = document.querySelector('.swym-registry-gifters-checkout-container');
+        swymCheckoutPageButton.classList.remove('swym-registry-gifters-btn-disabled');
+        document.querySelector(".swym-registry-gifters-checkout").disabled=false;
+        let swymGiftCartBtn = document.querySelector('.swym-registry-gifter-cart-btn-container');
+        swymGiftCartBtn.classList.remove('swym-registry-gifters-btn-disabled');
+      }
+    }
+}
+function showSwymRegistryGifterModalDesignMode() {
+  document.querySelector(".swym-registry-gifter-modal-Sidenav-design-mode").style.display="block";
+  document.querySelector(".swym-registry-gifter-modal-Sidenav-design-mode").classList.add("swym-registry-active");
+  document.querySelector("#swym-registry-gifter-modal-Sidenav").style.display="none";
+  document.querySelector(".swym-registry-gifter-modal-Sidenav-design-mode").innerHTML=`<div class="swym-registry-gifter-modal-checkout-container">
+   <div class="swym-registry-container-top">
+  <div class="swym-registry-gifter-modal-checkout-gifter-checkout-product-container">
+   <div class="swym-registry-container-heading">
+     <div class="swym-registry-gifter-modal-checkout-title">
+       <div class="swym-registry-gifter-modal-checkout-heading swym-registry-font-large">{{ settings.swym_registry_sidenav_title }}</div>
+       <div class="swym-registry-gifter-modal-checkout-close-btn" onClick="handleCloseSwymRegistryCheckoutPopUp()">&#x2715</div>
+     </div>
+     <div class="swym-registry-gifter-modal-checkout-gifter-address-heading swym-registry-font-regular">{{ settings.swym_registry_sidenav_subtitle_1 }} John Doe {{ settings.swym_registry_sidenav_subtitle_2 }}</div>
+   </div>
+     
+
+       <div class="swym-registry-gifter-modal-checkout-main">
+   <div class="swym-registry-gifter-modal-checkout-main-product-container">
+      <div>
+         <image src="https://cdn.shopify.com/s/files/1/0731/8175/7733/products/Untitled-1_copy_copy_copy_copy_copy.jpg?v=1680503434" class="swym-registry-gifter-modal-checkout-image" />
+      </div>
+      <div>
+         <div class="swym-registry-font-regular">14 K Dangling Pendant Earrings - Rose Gold</div>
+         <div class="swym-registry-modal-product-content">
+            <div class="swym-registry-modal-qty">
+            </div>
+            <span class="swym-registry-font-regular"><b>$300.00</b></span>
+         </div>
+      </div>
+   </div>
+   <div class="swym-registry-gifter-modal-checkout-main-actions">
+      <div class="swym-registry-gifter-modal-checkout-qty">
+         <span class="swym-registry-font-regular">{{ settings.swym_registry_sidenav_product_quantity_label }} : </span>
+         <div>
+            <span class="swym-registry-gifter-grid-item-bottom-reduce">-</span>
+            <input type="number" value="1" class="swym-registry-gifter-grid-item-bottom-qty-gifter-cart-key swym-registry-font-regular" pattern="[0-9]*" aria-label="quantity">
+            <span class="swym-registry-gifter-grid-item-bottom-increase">+</span>
+         </div>
+      </div>
+      <span class="swym-registry-font-regular">{{ settings.swym_registry_sidenav_product_remove_label }}</span>
+   </div>
+</div>
+
+       <div class="swym-registry-gifter-shipping-method" id="swym-registry-gifter-shipping-method">
+         <div>
+           <h3 class="swym-registry-font-large">{{ settings.swym_registry_sidenav_shipping_label }}</h3>
+           <span class="swym-registry-font-small" id="swym-registry-shipping-method-design-mode">Economy Shipping : <span>$0.0</span></span>
+         </div>
+         <button class="swym-registry-sidenav-secondary-btn swym-registry-font-btn" onclick="swymRegistryShippingMethods()">{{ settings.swym_registry_sidenav_change_button_text }}</button>
+       </div>
+       <div class="swym-registry-gifter-price-details">
+         <h3 class="swym-registry-font-large">{{ settings.swym_registry_sidenav_price_details_label }}</h3>
+          <ul>
+            <li class="swym-registry-font-small"><span>{{ settings.swym_registry_sidenav_order_subtotal_label }}</span><span>{{ cart.currency.symbol }}299.0</span></li>
+            <li class="swym-registry-font-small"><span>{{ settings.swym_registry_sidenav_shipping_fee_label }}</span><span>Free</span></li>
+            <li class="swym-registry-font-small"><span>{{ settings.swym_registry_sidenav_tax_label }}</span><span>{{ cart.currency.symbol }}0.0</span></li>
+            <li class="swym-registry-font-small"><span>{{ settings.swym_registry_sidenav_order_total_label }}</span><span>{{ cart.currency.symbol }}299.0</span></li>
+          </ul>
+       </div>
+     </div>
+   </div>
+     <div class="swym-registry-gifter-modal-checkout-gifter-footer-container">
+          <div class="swym-registry-gifter-modal-checkout-gifter-total-container">
+
+            <div class="swym-registry-gifter-modal-checkout-gifter-text swym-registry-font-large">{{ settings.swym_registry_sidenav_total_value_label }} <span onClick="swymRegistryScrollToBottom()">i</span></div>
+
+            <div class="swym-registry-gifter-modal-checkout-gifter swym-registry-font-large">$299.00</div>
+          </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-buy-button-container">
+            <button class="swym-registry-gifter-modal-checkout-gifter-buy-button swym-registry-font-btn" onClick="addOverlayToRegistryGifterModal()">{{ settings.swym_registry_sidenav_proceed_buy_button_text }}</button>
+          </div> 
+           <div class="swym-registry-gifter-modal-checkout-gifter-add-gifts-button-container">
+            <button class="swym-registry-gifter-modal-checkout-gifter-add-gifts-button swym-registry-sidenav-secondary-btn swym-registry-font-btn" onclick="handleCloseSwymRegistryCheckoutPopUp()">{{ settings.swym_registry_sidenav_add_more_button_text }}</button>
+          </div> 
+        </div>
+        <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup">
+          <h3 class="swym-registry-font-large">{{ settings.swym_registry_gifter_modal_title }} John Doe</h3>
+     
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input">
+            <label class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-text swym-registry-font-regular">{{ settings.swym_registry_gifter_modal_name }}</label>
+            <input type="text" id="gifterName" name="gifterName" class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-field" required>
+          </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input">
+          
+            <label class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-text swym-registry-font-regular">{{ settings.swym_registry_gifter_modal_email }}</label>
+            
+            <input type="email" id="gifterEmail" name="gifterEmail" class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-field" required>
+          
+            </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input">
+            <label class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-text swym-registry-font-regular">{{ settings.swym_registry_description_label }}</label>
+            <textarea id="swym-registry-gifter-message" class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-field" rows="5" cols="20" style="resize:none"></textarea>
+          </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container-type-1">
+            <button class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-continue-button swym-registry-font-btn">
+              <span class="swym-registry-gifter-checkout-text">{{ settings.swym_registry_sidenav_continue_to_payment_button_text }}</span>
+                <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+                  <div class="swym-registry-snippet" data-title=".dot-collision">
+                    <div class="swym-registry-stage">
+                      <div class="swym-registry-dot-collision"></div>
+                    </div>
+                  </div>
+                </div>
+            </button>
+          </div> 
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container">
+            <button class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-back-to-cart-button swym-registry-sidenav-secondary-btn swym-registry-font-btn" onClick="swymRegistryRemoveOverlayToRegistryGifterModal('popup')">{{ settings.swym_registry_sidenav_back_to_giftcard_button_text }}</button>
+          </div> 
+  
+        </div>
+        <div class="swym-registry-delivery-option">
+         <h3>{{ settings.swym_registry_sidenav_choose_shipping_title }}</h3>
+         <ul>
+         <li>
+             <div class="swym-delivery-option">
+               <input type="radio" value="shopify-Economy-0.00" name="swym-delivery-option" checked="" onclick="setTypeOfShipping('0.0', 'Economy', 'shopify-Economy-0.00')">
+               <div>
+                <span class="swym-delivery-option-text">Economy</span>
+                 </div>
+             </div>
+             <span>$0.0</span>
+           </li><li>
+             <div class="swym-delivery-option">
+               <input type="radio" value="shopify-Standard-13.80" name="swym-delivery-option" onclick="setTypeOfShipping('13.8', 'Standard', 'shopify-Standard-13.80')">
+               <div>
+                <span class="swym-delivery-option-text">Standard</span>
+                 </div>
+             </div>
+             <span>$13.8</span>
+           </li>
+         </ul>
+         <div class="swym-registry-gifter-modal-shipping-method-button-container swym-registry-gifter-modal-shipping-method-button-container-type-1">
+            <button class="swym-registry-gifter-modal-shipping-method-button swym-registry-font-btn" onClick="swymRegistrySaveShipping()">
+              <span class="swym-registry-gifter-shipping-method-text">{{ settings.swym_registry_sidenav_choose_shipping_save_button_text }}</span>
+            </button>
+            <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+                  <div class="swym-registry-snippet" data-title=".dot-collision">
+                    <div class="swym-registry-stage">
+                      <div class="swym-registry-dot-collision"></div>
+                    </div>
+                  </div>
+                </div>
+          </div> 
+          <div class="swym-registry-gifter-modal-shipping-method-button-container">
+            <button class="swym-registry-gifter-modal-shipping-method-button swym-registry-sidenav-secondary-btn swym-registry-font-btn" type="submit" onClick="swymRegistryRemoveOverlayToRegistryGifterModal()">{{ settings.swym_registry_sidenav_choose_shipping_cancel_button_text }}</button>
+          </div>
+       </div>
+    </div>
+   </div>`
+}
+/* address-masking js*/
+function swymRegistryShowToast(mode="") {
+  var swymRegistryToastContainer = document.getElementById('swymRegistryToastContainer');
+  var swymRegistryToast = document.querySelector(".swym-registry-toast-notify");
+ 
+  swymRegistryToast.classList.add('swym-registry-show');
+  setTimeout(function() {
+    swymRegistryToast.classList.remove('swym-registry-show');
+  }, 3000);
+}
+function swymRegistryScrollToBottom() {
+  let swymRegistryScrollableDiv = document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container");     
+  swymRegistryScrollableDiv.scrollTo({
+    top: swymRegistryScrollableDiv.scrollHeight,
+    behavior: 'smooth'
+  });
+}
+  function swymRegistryShippingMethods() {
+    document.querySelector(".swym-registry-delivery-option").style.display="block";
+    document.querySelector(".swym-registry-delivery-option").style.visibility="visible";
+                
+    document.querySelector(".swym-registry-delivery-option").style.visibility = "visible";
+    document.querySelector(".swym-registry-delivery-option").style.display = "block";
+    document.querySelector(".swym-registry-delivery-option").style.opacity = "1";
+    document.querySelector(".swym-registry-delivery-option").style.height = "auto";
+                 
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container").style.opacity=".4";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-footer-container").style.display="none";
+    
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container").style.pointerEvents="none";                         
+  }
+            
+async function swymRegistryProceedToCheckoutByGiftCard(totalPrice){
+   _LTracker.push({
+    'eventInfo': 'Continue to Payment button clicked - Gifter',
+    'tag': 'event'
+  });
+  Shopify.analytics.publish("swym_registry_gifter_view",{"eventAction": "Continue to Payment button clicked","customerInfo":{
+    "name"  : "{{ customer.name }}",
+    "email" : "{{ customer.email }}",
+    "id"    : "{{ customer.id }}"
+  }});
+  document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container .swym-registry-gifter-checkout-text").style.visibility="hidden";
+  document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container #swym-registry-btn-dot-collision").style.display = "block";
+  let swymRegistryNote = document.getElementById("swym-registry-gifter-message")?.value;
+  let swymRegistryGifterName = document.getElementById("gifterName")?.value;
+  let swymRegistryGifterEmail = document.getElementById("gifterEmail")?.value;
+
+  const storefrontCheckoutResponse = await swymRegistryGifterStorefrontCheckout(swymRegistryNote, swymRegistryGifterName, swymRegistryGifterEmail);
+}
+
+function disableScroll() {
+  scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+
+  window.onscroll = function() {
+    window.scrollTo(scrollLeft, scrollTop);
+  };
+}
+
+function enableScroll() {
+  window.onscroll = function() {};
+}
+
+function swymRegistryRemoveProductCheckout(epi){
+  if(swymgr.checkoutProducts && swymgr.checkoutProducts[epi]){
+    delete swymgr.checkoutProducts[epi];
+  }
+  showSwymRegistryGifterModal();
+}
+function addOverlayToRegistryGifterModal(){
+    _LTracker.push({
+    'eventInfo': 'Proceed to buy gift clicked - Gifter',
+    'tag': 'event'
+  });
+  Shopify.analytics.publish("swym_registry_gifter_view",{"eventAction": "Proceed to buy gift clicked","customerInfo":{
+    "name"  : "{{ customer.name }}",
+    "email" : "{{ customer.email }}",
+    "id"    : "{{ customer.id }}"
+  }});
+           
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.visibility = "visible";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container").style.opacity=".4";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-footer-container").style.display="none";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.display = "block";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.opacity = "1";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.height = "auto";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container").style.pointerEvents="none";       
+
+}
+function swymRegistryRemoveOverlayToRegistryGifterModal(mode="shipping"){
+  document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container").style.opacity="initial";
+  document.querySelector(".swym-registry-gifter-modal-checkout-gifter-footer-container").style.display="block";
+  if(mode==="popup") {
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.display = "none";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.opacity = "0";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.height = "0";
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-popup").style.visibilty = "hidden";
+  } else {
+    document.querySelector(".swym-registry-delivery-option").style.display = "none";
+    document.querySelector(".swym-registry-delivery-option").style.opacity = "0";
+    document.querySelector(".swym-registry-delivery-option").style.height = "0";
+    document.querySelector(".swym-registry-delivery-option").style.visibilty = "hidden";
+  }
+    document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container").style.pointerEvents="initial";            
+}
+function handleCloseSwymRegistryCheckoutPopUp(){
+  document.querySelector(".swym-registry-gifter-modal-checkout-gifter-checkout-product-container").style.opacity="initial";
+  document.querySelector(".swym-registry-gifter-modal-sidenav").classList.remove("swym-registry-active");
+  document.querySelector(".swym-registry-gifter-modal-Sidenav-design-mode").classList.remove("swym-registry-active");
+  document.querySelector(".swym-registry-gifter-modal-overlay").style.display = "none";
+  enableScroll();
+}
+function setTypeOfShipping(amount, title, handle){
+  if(Shopify.designMode){
+    const shippingMethod = document.querySelector("#swym-registry-shipping-method-design-mode");
+    if(shippingMethod){
+      shippingMethod.innerHTML = `${title} Shipping : <span>{{ cart.currency.symbol }} ${amount}</span>`
+    }
+  }
+  else{
+    let swymData = {
+      custom: true,
+      price: amount,
+      title: title
+    }
+    swymgr.typeOfShipping = swymData;
+  }
+}
+  
+function swymRegistryHandleChange(deliveryCharges, title){
+     let swymRegistryCurrentAmount = document.querySelector(".swym-registry-gifter-modal-checkout-gifter").textContent;
+     let swymRegistryFinalAmount = deliveryCharges + window.swymTotal;
+     let currencySymbol = "{{ cart.currency.symbol }}"
+     document.querySelector(".swym-registry-gifter-modal-checkout-gifter").textContent = `${currencySymbol}${swymRegistryFinalAmount.toFixed(2)}`;
+}
+function openSwymRegistryGifterModalHandler() {
+  if(window.swymGrSettings && window.swymGrSettings.isShopifyCartEnabled) {
+    window.location.href = window.location.origin + "/cart";
+  } else {
+    openSwymRegistryGifterModal();
+  }
+}
+/* address-masking*/ 
+function swymRegistrySaveShipping() {
+  if(!Shopify.designMode){
+     const swymRegistrySelectedRadio = document.querySelector('input[name="swym-delivery-option"]:checked'); 
+     if (swymRegistrySelectedRadio) {
+      const swymRegistrySelectedValue = swymRegistrySelectedRadio.value;
+      swymgr.shippingHandle = swymRegistrySelectedValue;
+    } else {
+      console.log('No option button selected');
+    }
+    swymRegistryRemoveOverlayToRegistryGifterModal();
+    document.getElementById("swym-registry-shipping-method-title").textContent = swymgr.typeOfShipping.title;
+    document.getElementById("swym-registry-shipping-method-price").textContent = swymgr.typeOfShipping.price;
+    document.getElementById("swym-registry-shipping-method-title-2").textContent = swymgr.typeOfShipping.title;
+    document.getElementById("swym-registry-shipping-method-price-2").textContent = swymgr.typeOfShipping.price;
+  
+     let swymRegistryCurrentAmount = document.querySelector(".swym-registry-gifter-modal-checkout-gifter").textContent;
+     document.getElementById("swym-registry-gifter-order-total").textContent = `${swymRegistryCurrentAmount}`;
+  }
+  else{
+    swymRegistryRemoveOverlayToRegistryGifterModal();
+  }
+}
+function swymRegistryIsObjectEmpty(obj) { 
+  return Object.keys(obj).length === 0; 
+}
+async function showSwymRegistryGifterModal(action="default") {
+  disableScroll();
+  let swymShippingTaxDetails = '';
+  let swymShippingMethod = '';
+  let swymAddressMaskingEnabled = false;
+  {%- if shop.metafields.swym_registry.swymAddressMaskingMetafield != blank -%}
+     swymAddressMaskingEnabled = {{ shop.metafields.swym_registry.swymAddressMaskingMetafield }};
+  {%- endif -%}
+  
+  if(action==="default") {
+    document.querySelector(".swym-overlay__content").style.display = "flex";
+  }  
+  let swymKeys = localStorage.getItem("swymKeys");
+  swymKeys = JSON.parse(swymKeys)
+  let swymPid = '';
+  if(swymKeys && swymKeys.swym_registry && swymKeys.swym_registry.pid){
+    swymPid = swymKeys.swym_registry.pid;
+  }else{
+    swymPid = await swymRegistryGetUserPid();
+  }
+
+  if(swymRegistryIsObjectEmpty(swymgr.checkoutProducts)){
+    document.querySelector(".swym-registry-gifters-checkout").parentElement.classList.add("swym-registry-gifters-btn-disabled");
+    document.querySelector(".swym-registry-gifters-checkout").disabled=true;
+    handleCloseSwymRegistryCheckoutPopUp();
+    return false;
+  }
+   let checkoutCalculateResponse = '';
+  if(swymAddressMaskingEnabled) {
+   checkoutCalculateResponse = await swymRegistryCheckoutCalculate(swymPid);
+    swymgr.availableShippingRates = checkoutCalculateResponse.availableShippingRates;
+  }
+    if(action==="default") {
+      document.querySelector(".swym-overlay__content").style.display = "none";
+    }
+ 
+      document.querySelector(".swym-registry-gifter-modal-sidenav").classList.add("swym-registry-active");
+      document.querySelector(".swym-registry-gifter-modal-overlay").style.display = "block";
+
+    let swymRegistryCheckoutProduct = ``;
+    let swymTotal = 0;
+    for (let key in swymgr.checkoutProducts) {
+      if (swymgr.checkoutProducts.hasOwnProperty(key)) {
+        if(swymAddressMaskingEnabled) {
+          swymTotal += Number(swymgr.checkoutProducts[key].price.slice(1)) * Number(swymgr.checkoutProducts[key].quantity) + Number(checkoutCalculateResponse.totalTax);
+        } else {
+          swymTotal += Number(swymgr.checkoutProducts[key].price.slice(1)) * Number(swymgr.checkoutProducts[key].quantity);
+        }
+    window.swymTotal = swymTotal;
+    swymRegistryCheckoutProduct += `<div class="swym-registry-gifter-modal-checkout-main">
+          <div class="swym-registry-gifter-modal-checkout-main-product-container">
+          <div><image src="${swymgr.checkoutProducts[key].image}" class="swym-registry-gifter-modal-checkout-image" /></div>
+          <div>
+            <div class="swym-registry-font-regular">${swymgr.checkoutProducts[key].description}</div>
+            <div class="swym-registry-modal-product-content">
+              <div class="swym-registry-modal-qty">
+              </div>
+                <span class="swym-registry-font-regular"><b>${swymgr.checkoutProducts[key].price}</b></span>
+            </div>
+          </div>
+         </div>
+         <div class="swym-registry-gifter-modal-checkout-main-actions">
+             <div class="swym-registry-gifter-modal-checkout-qty">
+               <span class="swym-registry-font-regular">{{ settings.swym_registry_sidenav_product_quantity_label }} : </span>
+               <div>
+                  <span class="swym-registry-gifter-grid-item-bottom-reduce" onclick="swymRegistryChangeQtyOnClickCartPage(${key},this)">-</span>
+                  <input type="number" value="${swymgr.checkoutProducts[key].quantity}" class="swym-registry-gifter-grid-item-bottom-qty-gifter-cart-${key} swym-registry-font-regular" pattern="[0-9]*" aria-label="quantity" onChange="swymRegistryHandleQtyChange(${key}, 'cart')">
+                  <span class="swym-registry-gifter-grid-item-bottom-increase" onclick="swymRegistryChangeQtyOnClickCartPage(${key},this, 'increase')">+</span>
+               </div>
+             </div>
+           <span class="swym-registry-font-regular" onClick="swymRegistryRemoveListItem(${key})">{{ settings.swym_registry_sidenav_product_remove_label }}</span>
+         </div>
+        </div>`
+      }
+    }
+
+  let swymRegistryShippingLines = ``;
+  if(swymAddressMaskingEnabled) {
+    swymgr.availableShippingRates.map((itm, idx) => {
+          let price = itm.price.amount === 0 ? "Free Shipping" : "{{ cart.currency.symbol }}" + itm.price.amount;
+          if(swymgr.availableShippingRates.length > 1) {
+      swymRegistryShippingLines += `<li>
+             <div class="swym-delivery-option">
+               <input type="radio" onchange="swymRegistryHandleChange(${itm.price.amount})" value="${itm.handle}" name="swym-delivery-option" ${idx===0 ? "checked" : ""} onclick="setTypeOfShipping('${itm.price.amount}', '${itm.title}', '${itm.handle}')">
+               <div>
+                <span class="swym-delivery-option-text">${itm.title}</span>
+                 </div>
+             </div>
+             <span>${price}</span>
+           </li>`;
+             
+        }
+     })
+  } 
+    
+  let swymRegistryShippingPrice = 0;
+  if(swymgr && swymgr.availableShippingRates && swymgr.availableShippingRates.length > 0){
+    swymRegistryShippingPrice = swymgr.availableShippingRates[0].price.amount
+  }
+  let swymRegistryTotal = parseFloat(swymTotal.toFixed(2)) + parseFloat(swymRegistryShippingPrice);
+
+  if(swymAddressMaskingEnabled){
+    swymShippingTaxDetails += `<div class="swym-registry-gifter-price-details">
+         <h3 class="swym-registry-font-large test">{{ settings.swym_registry_sidenav_price_details_label }}</h3>
+         <ul>
+            <li class="swym-registry-font-small"><span>{{ settings.swym_registry_sidenav_order_subtotal_label }}</span><span>{{ cart.currency.symbol }}${checkoutCalculateResponse.subtotalPrice}</span></li>
+            <li class="swym-registry-font-small" id="swym-registry-shipping-method-title-container" style="display: none"><span id="swym-registry-shipping-method-title-2">${swymgr && swymgr.availableShippingRates.length > 0 ? swymgr.availableShippingRates[0].title : ""}</span><span>{{ cart.currency.symbol }}<span id="swym-registry-shipping-method-price-2">${swymgr && swymgr.availableShippingRates.length > 0 ? swymgr.availableShippingRates[0].price.amount : "-"}<span></span></li>
+            <li class="swym-registry-font-small" id="swym-registry-tax-container"><span>{{ settings.swym_registry_sidenav_tax_label }}</span><span>{{ cart.currency.symbol }}${checkoutCalculateResponse.totalTax}</span></li>
+            <li class="swym-registry-font-small"><span>{{ settings.swym_registry_sidenav_order_total_label }}</span><span><span id="swym-registry-gifter-order-total">{{ cart.currency.symbol }}${swymRegistryTotal}</span></span></li>
+          </ul>
+       </div>`;
+    
+      swymShippingMethod += `<div class="swym-registry-gifter-shipping-method" id="swym-registry-gifter-shipping-method" style="display:none">
+         <div>
+           <h3 class="swym-registry-font-large">{{ settings.swym_registry_sidenav_shipping_label }}</h3>
+           <span class="swym-registry-font-small">
+             <span id="swym-registry-shipping-method-title">${swymgr && swymgr.availableShippingRates.length > 0 ? swymgr.availableShippingRates[0].title : "-"}</span> :
+             <span>{{ cart.currency.symbol }}<span id="swym-registry-shipping-method-price">${swymgr && swymgr.availableShippingRates.length > 0 ? swymgr.availableShippingRates[0].price.amount : "-"}</span></span>
+           </span>
+         </div>
+         <button class="swym-registry-sidenav-secondary-btn swym-registry-font-btn" onclick="swymRegistryShippingMethods()">{{ settings.swym_registry_sidenav_change_button_text }}</button>
+       </div>` 
+  }  
+              
+  document.querySelector(".swym-registry-gifter-modal-sidenav").innerHTML=`<div class="swym-registry-gifter-modal-checkout-container">
+   <div class="swym-registry-container-top">
+    <div class="swym-registry-gifter-modal-checkout-gifter-checkout-product-container">
+      <div class="swym-registry-container-heading">
+        <div class="swym-registry-gifter-modal-checkout-title">
+          <div class="swym-registry-gifter-modal-checkout-heading swym-registry-font-large">{{ settings.swym_registry_sidenav_title }}</div>
+          <div class="swym-registry-gifter-modal-checkout-close-btn" onClick="handleCloseSwymRegistryCheckoutPopUp()">&#x2715</div>
+        </div>
+        <div class="swym-registry-gifter-modal-checkout-gifter-address-heading swym-registry-font-regular">{{ settings.swym_registry_sidenav_subtitle_1 }} ${swymgr.registryDetails.creatorName} {{ settings.swym_registry_sidenav_subtitle_2 }}</div>
+      </div>
+       ${swymRegistryCheckoutProduct}
+       ${swymShippingMethod}
+       ${swymShippingTaxDetails}
+     </div>
+   </div>
+     <div class="swym-registry-gifter-modal-checkout-gifter-footer-container">
+          <div class="swym-registry-gifter-modal-checkout-gifter-total-container">
+
+            <div class="swym-registry-gifter-modal-checkout-gifter-text swym-registry-font-large">{{ settings.swym_registry_sidenav_total_value_label }} <span onClick="swymRegistryScrollToBottom()">i</span></div>
+
+            <div class="swym-registry-gifter-modal-checkout-gifter swym-registry-font-large">{{ cart.currency.symbol }}${swymRegistryTotal}</div>
+          </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-buy-button-container">
+            <button class="swym-registry-gifter-modal-checkout-gifter-buy-button swym-registry-font-btn" onClick="addOverlayToRegistryGifterModal()">{{ settings.swym_registry_sidenav_proceed_buy_button_text }}</button>
+          </div> 
+           <div class="swym-registry-gifter-modal-checkout-gifter-add-gifts-button-container">
+            <button class="swym-registry-gifter-modal-checkout-gifter-add-gifts-button swym-registry-sidenav-secondary-btn swym-registry-font-btn" onClick="handleCloseSwymRegistryCheckoutPopUp()">{{ settings.swym_registry_sidenav_add_more_button_text }}</button>
+          </div> 
+        </div>
+        <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup">
+          <h3 class="swym-registry-font-large">{{ settings.swym_registry_gifter_modal_title }} ${swymgr.registryDetails.creatorName}</h3>
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input">
+            <label class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-text swym-registry-font-regular">{{ settings.swym_registry_gifter_modal_name }}</label>
+            <input type="text" id="gifterName" name="gifterName" class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-field" required>
+          </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input">
+            <label class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-text swym-registry-font-regular">{{ settings.swym_registry_gifter_modal_email }}</label>
+            <input type="email" id="gifterEmail" name="gifterEmail" class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-field" required>
+          </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input">
+            <label class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-text swym-registry-font-regular">{{ settings.swym_registry_description_label }}</label>
+            <textarea id="swym-registry-gifter-message" class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-input-field" rows="5" cols="20" style="resize:none"></textarea>
+          </div>
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container-type-1">
+            <button class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-continue-button swym-registry-font-btn" onClick="swymRegistryProceedToCheckoutByGiftCard(${swymTotal})">
+              <span class="swym-registry-gifter-checkout-text">{{ settings.swym_registry_sidenav_continue_to_payment_button_text }}</span>
+                <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+                  <div class="swym-registry-snippet" data-title=".dot-collision">
+                    <div class="swym-registry-stage">
+                      <div class="swym-registry-dot-collision"></div>
+                    </div>
+                  </div>
+                </div>
+            </button>
+          </div> 
+          <div class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-button-container">
+            <button class="swym-registry-gifter-modal-checkout-gifter-checkout-popup-back-to-cart-button swym-registry-sidenav-secondary-btn swym-registry-font-btn" onClick="swymRegistryRemoveOverlayToRegistryGifterModal('popup')">{{ settings.swym_registry_sidenav_back_to_giftcard_button_text }}</button>
+          </div> 
+        </div>
+        <div class="swym-registry-delivery-option">
+         <h3>{{ settings.swym_registry_sidenav_choose_shipping_title }}</h3>
+         <ul>
+           ${swymRegistryShippingLines}
+         </ul>
+         <div class="swym-registry-gifter-modal-shipping-method-button-container swym-registry-gifter-modal-shipping-method-button-container-type-1">
+            <button class="swym-registry-gifter-modal-shipping-method-button swym-registry-font-btn" onClick="swymRegistrySaveShipping()">
+              <span class="swym-registry-gifter-shipping-method-text">{{ settings.swym_registry_sidenav_choose_shipping_save_button_text }}</span>
+            </button>
+            <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+                  <div class="swym-registry-snippet" data-title=".dot-collision">
+                    <div class="swym-registry-stage">
+                      <div class="swym-registry-dot-collision"></div>
+                    </div>
+                  </div>
+                </div>
+          </div> 
+          <div class="swym-registry-gifter-modal-shipping-method-button-container">
+            <button class="swym-registry-gifter-modal-shipping-method-button swym-registry-sidenav-secondary-btn swym-registry-font-btn" onClick="swymRegistryRemoveOverlayToRegistryGifterModal()">{{ settings.swym_registry_sidenav_choose_shipping_cancel_button_text }}</button>
+          </div>
+       </div>
+    </div>
+   </div>`
+    const swymRegistryShippingMethod = document.getElementById("swym-registry-gifter-shipping-method");
+    const swymRegistryShippingMethodTitleContainer = document.getElementById("swym-registry-shipping-method-title-container");
+
+    if(swymgr && swymgr.availableShippingRates && swymgr.availableShippingRates.length > 1 && swymRegistryShippingMethod) {
+      swymRegistryShippingMethod.style.display = "flex"; 
+      swymRegistryShippingMethodTitleContainer.style.display = "flex";
+    }       
+  document.querySelector("#swym-registry-btn-dot-collision").style.display = "none";
+  document.querySelector(".swym-registry-gifter-checkout-text").style.visibility="visible";   
+/* address-masking */
+}
+async function swymRegistryOnloadHandler() {
+  if(!Shopify.designMode) {
+        window.swymRegistryCustomer = {
+          "customerId": "{{ customer.id }}",
+          "email": "{{ customer.email }}",
+          "firstName": "{{ customer.first_name }}",
+          "lastName": "{{ customer.last_name }}",
+          "phone": "{{ customer.phone }}",
+          "acceptsMarketing": "{{ customer.accepts_marketing }}"
+        }
+        var swymRegistry_lsInit = JSON.parse(localStorage.getItem(swymRegistry_lsName));
+        const swymRegistry_authData = await swymRegistry_refreshPid(swymRegistry_lsInit);
+        const pid = swymRegistry_authData.swym_registry.pid;
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const registryId = urlParams.has('registryId') ? urlParams.get('registryId') : "";
+        const customerEmail = "{% if customer %}{{ customer.email }}{% endif %}";
+        let shareToken = urlParams.has('shareToken') ? urlParams.get('shareToken') : "";
+        window.swymgr = {};
+        window.swymgr.pid = pid;
+        window.swymgr.registryId = registryId;
+        swymRegistry_getRegistry_gifter(registryId,shareToken,swymgr.pid).then(response => response.json())
+        .then(resp => {
+          window.swymgr.registryDetails = resp;
+
+          // Add the current registry details to LocalStorage Object
+          const swym_registry_details = {
+            registrant: {
+              firstName: resp.creatorName && resp.creatorName.split(" ")[0] ? resp.creatorName.split(" ")[0] : "",
+              lastName: resp.creatorName && resp.creatorName.split(" ")[1] ? resp.creatorName.split(" ")[1] : "",
+              registryName: resp.registryName ? resp.registryName : "",
+              registryId: resp.Id ? resp.Id : "",
+              email: resp.email ? resp.email : ""
+            },
+            address: resp.address ? resp.address : {}
+          };
+          localStorage.setItem('swym_registry_details', JSON.stringify(swym_registry_details));
+
+          var productList = swymgr.registryDetails.associatedListedProducts;
+          if(productList.length >= 0){
+          var registryInfo = swymgr.registryDetails;
+          let swymRegistryProductCount = productList.length;
+          for(let i =0; i<productList.length; i++){
+            if (productList[i].hasOwnProperty("onlineStoreUrl")) {
+              swymRegistryAddProduct(productList[i], registryInfo);
+            } else {
+              swymRegistryProductCount--;
+            }
+          }
+
+        const swymRegistryProductGridList = document.querySelector(".swym-registry-gifter-cart-btn-container"); 
+        if(productList.length >= 4) {
+            swymRegistryProductGridList.style.display="flex";
+        }
+        var registrantView = document.querySelector("#swym-registry-registrant-view");
+        let isShopifyCartEnabled = window.swymGrSettings && window.swymGrSettings.isShopifyCartEnabled;
+        
+        registrantView.innerHTML = `
+          <div class="swym-registry-registrant-grid-parent">
+            <div class="swym-registry-registrant-grid-nav">
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small swym-registry-border-btm-active" onclick="swymRegistryFilterProducts('all',this,'gifter')">
+                {{ settings.swym_registry_all_option_label }}
+              </button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small" onclick="swymRegistryFilterProducts('stillneed',this,'gifter')">{{ settings.swym_registry_still_need_option_label }}</button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small" onclick="swymRegistryFilterProducts('fullfilled',this,'gifter')">{{ settings.swym_registry_fulfilled_option_label }}</button>
+              <div class="swym-gr-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small" onclick="swymRegistryFilterProducts('soldout',this,'gifter')">{{ settings.swym_registry_sold_out_option_label }}</button>
+            </div>
+             <ul class="swym-registry-gifter-grid-top">
+              <li class="swym-registry-gifter-grid-top-add-products">
+              <h4 class="swym-registry-gifter-grid-product-count swym-registry-font-small"><span class="swym-registry-gifter-grid-product-count-number">${swymRegistryProductCount}</span><span> {{ settings.swym_registry_products_label }}</span></h4>
+              <div class="swym-registry-gifters-checkout-container swym-registry-gifters-btn-disabled">
+              ${
+                isShopifyCartEnabled ? 
+                  `<div></div>` : 
+                  `<button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-gifters-checkout swym-registry-font-btn" onclick="openSwymRegistryGifterModalHandler() ">
+                    {{ settings.swym_registry_gifter_grid_checkout_btn }}
+                    <span class="swym-registry-gifters-cart-count" id="swym-registry-gifters-cart-count"></span>
+                  </button>  
+                  <span class="swym-registry-gifters-tooltiptext">{{ settings.swym_registry_tooltip_label }}</span>`
+                }
+                
+              </div>
+              </li>
+            </ul>
+          </div>`;
+  
+          document.getElementById("swym-registry-gifter-banner").classList.remove('swym-registry-hidden');
+          let expiryDate = swymDaysBetween(swymgr.registryDetails.expiryDate);
+          swymCounterAnim(".swym-registry-gifter-banner-bottom-days strong", 0, expiryDate, 1500);
+
+          document.getElementById("swym-registry-event-type-value").textContent = swymgr.registryDetails.occasion;
+          document.getElementById("swym-registry-event-date-value").textContent = swymgr.registryDetails.expiryDate;
+          document.getElementById("swym-registry-id-value").textContent = swymgr.registryDetails.Id;
+          document.getElementById("swym-registry-registrant-name-value").textContent = swymgr.registryDetails.creatorName;
+          document.getElementById("swym-registry-coregistrant-name-value").textContent = swymgr.registryDetails.coCreatorName;
+          document.querySelector(".swym-registry-gifter-banner-bottom-days strong").textContent = swymDaysBetween(swymgr.registryDetails.expiryDate);
+
+              
+         let swymRegistryCreatorNameParts = swymgr.registryDetails.creatorName.split(" ");
+          let swymRegistryCreatorFirstName = swymRegistryCreatorNameParts[0];
+          let swymRegistryCreatorLastName = swymRegistryCreatorNameParts[1]; let swymRegistry_initials;
+          
+          if(swymRegistryCreatorFirstName && swymRegistryCreatorLastName) {
+            swymRegistry_initials = swymRegistryCreatorFirstName.charAt(0) + swymRegistryCreatorLastName.charAt(0);
+          }
+          else {
+             swymRegistry_initials = swymgr.registryDetails.creatorName.charAt(0);
+          }
+
+          if(!swymgr.registryDetails.coCreatorName || swymgr.registryDetails.coCreatorName.trim().length === 0){
+            document.querySelector('.swym-registry-gifter-co-registrant-name-label').remove();
+          }
+          document.querySelector(".swym-registry-gifter-banner-user").textContent = swymRegistry_initials;
+          document.querySelector(".swym-registry-gifter-banner-title").textContent = swymgr.registryDetails.registryName;
+          document.querySelector(".swym-registry-gifter-banner-message").textContent = swymgr.registryDetails.description;
+          if(swymgr.registryDetails.description.trim().length===0){
+            document.querySelector(".swym-registry-gifter-banner-message").style.display='none';
+          }
+
+          // Add Cart Badges if embed enabled
+          if(isShopifyCartEnabled) {
+            swymRegistryAddCartBadge();
+          }
+        }
+      }).catch(error => {
+          _LTracker.push({
+              'ErrorLocation': 'Get registry details for gifter API call - Gifter Template',
+              'ErrorInfo': {
+                "error": {
+                  "msg": error.message,
+                  "Reference_stack": error.stack
+                }
+              },
+              'MerchantInfo': {
+                'pid': swymRegistry_authData.swym_registry.pid,
+                'shop': Shopify.shop,
+                'themeId': Shopify.theme.id,
+                'themeName': Shopify.theme.name
+              },
+              'CustomerInfo': {
+                'registryId': registryId,
+                'customerId': swymRegistry_authData.swym_registry.customerId,
+                'customerEmail': swymRegistryCustomer.email,
+                'userAgent': navigator.userAgent
+              }
+            }); 
+      });
+  }
+}
+swymRegistryAddOnloadEvent(swymRegistryOnloadHandler);
+</script>
+{% if request.design_mode %}
+<div class="swym-registry-gifter-container swym-registry-design-mode">
+  <div class="swym-registry-gifter-banner {{ swym_registry_gifter_banner_custom_class }}">
+    <div class="swym-registry-wrapper">
+      <div class="swym-registry-gifter-banner-circle">
+        <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-gifter-banner-user swym-registry-font-very-large">JD</p>
+      </div>
+      <div class="swym-registry-gifter-banner-content">
+        <h1 class="swym-registry-gifter-banner-title swym-registry-font-large {{ settings.swym_registry_custom_title_class }}">My awesome Baby Time</h1>
+        <ul class="swym-registry-gifter-banner-registry-detail">
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label">{{ settings.swym_registry_event_type_label }}: </span><span class="swym-registry-gifter-banner-value">New Born</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label">{{ settings.swym_registry_event_date_label }}: </span><span class="swym-registry-gifter-banner-value">OCT 20, 2022</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label">{{ settings.swym_registry_reg_id_label }}: </span><span class="swym-registry-gifter-banner-value">786575754</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label">{{ settings.swym_registry_registrant_name_label }}: </span><span class="swym-registry-gifter-banner-value">Jane Doe</span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label">{{ settings.swym_registry_coregistrant_name_label }}: </span><span class="swym-registry-gifter-banner-value">John Doe</span></li>
+        </ul>
+        <div class="swym-registry-gifter-banner-message-container">
+          <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-gifter-banner-message swym-registry-font-very-small">Little Sophia is arriving soon and we are so excited to introduce her to you. For everyone who has been asking us what they could bring for her...</p>
+        </div>   
+        <div class="swym-registry-gifter-banner-bottom">
+          <span class="swym-registry-gifter-banner-bottom-days swym-registry-font-very-large swym-registry-desktop"><strong>100</strong> <span class="swym-registry-font-small">{{ settings.swym_registry_days_label }}</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="swym-registry-gifter-grid">
+    <div class="swym-registry-wrapper">
+    <div id="swym-registry-registrant-view">
+      <div class="swym-registry-registrant-grid-parent">
+            <div class="swym-registry-registrant-grid-nav">
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small swym-registry-border-btm-active">
+                {{ settings.swym_registry_all_option_label }}
+              </button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small">{{ settings.swym_registry_still_need_option_label }}</button>
+              <div class="swym-registry-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small">{{ settings.swym_registry_fulfilled_option_label }}</button>
+              <div class="swym-gr-font-regular">|</div>
+              <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-border-btn-filters swym-registry-font-small">{{ settings.swym_registry_sold_out_option_label }}</button>
+            </div>
+          </div>
+    </div>
+    <ul class="swym-registry-gifter-grid-top">
+        <li class="swym-registry-gifter-grid-top-add-products">
+  <h4 class="swym-registry-gifter-grid-product-count swym-registry-font-small"><span>2</span><span>{{ settings.swym_registry_products_label }}</span></h4>
+  <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-font-btn" onclick="openSwymRegistryGifterModalDesignMode()">{{ settings.swym_registry_gifter_grid_checkout_btn }}</button></li>
+        
+      </ul>
+      <ul class="swym-registry-gifter-grid-items">
+        <li class="swym-registry-gifter-grid-item">
+          <a href="#" class="{{ settings.swym_registry_custom_link_class }}">
+            <figure>
+              <img src="https://cdn.shopify.com/s/files/1/0577/1247/6319/products/bis4_1024x1024@2x.png?v=1624520585" alt="swym-registry-product">
+            </figure>
+          </a>
+          <div class="swym-registry-gifter-grid-item-detail">
+            <h2 class="swym-registry-font-regular">Gust blanket - 100% Merino wool - Medium thick knit</h2>
+            <ul class="swym-registry-gifter-grid-item-center">
+              <li><span class="swym-registry-gifter-grid-item-price swym-registry-font-large">{{ cart.currency.symbol }}149.95</span></li>
+              <li class="swym-registry-gifter-grid-item-askqty-container swym-registry-font-very-small">
+                <span class="swym-registry-gifter-grid-item-want">{{ settings.swym_registry_want_label }}</span>
+                <span class="swym-registry-gifter-grid-item-want-value"> 1</span>
+              </li>
+              <li class="swym-registry-gifter-grid-item-boughtqty-container swym-registry-font-very-small">
+                <span class="swym-registry-gifter-grid-item-purchased">{{ settings.swym_registry_purchase_label }}</span>
+                <span class="swym-registry-gifter-grid-item-want-value"> 0</span>
+              </li>
+              <li class="swym-registry-gifter-grid-item-cartqty-container">
+                <span class="swym-registry-font-small">
+                  <strong>
+                    <span class="swym-registry-cart-item-quantity">1</span> {{ settings.swym_registry_gifter_grid_addedtobag_btn }}
+                  </strong>
+                </span>
+              </li>
+            </ul>
+            <ul class="swym-registry-gifter-grid-item-bottom">
+              <li>
+                <span class="swym-registry-gifter-grid-item-bottom-reduce" onClick="swymRegistryChangeQty(this)">-</span>
+                <span class="swym-registry-gifter-grid-item-bottom-qty swym-registry-gifter-qty-design-span" aria-label="quantity">1</span>
+                <span class="swym-registry-gifter-grid-item-bottom-increase" onClick="swymRegistryChangeQty(this, 'increase')">+</span>
+              </li>
+              <li class="swym-registry-gifter-update-btn-container">
+                <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-registrant-update-btn swym-registry-font-btn" onClick="swymRegistryAddToBagDesignMode(this)"
+  >{{ settings.swym_registry_gifter_grid_addtobag_btn }}</button>
+              </li>
+            </ul>
+          </div>
+        </li>
+         <li class="swym-registry-gifter-grid-item">
+          <a href="#" class="{{ settings.swym_registry_custom_link_class }}">
+            <figure>
+              <img src="https://cdn.shopify.com/s/files/1/0577/1247/6319/products/Summerdress4_720x.png?v=1624519957" alt="swym-registry-product">
+            </figure>
+          </a>
+          <div class="swym-registry-gifter-grid-item-detail">
+            <h2 class="swym-registry-font-regular">Gust blanket - 100% Merino wool - Medium thick knit</h2>
+            <ul class="swym-registry-gifter-grid-item-center">
+              <li><span class="swym-registry-gifter-grid-item-price swym-registry-font-large">{{ cart.currency.symbol }}149.95</span></li>
+              <li class="swym-registry-gifter-grid-item-askqty-container swym-registry-font-very-small">
+                <span class="swym-registry-gifter-grid-item-want">{{ settings.swym_registry_want_label }}</span>
+                <span class="swym-registry-gifter-grid-item-want-value"> 1</span>
+              </li>
+              <li class="swym-registry-gifter-grid-item-boughtqty-container swym-registry-font-very-small">
+                <span class="swym-registry-gifter-grid-item-purchased">{{ settings.swym_registry_purchase_label }}</span>
+                <span class="swym-registry-gifter-grid-item-want-value"> 0</span>
+              </li>
+            </ul>
+            <ul class="swym-registry-gifter-grid-item-bottom">
+              <li>
+                <span class="swym-registry-gifter-grid-item-bottom-reduce" onClick="swymRegistryChangeQty(this)">-</span>
+                <span class="swym-registry-gifter-grid-item-bottom-qty swym-registry-gifter-qty-design-span" aria-label="quantity">1</span>
+                <span class="swym-registry-gifter-grid-item-bottom-increase" onClick="swymRegistryChangeQty(this, 'increase')">+</span>
+              </li>
+              <li class="swym-registry-gifter-update-btn-container">
+                <button class="{{ settings.swym_registry_custom_btn_class }} swym-registry-font-btn swym-registry-registrant-update-btn" onClick="swymRegistryAddToBagDesignMode(this)">{{ settings.swym_registry_gifter_grid_addtobag_btn }}</button>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <div class="swym-registry-gifter-cart-btn-container swym-registry-font-btn" id="swym-registry-gifter-cart-btn-container">
+        <button class="swym-registry-font-btn" onClick="openSwymRegistryGifterModal()">{{ settings.swym_registry_cart_button_text }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <script>
+    function swymRegistryAddToBagDesignMode(button){
+      button.innerHTML = "{{ settings.swym_registry_gifter_grid_addedtobag_btn }}";
+      swymRegistryShowToast("designmode");
+    }
+    const themeId = (Shopify.theme.id).toString();
+    const shopDomain = Shopify.shop;
+    var swymRegistry_styles_payload = JSON.stringify({
+        "themeId": themeId,
+        "shopDomain": shopDomain,
+        "type": "styles",
+        "globalConfig": {
+          "color": {
+            "swym_registry_page_header_color": "{{ settings.swym_registry_page_header_color }}",
+            "swym_registry_page_header_background_color": "{{ settings.swym_registry_page_header_background_color }}",
+            "swym_registry_page_content_color": "{{ settings.swym_registry_page_content_color }}",
+            "swym_registry_page_content_background_color": "{{ settings.swym_registry_page_content_background_color }}",
+            "swym_registry_btn_background_color": "{{ settings.swym_registry_btn_background_color }}",
+            "swym_registry_btn_text_color": "{{ settings.swym_registry_btn_text_color }}"
+          },
+          "fontFamily": "{{ settings.swym_registry_page_font_family }}",
+          "fontSize": {
+            "swym_registry_font_very_small": "{{ settings.swym_registry_font_very_small }}",
+            "swym_registry_font_small": "{{ settings.swym_registry_font_small }}",
+            "swym_registry_font_regular": "{{ settings.swym_registry_font_regular }}",
+            "swym_registry_font_large": "{{ settings.swym_registry_font_large }}",
+            "swym_registry_font_very_large": "{{ settings.swym_registry_font_very_large }}",
+            "swym_registry_font_sub_title": "{{ settings.swym_registry_font_sub_title }}",
+            "swym_registry_font_main_title": "{{ settings.swym_registry_font_main_title }}",
+          },
+          "titleAllign": "center",
+          "cssClasses": {
+            "buttonClass": "{{ settings.swym_registry_custom_btn_class }}",
+          }
+        }
+      });
+    var swymRegistry_strings_payload = JSON.stringify({
+        "themeId": themeId,
+        "shopDomain": shopDomain,
+        "type": "strings",
+        "globalConfig": {
+          "swym_registry_event_type_label": "{{ settings.swym_registry_event_type_label }}",
+          "swym_registry_event_date_label": "{{ settings.swym_registry_event_date_label }}",
+          "swym_registry_reg_id_label": "{{ settings.swym_registry_reg_id_label }}",
+          "swym_registry_registrant_name_label":"{{ settings.swym_registry_registrant_name_label }}",
+          "swym_registry_coregistrant_name_label":"{{ settings.swym_registry_coregistrant_name_label }}",
+          "swym_registry_products_label":"{{ settings.swym_registry_products_label }}",
+          "swym_registry_want_label": "{{ settings.swym_registry_want_label }}",
+          "swym_registry_days_label": "{{ settings.swym_registry_days_label }}",
+          "swym_registry_purchase_label":"{{ settings.swym_registry_purchase_label }}", 
+          "swym_registry_tooltip_label": "{{ settings.swym_registry_tooltip_label }}",
+          "swym_registry_all_option_label": "{{ settings.swym_registry_all_option_label }}",
+          "swym_registry_still_need_option_label": "{{ settings.swym_registry_still_need_option_label }}",
+          "swym_registry_fulfilled_option_label": "{{ settings.swym_registry_fulfilled_option_label }}",
+          "swym_registry_sold_out_option_label": "{{ settings.swym_registry_sold_out_option_label }}",
+          "swym_registry_sold_out_label": "{{ settings.swym_registry_sold_out_label }}",
+          "swym_registry_gifter_grid_addtobag_btn":"{{ settings.swym_registry_gifter_grid_addtobag_btn }}",
+          "swym_registry_gifter_grid_checkout_btn": "{{ settings.swym_registry_gifter_grid_checkout_btn }}",
+          "swym_registry_gifter_grid_addedtobag_btn":"{{ settings.swym_registry_gifter_grid_addedtobag_btn }}",
+          "swym_registry_gifter_modal_title":"{{ settings.swym_registry_gifter_modal_title }}",
+          "swym_registry_gifter_modal_name": "{{ settings.swym_registry_gifter_modal_name }}",
+          "swym_registry_gifter_modal_email": "{{ settings.swym_registry_gifter_modal_email }}",
+          "swym_registry_description_label":"{{ settings.swym_registry_description_label }}",
+          "swym_registry_gifter_modal_proceed_to_buy": "{{ settings.swym_registry_gifter_modal_proceed_to_buy }}",
+          "swym_registry_purchased_label": "{{ settings.swym_registry_purchased_label }}",
+          "swym_registry_sidenav_title": "{{ settings.swym_registry_sidenav_title }}",
+          "swym_registry_sidenav_subtitle_1": "{{ settings.swym_registry_sidenav_subtitle_1 }}",
+          "swym_registry_sidenav_subtitle_2": "{{ settings.swym_registry_sidenav_subtitle_2 }}",
+          "swym_registry_sidenav_product_quantity_label": "{{ settings.swym_registry_sidenav_product_quantity_label }}",
+          "swym_registry_sidenav_product_remove_label": "{{ settings.swym_registry_sidenav_product_remove_label }}",
+          "swym_registry_sidenav_shipping_label": "{{ settings.swym_registry_sidenav_shipping_label }}",
+          "swym_registry_sidenav_change_button_text": "{{ settings.swym_registry_sidenav_change_button_text }}",
+          "swym_registry_sidenav_price_details_label": "{{ settings.swym_registry_sidenav_price_details_label }}",
+          "swym_registry_sidenav_order_subtotal_label": "{{ settings.swym_registry_sidenav_order_subtotal_label }}",
+          "swym_registry_sidenav_shipping_fee_label": "{{ settings.swym_registry_sidenav_shipping_fee_label }}",
+          "swym_registry_sidenav_tax_label": "{{ settings.swym_registry_sidenav_tax_label }}",
+          "swym_registry_sidenav_order_total_label": "{{ settings.swym_registry_sidenav_order_total_label }}",
+          "swym_registry_sidenav_total_value_label": "{{ settings.swym_registry_sidenav_total_value_label }}",
+          "swym_registry_sidenav_proceed_buy_button_text": "{{ settings.swym_registry_sidenav_proceed_buy_button_text }}",
+          "swym_registry_sidenav_add_more_button_text": "{{ settings.swym_registry_sidenav_add_more_button_text }}",
+          "swym_registry_sidenav_choose_shipping_title": "{{ settings.swym_registry_sidenav_choose_shipping_title }}",
+          "swym_registry_sidenav_choose_shipping_save_button_text": "{{ settings.swym_registry_sidenav_choose_shipping_save_button_text }}",
+          "swym_registry_sidenav_choose_shipping_cancel_button_text": "{{ settings.swym_registry_sidenav_choose_shipping_cancel_button_text }}",
+          "swym_registry_sidenav_continue_to_payment_button_text": "{{ settings.swym_registry_sidenav_continue_to_payment_button_text }}",
+          "swym_registry_sidenav_back_to_giftcard_button_text": "{{ settings.swym_registry_sidenav_back_to_giftcard_button_text }}",
+          "swym_registry_toast_notify_text": "{{ settings.swym_registry_toast_notify_text }}",
+          "swym_registry_toast_notify_view_cta": "{{ settings.swym_registry_toast_notify_view_cta }}",
+          "swym_registry_cart_button_text": "{{ settings.swym_registry_cart_button_text }}",
+          "swym_registry_overlay_loader_text": "{{ settings.swym_registry_overlay_loader_text }}"
+          "swym_registry_gifter_grid_chip": "{{ settings.swym_registry_gifter_grid_chip }}"
+        }
+      });
+    function swymRegistry_stylesApi(swymRegistry_styles_payload) {   
+      swymRegistry_uploadConfig(swymRegistry_styles_payload);
+    }
+
+    function swymRegistry_stringsApi(swymRegistry_strings_payload) {   
+      swymRegistry_uploadConfig(swymRegistry_strings_payload);
+    }
+    swymRegistry_stylesApi(swymRegistry_styles_payload);
+    swymRegistry_stringsApi(swymRegistry_strings_payload);
+  </script>
+{% else %}
+<div class="swym-registry-gifter-container">
+  <div id="swym-registry-gifter-banner" class="swym-registry-gifter-banner swym-registry-hidden">
+    <div class="swym-registry-wrapper">
+      <div class="swym-registry-gifter-banner-circle">
+        <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-gifter-banner-user swym-registry-font-very-large">JD</p>
+      </div>
+      <div class="swym-registry-gifter-banner-content">
+        <h1 class="swym-registry-gifter-banner-title swym-registry-font-large {{ settings.swym_registry_custom_title_class }}">My awesome baby time</h1>
+        <ul class="swym-registry-gifter-banner-registry-detail">
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_event_type_label }}: </span><span id="swym-registry-event-type-value"class="swym-registry-gifter-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_event_date_label }}: </span><span id="swym-registry-event-date-value" class="swym-registry-gifter-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_reg_id_label }}: </span><span id="swym-registry-id-value" class="swym-registry-gifter-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_registrant_name_label }}: </span><span id="swym-registry-registrant-name-value" class="swym-registry-gifter-banner-value"></span></li>
+          <li class="swym-registry-font-very-small"><span class="swym-registry-gifter-banner-label swym-registry-gifter-co-registrant-name-label {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_coregistrant_name_label }}: </span><span id="swym-registry-coregistrant-name-value" class="swym-registry-gifter-banner-value"></span></li>
+        </ul>
+        <div class="swym-registry-gifter-banner-message-container">
+          <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-gifter-banner-message swym-registry-font-very-small">Little Sophia is arriving soon and we are so excited to introduce her to you. For everyone who has been asking us what they could bring for her...</p>
+        </div>   
+        <div class="swym-registry-gifter-banner-bottom">
+          <span class="swym-registry-gifter-banner-bottom-days swym-registry-font-very-large swym-registry-desktop"><strong>100</strong> <span class="swym-registry-font-small">{{ settings.swym_registry_days_label }}</span></span>
+        </div>
+      </div>
+      <div class="swym-registry-gifter-banner-stats-container">
+      </div>
+    </div>
+  </div>
+  <div class="swym-registry-gifter-grid">
+    <div class="swym-registry-wrapper">
+      <div id="swym-registry-registrant-view"></div>
+      <ul class="swym-registry-gifter-grid-items">
+      </ul>
+      <div class="swym-registry-gifter-cart-btn-container swym-registry-gifters-btn-disabled swym-registry-font-btn" id="swym-registry-gifter-cart-btn-container">
+        <button class="swym-registry-font-btn" onClick="openSwymRegistryGifterModal()">{{ settings.swym_registry_cart_button_text }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+<div class="swym-registry-gifter-modal-overlay" id="swym-registry-gifter-modal-overlay" style="display: none">
+  <div class="swym-overlay__inner">
+        <div class="swym-overlay__content" style="display: none"><span class="swym-spinner"></span><span style="color: #fff" id="swym-registry-loading-messages">{{ settings.swym_registry_overlay_loader_text }}</span></div>
+  </div>
+</div>
+<div class="swym-registry-gifter-modal-Sidenav-design-mode" style="display: none"></div>
+ <div id="swym-registry-gifter-modal-Sidenav" class="swym-registry-gifter-modal-sidenav" style="display: block"><div class="backdrop"></div></div>
+<div id="swymRegistryToastContainer" class="swymRegistryToastContainer">
+  <div class="swym-registry-toast swym-registry-toast-notify"><p>{{settings.swym_registry_toast_notify_text}}</p><span onClick="openSwymRegistryGifterModalHandler()">{{ settings.swym_registry_toast_notify_view_cta }}</span></div>
+</div>
+{% capture snippet_content %}{% render 'swym-registry-custom-snippet' %}{% endcapture %}
+{% if snippet_content contains "Could not find asset" %}
+    {% comment %} do nothing {% endcomment %}
+{% else %}
+    {% render 'swym-registry-custom-snippet' %}
+{% endif %}

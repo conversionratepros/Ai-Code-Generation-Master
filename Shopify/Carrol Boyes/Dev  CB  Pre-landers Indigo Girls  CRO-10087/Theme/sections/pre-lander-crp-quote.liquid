@@ -1,0 +1,107 @@
+<section
+  class="pre-lander-crp-quote"
+  style="--pl-q-bg: {{ section.settings.background_color }}; --pl-q-border: {{ section.settings.border_color }};"
+>
+  <div class="pre-lander-crp-quote__card">
+    {%- if section.settings.quote_text != blank -%}
+      <div class="pre-lander-crp-quote__text">{{ section.settings.quote_text }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.reviewer_name != blank -%}
+      <p class="pre-lander-crp-quote__name">{{ section.settings.reviewer_name | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .pre-lander-crp-quote {
+    background: #fff;
+    padding: 30px 10px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pre-lander-crp-quote__card {
+    background: var(--pl-q-bg, #F5F2EF);
+    border: 1px solid var(--pl-q-border, #D9D9D9);
+    border-radius: 2px;
+    padding: 40px 48px;
+    max-width: 774px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .pre-lander-crp-quote__text {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .pre-lander-crp-quote__text p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #000;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .pre-lander-crp-quote__name {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    color: #000;
+    line-height: 20px;
+    text-align: center;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-quote {
+      padding: 0 15px 30px;
+    }
+
+    .pre-lander-crp-quote__card {
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Quote",
+  "tag": "section",
+  "class": "section-pre-lander-crp-quote",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "quote_text",
+      "label": "Quote text",
+      "default": "<p>\"This is a lovely set that offers more visual interest than a basic white set of dishes. very light and easy to carry and use. a perfect dinner plate set for all occassions\"</p>"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_name",
+      "label": "Reviewer name",
+      "default": "— Tumi, Verified Buyer (Carrolboyes.com)"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#F5F2EF"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border colour",
+      "default": "#D9D9D9"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Quote"
+    }
+  ]
+}
+{% endschema %}

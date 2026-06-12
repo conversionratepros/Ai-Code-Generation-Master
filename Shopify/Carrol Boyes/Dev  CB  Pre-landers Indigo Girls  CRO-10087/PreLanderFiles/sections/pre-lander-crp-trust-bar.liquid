@@ -1,0 +1,145 @@
+{%- liquid
+  assign trust_items = section.blocks | where: 'type', 'trust_item'
+-%}
+
+<section
+  class="pre-lander-crp-trust-bar"
+  style="--pl-trust-bar-bg: {{ section.settings.background_color }};"
+>
+  {%- for block in trust_items -%}
+    {%- if block.settings.icon -%}
+      {%- assign icon_src = block.settings.icon | image_url: width: 120 -%}
+    {%- else -%}
+      {%- assign padded = forloop.index | prepend: '0' | slice: -2, 2 -%}
+      {%- assign icon_src = 'pre-lander-crp-trust-icon-' | append: padded | append: '.svg' | asset_url -%}
+    {%- endif -%}
+    <div class="pre-lander-crp-trust-bar__item" {{ block.shopify_attributes }}>
+      <img class="pre-lander-crp-trust-bar__icon" src="{{ icon_src }}" alt="" width="40" height="40" loading="lazy">
+      <div class="pre-lander-crp-trust-bar__text">
+        {%- if block.settings.title != blank -%}
+          <span class="pre-lander-crp-trust-bar__title">{{ block.settings.title }}</span>
+        {%- endif -%}
+        {%- if block.settings.sub != blank -%}
+          <span class="pre-lander-crp-trust-bar__sub">{{ block.settings.sub }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+</section>
+
+<style>
+  .pre-lander-crp-trust-bar {
+    background: var(--pl-trust-bar-bg, #000000);
+    padding: 50px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .pre-lander-crp-trust-bar__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .pre-lander-crp-trust-bar__icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  .pre-lander-crp-trust-bar__text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pre-lander-crp-trust-bar__title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 28px;
+  }
+
+  .pre-lander-crp-trust-bar__sub {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-trust-bar {
+      flex-direction: column;
+      gap: 30px;
+      padding: 40px 24px;
+      align-items: center;
+    }
+
+    .pre-lander-crp-trust-bar__item {
+      gap: 20px;
+      width: 260px;
+    }
+
+    .pre-lander-crp-trust-bar__title {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Trust Bar",
+  "tag": "section",
+  "class": "section-pre-lander-crp-trust-bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust column",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Falls back to bundled pre-lander-crp-trust-icon-0X.svg by block position."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Big text",
+          "default": "Free Delivery"
+        },
+        {
+          "type": "text",
+          "id": "sub",
+          "label": "Small text",
+          "default": "ON ORDERS OVER R700"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Trust Bar",
+      "blocks": [
+        { "type": "trust_item", "settings": { "title": "Free Delivery", "sub": "ON ORDERS OVER R700" } },
+        { "type": "trust_item", "settings": { "title": "Secure Checkout", "sub": "100% ENCRYPTED PAYMENT" } },
+        { "type": "trust_item", "settings": { "title": "Customer Support", "sub": "HERE WHEN YOU NEED US" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

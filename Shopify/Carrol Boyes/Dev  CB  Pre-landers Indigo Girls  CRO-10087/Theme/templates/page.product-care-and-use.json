@@ -1,0 +1,87 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "176044717404f621cd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_a20cf65_iDgrdr": {
+          "type": "ai_gen_block_a20cf65",
+          "settings": {
+            "heading": "Product Care and Use",
+            "description": "<p>For more than 30 years, Carrol Boyes has produced high quality designs backed by expert manufacturing processes. We want our customers to enjoy their pieces of functional art for many years to come, which is why we have compiled a product care guide to help you take the best possible care of your products.</p>",
+            "image": "shopify://shop_images/UK_RANGE_1080x1080_XVS-LI_1.png",
+            "vertical_alignment": "center",
+            "image_width": 40,
+            "content_gap": 10,
+            "image_aspect_ratio": "4/3",
+            "image_border_radius": 8,
+            "hide_image_mobile": true,
+            "mobile_content_gap": 20,
+            "heading_size": 32,
+            "heading_font_weight": "600",
+            "heading_bottom_spacing": 16,
+            "text_size": 16,
+            "background_color": "#ffffff",
+            "heading_color": "#000000",
+            "text_color": "#666666",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "margin_left": 0,
+            "margin_right": 0,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_left": 20,
+            "padding_right": 20,
+            "mobile_margin_top": 0,
+            "mobile_margin_bottom": 0,
+            "mobile_margin_left": 0,
+            "mobile_margin_right": 0,
+            "mobile_padding_top": 30,
+            "mobile_padding_bottom": 30,
+            "mobile_padding_left": 15,
+            "mobile_padding_right": 15
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_a20cf65_iDgrdr"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "custom_liquid_9Q8iA7": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<!-- Product Care & Use — two-column image/text with mobile image-first stacking -->\n<div class=\"cb-care\">\n  <style>\n    /* Scoped styles to avoid theme conflicts */\n    .cb-care .care-block{\n      display:grid;\n      grid-template-columns:1.1fr 1fr;          /* desktop default */\n      grid-template-areas:\"media card\";         /* image left */\n      gap:24px;\n      align-items:stretch;\n      margin:32px 0;\n    }\n    .cb-care .care-block.reverse{\n      grid-template-columns:1fr 1.1fr;          /* swap on desktop */\n      grid-template-areas:\"card media\";         /* text left, image right */\n    }\n\n    .cb-care .care-media{ \n      grid-area:media; \n      border-radius:10px; \n      overflow:hidden; \n      background:#eee; \n    }\n    .cb-care .care-media img{\n      width:100%;\n      height:100%;\n      display:block;\n      object-fit:cover;\n    }\n\n    .cb-care .care-card{\n      grid-area:card;\n      background:#f6f6f8;\n      border-radius:10px;\n      padding:24px 26px;\n      box-shadow:0 1px 0 rgba(0,0,0,.04);\n      display:flex;\n      flex-direction:column;\n      justify-content:center;\n    }\n    .cb-care .care-card h3{ font-weight:600; margin:0 0 .6em; }\n    .cb-care .care-card p{ margin:0 0 1em; }\n    .cb-care .care-card ul{ margin:.2em 0 0 1.2em; }\n    .cb-care .care-card li{ margin:.25em 0; }\n\n    /* --- MOBILE FIX: stack image above text for all rows --- */\n    @media (max-width: 900px){\n      .cb-care .care-block,\n      .cb-care .care-block.reverse{\n        grid-template-columns:1fr !important;\n        grid-template-areas:\n          \"media\"\n          \"card\" !important;    /* force image first, then text */\n      }\n    }\n  </style>\n\n  <!-- Pewter (image left) -->\n  <section class=\"care-block\">\n    <figure class=\"care-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Pweter.webp?v=1760446088\" alt=\"Close-up of polished pewter surface.\">\n    </figure>\n    <article class=\"care-card\">\n      <h3>Pewter</h3>\n      <p>Carrol Boyes uses a special pewter alloy that contains antimony, copper and tin as opposed to traditional pewter alloys containing lead. Pewter is an attractive alloy as it is shiny and bright and looks like silver. Our cast and hand-finished pewter products have a soft and warm aesthetic. As pewter has increased substantially in value over the last few years, pewter has become a popular collector preference as it is a premium product.</p>\n      <h4 style=\"margin:.8em 0 .4em;font-weight:600;\">General Care</h4>\n      <ul>\n        <li>Handwash in warm soapy water, rinse thoroughly and dry with a soft and clean cloth.</li>\n        <li>Avoid harsh chemicals, detergents and scouring.</li>\n        <li>Do not place in dishwasher.</li>\n        <li>Clean with pewter cream and a polishing cloth.</li>\n        <li>Professional mechanical polishing service available at Carrol Boyes.</li>\n      </ul>\n    </article>\n  </section>\n\n  <!-- Aluminium (image right) -->\n  <section class=\"care-block reverse\">\n    <article class=\"care-card\">\n      <h3>Aluminium</h3>\n      <p>Carrol Boyes makes use of different methods of aluminium, namely cast, spun, nickel-plated and chrome-plated aluminium. The properties of aluminium are appealing as it is strong but light and can be polished to a high shine with a cool silvery colour.</p>\n      <h4 style=\"margin:.8em 0 .4em;font-weight:600;\">General Care</h4>\n      <ul>\n        <li>Handwash in warm soapy water, rinse thoroughly and dry with a soft and clean cloth.</li>\n        <li>Avoid harsh chemicals, detergents and scouring.</li>\n        <li>Do not place in dishwasher.</li>\n        <li>Clean with aluminium paste and a polishing cloth.</li>\n        <li>Professional mechanical polishing service available at Carrol Boyes.</li>\n      </ul>\n    </article>\n    <figure class=\"care-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Aluminium.webp?v=1760446088\" alt=\"Close-up of polished aluminium detail.\">\n    </figure>\n  </section>\n\n  <!-- Stainless Steel (image left) -->\n  <section class=\"care-block\">\n    <figure class=\"care-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Stainless_Steel.webp?v=1760446088\" alt=\"Stylised stainless-steel hummingbird detail.\">\n    </figure>\n    <article class=\"care-card\">\n      <h3>Stainless Steel</h3>\n      <p>Carrol Boyes uses a high-chromium 18/8 alloy for our cutlery which means it is 18% chromium and 8% nickel. This alloy is of high quality and is dishwasher safe making this product highly sought after for its easy care, use and corrosion-resistant properties.</p>\n      <h4 style=\"margin:.8em 0 .4em;font-weight:600;\">General Care</h4>\n      <ul>\n        <li>Handwash in warm soapy water, rinse thoroughly and dry with a soft and clean cloth.</li>\n        <li>Avoid harsh chemicals, detergents and scouring.</li>\n        <li>Dishwasher safe.</li>\n        <li>Professional mechanical polishing service available at Carrol Boyes.</li>\n      </ul>\n    </article>\n  </section>\n\n  <!-- Porcelain / Fine Bone China / New Bone China (image right) -->\n  <section class=\"care-block reverse\">\n    <article class=\"care-card\">\n      <h3>Porcelain / Fine Bone China / New Bone China</h3>\n      <p>Porcelain is a ceramic used to create beautiful tableware as it is not only strong but has a white hue which can be finished in different ways. Porcelain that contains bone ash is known as Fine Bone China. White ceramics vary slightly in the warmth of the hue. New Bone China contains calcium oxide instead of bone which makes it vegan friendly.</p>\n      <h4 style=\"margin:.8em 0 .4em;font-weight:600;\">General Care</h4>\n      <ul>\n        <li>Wash in warm soapy water and dry with a soft cloth.</li>\n        <li>Avoid harsh chemicals, detergents and scouring.</li>\n        <li>Dishwasher &amp; microwave safe.</li>\n        <li>Avoid sudden changes in temperature.</li>\n      </ul>\n    </article>\n    <figure class=\"care-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Porcelain_Fine_Bone_China_New_Bone_China.webp?v=1760446088\" alt=\"Elegant white ceramic plates with curved edges.\">\n    </figure>\n  </section>\n\n  <!-- Hand Blown Glass (image left) -->\n  <section class=\"care-block\">\n    <figure class=\"care-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Hand_Blown_Glass.webp?v=1760446088\" alt=\"Concentric ripples in clear glass.\">\n    </figure>\n    <article class=\"care-card\">\n      <h3>Hand Blown Glass</h3>\n      <p>Hand blown glass is also known as mouth-blown glass and is created by highly skilled craftsmen. Even when moulds are used for multiple items or sets, each individual piece will still differ slightly as they are handmade.</p>\n      <h4 style=\"margin:.8em 0 .4em;font-weight:600;\">General Care</h4>\n      <ul>\n        <li>Wash in warm soapy water, rinse thoroughly and dry with a soft cloth.</li>\n        <li>Avoid sudden changes in temperature.</li>\n        <li>Check care instructions to see if products are dishwasher safe.</li>\n      </ul>\n    </article>\n  </section>\n\n  <!-- Textile Softs (image right) -->\n  <section class=\"care-block reverse\">\n    <article class=\"care-card\">\n      <h3>Textile Softs</h3>\n      <p>Our range of softs are created from hand-picked premium suppliers in order to provide the quality and comfort you have come to expect from us. Each textile comes with its own care label which should be followed to get the best out of the products you enjoy at home.</p>\n      <h4 style=\"margin:.8em 0 .4em;font-weight:600;\">General Care</h4>\n      <ul>\n        <li>As we use different textiles, they are treated differently in terms of washing, drying and general care. Please follow the care instructions provided on the care label of each item.</li>\n      </ul>\n    </article>\n    <figure class=\"care-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/CB22_NewWeb_Product_CareandUse4.webp?v=1760446088\" alt=\"Polished metal keychain with engraved signature.\">\n    </figure>\n  </section>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "176044717404f621cd",
+    "main",
+    "custom_liquid_9Q8iA7"
+  ]
+}

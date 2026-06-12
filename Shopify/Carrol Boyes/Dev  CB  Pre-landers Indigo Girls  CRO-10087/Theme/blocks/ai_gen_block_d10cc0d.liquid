@@ -1,0 +1,610 @@
+{% doc %}
+  @prompt
+    i need a section with the following elements. 
+    An accoridon that loads closed with the following elements within the accordion. 
+    Heading text of the section with the option to position the text right, centre or left align. With the option to change the heading types and font size.
+    in this section i need a hero video on the left and a text on the right with a button for the user to interact with. 
+    Lets ensure that once i upload a video that it give me the following optoins. Autoplay, loop, muted, show controls and video boarder radius. 
+    Once this loads on mobile have the video be on top and text element at the bottom. 
+    
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-accordion-video-{{ ai_gen_id }} {
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    display: block;
+  }
+
+  .ai-accordion-video__button-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: {{ block.settings.accordion_bg_color }};
+    border: 1px solid {{ block.settings.accordion_border_color }};
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-accordion-video__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.accordion_hover_bg_color }};
+  }
+
+  .ai-accordion-video__button-title-{{ ai_gen_id }} {
+    color: {{ block.settings.accordion_text_color }};
+    font-size: {{ block.settings.accordion_title_size }}px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ai-accordion-video__icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    color: {{ block.settings.accordion_text_color }};
+  }
+
+  .ai-accordion-video__icon-{{ ai_gen_id }}.active {
+    transform: rotate(180deg);
+  }
+
+  .ai-accordion-video__content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: {{ block.settings.content_bg_color }};
+    border: 1px solid {{ block.settings.accordion_border_color }};
+    border-top: none;
+  }
+
+  .ai-accordion-video__content-{{ ai_gen_id }}.active {
+    max-height: 2000px;
+  }
+
+  .ai-accordion-video__inner-{{ ai_gen_id }} {
+    padding: 40px 20px;
+  }
+
+  .ai-accordion-video__heading-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    margin: 0 0 30px;
+    text-align: {{ block.settings.heading_alignment }};
+  }
+
+  .ai-accordion-video__heading-{{ ai_gen_id }} h1,
+  .ai-accordion-video__heading-{{ ai_gen_id }} h2,
+  .ai-accordion-video__heading-{{ ai_gen_id }} h3,
+  .ai-accordion-video__heading-{{ ai_gen_id }} h4,
+  .ai-accordion-video__heading-{{ ai_gen_id }} h5,
+  .ai-accordion-video__heading-{{ ai_gen_id }} h6 {
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  .ai-accordion-video__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .ai-accordion-video__video-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    border-radius: {{ block.settings.video_border_radius }}px;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .ai-accordion-video__video-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-accordion-video__video-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-accordion-video__video-placeholder-{{ ai_gen_id }} svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.3;
+  }
+
+  .ai-accordion-video__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-accordion-video__text-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ai-accordion-video__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+  }
+
+  .ai-accordion-video__button-wrapper-{{ ai_gen_id }} {
+    display: flex;
+  }
+
+  .ai-accordion-video__cta-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-accordion-video__cta-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-accordion-video__grid-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .ai-accordion-video__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+
+    .ai-accordion-video__text-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.text_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<accordion-video-{{ ai_gen_id }}
+  class="ai-accordion-video-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <button
+    class="ai-accordion-video__button-{{ ai_gen_id }}"
+    aria-expanded="false"
+    aria-controls="accordion-content-{{ ai_gen_id }}"
+  >
+    <h3 class="ai-accordion-video__button-title-{{ ai_gen_id }}">
+      {{ block.settings.accordion_title }}
+    </h3>
+    <svg
+      class="ai-accordion-video__icon-{{ ai_gen_id }}"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+  <div
+    class="ai-accordion-video__content-{{ ai_gen_id }}"
+    id="accordion-content-{{ ai_gen_id }}"
+  >
+    <div class="ai-accordion-video__inner-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <div class="ai-accordion-video__heading-{{ ai_gen_id }}">
+          {% case block.settings.heading_tag %}
+            {% when 'h1' %}
+              <h1>{{ block.settings.heading }}</h1>
+            {% when 'h2' %}
+              <h2>{{ block.settings.heading }}</h2>
+            {% when 'h3' %}
+              <h3>{{ block.settings.heading }}</h3>
+            {% when 'h4' %}
+              <h4>{{ block.settings.heading }}</h4>
+            {% when 'h5' %}
+              <h5>{{ block.settings.heading }}</h5>
+            {% when 'h6' %}
+              <h6>{{ block.settings.heading }}</h6>
+          {% endcase %}
+        </div>
+      {% endif %}
+
+      <div class="ai-accordion-video__grid-{{ ai_gen_id }}">
+        <div class="ai-accordion-video__video-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.video != blank %}
+            <video
+              class="ai-accordion-video__video-{{ ai_gen_id }}"
+              {% if block.settings.video_autoplay %}autoplay{% endif %}
+              {% if block.settings.video_loop %}loop{% endif %}
+              {% if block.settings.video_muted %}muted{% endif %}
+              {% if block.settings.video_controls %}controls{% endif %}
+              playsinline
+            >
+              <source
+                src="{{ block.settings.video | file_url }}"
+                type="video/mp4"
+              >
+              Your browser does not support the video tag.
+            </video>
+          {% else %}
+            <div class="ai-accordion-video__video-placeholder-{{ ai_gen_id }}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <div class="ai-accordion-video__empty-state-{{ ai_gen_id }}">
+                Next, upload a video
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-accordion-video__text-content-{{ ai_gen_id }}">
+          {% if block.settings.text != blank %}
+            <div class="ai-accordion-video__text-{{ ai_gen_id }}">
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.button_text != blank %}
+            <div class="ai-accordion-video__button-wrapper-{{ ai_gen_id }}">
+              <a
+                href="{{ block.settings.button_link }}"
+                class="ai-accordion-video__cta-button-{{ ai_gen_id }}"
+              >
+                {{ block.settings.button_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</accordion-video-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AccordionVideo{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.button = this.querySelector('.ai-accordion-video__button-{{ ai_gen_id }}');
+        this.content = this.querySelector('.ai-accordion-video__content-{{ ai_gen_id }}');
+        this.icon = this.querySelector('.ai-accordion-video__icon-{{ ai_gen_id }}');
+
+        this.button.addEventListener('click', () => this.toggleAccordion());
+      }
+
+      toggleAccordion() {
+        const isActive = this.content.classList.contains('active');
+
+        if (isActive) {
+          this.content.classList.remove('active');
+          this.icon.classList.remove('active');
+          this.button.setAttribute('aria-expanded', 'false');
+        } else {
+          this.content.classList.add('active');
+          this.icon.classList.add('active');
+          this.button.setAttribute('aria-expanded', 'true');
+        }
+      }
+    }
+
+    customElements.define('accordion-video-{{ ai_gen_id }}', AccordionVideo{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Accordion video section",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Accordion"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title",
+      "label": "Accordion title",
+      "default": "Click to expand"
+    },
+    {
+      "type": "range",
+      "id": "accordion_title_size",
+      "label": "Accordion title size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "accordion_bg_color",
+      "label": "Background color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "accordion_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "accordion_text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accordion_border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading type",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_muted",
+      "label": "Muted",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_controls",
+      "label": "Show controls",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Text content"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Add your text content here. This will appear next to the video.</p>"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button text size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion video section"
+    }
+  ]
+}
+{% endschema %}

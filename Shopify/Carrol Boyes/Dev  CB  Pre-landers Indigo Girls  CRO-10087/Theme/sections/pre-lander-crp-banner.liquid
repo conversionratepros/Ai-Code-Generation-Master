@@ -1,0 +1,267 @@
+{%- liquid
+  assign overlay_alpha = section.settings.overlay_opacity | times: 0.01
+
+  if section.settings.background_image
+    assign bg_url = section.settings.background_image | image_url: width: 2400
+  else
+    assign bg_url = 'pre-lander-crp-banner-bg.jpg' | asset_url
+  endif
+
+  assign btn_link = section.settings.button_link
+  if btn_link == blank
+    assign btn_link = '#product-cta'
+  endif
+-%}
+
+<section
+  class="pre-lander-crp-banner"
+  style="
+    --pl-banner-bg: url('{{ bg_url }}');
+    --pl-banner-overlay: rgba(0, 0, 0, {{ overlay_alpha }});
+    --pl-banner-heading: {{ section.settings.heading_color }};
+    --pl-banner-subtext: {{ section.settings.subtext_color }};
+    --pl-banner-btn-bg: {{ section.settings.button_bg_color }};
+    --pl-banner-btn-text: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="pre-lander-crp-banner__content">
+    {%- if section.settings.heading != blank or section.settings.subtext != blank -%}
+      <div class="pre-lander-crp-banner__texts">
+        {%- if section.settings.heading != blank -%}
+          <div class="pre-lander-crp-banner__heading">{{ section.settings.heading }}</div>
+        {%- endif -%}
+        {%- if section.settings.subtext != blank -%}
+          <div class="pre-lander-crp-banner__subtext">{{ section.settings.subtext }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.button_text != blank -%}
+      <a href="{{ btn_link }}" class="pre-lander-crp-banner__btn">
+        <span>{{ section.settings.button_text | escape }}</span>
+        {%- if section.settings.button_icon -%}
+          <img
+            class="pre-lander-crp-banner__btn-icon"
+            src="{{ section.settings.button_icon | image_url: width: 48 }}"
+            alt=""
+            width="24"
+            height="24"
+            loading="lazy"
+          >
+        {%- else -%}
+          <svg class="pre-lander-crp-banner__btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        {%- endif -%}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .pre-lander-crp-banner {
+    width: 100%;
+    max-width: 1173px;
+    margin: 40px auto;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    background-image:
+      linear-gradient(var(--pl-banner-overlay), var(--pl-banner-overlay)),
+      var(--pl-banner-bg);
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .pre-lander-crp-banner__content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    max-width: 672px;
+    padding: 0 15px;
+  }
+
+  .pre-lander-crp-banner__texts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .pre-lander-crp-banner__heading {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--pl-banner-heading, #fff);
+  }
+  .pre-lander-crp-banner__heading p {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    line-height: normal;
+    color: inherit;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .pre-lander-crp-banner__subtext {
+    color: var(--pl-banner-subtext, #fff);
+  }
+  .pre-lander-crp-banner__subtext p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: inherit;
+    margin: 0;
+  }
+
+  .pre-lander-crp-banner__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 32px;
+    height: 56px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.32px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    background: var(--pl-banner-btn-bg, #fff);
+    color: var(--pl-banner-btn-text, #000);
+  }
+
+  .pre-lander-crp-banner__btn-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  svg.pre-lander-crp-banner__btn-icon {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-banner {
+      height: auto;
+      min-height: 352px;
+      margin: 30px 0;
+      padding: 80px 15px;
+    }
+
+    .pre-lander-crp-banner__content {
+      padding: 0;
+    }
+
+    .pre-lander-crp-banner__heading p {
+      font-size: 24px;
+      line-height: 36px;
+    }
+
+    .pre-lander-crp-banner__subtext p {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Banner",
+  "tag": "section",
+  "class": "section-pre-lander-crp-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Falls back to the bundled pre-lander-crp-banner-bg.jpg if empty."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Background overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50,
+      "info": "Dark overlay over the image. Higher = darker."
+    },
+
+    { "type": "header", "content": "Text" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Want to see all three illustrations together?</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Sub-text",
+      "default": "<p>View the full set, dimensions and what's included.</p>"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Sub-text colour",
+      "default": "#FFFFFF"
+    },
+
+    { "type": "header", "content": "Button" },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "View the Indigo Girls Set"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "If empty, links to #product-cta on the page."
+    },
+    {
+      "type": "image_picker",
+      "id": "button_icon",
+      "label": "Button icon (optional)",
+      "info": "If empty, shows a default arrow that picks up the button text colour."
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text colour",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Banner"
+    }
+  ]
+}
+{% endschema %}

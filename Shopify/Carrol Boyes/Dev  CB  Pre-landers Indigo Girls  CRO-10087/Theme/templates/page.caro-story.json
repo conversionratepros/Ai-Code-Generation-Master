@@ -1,0 +1,166 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "custom_liquid_zA9gnX": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<!-- CARO for Carrol Boyes — Alternating image + floating text cards (Responsive with mobile image-first layout) -->\n<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap\" rel=\"stylesheet\">\n\n<div class=\"cb-caro\">\n  <style>\n    .cb-caro {\n      font-family:'Poppins',sans-serif;\n      color:#2b2b2b;\n      max-width:1100px;\n      margin:0 auto;\n      padding:24px 16px;\n    }\n    .cb-caro p {font-size:16px;line-height:1.7;margin:0 0 1em;}\n\n    /* Top logo / hero */\n    .caro-hero {\n      display:flex;\n      flex-direction:column;\n      align-items:center;\n      text-align:center;\n      margin:14px 0 28px;\n    }\n    .caro-hero img {\n      max-width:340px;\n      height:auto;\n      display:block;\n      margin:0 auto 10px;\n    }\n    .caro-hero .lead {max-width:860px;opacity:.9;}\n\n    /* Alternating sections */\n    .caro-block {\n      display:grid;\n      grid-template-columns:1.05fr 1fr;\n      gap:28px;\n      align-items:center;\n      margin:36px 0;\n    }\n    .caro-block.reverse {grid-template-columns:1fr 1.05fr;}\n\n    /* Floating image illusion */\n    .caro-media {\n      position:relative;\n      border-radius:12px;\n      overflow:hidden;\n      background:#f0f0f2;\n      box-shadow:0 14px 28px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.05);\n    }\n    .caro-media img {\n      width:100%;\n      height:100%;\n      display:block;\n      object-fit:cover;\n    }\n\n    /* Floating text card */\n    .caro-card {\n      position:relative;\n      background:#fff;\n      border-radius:12px;\n      border:1px solid #eee;\n      padding:22px 24px;\n      box-shadow:0 14px 28px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.05);\n    }\n    .caro-card h3 {margin:0 0 .6em;font-size:18px;font-weight:600;}\n    .caro-card .dropcap:first-letter {\n      float:left;\n      font-size:36px;\n      line-height:28px;\n      padding-right:8px;\n      font-weight:600;\n    }\n\n    /* MOBILE ADJUSTMENT */\n    @media (max-width: 900px) {\n      .caro-block,\n      .caro-block.reverse {\n        grid-template-columns:1fr;\n      }\n      /* Force image first on mobile for both normal and reverse layouts */\n      .caro-block.reverse .caro-media {\n        order:-1;\n      }\n    }\n  </style>\n\n  <!-- Top logo & intro -->\n  <header class=\"caro-hero\">\n    <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/CARO_LOGO_1.png?v=1760512044\" alt=\"CARO for Carrol Boyes\">\n    <p class=\"lead\">\n      Carolyn, known as Caro, is the niece of renowned South African artist, Carrol Boyes and the daughter of Charles Boyes, the CEO of Carrol Boyes Functional Art. With a deep-rooted passion for creativity Caro, as a designer for the flourishing business and continuing the family heritage, has crafted a range of bags which are inspired by the intricate beauty of the human form and nature.\n    </p>\n  </header>\n\n  <!-- Block 1 -->\n  <section class=\"caro-block\">\n    <figure class=\"caro-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/carosketchcombo2_1.jpg?v=1760512045\" alt=\"Caro early life illustration\">\n    </figure>\n    <article class=\"caro-card\">\n      <h3>Born in Limpopo, South Africa</h3>\n      <p class=\"dropcap\">Caro spent her childhood on a thriving citrus farm with her family. This farm, steeped in family history, is the birthplace of the Carrol Boyes factory. It is a place where creativity thrives alongside the wildlife, and inspiration flows as freely as the nearby river.</p>\n      <p>Surrounded by nature and a legacy of artistry, Caro’s upbringing was a rich tapestry of imagination and familial love. She began drawing at a very young age, her sketchbook a constant companion. After school, she would race home, plop down on the veranda, and spend afternoons lost in her drawings, often inspired by her aunt’s sculptures.</p>\n    </article>\n  </section>\n\n  <!-- Block 2 (reverse on desktop) -->\n  <section class=\"caro-block reverse\">\n    <div class=\"caro-card\">\n      <h3>Caro Boyes – The Designer</h3>\n      <p class=\"dropcap\">Caro’s artistic journey continued at St. Anne’s Diocesan College, an all-girls high school nestled in the picturesque Natal Midlands. Her passion for art was both nurtured and ignited during her time there. Caro then attended Stellenbosch University, where she earned an Honours degree in Fine Art. She further honed her expertise with a Master’s in Luxury Business from the prestigious Sotheby’s Institute of Art in London, receiving the Director’s Commendation.</p>\n      <p>Her love for both the arts and business naturally led her to join the family business, Carrol Boyes. Her father, Charles, is her biggest supporter, encouraging her to design her own range within the company and helping her bring her unique visions to life.</p>\n    </div>\n    <figure class=\"caro-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/caroyoungolder_1.jpg?v=1760512045\" alt=\"Caro with family\">\n    </figure>\n  </section>\n\n  <!-- Block 3 -->\n  <section class=\"caro-block\">\n    <figure class=\"caro-media\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/BTS_bags_1.jpg?v=1760512044\" alt=\"Sketchbook and studio\">\n    </figure>\n    <article class=\"caro-card\">\n      <h3>Celebrating Art and Life in Harmony</h3>\n      <p class=\"dropcap\">Caro has always been captivated by drawing the human form and botanical subjects, which naturally inspire her designs. With every piece she curates, Caro aims to celebrate the harmonious relationship between art and life, hoping to inspire others to find beauty in the everyday.</p>\n      <p>Her goal is to build the Carrol Boyes brand and showcase to the world what South Africans are made of.</p>\n    </article>\n  </section>\n</div>",
+        "color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "ss_video_image_text_3_Gjr4HJ": {
+      "type": "ss-video-image-text-3",
+      "blocks": {
+        "item_Mr3zAQ": {
+          "type": "item",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/Leather Handbag Craft - Portrait Launch Vid.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "thumb_image": "shopify://shop_images/CB25_Festive_P2_Chain_Purse_Toe_Touch_2.png",
+            "product_image": "shopify://shop_images/CB25_Festive_P2_Chain_Purse_Toe_Touch_2.png",
+            "product_url": ""
+          }
+        },
+        "item_db3KQz": {
+          "type": "item",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/CARO_30_digital.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "thumb_image": "shopify://shop_images/cb24-caro_websitesecondary_minitote-pulse2.webp",
+            "product_image": "shopify://shop_images/cb24-caro_websitesecondary_minitote-pulse2.webp",
+            "product_url": ""
+          }
+        },
+        "item_4YxCAn": {
+          "type": "item",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/CARO_20sec_digital.mp4",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "thumb_image": "shopify://shop_images/cb24-caro_websitesecondary_crossbodypouch-pulse4_1.webp",
+            "product_image": "shopify://shop_images/cb24-caro_websitesecondary_crossbodypouch-pulse4_1.webp",
+            "product_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_Mr3zAQ",
+        "item_db3KQz",
+        "item_4YxCAn"
+      ],
+      "name": "SS - Video & Image Text #3",
+      "settings": {
+        "body_gap": 70,
+        "body_gap_mobile": 40,
+        "content_horizontal_align": "start",
+        "content_horizontal_align_mobile": "start",
+        "sub_heading": "",
+        "sub_heading_custom": false,
+        "sub_heading_font": "poppins_n4",
+        "sub_heading_size": 16,
+        "sub_heading_size_mobile": 14,
+        "sub_heading_height": 130,
+        "heading": "<h3>Fashion</h3>",
+        "heading_custom": false,
+        "heading_font": "poppins_n4",
+        "heading_size": 40,
+        "heading_size_mobile": 40,
+        "heading_height": 130,
+        "heading_mt": 16,
+        "heading_mt_mobile": 12,
+        "text": "<p><strong>Caro, Creative Director at Carrol Boyes, debuts her first fashion collection — a refined expression of sculptural form and understated elegance.</strong>Featuring four signature designs — <strong>Spekboom, Swell, Lacuna, and Pulse</strong> — the collection explores the harmony between art, movement, and modern femininity. Each handbag, from <strong>bucket</strong> to <strong>tote</strong>, embodies timeless beauty and quiet luxury.</p>",
+        "text_custom": true,
+        "text_font": "poppins_n4",
+        "text_size": 18,
+        "text_size_mobile": 16,
+        "text_height": 150,
+        "text_mt": 48,
+        "text_mt_mobile": 16,
+        "image_radius": 40,
+        "image_radius_mobile": 24,
+        "image_border_thickness": 0,
+        "image_mt": 48,
+        "image_mt_mobile": 100,
+        "image_ratio": "portrait",
+        "image_ratio_mobile": "portrait",
+        "image_horizontal_align": "right",
+        "media_position": "right",
+        "media_position_mobile": "bottom",
+        "media_radius": 40,
+        "media_radius_mobile": 24,
+        "media_border_thickness": 0,
+        "media_ratio": "portrait",
+        "media_ratio_mobile": "portrait",
+        "use_action": true,
+        "action_size": 40,
+        "action_size_mobile": 40,
+        "thumbs_size": 56,
+        "thumbs_size_mobile": 60,
+        "thumbs_border_thickness": 3,
+        "sub_heading_color": "#000000",
+        "heading_color": "#000000",
+        "text_color": "#000000",
+        "image_border_color": "#000000",
+        "media_border_color": "#000000",
+        "action_bg_color": "#ffffff",
+        "action_arrow_color": "#000000",
+        "thumbs_border_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 2,
+        "full_width": false,
+        "content_width": 120,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true
+      }
+    },
+    "custom_liquid_DHpbMR": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<!-- CAROLYN BOYES PROFILE CARD -->\n<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap\" rel=\"stylesheet\">\n\n<div class=\"cb-profile\">\n  <style>\n    .cb-profile {\n      font-family: 'Poppins', sans-serif;\n      color: #2b2b2b;\n      max-width: 1000px;\n      margin: 0 auto;\n      padding: 3rem 1.5rem;\n    }\n\n    /* Card container */\n    .cb-card {\n      display: grid;\n      grid-template-columns: 1fr 1.2fr;\n      align-items: center;\n      gap: 40px;\n      background: #fff;\n      border-radius: 20px;\n      padding: 40px;\n      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);\n    }\n\n    .cb-card img {\n      width: 100%;\n      border-radius: 12px;\n      object-fit: cover;\n      display: block;\n    }\n\n    .cb-text h2 {\n      font-size: 24px;\n      font-weight: 600;\n      margin-bottom: 10px;\n    }\n\n    .cb-text p {\n      font-size: 16px;\n      line-height: 1.7;\n      margin-bottom: 20px;\n      color: #555;\n    }\n\n    .cb-signature {\n      max-width: 120px;\n      height: auto;\n    }\n\n    /* Mobile responsiveness */\n    @media (max-width: 900px) {\n      .cb-card {\n        grid-template-columns: 1fr;\n        text-align: center;\n        padding: 30px 20px;\n      }\n      .cb-text h2 {\n        margin-top: 20px;\n      }\n      .cb-signature {\n        margin: 0 auto;\n      }\n    }\n  </style>\n\n  <!-- Profile card -->\n  <section class=\"cb-card\">\n    <figure>\n      <img src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Art_Dept_Portraits_Caro.webp?v=1760450592\" alt=\"Portrait of Carolyn Boyes\">\n    </figure>\n    <div class=\"cb-text\">\n      <h2>Carolyn Boyes</h2>\n      <p>As a designer for the flourishing business and continuing the family heritage, Carolyn infuses her passion for art and culture into every creation. Her designs draw inspiration from the beauty of human form and the elegance of nature, making each piece a work of art.</p>\n      <img class=\"cb-signature\" src=\"https://cdn.shopify.com/s/files/1/0927/5224/9201/files/Caro_Signature.jpg?v=1760450592\" alt=\"Caro signature\">\n    </div>\n  </section>\n</div>",
+        "color_scheme": "",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_zA9gnX",
+    "ss_video_image_text_3_Gjr4HJ",
+    "custom_liquid_DHpbMR"
+  ]
+}

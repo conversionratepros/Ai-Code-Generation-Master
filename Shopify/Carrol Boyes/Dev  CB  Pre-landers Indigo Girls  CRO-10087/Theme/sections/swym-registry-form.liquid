@@ -1,0 +1,1844 @@
+<!-- SWYM_PAGE_VERSION:2.7 -->
+<!-- PLEASE DO NOT EDIT THIS VERSION -->
+<!-- Page Colours -->
+{% assign settingswymtemp = settings.swym_registry_page_header_color %}
+{% assign settingswymtemp = settings.swym_registry_page_header_background_color %}
+{% assign settingswymtemp = settings.swym_registry_page_content_color %}
+{% assign settingswymtemp = settings.swym_registry_page_content_background_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_text_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_background_color %}
+
+<!-- Page Fonts -->
+{% assign header_font = settings.swym_registry_page_font_family %}
+
+<!-- Page Strings -->
+{% assign settingswymtemp = settings.swym_registry_form_create_title_text %}
+{% assign settingswymtemp = settings.swym_registry_form_update_title_text %}
+{% assign settingswymtemp = settings.swym_registry_list_home_label %}
+{% assign settingswymtemp = settings.swym_registry_event_type_label %}
+{% assign settingswymtemp = settings.swym_registry_reg_name_label %}
+{% assign settingswymtemp = settings.swym_registry_event_date_label %}
+{% assign settingswymtemp = settings.swym_registry_maximum_character_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_fname_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_lname_label %}
+{% assign settingswymtemp = settings.swym_registry_coregistrant_fname_label %}
+{% assign settingswymtemp = settings.swym_registry_coregistrant_lname_label %}
+{% assign settingswymtemp = settings.swym_registry_description_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_address_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_street_address_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_zipcode_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_city_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_state_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_country_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_phone_label %}
+{% assign settingswymtemp = settings.swym_registry_registrant_phone_example_label %}
+{% assign settingswymtemp = settings.swym_registry_coregistrant_address_label %}
+{% assign settingswymtemp = settings.swym_registry_email_label %}
+{% assign settingswymtemp = settings.swym_registry_coregistrant_checkbox %}
+{% assign settingswymtemp = settings.swym_registry_protect_registry_label %}
+{% assign settingswymtemp = settings.swym_registry_password_title %}
+{% assign settingswymtemp = settings.swym_registry_password_label %}
+{% assign settingswymtemp = settings.swym_registry_update_btn_text %}
+{% assign settingswymtemp = settings.swym_registry_create_btn_text %}
+
+<!-- Custom class Strings -->
+{% assign settingswymtemp = settings.swym_registry_custom_section_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_title_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_label_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_btn_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_para_class %}
+{% assign settingswymtemp = settings.swym_registry_custom_link_class %}
+
+<style>
+    {{ header_font | font_face }}/* Global CSS Here */
+    .swym-registry-wrapper {
+      min-height: 100vh;
+      font-family: {{ header_font.family }}
+      ;
+      background-color: {{ settings.swym_registry_page_content_background_color }}
+      ;
+      visibility: hidden;
+    }
+
+    .swym-registry-wrapper input,
+    .swym-registry-wrapper label,
+    .swym-registry-wrapper figure,
+    .swym-registry-wrapper textarea,
+    .swym-registry-wrapper h1,
+    .swym-registry-wrapper h2,
+    .swym-registry-wrapper h3,
+    .swym-registry-wrapper h4,
+    .swym-registry-wrapper p {
+      font-family: {{ header_font.family }}
+      ;
+      color: inherit;
+      margin: 0;
+      padding: 0;
+      resize: none;
+    }
+    .swym-registry-wrapper input {
+      background: none;
+      border: none;
+    }
+    .swym-registry-wrapper input:focus {
+      border: none;
+    }
+    .swym-registry-wrapper input[type="text"][disabled],
+    .swym-registry-wrapper input[type="email"][disabled] {
+      background: none;
+      border: none;
+    }
+    .swym-registry-wrapper ul,
+    .swym-registry-wrapper ul li {
+      font-family: {{ header_font.family }}
+      ;
+      color: inherit;
+      list-style: none;
+    }
+
+
+    .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-font-very-small,
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-font-very-small {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(11px + ({{ settings.swym_registry_font_very_small }} - 11) * ((100vw - 320px) / (1440 - 320)));
+      line-height: 25px;
+      color: inherit;
+    }
+    .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-font-small,
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-font-small {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(13px + ({{ settings.swym_registry_font_small }} - 13) * ((100vw - 320px) / (1440 - 320)));
+      line-height: 30px;
+      color: inherit;
+    }
+    .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-font-regular,
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-font-regular {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+      line-height: 34px;
+      color: inherit;
+    }
+    .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-font-large,
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-font-large {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(18px + ({{ settings.swym_registry_font_large }} - 18) * ((100vw - 320px) / (1440 - 320)));
+      line-height: 38px;
+      color: inherit;
+    }
+    .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-font-very-large,
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-font-very-large {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(22px + ({{ settings.swym_registry_font_very_large }} - 22) * ((100vw - 320px) / (1440 - 320)));
+      line-height: 40px;
+      color: inherit;
+    }
+    .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-font-sub-title,
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-font-sub-title {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(24px + ({{ settings.swym_registry_font_sub_title }} - 24) * ((100vw - 320px) / (1440 - 320)));
+      line-height: 42px;
+      color: inherit;
+    }
+    .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-font-title,
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-font-title {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(28px + ({{ settings.swym_registry_font_main_title }} - 28) * ((100vw - 320px) / (1440 - 320)));
+      line-height: 44px;
+      color: inherit;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent select#swym-registry-form-page-occasion-selector{
+      appearance: none;
+      width: 100%;
+      border: none;
+      background: {{ settings.swym_registry_page_content_background_color }};
+      text-transform: capitalize;
+      padding: 0px;
+      margin: 0px;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent #swym-registry-form-page-registry-date{
+      display: block;
+    }
+    /* Header CSS Here */
+    .swym-registry-wrapper .swym-registry-form-page-header {
+      color: {{ settings.swym_registry_page_header_color }}
+      ;
+    }
+
+    .swym-registry-wrapper .swym-registry-form-page-header .swym-registry-form-page-header-title-parent {
+      background-color: {{ settings.swym_registry_page_header_background_color }}
+      ;
+      position: relative;
+    }
+    .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-title {
+      text-align: center;
+      margin-top 1rem;
+    }
+
+    .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header a {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      color: inherit;
+      text-decoration: none;
+    }
+    .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header a:first-child {
+      font-size: 30px;
+    }
+
+    .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 3rem 2rem;
+      margin: 0 auto;
+      width: 75%;
+    }
+
+    .swym-registry-form-page-header .swym-registry-form-page-header-info-bar .swym-registry-form-page-occasion-flex {
+      display: flex;
+      align-items: center;
+    }
+    .swym-registry-form-page-header .swym-registry-form-page-header-info-bar .swym-registry-form-page-occasion-flex.swym-registry-font-regular {
+      gap: 1rem;
+      text-decoration: none;
+    }
+    .swym-registry-form-page-header .swym-registry-form-select_box #swym-registry-form-page-occasion-selector {
+      border: none;
+      background-color: inherit;
+      margin: 0;
+      background-image: none;
+      appearance: none;
+      -webkit-appearance: none;
+      max-width: 180px;
+      min-width: 150px;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      text-transform: capitalize;
+    }
+    .swym-registry-form-page-header .swym-registry-form-page-occasion-flex #swym-registry-form-page-occasion-selector:focus {
+      outline: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    .swym-registry-form-page-header .swym-registry-form-page-occasion-flex .swym-registry-form-select_box {
+      overflow: hidden;
+      position: relative;
+      position: relative;
+    }
+    .swym-registry-form-page-header .swym-registry-form-page-occasion-flex .swym-registry-form-select_box svg {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent select#swym-registry-form-page-occasion-selector {
+        outline: none;
+        border: none;
+        box-shadow: none;
+
+    }
+    .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-parent {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      justify-content: center;
+      padding: 1rem 3rem;
+      margin: 0 auto;
+      width: 90%;
+    }
+
+    .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-divider {
+      font-weight: bold;
+    }
+
+    /* Form CSS Here */
+    .swym-registry-wrapper .swym-registry-form-page-form-section-1:last-child {
+      margin-bottom: 0;
+    }
+    .swym-registry-wrapper .swym-registry-mar-bot-3rem {
+      margin-bottom: 12px;
+    }
+    .swym-registry-form-page-form-fields-background .swym-registry-form-page-form-sections-flex .swym-registry-form-page-form-section-1 .swym-registry-form-page-field-parent,
+    .swym-registry-form-page-form-fields-background .swym-registry-form-page-form-sections-flex .swym-registry-form-page-form-section-2 .swym-registry-form-page-field-parent {
+      margin-bottom: 1.5rem;
+    }
+    .swym-registry-wrapper .swym-registry-form-page-form-section {
+      margin: 3rem 0;
+      color: {{ settings.swym_registry_page_content_color }}
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent {
+      width: 100vw;
+      max-width: 1200px;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-fields-background {
+      padding: 0.2rem 1rem;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-field-parent {
+      border: solid 1px {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.5 }};
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+      padding: 0 1rem;
+      margin: 0.5rem 0;
+      position: relative;
+      width: 100%;
+      background-color: {{ settings.swym_registry_page_content_background_color }}
+      ;
+      /* Get a field background color */
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-form-input {
+      border: none;
+      outline: 0;
+      width: 100%;
+      background-color: {{ settings.swym_registry_page_content_background_color }}
+      ;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-form-input:focus {
+      outline: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-form-input:disabled {
+      background: inherit;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-form-input[type="date"]::-webkit-calendar-picker-indicator {
+      background: transparent;
+      bottom: 0;
+      color: transparent;
+      cursor: pointer;
+      height: auto;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-form-input[type="date"] {
+      text-transform: uppercase;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-form-input::placeholder {
+      color: inherit;
+      opacity: 0.7;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-label {
+      opacity: 0.7;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-fields-flex {
+      display: flex;
+      justify-content: space-between;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-field-section-1-1 {
+      flex: 0 0 calc(74.5%);
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-field-section-1-2 {
+      flex: 0 0 calc(24.5%);
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-field-section-2-1, .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-field-section-2-2 {
+      flex: 0 0 49.3%;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-sections-flex {
+      display: flex;
+      justify-content: space-between;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-section-1 {
+      flex: 0 0 50%;
+      padding: 0 1rem 0 0;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-section-2 {
+      flex: 0 0 50%;
+      padding: 0 0 0 1rem;
+      border-left: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.3 }};
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-visibility-hidden {
+      visibility: hidden;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-checkfield-parent {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-checkfield-parent label {
+      font-weight: 400;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-checkfield-parent input[type="checkbox"] {
+      appearance: none;
+      width: 20px ;
+      height: 20px;
+      border: 0.5px solid {{ settings.swym_registry_page_content_color}};
+      border-radius: 0.15rem;
+      margin-right: 10px;
+      accent-color: {{ settings.swym_registry_btn_background_color}}
+      ;
+      background-color: {{ settings.swym_registry_page_content_background_color}}
+      ;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-checkfield-parent input[type="checkbox"]:checked {
+      appearance: checkbox;
+    }
+
+    .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-action-button p {
+      padding: 1rem;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-action-button #swym-registry-form-page-registry-btn {
+      border-radius: 0.5rem;
+      border: none;
+      padding: 1rem 3rem;
+      background-color: {{ settings.swym_registry_btn_background_color }}
+      ;
+      color: {{ settings.swym_registry_btn_text_color }}
+      ;
+      margin: 2rem 0 2rem 1rem;
+      cursor: pointer;
+      font-size: calc(16px + ({{ settings.swym_registry_font_btn }} - 16) * ((100vw - 320px) / (1440 - 320)));
+      transition: 0.24s ease;
+      font-family: inherit;
+      position: relative;
+    }
+    .swym-registry-form-page-form-section .swym-registry-form-page-form-action-button #swym-registry-form-page-registry-btn:hover {
+      transform: scale(1.06, 1.06);
+    }
+    .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-bar .swymRegistry-arrow {
+      border: solid {{ settings.swym_registry_page_header_color}};
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 3px;
+    }
+
+    .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-bar .swymRegistry-left {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+    }
+    .swym-registry-form-page-header-info-bar a.swym-registry-form-page-occasion-flex:hover {
+      color: inherit;
+    }
+    .swym-registry-wrapper  .swym-registry-form-page-registry-btn-pe-none:active{
+      pointer-events: none;
+    }
+  .swym-registry-wrapper .swym-registry-form-field-disable{
+    opacity: 0.3;
+  }
+    /* Button Loading CSS*/
+  .swym-registry-wrapper .swym-registry-form-page-form-action-button .swym-registry-btn-dot-collision {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: {{settings.swym_registry_btn_text_color}};
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+  }
+
+  .swym-registry-wrapper .swym-registry-form-page-form-section .swym-registry-eventtypes-svg{
+    position: absolute;
+    right: 4%;
+    top: 44%;
+    pointer-events: none;
+  }
+  .swym-registry-wrapper .swym-registry-form-page-form-action-button .swym-registry-btn-dot-collision::before,.swym-registry-wrapper .swym-registry-form-page-form-action-button .swym-registry-btn-dot-collision::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+
+  .swym-registry-wrapper .swym-registry-form-page-form-action-button .swym-registry-btn-dot-collision::before {
+    left: -10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: {{settings.swym_registry_btn_text_color}};
+    animation: dotCollisionBefore 2s infinite ease-in;
+  }
+
+  .swym-registry-wrapper .swym-registry-form-page-form-action-button .swym-registry-btn-dot-collision::after {
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: {{settings.swym_registry_btn_text_color}};
+    animation: dotCollisionAfter 2s infinite ease-in;
+    animation-delay: 1s;
+  }
+.swym-registry-wrapper .swym-registry-form-page-form .swym-registry-form-page-field-parent input#swym-registry-form-page-registry-date {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
+}
+  @keyframes dotCollisionBefore {
+    0%,
+    50%,
+    75%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-15px);
+    }
+  }
+
+  @keyframes dotCollisionAfter {
+    0%,
+    50%,
+    75%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(15px);
+    }
+  }
+
+    @media screen and (max-width: 850px) {
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-fields-flex {
+        display: block;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-sections-flex {
+        display: block;
+      }
+      .swym-registry-form-page-form-action-button {
+        text-align: center;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-section-1 {
+        flex: 0 0 50%;
+        padding: 0;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-section-2 {
+        flex: 0 0 50%;
+        padding: 1rem 0;
+        border-left: none;
+      }
+      .swym-registry-form-page-form-section-1 .swym-registry-checkfield-parent {
+        display: none;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form-action-button #swym-registry-form-page-registry-btn {
+        margin-left: 0;
+        padding: 1rem 4rem;
+        margin: 1rem 0 2rem 1rem;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form-parent .swym-registry-form-page-field-parent {
+        margin-bottom: 1.5rem;
+        margin-top: 0;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-fields-background {
+        padding-top: 0;
+      }
+      .swym-registry-wrapper .swym-registry-mar-bot-3rem {
+        margin-bottom: 22px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-bar {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        padding-bottom: 2rem;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form-parent {
+        width: 100%;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-fields-flex {
+        display: block;
+        flex-direction: column;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-sections-flex {
+        flex-direction: column;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form-action-button #swym-registry-form-page-registry-btn:hover{
+        transform: scale(1.022,1.022);
+      }
+    }
+
+    @media screen and (max-width: 550px) {
+      .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-parent {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-bar {
+        padding: 0 0 2rem;
+      }
+      .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-info-divider {
+        display: none;
+      }
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-section-1,
+      .swym-registry-form-page-form-section .swym-registry-form-page-form .swym-registry-form-page-form-section-2 {
+        padding: 0;
+      }
+      .swym-registry-form-page-header .swym-registry-form-page-header-title-parent .swym-registry-form-page-header-title {
+        padding: 3rem 0 0;
+      }
+    }
+    @media screen and (min-width: 996px) {
+      .swym-registry-form-page-header-title-parent {
+        background-image: url('https://cdn.shopify.com/s/files/1/0927/5224/9201/files/background_shopify_test.jpg?v=1762369642');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+</style>
+
+<!-- Liquid Starts here -->
+<link rel="dns-prefetch" href="https://cdn.swymregistry.com/swym-registry-common-cdn.js">
+<link rel="preconnect" href="https://cdn.swymregistry.com/swym-registry-common-cdn.js">
+<script src="https://cdn.swymregistry.com/swym-registry-common-cdn.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.0/dist/purify.min.js"></script>
+<script type="text/javascript" src="https://cloudfront.loggly.com/js/loggly.tracker-latest.min.js" async></script>
+<script>
+  var _LTracker = _LTracker || [];
+  _LTracker.push({
+    'logglyKey': '7a2be593-4080-4ce0-b039-cee174ba8365',
+    'sendConsoleErrors' : true,
+    'tag' : 'error,template,form'
+  });
+</script>
+{% if request.design_mode %}
+  <section class="{{ settings.swym_registry_custom_section_class }} swym-registry-wrapper">
+    <section class="{{ settings.swym_registry_custom_section_class }} swym-registry-form-page-header">
+      <div class="swym-registry-form-page-header-title-parent">
+        <h1 class="{{ settings.swym_registry_custom_title_class }} swym-registry-form-page-header-title swym-registry-font-title">
+          <span id="swym-registry-form-page-title-create" style="display:none;">{{ settings.swym_registry_form_create_title_text }}</span>
+          <span id="swym-registry-form-page-title-update" style="display:none;">{{ settings.swym_registry_form_update_title_text }}</span>
+        </h1>
+        <ul class="swym-registry-form-page-header-info-parent swym-registry-font-small">
+          <li class="swym-registry-form-page-header-info-name">Your Name</li>
+          <li class="swym-registry-form-page-header-info-divider">|</li>
+          <li class="swym-registry-form-page-header-info-email">youremail@email.com</li>
+        </ul>
+        <div class="swym-registry-form-page-header-info-bar">
+          <a href="/pages/swym-registry-manage" id="swym-registry-back-to-registry" class="{{ settings.swym_registry_custom_link_class }} swym-registry-form-page-occasion-flex swym-registry-font-regular">
+            <i class="swymRegistry-arrow swymRegistry-left"></i>
+            <span>{{ settings.swym_registry_list_home_label }}</span>
+          </a>
+          <div class="swym-registry-form-page-occasion-flex">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="{{ settings.swym_registry_custom_section_class }} swym-registry-form-page-form-section">
+      <div class="swym-registry-form-page-form-parent">
+        <form class="swym-registry-form-page-form">
+          <div class="swym-registry-form-page-form-fields-background">
+            <div class="swym-registry-form-page-form-fields-flex">
+              <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-1" id="swym-registry-event-types">
+              <span class="swym-registry-font-very-small swym-registry-form-page-form-label">{{ settings.swym_registry_event_type_label }}</span>
+                <div class="swym-registry-form-select_box">
+                  <select
+                    name="occasion"
+                    id="swym-registry-form-page-occasion-selector"
+                class="swym-registry-font-small">
+              </select>
+                  <svg
+                    class="swym-registry-eventtypes-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="10"
+                    viewBox="0 0 15 10"
+                fill="none">
+                    <path
+                      d="M1 1L7.4263 8.22958L13.8526 1"
+                      stroke="{{ settings.swym_registry_page_content_color }}"
+                      stroke-width="2" />
+                  </svg>
+                </div>
+              </div>
+              <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-2">
+                <label for="registry-date" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_event_date_label }}</label>
+                <input
+                  type="date"
+                  id="swym-registry-form-page-registry-date"
+                  name="swym-registry-form-registry-date"
+                  class="swym-registry-form-page-form-input swym-registry-font-small"
+                  onfocus="(this.type='date')"
+                  required>
+              </div>
+            </div>
+          </div>
+          <div class="swym-registry-form-page-form-fields-background">
+            <div class="swym-registry-form-page-form-fields-flex">
+              <div class="swym-registry-form-page-field-parent">
+                <label for="registry-name" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_reg_name_label }}</label>
+                <input
+                  value="Your Registry Name"
+                  type="text"
+                  id="swym-registry-form-page-registry-name"
+                  name="swym-registry-form-registry-name"
+                  class="swym-registry-form-page-form-input swym-registry-font-small"
+                  required>
+              </div>
+            </div>
+          </div>
+          <div class="swym-registry-form-page-form-fields-background">
+            <div class="swym-registry-form-page-form-fields-flex">
+              <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-1">
+                <label for="registry-fname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_fname_label }}</label>
+                <input
+                  value="Jane"
+                  type="text"
+                  id="swym-registry-form-page-registry-fname"
+                  name="swym-registry-form-registry-fname"
+                  class="swym-registry-form-page-form-input swym-registry-font-small"
+                  value="{{ customer.first_name }}"
+                  required>
+              </div>
+              <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-2">
+                <label for="registry-lname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_lname_label }}</label>
+                <input
+                  value="Doe"
+                  type="text"
+                  id="swym-registry-form-page-registry-lname"
+                  name="swym-registry-form-registry-lname"
+                  class="swym-registry-form-page-form-input swym-registry-font-small"
+                  value="{{ customer.last_name }}"
+                  required>
+              </div>
+            </div>
+          </div>
+          <div class="swym-registry-form-page-form-fields-background swym-registry-mar-bot-3rem">
+            <div class="swym-registry-form-page-field-parent">
+              <label for="registry-description" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_description_label }}</label>
+              <textarea
+                type="text"
+                id="swym-registry-form-page-registry-description"
+                name="swym-registry-form-registry-description"
+                class="swym-registry-form-page-form-input  swym-registry-font-small"
+                maxlength="300"
+                >Your Registry Description or Invitation Message</textarea>
+            </div>
+            <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-font-small">{{ settings.swym_registry_maximum_character_label }}</p>
+          </div>
+          <div class="swym-registry-form-page-form-fields-background">
+            <div class="swym-registry-form-page-form-sections-flex">
+              <div class="swym-registry-form-page-form-section-1">
+                <h4 class="swym-registry-font-large">{{ settings.swym_registry_registrant_address_label }}</h4>
+                <div class="swym-registry-form-page-field-parent">
+                  <label for="address" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_street_address_label }}</label>
+                  <input
+                    value="Room under the Stairs, Privet Drive"
+                    type="text"
+                    id="swym-registry-address"
+                    name="address"
+                    value="{{customer.default_address.address1}}"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    required>
+                </div>
+                <div class="swym-registry-form-page-field-parent">
+                  <label for="zipcode" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_zipcode_label }}</label>
+                  <input
+                    value="10010"
+                    type="text"
+                    id="swym-registry-zipcode"
+                    name="zipcode"
+                    value="{{customer.default_address.zip}}"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    required>
+                </div>
+                <div class="swym-registry-form-page-field-parent">
+                  <label for="city" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_city_label }}</label>
+                  <input
+                    value="Little Whinging"
+                    type="text"
+                    id="swym-registry-city"
+                    name="city"
+                    value="{{customer.default_address.city}}"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    required>
+                </div>
+                <div class="swym-registry-form-page-field-parent">
+                  <label for="state" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_state_label }}</label>
+                  <input
+                    value="London"
+                    type="text"
+                    id="swym-registry-state"
+                    name="State"
+                    value="{{customer.default_address.province}}"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    required>
+                </div>
+                <div class="swym-registry-form-page-field-parent">
+                  <label for="country" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_country_label }}</label>
+                  <input
+                    value="England"
+                    type="text"
+                    id="swym-registry-country"
+                    name="country"
+                    value="{{customer.addresses[0].country}}"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    required>
+                </div>
+                <div class="swym-registry-form-page-field-parent">
+                    <label for="phone" class="swym-registry-custom-label-class swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_phone_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-phone"
+                      name="phone"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      pattern="\+?[0-9]{1,4}[\-. ]?(\([0-9]{1,3}\))?[\-. ]?[0-9]{1,5}[\-. ]?[0-9]{1,5}[\-. ]?[0-9]{1,9}"
+                      minlength="7"
+                      maxlength="18"
+                      value="{{ customer.default_address.phone }}"
+                      placeholder="{{ settings.swym_registry_registrant_phone_example_label }}"
+                    />
+                  </div>
+              </div>
+              <div class="swym-registry-form-page-form-section-2">
+                <h4 class="swym-registry-font-large">{{ settings.swym_registry_coregistrant_address_label }}</h4>
+                <div class="swym-registry-checkfield-parent">
+                  <input
+                    id="swym-registry-form-page-registry-coregistrant-checkbox"
+                    name="coregistrant"
+                    type="checkbox">
+                  <label class="swym-registry-font-small {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_coregistrant_checkbox }}</label>
+                </div>
+                <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable" >
+                  <label for="coregistrant-firstname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_coregistrant_fname_label }}</label>
+                  <input
+                    type="text"
+                    id="swym-registry-form-page-registry-coregistrant-name"
+                    name="swym-registry-form-registry-coregistrant-fname"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    disabled>
+                </div>
+                <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable" >
+                  <label for="coregistrant-lastname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_coregistrant_lname_label }}</label>
+                  <input
+                    type="text"
+                    id="swym-registry-form-page-registry-coregistrant-lastname"
+                    name="swym-registry-form-registry-coregistrant-lname"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    disabled>
+                </div>
+                <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable" >
+                  <label for="coregistrant-email" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_email_label }}</label>
+                  <input
+                    type="email"
+                    id="swym-registry-form-page-registry-coregistrant-email"
+                    name="swym-registry-form-registry-coregistrant-email"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swym-registry-form-page-form-fields-background">
+            <h4 class="swym-registry-font-large">{{ settings.swym_registry_password_title }}</h4>
+            <div class="swym-registry-checkfield-parent">
+              <input
+                id="swym-registry-form-page-registry-password-checkbox"
+                name="swym-registry-form-registry-password-checkbox"
+                type="checkbox">
+              <label class="swym-registry-font-small {{ settings.swym_registry_custom_label_class }}">{{ settings.swym_registry_protect_registry_label }}</label>
+            </div>
+            <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable" >
+              <label for="registry-password" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_password_label }}</label>
+              <input
+                type="text"
+                id="swym-registry-form-page-registry-password"
+                name="swym-registry-form-registry-password"
+                class="swym-registry-form-page-form-input swym-registry-font-small"
+                disabled>
+            </div>
+            <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-font-small">{{ swym_registry_password_agreement_checkbox }}</p>
+          </div>
+          <div class="swym-registry-form-page-form-action-button">
+            <button
+              class="{{ settings.swym_registry_custom_btn_class }} swym-registry-form-page-registry-btn-pe-none"
+              id="swym-registry-form-page-registry-btn"
+              type="submit"
+            >
+              <span id="swym-registry-form-page-btn-create" style="display:none;">{{ settings.swym_registry_create_btn_text }}</span>
+              <span id="swym-registry-form-page-btn-update" style="display:none;">{{ settings.swym_registry_update_btn_text }}</span>
+            </button>
+            <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+              <div class="swym-registry-snippet" data-title=".dot-collision">
+                <div class="swym-registry-stage">
+                  <div class="swym-registry-dot-collision"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </section>
+
+  <!-- Design Mode JS Starts here -->
+  <script>
+  if(Shopify.designMode){
+    const swymRegistry_url = window.location.search;
+    const swymRegistry_urlParams = new URLSearchParams(swymRegistry_url);
+    const swymRegistry_mode = swymRegistry_urlParams.has("mode")
+      ? swymRegistry_urlParams.get("mode")
+      : "";
+
+    const swymRegistry_pageWrapper = document.getElementsByClassName("swym-registry-wrapper")[0];
+    const swymRegistry_createTitle = document.getElementById("swym-registry-form-page-title-create");
+    const swymRegistry_updateTitle = document.getElementById("swym-registry-form-page-title-update");
+    const swymRegistry_createBtn = document.getElementById("swym-registry-form-page-btn-create");
+    const swymRegistry_updateBtn = document.getElementById("swym-registry-form-page-btn-update");
+
+    if (swymRegistry_mode == "create") {
+      swymRegistry_createTitle.style.display = "block";
+      swymRegistry_createBtn.style.display = "block";
+      swymRegistry_pageWrapper.style.visibility = "visible";
+    }
+
+    if (swymRegistry_mode == "update") {
+      swymRegistry_updateTitle.style.display = "block";
+      swymRegistry_updateBtn.style.display = "block";
+      swymRegistry_pageWrapper.style.visibility = "visible";
+    }
+
+    function swymRegistry_coRegistrantCheckboxEnable(obj) {
+      try {
+        const swymRegistry_cfname = document.getElementById("swym-registry-form-page-registry-coregistrant-name");
+        const swymRegistry_clname = document.getElementById("swym-registry-form-page-registry-coregistrant-lastname");
+        const swymRegistry_cemail = document.getElementById("swym-registry-form-page-registry-coregistrant-email");
+        if (obj.checked) {
+          swymRegistry_cfname.disabled = false;
+          swymRegistry_cfname.parentElement.style.opacity = 1;
+          swymRegistry_clname.disabled = false;
+          swymRegistry_clname.parentElement.style.opacity = 1;
+          swymRegistry_cemail.disabled = false;
+          swymRegistry_cemail.parentElement.style.opacity = 1;
+        } else {
+          swymRegistry_cfname.disabled = true;
+          swymRegistry_cfname.parentElement.style.opacity = 0.3;
+          swymRegistry_clname.disabled = true;
+          swymRegistry_clname.parentElement.style.opacity = 0.3;
+          swymRegistry_cemail.disabled = true;
+          swymRegistry_cemail.parentElement.style.opacity = 0.3;
+        }
+      } catch (error) {
+        console.log("Error in changing CoRegistrant Fields", error);
+      }
+    }
+
+    function swymRegistry_passwordCheckboxEnable(obj) {
+      try {
+        const swymRegistry_password = document.getElementById("swym-registry-form-page-registry-password");
+        if (obj.checked) {
+          swymRegistry_password.disabled = false;
+          swymRegistry_password.required = true;
+          swymRegistry_password.parentElement.style.opacity = 1;
+        } else {
+          swymRegistry_password.disabled = true;
+          swymRegistry_password.parentElement.style.opacity = 0.3;
+        }
+      } catch (error) {
+        console.log("Error in changing Password Feild", error);
+      }
+    }
+    swymRegistry_getEventTypes().then((response) => response.json()).then((data) => {
+        if (data.eventTypes.length) {
+          try {
+            var swymRegistryEventSelector = document.getElementById("swym-registry-form-page-occasion-selector");
+            data.eventTypes.forEach(event => {
+              var option = document.createElement("option");
+              option.text = `${event}`;
+              swymRegistryEventSelector.add(option);
+            })
+          } catch (error) {
+            console.error("Error in showing list of events for user: ", error);
+            return "failed";
+          }
+        }
+      }).catch(error => {
+        _LTracker.push({
+            'ErrorLocation': 'Get all event types API Call - Form Template - Customize Mode',
+            'ErrorInfo': {
+              "error": {
+                "msg": error.message,
+                "Reference_stack": error.stack
+              }
+            },
+            'MerchantInfo': {
+              'shop': Shopify.shop,
+              'themeId': Shopify.theme.id,
+              'themeName': Shopify.theme.name,
+              'userAgent': navigator.userAgent
+            }
+          }); 
+      });
+    const swymRegistry_coRegistrantCheckboxScript = document.getElementById("swym-registry-form-page-registry-coregistrant-checkbox");
+    const swymRegistry_passwordCheckboxScript = document.getElementById("swym-registry-form-page-registry-password-checkbox");
+    swymRegistry_coRegistrantCheckboxScript.addEventListener('change', function() {
+      swymRegistry_coRegistrantCheckboxEnable(this);
+    });
+    swymRegistry_passwordCheckboxScript.addEventListener('change', function() {
+      swymRegistry_passwordCheckboxEnable(this)
+    });
+    const themeId = (Shopify.theme.id).toString();
+    const shopDomain = Shopify.shop;
+    var swymRegistry_styles_payload = JSON.stringify({
+      "themeId": themeId,
+      "shopDomain": shopDomain,
+      "type": "styles",
+      "globalConfig": {
+        "color": {
+          "swym_registry_page_header_color": "{{ settings.swym_registry_page_header_color }}",
+          "swym_registry_page_header_background_color": "{{ settings.swym_registry_page_header_background_color }}",
+          "swym_registry_page_content_color": "{{ settings.swym_registry_page_content_color }}",
+          "swym_registry_page_content_background_color": "{{ settings.swym_registry_page_content_background_color }}",
+          "swym_registry_btn_background_color": "{{ settings.swym_registry_btn_background_color }}",
+          "swym_registry_btn_text_color": "{{ settings.swym_registry_btn_text_color }}"
+        },
+        "fontFamily": "{{ settings.swym_registry_page_font_family }}",
+        "fontSize": {
+          "swym_registry_font_very_small": "{{ settings.swym_registry_font_very_small }}",
+          "swym_registry_font_small": "{{ settings.swym_registry_font_small }}",
+          "swym_registry_font_regular": "{{ settings.swym_registry_font_regular }}",
+          "swym_registry_font_large": "{{ settings.swym_registry_font_large }}",
+          "swym_registry_font_very_large": "{{ settings.swym_registry_font_very_large }}",
+          "swym_registry_font_sub_title": "{{ settings.swym_registry_font_sub_title }}",
+          "swym_registry_font_main_title": "{{ settings.swym_registry_font_main_title }}",
+          "swym_registry_font_btn": "{{ settings.swym_registry_font_btn }}"
+        },
+        "titleAllign": "center",
+        "cssClasses": {
+          "buttonClass": "{{ settings.swym_registry_custom_btn_class }}",
+          "labelClass": "{{ settings.swym_registry_custom_label_class }}",
+          "titleClass": "{{ settings.swym_registry_custom_title_class }}",
+          "paraClass": "{{ settings.swym_registry_custom_para_class }}",
+          "sectionClass": "{{ settings.swym_registry_custom_section_class }}"
+        }
+      }
+    });
+    var swymRegistry_strings_payload = JSON.stringify({
+      "themeId": themeId,
+      "shopDomain": shopDomain,
+      "type": "strings",
+      "globalConfig": {
+        "swym_registry_form_create_title_text": "{{ settings.swym_registry_form_create_title_text }}",
+        "swym_registry_form_update_title_text": "{{ settings.swym_registry_form_update_title_text }}",
+        "swym_registry_create_btn_text": "{{ settings.swym_registry_create_btn_text }}",
+        "swym_registry_update_btn_text": "{{ settings.swym_registry_update_btn_text }}",
+        "swym_registry_event_type_label": "{{ settings.swym_registry_event_type_label }}",
+        "swym_registry_event_date_label": "{{ settings.swym_registry_event_date_label }}",
+        "swym_registry_maximum_character_label": "{{ settings.swym_registry_maximum_character_label }}",
+        "swym_registry_reg_name_label": "{{ settings.swym_registry_reg_name_label }}",
+        "swym_registry_registrant_fname_label": "{{ settings.swym_registry_registrant_fname_label }}",
+        "swym_registry_registrant_lname_label": "{{ settings.swym_registry_registrant_lname_label }}",
+        "swym_registry_coregistrant_fname_label": "{{ settings.swym_registry_coregistrant_fname_label }}",	
+        "swym_registry_coregistrant_lname_label": "{{ settings.swym_registry_coregistrant_lname_label }}",
+        "swym_registry_description_label": "{{ settings.swym_registry_description_label }}",
+        "swym_registry_registrant_address_label": "{{ settings.swym_registry_registrant_address_label }}",
+        "swym_registry_registrant_street_address_label": "{{ settings.swym_registry_registrant_street_address_label }}",
+        "swym_registry_registrant_zipcode_label": "{{ settings.swym_registry_registrant_zipcode_label }}",
+        "swym_registry_registrant_city_label": "{{ settings.swym_registry_registrant_city_label }}",
+        "swym_registry_registrant_state_label": "{{ settings.swym_registry_registrant_state_label }}",
+        "swym_registry_registrant_country_label": "{{ settings.swym_registry_registrant_country_label }}",
+        "swym_registry_coregistrant_address_label": "{{ settings.swym_registry_coregistrant_address_label }}",
+        "swym_registry_list_home_label": "{{ settings.swym_registry_list_home_label }}",
+        "swym_registry_email_label": "{{settings.swym_registry_email_label}}",
+        "swym_registry_coregistrant_checkbox": "{{ settings.swym_registry_coregistrant_checkbox }}",
+        "swym_registry_protect_registry_label": "{{ settings.swym_registry_protect_registry_label }}",
+        "swym_registry_password_title": "{{settings.swym_registry_password_title}}",
+        "swym_registry_password_label": "{{settings.swym_registry_password_label}}",
+        "swym_registry_update_btn_text": "{{settings.swym_registry_update_btn_text}}",
+        "swym_registry_create_btn_text": "{{ settings.swym_registry_create_btn_text}}"
+      }
+    });
+    function swymRegistry_stylesApi(swymRegistry_styles_payload) {
+      swymRegistry_uploadConfig(swymRegistry_styles_payload);
+    }
+
+    function swymRegistry_stringsApi(swymRegistry_strings_payload) {
+      swymRegistry_uploadConfig(swymRegistry_strings_payload);
+    }
+
+    swymRegistry_stylesApi(swymRegistry_styles_payload);
+    swymRegistry_stringsApi(swymRegistry_strings_payload);
+  }
+  </script>
+{% else %}
+  {% if customer %}
+    <section class="{{ settings.swym_registry_custom_section_class }} swym-registry-wrapper">
+      <section class="{{ settings.swym_registry_custom_section_class }} swym-registry-form-page-header">
+        <div class="swym-registry-form-page-header-title-parent">
+          <h1 class="{{ settings.swym_registry_custom_title_class }} swym-registry-form-page-header-title swym-registry-font-title">
+            <span id="swym-registry-form-page-title-create" style="display:none;">{{ settings.swym_registry_form_create_title_text }}</span>
+            <span id="swym-registry-form-page-title-update" style="display:none;">{{ settings.swym_registry_form_update_title_text }}</span>
+          </h1>
+          <ul class="swym-registry-form-page-header-info-parent swym-registry-font-small">
+            <li class="swym-registry-form-page-header-info-name">{{ customer.first_name }} {{ customer.last_name }}</li>
+            <li class="swym-registry-form-page-header-info-divider">|</li>
+            <li class="swym-registry-form-page-header-info-email">{{ customer.email }}</li>
+          </ul>
+          <div class="swym-registry-form-page-header-info-bar">
+            <a href="/pages/swym-registry-manage" id="swym-registry-back-to-registry" class="{{ settings.swym_registry_custom_link_class }} swym-registry-form-page-occasion-flex swym-registry-font-regular">
+              <i class="swymRegistry-arrow swymRegistry-left"></i>
+              <span>{{ settings.swym_registry_list_home_label }}</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="{{ settings.swym_registry_custom_section_class }} swym-registry-form-page-form-section">
+        <div class="swym-registry-form-page-form-parent">
+          <form class="swym-registry-form-page-form">
+            <div class="swym-registry-form-page-form-fields-background">
+              <div class="swym-registry-form-page-form-fields-flex">
+              <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-1" id="swym-registry-event-types">
+              <span class="swym-registry-font-very-small swym-registry-form-page-form-label">{{ settings.swym_registry_event_type_label }}</span>
+                  <div class="swym-registry-form-select_box">
+                    <select
+                      name="occasion"
+                      id="swym-registry-form-page-occasion-selector"
+                class="swym-registry-font-small">
+              </select>
+                    <svg
+                      class="swym-registry-eventtypes-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="15"
+                      height="10"
+                      viewBox="0 0 15 10"
+                fill="none">
+                      <path
+                        d="M1 1L7.4263 8.22958L13.8526 1"
+                        stroke="{{ settings.swym_registry_page_content_color }}"
+                        stroke-width="2" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-2">
+                  <label for="registry-date" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_event_date_label }}</label>
+                  <input
+                    type="date"
+                    id="swym-registry-form-page-registry-date"
+                    name="swym-registry-form-registry-date"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    onfocus="(this.type='date')"
+                    required>
+                </div>
+              </div>
+            </div>
+            <div class="swym-registry-form-page-form-fields-background">
+              <div class="swym-registry-form-page-form-fields-flex">
+                <div class="swym-registry-form-page-field-parent">
+                  <label for="registry-name" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_reg_name_label }}</label>
+                  <input
+                    type="text"
+                    id="swym-registry-form-page-registry-name"
+                    name="swym-registry-form-registry-name"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    required>
+                </div>
+              </div>
+            </div>
+            <div class="swym-registry-form-page-form-fields-background">
+              <div class="swym-registry-form-page-form-fields-flex">
+                <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-1">
+                  <label for="registry-fname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_fname_label }}</label>
+                  <input
+                    type="text"
+                    id="swym-registry-form-page-registry-fname"
+                    name="swym-registry-form-registry-fname"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    value="{{ customer.first_name }}"
+                    required>
+                </div>
+                <div class="swym-registry-form-page-field-parent swym-registry-form-page-field-section-2-2">
+                  <label for="registry-lname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_lname_label }}</label>
+                  <input
+                    type="text"
+                    id="swym-registry-form-page-registry-lname"
+                    name="swym-registry-form-registry-lname"
+                    class="swym-registry-form-page-form-input swym-registry-font-small"
+                    value="{{ customer.last_name }}"
+                    required>
+                </div>
+              </div>
+            </div>
+            <div class="swym-registry-form-page-form-fields-background swym-registry-mar-bot-3rem">
+              <div class="swym-registry-form-page-field-parent">
+                <label for="registry-description" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_description_label }}</label>
+                <textarea
+                  type="text"
+                  id="swym-registry-form-page-registry-description"
+                  name="swym-registry-form-registry-description"
+                  class="swym-registry-form-page-form-input  swym-registry-font-small"
+                  maxlength="300"
+                ></textarea>
+              </div>
+              <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-font-small">{{ settings.swym_registry_maximum_character_label }}</p>
+            </div>
+            <div class="swym-registry-form-page-form-fields-background">
+              <div class="swym-registry-form-page-form-sections-flex">
+                <div class="swym-registry-form-page-form-section-1">
+                  <h4 class="swym-registry-font-large">{{ settings.swym_registry_registrant_address_label }}</h4>
+                  <div class="swym-registry-form-page-field-parent">
+                    <label for="address" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_street_address_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-address"
+                      name="address"
+                      value="{{customer.default_address.address1}}"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      required>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent">
+                    <label for="zipcode" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_zipcode_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-zipcode"
+                      name="zipcode"
+                      value="{{customer.default_address.zip}}"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      required>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent">
+                    <label for="city" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_city_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-city"
+                      name="city"
+                      value="{{customer.default_address.city}}"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      required>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent">
+                    <label for="state" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_state_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-state"
+                      name="State"
+                      value="{{customer.default_address.province}}"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      required>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent">
+                    <label for="country" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_country_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-country"
+                      name="country"
+                      value="{{customer.addresses[0].country}}"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      required>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent">
+                    <label for="phone" class="swym-registry-custom-label-class swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_registrant_phone_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-phone"
+                      name="phone"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      pattern="\+?[0-9]{1,4}[\-. ]?(\([0-9]{1,3}\))?[\-. ]?[0-9]{1,5}[\-. ]?[0-9]{1,5}[\-. ]?[0-9]{1,9}"
+                      minlength="7" 
+                      maxlength="18"
+                      value="{{ customer.default_address.phone }}"
+                      placeholder="{{ settings.swym_registry_registrant_phone_example_label }}"
+                    />
+                  </div>
+                </div>
+                <div class="swym-registry-form-page-form-section-2">
+                  <h4 class="swym-registry-font-large">{{ settings.swym_registry_coregistrant_address_label }}</h4>
+                  <div class="swym-registry-checkfield-parent">
+                    <input
+                      id="swym-registry-form-page-registry-coregistrant-checkbox"
+                      name="coregistrant"
+                      type="checkbox">
+                    <label class="{{ settings.swym_registry_custom_label_class }} swym-registry-font-small">{{ settings.swym_registry_coregistrant_checkbox }}</label>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable">
+                    <label for="coregistrant-firstname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_coregistrant_fname_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-form-page-registry-coregistrant-name"
+                      name="swym-registry-form-registry-coregistrant-fname"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      disabled>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable">
+                    <label for="coregistrant-lastname" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_coregistrant_lname_label }}</label>
+                    <input
+                      type="text"
+                      id="swym-registry-form-page-registry-coregistrant-lastname"
+                      name="swym-registry-form-registry-coregistrant-lname"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      disabled>
+                  </div>
+                  <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable">
+                    <label for="coregistrant-email" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">Email</label>
+                    <input
+                      type="email"
+                      id="swym-registry-form-page-registry-coregistrant-email"
+                      name="swym-registry-form-registry-coregistrant-email"
+                      class="swym-registry-form-page-form-input swym-registry-font-small"
+                      disabled>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swym-registry-form-page-form-fields-background">
+              <h4 class="swym-registry-font-large">{{ settings.swym_registry_password_title }}</h4>
+              <div class="swym-registry-checkfield-parent">
+                <input
+                  id="swym-registry-form-page-registry-password-checkbox"
+                  name="swym-registry-form-registry-password-checkbox"
+                  type="checkbox">
+                <label class="{{ settings.swym_registry_custom_label_class }} swym-registry-font-small">{{ settings.swym_registry_protect_registry_label }}</label>
+              </div>
+              <div class="swym-registry-form-page-field-parent swym-registry-form-field-disable" >
+                <label for="registry-password" class="{{ settings.swym_registry_custom_label_class }} swym-registry-form-page-form-label swym-registry-font-very-small">{{ settings.swym_registry_password_label }}</label>
+                <input
+                  type="text"
+                  id="swym-registry-form-page-registry-password"
+                  name="swym-registry-form-registry-password"
+                  class="swym-registry-form-page-form-input swym-registry-font-small"
+                  disabled>
+              </div>
+              <p class="{{ settings.swym_registry_custom_para_class }} swym-registry-font-small">{{ swym_registry_password_agreement_checkbox }}</p>
+            </div>
+            <div class="swym-registry-form-page-form-action-button">
+              <button
+                class="{{ settings.swym_registry_custom_btn_class }}"
+                id="swym-registry-form-page-registry-btn"
+                type="submit">
+                <span id="swym-registry-form-page-btn-create" style="display:none;">{{ settings.swym_registry_create_btn_text }}</span>
+                <span id="swym-registry-form-page-btn-update" style="display:none;">{{ settings.swym_registry_update_btn_text }}</span>
+                <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+                  <div class="swym-registry-snippet" data-title=".dot-collision">
+                    <div class="swym-registry-stage">
+                      <div class="swym-registry-dot-collision"></div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </section>
+  {% else %}
+    <script>
+    function swymCheckShopifyPageExists(url) {
+      return fetch(url, { method: 'HEAD' })
+        .then(response => response.ok)
+        .catch(() => false);
+    }
+    const swymPageUrl = `${window.location.origin}/pages/swym-registry-home`;
+    swymCheckShopifyPageExists(swymPageUrl)
+      .then(exists => {
+        if (exists) {
+          const swymLocationHref = location.href;
+          window.location = '/pages/swym-registry-home?mode=signup&swym_login=true&return_url=' + encodeURIComponent(swymLocationHref);
+        } else {
+          window.location = '/account/login?return_url=' + encodeURIComponent(location.href);
+        }
+      });
+    </script>
+  {% endif %}
+{% endif %}
+
+<!-- Javascript Starts here -->
+<script>
+  window.swymRegistryCustomer = {
+    "customerId": "{{ customer.id }}",
+    "email": "{{ customer.email }}",
+    "firstName": "{{ customer.first_name }}",
+    "lastName": "{{ customer.last_name }}",
+    "phone": "{{ customer.phone }}",
+    "acceptsMarketing": "{{ customer.accepts_marketing }}"
+  }
+</script>
+<script>
+  const swymRegistry_coRegistrantCheckbox = document.getElementById("swym-registry-form-page-registry-coregistrant-checkbox");
+  const swymRegistry_passwordCheckbox = document.getElementById("swym-registry-form-page-registry-password-checkbox");
+  const swymRegistry_formActionBtn = document.getElementById("swym-registry-form-page-registry-btn");
+  const swymRegistry_form = document.getElementsByClassName("swym-registry-form-page-form")[0];
+  const swymRegistry_createTitle = document.getElementById("swym-registry-form-page-title-create");
+  const swymRegistry_updateTitle = document.getElementById("swym-registry-form-page-title-update");
+  const swymRegistry_createBtn = document.getElementById("swym-registry-form-page-btn-create");
+  const swymRegistry_updateBtn = document.getElementById("swym-registry-form-page-btn-update");
+  const swymRegistry_creatorFname = document.getElementById("swym-registry-form-page-registry-fname");
+  const swymRegistry_creatorLname = document.getElementById("swym-registry-form-page-registry-lname");
+  const swymRegistry_creatorEmail = swymRegistryCustomer.email;
+
+  function swymRegistry_coRegistrantCheckboxEnable(obj) {
+    try {
+      const swymRegistry_cfname = document.getElementById("swym-registry-form-page-registry-coregistrant-name");
+      const swymRegistry_clname = document.getElementById("swym-registry-form-page-registry-coregistrant-lastname");
+      const swymRegistry_cemail = document.getElementById("swym-registry-form-page-registry-coregistrant-email");
+      if (obj.checked) {
+        swymRegistry_cfname.disabled = false;
+        swymRegistry_cfname.parentElement.style.opacity = 1;
+        swymRegistry_clname.disabled = false;
+        swymRegistry_clname.parentElement.style.opacity = 1;
+        swymRegistry_cemail.disabled = false;
+        swymRegistry_cemail.parentElement.style.opacity = 1;
+      } else {
+        swymRegistry_cfname.disabled = true;
+        swymRegistry_cfname.parentElement.style.opacity = 0.3;
+        swymRegistry_clname.disabled = true;
+        swymRegistry_clname.parentElement.style.opacity = 0.3;
+        swymRegistry_cemail.disabled = true;
+        swymRegistry_cemail.parentElement.style.opacity = 0.3;
+      }
+    } catch (error) {
+      console.log("Error in changing CoRegistrant Feilds", error);
+    }
+  }
+
+  function swymRegistry_passwordCheckboxEnable(obj) {
+    try {
+      const swymRegistry_password = document.getElementById("swym-registry-form-page-registry-password");
+      if (obj.checked) {
+        swymRegistry_password.disabled = false;
+        swymRegistry_password.required = true;
+        swymRegistry_password.parentElement.style.opacity = 1;
+      } else {
+        swymRegistry_password.disabled = true;
+        swymRegistry_password.parentElement.style.opacity = 0.3;
+      }
+    } catch (error) {
+      console.log("Error in changing Password Feild", error);
+    }
+  }
+  function swymRegistry_SanitizeInput(userInput,swymRegistry_authData, propertyName){
+    const sanitizedUserInput = DOMPurify.sanitize(userInput,{ALLOWED_TAGS: []});
+    if(sanitizedUserInput !== userInput){
+      _LTracker.push({
+        'eventInfo': `Sanitized ${propertyName} from ${userInput} to ${sanitizedUserInput}`,
+        'tag': ['event', 'sanitizeEvent'],
+        'MerchantInfo': {
+          'pid': swymRegistry_authData.swym_registry.pid,
+          'shop': Shopify.shop,
+          'themeId': Shopify.theme.id,
+          'themeName': Shopify.theme.name
+        },
+        'CustomerInfo': {
+          'customerId': swymRegistryCustomer.customerId,
+          'customerEmail': swymRegistryCustomer.email,
+          'userAgent': navigator.userAgent
+        }
+      });
+    }
+    return sanitizedUserInput;
+  }
+  const swymRegistry_coRegistrantCheckboxScript = document.getElementById("swym-registry-form-page-registry-coregistrant-checkbox");
+  const swymRegistry_passwordCheckboxScript = document.getElementById("swym-registry-form-page-registry-password-checkbox");
+  const swymRegistry_backToRegistry = document.querySelector("#swym-registry-back-to-registry");
+  swymRegistry_coRegistrantCheckboxScript.addEventListener('change', function() {
+    swymRegistry_coRegistrantCheckboxEnable(this);
+  });
+  swymRegistry_passwordCheckboxScript.addEventListener('change', function() {
+    swymRegistry_passwordCheckboxEnable(this)
+  });
+  if(swymRegistry_backToRegistry){
+    swymRegistry_backToRegistry.addEventListener("click",(event) => {
+      Shopify.analytics.publish("swym_registry_form_view",{"eventAction": "Back to registry button clicked","customerInfo":{
+        "name"  : "{{ customer.name }}",
+        "email" : "{{ customer.email }}",
+        "id"    : "{{ customer.id }}"
+      }});
+    });
+  }
+  
+  async function swymRegistryAddOnloadEventHandler() {
+    if (!Shopify.designMode) {
+      const swymRegistry_lsName = "swymKeys";
+      var swymRegistry_lsInit = JSON.parse(localStorage.getItem(swymRegistry_lsName));
+      const swymRegistry_authData = await swymRegistry_refreshAuth(swymRegistryCustomer, swymRegistry_lsInit);
+      const token = swymRegistry_authData.swym_registry.jwt.token;
+      const swymRegistry_url = window.location.search;
+      const swymRegistry_urlParams = new URLSearchParams(swymRegistry_url);
+      const swymRegistry_mode = swymRegistry_urlParams.has("mode")
+        ? swymRegistry_urlParams.get("mode")
+        : "";
+      const swymRegistry_registryId = swymRegistry_urlParams.has("registryId")
+        ? swymRegistry_urlParams.get("registryId")
+        : "";
+      const swymRegistry_pageWrapper = document.getElementsByClassName("swym-registry-wrapper")[0];
+      const swymRegistry_registryNameInput = document.getElementById("swym-registry-form-page-registry-name");
+      let swymRegistry_SelectedOccasion = "";
+      swymRegistry_getEventTypes().then((response) => response.json()).then((data) => {
+        if (data.eventTypes.length) {
+          try {
+            var swymRegistryEventSelector = document.getElementById("swym-registry-form-page-occasion-selector");
+            data.eventTypes.forEach(event => {
+              var option = document.createElement("option");
+              option.text = `${event}`;
+              swymRegistryEventSelector.add(option);
+            })
+            if(swymRegistry_SelectedOccasion!==""){
+              swymRegistryEventSelector.value = swymRegistry_SelectedOccasion;
+            }
+          } catch (error) {
+            console.error("Error in showing list of events for user: ", error);
+            return "failed";
+          }
+        }
+      }).catch(error => {
+        _LTracker.push({
+          'ErrorLocation': 'Get all event types API call - Form Template',
+          'ErrorInfo': {
+            "error": {
+              "msg": error.message,
+              "Reference_stack": error.stack
+            }
+          },
+          'MerchantInfo': {
+            'pid': swymRegistry_authData.swym_registry.pid,
+            'shop': Shopify.shop,
+            'themeId': Shopify.theme.id,
+            'themeName': Shopify.theme.name
+          },
+          'CustomerInfo': {
+            'customerId': swymRegistry_authData.swym_registry.customerId,
+            'customerEmail': swymRegistryCustomer.email,
+            'userAgent': navigator.userAgent
+          }
+        }); 
+      });
+
+      if (swymRegistry_mode == "create") {
+        swymRegistry_createTitle.style.display = "block";
+        swymRegistry_createBtn.style.display = "block";
+        swymRegistry_pageWrapper.style.visibility = "visible";
+      }
+
+      if (swymRegistry_mode == "update") {
+        swymRegistry_updateTitle.style.display = "block";
+        swymRegistry_updateBtn.style.display = "block";
+
+        // Get data by API call and update
+        swymRegistry_getRegistryByIdEmail(swymRegistry_creatorEmail, swymRegistry_registryId, token).then((response) => response.json()).then((data) => {
+          swymRegistry_pageWrapper.style.visibility = "visible";
+
+          document.getElementById("swym-registry-form-page-registry-name").value = data.registryName;
+          document.getElementById("swym-registry-form-page-registry-date").value = data.expiryDate;
+          document.getElementById("swym-registry-form-page-registry-description").value = data.description;
+          document.getElementById("swym-registry-address").value = data.address.address1;
+          document.getElementById("swym-registry-zipcode").value = data.address.zip;
+          document.getElementById("swym-registry-city").value = data.address.city;
+          document.getElementById("swym-registry-state").value = data.address.province;
+          document.getElementById("swym-registry-country").value = data.address.country;
+          document.getElementById("swym-registry-form-page-occasion-selector").value = data.occasion;
+          swymRegistry_SelectedOccasion = data.occasion;
+          swymRegistry_creatorFname.value = data.creatorName.split(" ")[0];
+          swymRegistry_creatorLname.value = data.creatorName.split(" ")[1];
+          if(document.getElementById("swym-registry-firstName") && data?.address?.firstName ) {
+            document.getElementById("swym-registry-firstName").value = data?.address?.firstName;
+          }
+          if(document.getElementById("swym-registry-lastName") && data?.address?.lastName) {
+            document.getElementById("swym-registry-lastName").value = data?.address?.lastName;
+          }
+          if(document.getElementById("swym-registry-phone") && data?.address?.phone) {
+            document.getElementById("swym-registry-phone").value = data?.address?.phone;
+          }
+          if(document.getElementById("swym-registry-street") && data?.address?.street) {
+            document.getElementById("swym-registry-street").value = data?.address?.street;
+          }
+          if(document.getElementById("swym-registry-company") && data?.address?.company) {
+            document.getElementById("swym-registry-company").value = data?.address?.company;
+          }
+
+          if (data.coCreatorName != " ") {
+            document.getElementById('swym-registry-form-page-registry-coregistrant-name').value = data.coCreatorName.split(" ")[0];
+            document.getElementById('swym-registry-form-page-registry-coregistrant-lastname').value = data.coCreatorName.split(" ")[1];
+            document.getElementById('swym-registry-form-page-registry-coregistrant-email').value = data.customProps[0].coCreatorEmail;
+            swymRegistry_coRegistrantCheckbox.checked = true;
+            swymRegistry_coRegistrantCheckboxEnable(swymRegistry_coRegistrantCheckbox);
+          }
+
+          if (data.password) {
+            document.getElementById("swym-registry-form-page-registry-password").value = data.password;
+            swymRegistry_passwordCheckbox.checked = data.settings.isPasswordProtected;
+            swymRegistry_passwordCheckboxEnable(swymRegistry_passwordCheckbox);
+          }
+        }).catch(error => {
+          _LTracker.push({
+              'ErrorLocation': 'Get registry by id and email API call - Form Template',
+              'ErrorInfo': {
+                "error": {
+                  "msg": error.message,
+                  "Reference_stack": error.stack
+                }
+              },
+              'MerchantInfo': {
+                'pid': swymRegistry_authData.swym_registry.pid,
+                'shop': Shopify.shop,
+                'themeId': Shopify.theme.id,
+                'themeName': Shopify.theme.name
+              },
+              'CustomerInfo': {
+                'registryId': swymRegistry_registryId,
+                'customerId': swymRegistry_authData.swym_registry.customerId,
+                'customerEmail': swymRegistryCustomer.email,
+                'userAgent': navigator.userAgent
+              }
+            }); 
+        });
+      }
+
+      window.swymRegistry_formActionFunction = function (e) {
+        e.preventDefault();
+        swymRegistry_form.reportValidity();
+        try {
+          if (swymRegistry_mode == "create" && swymRegistry_form.checkValidity()) {
+            _LTracker.push({
+              'eventInfo': 'Create Registry Button Clicked - Form',
+              'tag': 'event'
+            });
+            Shopify.analytics.publish("swym_registry_form_view",{"eventAction": "Create Registry button clicked","customerInfo":{
+              "name"  : "{{ customer.name }}",
+              "email" : "{{ customer.email }}",
+              "id"    : "{{ customer.id }}"
+            }});
+            
+            const swymButtonLoader = document.querySelector('.swym-registry-btn-dot-collision');
+            const btnText = document.querySelector("#swym-registry-form-page-btn-create");
+            swymButtonLoader.style.display = 'block';
+            btnText.style.visibility = 'hidden';
+            const swymRegistry_regname = document.getElementById("swym-registry-form-page-registry-name").value;
+            const swymRegistry_eventDate = document.getElementById("swym-registry-form-page-registry-date").value;
+            const swymRegistry_description = document.getElementById("swym-registry-form-page-registry-description").value;
+            const swymRegistry_address = document.getElementById("swym-registry-address").value;
+            const swymRegistry_zipcode = document.getElementById("swym-registry-zipcode").value;
+            const swymRegistry_city = document.getElementById("swym-registry-city").value;
+            const swymRegistry_state = document.getElementById("swym-registry-state").value;
+            const swymRegistry_country = document.getElementById("swym-registry-country").value;
+            const swymRegistry_address2 = document.getElementById("swym-registry-address2")?.value;
+            const swymRegistry_phone = document.getElementById("swym-registry-phone")?.value;
+            const swymRegistry_firstName = document.getElementById("swym-registry-firstName")?.value;
+            const swymRegistry_lastName = document.getElementById("swym-registry-lastName")?.value;
+            const swymRegistry_company = document.getElementById("swym-registry-company")?.value;
+            const swymRegistry_street = document.getElementById("swym-registry-street")?.value;
+            const swymRegistry_summary = document.getElementById("swym-registry-summary")?.value;
+            const swymRegistry_coCreatorFname = document.getElementById('swym-registry-form-page-registry-coregistrant-name').value;
+            const swymRegistry_coCreatorLname = document.getElementById('swym-registry-form-page-registry-coregistrant-lastname').value;
+            const swymRegistry_coCreatorEmail = document.getElementById('swym-registry-form-page-registry-coregistrant-email').value;
+            const swymRegistry_passwordCheckbox = document.getElementById("swym-registry-form-page-registry-password-checkbox");
+            const swymRegistry_password = document.getElementById("swym-registry-form-page-registry-password").value;
+            const swymRegistry_occasion = document.getElementById("swym-registry-form-page-occasion-selector").value;
+
+            let swymRegistry_isProtected = false;
+            if (swymRegistry_passwordCheckbox.checked && swymRegistry_password) {
+              swymRegistry_isProtected = true;
+            }
+
+            let swymRegistry_payload = {
+              "registryName": swymRegistry_SanitizeInput(swymRegistry_regname,swymRegistry_authData,"registryName"),
+              "creatorName": swymRegistry_SanitizeInput(swymRegistry_creatorFname.value + " " + swymRegistry_creatorLname.value,swymRegistry_authData,"creatorName"),
+              "coCreatorName": swymRegistry_SanitizeInput(swymRegistry_coCreatorFname + " " + swymRegistry_coCreatorLname,swymRegistry_authData,"coCreatorName"),
+              "email": swymRegistry_SanitizeInput(swymRegistry_creatorEmail,swymRegistry_authData,"email"),
+              "description": swymRegistry_SanitizeInput(swymRegistry_description,swymRegistry_authData,"description"),
+              "expiryDate": swymRegistry_eventDate,
+              "settings": {
+                "isPasswordProtected": swymRegistry_isProtected
+              },
+              "customProps": [
+                {
+                  coCreatorEmail: swymRegistry_SanitizeInput(swymRegistry_coCreatorEmail,swymRegistry_authData,"coCreatorEmail")
+                }
+              ],
+              "mode": "public",
+              "address": {
+                "firstName": swymRegistry_firstName ? swymRegistry_SanitizeInput(swymRegistry_firstName,swymRegistry_authData,"address firstName") : swymRegistry_SanitizeInput(swymRegistry_creatorFname.value,swymRegistry_authData,"address firstName"),
+                "lastName": swymRegistry_lastName ? swymRegistry_SanitizeInput(swymRegistry_lastName,swymRegistry_authData,"address lastName") : swymRegistry_SanitizeInput(swymRegistry_creatorLname.value,swymRegistry_authData,"address lastName"),
+                "address1": swymRegistry_SanitizeInput(swymRegistry_address,swymRegistry_authData,"address address1"),
+                "city": swymRegistry_SanitizeInput(swymRegistry_city,swymRegistry_authData,"address city"),
+                "province": swymRegistry_SanitizeInput(swymRegistry_state,swymRegistry_authData,"address province"),
+                "zip": swymRegistry_SanitizeInput(swymRegistry_zipcode,swymRegistry_authData,"address zip"),
+                "country": swymRegistry_SanitizeInput(swymRegistry_country,swymRegistry_authData,"address country"),
+                "address2": swymRegistry_SanitizeInput(swymRegistry_address2,swymRegistry_authData,"address address2"),
+                "phone": swymRegistry_SanitizeInput(swymRegistry_phone,swymRegistry_authData,"address phone"),
+                "company": swymRegistry_SanitizeInput(swymRegistry_company,swymRegistry_authData,"address company"),
+                "street": swymRegistry_SanitizeInput(swymRegistry_street,swymRegistry_authData,"address street")
+              },
+              "occasion": swymRegistry_SanitizeInput(swymRegistry_occasion,swymRegistry_authData,"occasion")
+            }
+            if (swymRegistry_password) {
+              swymRegistry_payload.password = swymRegistry_password;
+            }
+
+
+            swymRegistry_createRegistry(token, swymRegistry_payload).then(response => response.json()).then(response => {
+              window.location = `/pages/swym-registry-owner?registryId=${
+                response.Id
+              }`;
+              swymButtonLoader.style.display = 'none';
+              btnText.style.visibility = 'initial';
+            }).catch(error => {
+              _LTracker.push({
+                  'ErrorLocation': 'Create registry API call - Form Template',
+                  'ErrorInfo': {
+                    "error": {
+                      "msg": error.message,
+                      "Reference_stack": error.stack
+                    }
+                  },
+                  'MerchantInfo': {
+                    'pid': swymRegistry_authData.swym_registry.pid,
+                    'shop': Shopify.shop,
+                    'themeId': Shopify.theme.id,
+                    'themeName': Shopify.theme.name
+                  },
+                  'CustomerInfo': {
+                    'customerId': swymRegistry_authData.swym_registry.customerId,
+                    'customerEmail': swymRegistryCustomer.email,
+                    'userAgent': navigator.userAgent
+                  }
+                }); 
+              console.log("Error in Creating Registry API", error);
+            })
+          }
+        } catch (error) {
+          console.log("Error in Create JS calls", error);
+        }
+
+        try {
+          if (swymRegistry_mode == "update" && swymRegistry_form.checkValidity()) {
+            _LTracker.push({
+              'eventInfo': 'Update Registry Button Clicked - Form',
+              'tag': 'event'
+            });
+            Shopify.analytics.publish("swym_registry_form_view",{"eventAction": "Update Registry button clicked","customerInfo":{
+              "name"  : "{{ customer.name }}",
+              "email" : "{{ customer.email }}",
+              "id"    : "{{ customer.id }}"
+            }});
+            const swymButtonLoader = document.querySelector('.swym-registry-btn-dot-collision');
+            const btnText = document.querySelector("#swym-registry-form-page-btn-update");
+            swymButtonLoader.style.display = 'block';
+            btnText.style.visibility = 'hidden';
+            const swymRegistry_regname = document.getElementById("swym-registry-form-page-registry-name").value;
+            const swymRegistry_eventDate = document.getElementById("swym-registry-form-page-registry-date").value;
+            const swymRegistry_description = document.getElementById("swym-registry-form-page-registry-description").value;
+            const swymRegistry_address = document.getElementById("swym-registry-address").value;
+            const swymRegistry_zipcode = document.getElementById("swym-registry-zipcode").value;
+            const swymRegistry_city = document.getElementById("swym-registry-city").value;
+            const swymRegistry_state = document.getElementById("swym-registry-state").value;
+            const swymRegistry_country = document.getElementById('swym-registry-country').value;
+            const swymRegistry_address2 = document.getElementById("swym-registry-address2")?.value;
+            const swymRegistry_phone = document.getElementById("swym-registry-phone")?.value;
+            const swymRegistry_firstName = document.getElementById("swym-registry-firstName")?.value;
+            const swymRegistry_lastName = document.getElementById("swym-registry-lastName")?.value;
+            const swymRegistry_company = document.getElementById("swym-registry-company")?.value;
+            const swymRegistry_street = document.getElementById("swym-registry-street")?.value;
+            const swymRegistry_summary = document.getElementById("swym-registry-summary")?.value;
+            const swymRegistry_coCreatorFname = document.getElementById('swym-registry-form-page-registry-coregistrant-name').value;
+            const swymRegistry_coCreatorLname = document.getElementById('swym-registry-form-page-registry-coregistrant-lastname').value;
+            const swymRegistry_coCreatorEmail = document.getElementById('swym-registry-form-page-registry-coregistrant-email').value;
+            const swymRegistry_passwordCheckbox = document.getElementById("swym-registry-form-page-registry-password-checkbox");
+            const swymRegistry_password = document.getElementById("swym-registry-form-page-registry-password").value;
+            const swymRegistry_occasion = document.getElementById("swym-registry-form-page-occasion-selector").value;
+
+            let swymRegistry_isProtected = false;
+            if (swymRegistry_passwordCheckbox.checked && swymRegistry_password) {
+              swymRegistry_isProtected = true;
+            }
+
+            let swymRegistry_payload = {
+              "registryName": swymRegistry_SanitizeInput(swymRegistry_regname,swymRegistry_authData,"registryName"),
+              "creatorName": swymRegistry_SanitizeInput(swymRegistry_creatorFname.value + " " + swymRegistry_creatorLname.value,swymRegistry_authData,"creatorName"),
+              "coCreatorName": swymRegistry_SanitizeInput(swymRegistry_coCreatorFname + " " + swymRegistry_coCreatorLname,swymRegistry_authData,"coCreatorName"),
+              "description": swymRegistry_SanitizeInput(swymRegistry_description,swymRegistry_authData,"description"),
+              "expiryDate": swymRegistry_eventDate,
+              "settings": {
+                "isPasswordProtected": swymRegistry_isProtected
+              },
+              "customProps": [
+                {
+                  coCreatorEmail: swymRegistry_SanitizeInput(swymRegistry_coCreatorEmail,swymRegistry_authData,"coCreatorEmail")
+                }
+              ],
+              "mode": "public",
+              "address": {
+                "firstName": swymRegistry_firstName ? swymRegistry_SanitizeInput(swymRegistry_firstName,swymRegistry_authData,"address firstName") : swymRegistry_SanitizeInput(swymRegistry_creatorFname.value,swymRegistry_authData,"address firstName"),
+                "lastName": swymRegistry_lastName ? swymRegistry_SanitizeInput(swymRegistry_lastName,swymRegistry_authData,"address lastName") : swymRegistry_SanitizeInput(swymRegistry_creatorLname.value,swymRegistry_authData,"address lastName"),
+                "address1": swymRegistry_SanitizeInput(swymRegistry_address,swymRegistry_authData,"address address1"),
+                "city": swymRegistry_SanitizeInput(swymRegistry_city,swymRegistry_authData,"address city"),
+                "province": swymRegistry_SanitizeInput(swymRegistry_state,swymRegistry_authData,"address province"),
+                "zip": swymRegistry_SanitizeInput(swymRegistry_zipcode,swymRegistry_authData,"address zip"),
+                "country": swymRegistry_SanitizeInput(swymRegistry_country,swymRegistry_authData,"address country"),
+                "address2": swymRegistry_SanitizeInput(swymRegistry_address2,swymRegistry_authData,"address address2"),
+                "phone": swymRegistry_SanitizeInput(swymRegistry_phone,swymRegistry_authData,"address phone"),
+                "company": swymRegistry_SanitizeInput(swymRegistry_company,swymRegistry_authData,"address company"),
+                "street": swymRegistry_SanitizeInput(swymRegistry_street,swymRegistry_authData,"address street")
+              },
+              "occasion": swymRegistry_SanitizeInput(swymRegistry_occasion,swymRegistry_authData,"occasion")
+            }
+            if (swymRegistry_password) {
+              swymRegistry_payload.password = swymRegistry_password;
+            }
+
+
+            swymRegsitry_updateRegistry(swymRegistry_registryId, token, swymRegistry_payload).then(response => response.json()).then(response => {
+              
+              window.location = `/pages/swym-registry-owner?registryId=${swymRegistry_registryId}`;
+              swymButtonLoader.style.display = 'none';
+              btnText.style.visibility = 'initial';
+
+            }).catch(error => {
+              _LTracker.push({
+                  'ErrorLocation': 'Update registry API call - Form Template',
+                  'ErrorInfo': {
+                    "error": {
+                      "msg": error.message,
+                      "Reference_stack": error.stack
+                    }
+                  },
+                  'MerchantInfo': {
+                    'pid': swymRegistry_authData.swym_registry.pid,
+                    'shop': Shopify.shop,
+                    'themeId': Shopify.theme.id,
+                    'themeName': Shopify.theme.name
+                  },
+                  'CustomerInfo': {
+                    'registryId': swymRegistry_registryId,
+                    'customerId': swymRegistry_authData.swym_registry.customerId,
+                    'customerEmail': swymRegistryCustomer.email
+                  }
+                }); 
+              console.log("Error in Updating Registry API", error);
+            })
+          }
+        } catch (error) {
+          console.log("Error in Update JS calls", error);
+        }
+      }
+
+      swymRegistry_formActionBtn.addEventListener("click", swymRegistry_formActionFunction);
+    }
+  };
+  swymRegistryAddOnloadEvent(swymRegistryAddOnloadEventHandler);
+</script>
+{% capture snippet_content %}{% render 'swym-registry-custom-snippet' %}{% endcapture %}
+{% if snippet_content contains "Could not find asset" %}
+    {% comment %} do nothing {% endcomment %}
+{% else %}
+    {% render 'swym-registry-custom-snippet' %}
+{% endif %}

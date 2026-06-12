@@ -1,0 +1,1170 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "custom_css": [
+        "@media (min-width: 1280px) {.breadcrumbs {padding-inline: 5rem; }}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "start",
+        "padding_top": 16,
+        "padding_bottom": 20
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "badges": {
+          "type": "badges",
+          "settings": {
+            "show_soldout_badge": true,
+            "show_sale_badge": true,
+            "sale_badge_type": "percentage"
+          }
+        },
+        "judge_me_reviews_preview_badge_PQxhT3": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "meta": {
+          "type": "meta",
+          "settings": {
+            "link_color": "#000000",
+            "show_vendor": false,
+            "show_product_type": true,
+            "show_sku": true,
+            "show_barcode": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "icon_with_text_BH8z9B": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "vertical",
+            "title_font": "body-bolder",
+            "title_size": "text-base",
+            "icon_1": "truck",
+            "heading_1": "Fast Delivery",
+            "icon_2": "lightning",
+            "heading_2": "1 -3 days",
+            "icon_3": "check",
+            "heading_3": "To Your Door"
+          }
+        },
+        "klarna_on_site_messaging_app_block_63DfmV": {
+          "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
+          "disabled": true,
+          "settings": {
+            "data_key": "credit-promotion-badge",
+            "theme": "default",
+            "topPadding": "0",
+            "bottomPadding": "0",
+            "messagePrefix": ""
+          }
+        },
+        "custom_liquid_GNPiUh": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<klarna-placement \n  data-key=\"credit-promotion-badge\" \n  data-locale=\"en-GB\" \n  data-theme=\"default\"\n  data-purchase-amount=\"{{ product.selected_or_first_available_variant.price }}\"\n></klarna-placement>"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 4,
+            "show_inventory_quantity": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_type": "shopify_swatch",
+            "swatch_style": "square",
+            "swatch_size": 32,
+            "button_style": "normal",
+            "size_title": "Size",
+            "size_chart_from_page": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "custom_liquid_VAF73c": {
+          "type": "custom_liquid",
+          "name": "Payment Method",
+          "settings": {
+            "custom_liquid": "{% if product.available %}\n  <!-- Product is in stock, buttons and quantity selector are visible -->\n{% else %}\n  <!-- Product is out of stock, hide only native Shopify buy button and quantity selector -->\n  <style>\n    /* Hide only the native Shopify quantity selector */\n    .product-form__quantity {\n      display: none !important;\n    }\n    \n    /* Hide only the native Shopify submit button, not app embeds */\n    .product-form button[type=\"submit\"],\n    .product-form .button--primary[type=\"submit\"],\n    .product-form .button--secondary[type=\"submit\"] {\n      display: none !important;\n    }\n    \n    /* Ensure app embed buttons remain visible */\n    .product-form [data-app-embed],\n    .product-form .app-embed,\n    .product-form iframe,\n    .product-form script {\n      display: block !important;\n      visibility: visible !important;\n    }\n  </style>\n{% endif %}"
+          }
+        },
+        "wishlist_plus_wishlist_pdp_button_nEENy9": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-pdp-button/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "settings": {
+            "swym_atw_button_icon": "heart",
+            "swym_atw_icon_thickness": 1.6,
+            "swym_atw_display_btn_text": true,
+            "swym_button_position": "default",
+            "swym_atw_button_vertical_offset": 0,
+            "swym_atw_full_width": true,
+            "swym_atw_button_alignment": "center",
+            "swym_add_to_wishlist_color": "#000000",
+            "swym_added_to_wishlist_color": "#222222",
+            "swym_button_text_color": "#ffffff",
+            "swym_atw_border_color": "#000000",
+            "swym_atw_border_thickness": 0,
+            "swym_atw_button_border_radius": 5,
+            "swym_enable_hover_customization": true,
+            "swym_hover_add_to_wishlist_color": "#000000",
+            "swym_hover_added_to_wishlist_color": "#222222",
+            "swym_hover_button_text_color": "#ffffff",
+            "swym_hover_atw_border_color": "#000000",
+            "swym_hover_atw_border_thickness": 0,
+            "swym_hover_atw_button_border_radius": 5,
+            "swym_custom_css": "/* =========================================================\n   SWYM WISHLIST + REGISTRY — MATCHED \"LINK ACTION\" STYLE\n   - Equal width columns, centered\n   - No button chrome (transparent, no border, no bg)\n   - Custom SVG icons via ::before\n   - Wishlist fills heart on hover\n========================================================= */\n\n/* --- Layout: center the pair and make them equal width --- */\n#swym-atw-button-container{\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important;\n  width: 100% !important;\n}\n\n/* Two equal columns (wrapper elements) */\n#swym-atw-button-container > *{\n  width: 50% !important;\n  max-width: 240px !important;          /* keeps them from stretching too wide */\n  display: flex !important;\n  justify-content: center !important;\n  align-items: center !important;\n  flex: 0 0 auto !important;\n}\n\n/* Divider between the two columns */\n#swym-atw-button-container > *:not(:last-child){\n  border-right: 1px solid #ddd !important;\n}\n\n/* --- Shared look: \"icon + text\" (NOT buttony) --- */\n.atw-button,\n.swym-registry-add-modal-btn{\n  background: transparent !important;\n  border: 0 !important;\n  box-shadow: none !important;\n\n  display: inline-flex !important;\n  align-items: center !important;\n  justify-content: center !important;\n  gap: 8px !important;\n\n  /* small, link-like hit area (not blocky) */\n  padding: 2px 0 !important;\n  margin: 0 !important;\n\n  color: #000 !important;\n  font-size: 14px !important;\n  font-weight: 500 !important;\n  line-height: 1 !important;\n  white-space: nowrap !important;\n\n  cursor: pointer;\n}\n\n/* Keep hover clean */\n.atw-button:hover,\n.swym-registry-add-modal-btn:hover{\n  background: transparent !important;\n  box-shadow: none !important;\n  opacity: 0.85;\n}\n\n/* Ensure Swym text is visible */\n.atw-button span,\n.atw-button .swym-text,\n.swym-registry-add-modal-btn span,\n.swym-registry-add-modal-btn .swym-text{\n  color: currentColor !important;\n  opacity: 1 !important;\n  visibility: visible !important;\n  display: inline !important;\n}\n\n/* =========================================================\n   WISHLIST — hide Swym icon, use custom heart via ::before\n========================================================= */\n.atw-button svg{\n  display: none !important; /* hide Swym icon */\n}\n\n.atw-button::before{\n  content: \"\";\n  width: 16px;\n  height: 16px;\n  display: inline-block;\n  flex: 0 0 auto;\n\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n\n  /* Outline heart */\n  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z'/%3E%3C/svg%3E\");\n}\n\n/* Fill on hover */\n.atw-button:hover::before{\n  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z'/%3E%3C/svg%3E\");\n}\n\n/* =========================================================\n   REGISTRY — custom gift icon via ::before (same style)\n========================================================= */\n.swym-registry-add-modal-btn::before{\n  content: \"\";\n  width: 16px;\n  height: 16px;\n  display: inline-block;\n  flex: 0 0 auto;\n\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n\n  /* Outline gift icon */\n  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 7H4v4h16V7Z'/%3E%3Cpath d='M4 11v10h16V11'/%3E%3Cpath d='M12 7v14'/%3E%3Cpath d='M12 7H9.5C8.12 7 7 5.88 7 4.5S8.12 2 9.5 2c2.5 0 3.2 3 3.5 5Z'/%3E%3Cpath d='M12 7h2.5C15.88 7 17 5.88 17 4.5S15.88 2 14.5 2c-2.5 0-3.2 3-3.5 5Z'/%3E%3C/svg%3E\");\n}\n/* Remove divider / shadow between wishlist and registry */\n#swym-atw-button-container > *:not(:last-child){\n  border-right: none !important;\n}"
+          }
+        },
+        "swym_gift_lists_and_registries_swym_registry_add_button_tkakHF": {
+          "type": "shopify://apps/swym-gift-lists-and-registries/blocks/swym-registry-add-button/08b4c8ab-fc8b-4e5f-84b6-cc3c7d669113",
+          "disabled": true,
+          "settings": {
+            "swym_registry_add_button_text_color": "#f1f1f1",
+            "swym_registry_add_button_background_color": "#0d2236",
+            "swym_registry_add_btn_border_color": "#0d2236",
+            "swym_registry_add_button_label": "🎁",
+            "swym_registry_add_btn_font": 16,
+            "swym_registry_add_btn_border_radius": 2,
+            "swym_registry_add_btn_border_thickness": 1,
+            "swym_registry_add_btn_padding_horizontal": 1,
+            "swym_registry_add_btn_padding_vertical": 1.3,
+            "swym_registry_add_btn_width": 100,
+            "swym_registry_add_btn_align_text": "left",
+            "swym_registry_pdp_popup_text_color": "#000000",
+            "swym_registry_pdp_popup_background_color": "#ffffff",
+            "swym_registry_popup_button_text_color": "#ffffff",
+            "swym_registry_popup_button_background_color": "#000000",
+            "swym_registry_popup_btn_border_color": "#ffffff",
+            "swym_registry_pdp_popup_title_font": 24,
+            "swym_registry_select_regsistry_title": "Select Registry",
+            "swym_registry_create_registry_message": "Create your own gift registry of items you would like to have and share your list with family and friends",
+            "swym_registry_create_get_started": "Get Started",
+            "swym_registry_success_added_to": "Added to",
+            "swym_registry_success_view": "View",
+            "swym_registry_success_continue": "Continue Adding"
+          }
+        },
+        "custom_liquid_8dtB34": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": ""
+          }
+        },
+        "icon_with_text_UAYgQU": {
+          "type": "icon-with-text",
+          "disabled": true,
+          "settings": {
+            "layout": "vertical",
+            "title_font": "body",
+            "title_size": "text-base",
+            "icon_1": "currency-circle-dollar",
+            "heading_1": "Many Ways To Pay",
+            "icon_2": "arrow-up-left",
+            "heading_2": "30 days Return Policy",
+            "icon_3": "star-four",
+            "heading_3": ""
+          }
+        },
+        "icon_with_text_gAT7Cm": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "vertical",
+            "title_font": "body",
+            "title_size": "text-base",
+            "icon_1": "truck",
+            "heading_1": "Free Delivery over <strong>£50</strong>",
+            "icon_2": "arrow-up-left",
+            "heading_2": "30 days Return Policy",
+            "icon_3": "heart",
+            "heading_3": "Safe and Secure Checkout"
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "settings": {}
+        },
+        "promotion_alert_L7ipQp": {
+          "type": "promotion_alert",
+          "settings": {
+            "text_color": "#049b6e",
+            "icon": "lightning",
+            "heading": "Limited time offer",
+            "description": "<p>Sign up to our Newsletter and get 10% off your first order above £125.  <a href=\"https://tqvz23-up.myshopify.com/pages/singup-landing-page\" title=\"https://tqvz23-up.myshopify.com/pages/singup-landing-page\">Sign Up Here</a></p>"
+          }
+        },
+        "complementary": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Perfect Match With",
+            "heading_size": "h4",
+            "show_below_product_media": false,
+            "make_collapsible_row": false,
+            "icon": "tag",
+            "product_list_limit": 6,
+            "layout": "grid",
+            "columns": 3,
+            "image_ratio": "1/1",
+            "enable_quick_add": true
+          }
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Description",
+            "heading_size": "h4",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.specifications | metafield_tag }}</p>",
+            "page": "content",
+            "default_open": false,
+            "show_below_product_media": true
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Product Details",
+            "heading_size": "h4",
+            "icon": "none",
+            "content": "<p>Designed with care and crafted from premium materials, our products combine durability, comfort, and timeless style. Each piece is thoughtfully made to enhance your living space, offering a perfect balance of functionality and elegance that complements any home and suits your unique lifestyle.</p>",
+            "page": "",
+            "default_open": false,
+            "show_below_product_media": true
+          }
+        },
+        "collapsible-row-3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Care & Use",
+            "heading_size": "h4",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.care_and_usage_instructions | metafield_tag }}</p>",
+            "page": "",
+            "default_open": false,
+            "show_below_product_media": true
+          }
+        },
+        "collapsible_tab_9wWJPB": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "More Information",
+            "heading_size": "h4",
+            "icon": "none",
+            "content": "<p>{{ product.metafields.custom.more_information | metafield_tag }}</p>",
+            "page": "",
+            "default_open": false,
+            "show_below_product_media": true
+          }
+        },
+        "payment_info": {
+          "type": "payment_info",
+          "disabled": true,
+          "settings": {
+            "color_scheme": "scheme-info",
+            "heading": "Payment & Security",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "description": "<p>Your payment information is processed securely. We do not store credit card details nor have access to your credit card information.</p>",
+            "show_payment_icons": false,
+            "show_below_product_media": true
+          }
+        },
+        "divider_pPz3Kw": {
+          "type": "divider",
+          "settings": {
+            "show_below_product_media": false
+          }
+        },
+        "social_sharing": {
+          "type": "social_sharing",
+          "disabled": true,
+          "settings": {}
+        },
+        "sticky_atc_bar_7HgNgP": {
+          "type": "sticky-atc-bar",
+          "settings": {
+            "visibility": "all",
+            "style": "standard",
+            "container": "full",
+            "show_atc_button": true,
+            "show_dynamic_checkout_buttons": false,
+            "show_quantity": true
+          }
+        }
+      },
+      "block_order": [
+        "badges",
+        "judge_me_reviews_preview_badge_PQxhT3",
+        "title",
+        "meta",
+        "price",
+        "icon_with_text_BH8z9B",
+        "klarna_on_site_messaging_app_block_63DfmV",
+        "custom_liquid_GNPiUh",
+        "inventory",
+        "description",
+        "variant_picker",
+        "buy_buttons",
+        "custom_liquid_VAF73c",
+        "wishlist_plus_wishlist_pdp_button_nEENy9",
+        "swym_gift_lists_and_registries_swym_registry_add_button_tkakHF",
+        "custom_liquid_8dtB34",
+        "icon_with_text_UAYgQU",
+        "icon_with_text_gAT7Cm",
+        "pickup_availability",
+        "promotion_alert_L7ipQp",
+        "complementary",
+        "collapsible-row-1",
+        "collapsible-row-2",
+        "collapsible-row-3",
+        "collapsible_tab_9wWJPB",
+        "payment_info",
+        "divider_pPz3Kw",
+        "social_sharing",
+        "sticky_atc_bar_7HgNgP"
+      ],
+      "custom_css": [
+        "@media (min-width: 1280px) {.product {padding-inline: 5rem; }}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "use_color_scheme_in_container": false,
+        "enable_sticky_info": true,
+        "media_size": "large",
+        "gallery_layout": "vertical-carousel",
+        "mobile_thumbnails": "show",
+        "show_image_border": false,
+        "enable_image_zoom": true,
+        "enable_video_looping": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "17612239523091da0d": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "tabs_content_8rnbnj": {
+      "type": "tabs-content",
+      "blocks": {
+        "image_with_text_iLTdLe": {
+          "type": "image_with_text",
+          "settings": {
+            "navigation_title": "Specifications",
+            "image": "shopify://shop_images/Screenshot_2025-07-09_130254.png",
+            "desktop_image_position": "left",
+            "image_aspect_ratio": "adapt",
+            "heading": "The Iconic Carrol Boyes Bread Bin Loafer",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "subheading": "",
+            "description": "<p>Inspired to create a chair where the back and arms are moulded from a single piece of plywood, Hecht and Colin describe employing a process similar to that a tailor might use to cut a pattern in fabric. This approach resulted in the beautiful structure wherein the moulded back and arms component is supported by a simple A-frame wood dowel construction. One of the benefits of this design is an increase in comfort due to natural movement in the plywood back.</p>",
+            "description_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "icon_1": "check",
+            "heading_1": "Heading",
+            "icon_2": "check",
+            "heading_2": "Heading",
+            "icon_3": "check",
+            "heading_3": "Heading"
+          }
+        },
+        "image_with_text_LQUEir": {
+          "type": "image_with_text",
+          "settings": {
+            "navigation_title": "About Brand",
+            "image": "shopify://shop_images/Screenshot_2025-07-09_131000.png",
+            "desktop_image_position": "left",
+            "image_aspect_ratio": "adapt",
+            "heading": "Present Day",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "subheading": "",
+            "description": "<p>After more than 30 years, the business is continually growing with an offering of over 1 000 products available. More than 27 countries currently stock the Carrol Boyes brand with some big names such as Bloomingdales and Nieman Marcus in the USA and David Jones in Australia among these retailers and stockists.</p>",
+            "description_size": "text-base",
+            "button_label": "About Carrol Boyes",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "icon_1": "check",
+            "heading_1": "Heading",
+            "icon_2": "check",
+            "heading_2": "Heading",
+            "icon_3": "check",
+            "heading_3": "Heading"
+          }
+        },
+        "tab_xGBJeM": {
+          "type": "tab",
+          "settings": {
+            "navigation_title": "Shipping & Return",
+            "content": "",
+            "custom_liquid": "",
+            "page": "shipping-return"
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_iLTdLe",
+        "image_with_text_LQUEir",
+        "tab_xGBJeM"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (min-width: 1024px) {.tabs__panel {padding-inline: 5rem; }}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "navigation_style": "headings",
+        "navigation_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "1763546492ed878fbe": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_00e20ea_pmPULL": {
+          "type": "ai_gen_block_00e20ea",
+          "disabled": true,
+          "settings": {
+            "show_tab_1": true,
+            "tab_1_heading": "Product Details",
+            "designer": "{{ closest.product.metafields.custom.designer.value }}",
+            "collection": "{{ closest.product.metafields.custom.range_name | metafield_text }}",
+            "finish": "{{ closest.product.metafields.custom.finish.value }}",
+            "microwave_safe": "{{ closest.product.metafields.custom.microwave_safe.value }}",
+            "food_safe": "{{ closest.product.metafields.custom.food_safe.value }}",
+            "oven_safe": "{{ closest.product.metafields.custom.oven_safe.value }}",
+            "dishwasher_safe": "{{ closest.product.metafields.custom.dishwasher_safe.value }}",
+            "show_tab_2": true,
+            "tab_2_heading": "Description",
+            "tab_2_content": "<p>{{ closest.product.metafields.custom.specifications | metafield_tag }}</p>",
+            "show_tab_3": true,
+            "tab_3_heading": "Care & Use",
+            "tab_3_content": "<p>{{ closest.product.metafields.custom.care_and_usage_instructions | metafield_tag }}</p>",
+            "show_tab_4": false,
+            "tab_4_heading": "",
+            "tab_4_content": "",
+            "show_tab_5": false,
+            "tab_5_heading": "",
+            "tab_5_content": "",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "padding_left_mobile": 20,
+            "padding_right_mobile": 20,
+            "padding_left_desktop": 190,
+            "padding_right_desktop": 190,
+            "tab_padding_top": 16,
+            "tab_padding_bottom": 16,
+            "tab_padding_horizontal": 16,
+            "content_padding_top": 20,
+            "content_padding_bottom": 20,
+            "content_padding_horizontal": 20,
+            "accordion_padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_00e20ea_pmPULL"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "quick_comparison_table_p9rdxW": {
+      "type": "quick-comparison-table",
+      "blocks": {
+        "info_pEKVwb": {
+          "type": "info",
+          "settings": {
+            "show_view_details_button": true
+          }
+        },
+        "description_ym9hXF": {
+          "type": "description",
+          "settings": {
+            "text_line_limit": "3-lines",
+            "show_view_more_button": false
+          }
+        },
+        "price_adCEcV": {
+          "type": "price",
+          "settings": {}
+        },
+        "variants_Q6kD7j": {
+          "type": "variants",
+          "disabled": true,
+          "settings": {}
+        },
+        "vendor_kN7AnX": {
+          "type": "vendor",
+          "disabled": true,
+          "settings": {}
+        },
+        "type_ttCzqK": {
+          "type": "type",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "info_pEKVwb",
+        "description_ym9hXF",
+        "price_adCEcV",
+        "variants_Q6kD7j",
+        "vendor_kN7AnX",
+        "type_ttCzqK"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "heading": "Compare With Similar Items",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "description_size": "text-base",
+        "limit": 4,
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "1761738140fe0934cc": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_RJafKM": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_RJafKM"
+      ],
+      "settings": {
+        "include_margins": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "1763542436ff06bf7d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_e63e87c_iaQPgy": {
+          "type": "ai_gen_block_e63e87c",
+          "settings": {
+            "container_width": "fixed",
+            "max_width": 1300,
+            "field_1_label": "Material",
+            "field_1_value": "{{ closest.product.metafields.custom.material.value }}",
+            "field_2_label": "Collection",
+            "field_2_value": "{{ closest.product.metafields.custom.range_name | metafield_text }}",
+            "field_3_label": "Finish",
+            "field_3_value": "{{ closest.product.metafields.custom.finish.value }}",
+            "field_4_label": "Microwave Safe",
+            "field_4_value": "{{ closest.product.metafields.custom.microwave_safe.value }}",
+            "field_5_label": "Food Safe",
+            "field_5_value": "{{ closest.product.metafields.custom.food_safe.value }}",
+            "field_6_label": "Oven Safe",
+            "field_6_value": "{{ closest.product.metafields.custom.oven_safe.value }}",
+            "field_7_label": "Dishwasher Safe",
+            "field_7_value": "{{ closest.product.metafields.custom.dishwasher_safe.value }}",
+            "field_8_label": "Design Name",
+            "field_8_value": "{{ closest.product.metafields.custom.product_design_name.value }}",
+            "field_9_label": "Product Dimensions",
+            "field_9_value": "{{ closest.product.metafields.custom.product_dimensions.value }}",
+            "product_image": "{{ product.featured_image }}",
+            "image_width": 400,
+            "image_border_radius": 8,
+            "label_font_size": 16,
+            "value_font_size": 16,
+            "label_color": "#000000",
+            "value_color": "#666666",
+            "accordion_title": "Product Specifications",
+            "accordion_heading_tag": "h4",
+            "accordion_title_size": 18,
+            "accordion_title_size_mobile": 16,
+            "accordion_padding_top": 40,
+            "accordion_padding_bottom": 40,
+            "accordion_padding_top_mobile": 16,
+            "accordion_padding_bottom_mobile": 16,
+            "row_divider_color": "#e6e6e6",
+            "padding_desktop": 24,
+            "padding_left_desktop": 40,
+            "padding_right_desktop": 40,
+            "margin_desktop": 0,
+            "padding_mobile": 16,
+            "padding_left_mobile": 16,
+            "padding_right_mobile": 16,
+            "margin_mobile": 0,
+            "border_width": 1,
+            "border_color": "#e6e6e6"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_e63e87c_iaQPgy"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "custom_content_aJPNXb": {
+      "type": "custom-content",
+      "blocks": {
+        "lookbook_card_hotspot_rJaXPd": {
+          "type": "lookbook_card_hotspot",
+          "settings": {
+            "icon_style": "dot",
+            "icon_color": "light",
+            "image": "shopify://shop_images/CB25_JULY_SPACE_Breadbin_3.png",
+            "image_ratio": "adapt",
+            "product_1": "spoke-sofa-armrest",
+            "top_1": 43,
+            "left_1": 43,
+            "product_2": "turn-table",
+            "top_2": 64,
+            "left_2": 60,
+            "product_3": "",
+            "top_3": 0,
+            "left_3": 0,
+            "product_4": "",
+            "top_4": 0,
+            "left_4": 0,
+            "width": "33%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        },
+        "lookbook_card_hotspot_p44hjW": {
+          "type": "lookbook_card_hotspot",
+          "settings": {
+            "icon_style": "dot",
+            "icon_color": "light",
+            "image": "shopify://shop_images/CB25_JULY_SPACE_Breadbin.png",
+            "image_ratio": "adapt",
+            "product_1": "torso-table-lamp",
+            "top_1": 17,
+            "left_1": 15,
+            "product_2": "spoke-sofa-limited",
+            "top_2": 34,
+            "left_2": 56,
+            "product_3": "side-table",
+            "top_3": 70,
+            "left_3": 50,
+            "product_4": "",
+            "top_4": 9,
+            "left_4": 63,
+            "width": "33%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        },
+        "lookbook_card_hotspot_3GJzqy": {
+          "type": "lookbook_card_hotspot",
+          "settings": {
+            "icon_style": "dot",
+            "icon_color": "light",
+            "image": "shopify://shop_images/CB25_JULY_SPACE_Breadbin_2.png",
+            "image_ratio": "adapt",
+            "product_1": "cross-table-light",
+            "top_1": 40,
+            "left_1": 20,
+            "product_2": "dining-table-small",
+            "top_2": 53,
+            "left_2": 61,
+            "product_3": "",
+            "top_3": 62,
+            "left_3": 43,
+            "product_4": "",
+            "top_4": 9,
+            "left_4": 63,
+            "width": "33%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        }
+      },
+      "block_order": [
+        "lookbook_card_hotspot_rJaXPd",
+        "lookbook_card_hotspot_p44hjW",
+        "lookbook_card_hotspot_3GJzqy"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".swipe-mobile {--column-width-mobile: 82vw;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "enable_sticky_column": false,
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Get Inspired by Spaces",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "column_gap": "medium",
+        "row_gap": "large",
+        "swipe_on_mobile": true,
+        "columns_mobile": "1",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "You May Also Like",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "limit": 6,
+        "columns": 5,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "enable_slider": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 30,
+        "padding_bottom": 10,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "175887544324c33934": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_qmgmEf": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_qmgmEf"
+      ],
+      "settings": {
+        "include_margins": true,
+        "padding_top": 0,
+        "padding_bottom": 10
+      }
+    },
+    "multicolumn_icon_3qbxHn": {
+      "type": "multicolumn-icon",
+      "blocks": {
+        "column_9Xh69D": {
+          "type": "column",
+          "settings": {
+            "icon": "truck",
+            "max_width": 60,
+            "max_width_mb": 60,
+            "title": "UK Based Shipping",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_font": "heading",
+            "text": "<p>Worldwide shipping with DHL </p>",
+            "text_size": "text-base",
+            "button_label": "Shipping Details",
+            "button_link": "shopify://pages/delivery-returns",
+            "button_style": "btn--plain",
+            "button_icon": "caret-right"
+          }
+        },
+        "column_EapCmy": {
+          "type": "column",
+          "settings": {
+            "icon": "package",
+            "max_width": 60,
+            "max_width_mb": 60,
+            "title": "30-Days Free Returns",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_font": "heading",
+            "text": "<p>Enjoy the freedom of stress-free shopping with our hassle-free and return policy.</p>",
+            "text_size": "text-base",
+            "button_label": "Return Policy",
+            "button_link": "shopify://pages/delivery-returns",
+            "button_style": "btn--plain",
+            "button_icon": "caret-right"
+          }
+        },
+        "column_y3rE9Y": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "max_width": 60,
+            "max_width_mb": 60,
+            "title": "Secure Payment",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_font": "heading",
+            "text": "<p>Shop with confidence knowing your payments are secure and your information</p>",
+            "text_size": "text-base",
+            "button_label": "More About Payment",
+            "button_link": "shopify://pages/payment-page",
+            "button_style": "btn--plain",
+            "button_icon": "caret-right"
+          }
+        }
+      },
+      "block_order": [
+        "column_9Xh69D",
+        "column_EapCmy",
+        "column_y3rE9Y"
+      ],
+      "custom_css": [
+        ".multicolumn-card__text p {max-width: 33rem;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "header_layout": "vertical",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Fast Shipping",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "enable_sticky": false,
+        "card_color_scheme": "",
+        "content_alignment": "center",
+        "image_position": "top",
+        "icon_color": "#000000",
+        "columns_desktop": 3,
+        "column_gap": "large",
+        "row_gap": "inherit",
+        "show_divider_col": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "scrolling_gallery_image_wJyLJr": {
+      "type": "scrolling-gallery-image",
+      "blocks": {
+        "gallery_zMzedj": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "thisisaaccount"
+          }
+        },
+        "gallery_PALf8b": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "furniturelover"
+          }
+        },
+        "gallery_t8EfbE": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "thisisaaccount"
+          }
+        },
+        "gallery_HjXBVX": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "baddyjam"
+          }
+        },
+        "gallery_Hdq7y7": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "liamwealthy"
+          }
+        },
+        "gallery_xaTeHP": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "baddyjam"
+          }
+        },
+        "gallery_gf99Q7": {
+          "type": "gallery",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image_link": "https://www.instagram.com/",
+            "social_media": "instagram",
+            "heading": "liamwealthy"
+          }
+        }
+      },
+      "block_order": [
+        "gallery_zMzedj",
+        "gallery_PALf8b",
+        "gallery_t8EfbE",
+        "gallery_HjXBVX",
+        "gallery_Hdq7y7",
+        "gallery_xaTeHP",
+        "gallery_gf99Q7"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-inverse",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "We’re on Gram",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "text_size": "text-base",
+        "show_button_on_top": false,
+        "button_label": "@garage_store",
+        "button_link": "https://instagram.com/shopify",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "direction": "left",
+        "speed": 0.1,
+        "pause_on_hover": true,
+        "column_gap": "medium",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "press_4AWmAM": {
+      "type": "press",
+      "blocks": {
+        "press_8tCWmU": {
+          "type": "press",
+          "settings": {
+            "text": "{{ product.metafields.custom.designer.value }}"
+          }
+        },
+        "press_gtigFP": {
+          "type": "press",
+          "settings": {
+            "text": "{{ product.metafields.custom.material.value }}"
+          }
+        },
+        "press_BdbFUp": {
+          "type": "press",
+          "settings": {
+            "text": "{{ product.metafields.custom.range_name | metafield_text }}"
+          }
+        },
+        "press_XRc9Kf": {
+          "type": "press",
+          "settings": {
+            "text": "{{ product.metafields.custom.spaces.value }}"
+          }
+        },
+        "press_r6dUCt": {
+          "type": "press",
+          "settings": {
+            "text": ""
+          }
+        },
+        "press_8M93JY": {
+          "type": "press",
+          "settings": {
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "press_8tCWmU",
+        "press_gtigFP",
+        "press_BdbFUp",
+        "press_XRc9Kf",
+        "press_r6dUCt",
+        "press_8M93JY"
+      ],
+      "disabled": true,
+      "name": "t:sections.press.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "More Details",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "text_size": "text-base",
+        "description_size": "h4",
+        "column_gap": "medium",
+        "max_width": 100,
+        "max_width_mb": 100,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "17713107479b5d365e": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "17612239523091da0d",
+    "tabs_content_8rnbnj",
+    "1763546492ed878fbe",
+    "quick_comparison_table_p9rdxW",
+    "1761738140fe0934cc",
+    "1763542436ff06bf7d",
+    "custom_content_aJPNXb",
+    "related-products",
+    "175887544324c33934",
+    "multicolumn_icon_3qbxHn",
+    "scrolling_gallery_image_wJyLJr",
+    "press_4AWmAM",
+    "17713107479b5d365e"
+  ]
+}

@@ -1,0 +1,655 @@
+<!-- SWYM_PAGE_VERSION:2.7 -->
+<!-- PLEASE DO NOT EDIT THIS VERSION -->
+<!-- Page Colours -->
+{% assign settingswymtemp = settings.swym_registry_page_content_color %}
+{% assign settingswymtemp = settings.swym_registry_page_content_background_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_text_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_background_color %}
+
+<!-- Page Fonts -->
+{% assign header_font = settings.swym_registry_page_font_family %}
+
+<!-- Page Strings -->
+{% assign settingswymtemp = settings.swym_registry_home_login_description %}
+{% assign settingswymtemp = settings.swym_registry_home_gift_registry_text %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_text %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_description %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_step_1_number %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_step_2_number %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_step_3_number %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_step_1_text %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_step_2_text %}
+{% assign settingswymtemp = settings.swym_registry_home_how_to_step_3_text %}
+{% assign settingswymtemp = settings.swym_registry_signup_fname_label %}
+{% assign settingswymtemp = settings.swym_registry_signup_lname_label %}
+{% assign settingswymtemp = settings.swym_registry_signup_email_label %}
+{% assign settingswymtemp = settings.swym_registry_signup_password_label %}
+{% assign settingswymtemp = settings.swym_registry_signup_btn_text %}
+{% assign settingswymtemp = settings.swym_registry_login_email_label %}
+{% assign settingswymtemp = settings.swym_registry_login_password_label %}
+{% assign settingswymtemp = settings.swym_registry_login_btn_text %}
+{% assign settingswymtemp = settings.swym_registry_login_account_create_text %}
+{% assign settingswymtemp = settings.swym_registry_signup_login_text %}
+{% assign settingswymtemp = settings.swym_registry_login_form_title %}
+{% assign settingswymtemp = settings.swym_registry_signup_form_title %}
+
+<style>
+{{ header_font | font_face }}
+
+.swym-registry-container {
+  min-height: 100vh;
+  font-family: {{ header_font.family }};
+  background-color: {{ settings.swym_registry_page_content_background_color }};
+}
+.swym-registry-container input,
+.swym-registry-container label,
+.swym-registry-container figure,
+.swym-registry-container textarea,
+.swym-registry-container h1,
+.swym-registry-container h2,
+.swym-registry-container h3,
+.swym-registry-container h4,
+.swym-registry-container p {
+  font-family: {{ header_font.family }};
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  resize: none;
+}
+.swym-registry-container input {
+  background: none;
+  border: none;
+}
+.swym-registry-container input:focus {
+  border: none;
+}
+.swym-registry-container input[type="text"][disabled],
+.swym-registry-container input[type="email"][disabled] {
+  background: none;
+  border: none;
+}
+.swym-registry-container ul,
+.swym-registry-container ul li {
+  font-family: {{ header_font.family }};
+  color: inherit;
+  list-style: none;
+}
+.swym-registry-container .swym-registry-font-very-small {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(11px + ({{ settings.swym_registry_font_very_small }} - 11) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 25px;
+  color: inherit;
+}
+.swym-registry-container .swym-registry-font-small {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(13px + ({{ settings.swym_registry_font_small }} - 13) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 30px;
+  color: inherit;
+}
+.swym-registry-container .swym-registry-font-regular {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 34px;
+  color: inherit;
+}
+.swym-registry-container .swym-registry-font-large {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(18px + ({{ settings.swym_registry_font_large }} - 18) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 38px;
+  color: inherit;
+}
+.swym-registry-container .swym-registry-font-very-large {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(22px + ({{ settings.swym_registry_font_very_large }} - 22) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 40px;
+  color: inherit;
+}
+.swym-registry-container .swym-registry-font-sub-title {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(24px + ({{ settings.swym_registry_font_sub_title }} - 24) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 42px;
+  color: inherit;
+}
+.swym-registry-container .swym-registry-font-title {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(28px + ({{ settings.swym_registry_font_main_title }} - 28) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 44px;
+  color: inherit;
+}
+.swym-registry-container  h2, h3 {
+  margin: 0;
+}
+.swym-registry-container button {
+  border-radius: 0.5rem;
+  border: none;
+  padding: 1rem 3rem;
+  background-color: {{ settings.swym_registry_btn_background_color }};
+  color: {{ settings.swym_registry_btn_text_color }};
+  cursor: pointer;
+  font-size: calc(16px + ({{ settings.swym_registry_font_btn }} - 16) * ((100vw - 320px) / (1440 - 320)));
+  transition: 0.24s ease;
+  font-family: inherit;
+  position: relative;
+}
+.swym-registry-container h2 {
+  font-weight: 600;
+  text-align: center;
+}
+.swym-registry-content-container h2 {
+  text-align: left;
+  margin-bottom: 10px;
+}
+.swym-registry-container .swym-registry-wrapper {
+  width: 92.7777777778%;
+  margin: 0 auto;
+}
+.swym-registry-container .swym-registry-content-container > div {
+  width: 48.502994012%;
+  height: fit-content;
+}
+.swym-registry-register-container,
+.swym-registry-login-container {
+  animation: load-content .8s ease .3s backwards; 
+  border: 1px solid {{ settings.swym_registry_page_content_color | color_modify: 'alpha', 0.15 }};
+  border-radius: 12px;
+}
+.swym-registry-register-container h2,
+.swym-registry-login-container h2{
+   text-align: center;   
+}
+.swym-registry-login-container {
+  max-height: 444px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.swym-registry-how-to-content {
+  border-radius: 8px;
+  padding: 42px;
+  overflow: hidden;
+  min-height: 473px;
+}
+.swym-registry-how-to-content h3 {
+   animation: drop-in 2s ease 1s backwards;
+}
+.swym-registry-how-to-content p {
+   animation: drop-in 2s ease 1s backwards;
+}
+.swym-registry-how-to-content ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+.swym-registry-how-to-content ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  animation: drop-in 1200ms ease 1.2s backwards;
+}
+.swym-registry-how-to-content ul li span {
+  margin-right: 20px;
+}
+.swym-registry-container .swym-registry-content-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+  min-height: 444px;
+}
+.swym-registry-form-page-field-parent {
+  border: solid 1px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin: 0.5rem 0;
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+  background: {{ settings.swym_registry_page_content_background_color }}
+}
+.swym-registry-form-page-field-parent input {
+  border: none;
+  outline: 0;
+  width: 100%;
+  background: {{ settings.swym_registry_page_content_background_color }}  background: none;
+  outline: none;
+}
+.swym-registry-form-page-field-parent input:focus-visible {
+  outline: unset;
+  outline-offset: unset;
+  box-shadow: unset;
+}
+.swym-registry-form-page-field-parent label {
+  opacity: 0.7;
+  font-size: 14px;
+}
+.swym-registry-register-container, 
+.swym-registry-login-container {
+  padding: 20px 8%;
+}
+.swym-registry-submit {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+.swym-registry-submit input {
+  padding: 10px 16px;
+  background: #1A1A1A;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.swym-registry-submit span {
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.swym-registry-hidden {
+  display: none; 
+}
+.swym-registry-container span.swym-registry-circle {
+  height: 40px;
+  width: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  padding: 0;
+  background: {{ settings.swym_registry_page_header_background_color }};
+  color: {{ settings.swym_registry_page_header_color }};
+  border: 1px solid {{ settings.swym_registry_page_header_color }};
+}
+.swym-registry-login-heading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+}
+.swym-registry-login-heading h2 {
+  animation: load-content 2s;
+}
+.swym-registry-login-heading p {
+ -webkit-animation-name: fadeInLeft;
+  -moz-animation-name: fadeInLeft;
+  -o-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: .6s;
+  -moz-animation-delay: .6s;
+  -o-animation-duration:1s;
+  animation-delay: .6s;
+}
+.swym-registry-login-heading span {
+  font-size: 24px;
+  font-weight: 600;
+}
+  
+/* Header CSS Here */
+.swym-registry-login-heading {
+  background-color: {{ settings.swym_registry_page_header_background_color }};
+  position: relative;
+  color: {{ settings.swym_registry_page_header_color }};
+}
+.swym-registry-login-heading h2 {
+  color: {{ settings.swym_registry_page_header_color }};
+}
+.swym-registry-login-heading p {
+  width: 43%;
+  text-align: center;
+  line-height: 30px;
+}
+
+/* landing page */
+@keyframes drop-in {
+ from {
+  opacity: 0;
+  transform: translateY(-100px);
+ }
+ to {
+  opacity: 1;
+  transform: translate(0px);
+ }
+}
+
+@keyframes load-content { 
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity:0;
+        -webkit-transform: translatex(-10px);
+        -moz-transform: translatex(-10px);
+        -o-transform: translatex(-10px);
+        transform: translatex(-10px);
+    }
+    to {
+        opacity:1;
+        -webkit-transform: translatex(0);
+        -moz-transform: translatex(0);
+        -o-transform: translatex(0);
+        transform: translatex(0);
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+  .swym-registry-container .swym-registry-register-container, .swym-registry-container .swym-registry-login-container {
+    padding: 20px 6%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .swym-registry-container .swym-registry-content-container {
+    flex-direction: column;
+  }
+  .swym-registry-container .swym-registry-content-container > div {
+    width: 100%;
+  }
+  .swym-registry-register-container,
+  .swym-registry-login-container {
+   margin-top: 25px; 
+  }
+  .swym-registry-how-to-content {
+    padding: 22px;
+  }
+}
+@media only screen and (max-width: 411px) {
+  .swym-registry-login-heading p {
+    width: 80%;
+  }
+  .swym-registry-container .swym-registry-content-container {
+    margin-top: 0;
+  }
+  .swym-registry-container .swym-registry-content-container .swym-registry-how-to-content {
+    order: 2;
+  }
+}
+a.swym-custom-login {
+    width: 100%;
+    text-decoration: none;
+    color: {{ settings.swym_registry_btn_text_color }};
+    background-color: {{ settings.swym_registry_page_header_background_color }};
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    @media screen and (min-width: 996px) {
+      .swym-registry-login-heading {
+        background-image: url('https://cdn.shopify.com/s/files/1/0927/5224/9201/files/background_shopify_test.jpg?v=1762369642');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+</style>
+
+<link rel="dns-prefetch" href="https://cdn.swymregistry.com/swym-registry-common-cdn.js">
+<link rel="preconnect" href="https://cdn.swymregistry.com/swym-registry-common-cdn.js">
+<script src="https://cdn.swymregistry.com/swym-registry-common-cdn.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.0/dist/purify.min.js"></script>
+<script type="text/javascript" src="https://cloudfront.loggly.com/js/loggly.tracker-latest.min.js" async></script>
+<script>
+  var _LTracker = _LTracker || [];
+  _LTracker.push({
+    'logglyKey': '7a2be593-4080-4ce0-b039-cee174ba8365',
+    'sendConsoleErrors' : true,
+    'tag' : 'error,template,form'
+  });
+</script>
+{% if request.design_mode %}
+<div class="swym-registry-container swym-registry-hidden">
+  <section class="swym-registry-login-heading">
+    <h2 class="swym-registry-font-very-large">
+      {{ settings.swym_registry_login_form_title }}
+    </h2>
+    <p class="swym-registry-font-regular">{{ settings.swym_registry_home_login_description }}</p>
+  </section>
+  <div class="swym-registry-wrapper">
+    <div class="swym-registry-content-container">
+      <div class="swym-registry-how-to-content">
+        <h2 class="swym-registry-font-large">{{ settings.swym_registry_home_how_to_text }}</h2>
+        <p class="swym-registry-font-regular">{{ settings.swym_registry_home_how_to_description }}</p>
+        <ul>
+          <li><span class="swym-registry-circle swym-registry-font-large">{{ settings.swym_registry_home_how_to_step_1_number }}</span> {{ settings.swym_registry_home_how_to_step_1_text }}</li>
+          <li><span class="swym-registry-circle swym-registry-font-large">{{ settings.swym_registry_home_how_to_step_2_number }}</span> {{ settings.swym_registry_home_how_to_step_2_text }}</li>
+          <li><span class="swym-registry-circle swym-registry-font-large">{{ settings.swym_registry_home_how_to_step_3_number }}</span> {{ settings.swym_registry_home_how_to_step_3_text }}</li>
+        </ul>
+      </div>
+      <div class="swym-registry-register-container swym-registry-hidden" id="swym-registry-register-container">
+  <a class="swym-custom-login" href="{{ routes.account_url }}">{{ settings.swym_registry_login_btn_text }}</a>
+  </div>
+      <div class="swym-registry-login-container swym-registry-hidden" id="swym-registry-login-container">
+<a class="swym-custom-login" href="{{ routes.account_url }}">{{ settings.swym_registry_login_btn_text }}</a>
+</div>
+    </div>
+  </div>
+</div>
+ <script>
+  if(Shopify.designMode){
+    const swymRegistryUrl = window.location.search;
+    const swymRegistryUrlParams = new URLSearchParams(swymRegistryUrl);
+    const swymRegistryMode = swymRegistryUrlParams.has("mode") ? swymRegistryUrlParams.get("mode") : "";
+    document.querySelector(".swym-registry-container").classList.remove("swym-registry-hidden");
+    if(swymRegistryMode === "login") {
+        document.getElementById("swym-registry-login-container").classList.remove("swym-registry-hidden");
+    } else if(swymRegistryMode === "signup") {
+      document.getElementById("swym-registry-register-container").classList.remove("swym-registry-hidden");
+    }
+    const themeId = (Shopify.theme.id).toString();
+    const shopDomain = Shopify.shop;
+    var swymRegistryStylesPayload = JSON.stringify({
+      "themeId": themeId,
+      "shopDomain": shopDomain,
+      "type": "styles",
+      "globalConfig": {
+        "color": {
+          "swym_registry_page_content_color": "{{ settings.swym_registry_page_content_color }}",
+          "swym_registry_page_content_background_color": "{{ settings.swym_registry_page_content_background_color }}",
+          "swym_registry_btn_background_color": "{{ settings.swym_registry_btn_background_color }}",
+          "swym_registry_btn_text_color": "{{ settings.swym_registry_btn_text_color }}"
+        },
+        "fontFamily": "{{ settings.swym_registry_page_font_family }}",
+        "fontSize": {
+          "swym_registry_font_very_small": "{{ settings.swym_registry_font_very_small }}",
+          "swym_registry_font_small": "{{ settings.swym_registry_font_small }}",
+          "swym_registry_font_regular": "{{ settings.swym_registry_font_regular }}",
+          "swym_registry_font_large": "{{ settings.swym_registry_font_large }}",
+          "swym_registry_font_very_large": "{{ settings.swym_registry_font_very_large }}",
+          "swym_registry_font_sub_title": "{{ settings.swym_registry_font_sub_title }}",
+          "swym_registry_font_main_title": "{{ settings.swym_registry_font_main_title }}",
+          "swym_registry_font_btn": "{{ settings.swym_registry_font_btn }}"
+        }
+      }
+    });
+    var swymRegistryStringsPayload = JSON.stringify({
+      "themeId": themeId,
+      "shopDomain": shopDomain,
+      "type": "strings",
+      "globalConfig": {
+        "swym_registry_home_login_description": "{{ settings.swym_registry_home_login_description }}",
+        "swym_registry_home_gift_registry_text": "{{ settings.swym_registry_home_gift_registry_text }}",
+        "swym_registry_home_how_to_text": "{{ settings.swym_registry_home_how_to_text }}",
+        "swym_registry_home_how_to_description": "{{ settings.swym_registry_home_how_to_description }}",
+        "swym_registry_home_how_to_step_1_number": "{{ settings.swym_registry_home_how_to_step_1_number }}",
+        "swym_registry_home_how_to_step_2_number": "{{ settings.swym_registry_home_how_to_step_2_number }}",
+        "swym_registry_home_how_to_step_3_number": "{{ settings.swym_registry_home_how_to_step_3_number }}",
+        "swym_registry_home_how_to_step_1_text": "{{ settings.swym_registry_home_how_to_step_1_text }}",
+        "swym_registry_home_how_to_step_2_text": "{{ settings.swym_registry_home_how_to_step_2_text }}",
+        "swym_registry_home_how_to_step_3_text": "{{ settings.swym_registry_home_how_to_step_3_text }}",
+        "swym_registry_signup_login_text": "{{ settings.swym_registry_signup_login_text }}",
+        "swym_registry_login_account_create_text": "{{ settings.swym_registry_login_account_create_text }}",
+        "swym_registry_login_password_label": "{{ settings.swym_registry_login_password_label }}",
+        "swym_registry_login_email_label": "{{ settings.swym_registry_login_email_label }}",
+        "swym_registry_login_btn_text": "{{ settings.swym_registry_login_btn_text }}",
+        "swym_registry_signup_btn_text": "{{ settings.swym_registry_signup_btn_text }}",
+        "swym_registry_signup_password_label": "{{ settings.swym_registry_signup_password_label }}",
+        "swym_registry_signup_email_label": "{{ settings.swym_registry_signup_email_label }}",
+        "swym_registry_signup_lname_label": "{{ settings.swym_registry_signup_lname_label }}",
+        "swym_registry_signup_fname_label": "{{ settings.swym_registry_signup_fname_label }}",
+        "swym_registry_login_form_title": "{{ settings.swym_registry_login_form_title }}",
+        "swym_registry_signup_form_title": "{{ settings.swym_registry_signup_form_title }}"
+      }
+    });
+    function swymRegistryStylesApi(swymRegistry_styles_payload) {
+      swymRegistry_uploadConfig(swymRegistry_styles_payload);
+    }
+    async function swymRegistry_uploadConfig(payload) {
+      const swymRegistry_appProxyUrl = window.location.origin + `/a/swym-registry-proxy/storefront-config`;
+      fetch(`${swymRegistry_appProxyUrl}`, {
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: payload,
+        method: "POST"
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          return data;
+        })
+        .catch((error) => {
+          _LTracker.push({
+            'ErrorLocation': 'Upload Config API call',
+            'ErrorInfo': {
+              "error": {
+                "msg": error.message,
+                "Reference_stack": error.stack
+              }
+            },
+            'MerchantInfo': {
+              'shop': Shopify.shop,
+              'themeId': Shopify.theme.id,
+              'themeName': Shopify.theme.name,
+              'userAgent': navigator.userAgent
+            }
+          });
+          console.log('Error in uploading configs', error, payload);
+          return error;
+        });
+    }
+    function swymRegistryStringsApi(swymRegistry_strings_payload) {
+      swymRegistry_uploadConfig(swymRegistry_strings_payload);
+    }
+    swymRegistryStylesApi(swymRegistryStylesPayload);
+    swymRegistryStringsApi(swymRegistryStringsPayload);
+  }
+</script>
+{% else %}
+
+{% assign myObjectJSON = window.returnUrl | json %}
+  
+<div class="swym-registry-container swym-registry-hidden">
+  <section class="swym-registry-login-heading">
+    <h2 class="swym-registry-font-very-large">
+      {{ settings.swym_registry_login_form_title }}
+    </h2>
+    <p class="swym-registry-font-regular">{{ settings.swym_registry_home_login_description }}</p>
+  </section>
+  <div class="swym-registry-wrapper">
+    <div class="swym-registry-content-container">
+      <div class="swym-registry-how-to-content">
+        <h3 class="swym-registry-font-large">{{ settings.swym_registry_home_how_to_text }}</h3>
+        <p class="swym-registry-font-regular">{{ settings.swym_registry_home_how_to_description }}</p>
+        <ul>
+          <li><span class="swym-registry-circle swym-registry-font-large">{{ settings.swym_registry_home_how_to_step_1_number }}</span><span class="swym-registry-font-regular">{{ settings.swym_registry_home_how_to_step_1_text }}</span></li>
+          <li><span class="swym-registry-circle swym-registry-font-large">{{ settings.swym_registry_home_how_to_step_2_number }}</span><span class="swym-registry-font-regular">{{ settings.swym_registry_home_how_to_step_2_text }}</span></li>
+          <li><span class="swym-registry-circle swym-registry-font-large">{{ settings.swym_registry_home_how_to_step_3_number }}</span><span class="swym-registry-font-regular">{{ settings.swym_registry_home_how_to_step_3_text }}</span></li>
+        </ul>
+      </div>
+      <div class="swym-registry-register-container swym-registry-hidden" id="swym-registry-register-container">
+      <h2 class="swym-registry-font-very-large">{{ settings.swym_registry_login_form_title }}</h2>
+   <a class="swym-custom-login" href="{{ routes.account_url }}">{{ settings.swym_registry_login_btn_text }}</a>
+  </div>
+      <div class="swym-registry-login-container swym-registry-hidden" id="swym-registry-login-container">
+        <h2 class="swym-registry-font-very-large">{{ settings.swym_registry_login_form_title }}</h2>
+<a class="swym-custom-login" href="{{ routes.account_url }}">{{ settings.swym_registry_login_btn_text }}</a>
+</div>
+    </div>
+  </div>
+</div>
+<div class="swym-registry-landing-page swym-registry-hidden">
+  <h1>Landing Page</h1>
+</div>
+<script defer>
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const returnUrl = urlParams.get('return_url');
+  const swymLoginReturnUrl = urlParams.get('login_return_url');
+  if(swymLoginReturnUrl) {
+    //FIXME with landing page
+    // window.location.href = swymLoginReturnUrl + `?swymLogin=true`;
+  } else {
+    const swymReturnUrl = sessionStorage.setItem("swym_return_url", returnUrl);
+    window.returnUrl = swymReturnUrl;
+    if(!swymReturnUrl) {
+      sessionStorage.setItem("swym_return_url", returnUrl);
+      window.returnUrl = swymReturnUrl;
+    }
+  }
+
+  
+  async function swymRegistryAddOnloadEventHandler() {
+    if (!Shopify.designMode) {
+      const swymRegistryUrl = window.location.search;
+      const swymRegistryUrlParams = new URLSearchParams(swymRegistryUrl);
+      const swymRegistryMode = swymRegistryUrlParams.has("mode") ? swymRegistryUrlParams.get("mode") : "";
+      const swymRegistrySignup = swymRegistryUrlParams.has("signup") ? swymRegistryUrlParams.get("signup") : "";
+      const swymRegistryReturnUrl = sessionStorage.getItem("swym_return_url");
+      console.log(swymRegistryReturnUrl, "swymRegistryReturnUrl");
+      if(!swymRegistryMode) {
+        if(swymRegistrySignup && swymRegistryReturnUrl) {
+          //FIXME with landing page
+        } else if(swymRegistrySignup) {
+          document.querySelector(".swym-registry-container").classList.remove("swym-registry-hidden");
+          document.getElementById("swym-registry-login-container").classList.remove("swym-registry-hidden");
+        } else {
+          document.querySelector(".swym-registry-landing-page").classList.remove("swym-registry-hidden");
+        }
+        return;
+      } else {
+       document.querySelector(".swym-registry-container").classList.remove("swym-registry-hidden");
+        if(swymRegistryMode === "signup") {
+          document.getElementById("swym-registry-register-container").classList.remove("swym-registry-hidden");
+        } else if(swymRegistryMode === "login"){
+          document.getElementById("swym-registry-login-container").classList.remove("swym-registry-hidden");
+        } else {
+          // show landing page
+        }
+      }
+    }
+  }
+  swymRegistryAddOnloadEvent(swymRegistryAddOnloadEventHandler);
+</script>
+{% endif %}

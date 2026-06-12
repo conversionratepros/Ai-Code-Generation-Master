@@ -1,0 +1,1478 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_hero_ajMDrA": {
+      "type": "video-hero",
+      "blocks": {
+        "subheading_xXQF8h": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": ""
+          }
+        },
+        "heading_pKRXMn": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Video hero",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_xXQF8h",
+        "heading_pKRXMn"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 767px) {{display: none; }}"
+      ],
+      "name": "Video hero Desktop",
+      "settings": {
+        "container": "full",
+        "video": "shopify://files/videos/Wavy Table - Landscape - UK cut.mp4",
+        "video_url": "",
+        "description": "",
+        "video_height": "adapt",
+        "overlay_opacity": 0,
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "color_scheme": "",
+        "content_position": "middle-center",
+        "content_alignment": "center",
+        "video_mobile_height": "adapt",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "video_hero_NkneLg": {
+      "type": "video-hero",
+      "blocks": {
+        "subheading_4DKEUf": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": ""
+          }
+        },
+        "heading_f3pBKR": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Video hero",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_4DKEUf",
+        "heading_f3pBKR"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 768px) {{display: none; }}"
+      ],
+      "name": "Video hero Mobile",
+      "settings": {
+        "container": "full",
+        "video": "shopify://files/videos/Wound UP unboxing - UK mobile - new.mp4",
+        "video_url": "",
+        "description": "",
+        "video_height": "adapt",
+        "overlay_opacity": 0,
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "color_scheme": "",
+        "content_position": "middle-center",
+        "content_alignment": "center",
+        "video_mobile_height": "adapt",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "slideshow_q3U4Jn": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_JhU8hg": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image_overlay_opacity": 30,
+            "content_position": "middle-center",
+            "text_alignment": "center",
+            "subheading": "Cotton Made",
+            "title": "New Season July",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1",
+            "description": "",
+            "description_size": "text-base",
+            "button_label": "Shop collection",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": true
+          }
+        },
+        "slide_U9bPyj": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image_overlay_opacity": 30,
+            "content_position": "middle-center",
+            "text_alignment": "center",
+            "subheading": "Modern Elegance",
+            "title": "Spoke Sofa",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1",
+            "description": "",
+            "description_size": "text-base",
+            "button_label": "Shop collection",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": false
+          }
+        }
+      },
+      "block_order": [
+        "slide_JhU8hg",
+        "slide_U9bPyj"
+      ],
+      "disabled": true,
+      "settings": {
+        "container": "full",
+        "slide_height": "adapt",
+        "show_controls": true,
+        "autoplay": true,
+        "autoplay_delay": 6,
+        "show_text_below": false,
+        "text_alignment_mobile": "center",
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "featured_collection_bdaamt": {
+      "type": "featured-collection",
+      "blocks": {
+        "collection_ydJPzX": {
+          "type": "collection",
+          "settings": {
+            "collection": "side-plates",
+            "title": "New Arrivals",
+            "show_banner": true,
+            "color_scheme": "scheme-1",
+            "card_link": "",
+            "banner_image": "shopify://shop_images/Artboard_62.png",
+            "image_overlay_opacity": 0,
+            "content_position": "split-bottom-button",
+            "content_alignment": "center",
+            "subheading": "<em>Gala Glassware</em>",
+            "subheading_style": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Shop now",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        },
+        "collection_E83rKg": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "title": "Best Sellers",
+            "show_banner": true,
+            "color_scheme": "scheme-inverse",
+            "card_link": "",
+            "banner_image": "shopify://shop_images/artboard_430.webp",
+            "image_overlay_opacity": 0,
+            "content_position": "split-bottom-button",
+            "content_alignment": "center",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Lux Loungers",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Shop now",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "collection_ydJPzX",
+        "collection_E83rKg"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "New Arrivals",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "<p>Individually mouthblown for exceptional clarity and character, these wide-bowled glasses are perfect for champagne, cocktails, or sparkling moments worth celebrating.</p>",
+        "text_size": "text-sm",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "limit": 7,
+        "columns": 5,
+        "column_gap": "medium",
+        "row_gap": "large",
+        "enable_slider": true,
+        "content_overflow": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "show_progress_bar": true,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "collection_list_slider_6qbNfj": {
+      "type": "collection-list-slider",
+      "blocks": {
+        "featured_collection_L9N3Tg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dining",
+            "image": "shopify://shop_images/cereal_soup_bowl_4-graceful_2.webp",
+            "title": "Dining"
+          }
+        },
+        "featured_collection_gxdACj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "entertaining",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_102916.png",
+            "title": "Entertaining"
+          }
+        },
+        "featured_collection_jQXtir": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_103353.png",
+            "title": "Kitchen"
+          }
+        },
+        "featured_collection_4H9LzM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathroom",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_103545.png",
+            "title": "Bathroom"
+          }
+        },
+        "featured_collection_jMA9xm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_103700.png",
+            "title": "Office"
+          }
+        },
+        "featured_collection_J6hxH9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_104147.png",
+            "title": "Home Textiles"
+          }
+        },
+        "featured_collection_HwzPfD": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "home-decor",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_104408.png",
+            "title": "Home Decor"
+          }
+        },
+        "featured_collection_GW3kAL": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "on-the-go",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_104711.png",
+            "title": "On The Go"
+          }
+        },
+        "featured_collection_J6V8fx": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "glassware",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_104825.png",
+            "title": "Bend Chairs"
+          }
+        },
+        "featured_collection_NkFYeg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "iconic",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_105009.png",
+            "title": "Iconics"
+          }
+        },
+        "featured_collection_eBphH3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mugs",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_105129.png",
+            "title": "Mugs"
+          }
+        },
+        "featured_collection_mFCdUY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cutlery",
+            "image": "shopify://shop_images/Screenshot_2025-08-08_105450.png",
+            "title": "Bar Chairs"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_L9N3Tg",
+        "featured_collection_gxdACj",
+        "featured_collection_jQXtir",
+        "featured_collection_4H9LzM",
+        "featured_collection_jMA9xm",
+        "featured_collection_J6hxH9",
+        "featured_collection_HwzPfD",
+        "featured_collection_GW3kAL",
+        "featured_collection_J6V8fx",
+        "featured_collection_NkFYeg",
+        "featured_collection_eBphH3",
+        "featured_collection_mFCdUY"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Top Categories",
+        "highlight_style": "none",
+        "highlight_font_style": "normal",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "text_size": "text-inherit",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "card_color_scheme": "",
+        "card_style": "standard",
+        "card_heading_size": "text-base",
+        "card_image_ratio": "1/1",
+        "card_image_width": "medium",
+        "card_image_padding": "none",
+        "rounded_card_image": false,
+        "mobile_layout": "vertical",
+        "carousel_item_size": "auto",
+        "columns_desktop": 6,
+        "carousel_control_color_scheme": "",
+        "padding_top": 26,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "full"
+      }
+    },
+    "custom_content_HPgFTK": {
+      "type": "custom-content",
+      "blocks": {
+        "image_card_with_product_qBJGcT": {
+          "type": "image_card_with_product",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image": "shopify://shop_images/qcut-set-wm-1_1_a4023f02-acdf-4f98-8f9e-099a51ab911c.webp",
+            "image_ratio": "3/4",
+            "subheading": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "description": "",
+            "button_label": "Shop",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "product": "cutlery-4pc-set-woman-man",
+            "width": "25%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        },
+        "image_card_with_product_G77z3R": {
+          "type": "image_card_with_product",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image": "shopify://shop_images/CB26_UK_Homepage_bestsellers_1350x1080_heritageSKBmix_2.png",
+            "image_ratio": "3/4",
+            "subheading": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "description": "",
+            "button_label": "Shop",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "product": "dinnerware-12pc-set-heritage-sketchbook-mix",
+            "width": "25%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        },
+        "image_card_with_product_3khACH": {
+          "type": "image_card_with_product",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image": "shopify://shop_images/CB26_UK_Homepage_bestsellers_1350x1080_Breadbin_2.png",
+            "image_ratio": "3/4",
+            "subheading": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "description": "",
+            "button_label": "Shop",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "product": "bread-bin-on-my-mind",
+            "width": "25%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        },
+        "image_card_with_product_dMnGc4": {
+          "type": "image_card_with_product",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image": "shopify://shop_images/CB26_UK_Homepage_bestsellers_1350x1080_waterjugMan_2.png",
+            "image_ratio": "3/4",
+            "subheading": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h3",
+            "description": "",
+            "button_label": "Shop",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "product": "water-jug-man",
+            "width": "25%",
+            "alignment": "center",
+            "block_custom_class": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_card_with_product_qBJGcT",
+        "image_card_with_product_G77z3R",
+        "image_card_with_product_3khACH",
+        "image_card_with_product_dMnGc4"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "enable_sticky_column": false,
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Collectors Favourites",
+        "highlight_style": "none",
+        "highlight_font_style": "normal",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "column_gap": "2xs",
+        "row_gap": "extra-large",
+        "swipe_on_mobile": true,
+        "columns_mobile": "1",
+        "padding_top": 20,
+        "padding_bottom": 30,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "rich_text_APFBn4": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CnVRMh": {
+          "type": "heading",
+          "settings": {
+            "heading": "Iconic Bag Collection",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_DP9P7B": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Reimagining Carrol Boyes’ first handbag designs, the Iconic Leather Bags Collection pairs supple full-grain leather with signature metallic hardware. From City Bags and Chain Purses to Phone Pouches and Trifold Wallets, each piece blends sculptural detail, everyday functionality and timeless elegance. Signature hardwaredesigns like Cradle, Toe Touch, and Diver bring Carrol’s creative legacy tolife in classic black and brown tones.</p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CnVRMh",
+        "text_DP9P7B"
+      ],
+      "custom_css": [],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 6,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "slider_with_multicolumn_aJwbrc": {
+      "type": "slider-with-multicolumn",
+      "blocks": {
+        "slide_cGYakP": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "image": "shopify://shop_images/CB26_UK_Homepage_Justlaunched2_3.png",
+            "image_overlay_opacity": 10,
+            "content_position": "bottom-center",
+            "content_alignment": "left",
+            "subheading": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h1",
+            "text": "<p><br/><br/></p>",
+            "button_label": "Shop",
+            "button_link": "shopify://collections/wavy",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "slide_wNd9Jh": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image": "shopify://shop_images/CB26_UK_Homepage_Justlaunched4_3.png",
+            "image_overlay_opacity": 10,
+            "content_position": "top-left",
+            "content_alignment": "left",
+            "subheading": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h1",
+            "text": "",
+            "button_label": "",
+            "button_link": "shopify://collections/wavy",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        },
+        "image_card_BXpdq6": {
+          "type": "image-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/CB26_UK_Homepage_Justlaunched1_3.png",
+            "content_alignment": "center",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "card_link": "shopify://products/large-footed-bowl-wavy"
+          }
+        },
+        "image_card_yb3htw": {
+          "type": "image-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/CB26_UK_Homepage_Justlaunched3_3.png",
+            "content_alignment": "center",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "card_link": "shopify://products/salad-bowl-wavy"
+          }
+        },
+        "image_card_7KqpyL": {
+          "type": "image-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/CB26_UK_Homepage_Justlaunched_2160x2160_4.png",
+            "content_alignment": "center",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "card_link": "shopify://products/large-footed-bowl-wavy"
+          }
+        },
+        "image_card_ag7Eb3": {
+          "type": "image-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/CB26_UK_Homepage_Justlaunched_2160x2160_3.png",
+            "content_alignment": "center",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "card_link": "shopify://collections/iconic-bag-collection"
+          }
+        }
+      },
+      "block_order": [
+        "slide_cGYakP",
+        "slide_wNd9Jh",
+        "image_card_BXpdq6",
+        "image_card_yb3htw",
+        "image_card_7KqpyL",
+        "image_card_ag7Eb3"
+      ],
+      "custom_css": [
+        ".slide__text {max-width: 37rem; --text-margin-top: 2rem;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "autoplay": true,
+        "autoplay_delay": 4,
+        "columns_desktop": 2,
+        "column_gap": "2xs",
+        "row_gap": "inherit",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 10,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_XWLjbK": {
+      "type": "rich-text",
+      "blocks": {
+        "button_TtTx9W": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop The Range",
+            "button_link": "shopify://collections/iconic-bag-collection",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "button_TtTx9W"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "full",
+        "color_scheme": "scheme-10",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "collection_list_slider_HrH3KM": {
+      "type": "collection-list-slider",
+      "blocks": {
+        "featured_collection_TXjeRi": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dining",
+            "image": "shopify://shop_images/CB26_UK_Homepage_ShopBySpaces_1350x1080_DiningRoom_1.png",
+            "title": "Dining Room"
+          }
+        },
+        "featured_collection_d6NwWj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "home-decor",
+            "image": "shopify://shop_images/CB26_UK_Homepage_ShopBySpaces_1350x1080_LivingRoom_1.png",
+            "title": ""
+          }
+        },
+        "featured_collection_fpURj3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kitchen",
+            "image": "shopify://shop_images/CB26_UK_Homepage_ShopBySpaces_1350x1080_Kitchen_2.png",
+            "title": ""
+          }
+        },
+        "featured_collection_kfkawC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bar",
+            "image": "shopify://shop_images/CB26_UK_Homepage_ShopBySpaces_1350x1080_BarCollection_2.png",
+            "title": "Bar Collection"
+          }
+        },
+        "featured_collection_myFAJr": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "office",
+            "image": "shopify://shop_images/Office.png",
+            "title": ""
+          }
+        },
+        "featured_collection_hHLwJk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fashion",
+            "image": "shopify://shop_images/CB26_UK_Homepage_ShopBySpaces_1350x1080_Fashion_2.png",
+            "title": "Fashion"
+          }
+        },
+        "featured_collection_cKDDA8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathroom-space",
+            "image": "shopify://shop_images/Spaces_BATHROOM_1.png",
+            "title": ""
+          }
+        },
+        "featured_collection_79fFdc": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "outdoor",
+            "image": "shopify://shop_images/outdoor.jpg",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_TXjeRi",
+        "featured_collection_d6NwWj",
+        "featured_collection_fpURj3",
+        "featured_collection_kfkawC",
+        "featured_collection_myFAJr",
+        "featured_collection_hHLwJk",
+        "featured_collection_cKDDA8",
+        "featured_collection_79fFdc"
+      ],
+      "name": "t:sections.collection-list-slider.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Shop By Space",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "card_color_scheme": "",
+        "card_style": "standard",
+        "card_heading_size": "text-base",
+        "card_image_ratio": "3/4",
+        "card_image_width": "full",
+        "card_image_padding": "none",
+        "rounded_card_image": false,
+        "mobile_layout": "vertical",
+        "carousel_item_size": "fixed",
+        "columns_desktop": 6,
+        "carousel_control_color_scheme": "",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": true,
+        "divider_width": "fixed"
+      }
+    },
+    "rich_text_HNNxHB": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_gr7nE9": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Sketchbook Black",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_aYxHmN": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_mzHHq7": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_gr7nE9",
+        "text_aYxHmN",
+        "button_mzHHq7"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "featured_collection_igfzEQ": {
+      "type": "featured-collection",
+      "blocks": {
+        "collection_LjYjBr": {
+          "type": "collection",
+          "settings": {
+            "collection": "dining",
+            "title": "",
+            "show_banner": false,
+            "color_scheme": "",
+            "card_link": "",
+            "image_overlay_opacity": 0,
+            "content_position": "top-left",
+            "content_alignment": "left",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Collections",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Button label",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        },
+        "collection_DyfQP7": {
+          "type": "collection",
+          "settings": {
+            "collection": "iconic",
+            "title": "Living Room",
+            "show_banner": false,
+            "color_scheme": "",
+            "card_link": "",
+            "image_overlay_opacity": 0,
+            "content_position": "top-left",
+            "content_alignment": "left",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Collections",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Button label",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        },
+        "collection_WL6NQr": {
+          "type": "collection",
+          "settings": {
+            "collection": "kitchen",
+            "title": "Kitchen",
+            "show_banner": false,
+            "color_scheme": "",
+            "card_link": "",
+            "image_overlay_opacity": 0,
+            "content_position": "top-left",
+            "content_alignment": "left",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Collections",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Button label",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "collection_LjYjBr",
+        "collection_DyfQP7",
+        "collection_WL6NQr"
+      ],
+      "name": "t:sections.featured-collection.presets__2.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Our Customers love",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h3",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "limit": 8,
+        "columns": 4,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "enable_slider": true,
+        "content_overflow": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "lookbook_slider_9zCdQJ": {
+      "type": "lookbook-slider",
+      "blocks": {
+        "lookbook_card_8g6GQC": {
+          "type": "lookbook_card",
+          "settings": {
+            "product_list": [
+              "glass-bowl-and-stand-all-dressed-up"
+            ],
+            "width": 30,
+            "width_mobile": 50,
+            "video": "shopify://files/videos/All Dressed Up - Spring Story - Portrait.mp4",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5"
+          }
+        },
+        "lookbook_card_8BaXc6": {
+          "type": "lookbook_card",
+          "settings": {
+            "product_list": [
+              "cutlery-24pc-set-liquid"
+            ],
+            "width": 50,
+            "width_mobile": 65,
+            "image": "shopify://shop_images/CB26_UK_Homepage_getinspired_1350x1080_1.png",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6"
+          }
+        },
+        "lookbook_card_DtRhzC": {
+          "type": "lookbook_card",
+          "settings": {
+            "product_list": [
+              "broad-vase-wound-up"
+            ],
+            "width": 40,
+            "width_mobile": 90,
+            "image": "shopify://shop_images/CB26_UK_Homepage_getinspired_1350x1080_2.png",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6"
+          }
+        },
+        "lookbook_card_xXjEji": {
+          "type": "lookbook_card",
+          "disabled": true,
+          "settings": {
+            "product_list": [
+              "stackable-mug-set-of-4-luxe-loungers"
+            ],
+            "width": 40,
+            "width_mobile": 50,
+            "image": "shopify://shop_images/CB26_UK_Homepage_getinspired_1350x1080_3.png",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5"
+          }
+        },
+        "lookbook_card_tHgUQt": {
+          "type": "lookbook_card",
+          "settings": {
+            "product_list": [
+              "drinks-trolley-with-glass-top-man"
+            ],
+            "width": 60,
+            "width_mobile": 90,
+            "image": "shopify://shop_images/drinks_trolley_2.jpg",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6"
+          }
+        },
+        "lookbook_card_8cicAx": {
+          "type": "lookbook_card",
+          "disabled": true,
+          "settings": {
+            "product_list": [
+              "coffee-plunger-conversation",
+              "cake-stand-cake-it-easy"
+            ],
+            "width": 40,
+            "width_mobile": 90,
+            "image": "shopify://shop_images/CB26_UK_Homepage_getinspired_1350x1080_4.png",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6"
+          }
+        },
+        "lookbook_card_eUB7yN": {
+          "type": "lookbook_card",
+          "settings": {
+            "product_list": [
+              "dinner-plate-set-of-4-sketchbook-black",
+              "side-plate-set-of-4-sketchbook-black-3",
+              "salad-servers-kiss",
+              "cutlery-24pc-set-sketchbook"
+            ],
+            "width": 29,
+            "width_mobile": 65,
+            "image": "shopify://shop_images/BlackCB20Festive_SketchbookBWPlatter_Cutlery_Ripply_Kiss-medium.jpg",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6"
+          }
+        },
+        "lookbook_card_amCMHk": {
+          "type": "lookbook_card",
+          "settings": {
+            "product_list": [
+              "cutlery-4pc-set-wound-up"
+            ],
+            "width": 59,
+            "width_mobile": 90,
+            "image": "shopify://shop_images/CB25_UKRange-QCUT-SET-WU-24_3.png",
+            "heading": "Shop this look",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6"
+          }
+        }
+      },
+      "block_order": [
+        "lookbook_card_8g6GQC",
+        "lookbook_card_8BaXc6",
+        "lookbook_card_DtRhzC",
+        "lookbook_card_xXjEji",
+        "lookbook_card_tHgUQt",
+        "lookbook_card_8cicAx",
+        "lookbook_card_eUB7yN",
+        "lookbook_card_amCMHk"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Get Inspired",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "description_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--primary",
+        "button_icon": "none",
+        "column_gap": "2xs",
+        "enable_slider": true,
+        "slide_height": "large",
+        "enable_swiper_mobile": true,
+        "show_progress_bar": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "ss_back_to_top_cRh7HG": {
+      "type": "ss-back-to-top",
+      "name": "SS - Back to top #3",
+      "settings": {
+        "horizontal_position": "right",
+        "horizontal_dst_to_edge": 30,
+        "horizontal_dst_to_edge_mobile": 20,
+        "vertical_dst_to_edge": 50,
+        "vertical_dst_to_edge_mobile": 50,
+        "circle_size": 46,
+        "circle_size_mobile": 46,
+        "progress_thickness": 4,
+        "circle_bg_color": "#ffffff",
+        "circle_bg_hover_color": "#cbbeb0",
+        "progress_color": "#f5f5f5",
+        "progress_active_color": "#000000",
+        "arrow_color": "#000000",
+        "arrow_hover_color": "#ffffff"
+      }
+    },
+    "17564595994aa500b6": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_rVnqaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "#000000",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 10,
+            "instafeed_margin_bottom": 10,
+            "instafeed_margin_sides": 5,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#ffffff",
+            "background_color": "#ffffff",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_rVnqaY"
+      ],
+      "settings": {
+        "include_margins": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ss_flip_cards_2_NDVWjq": {
+      "type": "ss-flip-cards-2",
+      "blocks": {
+        "heading_pidM4c": {
+          "type": "heading",
+          "settings": {
+            "heading": "Index"
+          }
+        },
+        "card_49PGw8": {
+          "type": "card",
+          "settings": {
+            "title": "Title",
+            "text": "<p>Tell your story</p>",
+            "found_text": "<p>FOUND IN:</p>",
+            "products": []
+          }
+        },
+        "card_cPew7y": {
+          "type": "card",
+          "settings": {
+            "title": "Title",
+            "text": "<p>Tell your story</p>",
+            "found_text": "<p>FOUND IN:</p>",
+            "products": []
+          }
+        },
+        "card_crHHGH": {
+          "type": "card",
+          "settings": {
+            "title": "Title",
+            "text": "<p>Tell your story</p>",
+            "found_text": "<p>FOUND IN:</p>",
+            "products": []
+          }
+        },
+        "card_Gh3L9z": {
+          "type": "card",
+          "settings": {
+            "title": "Title",
+            "text": "<p>Tell your story</p>",
+            "found_text": "<p>FOUND IN:</p>",
+            "products": []
+          }
+        },
+        "card_VMLja9": {
+          "type": "card",
+          "settings": {
+            "title": "Title",
+            "text": "<p>Tell your story</p>",
+            "found_text": "<p>FOUND IN:</p>",
+            "products": []
+          }
+        }
+      },
+      "block_order": [
+        "heading_pidM4c",
+        "card_49PGw8",
+        "card_cPew7y",
+        "card_crHHGH",
+        "card_Gh3L9z",
+        "card_VMLja9"
+      ],
+      "disabled": true,
+      "name": "SS - Flip cards #2",
+      "settings": {
+        "cards_per_row": 3,
+        "cards_per_row_mobile": "2",
+        "cards_gap": 60,
+        "cards_gap_mobile": 16,
+        "card_radius": 24,
+        "card_border_thickness": 0,
+        "card_shadow": "fourth",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 100,
+        "heading_size_mobile": 52,
+        "heading_height": 150,
+        "heading_align": "left",
+        "heading_align_mobile": "left",
+        "heading_vertical_align": "start",
+        "heading_vertical_align_mobile": "start",
+        "image_overlay": 0.2,
+        "image_ratio": "portrait",
+        "image_ratio_mobile": "portrait",
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 24,
+        "title_size_mobile": 20,
+        "title_height": 130,
+        "card_content_align": "center",
+        "card_content_align_mobile": "center",
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 14,
+        "text_size_mobile": 14,
+        "text_height": 150,
+        "card_back_content_align": "left",
+        "card_back_content_align_mobile": "left",
+        "text_mt": 20,
+        "text_mt_mobile": 20,
+        "icon_size": 20,
+        "icon_size_mobile": 16,
+        "icon_border_thickness": 1,
+        "close_icon_size": 20,
+        "close_icon_size_mobile": 16,
+        "close_border_thickness": 1,
+        "heading_color": "#121212",
+        "title_back_color": "#121212",
+        "title_color": "#ffffff",
+        "text_color": "#121212",
+        "link_color": "#121212",
+        "link_hover_color": "#121212",
+        "card_content_bg_back_color": "#ffffff",
+        "card_border_color": "#121212",
+        "image_overlay_color": "#000000",
+        "card_shadow_color": "#000000",
+        "icon_color": "#ffffff",
+        "icon_bg_color": "rgba(0,0,0,0)",
+        "icon_border_color": "#ffffff",
+        "close_icon_color": "#121212",
+        "close_icon_hover_color": "#ffffff",
+        "close_icon_bg_color": "#ffffff",
+        "close_icon_bg_hover_color": "#121212",
+        "close_border_color": "#121212",
+        "close_border_hover_color": "#121212",
+        "background_style": "solid",
+        "background_color": "#ffffff",
+        "background_gradient": "linear-gradient(180deg, #FFFFFF 0%, #F2F2F2 100%)",
+        "border_color": "#121212",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": false,
+        "content_width": 1200,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true
+      }
+    }
+  },
+  "order": [
+    "video_hero_ajMDrA",
+    "video_hero_NkneLg",
+    "slideshow_q3U4Jn",
+    "featured_collection_bdaamt",
+    "collection_list_slider_6qbNfj",
+    "custom_content_HPgFTK",
+    "rich_text_APFBn4",
+    "slider_with_multicolumn_aJwbrc",
+    "rich_text_XWLjbK",
+    "collection_list_slider_HrH3KM",
+    "rich_text_HNNxHB",
+    "featured_collection_igfzEQ",
+    "lookbook_slider_9zCdQJ",
+    "ss_back_to_top_cRh7HG",
+    "17564595994aa500b6",
+    "ss_flip_cards_2_NDVWjq"
+  ]
+}

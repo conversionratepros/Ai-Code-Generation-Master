@@ -1,0 +1,282 @@
+{
+  "layout": "pre-lander-crp",
+  "sections": {
+    "pre-lander-hero": {
+      "type": "pre-lander-crp-hero",
+      "settings": {
+        "hero_height_desktop": 850,
+        "hero_height_mobile": 720,
+        "gradient_enable": true,
+        "gradient_color": "#F9F9F9",
+        "gradient_direction": "top-to-bottom",
+        "gradient_intensity": 100,
+        "gradient_start_stop": 8,
+        "gradient_end_stop": 52,
+        "logo_alt_text": "Carrol Boyes",
+        "headline": "<p>Pantry storage that doesn't disappear into your cupboard.</p>",
+        "quote": "<p>\"They look like something out of a design magazine — not a storage container.\"</p>",
+        "button_text": "Discover the Indigo Girls Set",
+        "button_link": "#product-cta",
+        "button_bg_color": "#000000",
+        "button_text_color": "#FFFFFF"
+      }
+    },
+    "pre-lander-stats-bar": {
+      "type": "pre-lander-crp-stats-bar",
+      "settings": {
+        "background_color": "#F7F7F7",
+        "text_color": "#111111"
+      },
+      "blocks": {
+        "stat-1": { "type": "stat", "settings": { "heading": "3", "subheading": "NEW ILLUSTRATIONS IN THE SET" } },
+        "stat-2": { "type": "stat", "settings": { "heading": "750ML", "subheading": "CAPACITY PER CANISTER" } },
+        "stat-3": { "type": "stat", "settings": { "heading": "100%", "subheading": "FOOD-SAFE PORCELAIN" } },
+        "stat-4": { "type": "stat", "settings": { "heading": "30+", "subheading": "YEARS OF SA DESIGN HERITAGE" } }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"]
+    },
+    "pre-lander-story": {
+      "type": "pre-lander-crp-story",
+      "settings": {
+        "heading": "THE INDIGO GIRLS STORY",
+        "intro": "<p>You've thought about every other surface in your kitchen. The countertops. The finishes. The cabinetry. Everything considered, everything intentional.</p>",
+        "body": "<p>Then you needed somewhere to put the coffee, sugar and tea. And the options were plastic tubs, generic glass jars, or another forgettable ceramic set. Functional, sure. But nothing you'd choose to leave on the counter.</p><p>The Indigo Girls collection is Carrol Boyes' tribute to a West African tribe known for their deep indigo cloth dyeing traditions — translated onto durable porcelain by one of South Africa's most recognised design names.</p><p>This mixed set brings three brand-new illustrations together: not three copies of the same canister, but a small curated trio designed to live together on display.</p>"
+      }
+    },
+    "pre-lander-featured-in": {
+      "type": "pre-lander-crp-featured-in",
+      "settings": {
+        "heading": "AS FEATURED IN",
+        "background_color": "#FFFFFF",
+        "text_color": "#000000",
+        "show_top_divider": true,
+        "show_bottom_divider": false,
+        "show_separators": true
+      },
+      "blocks": {
+        "logo-1": { "type": "logo", "settings": { "alt_text": "House & Garden" } },
+        "logo-2": { "type": "logo", "settings": { "alt_text": "ELLE" } },
+        "logo-3": { "type": "logo", "settings": { "alt_text": "Vogue Living" } },
+        "logo-4": { "type": "logo", "settings": { "alt_text": "AD/Surface" } }
+      },
+      "block_order": ["logo-1", "logo-2", "logo-3", "logo-4"]
+    },
+    "pre-lander-quote": {
+      "type": "pre-lander-crp-quote",
+      "settings": {
+        "quote_text": "<p>\"This is a lovely set that offers more visual interest than a basic white set of dishes. very light and easy to carry and use. a perfect dinner plate set for all occassions\"</p>",
+        "reviewer_name": "— Tumi, Verified Buyer (Carrolboyes.com)",
+        "background_color": "#F5F2EF",
+        "border_color": "#D9D9D9"
+      }
+    },
+    "pre-lander-comparison": {
+      "type": "pre-lander-crp-comparison",
+      "settings": {}
+    },
+    "pre-lander-feature-cards": {
+      "type": "pre-lander-crp-feature-cards",
+      "settings": {
+        "show_heading": true,
+        "heading": "THE CARROL BOYES DIFFERENCE"
+      },
+      "blocks": {
+        "card-1": {
+          "type": "feature_card",
+          "settings": {
+            "number": "01",
+            "heading": "A Tribute to West African Indigo Dyeing",
+            "paragraph": "<p>The Indigo Girls collection is Carrol Boyes' tribute to a West African tribe celebrated for their deep indigo cloth dyeing traditions. Each illustration is a nod to centuries of textile artistry — translated onto durable porcelain so it can live in a modern South African kitchen.</p>",
+            "image_position": "right",
+            "show_icon_row": true,
+            "icon_row_bg_color": "#F7F7F7",
+            "icon_row_text": "30+ YEARS OF CARROL BOYES DESIGN",
+            "show_review": false,
+            "star_count": 5,
+            "show_verified": true
+          }
+        },
+        "card-2": {
+          "type": "feature_card",
+          "settings": {
+            "number": "02",
+            "heading": "Durable Porcelain, Not Plastic",
+            "paragraph": "<p>Solid porcelain with a clear glaze finish — the kind of weight and feel you notice the moment you pick one up. Dishwasher safe, microwave safe, and food safe, so they keep up with everyday kitchen use without losing their finish.</p>",
+            "image_position": "left",
+            "show_icon_row": false,
+            "icon_row_bg_color": "#F7F7F7",
+            "show_review": true,
+            "star_count": 5,
+            "show_verified": true,
+            "review_text": "<p>\"Bought it as a gift for my brothers wife. She absolutely loves it. Shes moved her usual cups to make space for her new babies\"</p>",
+            "reviewer_name": "Mahlatse Ellah",
+            "review_date": "7/24/25"
+          }
+        },
+        "card-3": {
+          "type": "feature_card",
+          "settings": {
+            "number": "03",
+            "heading": "Three Brand-New Illustrations",
+            "paragraph": "<p>This isn't three copies of the same jar. Each canister in the set features a different, brand-new Indigo Girls illustration — three pieces of the story, designed to sit together on the counter. A must-have for collectors of the range.</p>",
+            "image_position": "right",
+            "show_icon_row": true,
+            "icon_row_bg_color": "#F7F7F7",
+            "icon_row_text": "A MUST-HAVE FOR COLLECTORS OF THE RANGE",
+            "show_review": false,
+            "star_count": 5,
+            "show_verified": true
+          }
+        }
+      },
+      "block_order": ["card-1", "card-2", "card-3"]
+    },
+    "pre-lander-banner": {
+      "type": "pre-lander-crp-banner",
+      "settings": {
+        "overlay_opacity": 50,
+        "heading": "<p>Want to see all three illustrations together?</p>",
+        "heading_color": "#FFFFFF",
+        "subtext": "<p>View the full set, dimensions and what's included.</p>",
+        "subtext_color": "#FFFFFF",
+        "button_text": "View the Indigo Girls Set",
+        "button_link": "#product-cta",
+        "button_bg_color": "#FFFFFF",
+        "button_text_color": "#000000"
+      }
+    },
+    "pre-lander-feature-cards-2": {
+      "type": "pre-lander-crp-feature-cards",
+      "settings": {
+        "show_heading": false,
+        "heading": ""
+      },
+      "blocks": {
+        "card-4": {
+          "type": "feature_card",
+          "settings": {
+            "number": "04",
+            "heading": "Sized for the Counter, Not the Cupboard",
+            "paragraph": "<p>170mm tall, 113mm wide, 750ml capacity each — large enough to hold a proper amount of coffee, sugar, tea, pasta or pantry staples, sized to actually sit on display rather than disappear behind a cabinet door.</p>",
+            "image_position": "right",
+            "show_icon_row": true,
+            "icon_row_bg_color": "#F7F7F7",
+            "icon_row_text": "H 170MM × D 113MM · 750ML PER CANISTER",
+            "show_review": false,
+            "star_count": 5,
+            "show_verified": true
+          }
+        },
+        "card-5": {
+          "type": "feature_card",
+          "settings": {
+            "number": "05",
+            "heading": "Silicone-Sealed Lids Keep Contents Fresh",
+            "paragraph": "<p>Each canister has a silicone-sealed lid that keeps contents dry and fresh — not just a loose ceramic top. Coffee, tea, sugar, pasta, even bathroom cotton or beauty bits stay protected and out of the air.</p>",
+            "image_position": "left",
+            "show_icon_row": true,
+            "icon_row_bg_color": "#F7F7F7",
+            "icon_row_text": "SILICONE-SEALED LIDS · FOOD, DISHWASHER & MICROWAVE SAFE",
+            "show_review": false,
+            "star_count": 5,
+            "show_verified": true
+          }
+        },
+        "card-6": {
+          "type": "feature_card",
+          "settings": {
+            "number": "06",
+            "heading": "A Carrol Boyes Piece Holds Its Value",
+            "paragraph": "<p>Carrol Boyes is one of South Africa's most recognised design names. The Indigo Girls range has been collected since launch — pieces people keep, gift, and add to over time, rather than swap out at the next sale.</p>",
+            "image_position": "right",
+            "show_icon_row": true,
+            "icon_row_bg_color": "#F7F7F7",
+            "icon_row_text": "A MUST-HAVE FOR COLLECTORS OF THE INDIGO GIRLS RANGE",
+            "show_review": false,
+            "star_count": 5,
+            "show_verified": true
+          }
+        }
+      },
+      "block_order": ["card-4", "card-5", "card-6"]
+    },
+    "pre-lander-lifestyle-banner": {
+      "type": "pre-lander-crp-lifestyle-banner",
+      "settings": {
+        "desktop_gradient_enable": true,
+        "desktop_gradient_color": "#000000",
+        "desktop_gradient_direction": "left-to-right",
+        "desktop_gradient_intensity": 100,
+        "desktop_gradient_start_stop": 0,
+        "desktop_gradient_end_stop": 72,
+        "mobile_gradient_enable": true,
+        "mobile_gradient_color": "#000000",
+        "mobile_gradient_direction": "top-to-bottom",
+        "mobile_gradient_intensity": 90,
+        "mobile_gradient_start_stop": 0,
+        "mobile_gradient_end_stop": 78,
+        "heading": "<p>Why this set is different to the original Indigo Girls range</p>",
+        "heading_color": "#FFFFFF",
+        "body": "<p>The Indigo Girls collection has built a quiet following since launch. This set introduces three brand-new illustrations to the range — sold as a mixed trio, not three of the same jar.</p><p>If you already own pieces from the range, this set extends it. If you're new to it, it's the easiest way in.</p>",
+        "body_color": "#FFFFFF"
+      }
+    },
+    "pre-lander-product-cta": {
+      "type": "pre-lander-crp-product-cta",
+      "settings": {
+        "product_image_alt": "Indigo Girls Canister Set",
+        "title": "<p>The Indigo Girls Canister Set — Mix of 3</p>",
+        "title_color": "#000000",
+        "meta_text": "BY CARROL BOYES · DESIGNED IN SOUTH AFRICA · IN STOCK",
+        "meta_color": "#333333",
+        "price": "R2,449",
+        "price_color": "#000000",
+        "show_installment": true,
+        "installment_label": "From ~R408/month with",
+        "installment_color": "#666666",
+        "button_text": "Shop the Indigo Girls Set",
+        "button_link": "https://www.carrolboyes.com",
+        "button_bg_color": "#000000",
+        "button_text_color": "#FFFFFF",
+        "card_bg_color": "#F7F7F7",
+        "shipping_color": "#000000"
+      },
+      "blocks": {
+        "pay-1": { "type": "pay_logo", "settings": { "alt_text": "Payment option 1" } },
+        "pay-2": { "type": "pay_logo", "settings": { "alt_text": "Payment option 2" } },
+        "pay-3": { "type": "pay_logo", "settings": { "alt_text": "Payment option 3" } },
+        "pay-4": { "type": "pay_logo", "settings": { "alt_text": "Payment option 4" } },
+        "ship-1": { "type": "shipping_item", "settings": { "text": "Free delivery on orders over R700" } },
+        "ship-2": { "type": "shipping_item", "settings": { "text": "Free Click & Collect at any CB store" } },
+        "ship-3": { "type": "shipping_item", "settings": { "text": "Delivery in 5 working days" } }
+      },
+      "block_order": ["pay-1", "pay-2", "pay-3", "pay-4", "ship-1", "ship-2", "ship-3"]
+    },
+    "pre-lander-trust-bar": {
+      "type": "pre-lander-crp-trust-bar",
+      "settings": {
+        "background_color": "#000000"
+      },
+      "blocks": {
+        "trust-1": { "type": "trust_item", "settings": { "title": "Free Delivery", "sub": "ON ORDERS OVER R700" } },
+        "trust-2": { "type": "trust_item", "settings": { "title": "Secure Checkout", "sub": "100% ENCRYPTED PAYMENT" } },
+        "trust-3": { "type": "trust_item", "settings": { "title": "Customer Support", "sub": "HERE WHEN YOU NEED US" } }
+      },
+      "block_order": ["trust-1", "trust-2", "trust-3"]
+    }
+  },
+  "order": [
+    "pre-lander-hero",
+    "pre-lander-stats-bar",
+    "pre-lander-story",
+    "pre-lander-featured-in",
+    "pre-lander-quote",
+    "pre-lander-comparison",
+    "pre-lander-feature-cards",
+    "pre-lander-banner",
+    "pre-lander-feature-cards-2",
+    "pre-lander-lifestyle-banner",
+    "pre-lander-product-cta",
+    "pre-lander-trust-bar"
+  ]
+}

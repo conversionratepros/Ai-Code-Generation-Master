@@ -1,0 +1,39 @@
+<script defer>
+function onSwymLoadCallback(swat) {
+    const closeButton = document.querySelector('.drawer__header .drawer__close-btn');
+    const cartButton = document.querySelector(".cart-drawer-button");
+    const cartCountElement = document.querySelector(".cart-count--absolute");
+
+    function closeCartDrawer() {
+        document.querySelector(".fixed-overlay[aria-controls=CartDrawer]").click();
+    }
+
+    document.addEventListener('click', (event) => {
+        if (event.target.closest('.drawer__header .drawer__close-btn')) {
+            document.querySelector(".fixed-overlay[aria-controls=CartDrawer]")?.click();
+        }
+    });
+
+    swat.evtLayer.addEventListener(swat.JSEvents.UIAddedToCart, function () {
+        document.dispatchEvent(new CustomEvent('cart:refresh', {
+            bubbles: true, detail: { open: true }
+        }));
+        cartCountElement.innerHTML = (parseInt(cartCountElement.innerHTML) || 0) + 1;
+        cartCountElement.removeAttribute('hidden');
+    });
+
+    swat.evtLayer.addEventListener(swat.JSEvents.UIAddedAllToCart, function (evt) {
+        const productsAdded = evt.detail.d.productData.items.length;
+        document.dispatchEvent(new CustomEvent('cart:refresh', {
+            bubbles: true, detail: { open: true }
+        }));
+        cartCountElement.innerHTML = (parseInt(cartCountElement.innerHTML) || 0) + productsAdded;
+        cartCountElement.removeAttribute('hidden');
+    });
+}
+
+if (!window.SwymCallbacks) {
+    window.SwymCallbacks = [];
+}
+window.SwymCallbacks.push(onSwymLoadCallback);
+</script>

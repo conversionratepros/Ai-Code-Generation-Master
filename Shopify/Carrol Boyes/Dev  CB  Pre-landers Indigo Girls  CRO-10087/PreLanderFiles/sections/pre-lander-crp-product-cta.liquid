@@ -1,0 +1,486 @@
+{%- liquid
+  if section.settings.product_image
+    assign product_url = section.settings.product_image | image_url: width: 1440
+  else
+    assign product_url = 'pre-lander-crp-product-image.png' | asset_url
+  endif
+
+  assign pay_logos = section.blocks | where: 'type', 'pay_logo'
+  assign shipping_items = section.blocks | where: 'type', 'shipping_item'
+-%}
+
+<section
+  class="pre-lander-crp-product-cta"
+  id="pre-lander-crp-product-cta-{{ section.id }}"
+  style="
+    --pl-pct-card-bg: {{ section.settings.card_bg_color }};
+    --pl-pct-title-color: {{ section.settings.title_color }};
+    --pl-pct-meta-color: {{ section.settings.meta_color }};
+    --pl-pct-price-color: {{ section.settings.price_color }};
+    --pl-pct-installment-color: {{ section.settings.installment_color }};
+    --pl-pct-shipping-color: {{ section.settings.shipping_color }};
+    --pl-pct-btn-bg: {{ section.settings.button_bg_color }};
+    --pl-pct-btn-text: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="pre-lander-crp-product-cta__render-wrapper">
+    <div class="pre-lander-crp-product-cta__render-group">
+      <img class="pre-lander-crp-product-cta__render" src="{{ product_url }}" alt="{{ section.settings.product_image_alt | escape }}" loading="lazy">
+    </div>
+
+    <div class="pre-lander-crp-product-cta__card">
+      <div class="pre-lander-crp-product-cta__card-top">
+        {%- if section.settings.title != blank -%}
+          <div class="pre-lander-crp-product-cta__title">{{ section.settings.title }}</div>
+        {%- endif -%}
+        {%- if section.settings.meta_text != blank -%}
+          <p class="pre-lander-crp-product-cta__meta">{{ section.settings.meta_text }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.price != blank or section.settings.show_installment -%}
+        <div class="pre-lander-crp-product-cta__price-block">
+          {%- if section.settings.price != blank -%}
+            <div class="pre-lander-crp-product-cta__price">{{ section.settings.price }}</div>
+          {%- endif -%}
+          {%- if section.settings.show_installment -%}
+            <div class="pre-lander-crp-product-cta__installment">
+              {%- if section.settings.installment_label != blank -%}
+                <span>{{ section.settings.installment_label }}</span>
+              {%- endif -%}
+              {%- if pay_logos.size > 0 -%}
+                <div class="pre-lander-crp-product-cta__pay-logos">
+                  {%- for block in pay_logos -%}
+                    {%- if block.settings.image -%}
+                      {%- assign logo_src = block.settings.image | image_url: width: 200 -%}
+                    {%- else -%}
+                      {%- assign padded = forloop.index | prepend: '0' | slice: -2, 2 -%}
+                      {%- assign logo_src = 'pre-lander-crp-pay-logo-' | append: padded | append: '.png' | asset_url -%}
+                    {%- endif -%}
+                    <img src="{{ logo_src }}" alt="{{ block.settings.alt_text | escape }}" {{ block.shopify_attributes }}>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="pre-lander-crp-product-cta__btn">
+          {{ section.settings.button_text }}
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"></line>
+            <polyline points="12 5 19 12 12 19" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      {%- if shipping_items.size > 0 -%}
+        <div class="pre-lander-crp-product-cta__shipping">
+          {%- for block in shipping_items -%}
+            {%- if block.settings.icon -%}
+              {%- assign icon_src = block.settings.icon | image_url: width: 64 -%}
+            {%- else -%}
+              {%- assign icon_src = 'pre-lander-crp-check.svg' | asset_url -%}
+            {%- endif -%}
+            <div class="pre-lander-crp-product-cta__shipping-item" {{ block.shopify_attributes }}>
+              <img src="{{ icon_src }}" alt="" width="16" height="16">
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pre-lander-crp-product-cta {
+    background: #FFFFFF;
+    position: relative;
+    height: 100%;
+    min-height: 645px;
+    overflow: hidden;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 80px 15px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .pre-lander-crp-product-cta__render-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pre-lander-crp-product-cta__render-group {
+    width: 715px;
+    height: 393px;
+    z-index: 1;
+  }
+
+  .pre-lander-crp-product-cta__render {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+  }
+
+  .pre-lander-crp-product-cta__card {
+    width: 500px;
+    padding: 32px;
+    background: var(--pl-pct-card-bg, #F7F7F7);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 3;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    backdrop-filter: blur(12px);
+  }
+
+  .pre-lander-crp-product-cta__card-top {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pre-lander-crp-product-cta__title,
+  .pre-lander-crp-product-cta__title p {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    line-height: 45px;
+    color: var(--pl-pct-title-color, #000000);
+    text-transform: uppercase;
+  }
+
+  .pre-lander-crp-product-cta__meta {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: var(--pl-pct-meta-color, #333333);
+  }
+
+  .pre-lander-crp-product-cta__price-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pre-lander-crp-product-cta__price {
+    color: var(--pl-pct-price-color, #000000);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+
+  .pre-lander-crp-product-cta__installment {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--pl-pct-installment-color, #666666);
+    line-height: 21px;
+  }
+
+  .pre-lander-crp-product-cta__pay-logos {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pre-lander-crp-product-cta__pay-logos img {
+    height: 20px;
+    width: auto;
+  }
+
+  .pre-lander-crp-product-cta__btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    background: var(--pl-pct-btn-bg, #000000);
+    color: var(--pl-pct-btn-text, #FFFFFF);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+  }
+
+  .pre-lander-crp-product-cta__btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .pre-lander-crp-product-cta__btn:hover {
+    opacity: 0.9;
+  }
+
+  .pre-lander-crp-product-cta__shipping {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pre-lander-crp-product-cta__shipping-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--pl-pct-shipping-color, #000000);
+    line-height: 21px;
+  }
+
+  .pre-lander-crp-product-cta__shipping-item img {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-product-cta {
+      height: auto;
+      min-height: auto;
+      padding: 30px 15px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .pre-lander-crp-product-cta__render-wrapper {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .pre-lander-crp-product-cta__render-group {
+      width: 100%;
+      height: 198px;
+    }
+
+    .pre-lander-crp-product-cta__card {
+      width: 100%;
+      padding: 32px 15px;
+      gap: 20px;
+    }
+
+    .pre-lander-crp-product-cta__title,
+    .pre-lander-crp-product-cta__title p {
+      font-size: 24px;
+      line-height: normal;
+    }
+
+    .pre-lander-crp-product-cta__price {
+      font-size: 24px;
+      letter-spacing: 0.48px;
+    }
+
+    .pre-lander-crp-product-cta__price-block {
+      gap: 10px;
+    }
+
+    .pre-lander-crp-product-cta__installment {
+      font-size: 12px;
+      line-height: 160%;
+    }
+
+    .pre-lander-crp-product-cta__pay-logos img {
+      height: 15px;
+    }
+
+    .pre-lander-crp-product-cta__shipping {
+      gap: 14px;
+    }
+
+    .pre-lander-crp-product-cta__shipping-item {
+      font-size: 12px;
+      line-height: 160%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Product CTA",
+  "tag": "section",
+  "class": "section-pre-lander-crp-product-cta",
+  "settings": [
+    { "type": "header", "content": "Images" },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product render",
+      "info": "Falls back to bundled pre-lander-crp-product-image.png."
+    },
+    {
+      "type": "text",
+      "id": "product_image_alt",
+      "label": "Product image alt text",
+      "default": "Indigo Girls Canister Set"
+    },
+
+    { "type": "header", "content": "Card heading" },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Product title",
+      "default": "<p>The Indigo Girls Canister Set — Mix of 3</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title colour",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "meta_text",
+      "label": "Meta line (under title)",
+      "default": "BY CARROL BOYES · DESIGNED IN SOUTH AFRICA · IN STOCK"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Meta colour",
+      "default": "#333333"
+    },
+
+    { "type": "header", "content": "Price block" },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "R2,449"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price colour",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_installment",
+      "label": "Show installment row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "installment_label",
+      "label": "Installment label",
+      "default": "From ~R408/month with"
+    },
+    {
+      "type": "color",
+      "id": "installment_color",
+      "label": "Installment text colour",
+      "default": "#666666"
+    },
+
+    { "type": "header", "content": "Button" },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop the Indigo Girls Set"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text colour",
+      "default": "#FFFFFF"
+    },
+
+    { "type": "header", "content": "Card style" },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background",
+      "default": "#F7F7F7"
+    },
+    {
+      "type": "color",
+      "id": "shipping_color",
+      "label": "Shipping row text colour",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pay_logo",
+      "name": "Payment logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image",
+          "info": "Falls back to pre-lander-crp-pay-logo-0X.png by block position."
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
+        }
+      ]
+    },
+    {
+      "type": "shipping_item",
+      "name": "Shipping row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Falls back to bundled pre-lander-crp-check.svg."
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Row text",
+          "default": "Free delivery on orders over R700"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Product CTA",
+      "blocks": [
+        { "type": "pay_logo" },
+        { "type": "pay_logo" },
+        { "type": "pay_logo" },
+        { "type": "pay_logo" },
+        { "type": "shipping_item", "settings": { "text": "Free delivery on orders over R700" } },
+        { "type": "shipping_item", "settings": { "text": "Free Click & Collect at any CB store" } },
+        { "type": "shipping_item", "settings": { "text": "Delivery in 5 working days" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

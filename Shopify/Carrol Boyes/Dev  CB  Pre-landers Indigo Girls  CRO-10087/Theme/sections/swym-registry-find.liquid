@@ -1,0 +1,1686 @@
+<!-- SWYM_PAGE_VERSION:2.7 -->
+<!-- PLEASE DO NOT EDIT THIS VERSION -->
+<!-- Page Colours -->
+{% assign settingswymtemp = settings.swym_registry_page_content_color %}
+{% assign settingswymtemp = settings.swym_registry_page_content_background_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_text_color %}
+{% assign settingswymtemp = settings.swym_registry_btn_background_color %}
+
+<!-- Page Fonts -->
+{% assign header_font = settings.swym_registry_page_font_family %}
+
+<!-- Page Strings -->
+{% assign settingswymtemp = settings.swym_registry_find_registry_title_text %}
+{% assign settingswymtemp = settings.swym_registry_found_registries_label_1 %}
+{% assign settingswymtemp = settings.swym_registry_found_registries_label_2 %}
+{% assign settingswymtemp = settings.swym_registry_event_type_label %}
+{% assign settingswymtemp = settings.swym_registry_event_date_label %}
+{% assign settingswymtemp = settings.swym_registry_event_location_label %}
+{% assign settingswymtemp = settings.swym_registry_event_on_label %}
+{% assign settingswymtemp = settings.swym_registry_event_from_label %}
+{% assign settingswymtemp = settings.swym_registry_custom_seperator %}
+{% assign settingswymtemp =  settings.swym_registry_reg_id_label %}
+{% assign settingswymtemp =  settings.swym_registry_reg_name_label %}
+{% assign settingswymtemp =  settings.swym_registry_coregistrant_name_label %}
+{% assign settingswymtemp =  settings.swym_registry_view_registry_button_label %}
+{% assign settingswymtemp =  settings.swym_registry_finder_password_title%}
+{% assign settingswymtemp =  settings.swym_registry_finder_password_label%}
+{% assign settingswymtemp =  settings.swym_registry_password_button_label%}
+{% assign settingswymtemp = settings.swym_registry_no_matching_registries_label %}
+{% assign settingswymtemp = settings.swym_registry_try_searching_label %}
+{% assign settingswymtemp = settings.swym_registry_search_placeholder %}
+{% assign settingswymtemp = settings.swym_registry_search_button_text %}
+{% assign settingswymtemp = settings.swym_registry_loadmore_button_text %}
+{% assign settingswymtemp = settings.swym_registry_scrolltotop_button_text %}
+{% assign settingswymtemp = settings.swym_registry_registries_label %}
+{% assign settingswymtemp = settings.swym_registry_showing_label %}
+{% assign settingswymtemp = settings.swym_registry_of_label %}
+{% assign settingswymtemp = settings.swym_registry_incorrect_password_label %}
+
+<!-- Custom class Font Sizes -->
+{% assign settingswymtemp = settings.swym_registry_font_small %}
+{% assign settingswymtemp = settings.swym_registry_font_regular %}
+{% assign settingswymtemp = settings.swym_registry_font_large %}
+{% assign settingswymtemp = settings.swym_registry_font_very_large %}
+{% assign settingswymtemp = settings.swym_registry_font_main_title %}
+{% assign settingswymtemp = settings.swym_registry_font_btn %}
+
+<!-- Custom class Strings -->
+{% assign settingswymtemp =  settings.swym_registry_custom_section_class %}
+{% assign settingswymtemp =  settings.swym_registry_custom_title_class %}
+{% assign settingswymtemp =  settings.swym_registry_custom_btn_class %}
+{% assign settingswymtemp =  settings.swym_registry_custom_para_class %}
+<style>
+  {{ header_font | font_face }}
+  /* CSS */
+.swym-registry-wrapper{
+  font-family: {{header_font.family}};
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background: {{settings.swym_registry_page_content_background_color}};
+  width: 100%;
+}
+.swym-registry-wrapper input,
+.swym-registry-wrapper label,
+.swym-registry-wrapper figure,
+.swym-registry-wrapper textarea,
+.swym-registry-wrapper h1,
+.swym-registry-wrapper h2,
+.swym-registry-wrapper h3,
+.swym-registry-wrapper h4,
+.swym-registry-wrapper p {
+  font-family: {{ header_font.family }};
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+.swym-registry-wrapper ul,
+.swym-registry-wrapper ul li {
+  font-family: {{ header_font.family }};
+  color: inherit;
+  list-style: none;
+}
+.swym-registry-wrapper .swym-registry-font-small {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12px + ({{ settings.swym_registry_font_small }} - 12) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 30px;
+  color: inherit;
+}
+.swym-registry-wrapper .swym-registry-font-regular {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 34px;
+  color: inherit;
+}
+.swym-registry-wrapper .swym-registry-font-large {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(18px + ({{ settings.swym_registry_font_large }} - 18) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 38px;
+  color: inherit;
+}
+.swym-registry-wrapper .swym-registry-font-very-large {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(22px + ({{ settings.swym_registry_font_very_large }} - 22) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 40px;
+  color: inherit;
+}
+.swym-registry-wrapper .swym-registry-font-title {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(28px + ({{ settings.swym_registry_font_main_title }} - 28) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 44px;
+  color: inherit;
+}
+.swym-registry-wrapper .swym-registry-page-content{
+  color: {{settings.swym_registry_page_content_color}}
+}
+.swym-registry-wrapper .swym-registry-find-lists-container ul.swym-registry-find-lists,.swym-registry-wrapper .swym-registry-find-lists-container ul.swym-registry-find-lists li{
+  padding: 20px;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container ul.swym-registry-find-lists {
+  padding-top: 0;
+  margin-top: 0;
+}
+.swym-registry-landing-page h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swym-registry-landing-page h2 {
+  margin: 0;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #503E35;
+  text-align: center;
+}
+.swym-registry-landing-banner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top right;
+  padding-bottom: 5.335rem;
+  font-family: inherit;
+}
+.swym-registry-landing-banner {
+  margin-bottom: 40px;
+}
+.swym-registry-wrapper .swym-registry-landing-search .swym-registry-search-btn {
+  padding: 1rem 2rem;
+  color: red;
+}
+.swym-registry-landing-banner-btn-container {
+  display: flex;
+  flex-direction: column;
+}
+.swym-registry-landing-banner-btn-container button {
+  outline: none;
+  border: none;
+  background: rgba(80, 62, 53, 0.8);
+  color: #fff;
+  padding: 16px 23px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: calc(12px + (15 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: normal;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.swym-registry-landing-banner-btn-container button:first-child {
+  margin-bottom: 12px;
+}
+.swym-registry-wrapper h1#swym-registry-page-title{
+  margin: 2rem auto;
+}
+
+/* Gift Registry Search Section */
+.swym-registry-wrapper .swym-registry-landing-search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.swym-registry-wrapper .swym-registry-landing-search .swym-registry-search-registry {
+  width: 51.31944444444444%;
+  max-width: 800px;
+  display: flex;
+}
+.swym-registry-wrapper .swym-registry-landing-search input[type='search']{
+  width: 80%;
+  padding: 15px;
+  padding-left: 12px;
+  outline: none;
+  background: {{settings.swym_registry_page_content_background_color}};
+  border: 1px solid {{settings.swym_registry_page_content_color | color_modify:"alpha", 0.4}};
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 24px;
+  text-transform: none;
+  color: {{settings.swym_registry_page_content_color}};
+  flex: 0 0 86.469%;
+  margin: 0;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  position: relative;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-lists-header {
+  display: flex;    
+  width: 79.167%;  
+  margin: 0 auto; 
+  justify-content: space-between;
+  max-width: 1200px;
+  z-index: 1;
+  top: 0;
+  margin: 0 auto;
+  left: 10.5%;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-lists-column-headings {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+  margin-right: 9%;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-lists-column-headings li {
+    width: 142px;
+    text-align: center;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-column-detail  {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between; 
+  margin-right: 7%;
+  align-items: center;
+} 
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-column-detail > span:last-child {
+  position: absolute;
+  right: 30px;
+  transition: right .8s;
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  transition: right .8s;
+  cursor: pointer;
+  top: 50%;
+  translate: transform(-50%, 0);
+  top: 53%;
+  transform: translateY(-50%);
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-detail-mobile {
+  display: none;
+}
+.swym-registry-wrapper .swym-registry-landing-search .swym-registry-search-registry #searchText{
+  outline: none;
+  box-shadow: none;
+}
+.swym-registry-wrapper .swym-registry-landing-search {
+  padding-bottom: 68px;
+}
+.swym-registry-wrapper .swym-registry-landing-search #swym-registry-search-btn {
+  border-radius: 2px;
+  position: relative;
+}
+.swym-registry-wrapper .swym-registry-btn-primary {
+  background: {{settings.swym_registry_btn_background_color}};
+  color: {{settings.swym_registry_btn_text_color}};
+  padding: 15px;
+  outline: none;
+  border: none;
+  font-family: inherit;
+  font-size: calc(14px + ({{ settings.swym_registry_font_btn }} - 14) * ((100vw - 320px) / (1440 - 320)));
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+.swym-registry-wrapper .swym-registry-btn-secondary {
+  background: {{settings.swym_registry_page_content_background_color}};
+  color: {{settings.swym_registry_page_content_color}};
+  padding: 15px;
+  outline: none;
+  border: 1.5px solid {{settings.swym_registry_page_content_color | color_modify:"alpha" , 0.4}};
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: calc(14px + ({{ settings.swym_registry_font_regular }} - 14) * ((100vw - 320px) / (1440 - 320)));
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-lists .swym-registry-design-li{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  margin: 2rem 0;
+}
+.swym-registry-wrapper h1.swym-registry-font-xl-large {
+  font-weight: 300;
+  text-align: center;
+  font-family: {{ header_font.family }};
+}
+.swym-registry-wrapper .swym-registry-landing-search {
+  padding-bottom: 0;
+}
+.swym-registry-wrapper .swym-registry-landing-search .swym-registry-search-btn {
+  padding: 1rem 2rem;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-lists li {
+  width: 81.429%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.8rem auto;
+  max-width: 1200px;
+  border: 1px solid {{settings.swym_registry_page_content_color | color_modify: "alpha", 0.4}};
+  border-radius: 20px;
+  position: relative;
+  background: {{settings.swym_registry_page_content_background_color}};
+  cursor: pointer;
+  transition: border-color 0.6s linear;
+}
+.swym-registry-wrapper .swym-registry-find-lists li:hover .swym-registry-list-column-detail span:last-child {
+  right: 20px;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-circle-parent {
+  text-align: center;
+  padding-right: 3.2rem;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-circle-parent p {
+  margin: 0;
+  padding: 5px 0;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-circle {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  background: {{settings.swym_registry_page_content_background_color}};
+  border: 1px solid {{settings.swym_registry_page_content_color | color_modify: "alpha", 0.7}};
+  max-width: 80px;
+  max-height: 80px;
+  min-width: 60px;
+  min-height: 60px;
+  width: 8vw;
+  height: 8vw;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-circle p {
+  font-weight: 500;
+  line-height: 30px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100%;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details-parent h3 {
+  margin: 0.5rem 0;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details p {
+  margin: 0;
+  flex: 0 0 30%;
+  min-width: fit-content;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details p span {
+  font-weight: 600;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details-parent button {
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  gap: 1rem;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-view-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+  min-width: 11.9445%;
+  width: fit-content;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-view-more button {
+  position: relative;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-view-more img {
+  width: 1.5rem;
+  padding: 0.3rem;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-data-mobile {
+  display: none;
+} 
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-detail-tab {
+  display: flex;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-detail-tab span:not(:nth-of-type(4)) {
+  width: 142px;
+  text-align: center;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-count-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px
+}
+.swym-registry-wrapper .swym-registry-event-type-truncate{
+  max-width: 142px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: bottom;
+}
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+  .swym-registry-wrapper {
+     width: 100%;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-lists-header {
+    width: 95%;
+    margin-left: 20px;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-lists li {
+    width: 100%;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal {
+      width: 60%;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-view-more{
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .swym-registry-wrapper {
+    width: 100%;
+  }
+  .swym-registry-registry-list-circle-parent p {
+    padding: 5px 0;
+    margin: 0;
+  }
+  .swym-registry-registry-list-details {
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .swym-registry-registry-list-details p {
+    flex: 0 0 50%;
+  }
+  .swym-registry-registry-list-details p {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 790px) {
+  .swym-registry-landing-banner-container {
+    transform: translate(0, 67%);
+    width: 90%;
+    margin: 0 auto;
+  }
+  .swym-registry-landing-banner {
+      margin-bottom: 300px;
+  }
+  .swym-registry-wrapper .swym-registry-landing-search {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .swym-registry-wrapper .swym-registry-landing-search .swym-registry-search-registry {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 30px;
+  }
+  .swym-registry-wrapper .swym-registry-landing-search input[type=search] {
+    width: 100%;
+  }
+  .swym-registry-wrapper .swym-registry-landing-search input[type=submit] {
+    width: fit-content;
+    margin-top: 24px;
+    padding: 15px 10px;
+    display: block;
+  }
+ .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-detail-mobile {
+    display: block;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-lists li {
+    cursor: auto;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details-parent, 
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details {
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-lists-column-headings {
+    display: none;
+  }
+  
+
+  .swym-registry-wrapper .swym-registry-landing-search .swym-registry-search-registry button {
+    width: 40%;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-column-detail {
+    flex-direction: column;
+    margin-right: 0;
+    width: 100%;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-detail-tab span:not(:nth-of-type(4)){
+    width: initial;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-column-detail > span {
+    display: flex;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 500;
+    font-size: calc(12px + (14 - 12) * ((100vw - 320px) / (1440 - 320)));
+    line-height: 30px;
+  }
+   .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-lists .swym-registry-list-column-detail .swym-registry-view-arrow {
+     display: none;
+   }
+   .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-column-detail button {
+     margin-top: 20px;
+     width: fit-content;
+     border-radius: 5px;
+   }
+}
+
+@media screen and (max-width: 550px) {
+  .swym-registry-wrapper {
+    width: 100%;
+  }
+  .swym-registry-grid-lists li {
+    flex-direction: column;
+    margin: 1rem 0;
+  }
+  .swym-registry-registry-list-details-parent {
+    align-items: center;
+  }
+  .swym-registry-registry-list-details {
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-registry-description {
+    text-align: center;
+  }
+  .swym-registry-registry-list-details p {
+    display: block;
+    flex: 0 0 50%;
+    text-align: center;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-registry-list-circle-parent :nth-child(2),
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-registry-list-circle-parent :nth-child(3) {
+    display: none;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details-parent{
+    width: 70%;
+    margin-left: 8px;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-details{
+    display: none;
+  }
+  .swym-registry-wrapper  .swym-registry-find-lists-container .swym-registry-find-lists li {
+    flex-wrap: wrap;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-column-detail {
+    width: 100%;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-data-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  } 
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-btn-container {
+    margin-top: 20px;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-btn-container button {
+    border-radius: 5px;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-additional-detail {
+    display: flex;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-additional-detail span {
+    display: flex;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-data-mobile > span {
+    display: flex;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-list-detail-tab {
+    display: none;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-find-list-circle-parent {
+    padding-right: 8px;
+    width: 60px;
+    height: 60px;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-view-more{
+    width: 82.442%;
+  }
+}
+</style>
+
+<style>
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  overflow: auto;
+  animation-name: animateopacity;
+  animation-duration: 0.5s;
+  z-index: 9999;
+}
+@keyframes animateopacity {
+  from {background-color: rgba(0,0,0,0.0)}
+    to {background-color: rgba(0,0,0,0.7)}
+}
+.swym-registry-wrapper .swym-registry-landing-search input#searchText::placeholder{
+  color: {{settings.swym_registry_page_content_color}};
+}
+.swym-registry-wrapper .swym-registry-find-lists-container input#swym-registry-password-input::placeholder{
+  color: {{settings.swym_registry_page_content_color}};
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal {
+  position: relative;
+  margin: 0 auto;
+  width: 38.889%;
+  max-width: 1440px;
+  height: auto;
+  padding: 40px;
+  animation: drop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translate(0%, -25%);
+  top: 25%;
+  background: {{settings.swym_registry_page_content_background_color}};
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-modal-close {
+  position: absolute;
+  right: 20px;
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  top: 12px;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content .swym-registry-find-list-circle-parent.swym-registry-find-lists {
+  padding-right: 0;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li {
+  padding: 0 10px;
+  list-style-type: none;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12px + (17 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: 24px;
+  color: #3E3E3E;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(3) {
+  margin-top: 8px;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(4) {
+  color: {{settings.swym_registry_page_content_color}};
+  font-weight: 600;
+  text-align: center;
+  font-size: calc(12px + (17 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: 24px;
+  margin-top: 12px;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(4) span:first-child{
+  width: 95%;
+  display: block;
+  margin: 0 auto;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(5) {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  color: #B3261E;
+  font-size: calc(16px + (16 - 14) * ((100vw - 320px) / (1564 - 320)));
+  width: 100%;
+}
+
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(6) {
+  color: {{ settings.swym_registry_page_content_color }};
+  font-weight: 600;
+  text-align: center;
+  font-size: calc(12px + (17 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: normal;
+  width: 100%;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(5) button {
+  border: none;
+  padding: 12px 19px;
+  color: #fff;
+  background: #503E35;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (1564 - 320)));
+  line-height: 24px;
+  text-align: center;
+  color: #E7E7E7;
+  margin-bottom: 0.9rem;
+  width: 30%;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(5) {
+   margin-bottom: 20px;
+  margin-top: 10px;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(5) input {
+  width: 100%;
+  outline: none;
+  padding: 12px;
+  font-size: calc(12px + ({{ settings.swym_registry_font_small }} - 12) * ((100vw - 320px) / (1440 - 320)));
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-message {
+  margin-top: 1rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  text-align: left;
+  text-transform: none;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-submit {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 17px;
+  text-align: center;
+  outline: none;
+  border: none;
+  width: 47.5%;
+  display: block;
+  padding: 11.5px;
+  margin: auto;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-field input {
+  background: {{settings.swym_registry_page_content_background_color}};
+  border: 1px solid {{settings.swym_registry_page_content_color | color_modify:"alpha", 0.4}};
+  color: {{settings.swym_registry_page_content_color}};
+  padding: 1.4rem;
+  width: 80%;
+  outline: none;
+  box-shadow:none;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-field{
+  display: flex;
+  margin: auto;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-submit{
+  cursor: pointer;
+  position:relative;
+}
+.swym-registry-wrapper .swym-registry-list-detail-title > span:nth-child(3){
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: bottom;
+}
+@media(max-width: 1040px){
+ .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:first-child {
+   display: flex;
+    flex-direction: column;
+ }    
+}
+@media(max-width: 790px){
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal {
+    width: 80%;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:first-child {
+    margin-bottom: 30px;
+  }
+}  
+@media(max-width: 470px){
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal {
+    width: 95%;
+    padding: 20px 20px 30px;
+  }
+  .swym-registry-wrapper .swym-registry-find-lists-container .swym-registry-password-modal-content ul li:nth-child(5) {
+    width: 100%;   
+  }
+}  
+@keyframes drop-in {
+  from {top: 10%;}
+  to {top: 25%}
+}  
+
+  /* Button Loading CSS*/
+.swym-registry-wrapper .swym-registry-btn-dot-collision {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  color: #fff;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+.swym-registry-wrapper .swym-registry-btn-dot-collision::before, .swym-registry-btn-dot-collision::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.swym-registry-wrapper .swym-registry-btn-dot-collision::before {
+  left: -10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  color: #fff;
+  animation: dotCollisionBefore 2s infinite ease-in;
+}
+.swym-registry-wrapper .swym-registry-btn-dot-collision::after {
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: {{settings.swym_registry_btn_text_color}};
+  color: #fff;
+  animation: dotCollisionAfter 2s infinite ease-in;
+  animation-delay: 1s;
+}
+@keyframes dotCollisionBefore {
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-15px);
+  }
+}
+
+@keyframes dotCollisionAfter {
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(15px);
+  }
+}
+</style>
+<script>
+  var currentLoggedInEmail = "{{ customer.email }}";
+  var currentLoggedInFirstName = "{{ customer.first_name }}";
+  var currentLoggedInLastName = "{{ customer.last_name }}";
+  window.swymGrCustomer = {
+    "email": currentLoggedInEmail,
+    "firstName": currentLoggedInFirstName,
+    "lastName": currentLoggedInLastName
+  }
+</script>
+
+{% schema %}
+  {
+    "name": "Swym Registry Finder",
+    "settings": []
+  }
+{% endschema %}
+<link rel="dns-prefetch" href="https://cdn.swymregistry.com/swym-registry-common-cdn.js">
+<link
+  rel="preconnect"
+  href="https://cdn.swymregistry.com/swym-registry-common-cdn.js"
+>
+<script
+  src="https://cdn.swymregistry.com/swym-registry-common-cdn.js"
+></script>
+<script type="text/javascript" src="https://cloudfront.loggly.com/js/loggly.tracker-latest.min.js" async></script>
+<script>
+  var _LTracker = _LTracker || [];
+  _LTracker.push({
+    'logglyKey': '7a2be593-4080-4ce0-b039-cee174ba8365',
+    'sendConsoleErrors' : true,
+    'tag' : 'error,template,find'
+  });
+</script>
+{% if request.design_mode %}
+<div class="swym-registry-wrapper">
+  <h1 class="swym-registry-font-xl-large swym-registry-font-title swym-registry-page-content {{ settings.swym_registry_custom_title_class }}" id="swym-registry-page-title">{{ settings.swym_registry_find_registry_title_text }}</h1>
+  <section class="swym-registry-landing-search {{ settings.swym_registry_custom_section_class }}">
+   <form class="swym-registry-search-registry">
+     <input type="search" id="searchText" placeholder= "{{ settings.swym_registry_search_placeholder }}" style="margin:0" minlength="2">
+     <button id="swym-registry-search-btn" class="swym-registry-font-small-light swym-registry-btn-primary {{ settings.swym_registry_custom_btn_class }}">{{ settings.swym_registry_search_button_text }}</button>
+   </form>
+  </section>
+  <div class="swym-registry-find-lists-container">
+  <div class="swym-registry-find-lists-header">
+  <p class="swym-registry-page-content swym-registry-font-regular {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_found_registries_label_1 }} <span class="swym-registry-lists-total-count swym-registry-font-regular">2</span> {{ settings.swym_registry_found_registries_label_2 }}</p>
+     <ul class="swym-registry-lists-column-headings">
+      <li class="swym-registry-page-content swym-registry-font-regular">{{ settings.swym_registry_event_type_label }}</li>
+      <li class="swym-registry-page-content swym-registry-font-regular">{{ settings.swym_registry_event_date_label }}</li>
+      <li class="swym-registry-page-content swym-registry-font-regular">{{ settings.swym_registry_event_location_label }}</li>
+     </ul>
+  </div>
+  <ul class="swym-registry-find-lists">
+    <li id="swym-registry-view-registry-design">
+      <div class="swym-registry-find-list-circle-parent swym-registry-find-lists">
+        <div class="swym-registry-find-list-circle">
+          <p class="swym-registry-font-very-large swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">JD</p>
+        </div>
+      </div>
+      <div class="swym-registry-find-list-details-parent">
+        <div class="swym-registry-list-detail-title">
+          <span class="swym-registry-font-large swym-registry-page-content">John Doe</span>
+          <span class="swym-registry-list-details-separator swym-registry-font-large swym-registry-page-content">{{ settings.swym_registry_custom_seperator }}</span>
+          <span class="swym-registry-font-large swym-registry-page-content">Jane Doe</span>
+        </div>
+        <div class="swym-registry-find-list-details">
+          <p class="swym-registry-font-small swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_reg_id_label }} : <span><strong>1989256</strong></span></p>
+          <p class="swym-registry-font-small swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_reg_name_label }} : <span><strong>My Cute baby's shower</strong></span></p>
+        </div>
+        <p class="swym-registry-registry-description-title swym-registry-font-small {{ settings.swym_registry_custom_para_class }}"></p>
+        <p class="swym-registry-registry-description swym-registry-font-small-no-case {{ settings.swym_registry_custom_para_class }}"></p>
+      </div>
+      <div class="swym-registry-list-column-detail swym-registry-list-detail-tab">
+        <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_type_label }}&nbsp;:&nbsp;</span><span class="swym-registry-event-type-truncate"> baby</span></span>
+        <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_on_label }}&nbsp;</span> 2023-03-30</span>
+        <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_from_label }}&nbsp;</span> Boston</span>
+        <button class="swym-registry-font-small-light swym-registry-btn-secondary swym-registry-list-detail-mobile {{ settings.swym_registry_custom_btn_class }}" id="swym-registry-view-registry-design-1">{{ settings.swym_registry_view_registry_button_label }}</button>
+      <span class="swym-registry-view-arrow" style="pointer-events: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="19" viewBox="0 0 12 19" fill="none">
+<path d="M1 18L10 9.5L1 1" stroke={{ settings.swym_registry_page_content_color }} stroke-width="2"></path>
+</svg></span></div>
+      <div class="swym-registry-list-data-mobile">
+        <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_type_label }}&nbsp;:&nbsp;</span><span class="swym-registry-event-type-truncate"> baby</span></span>
+        <div class="swym-registry-list-additional-detail">
+          <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_on_label }}&nbsp;</span><b>2023-03-30</b></span>
+          <span class="swym-registry-font-small swym-registry-page-content">&nbsp;|&nbsp;</span>
+          <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_from_label }}&nbsp;</span><b>Boston</b></span>
+        </div>
+        <div class="swym-registry-list-btn-container"> 
+          <button class="swym-registry-btn-secondary {{ settings.swym_registry_custom_btn_class }}" id="swym-registry-view-registry-design-2">{{ settings.swym_registry_view_registry_button_label }}</button>
+        </div>
+      </div>
+  </li>
+
+  <li>
+      <div class="swym-registry-find-list-circle-parent swym-registry-find-lists">
+        <div class="swym-registry-find-list-circle">
+          <p class="swym-registry-font-very-large swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">JD</p>
+        </div>
+      </div>
+      <div class="swym-registry-find-list-details-parent">
+        <div class="swym-registry-list-detail-title">
+          <span class="swym-registry-font-large swym-registry-page-content">John Doe</span>
+          <span class="swym-registry-list-details-separator swym-registry-font-large swym-registry-page-content">{{ settings.swym_registry_custom_seperator }}</span>
+          <span class="swym-registry-font-large swym-registry-page-content">Jane Doe</span>
+        </div>
+        <div class="swym-registry-find-list-details">
+          <p class="swym-registry-font-small swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_reg_id_label }} : <span><strong>1989256</strong></span></p>
+          <p class="swym-registry-font-small swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_reg_name_label }} : <span><strong>My Cute baby's shower</strong></span></p>
+        </div>
+        <p class="swym-registry-registry-description-title swym-registry-font-small {{ settings.swym_registry_custom_para_class }}"></p>
+        <p class="swym-registry-registry-description swym-registry-font-small-no-case {{ settings.swym_registry_custom_para_class }}"></p>
+      </div>
+      <div class="swym-registry-list-column-detail swym-registry-list-detail-tab">
+        <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_type_label }}&nbsp;:&nbsp;</span><span class="swym-registry-event-type-truncate"> baby</span></span>
+        <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_on_label }}&nbsp;</span> 2023-03-30</span>
+        <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_from_label }}&nbsp;</span> Boston</span>
+        <button class="swym-registry-font-small-light swym-registry-btn-secondary swym-registry-list-detail-mobile {{ settings.swym_registry_custom_btn_class }}">{{ settings.swym_registry_view_registry_button_label }}</button>
+      <span class="swym-registry-view-arrow" style="pointer-events: auto;"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="19" viewBox="0 0 12 19" fill="none">
+<path d="M1 18L10 9.5L1 1" stroke={{ settings.swym_registry_page_content_color }} stroke-width="2"></path>
+</svg></span></div>
+      <div class="swym-registry-list-data-mobile">
+        <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_type_label }}&nbsp;:&nbsp;</span><span class="swym-registry-event-type-truncate"> baby</span></span>
+        <div class="swym-registry-list-additional-detail">
+          <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_on_label }}&nbsp;</span><b>2023-03-30</b></span>
+          <span class="swym-registry-font-small swym-registry-page-content">&nbsp;|&nbsp;</span>
+          <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_from_label }}&nbsp;</span><b>Boston</b></span>
+        </div>
+        <div class="swym-registry-list-btn-container"> 
+          <button class="swym-registry-btn-secondary {{ settings.swym_registry_custom_btn_class }}">{{ settings.swym_registry_view_registry_button_label }}</button>
+        </div>
+      </div>
+  </li>
+  </ul>
+
+  <div class="swym-registry-no-results" style="display: none">
+    <svg width="45" height="46" viewBox="0 0 45 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M0 41.7422C0.210938 40.9219 0.75 40.3125 1.33594 39.7266C5.37891 35.6953 9.41016 31.6523 13.4531 27.6211C14.5078 26.5664 15.4453 26.4961 16.6172 27.3516C17.5078 26.4609 18.3984 25.5703 19.3125 24.6562C19.2656 24.5977 19.1719 24.4805 19.0898 24.375C12.1523 16.3359 15.7617 3.76172 25.9219 0.65625C26.8711 0.363281 27.8672 0.257812 28.8398 0.0703125C28.957 0.046875 29.0625 0.0234375 29.1797 0C29.918 0 30.6445 0 31.3828 0C31.7109 0.0585938 32.0391 0.117188 32.3672 0.152344C38.2148 0.9375 43.2305 5.48438 44.5664 11.2148C44.7539 12.0117 44.8594 12.8203 45 13.6172C45 14.3555 45 15.082 45 15.8203C44.8594 16.6289 44.7539 17.4375 44.5664 18.2344C43.2422 23.8828 38.4844 28.3477 32.7656 29.2734C28.1602 30.0234 24.0703 28.8516 20.5195 25.8281C20.4609 25.7812 20.4023 25.7344 20.3438 25.6875C20.332 25.6758 20.3203 25.6758 20.3438 25.6875C19.4414 26.5898 18.5625 27.4805 17.6484 28.4063C17.6367 28.3828 17.6602 28.4297 17.6953 28.4766C18.457 29.4844 18.3984 30.5273 17.4961 31.4297C13.8516 35.0742 10.207 38.7188 6.5625 42.3633C6.14062 42.7852 5.69531 43.1953 5.29688 43.6406C4.72266 44.2617 4.08984 44.7891 3.25781 45.0117C2.92969 45.0117 2.61328 45.0117 2.28516 45.0117C2.01562 44.9063 1.73438 44.8125 1.48828 44.6836C0.679688 44.2734 0.257812 43.5586 0 42.7266C0 42.3867 0 42.0586 0 41.7422ZM30.2461 28.1719C37.6289 28.1719 43.6641 22.1484 43.6758 14.7539C43.6875 7.34766 37.6523 1.30078 30.2461 1.30078C22.8398 1.3125 16.793 7.37109 16.8164 14.7539C16.8398 22.1484 22.875 28.1836 30.2461 28.1719ZM12.4922 30.3867C12.4219 30.4805 12.3516 30.5742 12.2695 30.6563C8.76562 34.1602 5.25 37.6641 1.75781 41.1914C1.52344 41.4258 1.38281 41.8242 1.33594 42.1641C1.25391 42.75 1.62891 43.2891 2.16797 43.5352C2.75391 43.8047 3.36328 43.6758 3.89062 43.1602C7.39453 39.6562 10.9102 36.1523 14.4141 32.6367C14.4844 32.5664 14.5312 32.4844 14.5547 32.4492C13.8633 31.7695 13.207 31.1016 12.4922 30.3867ZM15.5977 31.4766C15.9609 31.1016 16.3359 30.7383 16.6875 30.3398C16.9688 30.0234 16.9805 29.6602 16.6992 29.3438C16.3594 28.957 15.9961 28.5938 15.6094 28.2656C15.3281 28.0195 14.9648 28.0078 14.6836 28.2539C14.2734 28.6172 13.8984 29.0273 13.5234 29.3906C14.2266 30.0938 14.8828 30.7617 15.5977 31.4766Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M42.188 14.4254C42.1411 17.4137 41.356 19.816 39.7505 21.9488C39.5278 22.2418 39.2583 22.4176 38.8833 22.2418C38.5669 22.0895 38.438 21.8199 38.5317 21.4801C38.5669 21.3277 38.6841 21.1988 38.7778 21.0699C39.7271 19.7926 40.3364 18.3746 40.6646 16.816C41.9302 10.7457 37.4888 4.75743 31.313 4.20665C28.606 3.96055 26.1567 4.64024 23.9536 6.23399C23.895 6.28087 23.8364 6.31602 23.7778 6.3629C23.4146 6.59727 23.063 6.5504 22.8403 6.25743C22.606 5.95274 22.6646 5.56602 23.0161 5.29649C24.0825 4.47618 25.2427 3.84337 26.5317 3.43321C33.5044 1.20665 40.5942 5.40196 41.9888 12.5856C42.106 13.2887 42.1411 14.027 42.188 14.4254Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M30.2343 26.6604C24.0936 26.6253 19.0194 22.0784 18.3983 15.9846C18.0819 12.9378 18.8436 10.1487 20.66 7.66433C21.0233 7.16042 21.4101 7.04324 21.7499 7.31277C22.078 7.57058 22.0663 7.9573 21.7265 8.43777C18.539 12.8323 19.0663 18.762 22.9804 22.4651C26.6366 25.9221 32.3554 26.2971 36.4452 23.344C36.539 23.2737 36.6327 23.2034 36.7265 23.1331C37.078 22.9104 37.4413 22.9456 37.664 23.2268C37.8983 23.5198 37.8632 23.9651 37.4882 24.1878C36.5507 24.7503 35.6249 25.3479 34.6288 25.805C33.2577 26.4378 31.7577 26.6604 30.2343 26.6604Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M30.4337 17.5898C31.8165 17.6719 33.0353 18.1172 34.0665 19.0547C34.4884 19.4297 34.5353 19.793 34.2423 20.1211C33.961 20.4258 33.5743 20.3906 33.1642 20.0273C31.5118 18.5742 29.004 18.5625 27.3399 20.0039C27.2813 20.0508 27.2345 20.0977 27.1759 20.1445C26.8712 20.3789 26.4962 20.3789 26.2618 20.1328C26.004 19.875 26.004 19.4648 26.2853 19.1836C27.1642 18.3047 28.2423 17.8242 29.4728 17.6484C29.7892 17.6133 30.1173 17.6133 30.4337 17.5898Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M33.7736 13.5008C33.4337 13.8523 33.1759 14.157 32.8947 14.4265C32.5548 14.7547 32.1564 14.7664 31.8868 14.4851C31.629 14.2156 31.6407 13.8289 31.9572 13.5125C32.2384 13.2312 32.5314 12.9734 32.9064 12.6219C32.5665 12.3172 32.2736 12.0594 32.004 11.7781C31.6525 11.4265 31.6173 11.0164 31.9103 10.7351C32.2032 10.4539 32.5548 10.489 32.9181 10.8289C33.1993 11.0867 33.4689 11.3562 33.7384 11.6258C33.7501 11.6375 33.7618 11.6375 33.8556 11.6609C34.1134 11.3914 34.3829 11.0867 34.6642 10.7937C34.9923 10.4656 35.3556 10.4539 35.6368 10.7351C35.9181 11.0047 35.9181 11.3797 35.6017 11.7078C35.3204 12.0008 35.004 12.2703 34.6173 12.6453C34.9689 12.95 35.2853 13.2078 35.5782 13.489C35.9181 13.8289 35.9298 14.2156 35.6251 14.4969C35.3556 14.7547 34.9689 14.7312 34.6525 14.4265C34.3712 14.157 34.1134 13.864 33.7736 13.5008Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M27.6096 12.6448C27.9494 12.9612 28.2541 13.219 28.5237 13.4886C28.8635 13.8284 28.8752 14.2151 28.594 14.4964C28.3127 14.7659 27.926 14.7308 27.5862 14.4026C27.4455 14.2737 27.3166 14.1331 27.1877 14.0042C27.0588 13.8636 26.9416 13.7229 26.7776 13.5354C26.4612 13.8518 26.1799 14.1214 25.9104 14.3909C25.5471 14.7425 25.1487 14.7776 24.8674 14.4964C24.5862 14.2151 24.633 13.8167 24.9846 13.4534C25.2541 13.1839 25.5237 12.9261 25.8518 12.6214C25.5237 12.305 25.219 12.0472 24.9494 11.7659C24.6096 11.4261 24.5862 11.0393 24.8674 10.7581C25.1604 10.4651 25.5237 10.4886 25.8752 10.8284C26.1565 11.1097 26.4143 11.4026 26.7307 11.7542C27.0705 11.4026 27.3401 11.0979 27.633 10.8167C27.9612 10.4886 28.3244 10.4651 28.6057 10.7347C28.8987 11.0042 28.8869 11.4026 28.5588 11.7425C28.4182 11.8948 28.2776 12.0354 28.1252 12.1761C27.9612 12.3167 27.8205 12.4456 27.6096 12.6448Z" fill="#503E35"/>
+    </svg>
+    <div>{{ settings.swym_registry_no_matching_registries_label }}<span></span></div>
+    <div>{{ settings.swym_registry_try_searching_label }}</div>
+  </div>
+
+  <div class="swym-registry-view-more swym-registry-load-more" id="swym-registry-view-more-btn">
+    <button class="swym-registry-btn-primary {{ settings.swym_registry_custom_btn_class }}">{{ settings.swym_registry_loadmore_button_text }}</button>
+  </div>
+
+  <div class="swym-registry-password-modal-overlay" id="swym-registry-password-modal-overlay" style="display: none"></div>
+<div class="swym-registry-password-modal-container" style="display: none">
+  <div class="swym-registry-password-modal">
+    <button class="swym-modal-close swym-registry-page-content {{ settings.swym_registry_custom_btn_class }}" id="swym-registry-password-modal-close" onclick="swymGrClosePasswordModal()">&#x2715;</button>
+    <div class="swym-registry-password-modal-content">
+      <ul>
+        <li><div class="swym-registry-find-list-circle-parent swym-registry-find-lists">
+          <div class="swym-registry-find-list-circle">
+            <p class="swym-registry-font-very-large swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">JD</p>
+          </div>
+        </div></li>
+        <li><span class="swym-registry-font-large swym-registry-page-content swym-registry-find-list-creator-name">John Doe</span><span class="swym-registry-font-large swym-registry-page-content swym-registry-find-list-separator"> {{ settings.swym_registry_custom_seperator }} </span><span class="swym-registry-font-large swym-registry-page-content swym-registry-find-list-co-creator-name">Jane Doe</span></li>
+        <li><span class="swym-registry-font-regular swym-registry-page-content swym-registry-find-list-registry-name">My Cute Baby's shower Registry</span></li>
+        <li><span class="swym-registry-font-small swym-registry-page-content">{{ settings.swym_registry_finder_password_title }}</span></li>
+        <li>
+          <div class="swym-registry-field">
+            <input type="password" class="swym-registry-field-input" id="swym-registry-password-input" placeholder="{{ settings.swym_registry_finder_password_label }} *">
+          </div>
+          <div class="swym-registry-password-message swym-registry-font-small" style="display: none">Message</div>
+        </li>
+        <li><button class="swym-registry-password-submit swym-registry-btn-primary {{ settings.swym_registry_custom_btn_class }}" id="swym-registry-password-modal-submit-btn">
+  <span id="swym-registry-password-button-label">{{ settings.swym_registry_password_button_label }}</span>
+  <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+    <div class="swym-registry-snippet" data-title=".dot-collision">
+      <div class="swym-registry-stage">
+        <div class="swym-registry-dot-collision"></div>
+      </div>
+    </div>
+  </div>
+  </button>
+  </li>
+  </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<script>
+    const themeId = (Shopify.theme.id).toString();
+    const shopDomain = Shopify.shop;
+    var swymRegistry_styles_payload = JSON.stringify({
+        "themeId": themeId,
+        "shopDomain": shopDomain,
+        "type": "styles",
+        "globalConfig": {
+          "color": {
+            "swym_registry_page_content_color":"{{ settings.swym_registry_page_content_color }}",
+            "swym_registry_page_content_background_color":"{{ settings.swym_registry_page_content_background_color }}",
+            "swym_registry_btn_text_color":"{{ settings.swym_registry_btn_text_color }}",
+            "swym_registry_btn_background_color":"{{ settings.swym_registry_btn_background_color }}",
+          },
+          "fontFamily": "{{ settings.swym_registry_page_font_family }}",
+          "fontSize": {
+            "swym_registry_font_small": "{{ settings.swym_registry_font_small }}",
+            "swym_registry_font_regular": "{{ settings.swym_registry_font_regular }}",
+            "swym_registry_font_large": "{{ settings.swym_registry_font_large }}",
+            "swym_registry_font_very_large": "{{ settings.swym_registry_font_very_large }}",
+            "swym_registry_font_main_title": "{{ settings.swym_registry_font_main_title }}",
+            "swym_registry_font_btn": "{{ settings.swym_registry_font_btn }}"
+          },
+          "titleAllign": "center",
+          "cssClasses": {
+            "buttonClass": "{{ settings.swym_registry_custom_btn_class }}",
+            "titleClass": "{{ settings.swym_registry_custom_title_class }}",
+            "paraClass": "{{ settings.swym_registry_custom_para_class }}",
+            "sectionClass": "{{ settings.swym_registry_custom_section_class }}"
+          }
+        }
+      });
+    var swymRegistry_strings_payload = JSON.stringify({
+        "themeId": themeId,
+        "shopDomain": shopDomain,
+        "type": "strings",
+        "globalConfig": {
+          "swym_registry_find_registry_title_text": "{{ settings.swym_registry_find_registry_title_text }}",
+          "swym_registry_event_type_label": "{{ settings.swym_registry_event_type_label }}",
+          "swym_registry_event_date_label": "{{ settings.swym_registry_event_date_label }}",
+          "swym_registry_event_location_label": "{{ settings.swym_registry_event_location_label }}",
+          "swym_registry_event_on_label": "{{ settings.swym_registry_event_on_label }}",
+          "swym_registry_event_from_label": "{{ settings.swym_registry_event_from_label }}",
+          "swym_registry_found_registries_label_1": "{{ settings.swym_registry_found_registries_label_1 }}",
+          "swym_registry_found_registries_label_2": "{{ settings.swym_registry_found_registries_label_2 }}",
+          "swym_registry_custom_seperator": "{{ settings.swym_registry_custom_seperator }}",
+          "swym_registry_reg_id_label": "{{ settings.swym_registry_reg_id_label }}",
+          "swym_registry_reg_name_label": "{{ settings.swym_registry_reg_name_label }}",
+          "swym_registry_view_registry_button_label": "{{ settings.swym_registry_view_registry_button_label }}",
+          "swym_registry_finder_password_title": "{{ settings.swym_registry_finder_password_title }}",
+          "swym_registry_finder_password_label": "{{ settings.swym_registry_finder_password_label }}",
+          "swym_registry_password_button_label": "{{ settings.swym_registry_password_button_label }}",
+          "swym_registry_no_matching_registries_label": "{{ settings.swym_registry_no_matching_registries_label }}",
+          "swym_registry_try_searching_label": "{{ settings.swym_registry_try_searching_label }}",
+          "swym_registry_search_placeholder": "{{ settings.swym_registry_search_placeholder }}",
+          "swym_registry_search_button_text": "{{ settings.swym_registry_search_button_text }}",
+          "swym_registry_loadmore_button_text": "{{ settings.swym_registry_loadmore_button_text }}",
+          "swym_registry_scrolltotop_button_text": "{{ settings.swym_registry_scrolltotop_button_text }}",
+          "swym_registry_showing_label": "{{ settings.swym_registry_showing_label }}",
+          "swym_registry_of_label": "{{ settings.swym_registry_of_label }}",
+          "swym_registry_registries_label": "{{ settings.swym_registry_registries_label }}",
+          "swym_registry_incorrect_password_label": "{{ settings.swym_registry_incorrect_password_label }}"
+        }
+      });
+
+    function swymRegistry_stylesApi(swymRegistry_styles_payload) {   
+      swymRegistry_uploadConfig(swymRegistry_styles_payload);
+    }
+
+    function swymRegistry_stringsApi(swymRegistry_strings_payload) {   
+      swymRegistry_uploadConfig(swymRegistry_strings_payload);
+    }
+
+    swymRegistry_stylesApi(swymRegistry_styles_payload);
+    swymRegistry_stringsApi(swymRegistry_strings_payload);
+</script>
+{% else %}
+<div class="swym-registry-wrapper">
+  <h1 class="swym-registry-font-xl-large swym-registry-font-title swym-registry-page-content {{ settings.swym_registry_custom_title_class }}" id="swym-registry-page-title">{{ settings.swym_registry_find_registry_title_text }}</h1>
+  <section class="swym-registry-landing-search {{ settings.swym_registry_custom_section_class }}">
+   <form class="swym-registry-search-registry">
+     <input type="search" id="searchText" placeholder= "{{ settings.swym_registry_search_placeholder }}" style="margin:0" minlength="2">
+     <button type="submit" id="swym-registry-search-btn" class="swym-registry-font-small-light swym-registry-btn-primary {{ settings.swym_registry_custom_btn_class }}">
+  <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision-search" style="display: none">
+    <div class="swym-registry-snippet" data-title=".dot-collision">
+      <div class="swym-registry-stage">
+        <div class="swym-registry-dot-collision"></div>
+      </div>
+    </div>
+  </div>
+  <span id="swym-registry-search-text">{{ settings.swym_registry_search_button_text }}</span></button>
+   </form>
+  </section>
+  <div class="swym-registry-find-lists-container" style="display: none">
+  <div class="swym-registry-find-lists-header">
+  <p class="swym-registry-page-content swym-registry-font-regular {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_found_registries_label_1 }} <span class="swym-registry-lists-total-count swym-registry-font-regular"></span> {{ settings.swym_registry_found_registries_label_2 }}</p>
+     <ul class="swym-registry-lists-column-headings">
+      <li class="swym-registry-page-content swym-registry-font-regular">{{ settings.swym_registry_event_type_label }}</li>
+      <li class="swym-registry-page-content swym-registry-font-regular">{{ settings.swym_registry_event_date_label }}</li>
+      <li class="swym-registry-page-content swym-registry-font-regular">{{ settings.swym_registry_event_location_label }}</li>
+     </ul>
+  </div>
+  <ul class="swym-registry-find-lists">
+  </ul>
+  <div class="swym-registry-no-results" style="display: none">
+    <svg width="45" height="46" viewBox="0 0 45 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M0 41.7422C0.210938 40.9219 0.75 40.3125 1.33594 39.7266C5.37891 35.6953 9.41016 31.6523 13.4531 27.6211C14.5078 26.5664 15.4453 26.4961 16.6172 27.3516C17.5078 26.4609 18.3984 25.5703 19.3125 24.6562C19.2656 24.5977 19.1719 24.4805 19.0898 24.375C12.1523 16.3359 15.7617 3.76172 25.9219 0.65625C26.8711 0.363281 27.8672 0.257812 28.8398 0.0703125C28.957 0.046875 29.0625 0.0234375 29.1797 0C29.918 0 30.6445 0 31.3828 0C31.7109 0.0585938 32.0391 0.117188 32.3672 0.152344C38.2148 0.9375 43.2305 5.48438 44.5664 11.2148C44.7539 12.0117 44.8594 12.8203 45 13.6172C45 14.3555 45 15.082 45 15.8203C44.8594 16.6289 44.7539 17.4375 44.5664 18.2344C43.2422 23.8828 38.4844 28.3477 32.7656 29.2734C28.1602 30.0234 24.0703 28.8516 20.5195 25.8281C20.4609 25.7812 20.4023 25.7344 20.3438 25.6875C20.332 25.6758 20.3203 25.6758 20.3438 25.6875C19.4414 26.5898 18.5625 27.4805 17.6484 28.4063C17.6367 28.3828 17.6602 28.4297 17.6953 28.4766C18.457 29.4844 18.3984 30.5273 17.4961 31.4297C13.8516 35.0742 10.207 38.7188 6.5625 42.3633C6.14062 42.7852 5.69531 43.1953 5.29688 43.6406C4.72266 44.2617 4.08984 44.7891 3.25781 45.0117C2.92969 45.0117 2.61328 45.0117 2.28516 45.0117C2.01562 44.9063 1.73438 44.8125 1.48828 44.6836C0.679688 44.2734 0.257812 43.5586 0 42.7266C0 42.3867 0 42.0586 0 41.7422ZM30.2461 28.1719C37.6289 28.1719 43.6641 22.1484 43.6758 14.7539C43.6875 7.34766 37.6523 1.30078 30.2461 1.30078C22.8398 1.3125 16.793 7.37109 16.8164 14.7539C16.8398 22.1484 22.875 28.1836 30.2461 28.1719ZM12.4922 30.3867C12.4219 30.4805 12.3516 30.5742 12.2695 30.6563C8.76562 34.1602 5.25 37.6641 1.75781 41.1914C1.52344 41.4258 1.38281 41.8242 1.33594 42.1641C1.25391 42.75 1.62891 43.2891 2.16797 43.5352C2.75391 43.8047 3.36328 43.6758 3.89062 43.1602C7.39453 39.6562 10.9102 36.1523 14.4141 32.6367C14.4844 32.5664 14.5312 32.4844 14.5547 32.4492C13.8633 31.7695 13.207 31.1016 12.4922 30.3867ZM15.5977 31.4766C15.9609 31.1016 16.3359 30.7383 16.6875 30.3398C16.9688 30.0234 16.9805 29.6602 16.6992 29.3438C16.3594 28.957 15.9961 28.5938 15.6094 28.2656C15.3281 28.0195 14.9648 28.0078 14.6836 28.2539C14.2734 28.6172 13.8984 29.0273 13.5234 29.3906C14.2266 30.0938 14.8828 30.7617 15.5977 31.4766Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M42.188 14.4254C42.1411 17.4137 41.356 19.816 39.7505 21.9488C39.5278 22.2418 39.2583 22.4176 38.8833 22.2418C38.5669 22.0895 38.438 21.8199 38.5317 21.4801C38.5669 21.3277 38.6841 21.1988 38.7778 21.0699C39.7271 19.7926 40.3364 18.3746 40.6646 16.816C41.9302 10.7457 37.4888 4.75743 31.313 4.20665C28.606 3.96055 26.1567 4.64024 23.9536 6.23399C23.895 6.28087 23.8364 6.31602 23.7778 6.3629C23.4146 6.59727 23.063 6.5504 22.8403 6.25743C22.606 5.95274 22.6646 5.56602 23.0161 5.29649C24.0825 4.47618 25.2427 3.84337 26.5317 3.43321C33.5044 1.20665 40.5942 5.40196 41.9888 12.5856C42.106 13.2887 42.1411 14.027 42.188 14.4254Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M30.2343 26.6604C24.0936 26.6253 19.0194 22.0784 18.3983 15.9846C18.0819 12.9378 18.8436 10.1487 20.66 7.66433C21.0233 7.16042 21.4101 7.04324 21.7499 7.31277C22.078 7.57058 22.0663 7.9573 21.7265 8.43777C18.539 12.8323 19.0663 18.762 22.9804 22.4651C26.6366 25.9221 32.3554 26.2971 36.4452 23.344C36.539 23.2737 36.6327 23.2034 36.7265 23.1331C37.078 22.9104 37.4413 22.9456 37.664 23.2268C37.8983 23.5198 37.8632 23.9651 37.4882 24.1878C36.5507 24.7503 35.6249 25.3479 34.6288 25.805C33.2577 26.4378 31.7577 26.6604 30.2343 26.6604Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M30.4337 17.5898C31.8165 17.6719 33.0353 18.1172 34.0665 19.0547C34.4884 19.4297 34.5353 19.793 34.2423 20.1211C33.961 20.4258 33.5743 20.3906 33.1642 20.0273C31.5118 18.5742 29.004 18.5625 27.3399 20.0039C27.2813 20.0508 27.2345 20.0977 27.1759 20.1445C26.8712 20.3789 26.4962 20.3789 26.2618 20.1328C26.004 19.875 26.004 19.4648 26.2853 19.1836C27.1642 18.3047 28.2423 17.8242 29.4728 17.6484C29.7892 17.6133 30.1173 17.6133 30.4337 17.5898Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M33.7736 13.5008C33.4337 13.8523 33.1759 14.157 32.8947 14.4265C32.5548 14.7547 32.1564 14.7664 31.8868 14.4851C31.629 14.2156 31.6407 13.8289 31.9572 13.5125C32.2384 13.2312 32.5314 12.9734 32.9064 12.6219C32.5665 12.3172 32.2736 12.0594 32.004 11.7781C31.6525 11.4265 31.6173 11.0164 31.9103 10.7351C32.2032 10.4539 32.5548 10.489 32.9181 10.8289C33.1993 11.0867 33.4689 11.3562 33.7384 11.6258C33.7501 11.6375 33.7618 11.6375 33.8556 11.6609C34.1134 11.3914 34.3829 11.0867 34.6642 10.7937C34.9923 10.4656 35.3556 10.4539 35.6368 10.7351C35.9181 11.0047 35.9181 11.3797 35.6017 11.7078C35.3204 12.0008 35.004 12.2703 34.6173 12.6453C34.9689 12.95 35.2853 13.2078 35.5782 13.489C35.9181 13.8289 35.9298 14.2156 35.6251 14.4969C35.3556 14.7547 34.9689 14.7312 34.6525 14.4265C34.3712 14.157 34.1134 13.864 33.7736 13.5008Z" fill="#503E35"/>
+      <path fill="{{settings.swym_registry_page_content_color}}" d="M27.6096 12.6448C27.9494 12.9612 28.2541 13.219 28.5237 13.4886C28.8635 13.8284 28.8752 14.2151 28.594 14.4964C28.3127 14.7659 27.926 14.7308 27.5862 14.4026C27.4455 14.2737 27.3166 14.1331 27.1877 14.0042C27.0588 13.8636 26.9416 13.7229 26.7776 13.5354C26.4612 13.8518 26.1799 14.1214 25.9104 14.3909C25.5471 14.7425 25.1487 14.7776 24.8674 14.4964C24.5862 14.2151 24.633 13.8167 24.9846 13.4534C25.2541 13.1839 25.5237 12.9261 25.8518 12.6214C25.5237 12.305 25.219 12.0472 24.9494 11.7659C24.6096 11.4261 24.5862 11.0393 24.8674 10.7581C25.1604 10.4651 25.5237 10.4886 25.8752 10.8284C26.1565 11.1097 26.4143 11.4026 26.7307 11.7542C27.0705 11.4026 27.3401 11.0979 27.633 10.8167C27.9612 10.4886 28.3244 10.4651 28.6057 10.7347C28.8987 11.0042 28.8869 11.4026 28.5588 11.7425C28.4182 11.8948 28.2776 12.0354 28.1252 12.1761C27.9612 12.3167 27.8205 12.4456 27.6096 12.6448Z" fill="#503E35"/>
+    </svg>
+    <div> <span class="swym-registry-page-content">{{ settings.swym_registry_no_matching_registries_label }} <span></span> </span></div>
+    <div> <span class="swym-registry-page-content"> {{ settings.swym_registry_try_searching_label }} </span></div>
+  </div>
+  <div class="swym-registry-count-container">
+    <p class="{{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_showing_label }} <span class="swym-registry-lists-current-count"></span> {{ settings.swym_registry_of_label }} <span class="swym-registry-lists-total-count"></span> {{ settings.swym_registry_registries_label }}</p>
+  </div>
+<div class="swym-registry-view-more " id="swym-registry-view-more-btn">
+  
+    <button class="swym-registry-btn-primary {{ settings.swym_registry_custom_btn_class }}">
+  <span class="swym-registry-load-more">{{ settings.swym_registry_loadmore_button_text }}</span>
+  <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision" style="display: none">
+                  <div class="swym-registry-snippet" data-title=".dot-collision">
+                    <div class="swym-registry-stage">
+                      <div class="swym-registry-dot-collision"></div>
+                    </div>
+                  </div>
+                </div>
+  </button>
+  </div>
+
+  <div class="swym-registry-password-modal-overlay" id="swym-registry-password-modal-overlay" style="display: none"></div>
+<div class="swym-registry-password-modal-container" style="display: none">
+  <div class="swym-registry-password-modal">
+    <button class="swym-modal-close swym-registry-page-content {{ settings.swym_registry_custom_btn_class }}" id="swym-registry-password-modal-close" onclick="swymGrClosePasswordModal()">&#x2715;</button>
+    <div class="swym-registry-password-modal-content">
+      <ul>
+         <li><div class="swym-registry-find-list-circle-parent swym-registry-find-lists">
+                  <div class="swym-registry-find-list-circle">
+                    <p class="swym-registry-font-very-large swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">a</p>
+                  </div>
+                </div></li>
+         <li><span class="swym-registry-font-large swym-registry-page-content swym-registry-find-list-creator-name">Ann </span><span class="swym-registry-font-large swym-registry-page-content swym-registry-find-list-separator">&</span><span class="swym-registry-font-large swym-registry-page-content swym-registry-find-list-co-creator-name"> Joe’s</span></li>
+        <li><span class="swym-registry-font-regular swym-registry-page-content swym-registry-find-list-registry-name">Wedding Registry</span></li>
+        <li><span class="swym-registry-font-small swym-registry-page-content">{{ settings.swym_registry_finder_password_title }}</span></li>
+        <li>
+          <div class="swym-registry-field">
+            <input type="password" class="swym-registry-field-input" id="swym-registry-password-input" placeholder="{{ settings.swym_registry_finder_password_label }} *">
+          </div>
+          <div class="swym-registry-password-message swym-registry-font-small" style="display: none">Message</div>
+        </li>
+        <li><button class="swym-registry-password-submit swym-registry-btn-primary {{ settings.swym_registry_custom_btn_class }}" id="swym-registry-password-modal-submit-btn">
+          <div class="swym-registry-btn-dot-collision" id="swym-registry-btn-dot-collision-password" style="display: none">
+            <div class="swym-registry-snippet" data-title=".dot-collision">
+              <div class="swym-registry-stage">
+                <div class="swym-registry-dot-collision"></div>
+              </div>
+            </div>
+          </div>
+          <span id="swym-registry-password-button-label">{{ settings.swym_registry_password_button_label }}</span>
+        </button></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endif %}
+<link
+  rel="dns-prefetch"
+  href="https://cdn.swymregistry.com/swym-registry-find-cdn.js"
+>
+<link
+  rel="preconnect"
+  href="https://cdn.swymregistry.com/swym-registry-find-cdn.js"
+>
+<script
+  src="https://cdn.swymregistry.com/swym-registry-find-cdn.js"
+></script>
+<script>
+
+async function swymRegistryOnloadHandler() {
+  if(!Shopify.designMode){
+    try {
+        const swymRegistry_lsName = "swymKeys";
+        var swymRegistry_lsInit = JSON.parse(localStorage.getItem(swymRegistry_lsName));
+        const swymRegistry_authData = await swymRegistry_refreshPid(swymRegistry_lsInit);
+        const pid = swymRegistry_authData.swym_registry.pid;
+        window.swymgr = {};
+        window.swymgr.pid = pid;
+        let queryString = window.location.search;
+        let urlParams = new URLSearchParams(queryString);
+        var searchTextUrl = urlParams.has("searchText") ? urlParams.get("searchText") : "";
+        var all_registries;
+        var searchBtn = document.getElementById("swym-registry-search-btn");
+        var searchForm = document.querySelector(".swym-registry-search-registry");
+        var viewMoreBtn = document.getElementById("swym-registry-view-more-btn");
+        var noResult = document.querySelector(".swym-registry-no-results");
+        window.swymGrSearch = {};
+        window.swymGrSearch.pageItems = 10;
+        window.swymGrSearch.renderedRegistries = 0;
+  
+        if (searchTextUrl) {
+          try {
+            swymSearchRegistryByString(searchTextUrl);
+            document.getElementById("searchText").value = searchTextUrl;
+          } catch (error) {
+            console.log("Could not search from Url Params", error);
+          }
+        }
+  
+        viewMoreBtn.onclick = async function (e) {
+          try {
+            e.preventDefault();
+            if(swymGrSearch.renderedRegistries === swymGrSearch.totalRegistries) {
+              window.scrollTo({top: 0, behavior: 'smooth'});
+              if(!swymGrCustomer.email){
+                Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "ScrollToTop button clicked"});
+              }
+              else{
+                Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "ScrollToTop button clicked","customerInfo":{
+                  "name"  : "{{ customer.name }}",
+                  "email" : "{{ customer.email }}",
+                  "id"    : "{{ customer.id }}"
+                }});
+              }
+            }
+            else {
+              if(!swymGrCustomer.email){
+                Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "LoadMore button clicked"});
+              }
+              else{
+                Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "LoadMore button clicked","customerInfo":{
+                  "name"  : "{{ customer.name }}",
+                  "email" : "{{ customer.email }}",
+                  "id"    : "{{ customer.id }}"
+                }});
+              }
+              swymAddRegistriesToListOnDemand();
+            }
+          } catch (error) {
+            console.log("Error in showing more Registries", error)
+          }
+        }
+  
+        searchForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          if(searchBtn.style.pointerEvents !== "none"){
+            try {
+              
+              if(!swymGrCustomer.email){
+                Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "Search button clicked"});
+              }
+              else{
+                Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "Search button clicked","customerInfo":{
+                  "name"  : "{{ customer.name }}",
+                  "email" : "{{ customer.email }}",
+                  "id"    : "{{ customer.id }}"
+                }});
+              }
+              searchBtn.style.pointerEvents = "none";
+              var swymButtonLoader = document.querySelector("#swym-registry-btn-dot-collision-search");
+              var btnText = document.querySelector("#swym-registry-search-text");
+              window.swymGrSearch.renderedRegistries = 0;
+              var searchText = document.getElementById('searchText').value;
+              document.querySelector(".swym-registry-find-lists").innerHTML = "";
+              document.querySelector(".swym-registry-find-lists-container").style.display = "none";
+              document.querySelector(".swym-registry-view-more .swym-registry-load-more").innerHTML = "{{ settings.swym_registry_loadmore_button_text }}";
+              swymButtonLoader.style.display = 'block';
+              btnText.style.visibility = 'hidden';
+              swymSearchRegistryByString(searchText);
+              window.swymGrSearch.searchString = searchText;
+            } catch (error) {
+              console.log("Error on search press", error);
+            }
+          }
+        });
+  
+        async function swymSearchRegistryByString(searchString) {
+          try {
+            var findListsContainer = document.querySelector(".swym-registry-find-lists-container");
+            swymSearchRegistry(searchString, 0, window.swymGrSearch.pageItems).then((response) => response.json()).then((all_registries) => {
+              window.swymGrSearch.currentPage = 0;
+              window.swymGrSearch.searchString = searchString;
+              window.swymGrSearch.totalRegistries = all_registries.totalResultsCount;
+              
+              if (swymGrSearch.totalRegistries) {
+                swymAddRegistriesToList(all_registries.results);
+                noResult.style.display = "none";
+                document.querySelector(".swym-registry-count-container").style.display = 'flex';
+                findListsContainer.style.display = "block";
+                document.querySelector(".swym-registry-find-lists-header").style.display = "flex";
+              }
+              else {
+                findListsContainer.style.display = "block";
+                document.querySelector(".swym-registry-find-lists-header").style.display = "none";
+                noResult.style.display = "flex";
+                document.querySelector(".swym-registry-count-container").style.display = 'none';
+                document.querySelector("#swym-registry-view-more-btn").style.display = "none";
+                document.querySelector(".swym-registry-no-results div > span > span").innerText = searchString;
+                searchBtn.style.pointerEvents = "auto";
+              }
+              var swymButtonLoader = document.querySelector("#swym-registry-btn-dot-collision-search");
+              var btnText = document.querySelector("#swym-registry-search-text");
+              swymButtonLoader.style.display = "none";
+              btnText.style.visibility = 'initial';
+            });
+          } catch (error) {
+            _LTracker.push({
+                'ErrorLocation': 'Search Registry using searchString - API call',
+                'ErrorInfo': {
+                  "error": {
+                    "msg": error.message,
+                    "Reference_stack": error.stack
+                  }
+                },
+               'MerchantInfo': {
+                'pid': swymRegistry_authData.swym_registry.pid,
+                'shop': Shopify.shop,
+                'themeId': Shopify.theme.id,
+                'themeName': Shopify.theme.name
+              },
+              'CustomerInfo': {
+                'customerId': swymRegistry_authData.swym_registry.customerId,
+                'customerEmail': swymGrCustomer.email,
+                 'userAgent': navigator.userAgent 
+              }
+              });
+            console.log("Error in Searching for registry", error);
+          }
+        }
+        
+        async function swymAddRegistriesToList(allRegistries) {
+          try {
+            window.swymGrSearch.renderedRegistries += allRegistries.length;
+            if((window.swymGrSearch.totalRegistries <= window.swymGrSearch.pageItems)){
+              document.querySelector("#swym-registry-view-more-btn").style.display = "none";
+            }
+            else if ((window.swymGrSearch.totalRegistries > window.swymGrSearch.renderedRegistries)) {
+              viewMoreBtn.style.display = "flex";
+            }
+            else {
+              document.querySelector(".swym-registry-view-more .swym-registry-load-more").innerHTML = "{{ settings.swym_registry_scrolltotop_button_text }}";
+            }
+             var renderedRegistries = window.swymGrSearch.renderedRegistries;
+              var totalRegistries = window.swymGrSearch.totalRegistries;
+              var registryFilter = document.querySelector(".swym-registry-find-lists-header");
+              var currentCount = document.querySelector(".swym-registry-lists-current-count");
+              var totalCount = document.querySelectorAll(".swym-registry-lists-total-count");
+              currentCount.innerText = window.swymGrSearch.renderedRegistries;
+  
+              totalCount.forEach(function(item, index) {
+               item.innerText = window.swymGrSearch.totalRegistries;
+              });
+  
+            allRegistries.forEach((registry) => {
+              let splitNames = registry.creatorName.split(' ');
+              let fname, lname, initials
+              if (splitNames.length >= 2) {
+                fname = splitNames[0] || 'J'
+                lname = splitNames[1] || 'D'
+                initials = fname.charAt(0) + lname.charAt(0);
+              }
+              else {
+                initials = registry.creatorName.charAt(0);
+              }
+              var registry_list = document.querySelector(".swym-registry-find-lists");
+  
+              var registry_list_li = document.createElement('li');
+              registry_list_li.setAttribute("id", `registryid_${registry.Id}`);              
+              var customSeparator = "{{ settings.swym_registry_custom_seperator }}"; // store separator setting;
+  
+              var showSeparator = registry.coCreatorName === null || registry.coCreatorName.match(/^ *$/) === null;
+              let coregistrantLabel = "{{ settings.swym_registry_coregistrant_name_label }}";
+              let isShelterName=(coregistrantLabel == "Co-registrant Name" ? false : true);
+              registry.location = registry.location || "-";
+              registry_list_li.innerHTML += `
+                  <div class="swym-registry-find-list-circle-parent swym-registry-find-lists">
+                    <div class="swym-registry-find-list-circle">
+                      <p class="swym-registry-font-very-large swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">${initials}</p>
+                    </div>
+                  </div>
+                  <div class="swym-registry-find-list-details-parent">
+                    <div class="swym-registry-list-detail-title">
+                      <span class="swym-registry-font-large swym-registry-page-content">${registry.creatorName}</span>
+                      <span class="swym-registry-list-details-separator swym-registry-font-large swym-registry-page-content">${showSeparator ? customSeparator : "&nbsp;" }</span>
+                      <span class="swym-registry-font-large swym-registry-page-content">${isShelterName && showSeparator ? `${coregistrantLabel} : `:""}${registry.coCreatorName}</span>
+                    </div>
+                    <div class="swym-registry-find-list-details">
+                      <p class="swym-registry-font-small swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_reg_id_label }} : <span><strong>${registry.Id}</strong></span></p>
+                      <p class="swym-registry-font-small swym-registry-page-content {{ settings.swym_registry_custom_para_class }}">{{ settings.swym_registry_reg_name_label }} : <span><strong>${registry.registryName}</strong></span></p>
+                    </div>
+                    <p class="swym-registry-registry-description-title swym-registry-font-small {{ settings.swym_registry_custom_para_class }}">${registry.description ? "Registry Description" : ""}</p>
+                    <p class="swym-registry-registry-description swym-registry-font-small-no-case {{ settings.swym_registry_custom_para_class }}">${registry.description ? registry.description : ""}</p>
+                  </div>
+                  <div class="swym-registry-list-column-detail swym-registry-list-detail-tab">
+                    <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_type_label }}&nbsp;:&nbsp;</span><span class="swym-registry-event-type-truncate"> ${registry.occasion}</span></span>
+                    <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_on_label }}&nbsp;</span> ${registry.expiryDate}</span>
+                    <span class="swym-registry-font-regular swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_from_label }}&nbsp;</span> ${registry.location}</span>
+                    <button class="swym-registry-font-small-light swym-registry-btn-secondary swym-registry-list-detail-mobile {{ settings.swym_registry_custom_btn_class }}" id='swym-registry-view-registry-1-${registry.Id}'>{{ settings.swym_registry_view_registry_button_label }}</button>
+                  </div>
+                  <div class="swym-registry-list-data-mobile">
+                    <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_type_label }}&nbsp;:&nbsp;</span><span class="swym-registry-event-type-truncate"> ${registry.occasion}</span></span>
+                    <div class="swym-registry-list-additional-detail">
+                      <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_on_label }}&nbsp;</span><b>${registry.expiryDate}</b></span>
+                      <span class="swym-registry-font-small swym-registry-page-content">&nbsp;|&nbsp;</span>
+                      <span class="swym-registry-font-small swym-registry-page-content"><span class="swym-registry-font-small swym-registry-list-detail-mobile">{{ settings.swym_registry_event_from_label }}&nbsp;</span><b>${registry.location}</b></span>
+                    </div>
+                    <div class="swym-registry-list-btn-container"> 
+                      <button class="swym-registry-btn-secondary {{ settings.swym_registry_custom_btn_class }}" id='swym-registry-view-registry-2-${registry.Id}'>{{ settings.swym_registry_view_registry_button_label }}</button>
+                    </div>
+                  </div>
+              `;
+              async function swymRegistryHandleViewRegistry(e) {
+                e.preventDefault();
+                viewRegistryBtn = document.querySelector(".swym-registry-view-arrow");
+                computedStyleViewRegistryBtn = getComputedStyle(viewRegistryBtn);
+                if((viewRegistryBtn && computedStyleViewRegistryBtn && computedStyleViewRegistryBtn.display!=='none')||(e.target.classList.contains("swym-registry-btn-secondary"))){
+                  if(!swymGrCustomer.email){
+                    Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "View Registry button clicked"});
+                  }
+                  else{
+                    Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "View Registry button clicked","customerInfo":{
+                      "name"  : "{{ customer.name }}",
+                      "email" : "{{ customer.email }}",
+                      "id"    : "{{ customer.id }}"
+                    }});
+                  }
+                  if (registry.settings && registry.settings.isPasswordProtected) {
+                    swymGrPasswordModal();
+                    var passwordBtn = document.querySelector(".swym-registry-password-modal-container .swym-registry-password-submit");
+                    var popupInitials = document.querySelector(".swym-registry-password-modal-content .swym-registry-find-list-circle p");
+                    var popupRegistryCreatorName = document.querySelector(".swym-registry-password-modal-content .swym-registry-find-list-creator-name");
+                    var popupRegistryCoCreatorName = document.querySelector(".swym-registry-password-modal-content .swym-registry-find-list-co-creator-name");
+                    var popupTitleSeparator = document.querySelector(".swym-registry-password-modal-content .swym-registry-find-list-separator");
+                    var popupRegistryName = document.querySelector(".swym-registry-password-modal-content .swym-registry-find-list-registry-name");
+                    popupInitials.innerHTML = initials;
+                    popupRegistryCreatorName.innerHTML = registry.creatorName;
+                    popupRegistryCoCreatorName.innerHTML = registry.coCreatorName;
+                    popupTitleSeparator.innerHTML = ((registry.coCreatorName === null || registry.coCreatorName.match(/^ *$/) === null) ? " {{ settings.swym_registry_custom_seperator }} ":"");
+                    popupRegistryName.innerHTML = registry.registryName + " Registry";
+                    passwordBtn.onclick = async function (e) {
+                      e.preventDefault();
+                      if(!swymGrCustomer.email){
+                        Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "Password Modal Submit button clicked"});
+                      }
+                      else{
+                        Shopify.analytics.publish("swym_registry_find_view",{"eventAction": "Password Modal Submit button clicked","customerInfo":{
+                          "name"  : "{{ customer.name }}",
+                          "email" : "{{ customer.email }}",
+                          "id"    : "{{ customer.id }}"
+                        }});
+                      }
+                      viewBtn.style.pointerEvents = "auto";
+                      var passwordValue = document.querySelector(".swym-registry-password-modal-container .swym-registry-field-input").value;
+                      var payload = {
+                        "password": `${passwordValue}`,
+                        "registryId": `${registry.Id}`
+                      }
+                      const swymButtonLoader = document.querySelector('#swym-registry-btn-dot-collision-password');
+                      const btnText = document.querySelector("#swym-registry-password-button-label");
+                      try {
+                        swymButtonLoader.style.display = 'block';
+                        btnText.style.visibility = 'hidden';
+                        generateAuthToken(payload).then((response) => (response.text())).then((grToken) => {
+                          console.log(grToken);
+                          if(grToken.includes("Invalid")){
+                            swymButtonLoader.style.display = 'none';
+                            btnText.style.visibility = 'initial';
+                            swymGrPasswordMessage(`{{ settings.swym_registry_incorrect_password_label }}`);
+                          }
+                          else{
+                            swymButtonLoader.style.display = 'none';
+                            btnText.style.visibility = 'initial';
+                            window.location = `/pages/swym-registry-gifter?registryId=${registry.Id}&shareToken=${encodeURIComponent(grToken)}`;
+                          }
+                        });
+                      } catch (error) {
+                        _LTracker.push({
+                          'ErrorLocation': 'Generate Share Auth Token - API call',
+                          'ErrorInfo': {
+                            "error": {
+                              "msg": error.message,
+                              "Reference_stack": error.stack
+                            }
+                          },
+                         'MerchantInfo': {
+                            'pid': swymRegistry_authData.swym_registry.pid,
+                            'shop': Shopify.shop,
+                            'themeId': Shopify.theme.id,
+                            'themeName': Shopify.theme.name
+                          },
+                          'CustomerInfo': {
+                            'customerId': swymRegistry_authData.swym_registry.customerId,
+                            'customerEmail': swymGrCustomer.email,
+                             'userAgent': navigator.userAgent 
+                          }
+                        });
+                        console.log("Generate Share Auth Token - API call: ",error);
+                      }
+                    }
+                  }
+                  else {
+                    window.location = `/pages/swym-registry-gifter?registryId=${registry.Id}`;
+                  }
+                }
+              }
+              var viewBtn = document.createElement('span');
+              viewBtn.setAttribute("class", `swym-registry-view-arrow`);
+              viewBtn.innerText = ``;
+              viewBtn.style.pointerEvents = "auto";
+              registry_list_li.onclick = swymRegistryHandleViewRegistry;
+              registry_list_li.querySelector(`#swym-registry-view-registry-1-${registry.Id}`).onclick = swymRegistryHandleViewRegistry;
+              registry_list_li.querySelector(`#swym-registry-view-registry-2-${registry.Id}`).onclick = swymRegistryHandleViewRegistry;
+              registry_list.appendChild(registry_list_li);
+              document.querySelector(`#registryid_${registry.Id} .swym-registry-list-column-detail`).appendChild(viewBtn);
+             
+           viewBtn.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="19" viewBox="0 0 12 19" fill="none">
+                                 <path d="M1 18L10 9.5L1 1" stroke={{ settings.swym_registry_page_content_color }} stroke-width="2"/>
+                                </svg>`;
+            });
+            searchBtn.style.pointerEvents = "auto";
+          }
+          catch (error) {
+            console.error("Error in showing list searched registries: ", error, all_registries);
+          }
+        }
+  
+        async function swymAddRegistriesToListOnDemand() {
+  
+          if (window.swymGrSearch.totalRegistries > window.swymGrSearch.renderedRegistries) {
+            try {
+              window.swymGrSearch.currentPage += 1;
+                var swymButtonLoader = document.querySelector(".swym-registry-view-more .swym-registry-btn-dot-collision");
+                var btnText = document.querySelector(".swym-registry-view-more .swym-registry-load-more");
+                swymButtonLoader.style.display = 'block';
+                btnText.style.visibility = 'hidden';
+                swymSearchRegistry(window.swymGrSearch.searchString, window.swymGrSearch.currentPage, window.swymGrSearch.pageItems).then(res => res.json()).then(res => {
+                  var all_registries = res;
+                  swymAddRegistriesToList(all_registries.results);
+                  swymButtonLoader.style.display = 'none';
+                  btnText.style.visibility = 'visible';
+                })
+              
+            } catch (error) {
+              console.log("Error on adding more registries", error);
+            }
+          }
+        }
+      }
+      catch (error) {
+        console.log("Error in executing any page function", error);
+      }
+  }
+  else{
+    document.querySelector("#swym-registry-search-btn").addEventListener('click',(e)=>{
+      e.preventDefault();
+    });
+    document.querySelector("#swym-registry-view-registry-design").onclick = async function (e) {
+      e.preventDefault();
+      viewRegistryBtn = document.querySelector(".swym-registry-view-arrow");
+      computedStyleViewRegistryBtn = getComputedStyle(viewRegistryBtn);
+      if((viewRegistryBtn && computedStyleViewRegistryBtn && computedStyleViewRegistryBtn.display!=='none')||(e.target.classList.contains("swym-registry-btn-secondary"))){
+        swymGrPasswordModal();
+      }
+    }
+    document.querySelector("#swym-registry-view-registry-design-1").onclick = async function (e) {
+      e.preventDefault();
+      swymGrPasswordModal();
+    }
+    document.querySelector("#swym-registry-view-registry-design-2").onclick = async function (e) {
+      e.preventDefault();
+      swymGrPasswordModal();
+    }
+  }
+}
+swymRegistryAddOnloadEvent(swymRegistryOnloadHandler)
+</script>
+{% capture snippet_content %}{% render 'swym-registry-custom-snippet' %}{% endcapture %}
+{% if snippet_content contains "Could not find asset" %}
+    {% comment %} do nothing {% endcomment %}
+{% else %}
+    {% render 'swym-registry-custom-snippet' %}
+{% endif %}

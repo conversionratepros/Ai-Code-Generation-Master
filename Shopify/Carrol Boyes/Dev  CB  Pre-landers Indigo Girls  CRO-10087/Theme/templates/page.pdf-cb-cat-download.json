@@ -1,0 +1,106 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "tabs_content_CpeaLq": {
+      "type": "tabs-content",
+      "blocks": {
+        "image_with_text_TgaLXW": {
+          "type": "image_with_text",
+          "settings": {
+            "navigation_title": "2024",
+            "image": "shopify://shop_images/CB24_CatalogueOutercover_rev3_CASELINING.jpg",
+            "desktop_image_position": "left",
+            "image_aspect_ratio": "adapt",
+            "heading": "Spring |Summer 2024",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "description": "<p>Dive into the 2024 Spring | Summer Carrol Boyes collection. Showcasing eye catching designs and new reveals to the luxury brand. Get insparation from layout to functional art work in your most loved space</p>",
+            "description_size": "text-base",
+            "button_label": "Download For FREE!",
+            "button_link": "https://cdn.shopify.com/s/files/1/0927/5224/9201/files/OTGS-D2C_1.pdf?v=1756466460",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "icon_1": "none",
+            "image_1": "shopify://shop_images/explore.png",
+            "heading_1": "Explore Our Designs",
+            "icon_2": "package",
+            "image_2": "shopify://shop_images/glass_2.png",
+            "heading_2": "The inspiration behind the Designs",
+            "icon_3": "globe",
+            "image_3": "shopify://shop_images/team.png",
+            "heading_3": "Meet the Team"
+          }
+        },
+        "image_with_text_Ejx797": {
+          "type": "image_with_text",
+          "disabled": true,
+          "settings": {
+            "navigation_title": "2025",
+            "desktop_image_position": "left",
+            "image_aspect_ratio": "adapt",
+            "heading": "Talk about your brand",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd2",
+            "subheading": "",
+            "description": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "description_size": "text-base",
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "icon_1": "check",
+            "heading_1": "Heading",
+            "icon_2": "check",
+            "heading_2": "Heading",
+            "icon_3": "check",
+            "heading_3": "Heading"
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_TgaLXW",
+        "image_with_text_Ejx797"
+      ],
+      "name": "t:sections.tabs-content.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "navigation_style": "headings",
+        "navigation_alignment": "center",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "tabs_content_CpeaLq"
+  ]
+}

@@ -1,0 +1,413 @@
+{% doc %}
+  @prompt
+    Hi can you add the following section for me. A banner images input with the effect of parallax scrolling., Can you make the background black
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-parallax-banner-{{ ai_gen_id }} {
+    position: relative;
+    height: {{ block.settings.banner_height }}px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+  }
+
+  .ai-parallax-banner-image-wrapper-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    will-change: transform;
+  }
+
+  .ai-parallax-banner-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .ai-parallax-banner-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-parallax-banner-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+    opacity: 0.3;
+    color: #ffffff;
+  }
+
+  .ai-parallax-banner-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-parallax-banner-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    text-align: {{ block.settings.content_alignment }};
+    color: {{ block.settings.text_color }};
+    max-width: 800px;
+    padding: 0 20px;
+  }
+
+  .ai-parallax-banner-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .ai-parallax-banner-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    margin: 0 0 16px 0;
+    font-weight: 700;
+  }
+
+  .ai-parallax-banner-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+  }
+
+  .ai-parallax-banner-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-parallax-banner-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-parallax-banner-{{ ai_gen_id }} {
+      height: {{ block.settings.banner_height_mobile }}px;
+    }
+
+    .ai-parallax-banner-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-parallax-banner-text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<parallax-banner-{{ ai_gen_id }}
+  class="ai-parallax-banner-{{ ai_gen_id }}"
+  data-parallax-speed="{{ block.settings.parallax_speed }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-parallax-banner-image-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.banner_image %}
+      <img
+        src="{{ block.settings.banner_image | image_url: width: 2000 }}"
+        alt="{{ block.settings.banner_image.alt | escape }}"
+        class="ai-parallax-banner-image-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.banner_image.width }}"
+        height="{{ block.settings.banner_image.height }}"
+      >
+    {% else %}
+      <div class="ai-parallax-banner-placeholder-{{ ai_gen_id }}">
+        {{ 'hero-apparel-1' | placeholder_svg_tag }}<div class="ai-parallax-banner-empty-state-{{ ai_gen_id }}">
+          Add a banner image to get started
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if block.settings.show_overlay %}
+    <div class="ai-parallax-banner-overlay-{{ ai_gen_id }}"></div>
+  {% endif %}
+
+  <div class="ai-parallax-banner-content-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-parallax-banner-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    {% if block.settings.text != blank %}
+      <div class="ai-parallax-banner-text-{{ ai_gen_id }}">{{ block.settings.text }}</div>
+    {% endif %}
+
+    {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+      <a
+        href="{{ block.settings.button_link }}"
+        class="ai-parallax-banner-button-{{ ai_gen_id }}"
+      >
+        {{ block.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+</parallax-banner-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ParallaxBanner{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.imageWrapper = null;
+        this.parallaxSpeed = 0.5;
+        this.ticking = false;
+      }
+
+      connectedCallback() {
+        this.imageWrapper = this.querySelector('.ai-parallax-banner-image-wrapper-{{ ai_gen_id }}');
+        this.parallaxSpeed = parseFloat(this.dataset.parallaxSpeed) || 0.5;
+        
+        if (this.imageWrapper) {
+          this.setupParallax();
+        }
+      }
+
+      setupParallax() {
+        const handleScroll = () => {
+          if (!this.ticking) {
+            requestAnimationFrame(() => {
+              this.updateParallax();
+              this.ticking = false;
+            });
+            this.ticking = true;
+          }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll, { passive: true });
+        
+        this.updateParallax();
+      }
+
+      updateParallax() {
+        const rect = this.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (rect.bottom >= 0 && rect.top <= windowHeight) {
+          const scrolled = window.pageYOffset;
+          const elementTop = rect.top + scrolled;
+          const elementHeight = rect.height;
+          const windowScrolled = scrolled + windowHeight / 2;
+          
+          const yPos = -(windowScrolled - elementTop) * this.parallaxSpeed;
+          const yPosPercent = (yPos / elementHeight) * 100;
+          
+          this.imageWrapper.style.transform = `translate3d(0, ${yPosPercent}%, 0)`;
+        }
+      }
+    }
+
+    customElements.define('parallax-banner-{{ ai_gen_id }}', ParallaxBanner{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Parallax banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "range",
+      "id": "banner_height",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Banner height",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "banner_height_mobile",
+      "min": 200,
+      "max": 600,
+      "step": 25,
+      "unit": "px",
+      "label": "Mobile banner height",
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "parallax_speed",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Parallax speed",
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Discover our collection"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Explore our carefully curated selection of premium products designed to elevate your everyday experience."
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Parallax banner"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

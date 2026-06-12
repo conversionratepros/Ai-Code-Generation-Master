@@ -1,0 +1,833 @@
+{% doc %}
+  @prompt
+    For desktop i would like a section with with nine text input fields. These nine input fields must allow me to change the text in them independently and allow me to connect a dynamic source such as a meta field. 
+    The title and headings must be on the right and next to it must be the meta field input. Make the title bold so that it stands more out than the input text that will be connected dynamically via meta field. 
+    So side by side to read as a the following: 
+    Designer :  Carrol Boyes. 
+    Collection : Dancing Girls 
+    Finish : Clear Glaze
+    Microwave Safe: Yes
+    Food Safe: Yes
+    Oven Safe: No 
+    Dishwasher Safe: Yes 
+    Have the above section positioned to the left of the section and give me the option to add an image ( product image ) or dynamic image based on a product to the right of the section. 
+    This content must sit side by side.
+    
+    Apply padding, border and margin options so that i can control this for both desktop and mobile so that it is not huggin the edges of the website. 
+    
+    For mobile view or mobile devices can you make it a collapsable row ( accordian ) with a + button to expand it. 
+    Remove the image that will be added to the desktop version on the right. , remove the duplication above the heading section name product specification , add a expand option on desktop like on mobile with a +
+    Use the styleing of the them like use the theme font which is popins and the font sizes for the headings. Can you add a table effect or lines under each row so it look more stylish, please put the image inside of the expadable section , Give me the option to add padding around this whole section. Padding left and padding right so that i can increase the white space around the section, add white space around this block so that it is not so close to the edges, Give me the option to make this whole section while it is collapsed or closed to make it full width or fixed width , the iage is still on the moble view. Please can you hide the image for mobile view only., remove the button effect on the section with the text named Product specification. I just want the styling of the collapsible row styling wiht a line above and belo the text to give a table effect. Keep all the styling as is once you expand this section, allow me to determine the accordian title text size and heading type, add the option to adjust the padding to the Accordion title top and bottom
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-product-specs-{{ ai_gen_id }} {
+    padding-top: {{ block.settings.padding_desktop }}px;
+    padding-bottom: {{ block.settings.padding_desktop }}px;
+    padding-left: {{ block.settings.padding_left_desktop }}px;
+    padding-right: {{ block.settings.padding_right_desktop }}px;
+    margin: {{ block.settings.margin_desktop }}px;
+  }
+
+  .ai-product-specs-wrapper-{{ ai_gen_id }} {
+    {% if block.settings.container_width == 'fixed' %}
+      max-width: {{ block.settings.max_width }}px;
+      margin-left: auto;
+      margin-right: auto;
+    {% else %}
+      width: 100%;
+    {% endif %}
+  }
+
+  .ai-product-specs-accordion-{{ ai_gen_id }} {
+    border-top: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+  }
+
+  .ai-product-specs-accordion-header-{{ ai_gen_id }} {
+    width: 100%;
+    padding-top: {{ block.settings.accordion_padding_top }}px;
+    padding-bottom: {{ block.settings.accordion_padding_bottom }}px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: {{ block.settings.accordion_title_size }}px;
+    color: {{ block.settings.label_color }};
+    text-align: left;
+    font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    font-weight: {{ settings.type_header_font.weight }};
+    margin-left: 10px;
+  }
+
+  .ai-product-specs-accordion-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    stroke: {{ block.settings.label_color }};
+    margin-right: 20px;
+  }
+
+  .ai-product-specs-accordion-icon-{{ ai_gen_id }}.active {
+    transform: rotate(45deg);
+  }
+
+  .ai-product-specs-accordion-body-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: transparent;
+  }
+
+  .ai-product-specs-accordion-body-{{ ai_gen_id }}.active {
+    max-height: 2000px;
+  }
+
+  .ai-product-specs-accordion-content-{{ ai_gen_id }} {
+    padding: 0;
+  }
+
+  .ai-product-specs-container-{{ ai_gen_id }} {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding: 24px 0;
+    margin-left: 10px;
+  }
+
+  .ai-product-specs-content-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-product-specs-row-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid {{ block.settings.row_divider_color }};
+  }
+
+  .ai-product-specs-row-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  .ai-product-specs-label-{{ ai_gen_id }} {
+    font-weight: 700;
+    color: {{ block.settings.label_color }};
+    font-size: {{ block.settings.label_font_size }}px;
+    font-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    font-weight: {{ settings.type_header_font.weight }};
+  }
+
+  .ai-product-specs-value-{{ ai_gen_id }} {
+    color: {{ block.settings.value_color }};
+    font-size: {{ block.settings.value_font_size }}px;
+    font-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    font-weight: {{ settings.type_body_font.weight }};
+  }
+
+  .ai-product-specs-image-{{ ai_gen_id }} {
+    flex: 0 0 {{ block.settings.image_width }}px;
+    width: {{ block.settings.image_width }}px;
+  }
+
+  .ai-product-specs-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-product-specs-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-product-specs-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-product-specs-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_mobile }}px;
+      padding-bottom: {{ block.settings.padding_mobile }}px;
+      padding-left: {{ block.settings.padding_left_mobile }}px;
+      padding-right: {{ block.settings.padding_right_mobile }}px;
+      margin: {{ block.settings.margin_mobile }}px;
+    }
+
+    .ai-product-specs-wrapper-{{ ai_gen_id }} {
+      width: 100%;
+      max-width: none;
+    }
+
+    .ai-product-specs-accordion-header-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.accordion_padding_top_mobile }}px;
+      padding-bottom: {{ block.settings.accordion_padding_bottom_mobile }}px;
+      font-size: {{ block.settings.accordion_title_size_mobile }}px;
+    }
+
+    .ai-product-specs-accordion-icon-{{ ai_gen_id }} {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ai-product-specs-container-{{ ai_gen_id }} {
+      flex-direction: column;
+      padding: 16px 0;
+      gap: 24px;
+    }
+
+    .ai-product-specs-image-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-product-specs-row-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 12px 0;
+    }
+  }
+{% endstyle %}
+
+<product-specs-{{ ai_gen_id }} class="ai-product-specs-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-product-specs-wrapper-{{ ai_gen_id }}">
+    <div class="ai-product-specs-accordion-{{ ai_gen_id }}">
+      <button
+        class="ai-product-specs-accordion-header-{{ ai_gen_id }}"
+        aria-expanded="false"
+        aria-label="Toggle product specifications"
+      >
+        {% if block.settings.accordion_heading_tag == 'h1' %}
+          <h1>{{ block.settings.accordion_title }}</h1>
+        {% elsif block.settings.accordion_heading_tag == 'h2' %}
+          <h2>{{ block.settings.accordion_title }}</h2>
+        {% elsif block.settings.accordion_heading_tag == 'h3' %}
+          <h3>{{ block.settings.accordion_title }}</h3>
+        {% elsif block.settings.accordion_heading_tag == 'h4' %}
+          <h4>{{ block.settings.accordion_title }}</h4>
+        {% elsif block.settings.accordion_heading_tag == 'h5' %}
+          <h5>{{ block.settings.accordion_title }}</h5>
+        {% elsif block.settings.accordion_heading_tag == 'h6' %}
+          <h6>{{ block.settings.accordion_title }}</h6>
+        {% else %}
+          <span>{{ block.settings.accordion_title }}</span>
+        {% endif %}
+        <svg
+          class="ai-product-specs-accordion-icon-{{ ai_gen_id }}"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+      <div class="ai-product-specs-accordion-body-{{ ai_gen_id }}">
+        <div class="ai-product-specs-accordion-content-{{ ai_gen_id }}">
+          <div class="ai-product-specs-container-{{ ai_gen_id }}">
+            <div class="ai-product-specs-content-{{ ai_gen_id }}">
+              {% if block.settings.field_1_label != blank or block.settings.field_1_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_1_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_1_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_2_label != blank or block.settings.field_2_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_2_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_2_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_3_label != blank or block.settings.field_3_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_3_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_3_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_4_label != blank or block.settings.field_4_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_4_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_4_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_5_label != blank or block.settings.field_5_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_5_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_5_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_6_label != blank or block.settings.field_6_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_6_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_6_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_7_label != blank or block.settings.field_7_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_7_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_7_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_8_label != blank or block.settings.field_8_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_8_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_8_value }}</div>
+                </div>
+              {% endif %}
+
+              {% if block.settings.field_9_label != blank or block.settings.field_9_value != blank %}
+                <div class="ai-product-specs-row-{{ ai_gen_id }}">
+                  <div class="ai-product-specs-label-{{ ai_gen_id }}">{{ block.settings.field_9_label }}</div>
+                  <div class="ai-product-specs-value-{{ ai_gen_id }}">{{ block.settings.field_9_value }}</div>
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="ai-product-specs-image-{{ ai_gen_id }}">
+              {% if block.settings.product_image %}
+                <img
+                  src="{{ block.settings.product_image | image_url: width: 800 }}"
+                  alt="{{ block.settings.product_image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.product_image.width }}"
+                  height="{{ block.settings.product_image.height }}"
+                >
+              {% else %}
+                <div class="ai-product-specs-image-placeholder-{{ ai_gen_id }}">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</product-specs-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProductSpecs{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.accordionHeader = this.querySelector('.ai-product-specs-accordion-header-{{ ai_gen_id }}');
+        this.accordionBody = this.querySelector('.ai-product-specs-accordion-body-{{ ai_gen_id }}');
+        this.accordionIcon = this.querySelector('.ai-product-specs-accordion-icon-{{ ai_gen_id }}');
+
+        if (this.accordionHeader) {
+          this.accordionHeader.addEventListener('click', () => {
+            this.toggleAccordion();
+          });
+        }
+      }
+
+      toggleAccordion() {
+        const isActive = this.accordionBody.classList.contains('active');
+        this.accordionBody.classList.toggle('active');
+        this.accordionIcon.classList.toggle('active');
+        this.accordionHeader.setAttribute('aria-expanded', !isActive);
+      }
+    }
+
+    customElements.define('product-specs-{{ ai_gen_id }}', ProductSpecs{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product specifications",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full width"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed width"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1200,
+      "info": "Only applies when Fixed width is selected"
+    },
+    {
+      "type": "header",
+      "content": "Field 1"
+    },
+    {
+      "type": "text",
+      "id": "field_1_label",
+      "label": "Label",
+      "default": "Designer"
+    },
+    {
+      "type": "text",
+      "id": "field_1_value",
+      "label": "Value",
+      "default": "Carrol Boyes"
+    },
+    {
+      "type": "header",
+      "content": "Field 2"
+    },
+    {
+      "type": "text",
+      "id": "field_2_label",
+      "label": "Label",
+      "default": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "field_2_value",
+      "label": "Value",
+      "default": "Dancing Girls"
+    },
+    {
+      "type": "header",
+      "content": "Field 3"
+    },
+    {
+      "type": "text",
+      "id": "field_3_label",
+      "label": "Label",
+      "default": "Finish"
+    },
+    {
+      "type": "text",
+      "id": "field_3_value",
+      "label": "Value",
+      "default": "Clear Glaze"
+    },
+    {
+      "type": "header",
+      "content": "Field 4"
+    },
+    {
+      "type": "text",
+      "id": "field_4_label",
+      "label": "Label",
+      "default": "Microwave Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_4_value",
+      "label": "Value",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Field 5"
+    },
+    {
+      "type": "text",
+      "id": "field_5_label",
+      "label": "Label",
+      "default": "Food Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_5_value",
+      "label": "Value",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Field 6"
+    },
+    {
+      "type": "text",
+      "id": "field_6_label",
+      "label": "Label",
+      "default": "Oven Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_6_value",
+      "label": "Value",
+      "default": "No"
+    },
+    {
+      "type": "header",
+      "content": "Field 7"
+    },
+    {
+      "type": "text",
+      "id": "field_7_label",
+      "label": "Label",
+      "default": "Dishwasher Safe"
+    },
+    {
+      "type": "text",
+      "id": "field_7_value",
+      "label": "Value",
+      "default": "Yes"
+    },
+    {
+      "type": "header",
+      "content": "Field 8"
+    },
+    {
+      "type": "text",
+      "id": "field_8_label",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "field_8_value",
+      "label": "Value"
+    },
+    {
+      "type": "header",
+      "content": "Field 9"
+    },
+    {
+      "type": "text",
+      "id": "field_9_label",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "field_9_value",
+      "label": "Value"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Image width",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Label font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "value_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Value font size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "value_color",
+      "label": "Value color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Accordion"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title",
+      "label": "Accordion title",
+      "default": "Product Specifications"
+    },
+    {
+      "type": "select",
+      "id": "accordion_heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        },
+        {
+          "value": "h6",
+          "label": "H6"
+        },
+        {
+          "value": "span",
+          "label": "Span"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "range",
+      "id": "accordion_title_size",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size desktop",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "accordion_title_size_mobile",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "accordion_padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title padding top desktop",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "accordion_padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title padding bottom desktop",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "accordion_padding_top_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Title padding top mobile",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "accordion_padding_bottom_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Title padding bottom mobile",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "row_divider_color",
+      "label": "Row divider color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "header",
+      "content": "Spacing desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top/bottom",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_left_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spacing mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top/bottom",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_left_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_right_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "margin_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product specifications"
+    }
+  ]
+}
+{% endschema %}

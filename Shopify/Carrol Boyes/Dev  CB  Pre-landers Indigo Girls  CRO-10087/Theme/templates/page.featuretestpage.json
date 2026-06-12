@@ -1,0 +1,77 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_comparison_bzqwz7": {
+      "type": "image-comparison",
+      "blocks": {
+        "image_44atdx": {
+          "type": "image",
+          "settings": {
+            "heading": "Before",
+            "color_scheme": ""
+          }
+        },
+        "image_GPBm8G": {
+          "type": "image",
+          "settings": {
+            "heading": "After",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_44atdx",
+        "image_GPBm8G"
+      ],
+      "name": "t:sections.image-comparison.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Before/after image slider",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "description_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--primary",
+        "button_icon": "none",
+        "direction": "horizontal",
+        "image_height": "adapt",
+        "image_heading_style": "badge",
+        "product": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_comparison_bzqwz7"
+  ]
+}

@@ -1,0 +1,479 @@
+{% doc %}
+  @prompt
+    i am going to need a section with a heading that has a hero video section on the left and text on the right. Ensure that they are all aligned. 
+    Have this in an accordion load closed where the user can expand it to open. Place the video and the text within.  
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-video-accordion-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .ai-video-accordion__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+    text-align: {{ block.settings.heading_alignment }};
+  }
+
+  .ai-video-accordion__container-{{ ai_gen_id }} {
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-video-accordion__button-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.button_padding }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-video-accordion__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+  }
+
+  .ai-video-accordion__icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .ai-video-accordion__icon-{{ ai_gen_id }}.active {
+    transform: rotate(180deg);
+  }
+
+  .ai-video-accordion__content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: {{ block.settings.content_background }};
+  }
+
+  .ai-video-accordion__content-{{ ai_gen_id }}.active {
+    max-height: 2000px;
+  }
+
+  .ai-video-accordion__inner-{{ ai_gen_id }} {
+    padding: {{ block.settings.content_padding }}px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.content_gap }}px;
+    align-items: center;
+  }
+
+  .ai-video-accordion__video-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: {{ block.settings.video_border_radius }}px;
+  }
+
+  .ai-video-accordion__video-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-video-accordion__video-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-video-accordion__video-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-video-accordion__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-video-accordion__inner-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-video-accordion__heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+  }
+{% endstyle %}
+
+<video-accordion-{{ ai_gen_id }}
+  class="ai-video-accordion-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.heading != blank %}
+    <h2 class="ai-video-accordion__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="ai-video-accordion__container-{{ ai_gen_id }}">
+    <button
+      class="ai-video-accordion__button-{{ ai_gen_id }}"
+      aria-expanded="false"
+      aria-controls="accordion-content-{{ ai_gen_id }}"
+    >
+      <span>{{ block.settings.accordion_title }}</span>
+      <svg
+        class="ai-video-accordion__icon-{{ ai_gen_id }}"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+
+    <div
+      class="ai-video-accordion__content-{{ ai_gen_id }}"
+      id="accordion-content-{{ ai_gen_id }}"
+    >
+      <div class="ai-video-accordion__inner-{{ ai_gen_id }}">
+        <div class="ai-video-accordion__video-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.video != blank %}
+            <video
+              class="ai-video-accordion__video-{{ ai_gen_id }}"
+              {% if block.settings.autoplay %}autoplay{% endif %}
+              {% if block.settings.loop %}loop{% endif %}
+              {% if block.settings.muted %}muted{% endif %}
+              {% if block.settings.controls %}controls{% endif %}
+              playsinline
+            >
+              <source src="{{ block.settings.video }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          {% else %}
+            <div class="ai-video-accordion__video-placeholder-{{ ai_gen_id }}">
+              {{ 'hero-apparel-1' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-video-accordion__text-{{ ai_gen_id }}">
+          {% if block.settings.text != blank %}
+            {{ block.settings.text }}
+          {% else %}
+            <p>Add your text content here to describe the video or provide additional information.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</video-accordion-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class VideoAccordion{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.button = this.querySelector('.ai-video-accordion__button-{{ ai_gen_id }}');
+        this.content = this.querySelector('.ai-video-accordion__content-{{ ai_gen_id }}');
+        this.icon = this.querySelector('.ai-video-accordion__icon-{{ ai_gen_id }}');
+        this.video = this.querySelector('.ai-video-accordion__video-{{ ai_gen_id }}');
+
+        this.button.addEventListener('click', () => this.toggleAccordion());
+      }
+
+      toggleAccordion() {
+        const isExpanded = this.button.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded) {
+          this.button.setAttribute('aria-expanded', 'false');
+          this.content.classList.remove('active');
+          this.icon.classList.remove('active');
+          if (this.video) {
+            this.video.pause();
+          }
+        } else {
+          this.button.setAttribute('aria-expanded', 'true');
+          this.content.classList.add('active');
+          this.icon.classList.add('active');
+          if (this.video && {{ block.settings.autoplay }}) {
+            this.video.play();
+          }
+        }
+      }
+    }
+
+    customElements.define('video-accordion-{{ ai_gen_id }}', VideoAccordion{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Video accordion",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Video Section"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading spacing",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Accordion"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "accordion_title",
+      "label": "Accordion title",
+      "default": "Click to view video and details"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Title size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Button padding",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Muted",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Show controls",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "video_border_radius",
+      "label": "Video border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Text content"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Add your description here. This text will appear alongside the video when the accordion is expanded.</p>"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "label": "Content padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Gap between video and text",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "content_background",
+      "label": "Content background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video accordion"
+    }
+  ]
+}
+{% endschema %}

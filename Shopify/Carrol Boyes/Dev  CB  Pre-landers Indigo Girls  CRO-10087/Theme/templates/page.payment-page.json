@@ -1,0 +1,153 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "custom_liquid_bYDLXV": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Payment Methods (United Kingdom)</title>\n\n<!-- Poppins font -->\n<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap\" rel=\"stylesheet\">\n\n<style>\n.cb-container{\n  font-family:'Poppins',sans-serif;\n  color:#333;\n  max-width:900px;\n  margin:0 auto;\n  padding:2rem 1.5rem;\n}\n.cb-container h1,.cb-container h2{\n  font-weight:600;\n  margin:1.6em 0 0.6em;\n  opacity:0;\n  transform:translateY(10px);\n  animation:fadeInUp .8s ease forwards;\n}\n.cb-container p,.cb-container li{\n  font-size:16px;\n  line-height:1.6;\n}\nul,ol{margin:.4em 0 1.1em 1.2em;}\n.cb-container a{\n  color:#555;\n  text-decoration:underline;\n  transition:color .25s ease,text-decoration-color .25s ease;\n}\n.cb-container a:hover{\n  color:#000;\n  text-decoration-color:#000;\n}\n@media(min-width:768px){\n  .cb-container{padding:3rem 2rem;}\n}\n@keyframes fadeInUp{to{opacity:1;transform:translateY(0);}}\n</style>\n</head>\n<body>\n<div class=\"cb-container\">\n  <h1>Payment Methods (United Kingdom)</h1>\n  <p>We currently accept the following payment methods for UK orders:</p>\n\n  <h2>1) Credit &amp; Debit Cards (processed by Shopify Payments)</h2>\n  <p>Pay securely with major cards (e.g., Visa, Mastercard, American Express, Maestro) processed by Shopify Payments. Transactions are encrypted and may require Strong Customer Authentication (SCA) (e.g., 3-D Secure) as required by UK regulation. If prompted, follow your bank’s on-screen verification to complete checkout.</p>\n\n  <p><strong>Refunds to cards:</strong> Once we approve a refund, we submit it to your card issuer immediately. Your bank/card provider controls when funds appear; this can take up to 3–10 business days depending on the institution.</p>\n</div>\n</body>\n</html>",
+        "color_scheme": "",
+        "padding_top": 20,
+        "padding_bottom": 6
+      }
+    },
+    "blocks_rgrYFd": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7f61d65_EjtfzD": {
+          "type": "ai_gen_block_7f61d65",
+          "settings": {
+            "heading": "We accept",
+            "subtext": "Secure payment options available with",
+            "payment_image": "shopify://shop_images/240_F_406753914_SFSBhjhp6kbHblNiUFZ1MXHcuEKe7e7P.jpg",
+            "max_width": 400,
+            "image_width": 200,
+            "content_gap": 16,
+            "padding_top": 5,
+            "padding_bottom": 5,
+            "padding_horizontal": 25,
+            "padding_top_mobile": 30,
+            "padding_bottom_mobile": 30,
+            "padding_horizontal_mobile": 15,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "subtext_color": "#666666",
+            "heading_size": 20,
+            "subtext_size": 14,
+            "image_border_radius": 4,
+            "show_shadow": false,
+            "hover_effect": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7f61d65_EjtfzD"
+      ],
+      "settings": {}
+    },
+    "custom_liquid_GKDnfW": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<div class=\"cb-container\">\n  <style>\n    .cb-container {\n      font-family: 'Poppins', sans-serif;\n      color: #333;\n      max-width: 900px;\n      margin: 0 auto;\n      padding: 2rem 1.5rem;\n    }\n    .cb-container h2, .cb-container h3 {\n      font-weight: 600;\n      margin: 1.6em 0 0.6em;\n      opacity: 0;\n      transform: translateY(10px);\n      animation: fadeInUp 0.8s ease forwards;\n    }\n    .cb-container p, .cb-container li {\n      font-size: 16px;\n      line-height: 1.6;\n    }\n    ul {\n      margin: 0.4em 0 1.1em 1.2em;\n    }\n    .cb-container a {\n      color: #555;\n      text-decoration: underline;\n      transition: color 0.25s ease, text-decoration-color 0.25s ease;\n    }\n    .cb-container a:hover {\n      color: #000;\n      text-decoration-color: #000;\n    }\n    @keyframes fadeInUp {\n      to { opacity: 1; transform: translateY(0); }\n    }\n  </style>\n\n  <h2>2) Klarna</h2>\n  <p>We offer Klarna at checkout (availability subject to Klarna’s approval). Klarna may present one or more of the options below, depending on eligibility:</p>\n\n  <ul>\n    <li><strong>Pay in 3:</strong> Split your purchase into three interest-free instalments, collected automatically every 30 days.</li>\n    <li><strong>Pay in 30 days:</strong> Try first, pay up to 30 days after shipment.</li>\n  </ul>\n\n  <h3>Important Klarna information (UK)</h3>\n  <ul>\n    <li>18+, UK residents only. Credit subject to status.</li>\n    <li>Pay in 3 and Pay in 30 days are unregulated credit agreements. Borrowing more than you can afford or paying late may negatively impact your financial status and ability to obtain credit.</li>\n    <li>Late fees may apply.</li>\n    <li>Terms, conditions and exclusions apply. See \n      <a href=\"https://www.klarna.com/uk/terms-and-conditions/\" target=\"_blank\" rel=\"noopener\">Klarna’s UK Terms</a> \n      and \n      <a href=\"https://www.klarna.com/uk/customer-service/\" target=\"_blank\" rel=\"noopener\">Buyer Protection</a> \n      for details, or contact Klarna Customer Service via the Klarna app/website.\n    </li>\n  </ul>\n\n  <p><strong>Who you’re contracting with:</strong> Klarna is the lender for Klarna purchases; we are not the lender. Klarna performs its own checks and decides whether to offer you credit.</p>\n</div>",
+        "color_scheme": "",
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
+    "blocks_MLCcAm": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7f61d65_yncndV": {
+          "type": "ai_gen_block_7f61d65",
+          "settings": {
+            "heading": "We accept",
+            "subtext": "Secure payment options available with",
+            "payment_image": "shopify://shop_images/Klarna_Payment_Badge_svg.png",
+            "max_width": 400,
+            "image_width": 200,
+            "content_gap": 16,
+            "padding_top": 5,
+            "padding_bottom": 5,
+            "padding_horizontal": 25,
+            "padding_top_mobile": 30,
+            "padding_bottom_mobile": 30,
+            "padding_horizontal_mobile": 15,
+            "background_color": "#ffffff",
+            "text_color": "#000000",
+            "subtext_color": "#666666",
+            "heading_size": 20,
+            "subtext_size": 14,
+            "image_border_radius": 4,
+            "show_shadow": false,
+            "hover_effect": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7f61d65_yncndV"
+      ],
+      "settings": {}
+    },
+    "custom_liquid_AYYRxX": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "",
+        "color_scheme": "",
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
+    "custom_liquid_e4qNpK": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<div class=\"cb-container\">\n  <style>\n    .cb-container {\n      font-family: 'Poppins', sans-serif;\n      color: #333;\n      max-width: 900px;\n      margin: 0 auto;\n      padding: 2rem 1.5rem;\n    }\n    .cb-container h2 {\n      font-weight: 600;\n      margin: 1.6em 0 0.6em;\n      opacity: 0;\n      transform: translateY(10px);\n      animation: fadeInUp 0.8s ease forwards;\n    }\n    .cb-container p {\n      font-size: 16px;\n      line-height: 1.6;\n    }\n    @keyframes fadeInUp {\n      to { opacity: 1; transform: translateY(0); }\n    }\n  </style>\n\n  <h2>Not Accepted (UK)</h2>\n  <p>We do not accept cash on delivery, bank transfer, PayPal, or any other payment methods for UK orders at this time. Only cards via Shopify Payments and Klarna are supported.</p>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_xxVUcc": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": {
+        "custom_liquid": "<div class=\"cb-container\">\n  <style>\n    .cb-container {\n      font-family: 'Poppins', sans-serif;\n      color: #333;\n      max-width: 900px;\n      margin: 0 auto;\n      padding: 2rem 1.5rem;\n    }\n    .cb-container h2 {\n      font-weight: 600;\n      margin: 1.6em 0 0.6em;\n      opacity: 0;\n      transform: translateY(10px);\n      animation: fadeInUp 0.8s ease forwards;\n    }\n    .cb-container p {\n      font-size: 16px;\n      line-height: 1.6;\n    }\n    @keyframes fadeInUp {\n      to { opacity: 1; transform: translateY(0); }\n    }\n  </style>\n\n  <h2>Security &amp; Compliance</h2>\n  <p>Card payments are processed on PCI-compliant infrastructure through Shopify Payments; you may see 3-D Secure/SCA prompts from your bank.</p>\n\n  <p>Klarna options and disclosures are provided in line with Klarna’s UK guidance for merchants.</p>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_bYDLXV",
+    "blocks_rgrYFd",
+    "custom_liquid_GKDnfW",
+    "blocks_MLCcAm",
+    "custom_liquid_AYYRxX",
+    "custom_liquid_xxVUcc",
+    "custom_liquid_e4qNpK"
+  ]
+}

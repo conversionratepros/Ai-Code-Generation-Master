@@ -1,0 +1,390 @@
+{%- liquid
+  assign gradient_intensity = section.settings.gradient_intensity | times: 0.01
+  assign gradient_solid = section.settings.gradient_color | color_modify: 'alpha', gradient_intensity
+  assign gradient_clear = section.settings.gradient_color | color_modify: 'alpha', 0
+
+  case section.settings.gradient_direction
+    when 'top-to-bottom'
+      assign gradient_dir = 'to bottom'
+    when 'bottom-to-top'
+      assign gradient_dir = 'to top'
+    when 'left-to-right'
+      assign gradient_dir = 'to right'
+    when 'right-to-left'
+      assign gradient_dir = 'to left'
+    else
+      assign gradient_dir = 'to bottom'
+  endcase
+
+  if section.settings.background_image
+    assign bg_url = section.settings.background_image | image_url: width: 2400
+  else
+    assign bg_url = 'pre-lander-crp-hero-bg.jpg' | asset_url
+  endif
+
+  if section.settings.logo_image
+    assign logo_url = section.settings.logo_image | image_url: width: 332
+  else
+    assign logo_url = 'pre-lander-crp-logo.png' | asset_url
+  endif
+
+  assign btn_link = section.settings.button_link
+  if btn_link == blank
+    assign btn_link = '#product-cta'
+  endif
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@275;400;500;700&display=swap" rel="stylesheet">
+
+<section
+  class="pre-lander-crp-hero"
+  data-gradient-enabled="{{ section.settings.gradient_enable }}"
+  style="
+    --pl-hero-height-desktop: {{ section.settings.hero_height_desktop }}px;
+    --pl-hero-height-mobile: {{ section.settings.hero_height_mobile }}px;
+    --pl-hero-bg: url('{{ bg_url }}');
+    --pl-hero-grad-solid: {{ gradient_solid }};
+    --pl-hero-grad-clear: {{ gradient_clear }};
+    --pl-hero-grad-dir: {{ gradient_dir }};
+    --pl-hero-grad-start: {{ section.settings.gradient_start_stop }}%;
+    --pl-hero-grad-end: {{ section.settings.gradient_end_stop }}%;
+    --pl-hero-btn-bg: {{ section.settings.button_bg_color }};
+    --pl-hero-btn-text: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="pre-lander-crp-hero__inner">
+    <img
+      class="pre-lander-crp-hero__logo"
+      src="{{ logo_url }}"
+      alt="{{ section.settings.logo_alt_text | escape }}"
+      width="166"
+      height="60"
+      loading="eager"
+    >
+
+    <div class="pre-lander-crp-hero__text">
+      <div class="pre-lander-crp-hero__headline">{{ section.settings.headline }}</div>
+      <div class="pre-lander-crp-hero__quote">{{ section.settings.quote }}</div>
+
+      <a href="{{ btn_link }}" class="pre-lander-crp-hero__btn">
+        <span>{{ section.settings.button_text | escape }}</span>
+        {%- if section.settings.button_icon -%}
+          <img
+            class="pre-lander-crp-hero__btn-icon"
+            src="{{ section.settings.button_icon | image_url: width: 48 }}"
+            alt=""
+            width="24"
+            height="24"
+            loading="lazy"
+          >
+        {%- else -%}
+          <svg class="pre-lander-crp-hero__btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        {%- endif -%}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pre-lander-crp-hero {
+    position: relative;
+    width: 100%;
+    height: var(--pl-hero-height-desktop, 850px);
+    background-color: #f9f9f9;
+    background-image: var(--pl-hero-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .pre-lander-crp-hero[data-gradient-enabled="true"] {
+    background-image:
+      linear-gradient(var(--pl-hero-grad-dir), var(--pl-hero-grad-solid) var(--pl-hero-grad-start), var(--pl-hero-grad-clear) var(--pl-hero-grad-end)),
+      linear-gradient(var(--pl-hero-grad-dir), var(--pl-hero-grad-solid) var(--pl-hero-grad-start), var(--pl-hero-grad-clear) var(--pl-hero-grad-end)),
+      linear-gradient(var(--pl-hero-grad-dir), var(--pl-hero-grad-solid) var(--pl-hero-grad-start), var(--pl-hero-grad-clear) var(--pl-hero-grad-end)),
+      var(--pl-hero-bg);
+  }
+
+  .pre-lander-crp-hero__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 38px;
+    text-align: center;
+  }
+
+  .pre-lander-crp-hero__logo {
+    width: 166px;
+    height: 60px;
+    object-fit: contain;
+  }
+
+  .pre-lander-crp-hero__text {
+    margin-top: 25px;
+    text-align: center;
+    max-width: 807px;
+  }
+
+  .pre-lander-crp-hero__headline {
+    margin-bottom: 20px;
+  }
+  .pre-lander-crp-hero__headline p {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 52px;
+    letter-spacing: 0.8px;
+    color: #000;
+    margin: 0;
+  }
+
+  .pre-lander-crp-hero__quote {
+    margin-bottom: 28px;
+  }
+  .pre-lander-crp-hero__quote p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #000;
+    margin: 0;
+  }
+
+  .pre-lander-crp-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 32px;
+    height: 56px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.32px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    background: var(--pl-hero-btn-bg, #000);
+    color: var(--pl-hero-btn-text, #fff);
+  }
+
+  .pre-lander-crp-hero__btn-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  svg.pre-lander-crp-hero__btn-icon {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-hero {
+      height: var(--pl-hero-height-mobile, 722px);
+    }
+    .pre-lander-crp-hero__inner {
+      width: 100%;
+      padding: 20px 15px;
+    }
+    .pre-lander-crp-hero__text {
+      max-width: 100%;
+    }
+    .pre-lander-crp-hero__headline p {
+      font-size: 30px;
+      line-height: 130%;
+      letter-spacing: 0.6px;
+    }
+    .pre-lander-crp-hero__quote p {
+      font-size: 16px;
+      line-height: 150%;
+    }
+    .pre-lander-crp-hero__quote {
+      margin-bottom: 25px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Hero",
+  "tag": "section",
+  "class": "section-pre-lander-crp-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "hero_height_desktop",
+      "label": "Hero height (desktop)",
+      "min": 400,
+      "max": 1200,
+      "step": 10,
+      "unit": "px",
+      "default": 850
+    },
+    {
+      "type": "range",
+      "id": "hero_height_mobile",
+      "label": "Hero height (mobile)",
+      "min": 400,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 720
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Falls back to the bundled pre-lander-crp-hero-bg.jpg if empty."
+    },
+    {
+      "type": "header",
+      "content": "Gradient overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_enable",
+      "label": "Enable gradient overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "gradient_color",
+      "label": "Gradient colour",
+      "default": "#F9F9F9"
+    },
+    {
+      "type": "select",
+      "id": "gradient_direction",
+      "label": "Gradient direction",
+      "options": [
+        { "value": "top-to-bottom", "label": "Top to bottom" },
+        { "value": "bottom-to-top", "label": "Bottom to top" },
+        { "value": "left-to-right", "label": "Left to right" },
+        { "value": "right-to-left", "label": "Right to left" }
+      ],
+      "default": "top-to-bottom"
+    },
+    {
+      "type": "range",
+      "id": "gradient_intensity",
+      "label": "Gradient intensity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "gradient_start_stop",
+      "label": "Gradient starts fading at",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "gradient_end_stop",
+      "label": "Gradient fully transparent at",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 52
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image",
+      "info": "Falls back to the bundled pre-lander-crp-logo.png if empty."
+    },
+    {
+      "type": "text",
+      "id": "logo_alt_text",
+      "label": "Logo alt text",
+      "default": "Carrol Boyes"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<p>Pantry storage that doesn't disappear into your cupboard.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "quote",
+      "label": "Quote",
+      "default": "<p>\"They look like something out of a design magazine — not a storage container.\"</p>"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Discover the Indigo Girls Set"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "If empty, links to #product-cta on the page."
+    },
+    {
+      "type": "image_picker",
+      "id": "button_icon",
+      "label": "Button icon (optional)",
+      "info": "If empty, shows a default arrow that picks up the button text colour. A custom upload keeps its own colour."
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background colour",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text colour",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,459 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "topbar_3YD96h": {
+      "type": "topbar",
+      "blocks": {
+        "link_list_En8dpz": {
+          "type": "link_list",
+          "settings": {
+            "menu": "main-menu",
+            "position": "right"
+          }
+        },
+        "text_Ahn3nP": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Free Delivery Over £99",
+            "position": "center",
+            "highlight_text": "",
+            "highlight_text_style": "button",
+            "highlight_text_color": "",
+            "highlight_text_background_color": ""
+          }
+        },
+        "language_country_MyFf6D": {
+          "type": "language_country",
+          "disabled": true,
+          "settings": {
+            "show_language_selector": true,
+            "show_country_selector": true,
+            "position": "left"
+          }
+        },
+        "text_VWbart": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Our Story",
+            "position": "right",
+            "highlight_text": "",
+            "highlight_text_style": "button",
+            "highlight_text_color": "",
+            "highlight_text_background_color": ""
+          }
+        },
+        "social_links_BcFqP9": {
+          "type": "social_links",
+          "disabled": true,
+          "settings": {
+            "show_facebook": true,
+            "show_instagram": true,
+            "show_twitter": true,
+            "show_tiktok": true,
+            "show_pinterest": false,
+            "show_snapchat": false,
+            "show_tumblr": false,
+            "show_youtube": false,
+            "show_vimeo": false,
+            "position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_En8dpz",
+        "text_Ahn3nP",
+        "language_country_MyFf6D",
+        "text_VWbart",
+        "social_links_BcFqP9"
+      ],
+      "settings": {
+        "container": "full",
+        "color_scheme": "scheme-inverse",
+        "show_separator_line": false,
+        "padding_top": 10,
+        "padding_bottom": 6
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "product_list_LdHwta": {
+          "type": "product_list",
+          "name": "Collections |Product list (mega menu)",
+          "settings": {
+            "menu_title": "Collection",
+            "menu_columns": 6,
+            "show_menu_column_divider": false,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "#c4301c",
+            "heading": "",
+            "promotions_width": 38,
+            "number_of_columns": 4,
+            "product_list": [],
+            "show_product_vendor": false,
+            "show_product_type": false,
+            "show_progress_bar": true
+          }
+        },
+        "custom_card_YE8jXB": {
+          "type": "custom_card",
+          "name": "Iconics | Custom card (mega menu)",
+          "settings": {
+            "menu_title": "Iconics",
+            "menu_columns": 2,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "#c4301c",
+            "promotions_width": 100,
+            "promotion_columns": 5,
+            "promo_image_1": "shopify://shop_images/CB26_UK_MegaMennu_500x500_HomeDecor_1.png",
+            "heading_1": "Home Decor",
+            "heading_size_1": "h5",
+            "description_1": "",
+            "promotion_link_1": "shopify://collections/iconic-home-decor",
+            "promo_image_2": "shopify://shop_images/CB26_UK_MegaMennu_500x500_DiningRoom_1.png",
+            "heading_2": "Dining Room",
+            "heading_size_2": "h5",
+            "description_2": "",
+            "promotion_link_2": "shopify://collections/iconic-dining-room",
+            "promo_image_3": "shopify://shop_images/CB26_UK_MegaMennu_500x500_Fashion_1.png",
+            "heading_3": "Fashion",
+            "heading_size_3": "h5",
+            "description_3": "",
+            "promotion_link_3": "shopify://collections/iconic-bag-collection",
+            "promo_image_4": "shopify://shop_images/CB26_UK_MegaMennu_500x500_Bar_1.png",
+            "heading_4": "Bar",
+            "heading_size_4": "h5",
+            "description_4": "",
+            "promotion_link_4": "shopify://collections/iconic-bar",
+            "promo_image_5": "shopify://shop_images/CB26_UK_MegaMennu_500x500_Kitchen_1.png",
+            "heading_5": "Kitchen",
+            "heading_size_5": "h5",
+            "description_5": "",
+            "promotion_link_5": "shopify://collections/iconic-kitchen"
+          }
+        },
+        "promotion_banner_CTzVF6": {
+          "type": "promotion_banner",
+          "settings": {
+            "menu_title": "NEW ARRIVALS Test",
+            "menu_columns": 3,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "",
+            "promotions_width": 100,
+            "promotion_columns": 3,
+            "promotion_position": "right",
+            "color_scheme_1": "",
+            "promo_image_1": "shopify://shop_images/Secondaries5.jpg",
+            "content_position_1": "top-left",
+            "content_alignment_1": "left",
+            "content_gap_1": "fitted",
+            "image_overlay_opacity_1": 0,
+            "promotion_link_1": "",
+            "subheading_1": "",
+            "subheading_style_1": "",
+            "heading_1": "",
+            "heading_size_1": "h5",
+            "description_1": "",
+            "button_label_1": "",
+            "button_style_1": "btn--primary",
+            "button_icon_1": "none",
+            "color_scheme_2": "",
+            "promo_image_2": "shopify://shop_images/Lacuna_handbag_Large_tote.jpg",
+            "content_position_2": "top-left",
+            "content_alignment_2": "left",
+            "content_gap_2": "fitted",
+            "image_overlay_opacity_2": 0,
+            "promotion_link_2": "",
+            "subheading_2": "",
+            "subheading_style_2": "",
+            "heading_2": "",
+            "heading_size_2": "h5",
+            "description_2": "",
+            "button_label_2": "",
+            "button_style_2": "btn--primary",
+            "button_icon_2": "none",
+            "color_scheme_3": "",
+            "promo_image_3": "shopify://shop_images/1600x1600_2.webp",
+            "content_position_3": "top-left",
+            "content_alignment_3": "left",
+            "content_gap_3": "fitted",
+            "image_overlay_opacity_3": 0,
+            "promotion_link_3": "",
+            "subheading_3": "",
+            "subheading_style_3": "",
+            "heading_3": "",
+            "heading_size_3": "h5",
+            "description_3": "",
+            "button_label_3": "",
+            "button_style_3": "btn--primary",
+            "button_icon_3": "none",
+            "color_scheme_4": "",
+            "content_position_4": "top-left",
+            "content_alignment_4": "left",
+            "content_gap_4": "fitted",
+            "image_overlay_opacity_4": 0,
+            "promotion_link_4": "",
+            "subheading_4": "",
+            "subheading_style_4": "",
+            "heading_4": "",
+            "heading_size_4": "h5",
+            "description_4": "",
+            "button_label_4": "",
+            "button_style_4": "btn--primary",
+            "button_icon_4": "none",
+            "color_scheme_5": "",
+            "content_position_5": "top-left",
+            "content_alignment_5": "left",
+            "content_gap_5": "fitted",
+            "image_overlay_opacity_5": 0,
+            "promotion_link_5": "",
+            "subheading_5": "",
+            "subheading_style_5": "",
+            "heading_5": "",
+            "heading_size_5": "h5",
+            "description_5": "",
+            "button_label_5": "",
+            "button_style_5": "btn--primary",
+            "button_icon_5": "none"
+          }
+        },
+        "hightlight_link_BJmEWV": {
+          "type": "hightlight_link",
+          "settings": {
+            "hl_link_title": "New Arrivals",
+            "hl_link_style": "text_color",
+            "hl_link_color": "#ffffff"
+          }
+        },
+        "product_list_aDwcgT": {
+          "type": "product_list",
+          "name": "Dining | Product list (mega menu)",
+          "settings": {
+            "menu_title": "Dining",
+            "menu_columns": 6,
+            "show_menu_column_divider": false,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "#c4301c",
+            "heading": "Top Pick For The Month",
+            "promotions_width": 20,
+            "number_of_columns": 1,
+            "product_list": [
+              "dinner-plate-set-of-4-sketchbook-black"
+            ],
+            "show_product_vendor": false,
+            "show_product_type": false,
+            "show_progress_bar": true
+          }
+        },
+        "product_list_zV74pp": {
+          "type": "product_list",
+          "name": "Entertaining | Product list (mega menu)",
+          "settings": {
+            "menu_title": "Entertaining",
+            "menu_columns": 5,
+            "show_menu_column_divider": false,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "#c4301c",
+            "heading": "",
+            "promotions_width": 25,
+            "number_of_columns": 1,
+            "product_list": [
+              "bottle-stopper-lion",
+              "bottle-stopper-tipsy",
+              "bottle-stopper-at-rest",
+              "bottle-stopper-buffalo",
+              "bottle-stopper-elephant"
+            ],
+            "show_product_vendor": false,
+            "show_product_type": true,
+            "show_progress_bar": true
+          }
+        },
+        "product_list_znKxJg": {
+          "type": "product_list",
+          "name": "Kitchen | Product list (mega menu)",
+          "settings": {
+            "menu_title": "Kitchen",
+            "menu_columns": 5,
+            "show_menu_column_divider": false,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "#c4301c",
+            "heading": "",
+            "promotions_width": 25,
+            "number_of_columns": 1,
+            "product_list": [
+              "bread-bin-diver"
+            ],
+            "show_product_vendor": false,
+            "show_product_type": true,
+            "show_progress_bar": true
+          }
+        },
+        "product_list_MWXVxd": {
+          "type": "product_list",
+          "name": "Home Decor | Product list (mega menu)",
+          "settings": {
+            "menu_title": "Home Decor",
+            "menu_columns": 5,
+            "show_menu_column_divider": false,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "#c4301c",
+            "heading": "",
+            "promotions_width": 20,
+            "number_of_columns": 1,
+            "product_list": [
+              "glass-bowl-and-stand-all-dressed-up"
+            ],
+            "show_product_vendor": false,
+            "show_product_type": false,
+            "show_progress_bar": true
+          }
+        },
+        "product_list_xtLm79": {
+          "type": "product_list",
+          "name": "Textiles | Product list (mega menu)",
+          "settings": {
+            "menu_title": "Textiles",
+            "menu_columns": 5,
+            "show_menu_column_divider": false,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "",
+            "heading": "",
+            "promotions_width": 20,
+            "number_of_columns": 1,
+            "product_list": [
+              "apron-lacuna"
+            ],
+            "show_product_vendor": false,
+            "show_product_type": false,
+            "show_progress_bar": true
+          }
+        },
+        "product_list_RaF7Yz": {
+          "type": "product_list",
+          "name": "Office | Product list (mega menu)",
+          "settings": {
+            "menu_title": "Office",
+            "menu_columns": 4,
+            "show_menu_column_divider": true,
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "",
+            "heading": "",
+            "promotions_width": 20,
+            "number_of_columns": 1,
+            "product_list": [
+              "notebook-set-gathering"
+            ],
+            "show_product_vendor": false,
+            "show_product_type": false,
+            "show_progress_bar": true
+          }
+        },
+        "sidebar_f4bMHG": {
+          "type": "sidebar",
+          "name": "Fahsion | Sidebar (Mega menu)",
+          "settings": {
+            "menu_title": "Fashion",
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "",
+            "menu_columns": 5,
+            "show_collection_image": true,
+            "show_image_of_first_product": false,
+            "image_ratio": "3/4"
+          }
+        },
+        "custom_link_7aeJKn": {
+          "type": "custom_link",
+          "name": "Catalogue | Custom link",
+          "settings": {
+            "label": "Catalogue",
+            "link": "shopify://pages/catalogue-consent",
+            "icon": "truck",
+            "custom_icon": "shopify://shop_images/Carrol_Boyes_Catalogue_Logo.png",
+            "icon_size": "extra-large"
+          }
+        },
+        "sidebar_ywKUtC": {
+          "type": "sidebar",
+          "settings": {
+            "menu_title": "Collections",
+            "enable_hl_link": false,
+            "hl_link_style": "text_color",
+            "hl_link_color": "",
+            "menu_columns": 3,
+            "show_collection_image": true,
+            "show_image_of_first_product": false,
+            "image_ratio": "4/3"
+          }
+        }
+      },
+      "block_order": [
+        "product_list_LdHwta",
+        "custom_card_YE8jXB",
+        "promotion_banner_CTzVF6",
+        "hightlight_link_BJmEWV",
+        "product_list_aDwcgT",
+        "product_list_zV74pp",
+        "product_list_znKxJg",
+        "product_list_MWXVxd",
+        "product_list_xtLm79",
+        "product_list_RaF7Yz",
+        "sidebar_f4bMHG",
+        "custom_link_7aeJKn",
+        "sidebar_ywKUtC"
+      ],
+      "custom_css": [
+        "/* Force bold only on the top-level mega menu headings like \"Shop By\" */.mega-menu__item > .mega-menu__link--top {font-weight: 700 !important;}",
+        ".mega-menu__column {border-right: 0;}",
+        ".mega-menu__promotions {border-left: 0;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-inverse",
+        "menu": "main-menu-desktop-uk",
+        "menu_mobile": "main-menu-desktop-uk",
+        "header_layout": "logo-center",
+        "menu_trigger": "hover",
+        "sticky_header": "always",
+        "enable_collapse_on_scroll": true,
+        "show_sperator_line": false,
+        "customer_account_style": "icon-with-text",
+        "show_social_media_icons": true,
+        "enable_language_selector": false,
+        "enable_country_selector": true,
+        "header_top_padding_top": 6,
+        "header_top_padding_bottom": 6,
+        "navigation_color_scheme": "scheme-inverse",
+        "navigation_content_alignment": "start",
+        "navigation_padding_top": 0,
+        "navigation_padding_bottom": 12
+      }
+    }
+  },
+  "order": [
+    "topbar_3YD96h",
+    "header"
+  ]
+}

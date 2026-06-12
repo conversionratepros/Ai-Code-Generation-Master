@@ -1,0 +1,1173 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs_DgnWDV": {
+      "type": "breadcrumbs",
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "start",
+        "padding_top": 16,
+        "padding_bottom": 20
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_overlay_3FrkpM": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "subheading_MEEHjQ": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "What We Made"
+          }
+        },
+        "heading_W8mPfG": {
+          "type": "heading",
+          "settings": {
+            "heading": "Elegant Design Conceals",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_MEEHjQ",
+        "heading_W8mPfG"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".rich-text {max-width: 52rem;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "desktop_height": "medium",
+        "overlay_opacity": 0,
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "color_scheme": "",
+        "content_position": "top-left",
+        "content_alignment": "left",
+        "mobile_height": "adapt",
+        "content_position_mobile": "middle-center-mobile",
+        "content_alignment_mobile": "left",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "enable_preload_image": true
+      }
+    },
+    "rich_text_kyFd96": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Y9MMVQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Carrol Boyes Story",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_7h6LaE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our story began more than 30 years ago, when a talented English teacher – Carrol Boyes – decided to pursue her passion for art and sculpture. Since the inception of the brand, our products can be found in the homes of South African collectors and abroad. Carrol Boyes is a trusted and celebrated brand; we pride ourselves in exceptional quality and recognizable style.</p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Y9MMVQ",
+        "text_7h6LaE"
+      ],
+      "custom_css": [
+        ".rich-text {max-width: 78rem; margin: 0 auto;}",
+        "@media (max-width: 1023px) {.rich-text__heading {max-width: 50rem; margin: 0 auto; }}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "image_with_text_eUKGwj": {
+      "type": "image-with-text",
+      "blocks": {
+        "badge_AdmYNg": {
+          "type": "badge",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "text": "- Young Carrol - 1954 to 1989",
+            "position_mobile": "right"
+          }
+        },
+        "subheading_t37PND": {
+          "type": "subheading",
+          "settings": {
+            "subheading": ""
+          }
+        },
+        "heading_yrtiRH": {
+          "type": "heading",
+          "settings": {
+            "heading": "Young Carrol",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_DycqGr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Carrol Heather Boyes was Born in Cape Town, 21 November 1954 as the oldest sibling to her two brothers, Charles, and John Boyes. The Boyes children were lovingly raised on a farm in Limpopo and were always community driven – with a passion for local entrepreneurs, artists and the rich heritage South Africa exudes. Carrol, Charles, and John have always focused on business steeped in family and the legacy continues as Charles took over as CEO of the brand in 2019.</p>",
+            "subtext_color": true
+          }
+        }
+      },
+      "block_order": [
+        "badge_AdmYNg",
+        "subheading_t37PND",
+        "heading_yrtiRH",
+        "text_DycqGr"
+      ],
+      "custom_css": [
+        ".image-with-text__content {max-width: 52rem;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "image": "shopify://shop_images/CB22_NewWeb_CarrolsStory_Images_1.webp",
+        "image_position": "left",
+        "image_width": 50,
+        "desktop_content_position": "center",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "inherit",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_WKRKMU": {
+      "type": "image-with-text",
+      "blocks": {
+        "badge_nnt9jN": {
+          "type": "badge",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "text": "Carrol's Graduation - The year is 1976 -",
+            "position_mobile": "right"
+          }
+        },
+        "subheading_DCQLtG": {
+          "type": "subheading",
+          "settings": {
+            "subheading": ""
+          }
+        },
+        "heading_3UUr6T": {
+          "type": "heading",
+          "settings": {
+            "heading": "Carrol’s Graduation",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_W47tR9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Carrol Boyes graduated with a fine arts degree from the University of Pretoria. Like most art graduates in the country, she had dreams of taking the art world by storm but was met with the tough reality that a career as a sculpturer was not feasible in South Africa. Instead, she made a career of teaching English to high school students and art to juniors. At the age of 35, she decided to start her own functional art business after 15 years of teaching. She experimented with jewellery before finding her niche in home décor accessories and kitchenware. She launched her business in 1989 from her home in Cape Town where she focused on cutlery and flatware specifically.</p>",
+            "subtext_color": true
+          }
+        }
+      },
+      "block_order": [
+        "badge_nnt9jN",
+        "subheading_DCQLtG",
+        "heading_3UUr6T",
+        "text_W47tR9"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "image": "shopify://shop_images/CB22_NewWeb_CarrolsStory_Images2_1.webp",
+        "image_position": "right",
+        "image_width": 50,
+        "desktop_content_position": "center",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "inherit",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_zUfPMB": {
+      "type": "rich-text",
+      "blocks": {
+        "text_c3nhjt": {
+          "type": "text",
+          "settings": {
+            "text": "<p><br/>At the age of 35, she decided to start her own functional art business after 15 years of teaching. She experimented with jewellery before finding her niche in home decor accessories, and kitchenware. She launched her business in 1989 from her home in Cape Town where she focused on cuttlery and flatware specifically.<br/></p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "text_3RmhxQ": {
+          "type": "text",
+          "settings": {
+            "text": "<h3><em>“After 11 years of teaching, I followed my childhood dream of being an artist and a designer.”</em></h3><p>-Carrol Boyes</p>",
+            "text_size": "text-lg",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_ayCUrR": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "text_c3nhjt",
+        "text_3RmhxQ",
+        "button_ayCUrR"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-10",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "grid_banner_iyGTyR": {
+      "type": "grid-banner",
+      "blocks": {
+        "banner_card_XwkFHp": {
+          "type": "banner-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/cb20_festive_tall.jpg",
+            "image_overlay_opacity": 0,
+            "column_span": 1,
+            "row_span": 2,
+            "content_spacing": "medium",
+            "content_gap": "standard",
+            "content_position": "top-center",
+            "content_alignment": "center",
+            "content_position_mobile": "middle-center",
+            "content_alignment_mobile": "center",
+            "card_link": "",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "button_size": "btn--medium",
+            "block_custom_class": "",
+            "enable_preload_image": false
+          }
+        },
+        "banner_card_feetc3": {
+          "type": "banner-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/CB22_NewWeb_CarrolsStory_Images3.webp",
+            "image_overlay_opacity": 0,
+            "column_span": 2,
+            "row_span": 2,
+            "content_spacing": "medium",
+            "content_gap": "standard",
+            "content_position": "middle-center",
+            "content_alignment": "center",
+            "content_position_mobile": "middle-center",
+            "content_alignment_mobile": "center",
+            "card_link": "",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "button_size": "btn--medium",
+            "block_custom_class": "",
+            "enable_preload_image": false
+          }
+        },
+        "banner_card_76LUJQ": {
+          "type": "banner-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/logoGIF1-ezgif.com-video-to-gif-converter-2.gif",
+            "image_overlay_opacity": 0,
+            "column_span": 1,
+            "row_span": 1,
+            "content_spacing": "medium",
+            "content_gap": "standard",
+            "content_position": "bottom-center",
+            "content_alignment": "center",
+            "content_position_mobile": "middle-center",
+            "content_alignment_mobile": "center",
+            "card_link": "",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "button_size": "btn--medium",
+            "block_custom_class": "",
+            "enable_preload_image": false
+          }
+        },
+        "banner_card_FRzj6a": {
+          "type": "banner-card",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/0p-sp-efd.webp",
+            "image_overlay_opacity": 0,
+            "column_span": 1,
+            "row_span": 1,
+            "content_spacing": "medium",
+            "content_gap": "standard",
+            "content_position": "bottom-center",
+            "content_alignment": "center",
+            "content_position_mobile": "middle-center",
+            "content_alignment_mobile": "center",
+            "card_link": "",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "text": "",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "button_size": "btn--medium",
+            "block_custom_class": "",
+            "enable_preload_image": false
+          }
+        }
+      },
+      "block_order": [
+        "banner_card_XwkFHp",
+        "banner_card_feetc3",
+        "banner_card_76LUJQ",
+        "banner_card_FRzj6a"
+      ],
+      "name": "t:sections.grid-banner.presets__3.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "The Brand is Born",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "description_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--primary",
+        "button_icon": "none",
+        "columns": 4,
+        "banner_height": "auto",
+        "gap": "2xs",
+        "enable_swiper_mobile": false,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_RikdrX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_fMwaBn": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Talk about your brand",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        },
+        "text_PMUQyd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The first 3 years of her design and artwork, she worked with copper, silver, brass, and pewter. She created Verdigris candle sticks, jewellery, and assorted brass works. The public fell in love with these quirky and functional items for the home and are still in the homes of those who bought her first pieces from a small stall at Cape Town’s Greenmarket Square.</p><p>Art dealer, Peter Visser gave Carrol her first break after she gave up teaching by displaying and selling her pieces in his trendy store in Cape Town’s vibrant Loop Street. ‘’Each of her designs is a statement in itself, completely personal, fresh and different.” Peter Visser</p><p></p><p>Carrol’s ethos was to produce high quality, unique, quirky, and collectable pieces of art that could be used every day. Pieces to enjoy and pass down from generation to generation. The brand still holds this vision true to this very day.</p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_mitKXF": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fMwaBn",
+        "text_PMUQyd",
+        "button_mitKXF"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "rich_text_weNnkV": {
+      "type": "rich-text",
+      "blocks": {
+        "text_Vw4iYr": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>“Being the first person to do something is a huge advantage. I was lucky in that I got to the market first with the kind of products I produce. If you can't do something new, then you must do the old very, very well.”</em></p><p>-Carrol Boyes</p>",
+            "text_size": "text-lg",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_Rz8bRp": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "text_Vw4iYr",
+        "button_Rz8bRp"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-10",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "scrolling_promotion_6aUqmj": {
+      "type": "scrolling-promotion",
+      "blocks": {
+        "text_EWeYdP": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text_link": "",
+            "text": "Lounge Chairs",
+            "text_size": "h2",
+            "text_opacity": 100,
+            "use_custom_color": true,
+            "custom_color": "#1d349a"
+          }
+        },
+        "image_WzBbmD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/0p-sp-ias.webp",
+            "image_height": 72,
+            "image_rounded": false,
+            "image_link": "",
+            "image_height_mobile": 60
+          }
+        },
+        "text_baGGeL": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text_link": "",
+            "text": "Bow Chairs",
+            "text_size": "h2",
+            "text_opacity": 100,
+            "use_custom_color": true,
+            "custom_color": "#1d349a"
+          }
+        },
+        "image_Ta48hW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sp_indigohh.webp",
+            "image_height": 72,
+            "image_rounded": false,
+            "image_link": "",
+            "image_height_mobile": 60
+          }
+        },
+        "text_y3QPgp": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text_link": "",
+            "text": "Cross Chair",
+            "text_size": "h2",
+            "text_opacity": 100,
+            "use_custom_color": true,
+            "custom_color": "#1d349a"
+          }
+        },
+        "image_TFNFGJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/0n-pl-fog.webp",
+            "image_height": 72,
+            "image_rounded": false,
+            "image_link": "",
+            "image_height_mobile": 60
+          }
+        },
+        "image_zyeLLy": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/dinnerplate_2.webp",
+            "image_height": 100,
+            "image_rounded": false,
+            "image_link": "",
+            "image_height_mobile": 60
+          }
+        }
+      },
+      "block_order": [
+        "text_EWeYdP",
+        "image_WzBbmD",
+        "text_baGGeL",
+        "image_Ta48hW",
+        "text_y3QPgp",
+        "image_TFNFGJ",
+        "image_zyeLLy"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "direction": "left",
+        "pause_on_hover": true,
+        "speed": 0.3,
+        "h_spacing": 16,
+        "show_section_divider": false,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_UNEzpc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cmTgVP": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Talk about your brand",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        },
+        "text_CaMttN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In 1991, as her brand grew by word of mouth, with many people flocking to her stall in Greenmarket Square, Carrol quickly realised that she needed production on a larger scale to keep up with the demand for her homeware pieces. This is when the manufacturing plant opened in 1990 in Limpopo. The factory opened its doors with a staff complement of 12 which quickly grew to 350 employees.</p><p>Carrol’s father solved the need for a large-scale manufacturing plant by offering an empty building on their family farm to help Carrol in realising her dream. Charles, who had just graduated from university took this opportunity to assist her in setting up the factory, and in essence becoming a major role player in the brand.</p><p>The Limpopo plant is located near Tzaneen in the Northern Province, where the casting and stamping of the metals is done and larger items are assembled prior to their transportation to the head office in Cape Town. Carrol and her family were passionate about job security in the communities they lived and worked in - and the factory afforded the community the much-needed opportunity of being skilled and employed. With a headcount of 350 employees, the factory became the second biggest employer in the area affording skills development and job creation to local residents.</p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_eLxnAy": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cmTgVP",
+        "text_CaMttN",
+        "button_eLxnAy"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "image_with_text_7Y9Aep": {
+      "type": "image-with-text",
+      "blocks": {
+        "badge_73fmMV": {
+          "type": "badge",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "text": "-The Brand Grows - The year is 1999",
+            "position_mobile": "right"
+          }
+        },
+        "subheading_9qFpNV": {
+          "type": "subheading",
+          "settings": {
+            "subheading": ""
+          }
+        },
+        "heading_94Qx4N": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Brand Grows",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_PNgaVQ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Two years after setting up her factory, Carrol received her first international order and Carrol’s pieces were catapulted into popularity with the demand for her products exceeding her expectations. In 1999, Carrol moved from her home office in Llandudno to her new office premises in Rose Street, Cape Town.</p>",
+            "subtext_color": true
+          }
+        }
+      },
+      "block_order": [
+        "badge_73fmMV",
+        "subheading_9qFpNV",
+        "heading_94Qx4N",
+        "text_PNgaVQ"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "image": "shopify://shop_images/CB22_NewWeb_CarrolsStory_Images4.webp",
+        "image_position": "left",
+        "image_width": 50,
+        "desktop_content_position": "center",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "inherit",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_BJawpQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_DFzQ9H": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Talk about your brand",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        },
+        "text_6UyrRK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Four years later, in 2003 she launched her first retail store at the tourist mecca, he Victoria & Alfred Waterfront in Cape Town. This flagship store was the beginning of the brand’s retail footprint which now sees a compliment of 25 stores nationwide and a successful online selling website. Our retail footprint has ensured that our brand is widely recognisable, both locally and abroad.</p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_Qz3DNm": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DFzQ9H",
+        "text_6UyrRK",
+        "button_Qz3DNm"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "image_with_text_QB9tfB": {
+      "type": "image-with-text",
+      "blocks": {
+        "badge_iyrREB": {
+          "type": "badge",
+          "settings": {
+            "color_scheme": "scheme-inverse",
+            "text": "- Over 30 Years - Present Day",
+            "position_mobile": "right"
+          }
+        },
+        "subheading_VJ4hJ7": {
+          "type": "subheading",
+          "settings": {
+            "subheading": ""
+          }
+        },
+        "heading_M8t89c": {
+          "type": "heading",
+          "settings": {
+            "heading": "Present Day",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2"
+          }
+        },
+        "text_EApTKk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>After more than 30 years, the business is continually growing with an offering of over 1 000 products available. More than 27 countries currently stock the Carrol Boyes brand with some big names such as Bloomingdales and Nieman Marcus in the USA and David Jones in Australia among these retailers and stockists.</p>",
+            "subtext_color": true
+          }
+        }
+      },
+      "block_order": [
+        "badge_iyrREB",
+        "subheading_VJ4hJ7",
+        "heading_M8t89c",
+        "text_EApTKk"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "image": "shopify://shop_images/CB26_Q1_Socials_1080_44.png",
+        "image_position": "right",
+        "image_width": 50,
+        "desktop_content_position": "center",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "inherit",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_NWpFYQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_JL9HmJ": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Talk about your brand",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        },
+        "text_BgJnW3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Over the years Carrol has been recognised and acknowledged for her incredible achievements in business and contributions to the design world. The Carrol Boyes group draws its talented complement of people and vendors from all over the country to provide excellence in quality and functionality. With decades of sketches in the archive and personally selected designers who worked alongside her for many years, the brand is only set to reach new heights with each year that passes and ensuring that Carrol’s legacy lives on in her designs.</p>",
+            "text_size": "text-base",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_8zt4La": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "heading_JL9HmJ",
+        "text_BgJnW3",
+        "button_8zt4La"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "rich_text_cAVQXi": {
+      "type": "rich-text",
+      "blocks": {
+        "text_TfGiJn": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>“My vision is to take it into the next generation. I believe there is a lot of talent in this country, and I owe it to my staff and customer to find it so that the company has longevity.”</em></p><p>-Carrol Boyes</p>",
+            "text_size": "text-lg",
+            "text_line_limit": "none",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "button_MwxGBW": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "text_TfGiJn",
+        "button_MwxGBW"
+      ],
+      "name": "t:sections.rich-text.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-10",
+        "use_color_scheme_in_container": false,
+        "content_spacing": "standard",
+        "content_alignment": "center",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "buttons_with_icon_AgEzEN": {
+      "type": "buttons-with-icon",
+      "blocks": {
+        "button_item_NPDpma": {
+          "type": "button_item",
+          "settings": {
+            "button_label": "All eco-certified",
+            "button_link": "",
+            "icon": "check"
+          }
+        },
+        "button_item_mrBjfX": {
+          "type": "button_item",
+          "settings": {
+            "button_label": "Product protection",
+            "button_link": "",
+            "icon": "check"
+          }
+        },
+        "button_item_dgkFBa": {
+          "type": "button_item",
+          "settings": {
+            "button_label": "Make it yours",
+            "button_link": "",
+            "icon": "check"
+          }
+        },
+        "button_item_7wMiwV": {
+          "type": "button_item",
+          "settings": {
+            "button_label": "Unique tailored",
+            "button_link": "",
+            "icon": "check"
+          }
+        }
+      },
+      "block_order": [
+        "button_item_NPDpma",
+        "button_item_mrBjfX",
+        "button_item_dgkFBa",
+        "button_item_7wMiwV"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".section__header {--header-padding-bottom: 2.4rem;}",
+        ".section__heading {max-width: 45rem;}"
+      ],
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-9",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "This approach resulted in the beautiful structure",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "item_alignment": "center",
+        "item_button_style": "btn--primary",
+        "item_button_font": "button",
+        "enable_slider": true,
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "scrolling_promotion_Fy9Yhn": {
+      "type": "scrolling-promotion",
+      "blocks": {
+        "text_gijz7Q": {
+          "type": "text",
+          "settings": {
+            "text_link": "",
+            "text": "Fast Delivery",
+            "text_size": "h4",
+            "text_opacity": 100,
+            "use_custom_color": false,
+            "custom_color": "#000000"
+          }
+        },
+        "text_3TVCPg": {
+          "type": "text",
+          "settings": {
+            "text_link": "",
+            "text": "30 Days Free Returns",
+            "text_size": "h4",
+            "text_opacity": 100,
+            "use_custom_color": false,
+            "custom_color": "#000000"
+          }
+        },
+        "text_iD6689": {
+          "type": "text",
+          "settings": {
+            "text_link": "",
+            "text": "Secure Payment",
+            "text_size": "h4",
+            "text_opacity": 100,
+            "use_custom_color": false,
+            "custom_color": "#000000"
+          }
+        },
+        "text_CtJBtL": {
+          "type": "text",
+          "settings": {
+            "text_link": "",
+            "text": "24/7 Customer Support",
+            "text_size": "h4",
+            "text_opacity": 100,
+            "use_custom_color": false,
+            "custom_color": "#000000"
+          }
+        },
+        "text_dGmg9m": {
+          "type": "text",
+          "settings": {
+            "text_link": "",
+            "text": "Sustainable Materials",
+            "text_size": "h4",
+            "text_opacity": 100,
+            "use_custom_color": false,
+            "custom_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "text_gijz7Q",
+        "text_3TVCPg",
+        "text_iD6689",
+        "text_CtJBtL",
+        "text_dGmg9m"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-3",
+        "direction": "left",
+        "pause_on_hover": true,
+        "speed": 0.2,
+        "h_spacing": 80,
+        "show_section_divider": false,
+        "padding_top": 22,
+        "padding_bottom": 22
+      }
+    },
+    "video_TPqrBt": {
+      "type": "video",
+      "disabled": true,
+      "name": "t:sections.video.name",
+      "settings": {
+        "container": "fixed",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_ratio": "adapt",
+        "description": "",
+        "enable_video_autoplay": false,
+        "enable_video_looping": false,
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_DgnWDV",
+    "main",
+    "image_with_text_overlay_3FrkpM",
+    "rich_text_kyFd96",
+    "image_with_text_eUKGwj",
+    "image_with_text_WKRKMU",
+    "rich_text_zUfPMB",
+    "grid_banner_iyGTyR",
+    "rich_text_RikdrX",
+    "rich_text_weNnkV",
+    "scrolling_promotion_6aUqmj",
+    "rich_text_UNEzpc",
+    "image_with_text_7Y9Aep",
+    "rich_text_BJawpQ",
+    "image_with_text_QB9tfB",
+    "rich_text_NWpFYQ",
+    "rich_text_cAVQXi",
+    "buttons_with_icon_AgEzEN",
+    "scrolling_promotion_Fy9Yhn",
+    "video_TPqrBt"
+  ]
+}

@@ -1,0 +1,1910 @@
+/* ─────────────────────────────────────────
+   Carrol Boyes — Indigo Girls Pre-lander
+   Font: Poppins (Google Fonts)
+   Breakpoint: 768px (mobile)
+───────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black:    #000000;
+  --white:    #ffffff;
+  --gray-50:  #f7f7f7;   /* stats bar bg, product card bg */
+  --gray-100: #f5f2ef;   /* testimonial block bg */
+  --gray-111: #111111;
+  --gray-333: #333333;
+  --gray-666: #666666;
+  --font: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+img   { display: block; max-width: 100%; }
+a     { text-decoration: none; color: inherit; }
+
+/* ═══════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 32px;
+  height: 56px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.btn-dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-dark .arrow {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2;
+}
+
+.btn-light {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn-light .arrow {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: var(--black);
+  stroke-width: 2;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 1 — HERO
+   Desktop: 1440 × 850 px
+═══════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 850px;
+  background-color: #f9f9f9;
+  background-image:
+    linear-gradient(to bottom, rgba(249,249,249,1) 8.25%, rgba(249,249,249,0) 51.56%),
+    linear-gradient(to bottom, rgba(249,249,249,1) 8.25%, rgba(249,249,249,0) 51.56%),
+    linear-gradient(to bottom, rgba(249,249,249,1) 8.25%, rgba(249,249,249,0) 51.56%),
+    url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width:2001px) {
+  .hero {
+      /* background-position: 0 8%; */
+      background-position: center, center, center, center calc(70% - clamp(4px, 6vw, -10px));
+  }
+}
+
+@media (max-width:2000px) and (min-width:1801px) {
+  .hero {
+      /* background-position: 0 -30%; */
+      background-position: center, center, center, center calc(50% - clamp(4px, 6vw, -12px));
+  }
+}
+
+@media (max-width:1800px) and (min-width:1701px) {
+  .hero {
+      /* background-position: 0 -80%; */
+      background-position: center, center, center, center calc(50% - clamp(4px, 6vw, -12px));
+  }
+}
+
+@media (max-width:1700px) and (min-width:1601px) {
+  .hero {
+      /* background-position: 0 -180%; */
+      background-position: center, center, center, center calc(50% - clamp(4px, 6vw, -12px));
+  }
+}
+
+@media (max-width:1500px) and (min-width:1401px) {
+  .hero {
+    background-size: cover, cover, cover, 100%;
+    background-position: center, center, center, center 270%;
+  }
+}
+
+@media (max-width:1400px) and (min-width:1301px) {
+  .hero {
+    background-size: cover, cover, cover, 100%;
+    background-position: center, center, center, center 170%;
+  }
+}
+
+@media (max-width:1300px) and (min-width:1025px){
+  .hero {
+      background-position: center 130px;
+  }
+
+}
+
+@media (max-width:1024px) {
+  .hero {
+      background-position: center 110px;
+  }
+}
+
+/* @media (max-width:768px) {
+  .hero {
+    background-size: cover 100%;
+    background-position: center, center, center, center 170%;
+  }
+} */
+
+
+
+.hero-product-img {
+  position: absolute;
+  top: 37px;
+  width: 348px;
+  height: 290px;
+  object-fit: cover;
+}
+.hero-product-img.left  { left: 0; }
+.hero-product-img.right { right: -8px; }
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 38px;
+}
+
+.hero-logo {
+  width: 166px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.hero-text {
+  margin-top: 25px;
+  text-align: center;
+  max-width: 807px;
+}
+
+.hero-text h1 {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 52px;
+  letter-spacing: 0.8px;
+  color: var(--black);
+  margin-bottom: 20px;
+}
+
+.hero-text .hero-quote {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: var(--black);
+  margin-bottom: 28px;
+}
+
+.hero-text .btn {
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 2 — STATS BAR
+   Desktop: 1440 × 206 px · bg #f7f7f7
+═══════════════════════════════════════ */
+
+.stats-bar {
+  background: var(--gray-50);
+  padding: 40px 116px;
+  display: flex;
+  justify-content: center;
+}
+
+.stats-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1018px;
+  width: 100%;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon svg { width: 30px; height: 30px; }
+
+.stat-number {
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  color: var(--gray-111);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1.12px;
+  color: var(--gray-111);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 3 — STORY
+   Desktop: 1440 × 1285 px · bg white
+   Layout: 774 px text col + 635 px image col
+═══════════════════════════════════════ */
+
+.story {
+  background: var(--white);
+  padding: 80px 10px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.story-deco-img {
+  position: absolute;
+  top: 0;
+  height: 530px;
+  width: 635px;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.story-deco-left  { 
+    left: -140px;
+    top: 200px;
+}
+.story-deco-right { 
+    right: -140px;
+    top: 200px;
+    transform: rotate(90deg);
+}
+
+.story-text {
+  max-width: 774px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.story-heading {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 45px;
+  color: var(--black);
+  text-align: center;
+}
+
+.story-intro {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--gray-333);
+  margin-top: 15px;
+  text-align: center;
+}
+
+.story-product-img {
+  width: 100%;
+  max-width: 774px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.story-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--gray-333);
+  text-align: center;
+}
+
+.story-divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    background: #EAEAEA;
+    width: 600px;
+    height: 1px;
+    margin: 0 auto;
+}
+
+.featured-in-label {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.44px;
+  color: var(--black);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* .featured-logos {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+} */
+
+
+.featured-logos {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    justify-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    cursor: grab;
+}
+
+.featured-logos::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-logo-img,
+.featured-sep {
+    flex-shrink: 0;
+}
+
+
+.featured-logos .logo-text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gray-111);
+  text-transform: uppercase;
+}
+
+.featured-logos .logo-text.italic {
+  font-style: italic;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.featured-sep {
+      font-size: 16px;
+    color: var(--gray-666);
+    letter-spacing: 1.6px;
+    color: rgba(102, 102, 102, 0.60);
+    text-align: center;
+    font-family: "PT Serif";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+.story-testimonial {
+    background: var(--gray-100);
+    padding: 40px 48px;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #F5F2EF;
+}
+
+.story-testimonial .quote {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--black);
+  font-style: italic;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.story-testimonial .attribution {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  color: var(--black);
+  line-height: 20px;
+  text-align: center;
+}
+
+.featured-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: inline-block;
+}
+
+img.featured-logo-img.img-3 {
+    width: 122px;
+    height: 51px;
+}
+
+img.featured-logo-img.img-4 {
+    width: 58.608px;
+    height: 44.147px;
+}
+
+img.featured-logo-img.img-2 {
+    width: 93.591px;
+    height: 48.561px;
+}
+
+img.featured-logo-img.img-1 {
+    width: 113.219px;
+    height: 38.439px;  
+}
+
+/* ═══════════════════════════════════════
+   SECTION 4 — COMPARISON TABLE
+   Desktop: 1440 × 1067 px · bg black
+═══════════════════════════════════════ */
+
+.comparison {
+  background: var(--black);
+  padding: 80px 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.comparison-inner {
+  width: 1024px;
+}
+
+.comparison h2 {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 45px;
+  color: var(--white);
+  max-width: 918px;
+  margin: 0 auto 48px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table thead tr {
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+  border-bottom: 1px solid rgba(233, 233, 233, 0.80);
+}
+
+.comparison-table th {
+  padding: 20px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
+
+.comparison-table th:first-child {
+  color: transparent;
+  width: 256px;
+}
+
+.comparison-table .th-competitor {
+  color: rgba(255, 255, 255, 0.5);
+  width: 309px;
+}
+
+.comparison-table .th-cb {
+  color: var(--white);
+  width: 459px;
+}
+
+.th-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.th-brand-logo {
+  height: 40px;
+  object-fit: contain;
+  object-position: left;
+  filter: invert(1);
+}
+
+.comparison-table td {
+  padding: 32.5px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--white);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+  vertical-align: top;
+  border-bottom: 1px solid rgba(233, 233, 233, 0.80);
+}
+
+.comparison-table td:first-child {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    width: 256px;
+    padding-left: 0;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.comparison-table td.competitor {
+  /* color: rgba(255, 255, 255, 0.5); */
+  padding-left: 0;
+}
+
+.comparison-table th:last-child {
+  background: #f7f7f7;
+  border-radius: 2px 2px 0 0;
+}
+
+.comparison-table td:last-child {
+  background: #f7f7f7;
+  color: var(--gray-333);
+  padding-left: 32px;
+  border-radius: 0 0 2px 2px;
+}
+
+.th-header-img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+
+.th-competitor .th-header-img{
+  width: 100%;
+  max-width: 147px;
+
+}
+
+.th-cb .th-header-img{
+  width: 100%;
+  max-width: 169px;
+}
+
+.comparison-table .th-competitor{
+  padding-left: 0;
+}
+
+.th-competitor span{
+  color: var(--White, #FFF);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+
+}
+
+.th-cb span{
+  color: var(--P-Black, #333);
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.comparison-table th:last-child{
+  padding-left: 32px;
+  padding-top: 28px;
+}
+
+.td-check,
+.td-cross {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+/* .td-check::before {
+  content: '✓';
+  color: var(--black);
+  font-size: 13px;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--white);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+} */
+
+.td-check::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    flex-shrink: 0;
+    margin-top: 0;
+    background-image: url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/Check-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+/* .td-cross::before {
+  content: '✗';
+  color: #FF4D4D;
+  font-size: 13px;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--white);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+} */
+
+
+.td-cross::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    flex-shrink: 0;
+    margin-top: 0;
+
+    background-image: url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/cross.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/* ═══════════════════════════════════════
+   SECTION 5 — FEATURES (CARROL BOYES DIFFERENCE)
+   Desktop: 1440 × 3975 px · bg white
+═══════════════════════════════════════ */
+
+.features {
+  background: var(--white);
+  padding: 80px 15px 50px;
+}
+
+.features-heading {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 45px;
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+/* Feature card — two-column horizontal tile */
+.feature-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1173px;
+  margin: 0 auto;
+  min-height: 500px;
+  background: var(--gray-50);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 35px;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.feature-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-card-text {
+  flex: 0 0 544px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.feature-card:NOT(.reverse) .feature-card-text{
+  padding-right: 0;
+}
+
+.feature-card.card-1 .feature-card-text,
+.feature-card.card-3 .feature-card-text,
+.feature-card.card-4 .feature-card-text,
+.feature-card.card-6 .feature-card-text{
+    flex: 0 0 594px;
+}
+
+.feature-card.card-2 .feature-card-text,
+.feature-card.card-5 .feature-card-text{
+    padding-left: 0;
+}
+
+
+@media (min-width:769px) and (max-width:1023px) {
+  .feature-card.card-1 .feature-card-text,
+  .feature-card.card-3 .feature-card-text,
+  .feature-card.card-4 .feature-card-text,
+  .feature-card.card-6 .feature-card-text{
+      flex: 0 0 345px;
+      gap: 20px;
+}
+
+.feature-card.card-2 .feature-card-text,
+.feature-card.card-5 .feature-card-text{
+    flex: 0 0 360px;
+    gap: 20px;
+}
+
+
+}
+
+.feature-number {
+    /* font-size: 60px; */
+    /* font-weight: 275; */
+    /* color: var(--gray-666); */
+    /* line-height: 1; */
+    color: rgba(102, 102, 102, 0.30);
+    font-family: Poppins;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.feature-title {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--black);
+  letter-spacing: 0.44px;
+text-transform: uppercase;
+
+}
+
+.feature-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--gray-333);
+}
+
+.feature-tag {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.32px;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.feature-tag-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* Inline review block inside a feature card */
+.feature-review {
+    /* background: var(--white); */
+    /* border-radius: 4px; */
+    padding: 20px 24px;
+    /* margin-top: 8px; */
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: #FFF;
+}
+
+.feature-review .stars {
+  color: #000000CC;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.feature-review .review-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--gray-333);
+  /* font-style: italic; */
+  margin-bottom: 16px;
+}
+
+.feature-review .reviewer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reviewer-name {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.reviewer-verified {
+  font-size: 11px;
+  color: var(--gray-666);
+  margin-left: 6px;
+}
+
+.reviewer-date {
+    color: rgba(0, 0, 0, 0.80);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.feature-card-image {
+  flex: 1;
+  align-self: stretch;
+  object-fit: cover;
+  min-height: 500px;
+  max-width: 500px;
+  width: 100%;
+  max-width: 544px;
+}
+
+/* Interlude: full-bleed image + centred CTA overlay */
+.feature-interlude {
+  width: 100%;
+  max-width: 1173px;
+  margin: 1px auto 0;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/feature-interlude-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.feature-interlude {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.feature-interlude-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  max-width: 672px;
+  padding: 0 15px;
+}
+
+.feature-interlude-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-interlude-content h3 {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 45px;
+  color: var(--white);
+  color: var(--White, #FFF);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 560px;
+}
+
+.feature-interlude-sub {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--white);
+}
+
+/* ----New---Add------ */
+
+
+
+.feature-review-icon-text-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.feature-review-icon-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.feature-review-icon-left {
+    width: 80px;
+    height: 16px;
+    display:flex;
+    align-items: center;
+}
+
+.feature-review-right-text {
+    color: rgba(0, 0, 0, 0.80);
+
+/* Mobile/S-Normal */
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%; /* 19.2px */
+}
+
+.feature-review-icon-right {
+    width: 15px;
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewer-name-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    background: #000;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    letter-spacing: 1.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviewer-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+span.reviewer-name {
+    color: #000;
+
+/* Desktop/S-Regular-spacing */
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.12px;
+    text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 6 — LIFESTYLE BANNER
+   Desktop: 1440 × 510 px
+═══════════════════════════════════════ */
+
+.lifestyle-banner {
+  width: 100%;
+  height: 510px;
+  background-color: #000;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 71.8%),
+    linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 71.8%),
+    url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/lifestyle-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 0 144px;
+}
+
+.lifestyle-inner {
+  max-width: 558px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.lifestyle-heading {
+  font-family: var(--font);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 45px;
+  letter-spacing: 0.6px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.lifestyle-body {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.lifestyle-body p {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--white);
+}
+
+/* ═══════════════════════════════════════
+   SECTION 7 — PRODUCT CTA
+   Desktop: 1440 × 645 px · bg white
+═══════════════════════════════════════ */
+
+.pct {
+  background: var(--white);
+  position: relative;
+  height: 100%;
+  min-height: 645px;
+  overflow: hidden;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 15px;
+}
+
+.pct-render-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Decorative bleed image — left side, absolute */
+.pct-bleed {
+  position: absolute;
+  left: -66px;
+  top: 11px;
+  width: 420px;
+  height: 350px;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Product render + shadow group */
+.pct-render-group {
+  /* position: absolute;
+  left: 47px;
+  top: 145px; */
+  width: 715px;
+  height: 393px;
+  z-index: 1;
+}
+
+.pct-render {
+  position: relative;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+/* Three drop-shadow ellipses under the render */
+.pct-shadow {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  filter: blur(8px);
+  z-index: 1;
+}
+.pct-shadow--1 { left: 292px; top: 305px; width: 160px; height: 33px; }
+.pct-shadow--2 { left: 484px; top: 251px; width: 100px; height: 22px; }
+.pct-shadow--3 { left:  55px; top: 258px; width: 120px; height: 26px; }
+
+/* Info card — right side, absolute */
+.pct-card {
+  /* position: absolute; */
+  right: 144px;
+  top: 80px;
+  width: 500px;
+  padding: 32px;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  z-index: 3;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  background: #F7F7F7;
+  backdrop-filter: blur(12px);
+}
+
+.pct-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pct-title {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 45px;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+.pct-meta {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--gray-333);
+}
+
+.pct-price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pct-price {
+  color: #000;
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.pct-installment {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-666);
+  line-height: 21px;
+}
+
+.pct-pay-logos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pct-pay-logos img {
+  height: 20px;
+  width: auto;
+}
+
+.pct-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.pct-shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pct-shipping-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 21px;
+}
+
+.pct-shipping-item img {
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   SECTION 8 — TRUST BAR (FOOTER)
+   Desktop: 1440 × 160 px · bg black
+═══════════════════════════════════════ */
+
+.trust-bar {
+  background: var(--black);
+  padding: 50px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.trust-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.trust-item .trust-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 28px;
+}
+
+.trust-item .trust-sub {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.7px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  color: var(--White, #FFF);
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — ≤ 768 px (mobile, 390 px)
+═══════════════════════════════════════ */
+
+@media (min-width:769px) {
+  .lifestyle-banner{
+    background-position: center bottom;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  /* Hero */
+  .hero {
+    height: 722px;
+    background-position: center 150px;
+  }
+  .hero-product-img {
+    width: 160px;
+    height: 133px;
+    top: -44px;
+    width: 348px;
+    height: 290px;
+    left: -50px !important;
+  }
+  .hero-product-img.right { right: 0; }
+  .hero-inner { width: 100%; padding: 20px 15px; }
+  .hero-text { max-width: 100%; }
+  .hero-text h1 { 
+    font-size: 30px; 
+    line-height: 130%;
+    letter-spacing: 0.6px;
+  }
+
+  .hero-text .hero-quote { 
+      font-size: 16px;
+      line-height: 150%;
+      margin-bottom: 25px;
+   }
+
+  /* Stats bar */
+  .stats-bar { padding: 35px 15px; }
+  .stats-container {
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    column-gap: 16px;
+  }
+  .stat {
+    align-items: center;
+    text-align: center;
+    flex: 0 0 calc(50% - 12px);
+  }
+
+  /* Story */
+  .story { padding: 50px 0; }
+  /* .story-text { padding: 0 15px; } */
+  .story-product-img { max-width: 100%; height: 250px; }
+  .story-deco-img { display: none; }
+
+  /* Comparison */
+  .comparison { padding: 50px 0; overflow-x: auto; }
+  .comparison-inner { width: 100%; min-width: 320px; padding: 0 15px; }
+  .comparison h2 { font-size: 24px; line-height: normal; letter-spacing: 0.48px; text-align: center; margin-bottom: 30px; }
+  .comparison-table { font-size: 12px; }
+  .comparison-table th,
+  .comparison-table td { padding: 12px 8px; }
+
+  /* Features */
+  .feature-card,
+  .feature-interlude { width: 100%; border-radius: 0; }
+  .feature-card,
+  .feature-card.reverse { flex-direction: column; }
+  .feature-card-text { flex: none; width: 100%; padding: 30px 15px; }
+  .feature-card-image { flex: none; width: 100%; min-height: 300px; max-height: 320px; align-self: auto; }
+  .feature-interlude { height: auto; min-height: 352px; margin: 0; padding: 80px 15px; }
+  .feature-interlude-content h3 { font-size: 24px; line-height: 36px; }
+
+  /* Lifestyle */
+  .lifestyle-banner {
+    height: auto;
+    min-height: 300px;
+    padding: 50px 24px;
+    background-image:
+      linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.75) 100%),
+      url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/lifestyle-bg.jpg');
+    align-items: flex-end;
+  }
+  .lifestyle-inner { max-width: 100%; }
+  .lifestyle-heading { font-size: 24px; font-weight: 500; line-height: normal; letter-spacing: 0.48px; text-align: center; }
+
+  /* Product CTA */
+  .pct {
+    height: auto;
+    min-height: auto;
+    padding: 30px 15px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .pct-bleed { display: none; }
+  .pct-render-group {
+    position: relative;
+    left: auto; top: auto;
+    width: 100%;
+    height: 198px;
+  }
+  .pct-render { object-fit: contain; }
+  .pct-shadow { display: none; }
+      .pct-card {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+        padding: 32px 15px;
+        border: 1px solid #000;
+        background: var(--white);
+        border-radius: 2px;
+        border: 1px solid rgba(0, 0, 0, 0.20);
+        background: #F7F7F7;
+        backdrop-filter: blur(12px);
+        gap: 20px;
+    }
+
+    .pct-render-wrapper{
+      flex-direction: column;
+      gap: 20px;
+    }
+
+  .pct-title { font-size: 24px; line-height: normal; }
+
+  /* Trust bar */
+  .trust-bar { flex-direction: column; gap: 36px; padding: 50px 24px; align-items: flex-start; }
+}
+
+
+@media (max-width:768px){
+
+.comparison-table td:first-child,
+.comparison-table th:first-child{
+display:none;
+}
+
+.td-check, .td-cross {
+    flex-direction: column;
+    gap: 12px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%
+
+}
+
+.comparison-table td{
+    text-align:center
+}
+
+.comparison-table td:last-child {
+    padding-left: 8px;
+}
+
+.comparison-table td.competitor {
+    padding-left: 8px;
+}
+
+.th-competitor .th-header-img {
+    width: 100%;
+    max-width: 103px;
+    height: 56px;
+}
+
+.th-cb .th-header-img {
+    width: 100%;
+    max-width: 118px;
+    height: 56px;
+}
+
+.th-cb span{
+  text-align: center;
+}
+
+.th-competitor span{
+  text-align: center;
+}
+
+.th-label {
+    justify-content: center;
+    align-items: center;
+}
+.comparison-table th:last-child {
+  padding-left: 8px;
+  padding-top: 20px;
+}
+
+.features {
+    padding: 50px 15px;
+}
+
+.features-heading{
+  color: #000;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.feature-card{
+  min-height: 100%;
+  max-height: 100%;
+}
+
+.trust-item {
+    gap: 20px;
+    width: 260px;
+}
+
+.trust-bar {
+    gap: 30px;
+    padding: 40px 24px;
+    align-items: center;
+}
+
+.feature-card{
+  flex-direction: column-reverse;
+   min-height: unset;
+  gap: 20px;
+}
+
+.feature-card.card-1 .feature-card-text, 
+.feature-card.card-3 .feature-card-text, 
+.feature-card.card-4 .feature-card-text, 
+.feature-card.card-6 .feature-card-text {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: 0 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+span.feature-number {
+    font-size: 40px;
+}
+
+h3.feature-title {
+    color: #000;
+    text-align: center;
+
+/* Mobile/H4 */
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.36px;
+    text-transform: uppercase;
+}
+
+p.feature-body {
+    color: var(--P-Black, #333);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 19.2px */
+}
+
+.feature-tag-icon {
+    width: 34px;
+    height: 34px;
+}
+
+.feature-tag{
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+  gap: 12px;
+}
+
+.feature-card.reverse {
+    flex-direction: column-reverse;
+}
+
+.feature-card.card-2 .feature-card-text, 
+.feature-card.card-5 .feature-card-text {
+    padding-left: 0;
+    padding: 0 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.feature-review .review-text{
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.feature-review{
+  padding: 20px 24px;
+}
+
+span.reviewer-name{
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.96px;
+}
+
+.feature-card.card-6 {
+    margin-bottom: 0;
+}
+
+.feature-card{
+  margin-bottom: 20px;
+}
+
+.lifestyle-banner {
+    height: auto;
+    min-height: 530px;
+    padding: 50px 15px;
+    align-items: flex-start;
+    background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.00) 22.47%,
+            rgba(0, 0, 0, 0.90) 100%
+        ),
+        url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/lifestyle-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 75%;
+    background-color: #000;
+}
+
+  .lifestyle-body p{
+    text-align: center;
+  }
+
+  .lifestyle-body {
+      gap: 25px;
+  }
+
+.feature-interlude{
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+  .stat-number{
+    color: #111;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.48px;
+    text-transform: uppercase;
+  }
+
+  .stat-icon {
+    width: 35px;
+    height: 34px;
+  }
+
+  h2.story-heading,
+  .story-intro,
+  .story-product-img,
+  .story-body{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.story-testimonial{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.story-divider{
+  width: calc(100% - 30px);
+}
+
+.story-text{
+  gap: 20px;
+}
+
+.story-testimonial{
+  padding: 30px 20px;
+}
+
+img.featured-logo-img.img-1{
+  width: 80.374px;
+  height: 27.287px;
+}
+
+img.featured-logo-img.img-2{
+  width: 66.44px;
+  height: 34.474px;
+}
+
+img.featured-logo-img.img-3{
+  width: 86.69px;
+  height: 36.354px;
+}
+
+img.featured-logo-img.img-4{
+  width: 42px;
+  height: 31px;
+}
+
+.featured-logos{
+  gap: 25px;
+}
+
+.pct-price{
+font-size: 24px;
+line-height: normal;
+letter-spacing: 0.48px;
+}
+
+.pct-price-block {
+    gap: 10px;
+}
+
+.pct-shipping {
+  gap: 14px;
+}
+
+.reviewer-date{
+  font-size: 12px;
+  line-height: 160%;
+}
+
+.lifestyle-inner {
+    gap: 20px;
+}
+
+.story-heading{
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.48px;
+}
+
+.featured-in-label{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+
+.reviewer-date{
+  color: rgba(0, 0, 0, 0.80);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.feature-interlude-sub{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.feature-interlude-content{
+  padding: 0;
+}
+
+.pct-installment{
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.pct-shipping-item{
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.trust-item .trust-title{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.pct-pay-logos img{
+  height: 15px;
+}
+
+}
+
+
+@media (max-width: 500px) {
+  .featured-logos {
+    justify-content: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+}
+
+@media (max-width: 400px) {
+.card-5 .feature-tag {
+    width: 83%;
+}
+
+.card-6 .feature-tag {
+    width: 86%;
+}
+
+}
+
+@media (max-width: 768px) {
+
+    .hero {
+        height: 722px;
+
+        background-image:
+        linear-gradient(
+            180deg,
+            #F9F9F9 52.08%,
+            rgba(249,249,249,0) 71.26%
+        ),
+        linear-gradient(
+            180deg,
+            #F9F9F9 52.08%,
+            rgba(249,249,249,0) 71.26%
+        ),
+        url('https://crp-clients-images.s3.af-south-1.amazonaws.com/Carrol+boyes/Dev+%7C+CB+%7C+Pre-landers+Indigo+Girls+%7C+CRO-10087/hero-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover, cover, 150% auto;
+        background-position: center, center, bottom;
+    }
+
+}
+
+@media (max-width: 768px) and (min-width:700px){
+        .hero{
+    background-size: cover,
+        cover,
+        131% auto;
+    background-position: center,
+        center,
+        center 234px;
+      }
+}
+
+@media (max-width: 699px) and (min-width:640px){
+       .hero{
+    background-size: cover,
+        cover,
+        150% auto;
+    background-position: center,
+        center,
+        center 200px;
+      }
+
+}

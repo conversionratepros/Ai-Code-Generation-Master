@@ -1,0 +1,159 @@
+<section
+  class="pre-lander-crp-stats-bar"
+  style="--pl-sb-bg: {{ section.settings.background_color }}; --pl-sb-text: {{ section.settings.text_color }};"
+>
+  <div class="pre-lander-crp-stats-bar__container">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'stat' -%}
+        {%- assign fallback_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+        {%- assign fallback_filename = 'pre-lander-crp-stat-icon-0' | append: fallback_index | append: '.svg' -%}
+
+        <div class="pre-lander-crp-stats-bar__stat" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon -%}
+            <img class="pre-lander-crp-stats-bar__icon" src="{{ block.settings.icon | image_url: width: 80 }}" alt="" width="40" height="40" loading="lazy">
+          {%- else -%}
+            <img class="pre-lander-crp-stats-bar__icon" src="{{ fallback_filename | asset_url }}" alt="" width="40" height="40" loading="lazy">
+          {%- endif -%}
+          {%- if block.settings.heading != blank -%}
+            <div class="pre-lander-crp-stats-bar__heading">{{ block.settings.heading | escape }}</div>
+          {%- endif -%}
+          {%- if block.settings.subheading != blank -%}
+            <div class="pre-lander-crp-stats-bar__subheading">{{ block.settings.subheading | escape }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<style>
+  .pre-lander-crp-stats-bar {
+    background: var(--pl-sb-bg, #f7f7f7);
+    color: var(--pl-sb-text, #111);
+    padding: 40px 116px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .pre-lander-crp-stats-bar__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+    max-width: 1018px;
+    width: 100%;
+  }
+
+  .pre-lander-crp-stats-bar__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .pre-lander-crp-stats-bar__icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .pre-lander-crp-stats-bar__heading {
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    color: inherit;
+    line-height: 1.2;
+  }
+
+  .pre-lander-crp-stats-bar__subheading {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1.12px;
+    color: inherit;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-stats-bar {
+      padding: 35px 15px;
+    }
+    .pre-lander-crp-stats-bar__container {
+      gap: 24px;
+      column-gap: 16px;
+    }
+    .pre-lander-crp-stats-bar__stat {
+      flex: 0 0 calc(50% - 12px);
+    }
+    .pre-lander-crp-stats-bar__heading {
+      font-size: 24px;
+      letter-spacing: 0.48px;
+      text-transform: uppercase;
+    }
+    .pre-lander-crp-stats-bar__icon {
+      width: 35px;
+      height: 34px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Stats Bar",
+  "tag": "section",
+  "class": "section-pre-lander-crp-stats-bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#F7F7F7"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text colour",
+      "default": "#111111"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "If empty, falls back to a bundled icon by block position (1st → icon 1, 2nd → icon 2, etc.)."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading text"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Sub-heading text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Pre-lander Stats Bar",
+      "blocks": [
+        { "type": "stat", "settings": { "heading": "3", "subheading": "NEW ILLUSTRATIONS IN THE SET" } },
+        { "type": "stat", "settings": { "heading": "750ML", "subheading": "CAPACITY PER CANISTER" } },
+        { "type": "stat", "settings": { "heading": "100%", "subheading": "FOOD-SAFE PORCELAIN" } },
+        { "type": "stat", "settings": { "heading": "30+", "subheading": "YEARS OF SA DESIGN HERITAGE" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

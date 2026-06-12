@@ -1,0 +1,332 @@
+{%- liquid
+  assign desktop_intensity = section.settings.desktop_gradient_intensity | times: 0.01
+  assign desktop_solid = section.settings.desktop_gradient_color | color_modify: 'alpha', desktop_intensity
+  assign desktop_clear = section.settings.desktop_gradient_color | color_modify: 'alpha', 0
+
+  case section.settings.desktop_gradient_direction
+    when 'top-to-bottom'
+      assign desktop_dir = 'to bottom'
+    when 'bottom-to-top'
+      assign desktop_dir = 'to top'
+    when 'left-to-right'
+      assign desktop_dir = 'to right'
+    when 'right-to-left'
+      assign desktop_dir = 'to left'
+    else
+      assign desktop_dir = 'to right'
+  endcase
+
+  assign mobile_intensity = section.settings.mobile_gradient_intensity | times: 0.01
+  assign mobile_solid = section.settings.mobile_gradient_color | color_modify: 'alpha', mobile_intensity
+  assign mobile_clear = section.settings.mobile_gradient_color | color_modify: 'alpha', 0
+
+  case section.settings.mobile_gradient_direction
+    when 'top-to-bottom'
+      assign mobile_dir = 'to bottom'
+    when 'bottom-to-top'
+      assign mobile_dir = 'to top'
+    when 'left-to-right'
+      assign mobile_dir = 'to right'
+    when 'right-to-left'
+      assign mobile_dir = 'to left'
+    else
+      assign mobile_dir = 'to bottom'
+  endcase
+
+  if section.settings.background_image
+    assign bg_url = section.settings.background_image | image_url: width: 2400
+  else
+    assign bg_url = 'pre-lander-crp-lifestyle-bg.jpg' | asset_url
+  endif
+-%}
+
+<section
+  class="pre-lander-crp-lifestyle-banner"
+  data-desktop-gradient="{{ section.settings.desktop_gradient_enable }}"
+  data-mobile-gradient="{{ section.settings.mobile_gradient_enable }}"
+  style="
+    --pl-lifestyle-bg: url('{{ bg_url }}');
+    --pl-lifestyle-desktop-solid: {{ desktop_solid }};
+    --pl-lifestyle-desktop-clear: {{ desktop_clear }};
+    --pl-lifestyle-desktop-dir: {{ desktop_dir }};
+    --pl-lifestyle-desktop-start: {{ section.settings.desktop_gradient_start_stop }}%;
+    --pl-lifestyle-desktop-end: {{ section.settings.desktop_gradient_end_stop }}%;
+    --pl-lifestyle-mobile-solid: {{ mobile_solid }};
+    --pl-lifestyle-mobile-clear: {{ mobile_clear }};
+    --pl-lifestyle-mobile-dir: {{ mobile_dir }};
+    --pl-lifestyle-mobile-start: {{ section.settings.mobile_gradient_start_stop }}%;
+    --pl-lifestyle-mobile-end: {{ section.settings.mobile_gradient_end_stop }}%;
+    --pl-lifestyle-heading: {{ section.settings.heading_color }};
+    --pl-lifestyle-body: {{ section.settings.body_color }};
+  "
+>
+  <div class="pre-lander-crp-lifestyle-banner__inner">
+    {%- if section.settings.heading != blank -%}
+      <div class="pre-lander-crp-lifestyle-banner__heading">{{ section.settings.heading }}</div>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <div class="pre-lander-crp-lifestyle-banner__body">{{ section.settings.body }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .pre-lander-crp-lifestyle-banner {
+    width: 100%;
+    height: 510px;
+    background-color: #000;
+    background-image: var(--pl-lifestyle-bg);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 144px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @media (min-width: 769px) {
+    .pre-lander-crp-lifestyle-banner[data-desktop-gradient="true"] {
+      background-image:
+        linear-gradient(
+          var(--pl-lifestyle-desktop-dir),
+          var(--pl-lifestyle-desktop-solid) var(--pl-lifestyle-desktop-start),
+          var(--pl-lifestyle-desktop-clear) var(--pl-lifestyle-desktop-end)
+        ),
+        var(--pl-lifestyle-bg);
+    }
+  }
+
+  .pre-lander-crp-lifestyle-banner__inner {
+    max-width: 558px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pre-lander-crp-lifestyle-banner__heading {
+    margin: 0;
+    color: var(--pl-lifestyle-heading, #fff);
+  }
+  .pre-lander-crp-lifestyle-banner__heading p {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 45px;
+    letter-spacing: 0.6px;
+    color: inherit;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .pre-lander-crp-lifestyle-banner__body {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    color: var(--pl-lifestyle-body, #fff);
+  }
+  .pre-lander-crp-lifestyle-banner__body p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: inherit;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .pre-lander-crp-lifestyle-banner {
+      height: auto;
+      min-height: 530px;
+      padding: 50px 15px;
+      align-items: flex-start;
+      background-position: 75% center;
+    }
+
+    .pre-lander-crp-lifestyle-banner[data-mobile-gradient="true"] {
+      background-image:
+        linear-gradient(
+          var(--pl-lifestyle-mobile-dir),
+          var(--pl-lifestyle-mobile-solid) var(--pl-lifestyle-mobile-start),
+          var(--pl-lifestyle-mobile-clear) var(--pl-lifestyle-mobile-end)
+        ),
+        var(--pl-lifestyle-bg);
+    }
+
+    .pre-lander-crp-lifestyle-banner__inner {
+      max-width: 100%;
+      width: 100%;
+      gap: 20px;
+    }
+
+    .pre-lander-crp-lifestyle-banner__heading p {
+      font-size: 24px;
+      line-height: normal;
+      letter-spacing: 0.48px;
+      text-align: center;
+    }
+
+    .pre-lander-crp-lifestyle-banner__body p {
+      text-align: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pre-lander Lifestyle",
+  "tag": "section",
+  "class": "section-pre-lander-crp-lifestyle-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Falls back to bundled pre-lander-crp-lifestyle-bg.jpg if empty."
+    },
+
+    { "type": "header", "content": "Desktop gradient" },
+    {
+      "type": "checkbox",
+      "id": "desktop_gradient_enable",
+      "label": "Enable desktop gradient",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "desktop_gradient_color",
+      "label": "Gradient colour",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "desktop_gradient_direction",
+      "label": "Gradient direction",
+      "options": [
+        { "value": "top-to-bottom", "label": "Top to bottom" },
+        { "value": "bottom-to-top", "label": "Bottom to top" },
+        { "value": "left-to-right", "label": "Left to right" },
+        { "value": "right-to-left", "label": "Right to left" }
+      ],
+      "default": "left-to-right"
+    },
+    {
+      "type": "range",
+      "id": "desktop_gradient_intensity",
+      "label": "Gradient intensity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "desktop_gradient_start_stop",
+      "label": "Gradient starts fading at",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_gradient_end_stop",
+      "label": "Gradient fully transparent at",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 72
+    },
+
+    { "type": "header", "content": "Mobile gradient" },
+    {
+      "type": "checkbox",
+      "id": "mobile_gradient_enable",
+      "label": "Enable mobile gradient",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "mobile_gradient_color",
+      "label": "Gradient colour",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "mobile_gradient_direction",
+      "label": "Gradient direction",
+      "options": [
+        { "value": "top-to-bottom", "label": "Top to bottom" },
+        { "value": "bottom-to-top", "label": "Bottom to top" },
+        { "value": "left-to-right", "label": "Left to right" },
+        { "value": "right-to-left", "label": "Right to left" }
+      ],
+      "default": "top-to-bottom"
+    },
+    {
+      "type": "range",
+      "id": "mobile_gradient_intensity",
+      "label": "Gradient intensity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "mobile_gradient_start_stop",
+      "label": "Gradient starts fading at",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_gradient_end_stop",
+      "label": "Gradient fully transparent at",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 78
+    },
+
+    { "type": "header", "content": "Text" },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Why this set is different to the original Indigo Girls range</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading colour",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body (multi-paragraph)",
+      "default": "<p>The Indigo Girls collection has built a quiet following since launch. This set introduces three brand-new illustrations to the range — sold as a mixed trio, not three of the same jar.</p><p>If you already own pieces from the range, this set extends it. If you're new to it, it's the easiest way in.</p>"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body colour",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pre-lander Lifestyle"
+    }
+  ]
+}
+{% endschema %}

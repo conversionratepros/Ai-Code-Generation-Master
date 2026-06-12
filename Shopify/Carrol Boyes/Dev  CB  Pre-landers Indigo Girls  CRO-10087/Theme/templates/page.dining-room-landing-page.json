@@ -1,0 +1,198 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "container": "fixed",
+        "text_alignment": "center",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collection_list_slider_jhjJCc": {
+      "type": "collection-list-slider",
+      "blocks": {
+        "featured_collection_iAtBgp": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dining-sets",
+            "image": "shopify://shop_images/Untitled-2_3.webp",
+            "title": ""
+          }
+        },
+        "featured_collection_heFTyY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "featured_collection_TxYHWf": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "featured_collection_qtAQzY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "featured_collection_gNwHJK": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "featured_collection_86RMMY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "featured_collection_iwjbJ7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_iAtBgp",
+        "featured_collection_heFTyY",
+        "featured_collection_TxYHWf",
+        "featured_collection_qtAQzY",
+        "featured_collection_gNwHJK",
+        "featured_collection_86RMMY",
+        "featured_collection_iwjbJ7"
+      ],
+      "name": "t:sections.collection-list-slider.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Collections",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "card_color_scheme": "",
+        "card_style": "standard",
+        "card_heading_size": "text-base",
+        "card_image_ratio": "1/1",
+        "card_image_width": "full",
+        "card_image_padding": "none",
+        "rounded_card_image": false,
+        "mobile_layout": "vertical",
+        "carousel_item_size": "fixed",
+        "columns_desktop": 6,
+        "carousel_control_color_scheme": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "featured_collection_VNLXGm": {
+      "type": "featured-collection",
+      "blocks": {
+        "collection_Mk9tVy": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "show_banner": false,
+            "color_scheme": "",
+            "card_link": "",
+            "image_overlay_opacity": 0,
+            "content_position": "top-left",
+            "content_alignment": "left",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Collections",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Button label",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "collection_Mk9tVy"
+      ],
+      "name": "t:sections.featured-collection.presets__1.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Most loved in Dining",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h3",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "Shop All Dining",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "limit": 8,
+        "columns": 4,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "enable_slider": true,
+        "content_overflow": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collection_list_slider_jhjJCc",
+    "featured_collection_VNLXGm"
+  ]
+}
