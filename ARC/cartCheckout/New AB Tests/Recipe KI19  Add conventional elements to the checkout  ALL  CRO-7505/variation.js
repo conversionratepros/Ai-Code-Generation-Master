@@ -99,7 +99,7 @@
 			}
 		}
 
-		var checkoutBTN = `<div class="cro_checkout_btn"><span>Checkout</span></div>`;
+		var checkoutBTN = `<div class="cro_checkout_btn"><span>Continue</span></div>`;
 
 		function my_Bag() {
 			ProgressShow();
@@ -121,10 +121,12 @@
 			});
 
 			waitForElement('#cartCounter', observerBTNcart);
+			injectPriceDisplay('#Block__StepNavigation .u-pull--left:not(.u-clear--left)');
+			observeCartTotals();
 
 		}
 
-		var checkoutBTNDel = `<div class="cro_payment_btn"><span>Continue to Payment</span></div>`;
+		var checkoutBTNDel = `<div class="cro_payment_btn"><span>Continue</span></div>`;
 
 		var croDeliveryIcon = `<div class="card-header u-no-border dw-mod cro_delivery_heading">
             <span><svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
@@ -161,11 +163,18 @@
 					insertHtml('#Block__StepBar', croDeliveryIcon, "afterend");
 				}
 			});
+			injectPriceDisplay('#Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left)');
+			observeCartTotals();
 		}
 
 
 
-		var payBTN = `<div class="cro_pay_btn"><span>Pay</span></div>`;
+		var payBTN = `<div class="cro_custom_accept">
+                            <div class="form__field-group dw-mod">
+        <input id="Cro_EcomOrderCustomerAccepted"  name="EcomOrderCustomerAccepted" type="checkbox" class="form__control  dw-mod">
+            <label for="Cro_EcomOrderCustomerAccepted" class="dw-mod">I accept <a href="/customer/t-cs/website-terms">the terms and conditions</a></label>
+    </div>
+                    </div><div class="cro_pay_btn"><span>Pay</span></div>`;
 
 		var croPaymentIcon = `<div class="card-header u-no-border dw-mod cro_payment_heading">
             <span><svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
@@ -219,8 +228,33 @@
 				input.placeholder = "Enter gift card code";
 			});
 
+			injectPriceDisplay('#Block__StepNavigation .card .u-pull--left:not(.u-clear--left)');
+			observeCartTotals();
+			initAcceptCheckbox();
 
+		}
 
+		function initAcceptCheckbox() {
+			waitForElement('#EcomOrderCustomerAccepted', function () {
+				var control = document.querySelector('#EcomOrderCustomerAccepted');
+				var custom = document.querySelector('.cro_custom_accept input');
+				if (!control || !custom) return;
+
+				custom.checked = control.checked;
+
+				custom.addEventListener('change', function () {
+					// console.log('custom change')
+					control.checked = custom.checked;
+					control.dispatchEvent(new Event('change', { bubbles: true }));
+					control.dispatchEvent(new Event('input', { bubbles: true }));
+				});
+
+				control.addEventListener('change', function () {
+					custom.checked = control.checked;
+					// console.log('control change')
+
+				});
+			});
 		}
 
 		function croEventHandkler() {
@@ -237,6 +271,18 @@
 			live(".cro_pay_btn", "click", function () {
 				if (!document.querySelector('#Block__StepNavigation .u-pull--left:not(.u-clear--left) button').disabled) {
 					document.querySelector('#Block__StepNavigation .u-pull--left:not(.u-clear--left) button') && document.querySelector('#Block__StepNavigation .u-pull--left:not(.u-clear--left) button').click();
+				}
+			});
+
+			live(".cro-step", "click", function () {
+				var getAttr = this.getAttribute('data-step');
+
+				if (getAttr === '1' && updateCart) {
+					updateCart('CartV2.GotoStep0');
+				} else if (getAttr === '2' && updateCart) {
+					updateCart('CartV2.GotoStep1');
+				} else if (getAttr === '3' && updateCart) {
+					updateCart('CartV2.GotoStep2');
 				}
 			});
 
@@ -285,8 +331,14 @@
 							</div>`;
 
 		if (!window.cro_t_KI19) {
-			croEventHandkler();
 			window.cro_t_KI19 = true;
+			croEventHandkler();
+			waitForElement('.cro_My_Bag', my_Bag);
+			waitForElement('.cro_Delivery', deliveryPage);
+			waitForElement('.cro_Payment', paymentPage);
+			if (checkScreen > 991) {
+				waitForElement('#Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) button', observerBTN);
+			}
 		}
 
 		function ProgressShow() {
@@ -326,48 +378,119 @@
 			fill.style.width = fillWidth + '%';
 		}
 
+		function getCroTotal() {
+			// ARC site: div-based totals container
+			var totalsEl = document.querySelector('.cart-summary__totals-container');
+			if (totalsEl) {
+				var valueEl = totalsEl.querySelector('.u-pull--right');
+				if (valueEl) return valueEl.textContent.replace(/\u00a0/g, ' ').trim();
+			}
+			// Fallback: table-based (delivery/payment pages)
+			var tableRows = document.querySelectorAll(
+				'#Cart .grid__col-sm-3 tr, #Cart .card tr, .order-summary-body-container tr, .card.u-color-light--bg tr'
+			);
+			for (var i = 0; i < tableRows.length; i++) {
+				var cells = tableRows[i].querySelectorAll('td, th');
+				if (cells.length >= 2) {
+					var label = cells[0].textContent.trim().toLowerCase();
+					if (label.indexOf('total') !== -1 && label.indexOf('sub') === -1 && label.indexOf('incl') === -1) {
+						return cells[cells.length - 1].textContent.trim();
+					}
+				}
+			}
+			return '';
+		}
+
+		function getCroSavings() {
+			// ARC site: summary-level combined discount (not per-item row)
+			var savingsEl = document.querySelector('.cart-summary__subtotals.u-discount-price');
+			if (savingsEl) return savingsEl.textContent.replace(/\u00a0/g, ' ').trim();
+			// Fallback: any discount price div
+			savingsEl = document.querySelector('.u-discount-price');
+			if (savingsEl) return savingsEl.textContent.replace(/\u00a0/g, ' ').trim();
+			// Fallback: table-based
+			var tableRows = document.querySelectorAll(
+				'#Cart .grid__col-sm-3 tr, #Cart .card tr, .order-summary-body-container tr, .card.u-color-light--bg tr'
+			);
+			for (var i = 0; i < tableRows.length; i++) {
+				var cells = tableRows[i].querySelectorAll('td, th');
+				if (cells.length >= 2) {
+					var label = cells[0].textContent.trim().toLowerCase();
+					if (label.indexOf('saving') !== -1 || label.indexOf('treats') !== -1 || label.indexOf('discount') !== -1) {
+						return cells[cells.length - 1].textContent.trim();
+					}
+				}
+			}
+			var el = document.querySelector('[id*="Saving"], [id*="saving"]');
+			return el ? el.textContent.replace(/\u00a0/g, ' ').trim() : '';
+		}
+
+		function buildPriceHtml(total, savings) {
+			var html = '<div class="cro_total_row">';
+			html += '<span class="cro_label">Total</span>';
+			html += '<span class="cro_value">' + total + '</span>';
+			html += '</div>';
+			if (savings) {
+				html += '<div class="cro_savings_row">';
+				html += '<span class="cro_savings_label">Savings:</span>';
+				html += '<span class="cro_savings_value">' + savings + '</span>';
+				html += '</div>';
+			}
+			return html;
+		}
+
+		function updateCroPriceDisplay() {
+			var el = document.querySelector('.cro_price_display');
+			if (!el) return;
+			var total = getCroTotal();
+			var savings = getCroSavings();
+			if (!total) return;
+			el.innerHTML = buildPriceHtml(total, savings);
+		}
+
+		function injectPriceDisplay(forwardSelector) {
+			if (checkScreen < 1024) return;
+			waitForElement(forwardSelector, function () {
+				if (document.querySelector('.cro_price_display')) return;
+				var wrapper = document.querySelector(forwardSelector);
+				if (!wrapper) return;
+				// Inject container immediately so layout is stable
+				var container = document.createElement('div');
+				container.className = 'cro_price_display';
+				wrapper.insertBefore(container, wrapper.firstChild);
+				// Poll until the order-summary table is in the DOM
+				var attempts = 0;
+				(function pollTotal() {
+					var total = getCroTotal();
+					if (total) {
+						container.innerHTML = buildPriceHtml(total, getCroSavings());
+						return;
+					}
+					if (++attempts < 200) setTimeout(pollTotal, 50);
+				})();
+			});
+		}
+
+		function observeCartTotals() {
+			if (checkScreen < 1024) return;
+			if (window.cro_t_KI19_obs) return;
+			window.cro_t_KI19_obs = true;
+			var debounceTimer;
+			new MutationObserver(function () {
+				clearTimeout(debounceTimer);
+				debounceTimer = setTimeout(updateCroPriceDisplay, 250);
+			}).observe(document.body, { childList: true, subtree: true, characterData: true });
+		}
+
 		function observerBTN() {
+			if (window.cro_t_KI19_btn) return;
+			window.cro_t_KI19_btn = true;
 			var target = document.querySelector('#Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) button');
 
-			if (!target) {
-				console.warn('Target not found');
-				return;
-			}
+			if (!target) return;
 
-			var observer = new MutationObserver(function (mutationsList) {
-				mutationsList.forEach(function (mutation) {
-
-					// 1. TEXT changes
-					if (mutation.type === 'characterData') {
-						console.log('Text changed:', mutation.target.textContent);
-					}
-
-					// 2. CHILD added/removed
-					if (mutation.type === 'childList') {
-						if (mutation.addedNodes.length) {
-							console.log('Node added:', mutation.addedNodes);
-						}
-						if (mutation.removedNodes.length) {
-							console.log('Node removed:', mutation.removedNodes);
-						}
-					}
-
-					// 3. ATTRIBUTE changes (class, etc)
-					if (mutation.type === 'attributes') {
-						console.log(
-							'Attribute changed:',
-							mutation.attributeName,
-							'on',
-							mutation.target
-						);
-
-
-					}
-				});
-
-				// 👉 Your custom logic here
+			var observer = new MutationObserver(function () {
 				handleCartUpdate();
-
 			});
 
 			observer.observe(target, {
@@ -378,7 +501,6 @@
 			});
 
 			function handleCartUpdate() {
-				console.log('Cart summary updated');
 				if (!document.querySelector('#Block__StepNavigation .u-pull--left:not(.u-clear--left) button').disabled) {
 					if (document.querySelector(".cro_payment_btn.disabled")) {
 						document.querySelector(".cro_payment_btn").classList.remove("disabled");
@@ -417,36 +539,14 @@
 		}
 
 		function observerBTNcart() {
+			if (window.cro_t_KI19_cart) return;
+			window.cro_t_KI19_cart = true;
 			var target = document.querySelector('#cartCounter');
 
-			if (!target) {
-				console.warn('Target not found');
-				return;
-			}
+			if (!target) return;
 
-			var observer = new MutationObserver(function (mutationsList) {
-				mutationsList.forEach(function (mutation) {
-
-					// 1. TEXT changes
-					if (mutation.type === 'characterData') {
-						console.log('Text changed:', mutation.target.textContent);
-					}
-
-					// 2. CHILD added/removed
-					if (mutation.type === 'childList') {
-						if (mutation.addedNodes.length) {
-							console.log('Node added:', mutation.addedNodes);
-						}
-						if (mutation.removedNodes.length) {
-							console.log('Node removed:', mutation.removedNodes);
-						}
-					}
-
-				});
-
-				// 👉 Your custom logic here
+			var observer = new MutationObserver(function () {
 				handleCartUpdate();
-
 			});
 
 			observer.observe(target, {
@@ -457,7 +557,6 @@
 			});
 
 			function handleCartUpdate() {
-				console.log('Cart summary updated');
 				waitForElement('#Cart .card>.grid.u-border-top .grid__col-sm-3', function () {
 					if (!document.querySelector(".cro_checkout_btn") && checkScreen > 1023) {
 						insertHtml('#Cart .card>.grid.u-border-top .grid__col-sm-3', checkoutBTN, "beforeend");
@@ -473,12 +572,7 @@
 			}
 		}
 
-		waitForElement('.cro_My_Bag', my_Bag);
-		waitForElement('.cro_Delivery', deliveryPage);
-		waitForElement('.cro_Payment', paymentPage);
-		if (checkScreen > 991) {
-			waitForElement('#Block__OrderContainerRow .card .u-pull--left:not(.u-clear--left) button', observerBTN);
-		}
+
 
 
 

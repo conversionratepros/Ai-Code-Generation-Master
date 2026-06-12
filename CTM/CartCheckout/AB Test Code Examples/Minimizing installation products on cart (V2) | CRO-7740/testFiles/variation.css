@@ -1,0 +1,250 @@
+/* ============================================================
+   CRO-7740 | Minimizing Installation Products on Cart V2
+   Body class: .cro-t-ctm-114-v2
+   ============================================================ */
+
+
+/* ── Hide original subtotal in the main product row ───────── */
+html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .item:not(.addon-product) .col.subtotal .price-wrapper,
+html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .item:not(.addon-product) .col.subtotal .price {
+    visibility: hidden;
+}
+
+/* On mobile Magento renders col.subtotal as a labelled row via ::before — hide the whole column */
+/* @media (max-width: 767px) {
+    html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .item:not(.addon-product) .col.subtotal,
+    html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .cart.item.addoncount .updated-price {
+        display: none !important;
+    }
+} */
+html body.cro-t-ctm-114-v2 .cart.items .grouped-item .cart.item.addoncount .item-info .updated-price {
+    display: none;
+}
+
+/* ── Desktop: hide qty column; qty + tile-calc sit in the subtotal column ── */
+@media (min-width: 1200px) {
+    /* html body.cro-t-ctm-114-v2 .cart.items .grouped-item .cart.item.addoncount .item-info .updated-price {
+        display: none;
+    } */
+
+    html body.cro-t-ctm-114-v2 .grouped-item.addoncount.has-addon .item:not(.addon-product) .col.subtotal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 6px;
+    }
+}
+
+
+/* ── Installation header ──────────────────────────────────── */
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header {}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-img {
+    max-width: 21px;
+    max-height: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Figma: 15px / 400 / #333 — all breakpoints */
+html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-text p {
+    margin: 0;
+    color: #333333;
+    font-family: "Source Sans Pro", 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Hide the native installation-span text (keep .show-ins-price visible) */
+html body.cro-t-ctm-114-v2 .installation-span>span:not(.show-ins-price) {
+    font-size: 0;
+}
+
+
+/* ── Accordion toggle arrow ──────────────────────────────── */
+/* Figma: header padding 10/10/10/10; chevron 24×24 bg:#FFFFFF */
+html body.cro-t-ctm-114-v2 .accardion-title.list-seperator {
+    padding: 10px 44px 10px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+html body.cro-t-ctm-114-v2 .accardion-title::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.25s ease-in-out;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M18%2015L12%209L6%2015%22%20stroke%3D%22%23868686%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+html body.cro-t-ctm-114-v2 .accardion-title.flip::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+
+/* ── Pricing breakdown section ───────────────────────────── */
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-section {
+    width: 100%;
+    flex: 0 0 100%;
+    clear: both;
+    box-sizing: border-box;
+}
+
+/* Figma: 28px above, 20px below divider */
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #E6E6E6;
+    margin: 28px 0 20px 0;
+}
+
+/* Figma: gap between rows = 12px (3×19px + 2×12px = 81px confirmed from mobile frame) */
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 8px;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Figma: 15px / 400 / #333 (mobile); desktop overrides to #000 below */
+html body.cro-t-ctm-114-v2 .cro-114-v2-label {
+    color: #333333;
+    font-family: "Source Sans Pro", 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html body.cro-t-ctm-114-v2 .cro-114-v2-value {
+    color: #333333;
+    font-family: "Source Sans Pro", 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Figma: Subtotal row — 15px / 700 */
+html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-label,
+html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-value {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* Figma desktop: text fills are #000000 */
+@media (min-width: 1200px) {
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-value,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-value {
+        color: #000000;
+    }
+}
+
+
+/* ── Tablet ──────────────────────────────────────────────── */
+/* Figma specifies 15px across all breakpoints — tablet overrides removed */
+@media (max-width: 1199px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-inner {
+        gap: 8px;
+    }
+}
+
+
+/* ── Mobile ──────────────────────────────────────────────── */
+/* Figma mobile: accordion padding 12/20/12/20 */
+@media (max-width: 767px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-rows {
+        gap: 12px;
+        padding-bottom: 0px;
+    }
+
+    /* Hide the divider on mobile — no line above Product Subtotal */
+    html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-divider {
+        display: none;
+    }
+
+    /* 16px gap between the product image area and Product Subtotal */
+    html body.cro-t-ctm-114-v2 .cro-114-v2-subtotal-section {
+        margin-top: 16px;
+    }
+
+    html body.cro-t-ctm-114-v2 .accardion-title.list-seperator {
+        padding: 12px 52px 12px 20px;
+    }
+
+    html body.cro-t-ctm-114-v2 .accardion-title::after {
+        right: 20px;
+    }
+}
+
+@media (max-width: 385px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-inner {
+        gap: 4px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-text p {
+        font-size: 15px;
+    }
+
+    html body.cro-t-ctm-114-v2 .accardion-title.list-seperator {
+        padding: 10px 44px 10px 10px;
+    }
+
+    html body.cro-t-ctm-114-v2 .accardion-title::after {
+        right: 10px;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    html body.cro-t-ctm-114-v2 .cro-114-v2-installation-header-img {
+        max-width: 17px;
+        max-height: 17px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-value {
+        font-size: 15px;
+    }
+
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-label,
+    html body.cro-t-ctm-114-v2 .cro-114-v2-total-row .cro-114-v2-value {
+        font-size: 15px;
+    }
+}

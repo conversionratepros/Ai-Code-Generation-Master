@@ -59,23 +59,7 @@
         "home-and-garden",
         "health-and-beauty",
         "electronics",
-        "furniture",
-        "food-and-beverages",
-        "sporting-goods",
-        "media",
-        "hardware",
-        "toys-and-games",
-        "baby-and-toddler",
-        "luggage-and-bags",
-        "animal-and-pet-supplies",
-        "arts-and-entertainment",
-        "office-supplies",
-        "cameras-and-optics",
-        "vehicles-and-parts",
-        "business-and-industrial",
-        "software",
-        "mature",
-        "travel"
+        "furniture"
     ];
 
     var CARDS_PER_PAGE = 4;
@@ -166,7 +150,7 @@
         });
 
         prioritized.sort(function (a, b) { return priorityMap[a.id] - priorityMap[b.id]; });
-        others.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        others.sort(function (a, b) { return b.products.length - a.products.length; });
 
         return prioritized.concat(others);
     }
@@ -240,14 +224,18 @@
             '</button>';
 
         var sectionClass = "ki69-category-section" + (hasCarousel ? " ki69-has-carousel" : " ki69-static");
+        // Show View All only when there are more products than fit in one page (desktop and mobile)
+        var showViewAll = group.products.length > CARDS_PER_PAGE;
 
         return '<div class="' + sectionClass + '" data-category-id="' + cssSafe(group.id) + '">' +
             '<div class="ki69-section-header">' +
             '<h2 class="ki69-section-title">' + categoryLabel + '</h2>' +
-            '<a href="' + viewAllUrl + '" class="ki69-view-all">' +
-            'View all ' +
-            '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>' +
-            '</a>' +
+            (showViewAll ?
+                '<a href="' + viewAllUrl + '" class="ki69-view-all" data-category-id="' + cssSafe(group.id) + '">' +
+                'View all ' +
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>' +
+                '</a>'
+                : "") +
             '</div>' +
             '<div class="ki69-carousel-wrapper">' +
             (hasCarousel ? prevBtn : "") +
@@ -297,6 +285,82 @@
     }
 
     // =========================
+    // EXPANDED CATEGORY VIEW
+    // =========================
+    function restoreFromExpanded(container) {
+        var expandedView = container.querySelector(".ki69-expanded-view");
+        if (!expandedView) return;
+        var lastCatId = container.dataset.ki69LastCat;
+        document.body.classList.remove("ki69-category-expanded");
+        expandedView.style.animation = "ki69-fadeSlideOut 0.2s ease both";
+        setTimeout(function () {
+            if (expandedView.parentNode) expandedView.remove();
+            container.classList.add("ki69-sections-restored");
+            container.querySelectorAll(".ki69-category-section").forEach(function (s) {
+                s.style.display = "";
+            });
+            // Scroll back to the section the user expanded from
+            if (lastCatId) {
+                var section = container.querySelector('[data-category-id="' + lastCatId + '"]');
+                if (section) {
+                    setTimeout(function () {
+                        var offset = section.getBoundingClientRect().top + window.pageYOffset - 90;
+                        window.scrollTo({ top: offset, behavior: "smooth" });
+                    }, 50);
+                }
+            }
+            setTimeout(function () {
+                container.classList.remove("ki69-sections-restored");
+            }, 450);
+        }, 200);
+    }
+
+    function expandCategory(group, container, skipHistory) {
+        document.body.classList.add("ki69-category-expanded");
+
+        // Push a new history entry so the browser back button can restore the grid
+        if (!skipHistory) {
+            var url = new URL(window.location.href);
+            url.searchParams.set("crp_filter", cssSafe(group.id));
+            history.pushState({ ki69Expanded: cssSafe(group.id) }, "", url.toString());
+        }
+
+        // Remember which section was expanded so we can scroll back to it on restore
+        container.dataset.ki69LastCat = cssSafe(group.id);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        // Hide all carousel sections
+        container.querySelectorAll(".ki69-category-section").forEach(function (s) {
+            s.style.display = "none";
+        });
+
+        // Remove any pre-existing expanded view
+        var existing = container.querySelector(".ki69-expanded-view");
+        if (existing) existing.remove();
+
+        var categoryLabel = prettySlugLabel(group.name || group.id);
+        var cardsHTML = group.products.map(buildCardHTML).join("");
+
+        container.insertAdjacentHTML("beforeend",
+            '<div class="ki69-expanded-view">' +
+            '<div class="ki69-section-header">' +
+            '<h2 class="ki69-section-title">' + categoryLabel + '</h2>' +
+            '<button class="ki69-back-btn" type="button" aria-label="Back to all categories">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>' +
+            ' Back' +
+            '</button>' +
+            '</div>' +
+            '<div class="ki69-expanded-grid">' + cardsHTML + '</div>' +
+            '</div>'
+        );
+
+        // Manual back button — delegate to browser history; popstate handles the DOM
+        container.querySelector(".ki69-back-btn").addEventListener("click", function () {
+            history.back();
+        });
+    }
+
+    // =========================
     // HIDE CONTROL PRODUCTS
     // =========================
     function hideControlProducts() {
@@ -342,6 +406,33 @@
             });
         }
 
+        // View All click → expanded grid view
+        if (container) {
+            container.querySelectorAll(".ki69-view-all").forEach(function (link) {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    var catId = link.getAttribute("data-category-id");
+                    var group = validGroups.find(function (g) { return cssSafe(g.id) === catId; });
+                    if (group) expandCategory(group, container);
+                });
+            });
+        }
+
+        // Browser back/forward button — restore grid when crp_filter is removed from URL
+        window.addEventListener("popstate", function () {
+            var params = new URL(window.location.href).searchParams;
+            if (!params.get("crp_filter")) {
+                restoreFromExpanded(container);
+            }
+        });
+
+        // Auto-expand if the page loaded with ?crp_filter already in the URL
+        var initialFilter = new URL(window.location.href).searchParams.get("crp_filter");
+        if (initialFilter) {
+            var matchedGroup = validGroups.find(function (g) { return cssSafe(g.id) === initialFilter; });
+            if (matchedGroup) expandCategory(matchedGroup, container, true);
+        }
+
         if (debug) {
             console.log("✅ KI69: " + validGroups.length + " carousels built, " + products.length + " products total");
         }
@@ -352,15 +443,26 @@
     // =========================
     function init() {
         addClass("body", recipe_name);
-
-
         waitForElement('h1[color="black"]', function () {
-            var heading = document.querySelector('h1[color="black"]');
-            var outer = heading && heading.closest('[width="1"]');
-            if (outer && !outer.classList.contains("ki69-page-heading")) {
-                outer.classList.add("ki69-page-heading");
-            }
+            var doneTypingInterval = 5000;  //time in ms, 5 seconds for example
+            var intervalCallAgain = setInterval(function () {
+                var heading = document.querySelector('h1[color="black"]');
+                var outer = heading && heading.closest('[width="1"]');
+                if (outer && !outer.classList.contains("ki69-page-heading")) {
+                    outer.classList.add("ki69-page-heading");
+                }
+            }, 400);
+
+            //start the countdown
+            var Timer = setTimeout(function () {
+                clearInterval(intervalCallAgain);
+            }, doneTypingInterval);
+
         }, 50, 20000);
+
+
+
+
 
         waitForElement('[data-unbxd-identifier="unbxdanalyticsProduct"]', function () {
             var doneTypingInterval = 5000;  //time in ms, 5 seconds for example
