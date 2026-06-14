@@ -1,0 +1,232 @@
+/* CRO-12334 — Rack PDP Conventional Gallery — Variation */
+
+/* ── Base rule: injected HTML is hidden by default.
+      The global JS removes the body class on non-test pages (SPA navigation),
+      which immediately hides the variation UI without any DOM cleanup. ── */
+.cro-12334-gallery {
+	display: none !important;
+}
+
+/* ════════════════════════════════════
+   Desktop only (lmd: breakpoint — 1024px+)
+   Mobile and tablet: no changes, control stays intact
+════════════════════════════════════ */
+@media (min-width: 1024px) {
+
+	/* ── Two-column layout: gallery left | buy-box right ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .product-details>.relative {
+		display: flex !important;
+		align-items: flex-start;
+		gap: 32px;
+		padding: 34px 40px;
+		max-width: 1440px;
+		margin-left: auto;
+		margin-right: auto;
+		box-sizing: border-box;
+		padding-bottom: 0;
+	}
+
+	/* ── Our gallery: left column (inserted before .media-gallery in the flex row) ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .product-details>.relative>.cro-12334-gallery {
+		flex: 1 !important;
+		min-width: 0 !important;
+		align-self: flex-start;
+	}
+
+	/* ── .media-gallery: collapse to 0×0 so it doesn't take up space,
+	      but keep it in the DOM so Swiper + the Enlarge button stay alive. ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .product-details>.relative>.media-gallery {
+		flex: 0 0 0 !important;
+		width: 0 !important;
+		min-width: 0 !important;
+		overflow: hidden !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		height: 0;
+	}
+
+	/* Keep the Enlarge button itself pointer-events active so JS .click() works */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .product-details>.relative>.media-gallery button[aria-label="Enlarge image"] {
+		pointer-events: auto !important;
+	}
+
+	/* ── Buy-me-box: right column — CSS only, no DOM moves ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .product-details>.relative>.buy-me-box {
+		position: relative !important;
+		width: 400px !important;
+		max-height: none !important;
+		flex-shrink: 0;
+		align-self: flex-start;
+	}
+
+	/* Thumbnail strip: fully hidden — JS .click() still dispatches events on display:none elements */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .gallery-thumbnails {
+		display: none !important;
+	}
+
+	/* ════════════════════════════════════
+	   New conventional gallery
+	════════════════════════════════════ */
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-gallery {
+		display: flex !important;
+		flex-direction: row;
+		gap: 12px;
+		width: 100%;
+		height: 600px;
+		/* background: #f0f0e9; */
+	}
+
+	/* ── Vertical thumbnail strip (left) ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-thumbs-wrap {
+		width: 72px;
+		flex-shrink: 0;
+		overflow-y: auto;
+		overflow-x: hidden;
+		/* padding: 8px 0; */
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-thumbs-wrap::-webkit-scrollbar {
+		width: 0;
+		background: transparent;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-thumbs {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 0 4px;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-thumb {
+		width: 64px;
+		height: 64px;
+		flex-shrink: 0;
+		border-radius: 4px;
+		border: 2px solid #e5e5e5;
+		background: #f6f6f3;
+		cursor: pointer;
+		padding: 0;
+		overflow: hidden;
+		display: block;
+		box-sizing: border-box;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		mix-blend-mode: multiply;
+		display: block;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-thumb--active {
+		border-color: #1a1a1a !important;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-thumb:not(.cro-12334-thumb--active):hover {
+		border-color: #999;
+	}
+
+	/* ── Main image column (right) ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-main {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-main-img-wrap {
+		flex: 1;
+		position: relative;
+		background: #f0f0e9;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-main-img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		mix-blend-mode: multiply;
+		display: block;
+	}
+
+	/* ── Prev / Next arrow buttons ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-nav {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 36px;
+		height: 36px;
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid #E5E5E5;
+		border-radius: 4px;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #1a1a1a;
+		z-index: 5;
+		padding: 0;
+		transition: background 0.15s ease, border-color 0.15s ease;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-nav:hover {
+		background: #fff;
+		border-color: #1a1a1a;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-prev {
+		left: 12px;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-next {
+		right: 12px;
+	}
+
+	/* ── Bottom bar: counter (left) + expand (right) ── */
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-bottom-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 8px 12px;
+		background: #f0f0e9;
+		flex-shrink: 0;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-counter {
+		font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
+		font-size: 13px;
+		font-weight: 400;
+		color: #666;
+		line-height: 1;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-expand-btn {
+		width: 32px;
+		height: 32px;
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid #e0e0e0;
+		border-radius: 4px;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #1a1a1a;
+		padding: 0;
+		transition: background 0.15s ease, border-color 0.15s ease;
+	}
+
+	body.CRO_12334_Rack_PDP_Conventional_Gallery .cro-12334-expand-btn:hover {
+		background: #fff;
+		border-color: #1a1a1a;
+	}
+
+}
+
+/* end @media (min-width: 1024px) */
