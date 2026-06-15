@@ -162,13 +162,6 @@
                 }
             }
 
-            // ── Availability row — appended after savings line inside price block
-            if (stockText && contentWrap) {
-                var avail = document.createElement('div');
-                avail.className = 'cro-10185-avail';
-                avail.innerHTML = TRENDING_SVG + '<span class="cro-10185-avail-text">Selling fast - ' + stockText + '</span>';
-                contentWrap.appendChild(avail);
-            }
         }
 
         function applyToAll() {

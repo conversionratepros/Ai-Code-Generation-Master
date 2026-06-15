@@ -83,10 +83,10 @@ body.cro-t-odo-10185 .cro-10185-save-badge {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
     background: #e50e62;
     border-radius: 8px;
-    padding: 4px 7px;
+    padding: 2px 8px;
     pointer-events: none;
     white-space: nowrap;
 }
@@ -115,10 +115,10 @@ body.cro-t-odo-10185 .cro-10185-save-pct {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 2px;
-        padding: 10px 8px;
+        gap: 4px;
+        padding: 12px 10px;
         width: 58px;
-        min-height: 52px;
+        min-height: 57px;
         text-align: center;
     }
 
@@ -135,7 +135,7 @@ body.cro-t-odo-10185 .cro-10185-save-pct {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   ATC BUTTON — figma: 44×44 desktop / 28×28 mobile, #26900b full circle
+   ATC BUTTON — figma: 44×44 desktop / 28×28 mobile, #258f0b full circle
    ────────────────────────────────────────────────────────────────────────── */
 
 body.cro-t-odo-10185 .cro-10185-atc {
@@ -146,7 +146,7 @@ body.cro-t-odo-10185 .cro-10185-atc {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: #26900b;
+    background: #258f0b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,8 +156,8 @@ body.cro-t-odo-10185 .cro-10185-atc {
 }
 
 body.cro-t-odo-10185 .cro-10185-atc svg {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
 }
 
 body.cro-t-odo-10185 .cro-10185-atc:hover {
@@ -211,7 +211,7 @@ body.cro-t-odo-10185 .pill.cro-10185-pill {
     font-family: 'Montserrat', sans-serif;
     font-size: 8px !important;
     font-weight: 600 !important;
-    padding: 3px 7px !important;
+    padding: 6px 6px !important;
     height: 18px !important;
     display: inline-flex !important;
     align-items: center;
@@ -226,7 +226,7 @@ body.cro-t-odo-10185 .pill.cro-10185-pill {
     body.cro-t-odo-10185 .pill.cro-10185-pill {
         font-size: 12px !important;
         font-weight: 700 !important;
-        padding: 4px 9px !important;
+        padding: 8px 8px !important;
         height: 24px !important;
     }
 }
@@ -236,15 +236,9 @@ body.cro-t-odo-10185 .pill.cro-10185-pill-more-options {
     text-transform: capitalize !important;
 }
 
-/* Stock count pill: visible on mobile (native pill), hidden on desktop (avail row shown instead) */
+/* Stock count pill: visible on all breakpoints */
 body.cro-t-odo-10185 .pill.cro-10185-pill-stock {
     display: inline-flex !important;
-}
-
-@media (min-width: 1024px) {
-    body.cro-t-odo-10185 .pill.cro-10185-pill-stock {
-        display: none !important;
-    }
 }
 
 body.cro-t-odo-10185 .pill.cro-10185-pill-size {
@@ -272,13 +266,13 @@ body.cro-t-odo-10185 .cro-10185-bs-badge {
 body.cro-t-odo-10185 .cro-10185-bs-flame {
     display: inline-flex;
     flex-shrink: 0;
-    width: 12px;
+    width: 11px;
     height: 16px;
 }
 
 body.cro-t-odo-10185 .cro-10185-bs-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
     color: #e2081b;
     line-height: 1;
@@ -298,51 +292,6 @@ body.cro-t-odo-10185 .cro-10185-bs-text {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   AVAILABILITY ROW — "Selling fast - X left"
-   ────────────────────────────────────────────────────────────────────────── */
-
-/* Avail row: hidden on mobile (native pill shown instead), visible on desktop */
-body.cro-t-odo-10185 .cro-10185-avail {
-    display: none;
-}
-
-@media (min-width: 1024px) {
-    body.cro-t-odo-10185 .cro-10185-avail {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding: 6px 0 2px;
-        position: absolute;
-        bottom: -25px;
-    }
-}
-
-body.cro-t-odo-10185 .cro-10185-avail-icon {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-}
-
-body.cro-t-odo-10185 .cro-10185-avail-text {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px;
-    font-weight: 500;
-    color: #6f389b;
-    line-height: 1;
-}
-
-@media (min-width: 1024px) {
-    body.cro-t-odo-10185 .cro-10185-avail-icon {
-        width: 16px;
-        height: 16px;
-    }
-
-    body.cro-t-odo-10185 .cro-10185-avail-text {
-        font-size: 12px;
-    }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
    SAVINGS LINE
    Always injected — empty/invisible on cards with no saving so price rows
    stay vertically aligned across all cards in the same row.
@@ -355,7 +304,7 @@ body.cro-t-odo-10185 .cro-10185-savings-line {
     box-sizing: border-box;
     background: #eaf2eb;
     border-radius: 4px;
-    padding: 5px 8px;
+    padding: 2px 10px;
     margin-top: 13px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
@@ -367,13 +316,18 @@ body.cro-t-odo-10185 .cro-10185-savings-line {
 
 body.cro-t-odo-10185 .cro-10185-savings-line--empty {
     visibility: hidden;
-    padding: 5px 8px !important;
-    min-height: 23px;
+    padding: 2px 10px !important;
+    min-height: 17px;
 }
 
 @media (min-width: 1024px) {
     body.cro-t-odo-10185 .cro-10185-savings-line {
         font-size: 12px;
         padding: 6px 10px;
+    }
+
+    body.cro-t-odo-10185 .cro-10185-savings-line--empty {
+        padding: 6px 10px !important;
+        min-height: 28px;
     }
 }
