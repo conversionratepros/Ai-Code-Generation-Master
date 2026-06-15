@@ -1,0 +1,139 @@
+/* ── CRO-12302 Dual-Image PLP ── */
+
+/* Wrapper: contain the two stacked slides and arrows */
+.product-photo-actions-wrapper.cro12302-init {
+    position: relative !important;
+    overflow: hidden;
+}
+
+/* ── Slides ── */
+
+.cro12302-slide--1 {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* Slide 2 sits on top of slide 1, hidden by default */
+.cro12302-slide--2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.cro12302-slide--2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Active: fade in slide 2, fade out slide 1 */
+.cro12302-at-2 .cro12302-slide--1 {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cro12302-at-2 .cro12302-slide--2 {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── Arrows ── */
+
+.cro12302-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+    transition: box-shadow 0.15s ease;
+}
+
+.cro12302-arrow:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
+}
+
+.cro12302-arrow svg {
+    width: 16px;
+    height: 16px;
+    color: #1a1a1a;
+    display: block;
+}
+
+/* Next arrow: right edge — visible on image 1 */
+.cro12302-arrow--next {
+    right: 8px;
+    display: flex;
+}
+
+/* Prev arrow: left edge — hidden on image 1 */
+.cro12302-arrow--prev {
+    left: 8px;
+    display: none;
+}
+
+/* Swap which arrow shows when on image 2 */
+.cro12302-at-2 .cro12302-arrow--next {
+    display: none;
+}
+
+.cro12302-at-2 .cro12302-arrow--prev {
+    display: flex;
+}
+
+/* ── Indicator bar ── */
+
+.cro12302-indicator {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    padding: 6px 0 0;
+    box-sizing: border-box;
+}
+
+.cro12302-seg {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: #EAEAEA;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.cro12302-seg--active {
+    background: #1a1a1a;
+}
+
+/* ── Mobile: slightly larger tap targets ── */
+
+@media (max-width: 767px) {
+    .cro12302-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .cro12302-arrow svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .cro12302-seg {
+        height: 3px;
+    }
+}

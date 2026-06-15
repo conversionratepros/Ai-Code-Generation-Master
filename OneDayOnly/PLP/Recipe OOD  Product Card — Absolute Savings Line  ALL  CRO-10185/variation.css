@@ -41,13 +41,22 @@ body.cro-t-odo-10185 .measure-this {
     flex-direction: column !important;
 }
 
+/* Bug 6: product title heading margin-top 16px → 18px */
+body.cro-t-odo-10185 .css-tejrt9 {
+    margin-top: 18px !important;
+}
+
 /* Title link grows to fill remaining space — price always at bottom */
 /* position:relative scopes the absolute Best Seller badge */
 body.cro-t-odo-10185 a.cro-10185-title-link {
     flex: 1 1 auto;
     position: relative !important;
-    padding-top: 14px !important;
+    padding-top: 6px !important;
     position: relative;
+}
+
+body.cro-t-odo-10185 a.cro-10185-title-link.cro-10185-has-bs {
+    padding-top: 14px !important;
 }
 
 /* ── Price + savings block: force column so savings line stacks below ────── */
@@ -101,6 +110,7 @@ body.cro-t-odo-10185 .cro-10185-save-pct {
 @media (min-width: 1024px) {
     body.cro-t-odo-10185 .cro-10185-save-badge {
         top: 10px;
+        left: auto;
         right: 10px;
         flex-direction: column;
         align-items: center;
@@ -170,8 +180,8 @@ body.cro-t-odo-10185 .cro-10185-atc--disabled {
     }
 
     body.cro-t-odo-10185 .cro-10185-atc svg {
-        width: 18px;
-        height: 18px;
+        width: 24px;
+        height: 24px;
     }
 }
 
@@ -214,7 +224,7 @@ body.cro-t-odo-10185 .pill.cro-10185-pill {
 
 @media (min-width: 1024px) {
     body.cro-t-odo-10185 .pill.cro-10185-pill {
-        font-size: 10px !important;
+        font-size: 12px !important;
         font-weight: 700 !important;
         padding: 4px 9px !important;
         height: 24px !important;
@@ -223,6 +233,7 @@ body.cro-t-odo-10185 .pill.cro-10185-pill {
 
 body.cro-t-odo-10185 .pill.cro-10185-pill-more-options {
     color: #0093d0 !important;
+    text-transform: capitalize !important;
 }
 
 /* Stock count pill: visible on mobile (native pill), hidden on desktop (avail row shown instead) */
@@ -276,6 +287,13 @@ body.cro-t-odo-10185 .cro-10185-bs-text {
 @media (min-width: 1024px) {
     body.cro-t-odo-10185 .cro-10185-bs-text {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 1023px) {
+    body.cro-t-odo-10185 .cro-10185-bs-flame {
+        width: 7px !important;
+        height: 10px !important;
     }
 }
 
@@ -338,7 +356,7 @@ body.cro-t-odo-10185 .cro-10185-savings-line {
     background: #eaf2eb;
     border-radius: 4px;
     padding: 5px 8px;
-    margin-top: 6px;
+    margin-top: 13px;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-size: 10px;
@@ -349,7 +367,8 @@ body.cro-t-odo-10185 .cro-10185-savings-line {
 
 body.cro-t-odo-10185 .cro-10185-savings-line--empty {
     visibility: hidden;
-    padding: 13px 10px !important;
+    padding: 5px 8px !important;
+    min-height: 23px;
 }
 
 @media (min-width: 1024px) {

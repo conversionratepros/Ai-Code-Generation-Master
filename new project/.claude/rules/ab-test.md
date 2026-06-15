@@ -409,6 +409,152 @@ body.cro-XXXX .facets-container.dw-mod > :not(.cro-XXXX-order-1):not(.cro-XXXX-o
 
 ---
 
+### React + Swiper sites — DOM injection position
+
+Never insert test HTML **inside** a DOM element that Swiper or another third-party library observes with a `MutationObserver`. Doing so fires the observer, causes the library to re-initialise, and React reconciles — replacing the target element. The old reference becomes orphaned: it stays in the DOM but loses its `__reactFiber$...` keys and can no longer receive React events.
+
+**Diagnostic:** if a React element's `.click()` silently fails, run `Object.keys(el).filter(k => k.startsWith('__reactFiber'))` in the console. An empty result means the element is orphaned.
+
+```js
+// Bad — triggers Swiper's MutationObserver inside .media-gallery
+mediaGallery.insertAdjacentHTML('afterbegin', html);
+
+// Good — inserts before .media-gallery as a sibling, outside the observed tree
+mediaGallery.insertAdjacentHTML('beforebegin', html);
+```
+
+---
+
+### Body class timing — add AFTER HTML injection
+
+Adding the body class before the HTML is in the DOM creates a visible layout jump: CSS restructures the page while the new element hasn't appeared yet.
+
+**Rule:** Call `injectHtml()` first, then `addClass('body', variation_name)` immediately after — in the same callback. Both changes land in the same paint.
+
+```js
+waitForElement('.stable-selector', function () {
+  injectGallery();
+  addClass('body', variation_name); // single paint — no jump
+});
+```
+
+---
+
+### SPA body class gating — default display:none on injected HTML
+
+On SPA sites the global AB manager removes the body class when navigating to non-test pages. Injected HTML that persists in the DOM must be invisible without the class.
+
+**Pattern:** Add a bare-selector `display: none !important` at the top of the CSS file, then override with `display: flex/block !important` inside the body class + media query scope.
+
+```css
+/* Hidden by default — body class removal hides the variation without any DOM cleanup */
+.cro-XXXX-my-element {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  body.CRO_XXXX_Variation_Name .cro-XXXX-my-element {
+    display: flex !important;
+  }
+}
+```
+
+---
+
+### Late hydration restore guard — React / Next.js SPAs
+
+React SPAs (especially Next.js) finish hydrating 1–3 seconds after first paint. During hydration React reconciles its managed DOM and can overwrite injected elements. The body class may also be reset by Convert.com's initialisation timing.
+
+**Pattern:** After initial injection, start a short-lived polling guard (300ms × 8s) that re-injects the element and re-adds the body class if either disappears.
+
+```js
+waitForElement('.stable-selector', function () {
+  injectMyElement();
+  addClass('body', variation_name);
+
+  var restoreInterval = setInterval(function () {
+    if (!document.querySelector('.cro-XXXX-element') && document.querySelector('.anchor-element')) {
+      injectMyElement(); // injectMyElement() must have its own DOM-presence guard
+    }
+    if (!document.body.classList.contains(variation_name)) {
+      addClass('body', variation_name);
+    }
+  }, 300);
+  setTimeout(function () { clearInterval(restoreInterval); }, 8000);
+});
+```
+
+Key details:
+- 300ms interval — catches removal within one tick; 8s total covers the full hydration window
+- Always check that the anchor element exists before re-injecting — if the whole section is gone the inject would fail silently anyway
+- The inject function must guard against duplicate injection with `if (document.querySelector('.cro-XXXX-element')) return`
+
+---
+
+### Expand / modal-trigger buttons on React sites — direct listener, not live()
+
+When a button needs to programmatically `.click()` a React-managed element (e.g. a lightbox trigger), do NOT wire it through `live()` document delegation. Live delegation causes the synthetic click to bubble through the full document, which can trigger other live() handlers in this test or in other active experiments and create infinite loops.
+
+**Rule:** Wire expand / modal-trigger buttons with a direct `addEventListener` inside the inject function and always call `e.stopPropagation()`.
+
+```js
+// In injectMySection() — direct, not in croEventHandkler()
+var expandBtn = document.querySelector('.cro-XXXX-expand-btn');
+if (expandBtn) {
+  expandBtn.addEventListener('click', function (e) {
+    e.stopPropagation(); // prevents bubbling — avoids event loops
+    triggerModal();
+  });
+}
+```
+
+Always add a re-entrancy guard on the trigger function:
+
+```js
+var _opening = false;
+function triggerModal() {
+  if (_opening) return;
+  _opening = true;
+  var btn = document.querySelector('button[aria-label="Enlarge image"]');
+  if (btn) btn.click();
+  setTimeout(function () { _opening = false; }, 600);
+}
+```
+
+---
+
+### Swiper carousel sync — sync on navigate, not on trigger
+
+When a test gallery must stay in sync with a hidden control Swiper (so the native lightbox opens at the correct image), sync inside the **navigation handler** — not inside the modal-open trigger.
+
+```js
+// Good — sync on every navigation
+function goToImage(index) {
+  currentIndex = index;
+  // update test gallery UI ...
+  syncControlCarousel(index); // ← here
+}
+
+// Bad — calling syncControlCarousel() immediately before enlargeBtn.click()
+// triggers Swiper's MutationObserver in the same synchronous execution,
+// React replaces the Enlarge button DOM element, and the click is lost.
+function triggerModal() {
+  syncControlCarousel(currentIndex); // ← DO NOT do this
+  enlargeBtn.click();
+}
+```
+
+---
+
+### Remove unused helpers before finalising
+
+The boilerplate includes all helpers for speed of development. Before the test goes live, remove any helpers that are not called in the file. Keeping dead code increases parse time and makes the file harder to read.
+
+Helpers used in almost every test: `waitForElement`, `live`, `addClass`.
+Helpers that are situational: `insertHtml`, `innerHTMLContent`, `toggleClass`, `removeClass`, `scroll`, `waitForSwiper`, `addScript`, `initializeSwiper`.
+
+---
+
 ### MutationObserver — survive platform re-renders
 
 Some platforms **completely replace** the filter container DOM on every filter selection. Observing the container itself is useless because the element is swapped out. Always observe the **stable parent** with `subtree: true`, and debounce to avoid firing mid-render:

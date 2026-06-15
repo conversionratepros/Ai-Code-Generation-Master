@@ -16,7 +16,7 @@
 
         function parsePrice(el) {
             if (!el) return 0;
-            var text = (el.textContent || '').replace(/R/gi, '').replace(/,/g, '').trim();
+            var text = (el.textContent || '').replace(/from\s*/gi, '').replace(/R/gi, '').replace(/,/g, '').trim();
             var num = parseFloat(text);
             return isNaN(num) ? 0 : num;
         }
@@ -38,13 +38,13 @@
 
             // ── Stable element discovery (no CSS-in-JS hash classes) ─────────
             var imgWrapper = card.querySelector('.image-wrapper');
-            var atcButton  = card.querySelector('button[title="Add to cart"]');
-            var sellingEl  = card.querySelector('.highlightOnHover');
+            var atcButton = card.querySelector('button[title="Add to cart"]');
+            var sellingEl = card.querySelector('.highlightOnHover[aria-label]');
 
             // Derive structural elements positionally
-            var priceGroup  = sellingEl ? sellingEl.parentElement : null;
+            var priceGroup = sellingEl ? sellingEl.parentElement : null;
             var contentWrap = priceGroup ? priceGroup.parentElement : null;
-            var originalEl  = sellingEl ? sellingEl.nextElementSibling : null;
+            var originalEl = sellingEl ? sellingEl.nextElementSibling : null;
             // The title anchor contains h2 headings. The image anchor also has
             // color="primary" so querySelector would grab the wrong one — find
             // specifically the anchor that wraps the heading group.
@@ -56,32 +56,32 @@
             });
 
             // Pills container — found via its pill children
-            var firstPill     = imgWrapper ? imgWrapper.querySelector('.pill') : null;
+            var firstPill = imgWrapper ? imgWrapper.querySelector('.pill') : null;
             var pillContainer = firstPill ? firstPill.parentElement : null;
 
             if (!imgWrapper) return;
 
             // ── Stamp stable custom classes so CSS never needs hash selectors ─
-            if (contentWrap)  contentWrap.classList.add('cro-10185-price-block');
-            if (titleLink)    titleLink.classList.add('cro-10185-title-link');
+            if (contentWrap) contentWrap.classList.add('cro-10185-price-block');
+            if (titleLink) titleLink.classList.add('cro-10185-title-link');
             if (pillContainer) pillContainer.classList.add('cro-10185-pills-container');
             if (atcButton && atcButton.parentElement) {
                 atcButton.parentElement.classList.add('cro-10185-native-atc-wrap');
             }
             // Tag grid cell (card → section → grid cell)
-            var section  = card.parentElement;
+            var section = card.parentElement;
             var gridCell = section ? section.parentElement : null;
             if (gridCell) gridCell.classList.add('cro-10185-grid-cell');
 
             // ── Savings calculation ───────────────────────────────────────────
-            var sellingPrice  = parsePrice(sellingEl);
+            var sellingPrice = parsePrice(sellingEl);
             var originalPrice = parsePrice(originalEl);
-            var hasSaving     = originalPrice > 0 && sellingPrice > 0 && originalPrice > sellingPrice;
+            var hasSaving = originalPrice > 0 && sellingPrice > 0 && originalPrice > sellingPrice;
             var saving = 0, pct = 0;
 
             if (hasSaving) {
                 saving = originalPrice - sellingPrice;
-                pct    = Math.round((saving / originalPrice) * 100);
+                pct = Math.round((saving / originalPrice) * 100);
 
                 // SAVE badge on image
                 var saveBadge = document.createElement('div');
@@ -126,7 +126,7 @@
 
             // ── Pills: classify + Best Seller badge + stock availability row ──
             var stockText = null;
-            var bsPill    = null;
+            var bsPill = null;
 
             if (pillContainer) {
                 pillContainer.querySelectorAll('.pill').forEach(function (pill) {
@@ -158,6 +158,7 @@
                     } else {
                         titleLink.prepend(bsBadge);
                     }
+                    titleLink.classList.add('cro-10185-has-bs');
                 }
             }
 
