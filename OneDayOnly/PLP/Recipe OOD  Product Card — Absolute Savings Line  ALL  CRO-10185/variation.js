@@ -137,8 +137,10 @@
                     }
                     if (/more.?options/i.test(pill.textContent)) {
                         pill.classList.add('cro-10185-pill-more-options');
+                        pill.textContent = 'More Options';
                     } else if (/\d+\s*left/i.test(pill.textContent)) {
                         pill.classList.add('cro-10185-pill-stock');
+                        pill.textContent = pill.textContent.trim().replace(/\bleft\b/gi, 'Left');
                         stockText = pill.textContent.trim();
                     } else {
                         pill.classList.add('cro-10185-pill-size');
@@ -170,6 +172,24 @@
         }
 
         function init() {
+            waitForElement('h2[aria-label][font-size="4"]', function () {
+                var doneTypingInterval = 4000;  //time in ms, 5 seconds for example
+                var intervalCallAgain = setInterval(function () {
+                    document.querySelectorAll('h2[aria-label][font-size="4"]').forEach(function (h2) {
+                        var parent = h2.closest('[id]');
+                        if (parent) {
+                            parent.classList.add('cro-10185-h2-parent');
+                        }
+                    });
+                }, 400);
+
+                //start the countdown
+                var Timer = setTimeout(function () {
+                    clearInterval(intervalCallAgain);
+                }, doneTypingInterval);
+
+            });
+
             applyToAll();
 
             // Scroll — catches lazy-loaded cards as user scrolls down

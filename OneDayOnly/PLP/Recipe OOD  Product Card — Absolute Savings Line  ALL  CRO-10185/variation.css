@@ -43,7 +43,7 @@ body.cro-t-odo-10185 .measure-this {
 
 /* Bug 6: product title heading margin-top 16px → 18px */
 body.cro-t-odo-10185 .css-tejrt9 {
-    margin-top: 18px !important;
+    margin-top: 15px !important;
 }
 
 /* Title link grows to fill remaining space — price always at bottom */
@@ -233,7 +233,7 @@ body.cro-t-odo-10185 .pill.cro-10185-pill {
 
 body.cro-t-odo-10185 .pill.cro-10185-pill-more-options {
     color: #0093d0 !important;
-    text-transform: capitalize !important;
+    text-transform: none !important;
 }
 
 /* Stock count pill: visible on all breakpoints */
@@ -298,7 +298,7 @@ body.cro-t-odo-10185 .cro-10185-bs-text {
    ────────────────────────────────────────────────────────────────────────── */
 
 body.cro-t-odo-10185 .cro-10185-savings-line {
-    display: block;
+    display: flex;
     width: 100%;
     align-self: stretch;
     box-sizing: border-box;
@@ -312,6 +312,9 @@ body.cro-t-odo-10185 .cro-10185-savings-line {
     font-weight: 700;
     color: #2e7d32;
     line-height: 1.3;
+    min-height: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 body.cro-t-odo-10185 .cro-10185-savings-line--empty {
@@ -329,5 +332,11 @@ body.cro-t-odo-10185 .cro-10185-savings-line--empty {
     body.cro-t-odo-10185 .cro-10185-savings-line--empty {
         padding: 6px 10px !important;
         min-height: 28px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .cro-10185-h2-parent>div:last-child>div:not(.collapsed, [width="100%"]) {
+        min-height: 460px;
     }
 }
