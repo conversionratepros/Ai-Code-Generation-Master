@@ -122,7 +122,7 @@
 			disconnectObserver();
 
 			var buttonSelector = 'button[aria-label="Toggle cart"]';
-			var badgeSelector  = 'button[aria-label="Toggle cart"] div[color="white"]';
+			var badgeSelector = 'button[aria-label="Toggle cart"] div[color="white"]';
 
 			function initObserver(targetNode) {
 				if (!targetNode) return;
@@ -130,7 +130,7 @@
 				var lastValue = (document.querySelector(badgeSelector) || targetNode).textContent.trim();
 
 				activeObserver = new MutationObserver(function () {
-					var badgeEl  = document.querySelector(badgeSelector);
+					var badgeEl = document.querySelector(badgeSelector);
 					var newValue = (badgeEl || targetNode).textContent.trim();
 					if (newValue !== lastValue) {
 						redirectToCheckout();
@@ -207,6 +207,7 @@
 			});
 
 			// BUY IT NOW click → start cart observer → trigger add to cart
+			// Spinner is handled purely by CSS: ATC:disabled + .wrap .btn::before (no JS class needed)
 			live('.cro-10225-buy-now-btn', 'click', function () {
 				var atcBtn = document.querySelector('.modal .unbxd-addToCart');
 				if (atcBtn) {
