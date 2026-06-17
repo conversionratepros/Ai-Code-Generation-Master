@@ -72,6 +72,16 @@
         return document.querySelector(".ki69-product-container");
     }
 
+    // Unbxd reuses this same data attribute for header search-autocomplete cards,
+    // so skip anything sitting inside <header> to avoid tagging the search dropdown.
+    function findPLPProductNode() {
+        var nodes = document.querySelectorAll('[data-unbxd-identifier="unbxdanalyticsProduct"]');
+        for (var i = 0; i < nodes.length; i++) {
+            if (!nodes[i].closest("header")) return nodes[i];
+        }
+        return null;
+    }
+
     // =========================
     // DATA EXTRACTION
     // =========================
@@ -467,7 +477,7 @@
         waitForElement('[data-unbxd-identifier="unbxdanalyticsProduct"]', function () {
             var doneTypingInterval = 5000;  //time in ms, 5 seconds for example
             var intervalCallAgain = setInterval(function () {
-                var product = document.querySelector('[data-unbxd-identifier="unbxdanalyticsProduct"]');
+                var product = findPLPProductNode();
                 var outer = product && product.closest('[width="1"]');
                 if (outer && !outer.classList.contains("ki69-product-container")) {
                     outer.classList.add("ki69-product-container");
