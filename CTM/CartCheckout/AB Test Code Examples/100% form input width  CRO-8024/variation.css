@@ -1,0 +1,87 @@
+@media (min-width: 768px) {
+    html.CRO8024 .checkout-index-index .page-wrapper .columns .checkout-container .opc-wrapper .customer-details-step #customer-details-form .fieldset {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    html.CRO8024 .checkout-index-index .page-wrapper .columns .checkout-container .opc-wrapper .customer-details-step #customer-details-form .fieldset > {
+        width: 100%;
+    }
+
+    html.CRO8024 .checkout-index-index .page-wrapper .columns .checkout-container .opc-wrapper .customer-details-step #customer-details-form .fieldset .field {
+        width: 100%;
+        grid-column: 1 / -1;
+    }
+
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address >{
+        width: 100%;
+    }
+
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field{
+        width: 100%;
+        grid-column: 1 / -1;
+    }
+
+    html.CRO8024 .checkout-index-index .page-wrapper .columns .checkout-container .opc-wrapper .customer-details-step #customer-details-form .fieldset #accountOneLabel{
+        position: absolute;
+        top: -10px;
+        left: 24px;
+        padding: 0 3px;
+        background-color: #fff;
+        color: #404040;
+        font-size: 16px;
+        text-transform: capitalize;
+        transition: all .3s ease-in-out;
+        width: fit-content;
+    }
+
+    html.CRO8024 .checkout-index-index #customer-details-form.form .field[name="customerDetailsForm.company"], 
+    html.CRO8024 .checkout-index-index #customer-details-form.form .field[name="customerDetailsForm.vat_id"] {
+        height: 70px;
+    }
+
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.firstname"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.lastname"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.street.0"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.street.1"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.street.2"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.country_id"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.region_id"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.city"],
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field[name="billingAddressshared.telephone"]{
+        height: 70px;
+    }
+
+
+    html.CRO8024 .checkout-index-index .billing-address-form form .fieldset.address .field.street.admin__control-fields>.control{
+        gap: 0 !important;
+    }
+
+    html.CRO8024 .checkout-index-index #shipping-new-address-form .street .control .field{
+        width: 100%;
+        /* height: 70px; */
+    }
+
+    html.CRO8024 .checkout-index-index #shipping-new-address-form .street .control .field[name="shippingAddress.street.2"],
+    html.CRO8024 .checkout-index-index #shipping-new-address-form .street .control .field[name="shippingAddress.street.1"]{
+        height: 90px;
+    }
+
+    html.CRO8024 .checkout-index-index #shipping-new-address-form [name="shippingAddress.city"],
+    html.CRO8024 .checkout-index-index #shipping-new-address-form [name="shippingAddress.region_id"],
+    html.CRO8024 .checkout-index-index #shipping-new-address-form [name="shippingAddress.country_id"]{
+        width: 100%;
+    }
+
+    html.CRO8024 .checkout-index-index .checkout-collection-options #collection-form{
+        flex-direction: column;
+    }
+    
+}
