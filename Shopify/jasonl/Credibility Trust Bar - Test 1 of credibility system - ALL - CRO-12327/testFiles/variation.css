@@ -1,0 +1,111 @@
+    /* CRO-12327 | Credibility Trust Bar | Test 1 of credibility system | ALL */
+
+    /* ── Hide existing "Want to elevate your space?" strip ── */
+    body.cro-12327 .pdp-header-banner {
+        display: none !important;
+    }
+
+    /* ── Trust bar wrapper ── */
+    .cro-12327-bar {
+        background-color: #F4F1EC;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* ── Desktop: fixed-height viewport clips the reel during slide ── */
+    .cro-12327-bar__viewport {
+        height: 64px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* ── Reel: vertical stack that translateY scrolls through ── */
+    .cro-12327-bar__reel {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ── Individual message row ── */
+    .cro-12327-bar__msg {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #0B0B0B;
+        font-family: var(--font-body-family, 'Poppins', sans-serif);
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0;
+        /* line-height: 1.4; */
+        padding: 0 20px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        gap: 10px;
+        pointer-events: none;
+        user-select: none;
+        line-height: var(--line-height-21_43, 21.43px);
+
+    }
+
+    .cro-12327-bar__msg strong {
+        font-weight: 500;
+        color: #0B0B0B;
+    }
+
+    /* ── Stars ── */
+    .cro-12327-stars {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        flex-shrink: 0;
+    }
+
+    .cro-12327-stars svg {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    /* ── Mobile overrides ── */
+    @media (max-width: 767px) {
+        .cro-12327-bar__viewport {
+            height: auto;
+            overflow: visible;
+        }
+
+        .cro-12327-bar__reel {
+            transition: none !important;
+            transform: none !important;
+        }
+
+        .cro-12327-bar__msg {
+            height: auto;
+            min-height: 48px;
+            padding: 20px 16px;
+            /* font-size: 13px; */
+            display: none;
+            gap: 8px;
+        }
+
+        .cro-12327-bar__msg--mobile-active {
+            display: flex;
+            align-items: center;
+            animation: cro-12327-mobile-slide-up 400ms ease-in-out;
+        }
+
+        .cro-12327-bar__msg--clone {
+            display: none !important;
+        }
+
+    }
+
+    @keyframes cro-12327-mobile-slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
