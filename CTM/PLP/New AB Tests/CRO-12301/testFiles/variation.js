@@ -58,7 +58,7 @@
             if (!match) return null;
             var a = parseInt(match[1], 10);
             var b = parseInt(match[2], 10);
-            return { w: Math.min(a, b), h: Math.max(a, b) };
+            return { w: Math.min(a, b), h: Math.max(a, b), first: a, second: b };
         }
 
         function getSizeCategory(maxMm) {
@@ -92,7 +92,7 @@
             var shape = getShape(dims.w, dims.h);
             var svg = getShapeSVG(shape, category);
             var label = 'Size: ' + category;
-            var dimText = dims.h + 'mm × ' + dims.w + 'mm';
+            var dimText = dims.first + 'mm × ' + dims.second + 'mm';
             return (
                 '<div class="cro12301-size-badge">' +
                 svg +
