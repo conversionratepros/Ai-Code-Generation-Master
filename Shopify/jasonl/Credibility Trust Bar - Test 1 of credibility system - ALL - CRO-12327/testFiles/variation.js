@@ -34,8 +34,8 @@
 
         /* Messages as raw HTML — msg1 has stars + bold, msg2 is plain */
         var MESSAGES = [
-            STARS_HTML + '<span class="cro-12327-bar__text"><strong>Rated 4.6/5 on Google</strong> &middot; 2,534+ happy customers</span>',
-            New_Icon + '<span class="cro-12327-bar__text"><strong>Fitouts delivered in under 10 days &middot;</strong> anywhere in Australia</span>'
+            '<span class="cro-12327-bar__text">' + STARS_HTML + '<strong>Rated 4.6/5 on Google</strong> &middot; 2,534+ happy customers</span>',
+            '<span class="cro-12327-bar__text">' + New_Icon + '<strong>Fitouts delivered in under 10 days</strong> &middot; anywhere in Australia</span>'
         ];
         var ROTATION_MS = 4000;
         var ANIM_MS = 400;

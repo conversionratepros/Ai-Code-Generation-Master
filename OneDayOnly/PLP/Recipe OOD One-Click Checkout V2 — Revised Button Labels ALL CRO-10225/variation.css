@@ -3,11 +3,12 @@
 body.cro-t-odo-10225 .modal .unbxd-addToCart {
     position: relative;
     overflow: hidden;
+    font-size: 0;
 }
 
 body.cro-t-odo-10225 .modal .unbxd-addToCart::after {
     content: "ADD TO CART";
-    position: absolute;
+    position: relative;
     inset: 0;
     display: flex;
     align-items: center;
@@ -22,20 +23,38 @@ body.cro-t-odo-10225 .modal .unbxd-addToCart::after {
     pointer-events: none;
 }
 
-/* Clear ADD TO CART overlay when ATC is disabled so site's native state shows */
-body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled::after {
-    content: "";
+/* ATC spinner — only on a direct ATC click, never when BUY IT NOW triggered it.
+   :has() looks forward at our own wrapper's class to tell the two apart. */
+body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled:not(:has(~ .cro-10225-buy-now-wrap.cro-10225-triggered))::after {
+    /* content: "ADD TO CART"; */
     background: transparent;
 }
 
-/* BUY IT NOW spinner — adjacent sibling of disabled ATC (KI62 pattern, no JS class needed) */
-body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled + .cro-10225-buy-now-wrap .cro-10225-buy-now-btn {
+body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled:not(:has(~ .cro-10225-buy-now-wrap.cro-10225-triggered))::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: 2px solid transparent;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: cro-10225-spin 0.8s linear infinite;
+}
+
+/* BUY IT NOW spinner — only fires when ITS OWN click triggered the ATC disable
+   (requires .cro-10225-triggered, set by the BUY IT NOW click handler), never
+   when ATC was clicked directly. */
+body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled+.cro-10225-buy-now-wrap.cro-10225-triggered .cro-10225-buy-now-btn {
     pointer-events: none;
     color: transparent;
     position: relative;
 }
 
-body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled + .cro-10225-buy-now-wrap .cro-10225-buy-now-btn::before {
+body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled+.cro-10225-buy-now-wrap.cro-10225-triggered .cro-10225-buy-now-btn::before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -53,8 +72,13 @@ body.cro-t-odo-10225 .modal .unbxd-addToCart:disabled + .cro-10225-buy-now-wrap 
 }
 
 @keyframes cro-10225-spin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* ─── BUY IT NOW button wrapper ─── */
@@ -129,4 +153,8 @@ body.cro-t-odo-10225 .cro-10225-buy-now-sub {
     body.cro-t-odo-10225 .modal .unbxd-addToCart::after {
         font-size: 13px;
     }
+}
+
+body.cro-t-odo-10225 .modal .unbxd-addToCart[disabled] {
+    font-size: 0;
 }
