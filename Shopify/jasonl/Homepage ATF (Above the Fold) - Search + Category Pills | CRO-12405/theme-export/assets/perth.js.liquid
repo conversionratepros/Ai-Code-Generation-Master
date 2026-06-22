@@ -1,0 +1,832 @@
+  /* =======================================
+  localstorage start 
+  ======================================= */
+
+//TODO: for testing purpose region_perth is set to 'NSW'
+var region_perth = 'WA';
+  //var region_perth_1 = 'BA';
+  var region_perth_1 = 'BA__revert_this_to_BA_for_testing'; // it will consider BA as Perth location
+  //var region_url_filter = 'wa';
+  var region_url_filter = 'perth';
+  var region_data = JSON.parse(localStorage.getItem('region'));
+  var region = (region_data)?region_data.code:null;
+
+//  If localstorage data ispresent, run productPageOnLoad function without waiting for geo-app to find region
+if(region_data){
+    let region_data_code = region_data.code;
+    let region_data_name = region_data.name;
+
+    // BA is considered as WA just for testing. if region code is 'BA' from localstorage. 
+    // The variable value of 'BA' will be replaced by 'WA'. It will treated as BA and WA are same.
+    if(region_data.code == region_perth_1){
+      region_data_code = region_perth;
+      region_data_name = 'Western Australia';
+    }
+    saveRegionToLocalstorage(region_data_code, region_data_name);
+    //-- productPageOnLoad(region_data_code); 
+   // if(region_data.showroom)
+    updateCollectionPageURL(region_data_code);
+    updateMenuUrl(region_data_code);
+
+    if (
+      document.querySelector("body").classList.contains("index-template") || 
+      document.querySelector("body").classList.contains("collection-template") ||
+      document.querySelector("body").classList.contains("page.showroom-landing-page") || 
+      document.querySelector("body").classList.contains("article.shop-by-rooms") || 
+      document.querySelector("body").classList.contains("page.furniture_for_landing_pages")
+    ) {
+      toggleFeatureCollection(region_data);
+    }
+
+    
+}
+
+
+
+  // 'geotargetly_loaded' GEO Location app default function that waits for data to become available
+
+  function geotargetly_loaded(){  
+        var region_code = geotargetly_region_code();
+        var region_name = geotargetly_region_name();
+
+        // BA is considered as WA just for testing. if region code is 'BA' from localstorage. 
+        // The variable value of 'BA' will be replaced by 'WA'. It will treated as BA and WA are same.
+        //console.log(region_code);
+
+        // Despite BA and WA are made equal, data needs to be saved real one in local storage. 
+        // Hence, this live moved above "region_code = region_perth"
+        
+
+        if(region_code && region_code == region_perth_1){
+          region_code = region_perth;
+          region_name = 'Western Australia';
+        }
+
+        if(!region_data)saveRegionToLocalstorage(region_code, region_name);
+        //-- if(!region_data)productPageOnLoad(region_code);
+        if(!region_data)updateCollectionPageURL(region_code);
+        if(!region_data)updateMenuUrl(region_code);
+        // Run productPageOnLoad function only if localstorage isn't present
+      }
+
+      
+    
+    
+
+    function reInitGeolocation(){
+      let j = 0;
+      var local_region_data = JSON.parse(localStorage.getItem('region'));
+      var local_region = (local_region_data)?local_region_data.code:null;
+      
+     const myInterval = setInterval(function () {
+        if(local_region == null){
+          j++;
+           //console.log(`Attempt ${j}: region is still null - ${region}`);
+        }else{
+          clearInterval(myInterval);
+          //console.log("Stopping interval. 1");
+        }
+        if(j >= 15 && region == null){
+            geotargetly_loaded();
+            clearInterval(myInterval);
+            //console.log("Stopping interval. 2");
+        }
+         local_region_data = JSON.parse(localStorage.getItem('region'));
+         local_region = (local_region_data)?local_region_data.code:null;
+        
+      }, 500);
+    }
+
+   reInitGeolocation()
+
+// var dropdownHolder = document.getElementById("region_list")
+// var region_items = dropdownHolder.querySelectorAll('li');
+// for(let i = 0; i<region_items.length; i++){
+//   region_items[i].addEventListener('click', function(){
+//     let region_code = this.getAttribute('data-region');
+//         updateCollectionPageURL(region_code);
+//         saveRegionToLocalstorage(region_code);
+//         updateMenuUrl(region_code);
+//         productPageOnLoad(region_code);
+//   })
+// }
+
+
+
+
+
+/*
+- feb 11 this has been commented because this funtion did not work on quick add popup on collection page.
+
+function productPageOnLoad(region_code){
+   let region_data_Code;
+  if(document.querySelector('.product-template')){
+    if(localStorage.getItem('region')){
+        let region_data = JSON.parse(localStorage.getItem('region'));
+         region_data_Code = region_data.code;
+    }else{
+         region_data_Code = region_code;
+    }
+    
+      if(region_data_Code != 'WA' ){
+          region_data_Code = 'NSW';
+      }
+     const onLoadData = document.getElementById('page-load-info');
+     let items = onLoadData.querySelectorAll('.item');
+
+     let isLocationFound = false;
+    if(items.length > 0){
+        // if location wise stocks are managed in shopify
+        for(let i=0; i<items.length; i++){
+          if(items[i].querySelector('.onloadLocationCode').innerText == region_data_Code){
+            isLocationFound = true;
+            //console.log(items[i].querySelector('.onloadavailable').innerText);
+            document.querySelector('.product-form .product-form__buttons').classList.remove('loading');
+            if(items[i].querySelector('.onloadavailable').innerText == 'true'){
+            document.querySelector('.product-form .product-form__buttons').classList.add('buynow-show');
+            }else{
+              document.querySelector('.product-form .product-form__buttons').classList.add('preorder-show');
+            }
+            break;
+          }
+        }
+    }
+      // if location wise stocks are not managed in shopify
+
+     if(items.length < 1 ){
+      document.querySelector('.product-form .product-form__buttons').classList.remove('loading');
+      document.querySelector('.product-form .product-form__buttons').classList.add('buynow-show');
+      document.querySelector('.product-form .product-form__buttons').classList.remove('preorder-show');
+      return;
+     }
+      // when the user location is 'wa' but the product stock is not set for 'wa'
+      // this means this product is just for NSW not for WA. so it is set to 'back-order'
+     if(items.length > 0 && isLocationFound == false){
+      document.querySelector('.product-form .product-form__buttons').classList.remove('loading');
+      document.querySelector('.product-form .product-form__buttons').classList.add('preorder-show');
+      document.querySelector('.product-form .product-form__buttons').classList.remove('buynow-show');
+      return;
+     }
+     
+
+  }
+}
+
+*/
+
+
+
+// Received 'region_code' as parameter from Geo app.
+function saveRegionToLocalstorage(region_code, region_name){
+    let region_data = JSON.parse(localStorage.getItem('region'));
+    let region = (region_data)?region_data.code:null;
+    // get region from localstorage
+    // If region not found on localstorage, get it from geo app and save it localstorage
+    if(region){
+        document.getElementById('current_region').innerHTML = region;
+        if(document.getElementById('mobile-header-current-location')){
+          document.getElementById('mobile-header-current-location').innerHTML = region;
+        }
+        
+        document.querySelector('.region-dropdown').classList.add('region-loaded');
+        productPageLocationSection(region_code, region_name);
+        //document.querySelector('#region_list li[data-region="'+region+'"].active').classList.remove('active');
+        if(document.querySelector('#region_list li[data-region="'+region+'"]')){
+            document.querySelector('#region_list li[data-region="'+region+'"]').classList.add('active');
+            document.querySelector('#modal_region_list li[data-region="'+region+'"]').classList.add('active');
+        }
+    }
+    if(!region){
+            if(!region_code){
+                return;
+            }
+                region = region_code;
+                if(region){
+                    let region_data = {
+                        'code':region_code,
+                        'name':region_name,
+                        'source':'geo-app'
+                    }
+                    localStorage.setItem('region', JSON.stringify(region_data));
+                    document.getElementById('current_region').innerHTML = region;
+                    if(document.getElementById('mobile-header-current-location')){
+                      document.getElementById('mobile-header-current-location').innerHTML = region;
+                    }
+                    productPageLocationSection(region_code, region_name);
+                    //document.querySelector('#region_list li[data-region="'+region+'"].active').classList.remove('active');
+                    if(document.querySelector('#region_list li[data-region="'+region+'"]')){
+                      document.querySelector('#region_list li[data-region="'+region+'"]').classList.add('active');
+                    }
+                    document.querySelector('.region-dropdown').classList.add('region-loaded');
+                }
+        }
+        if(region_code == 'ACT' || region_code == 'NSW' || region_code == 'NT' || region_code == 'QLD' || region_code == 'SA' || region_code == 'TAS' ||  region_code == 'VIC' || region_code == 'WA'  ){
+          document.querySelector('body').setAttribute('data-location',region_code);
+        }else{
+          document.querySelector('body').setAttribute('data-location','other');
+        }
+        
+}
+
+function productPageLocationSection(region_code, region_name){
+  if(document.getElementById('main-prod-location-name')){
+    document.getElementById('main-prod-location-name').innerHTML = region_name;
+  }
+}
+
+if(document.getElementById('main-prod-change-location')){
+  const changeLocationBtn = document.getElementById('main-prod-change-location');
+  changeLocationBtn.addEventListener('click',function(){
+    document.querySelector('body').classList.add('change-location-ready');
+    document.querySelector('body').classList.add('change-location-open');
+  })
+
+  const siteOverlay = document.getElementById('site-overlay');
+    siteOverlay.addEventListener('click',function(){
+    document.querySelector('body').classList.remove('change-location-open');
+    setTimeout(function(){
+        document.querySelector('body').classList.remove('change-location-ready');
+    },500);
+  })
+  // 3/19/2026 
+  // duplicate id issue "region_list_close" so i've commented html from snippets\perth-location-header-dropdown.liquid and theme.liquid and js below:
+  //   const region_list_close = document.getElementById('region_list_close');
+  //   region_list_close.addEventListener('click',function(){
+  //     console.log("clicked a---------------------------------------");
+  //   document.querySelector('body').classList.remove('change-location-open');
+  //   setTimeout(function(){
+  //       document.querySelector('body').classList.remove('change-location-ready');
+  //   },500);
+  // })
+
+}
+
+
+
+    // update localstorage region as per selected region from dropdown
+  function changeRegion(region_element_id){
+    //const regionHolder = document.getElementById('region_list');
+    const regionHolder = document.getElementById(region_element_id);
+    let regions = regionHolder.querySelectorAll('li');
+    for(let i = 0; i<regions.length; i++){
+        regions[i].addEventListener('click',function(){
+
+         
+
+
+          //let region = regions[i].getAttribute('data-region');
+          let region_data = {
+            'code':regions[i].getAttribute('data-region'),
+            'name':regions[i].getAttribute('data-region-name'),
+            'source':'dropdown-menu'
+          }
+
+          localStorage.setItem('region', JSON.stringify(region_data));
+          document.querySelector('body').setAttribute('data-location',regions[i].getAttribute('data-region'));
+          //document.getElementById('current_region').innerHTML = regions[i].innerText;
+          document.getElementById('current_region').innerHTML = regions[i].getAttribute('data-region');
+          if(document.getElementById('mobile-header-current-location')){
+            document.getElementById('mobile-header-current-location').innerHTML = regions[i].getAttribute('data-region');
+          }
+          // if(document.querySelector('#region_list li[data-region="'+region+'"]')){
+          //     document.querySelector('#region_list li[data-region="'+region+'"]').classList.add('active');
+          // }
+
+          
+
+          //active class
+          for(let x = 0; x<regions.length; x++){
+              regions[x].classList.remove('active');
+            }
+            regions[i].classList.add('active');
+
+            document.querySelector('.region-dropdown').classList.add('region-loaded');
+            if(!document.querySelector('body').classList.contains('product-template')){
+              document.querySelector('.region-dropdown').classList.add('region-loading-complete');
+                setTimeout(function(){
+                  document.querySelector('.region-dropdown').classList.remove('region-loading-complete');
+                  document.getElementById('ModalClose-modal_change_location').click();
+                  
+                },500);
+              }
+          
+          
+            let region_data_code = region_data.code;
+            // BA is considered as WA just for testing. if region code is 'BA' from localstorage. 
+            // The variable value of 'BA' will be replaced by 'WA'. It will treated as BA and WA are same.
+            if(region_data.code == region_perth_1){
+                region_data_code = region_perth;
+            }
+
+
+
+
+          updateMenuUrl(region_data_code);
+          updateCollectionPageURL(region_data_code);
+
+         //remove_showroom_from_url;
+
+         let updateUrl;
+         if(region_data.code == 'WA'){
+             updateUrl = remove_showroom_from_url('perth');
+          }else{
+            updateUrl =  remove_showroom_from_url()
+          }
+            console.log('updateUrl1', updateUrl);
+          if(updateUrl){
+            console.log('updateUrl2', updateUrl);
+            window.location.replace(updateUrl);
+          }
+          
+          // reload the product page
+          if(document.querySelector('body').classList.contains('product-template')){
+            window.location.reload();
+          }
+
+          if (
+            document.querySelector("body").classList.contains("index-template") || 
+            document.querySelector("body").classList.contains("collection-template") || 
+            document.querySelector("body").classList.contains("page.showroom-landing-page") || 
+            document.querySelector("body").classList.contains("article.shop-by-rooms") || 
+            document.querySelector("body").classList.contains("page.furniture_for_landing_pages")
+          ) {
+            toggleFeatureCollection(region_data);
+          }
+
+
+      });
+    }
+  }
+  changeRegion('region_list');
+  changeRegion('modal_region_list');
+    /* =======================================
+  localstorage End 
+  =======================================
+  Menu Start 
+  ======================================= */
+  
+  function updateMenuUrl(region){
+        //const region_wa = 'NSW';
+        const region_wa = region_perth;
+        let currentURL = window.location.pathname.replace(/\/perth$|\+perth$/, '');
+
+        let data_attribute;
+            // if region is WA (Western Australia) update url, else normal state even if it out of Australia
+            (region == region_wa)?data_attribute = 'data-wa':data_attribute = 'data-nsw';
+
+            //let menuLinks = document.querySelectorAll('.header-main-menu a');
+            let menuLinks = document.querySelectorAll('a[data-js_updatemenuurl]');
+            menuLinks.forEach((element, index) => {
+                let regionURL = element.getAttribute(data_attribute);
+                element.setAttribute('href',regionURL);
+
+                let nonRegionURL = new URL(regionURL, window.location.origin).pathname.replace(/\/perth$|\+perth$/, '');
+        
+                if (currentURL === nonRegionURL) {
+                    element.closest('li').classList.add('childmenu-item--active');
+                }
+            }); 
+  }
+  
+  // document.addEventListener("DOMContentLoaded", (event) => {
+  //     updateMenuUrl(region);
+  // });
+
+  /* =======================================
+  Menu END
+  ======================================= */
+  /* ======================
+  page redirect start
+  ========================= */
+ function remove_showroom_from_url(showroom){
+  console.log('fn:remove_showroom_from_url', showroom);
+ // if(document.getElementById('showroom-locations')){
+  if(document.querySelector('body').classList.contains('collection')){
+    const showroom_list_container = document.getElementById('showroom-locations');
+    //let showroom_items = showroom_list_container.querySelectorAll('li[data-location]');
+
+    let showroom_items = ['sydney','melbourne','brisbane','adelaide','canberra','perth'];
+
+    let windowUrl = window.location.href;   
+    for(let i = 0; i<showroom_items.length; i++){
+      //let showroom_name = showroom_items[i].getAttribute('data-location');
+      let showroom_name = showroom_items[i];
+      console.log('showroom_name', showroom_name);
+        if(windowUrl.indexOf(showroom_name)>-1){
+          let url = new URL(windowUrl);
+          let pathname;
+          if(showroom){
+             pathname = url.pathname.replace('/'+showroom_name,'/'+showroom).replace('+'+showroom_name,'+'+showroom);
+          }else{
+             pathname = url.pathname.replace('/'+showroom_name,'').replace('+'+showroom_name,'');
+          }
+          let updatedUrl = `${url.origin}${pathname}${url.search}`;
+          return updatedUrl;
+        }
+    }
+  }
+ }
+
+ 
+/* NOTE::
+ 1. Two location should be present at a same time in the URL. 
+    eg. incorrect https://www.jasonl.com.au/collections/office-desks/sydney+perth
+        correct https://www.jasonl.com.au/collections/office-desks/sydney or https://www.jasonl.com.au/collections/office-desks/perth
+*/
+  
+function updateCollectionPageURL(region){
+  //var isCurrentTag = false;
+  //let urlRegion = '/perth';
+  // 'region_url_filter' is global variable is set to 'wa'
+  // let urlRegion = '/'+region_url_filter;
+
+
+
+// donot update collection page URL if location filter "Perth" is selected
+//   if(region.showroom){
+//   if(region.name != 'WA' && region.showroom.name == 'Perth'){
+//     return;
+//   }
+// }
+if(!region){
+  return;
+}
+
+// block update/redirection of Collection page to Perth URL
+
+if(region_data && region_data.showroom != null ){
+  if(region_data.showroom.name){
+   return;
+  }
+}
+
+
+
+// --------------------
+
+
+
+
+
+  
+
+
+  // --------
+  let urlQueryString = '';
+  let urlRegion = document.getElementById('current_region').getAttribute('data-urlregion');
+
+  let isCollectionTemplate = false;
+  if(document.querySelector('body').classList.contains('collection')){
+      isCollectionTemplate = true;
+  };
+    console.log('isCollectionTemplate', isCollectionTemplate);
+  if(!region || !isCollectionTemplate ){
+    console.log('Either this is not collection template or no region detected.')
+    return;
+  }
+  
+  let currentPageURL = window.location.href;
+  const urlParams = new URLSearchParams(window.location.search);
+        // split URL and Query string
+        if(urlParams.size > 0){
+            currentPageURLSplit = currentPageURL.split('?');
+            currentPageURL = currentPageURLSplit[0];
+            urlQueryString = '?'+currentPageURLSplit[1];
+        }
+
+        let redirectPageURL;
+        //if(region == 'WA'){
+        if(region == region_perth){
+          
+            // region_url_filter is set to 'wa' as global variable
+            // do nothing if the URL already contain '/wa' or '+wa' on the URL-old -removed
+            // Get all locations from the showroom locations list
+            // const showroomLocations = document.querySelectorAll('#showroom-locations li[data-location]');
+            // let locationNames = Array.from(showroomLocations).map(item => item.getAttribute('data-location'));
+
+            let locationNames = ['sydney','melbourne','brisbane','adelaide','canberra','perth'];
+            
+            // Check if any location is in the URL
+            let locationFound = false;
+            for (let location of locationNames) {
+                if (currentPageURL.includes(location)) {
+                    locationFound = true;
+                    break;
+                }
+            }
+            
+            if(locationFound){
+                return;
+            }
+          
+            redirectPageURL = currentPageURL+urlRegion+urlQueryString;
+            window.location.replace(redirectPageURL);
+            
+        }else{
+            // if the user location is not WA (perth), then update the page url that doesnot contains '/wa' or '+wa' on the URL 
+          
+            // region_url_filter is set to 'wa' as global variable
+            // do nothing if the URL does not contain '/wa' or '+wa' on the URL -old -removed
+            // Get all locations from the showroom locations list
+            const showroomLocations = document.querySelectorAll('#showroom-locations li[data-location]');
+            const locationNames = Array.from(showroomLocations).map(item => item.getAttribute('data-location'));
+            
+            // Check if any location is in the URL
+            let locationFound = false;
+            for (let location of locationNames) {
+                if (currentPageURL.includes(location)) {
+                    locationFound = true;
+                    break;
+                }
+            }
+            
+            if(!locationFound){
+                return;
+            }
+          
+            let currentPageURLWithoutRegion;
+            {% comment %}
+            // if(document.querySelector('.header-main-menu .menu-item--active')){
+            //    currentPageURLWithoutRegion = document.querySelector('.header-main-menu .menu-item--active a').getAttribute('data-nsw');
+            // }else{
+            // }
+            {% endcomment %}
+                // when the URL contains '+wa', shopify's linkActive class get removed. 
+                // To indentify active NSW url, loop through the all the links in Nav
+                // Get NSW page URL
+              {% comment %}
+            /*
+            // ------------------------------------
+            // commented on Tue 1 Apr 2025
+            // the link on collection sidebar should have location if locations are active
+            // ISSUE: when perth is selected, it redirected to NSW URL
+            // So commented below logic
+            // -------------------------------------
+              let navUrls = document.querySelectorAll('nav.header-nav .header-main-menu a');
+              for(let i = 0; i<navUrls.length; i++){
+                let waUrl = navUrls[i].getAttribute('data-wa');
+                if(currentPageURL == 'https://'+window.location.host+waUrl){
+                  currentPageURLWithoutRegion = navUrls[i].getAttribute('data-nsw');
+                  break; 
+                }
+              }
+            redirectPageURL = currentPageURLWithoutRegion+urlQueryString;
+            console.log('redirect 2');
+            console.log(redirectPageURL);
+            return;
+            window.location.replace(redirectPageURL);
+            // --------------------------------------
+           */ 
+            {% endcomment %}
+        }
+}
+  // document.addEventListener("DOMContentLoaded", (event) => {
+  // updateCollectionPageURL(region);
+  // })
+  /* ======================
+  page redirect end
+  ========================= */
+
+
+  /* ==========
+  Collection page: location showroom click on Perth 
+  ============= */
+function set_showroom_perth_to_localstorage(url, clickedShowroomLocation){
+  //let perth_element = document.querySelector('.location-collection-nav li[data-location="perth"]');
+  let storedRegion = localStorage.getItem('region');
+  if(storedRegion){
+    let obj = JSON.parse(storedRegion);
+    //console.log(`obj: ${obj.code} -- showroom: ${clickedShowroomLocation}`);
+    if(obj.code == 'WA' && clickedShowroomLocation == 'perth'){
+      remove_showroom_data_from_localstorage(true);
+      //# 18jun return ; // do nothing if user region is Perth
+    } 
+      obj.showroom = {
+            name: clickedShowroomLocation,
+            url: url
+        };
+        let updatedObject = JSON.stringify(obj);
+        localStorage.setItem('region', updatedObject);
+        console.log(updatedObject);
+  }else{
+    console.log('no region found');
+  }
+}
+
+
+//if(document.querySelector('.location-collection-nav li[data-location="perth"]')){
+if(document.querySelector('.location-collection-nav li[data-location]')){
+  const ele = document.querySelectorAll('.location-collection-nav li[data-location]');
+  for(let i=0; i<ele.length; i++){
+    ele[i].addEventListener('click', function(){
+      let url = this.querySelector('a').getAttribute('href');
+      let clickedShowroomLocation = this.getAttribute('data-location');
+      set_showroom_perth_to_localstorage(url,clickedShowroomLocation);
+      getLocationFilterData();
+    })
+  } 
+}
+
+// collection page: remove localstorage data for region.showroom to null 
+// region.showroom is required just to block collection page redirection to perth URL when filtered from showroom location 
+function remove_showroom_data_from_localstorage(force_remove = false ){
+  let storedRegion = localStorage.getItem('region');
+  if(storedRegion){
+    let obj = JSON.parse(storedRegion);
+    //TODO: create theme setting for let showrooms below
+    let showrooms = ['Sydney','Melbourne','Brisbane','Adelaide','Canberra','Perth','Australia-wide'];
+        // Exclude Perth from above array. Above array could be dynamic in future, so below line required in order to minimize modifications in future.
+         showrooms = showrooms.filter(city => city !== 'Perth');
+
+    let windowURL = window.location.href;
+    
+    let foundShowroom = showrooms.find(city => windowURL.toLowerCase().includes(city.toLowerCase()));
+   //let foundShowroom = showrooms.find(city => windowURL.toLowerCase().includes('sydney'));
+    let is_foundShowroom = !!foundShowroom; // This will be true if foundShowroom is not null or undefined
+
+    if(obj.showroom == null){
+      if(is_foundShowroom ){
+        // when direct url with location get accessed 
+        set_showroom_perth_to_localstorage(window.location.pathname, foundShowroom.toLowerCase());
+      }
+      return ;
+    } 
+    let do_showroom_null = false; 
+    //if(obj.showroom.name != '' && window.location.href != 'https://'+window.location.host+obj.showroom.url){
+    if(obj.showroom.name != '' && is_foundShowroom != true  && obj.showroom.name != 'australia-wide'){
+      do_showroom_null = true; 
+    }
+    if(force_remove == true ){
+      do_showroom_null = true;
+    }
+    if(obj.showroom.name == 'australia-wide' && (windowURL.toLowerCase().includes('perth') || window.location.pathname != obj.showroom.url )){
+      do_showroom_null = true;
+    }
+    if(do_showroom_null == true){
+      obj.showroom = null;
+      let updatedObject = JSON.stringify(obj);
+      localStorage.setItem('region', updatedObject);
+    }          
+  }
+}
+
+  remove_showroom_data_from_localstorage();
+
+/*
+--------------
+product page 
+show sku : click
+show location wise stock
+--------------
+*/
+function showsku_stocks(){
+  var pid = "{{product.id}}";
+  const showsku_btn = document.querySelectorAll('.showsku');
+  for(let i=0; i<showsku_btn.length; i++){
+    showsku_btn[i].querySelector('modal-opener').addEventListener('click', function(){
+      //alert(this.getAttribute('data-productid'));
+      let pid = this.getAttribute('data-productid');
+        fetch("https://poptopdesk.com/location/Quantity", {
+        method: "POST",
+        body: "8055417340163",
+        headers: {
+        'Content-Type': 'text/plain'
+        },
+      })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+    })
+  }
+}
+//showsku_stocks();
+
+
+function get_locations_qty(element, prod_id){ 
+     // fetch("https://poptopdesk.com/location/Quantity", {
+      fetch("https://prnt.jasonl.com.au/location/Quantity", {
+        method: "POST",
+        body: prod_id,
+        headers: {
+        'Content-Type': 'text/plain'
+        },
+      })
+      .then((response) => response.json())
+      .then((json) => {
+        element.classList.add('location_qty_loaded');
+        create_html_show_skus(json);
+        console.log(json);
+        return json;
+      }); 
+}
+
+window.addEventListener('DOMContentLoaded',function () {
+const showsku_btn = document.querySelectorAll('.showsku');
+for(let i=0; i<showsku_btn.length; i++){
+  showsku_btn[i].querySelector('modal-opener').addEventListener('click', function(){
+    if(!showsku_btn[i].classList.contains('location_qty_loaded')){
+      let prod_id = this.getAttribute('data-productid');
+      get_locations_qty(showsku_btn[i], prod_id);
+    }
+  })
+}
+});
+
+// data = ajax response, all variant date like variant id, sku, qty, location
+// Loop through the ajax data to create html
+// Show just data from active/current location
+// TODO:: Note: CHANGE LOCATION ID WHEN MOVING TO LIVE
+
+function create_html_show_skus(data){
+  let activeVariant = document.querySelector('.showsku[data-variant-id]').getAttribute('data-variant-id'),
+    items = '',
+    show = '',
+    variant_id,
+    location_id, 
+    variant_sku, 
+    variant_quantity, 
+    location_code,
+    userLocationCode = "nsw";  
+      for(let i = 0; i<data.length; i++){  
+        variant_id = data[i].variant_id;
+        location_id = data[i].location_id;
+        //(location_id == '37037080653')?location_code = 'wa':location_code = 'nsw';
+        (location_id == '98769961248')?location_code = 'wa':location_code = 'nsw';
+        variant_sku = data[i].sku;
+        variant_quantities = data[i].quantities;
+    
+        if(variant_quantities > 100){
+          variant_quantities = 100
+        }
+        (variant_id == activeVariant)?show="show":show='';
+        items += `<li class="item-${location_code} ${show}" data-variant-item="${variant_id}">`;
+        // if(location_code != 'wa'){
+        //    items += `<div class="item item--sku"><strong>SKU:</strong>${variant_sku}</div>`;
+        //   }
+        items += `<div class="item item--quantity item--${location_code}"><strong><span style="text-transform:uppercase">${location_code}</span> Qty</strong>${variant_quantities}</div></li>`;
+      
+    }
+
+  
+  document.getElementById("locations-sku-quantity").innerHTML = items;
+}
+
+
+// showroom selected from sidebar filter section
+// newest product should be as per sidebar filter
+// when showroom accept Perth is selected, newest should be from NSW
+function getLocationFilterData(){
+  if(document.getElementById('showroom-locations')){
+      const showroom_location_holder = document.getElementById('showroom-locations');
+      let locations = showroom_location_holder.querySelectorAll('li[data-location]');
+      let current_url = window.location.href;
+      for(let i=0; i<locations.length;i++){
+        let dataLocation = locations[i].getAttribute('data-location');
+        
+        if(dataLocation != 'perth' && dataLocation != 'australia-wide'){
+          if(current_url.indexOf(dataLocation) > -1){
+            document.querySelector('body').setAttribute('data-is_active_showroom_filter','true');
+          }
+        }
+      }
+  }
+}
+getLocationFilterData();
+
+
+
+
+
+
+{% comment %}
+
+// <!-- GeoTargetly testing -->
+document.addEventListener("DOMContentLoaded", (event) => {
+setTimeout(function(){
+  geotargetly_loaded(); // gets called when data is available
+},1000)
+  })
+//----------------Example-------------
+function geotargetly_loaded(){
+//var country_name = geotargetly_country_name();
+//if (country_name == "Australia"){
+    //do something
+    console.log('tester');
+    console.log(geotargetly_region_name());
+    console.log(geotargetly_city_name());
+    console.log(geotargetly_region_code());
+//}
+}
+
+{% endcomment %}
+
+function toggleFeatureCollection(region_data){
+  const perthProducts = document.querySelectorAll(".perth-products");
+  const allProducts = document.querySelectorAll(".all-products");
+  if(region_data.code == 'WA'){
+    allProducts.forEach(product => product.classList.add("hidden"));
+    perthProducts.forEach(product => product.classList.remove("hidden"));
+ }else{
+   allProducts.forEach(product => product.classList.remove("hidden"));
+   perthProducts.forEach(product => product.classList.add("hidden"));
+ }
+}

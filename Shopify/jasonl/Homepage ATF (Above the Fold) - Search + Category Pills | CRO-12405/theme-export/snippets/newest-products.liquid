@@ -1,0 +1,128 @@
+{%- comment -%}
+{{ 'newest-products.css' | asset_url | stylesheet_tag }}
+{%- endcomment -%}
+{% assign count = 1 %}
+{%- for ctag in current_tags -%}
+	{% if count == 1 %}
+		{%-assign subchildHandle = ctag -%}
+		{%-assign firstchild = ctag -%}
+		{% assign datavalue1= subchildHandle | downcase %}
+		{% assign datavalue= datavalue1 | replace: " ","" %}
+		{% assign datavalue= datavalue | slice: 0, 24 %}
+		{% assign products= datavalue | append: "_p" %}
+				{% if shop.metafields.tagproducts[products] %}
+					{% break %}
+				{% endif %}
+	{% endif %}
+		{%-assign subchildHandle = ctag -%}
+		{% assign datavalue1= subchildHandle | downcase %}
+		{% assign datavalue= datavalue1 | replace: " ","" %}
+		{% assign datavalue= datavalue | slice: 0, 24 %}
+		{% assign products= datavalue | append: "_p" %}
+	{% if shop.metafields.tagproducts[products] %}
+		{% break %}
+	{% else %}
+		{%-assign subchildHandle = firstchild -%}
+	{% endif %}
+	{% assign count = count | plus: 1 %}
+{%- endfor -%}
+
+
+{%- for ctag in current_tags -%}
+	{%- if collections[ctag].title-%}
+		{%-assign subchildHandle = ctag -%}
+		{%-break-%}
+	{%-endif-%}
+{%- endfor -%}
+
+{%- assign namespace_cat = 'popular_products' -%}
+{%- assign key_cat = 'bestselling_newest' -%}
+
+{%- if current_tags -%}
+	{%- assign instruction_cat = collections[subchildHandle].metafields[namespace_cat] -%}
+
+	{% assign datavalue1= subchildHandle | downcase %}
+	{% assign datavalue= datavalue1 | replace: " ","" %}
+	{% assign datavalue= datavalue | slice: 0, 24 %}
+
+	{% assign products= datavalue | append: "_p" %}
+
+	{% assign title_meta= datavalue | append: "_t" %}
+	{% assign description_meta= datavalue | append: "_d" %}
+
+
+	{% assign value_cat= shop.metafields.tagproducts[products] %}
+	{% if value_cat %}
+		{%- assign metaproducts = value_cat | split:','-%}
+	{% else %}
+		{%- assign instruction_cat = collection.metafields[namespace_cat] -%}
+		{%- assign value_cat = instruction_cat[key_cat] -%}
+		{%- assign metaproducts = value_cat | split:'|'-%}
+	{% endif %}
+{%-else-%}
+	{%- assign instruction_cat = collection.metafields[namespace_cat] -%}
+	{%- assign value_cat = instruction_cat[key_cat] -%}
+	{%- assign metaproducts = value_cat | split:'|'-%}
+{%-endif-%}
+
+
+<!-- ============================== -->
+
+{%-assign totalMeta = metaproducts|size-%}
+	{%- if totalMeta > 0-%}
+
+	{%- assign x = 0 -%}
+	{% assign productsinpopular = "" %}
+	{% assign skip_card_product_styles = true %}
+		{%- for prodhandle in metaproducts -%}
+			{%-assign product = all_products[prodhandle]-%}
+			
+			{%- if product !=blank -%}
+				{%- unless current_tags contains "contact-to-purchase" or current_tags contains "shipping-speed-nostock"-%}
+				<li class="grid__item popular-item newest-item-nsw">
+					{% assign productsinpopular = productsinpopular | append:',' | append: product.handle %}
+				 {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    lazy_load: false,
+                    skip_styles: skip_card_product_styles,
+                    quick_add: section.settings.quick_add,
+                    section_id: section.id,
+                    new_tag:true
+                  %}
+					
+				</li>
+		{%-endunless-%}
+{%-endif-%}
+{%- assign x= x | plus:1 -%}
+{%- endfor -%}
+
+{%-endif-%}
+
+{%- render 'newest-products-wa' -%}
+
+<style>
+	body.hide-new-tag-products .newest-item-nsw, body.hide-new-tag-products .newest-item-wa{
+		display: none !important;
+	}
+</style>
+<script>
+function removeNewTagProducts(){
+	//console.log('Feature: hide new tagged products.')
+	// included same functionality facets.js
+	const urlParams = new URLSearchParams(window.location.search);
+	for (const param of urlParams.keys()) {
+		if (param.startsWith('filter.')) {
+			document.querySelector('body').classList.add('hide-new-tag-products');
+		}else{
+			document.querySelector('body').classList.remove('hide-new-tag-products');
+		}
+	}
+}
+removeNewTagProducts();	
+	
+</script>

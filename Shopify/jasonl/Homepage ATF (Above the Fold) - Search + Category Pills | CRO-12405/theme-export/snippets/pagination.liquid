@@ -1,0 +1,91 @@
+{% comment %}
+  Renders a set of links for paginated results. Must be used within paginate tags.
+
+  Usage:
+  {% paginate results by 2 %}
+    {% render 'pagination', paginate: paginate, anchor: '#yourID' %}
+  {% endpaginate %}
+
+  Accepts:
+  - paginate: {Object}
+  - anchor: {String} (optional) This can be added so that on page reload it takes you to wherever you've placed your anchor tag.
+{% endcomment %}
+
+{{ 'component-pagination.css' | asset_url | stylesheet_tag }}
+
+{%- if paginate.parts.size > 0 -%}
+  <div class="pagination-wrapper">
+    <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+      <ul class="pagination__list list-unstyled" role="list">
+        {%- if paginate.previous -%}
+          {% comment %} check for the previous page contains ?page=1 is contains remove the ?page=1 {% endcomment %}
+          {% assign prev_url = paginate.previous.url %}
+
+          {% if prev_url contains '?page=1' and current_page == 2 and template.name == 'collection' %}
+            {% assign prev_url = prev_url | split: '?page=1' | first %}
+          {% endif %}
+          
+          <li>
+            <a
+              href="{{ prev_url }}{{ anchor }}"
+              class="pagination__item pagination__item--next pagination__item-arrow link motion-reduce"
+              aria-label="{{ 'general.pagination.previous' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'arrow-left.svg' | inline_asset_content -}}
+              </span>
+            </a>
+          </li>
+        {%- endif -%}
+
+
+        {%- for part in paginate.parts -%}
+          <li>
+            {%- if part.is_link -%}
+              {% comment %} check for the part url link contains ?page=1 is contains remove the ?page=1 {% endcomment %}
+              {% assign parturl = part.url %}
+              {% if parturl contains '?page=1' and template.name == 'collection' and part.title == 1 %}
+                {% assign parturl = parturl | split: '?page=1' | first %}
+              {% endif %}
+              <a
+                href="{{ parturl }}{{ anchor }}"
+                class="pagination__item link"
+                aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+              >
+                {{- part.title -}}
+              </a>
+            {%- else -%}
+              {%- if part.title == paginate.current_page -%}
+                <a
+                  role="link"
+                  aria-disabled="true"
+                  class="pagination__item pagination__item--current light"
+                  aria-current="page"
+                  aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                >
+                  {{- part.title -}}
+                </a>
+              {%- else -%}
+                <span class="pagination__item">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+
+        {%- if paginate.next -%}
+          <li>
+            <a
+              href="{{ paginate.next.url }}{{ anchor }}"
+              class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce"
+              aria-label="{{ 'general.pagination.next' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'arrow-right.svg' | inline_asset_content -}}
+              </span>
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </nav>
+  </div>
+{%- endif -%}

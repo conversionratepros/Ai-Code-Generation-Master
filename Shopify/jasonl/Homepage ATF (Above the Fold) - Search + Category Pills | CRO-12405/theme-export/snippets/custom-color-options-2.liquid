@@ -1,0 +1,157 @@
+{%- comment -%}
+INSTRUCTION:
+------------------------------------------------------
+main-collection-product-grid.liquid
+            {{ 'custom-color-option.css' | asset_url | stylesheet_tag }}
+            <script src="{{ 'custom-color-option.js' | asset_url }}" defer="defer"></script>
+product-card.liquid 
+        {% render 'custom-color-options-2', product_card_product:product_card_product  %}
+        {%- if template == 'collection' -%}
+            <div class="loader color-option-loader"></div>
+        {%- endif -%}
+custom-color-options-2.liquid 
+            render 'custom-color-option__color-priorities', .....
+            render 'icon-color-wheel
+custom-color-option__color-priorities.liquid
+------------------------------------------------
+{%- endcomment -%}
+
+{%- if template contains 'collection' or template == "search" -%}
+    {% assign color_option_limit = 5 %}
+  {%- comment -%}
+    COLLECTION PRIORITY COLORS{%- endcomment -%}
+  {% assign metaobject_color_priorities = collection.metafields.custom.filter_colors_priorities.value %}
+   
+    {% assign filter_priority_colors = '' %}
+  {% for p_color in metaobject_color_priorities %}
+    {% if forloop.index0 == 0 %}
+      {%- assign filter_priority_colors = p_color.color.value | downcase -%}
+    {% else %}
+      {%- assign filter_priority_colors = filter_priority_colors | append:',' | append: p_color.color.value | downcase -%}
+    {% endif %}
+  {% endfor %}
+    {% assign filter_priority_colors_array = filter_priority_colors | split:',' %}
+    {% assign filter_priority_colors_counter = filter_priority_colors_array.size %}
+  
+  
+  {%- comment -%}-----------------------------------------------------------------{%- endcomment -%}  
+  <div class='color-list-holder {% if filter_priority_colors_counter > 0 %}color-list-holder-prioritised{% endif %}' >
+        <ul class="color-list" data-productid="{{product_card_product.id}}">
+  
+                {%- assign variantColors = '' -%}
+                {%- assign variantColorCounter = 0 -%}
+          {%- assign variantColorCounter_prioritised = 0 -%}
+                {%- for variant in product_card_product.variants -%}
+          
+                   {%- comment -%}  
+                      <!-- variant.metafields.custom.colour = ["black"] or ["black","red"] -->
+                      Get color from variant level metafield
+                  {%- endcomment -%} 
+                    {%- assign variantColor = variant.metafields.custom.colour | remove:'[' | remove:']' | remove : '"' | split:',' -%}
+                    {%- comment -%} {% assign metaVariantColor = variantColor | downcase | escape %} {%- endcomment -%}
+                  {%- assign metaVariantColor = '' -%}
+                    
+                  {%- comment -%} 
+                  <!-- 
+                  - single variant with colour metafield could return multiple value. 
+                  - Grab first one 
+                  -->
+                 {%- endcomment -%} 
+                  {%- for v in  variantColor  -%}
+                      {%- assign metaVariantColor = v | downcase | escape  -%}
+                      {%- unless variantColors contains metaVariantColor -%}
+                             {% comment %} <!-- save each color to this variant 'variantColors' in order to check duplicate color -->{% endcomment %} 
+                             {% assign variantColors = variantColors | append:' '| append: metaVariantColor %}
+                             {% assign variantColorCounter = variantColorCounter | plus: 1 %}
+                             {% comment %} <!-- get color-code from meta-object -->{% endcomment %} 
+                    
+                        {%- for filter in shop.metaobjects.color_filter.values -%}
+                          
+                            {%- assign colorName = filter.color.value | downcase | escape -%}
+                            {%- if colorName == metaVariantColor -%}
+                                            {%- if colorName == 'multi colour' -%}
+                                                  <li class="colorwheel"><a href="{{ variant.url }}">{% render 'icon-color-wheel' %}</a></li>
+                                            {%- else -%}
+                                                  {% comment %}
+                                                    Handles Collection Filter Colors Priorities 
+                                                    - Show some selected color option 
+                                                  {% endcomment %}
+                                            
+                                                  {%- if filter_priority_colors_counter > 0 -%}
+                                                            {%- if filter_priority_colors contains colorName -%}
+                                                                 {%- assign variantColorCounter_prioritised = variantColorCounter_prioritised | plus:1  %}
+                                                            {%- else %}
+                                                                
+                                                            {%- endif -%}
+                                                          {%- render 'custom-color-option__color-priorities',
+                                                                      prioritised_colors:filter_priority_colors,
+                                                                      colorName:colorName,
+                                                                      variant_id:variant.id,
+                                                                      variant_url:variant.url,
+                                                                      variant_img:variant.image,
+                                                                      colorCode : filter.hex_code.value,
+                                                                      variantColors : variantColors,
+                                                                      counter: variantColorCounter_prioritised
+                                                          -%}
+                                                          
+  
+                                                  {%- else -%}
+                                                          <li title="{{ colorName }}" id="option-color-{{ variant.id }}">
+                                                            <a href="{{ variant.url }}" data-visited="false" data-variant_img="{{ variant.image | image_url: width: 740 }}" class="option-color" style="background-color:{{ filter.hex_code.value }}" data="{{ variantColors }}"></a>
+                                                          </li>
+                                                  {%- endif -%}
+                                              {%- endif -%}
+                                    {%- break -%}
+                              {%- endif -%}
+                        {%- endfor -%}
+                       
+                        
+                      {%- endunless -%}
+                    {%- endfor -%}
+                    {%- comment -%} <!-- TODO: set number to theme settings -->{%- endcomment -%} 
+                    {%- if variantColorCounter == color_option_limit and filter_priority_colors_counter < 1  -%}
+                        <li class="color-more" style="order:2"><a href="{{ product_card_product.url }}" title="More colours"></a></li>
+                     {%- break -%}
+                    {%- endif -%}
+                    {%- if filter_priority_colors_counter > 0 -%}
+                      {%- if variantColorCounter_prioritised == color_option_limit -%}
+                          {%- break -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                {%- endfor -%}
+  
+      {%- if filter_priority_colors_counter > 0 and variantColorCounter > color_option_limit -%}
+          <li class="color-more" style="order:2"><a href="{{ product_card_product.url }}" title="More colours"></a></li>
+      {%- endif -%}
+        </ul>
+    {% comment %}
+    <p>variantColorCounter_prioritised: {{ variantColorCounter_prioritised }}</p>
+    <p>variantColorCounter : {{ variantColorCounter }}</p>
+    {% endcomment %}
+      </div>
+      {%- endif -%}
+       {% if filter_priority_colors_counter > 0 %}
+          <style>
+            .color-list-holder-prioritised .color-list[data-productid="{{ product_card_product.id }}"] div.color-normal {
+               display:none
+            }
+            
+            {% assign counter_diff = color_option_limit | minus: variantColorCounter_prioritised  %}
+         
+            {% if counter_diff > 0 %}
+              {% if counter_diff > 1 %}
+                      {% for i in (1..counter_diff) %}
+                         .color-list-holder-prioritised .color-list[data-productid="{{ product_card_product.id }}"] div.color-normal:nth-of-type({{i}}){
+                           display:list-item;
+                          }
+                    {% endfor %}
+              {% else %}
+                 .color-list-holder-prioritised .color-list[data-productid="{{ product_card_product.id }}"] div.color-normal:nth-of-type(1){
+                   display:list-item;
+                  }
+              {% endif %}
+            {% endif %}
+  
+            
+          </style>
+      {% endif %}

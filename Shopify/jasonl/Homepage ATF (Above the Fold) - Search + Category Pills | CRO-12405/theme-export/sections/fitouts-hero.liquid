@@ -1,0 +1,42 @@
+{{ 'fitouts-listing.css' | asset_url | stylesheet_tag }}
+{{ 'fitouts-hero.css' | asset_url | stylesheet_tag }}
+<div class="fitouts-hero page-width">
+  <div class="hero-banner-content-wrapper">
+    <div class="fitouts-hero__content hero-banner__first">
+      <div class="hero-banner__first-holder">
+        <div class="hero-banner__title">
+          <div class="title-wrapper">
+            <h1>Office Fitouts</h1><span>Fast!</span>
+          </div>
+          <span class="icon-holder">
+            {%- render 'i-workstation' -%}
+          </span>
+        </div>
+       
+     <p>With the widest range of stocked commercial-grade office furniture in Australia we deliver quality fitouts fast, nationwide.</p>
+        {%- comment -%}
+        <div class="btn-wrapper">
+        <a href="https://jsnl.typeform.com/to/ZAOYa7qW?utm_source=xxxxx&utm_medium=xxxxx&utm_campaign=xxxxx&utm_keyword=xxxxx#gclid=xxxxx&msclkid=xxxxx&page=xxxxx" 
+           class="button button--primary typeform-share" 
+           data-mode="popup" 
+           data-submit-close-delay="0" 
+           target="_blank">Speak to a consultant</a>
+           {%- endcomment -%}
+           {%- comment -%}
+        {%- assign typeform_text = "Book a free consultation" -%}
+        {% render 'typeform_fitouts', typeform_label: typeform_text %}
+        {%-endcomment-%}
+       {%-comment-%} <a href="#" class="button button--secondary">Watch the JasonL video</a> {%-endcomment-%}
+       {%- comment -%}
+        <a href="{{settings.calendly_url1}}" class="button button--primary" target="_blank">Speak to us today</a>
+        </div>
+        {%- endcomment -%}
+     
+      </div>
+    </div>
+          <picture class="hero-banner__image">
+            <source media="(min-width: 500px)" srcset="{{ 'fitout-banner1.png' | file_img_url: '664x313', crop: 'center' }}">
+          <img src="{{ 'fitout-banner1.png'  | file_img_url: '375x215', crop: 'center' }}"  alt="Office Fitouts Fast!">
+      </picture>
+  </div>
+</div>

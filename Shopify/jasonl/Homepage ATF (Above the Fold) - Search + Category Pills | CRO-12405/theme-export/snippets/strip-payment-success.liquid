@@ -1,0 +1,26 @@
+{{ 'strip-payment-success.css' | asset_url | stylesheet_tag }}
+{% assign amount = request.query.amount %}
+{% assign email = request.query.email %}
+{% assign name = request.query.name %}
+{% assign company = request.query.company %}
+{% assign order_id = request.query.order_id %}
+
+
+<div class="payment-thankyou-wrap">
+  <div class="page-width">
+    <div class="payment-card"> 
+      <div class="card-header">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37px" height="37px" viewBox="0 0 37 37">
+          <path fill-rule="evenodd"  fill="rgb(193, 215, 46)"d="M31.584,31.584 C28.089,35.079 23.443,37.004 18.500,37.004 C13.557,37.004 8.911,35.079 5.416,31.584 C1.921,28.089 -0.004,23.443 -0.004,18.500 C-0.004,13.557 1.921,8.911 5.416,5.416 C8.911,1.921 13.557,-0.004 18.500,-0.004 C23.443,-0.004 28.089,1.921 31.584,5.416 C35.079,8.911 37.004,13.557 37.004,18.500 C37.004,23.443 35.079,28.089 31.584,31.584 ZM18.500,2.970 C9.937,2.970 2.970,9.937 2.970,18.500 C2.970,27.063 9.937,34.030 18.500,34.030 C27.063,34.030 34.030,27.063 34.030,18.500 C34.030,9.937 27.063,2.970 18.500,2.970 ZM16.664,26.778 C16.083,27.359 15.142,27.359 14.561,26.778 L8.656,20.874 C8.076,20.293 8.076,19.351 8.656,18.771 C9.237,18.190 10.178,18.190 10.759,18.771 L15.612,23.624 L26.884,12.353 C27.174,12.062 27.555,11.917 27.935,11.917 C28.316,11.917 28.696,12.062 28.986,12.353 C29.567,12.933 29.567,13.875 28.986,14.455 L16.664,26.778 Z"/>
+        </svg>
+        <h2 class="card-title">Payment <br> Successful</h2>
+      </div>
+      <div class="row">
+        Order #12345 <br> $99.99   Visa ending in 1234 
+      </div>
+      <div class="row">
+        Thank you for your payment.<br> Your order will be processed shortly.
+      </div>
+    </div>
+  </div>
+</div>

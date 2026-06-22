@@ -1,0 +1,159 @@
+{% assign product_list_all = '' %}
+{%- capture featured_collection_products_holder -%}
+      {{ 'featured-collection-products.css' | asset_url | stylesheet_tag }}
+      
+      <div class="featured-collection-products-holder">
+          <div class="page-width">
+               <ul class="featured-collection-tab-menu">
+                  {%- for block in section.blocks -%}
+                      {%- if block.type == 'repeater_block' -%}
+                          <li class="{%- if forloop.index == 1 -%}active{%- endif -%}" data-target="block{{forloop.index}}">
+                            {{ block.settings.block_title | split: "?" | first }}
+                          </li>
+                      {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+                <div class="col-wrapper">
+                    {%- for block in section.blocks -%}
+                            {%- assign is_manually_selected = false -%}
+                            {%- if block.settings.featured_product_handle != empty or  block.settings.featured_product_handle_perth != empty-%}
+                                {%- assign is_manually_selected = true -%}
+                            {%- endif -%}
+
+                            {%- if block.type == 'repeater_block' -%}
+                                <div class="col" id="block{{forloop.index}}">
+                                    <h3>{{ block.settings.block_title | replace : "?", "?<br >" }}</h3>
+                                    {%- assign collection_handle = block.settings.collection_handle -%}
+                                    {%- assign tag_handle = block.settings.tag_handle -%}
+                                    {%- assign max_products = section.settings.products_to_show | default: 4 -%}
+                                    {%- assign products_displayed = 0 -%}
+                                    {%- assign filtered_count = 0 -%}
+                                    {%- if is_manually_selected == true-%}
+                                            {%- assign product_handle_nsw =  block.settings.featured_product_handle | remove:' ' | split:','  -%}
+                                            {%- assign product_handle_perth =  block.settings.featured_product_handle_perth | remove:' ' | split:','  -%}
+                                            {% comment %} {%- assign filtered_products = product_handle_nsw | append:',' | append: product_handle_perth | split:','-%} {% endcomment %}
+                                            {%- render 'featured-collection-product-handle',
+                                                                filtered_products_nsw: product_handle_nsw,
+                                                                filtered_products_perth: product_handle_perth,
+                                                                max_products: max_products,
+                                                                collection_handle: collection_handle -%}
+                                            {% unless product_list_all contains product_handle_nsw %}
+                                              {% assign product_list_all = product_list_all | append : product_handle_nsw %}
+                                            {% endunless %}
+                                            {% unless product_list_all contains product_handle_perth %}
+                                              {% assign product_list_all = product_list_all | append : product_handle_perth %}
+                                            {% endunless %}
+                                            
+                                    {%- elsif collection_handle -%}
+                                        {%- assign filtered_products = collections[collection_handle].products -%}
+                                        {%- if tag_handle != blank -%}
+                                                {%- comment -%}product listing by tag (sub collection by tag handle){%- endcomment -%}
+                                                {%- render 'featured-collection-product-tag', 
+                                                        filtered_products:filtered_products,
+                                                        max_products:max_products,
+                                                        products_displayed: products_displayed,
+                                                        tag_handle: tag_handle,
+                                                        filtered_count: filtered_count,
+                                                        collection_handle: collection_handle -%}
+                                                  {% assign product_list_all = product_list_all | append : tag_handle %}
+                                        {%- else -%}
+                                                {%- comment -%}product listing by collection {%- endcomment -%}
+                                                {%- render 'featured-collection-product-collection',
+                                                        filtered_products:filtered_products,
+                                                        max_products:max_products,
+                                                        products_displayed: products_displayed,
+                                                        filtered_count: filtered_count,
+                                                        collection_handle: collection_handle -%}
+                                                        {%- for product in filtered_products limit: max_products -%}
+                                                          {% assign product_list_all = product_list_all | append: ',' | append: product.handle %}
+                                                        {% endfor %}
+                                        {%- endif -%}
+                                        
+                                    {%- else -%}
+                                        <p>Collection handle is required to display products.</p>
+                                    {%- endif -%}
+                                </div>
+                            {%- endif -%}
+                        
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+{%- endcapture -%}
+{{ featured_collection_products_holder | strip_newlines }}
+{% render 'featured-collections-products-theme-settings-v1-schema', product_list_all: product_list_all %}
+<script>
+  document.querySelectorAll('.featured-collection-tab-menu li').forEach(button => {
+    button.addEventListener('click', () => {
+
+      const targetId = button.getAttribute('data-target');
+      const targetElement = document.getElementById(targetId);
+      document.querySelector('.featured-collection-tab-menu li.active').classList.remove('active');
+      button.classList.add('active');
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth', // Smooth scroll animation
+          block: 'nearest',   // Ensure it aligns correctly
+          inline: 'center'    // Horizontally center the block
+        }); 
+      }
+    });
+  });
+</script>
+{% schema %}
+{
+"name": "Featured Collections",
+"settings": [
+{
+"type": "number",
+"id": "products_to_show",
+"label": "Number of Products per column",
+"default": 4
+}
+],
+"blocks": [
+{
+"type": "repeater_block",
+"name": "Repeater Item",
+"settings": [
+{
+"type": "text",
+"id": "block_title",
+"label": "Block Title"
+},
+{
+"type": "collection",
+"id": "collection_handle",
+"label": "Select Collection"
+},
+{
+"type": "text",
+"id": "tag_handle",
+"label": "Tag Handle"
+},
+{
+"type": "header",
+"content": "Manual product selection. (Smithfield)"
+},
+{
+"type": "textarea",
+"id": "featured_product_handle",
+"label": "Enter product handle",
+"info" : "Product handles should be comma separated. eg.finch-chair,heron-chair,executive-chair"
+},
+{
+"type": "header",
+"content": "Manual product selection.(Perth)"
+},
+{
+"type": "textarea",
+"id": "featured_product_handle_perth",
+"label": "Enter product handle",
+"info" : "Product handles should be comma separated. eg.finch-chair,heron-chair,executive-chair. Note: Product should have 'perth' tag."
+}
+]
+}
+]
+}
+{% endschema %}

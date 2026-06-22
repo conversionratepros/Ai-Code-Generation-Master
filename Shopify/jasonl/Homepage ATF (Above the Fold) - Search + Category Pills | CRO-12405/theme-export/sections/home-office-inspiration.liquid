@@ -1,0 +1,56 @@
+{{ 'home-office-inspiration.css' | asset_url | stylesheet_tag }}
+
+<div class="home-office-inspiration">
+    <div class="page-width">
+        <div class="inspired-section-wrap">
+            {% render 'inspired-section-card' %}
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        // scirpt for hotspot
+        let hotspot = document.querySelectorAll('.hotspot');
+        let hotspotCard = document.querySelectorAll('.product-hotspot-card');
+        hotspot.forEach(function(h, index){
+            h.addEventListener("mouseenter", function(e){
+                // remove active class
+                h.closest('.inspired-image').nextElementSibling.querySelectorAll('.product-hotspot-card').forEach(function(e){
+                    e.classList.remove("active");
+                });
+                
+                h.classList.add("active");
+                const cardwrap = h.closest('.inspired-image').nextElementSibling;
+                cardwrap.querySelectorAll('.hotspot-card-'+h.getAttribute('hotspot')).forEach(function(e){
+                    e.classList.add("active");
+                });
+            });
+            h.addEventListener("mouseleave", function(e){
+                h.classList.remove("active");
+                h.closest('.inspired-image').nextElementSibling.querySelectorAll('.product-hotspot-card').forEach(function(e){
+                    e.classList.remove("active");
+                });
+            });
+        });
+        hotspotCard.forEach(function(h){
+            h.addEventListener("mouseenter", function(e){
+                let hoveredCardNo = h.getAttribute('hotspot-card');
+                h.closest('.inspired-section').querySelectorAll('.hotspot'+hoveredCardNo).forEach(function(e){
+                    e.classList.add('active');
+                });
+            });
+            h.addEventListener("mouseleave", function(e){
+                document.querySelectorAll('.hotspot').forEach(function(e){
+                    e.classList.remove('active');
+                });
+            });
+        });
+    });
+</script>
+
+{% schema %}
+{
+"name": "Inspiration Section",
+"settings": []
+}
+{% endschema %}

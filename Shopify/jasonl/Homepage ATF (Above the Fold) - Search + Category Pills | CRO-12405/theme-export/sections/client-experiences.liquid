@@ -1,0 +1,70 @@
+{%- capture client_experiences -%}
+{{ 'client-experiences.css' | asset_url | stylesheet_tag }} 
+{%- assign text_count = shop.metafields.custom_fields.company.size -%}
+{%- assign random_index = 'now' | date: '%s' | modulo: text_count -%}
+{%- assign section_title = section.settings.section_title -%}
+<div class="client-experiences-holder">
+<div class="page-width">
+<div class="block">
+<div class="block-heading">
+<h2>{{ section_title }}</h2>
+<a class="link" href="{{ shop.metafields.custom_fields.link[random_index] }}">Read case study</a>
+</div>
+<div class="block-img"> 
+    <img 
+        srcset="
+            {{ shop.metafields.custom_fields.profile_image[random_index] | file_img_url:'151x' }} 1x,
+            {{ shop.metafields.custom_fields.profile_image[random_index] | file_img_url:'302x' }} 2x
+        "
+        src="{{ shop.metafields.custom_fields.profile_image[random_index] | file_img_url:'151x' }}" 
+        alt="{{ shop.metafields.custom_fields.client_name[random_index] }}" 
+        width="163" height="162" loading="lazy">
+</div>
+<div class="block-cnt">
+<p class="main-text">{{ shop.metafields.custom_fields.message[random_index] }}
+<span class="quote">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+viewBox="0 0 199 114" style="enable-background:new 0 0 199 114;" xml:space="preserve">
+<style type="text/css">
+.st0-quote-1{fill-rule:evenodd;clip-rule:evenodd;}
+</style>
+<path class="st0-quote-1" d="M180,113.4h-75.8L151.6,0h47.4L180,113.4z M0,113.4L47.4,0h47.4L75.8,113.4H0z"/>
+</svg>
+
+</span>
+</p>
+
+
+
+<span class="name">{{ shop.metafields.custom_fields.client_name[random_index] }}</span>
+<span class="position">
+{%- if shop.metafields.custom_fields.designation[random_index]  -%}
+{{shop.metafields.custom_fields.designation[random_index]}} at&nbsp;
+{%- endif -%}
+{{ shop.metafields.custom_fields.company[random_index] }}</span>
+</div>
+</div>
+</div>
+</div>
+{%- endcapture -%}
+
+
+{{client_experiences |  strip_newlines}}
+{%- schema -%}
+{
+"name": "Client Experiences",
+"settings": [
+{
+"type":"header",
+"content":"Instruction",
+"info":"Data source is metafield"
+},
+{
+"type": "text",
+"id": "section_title",
+"label": "Block Title",
+"default": "Our Client's Experience"
+}
+]
+}
+{%- endschema -%}

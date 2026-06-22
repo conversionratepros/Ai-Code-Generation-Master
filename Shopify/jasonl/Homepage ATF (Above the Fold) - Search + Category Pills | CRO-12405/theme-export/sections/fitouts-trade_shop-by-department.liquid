@@ -1,0 +1,49 @@
+{{ "shop-by-department-2.css" | asset_url | stylesheet_tag }}
+{{ "fitouts-trade_shop-by-department.css" | asset_url | stylesheet_tag }}
+<div class="department2-container">
+    <div class="page-width">
+        <div class="container">
+            <div class="department-left">
+                
+                {%- if page.url == '/pages/fitouts-trade-con'-%}
+                    <h2>Our complete <br>range for your <br>next beautiful <br>project<span>.</span></h2>
+                {% else %}
+                    <h2>Our complete <br>range for your <br>next beautiful <br>design<span>.</span></h2>
+                    <p>Need more information about our product ranges? Interested in checking out our swatches?</p>
+                    <a class="typeform-share getaquoteclick link"
+                            {{settings.typeformurls_url_1}} 
+                            href="javascript:void(0)">
+                            Request FREE professional advice
+                        </a>
+                {%- endif -%}
+            </div>
+            
+            <nav class="svg-circle">
+                <ul>
+                    {%- for link in linklists.shop-by-department.links -%}
+                    <li>
+                        <a href="{{ link.url }}">
+                        <div class="circle-holder">{%- render 'main-nav-icons', item: link.title -%}</div>
+                        {%- if link.title contains "Whiteboards & Presentation Boards"-%}
+                            <p>Whiteboards</p>
+                        {%- elsif link.title contains "Sofa & Collaborative Soft Furniture" -%}
+                            <p>Sofa & lounges</p>
+                        {%- elsif link.title contains "Safety & Crowd Control" -%}
+                            <p>Safety</p>
+                        {%- elsif link.title contains "Power & Data Management" -%}
+                            <p>Cabling</p>
+                        {%- elsif link.title contains "Pots & Plants" -%}
+                            <p>Decor</p>
+                        {%- elsif link.title contains "Ergonomic Accessories" -%}
+                            <p>Accessories</p>
+                        {%- else -%}
+                            <p>{{ link.title }}</p>
+                        {%- endif -%}
+</a>
+                    </li>
+                    {%- endfor -%}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+{% comment %} {{ 'responsive-menu-header.css' | asset_url | stylesheet_tag }} {% endcomment %}
+<li class="dropdown dropdown-6 nav-more nav-more--responsive"><a href="#" class="nav-more-btn"><span>More</span></a>
+<div class="header-child-menu dropdown_menu dropdown_menu--animated dropdown_menu-6">
+    <div class="child-menu-right category-menu-image more-responsive-category-image">
+        <picture>
+            <source srcset="{{ 'nav_menu_more2x.jpg' | file_img_url:'418x'}} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+            <img src="{{ 'nav_menu_more2x.jpg' | file_img_url: '209x' }}" width="209" height="392" loading="lazy" alt="More JasonL Office Furniture"/>
+        </picture>
+    </div>
+<ul class="parent-menu">
+ {%- assign locationAvailability_filterTag = 'perth'-%}
+ {%- assign locationAvailability_filterTag_main = 'perth'-%}   
+{%- for link in linklists.main-menu-image-without-more-testing.links -%}
+    {% capture menuTitle_withoutIcon %}
+        {%- if link.title contains '|'-%}
+        {%- assign linktitle = link.title | split:'|'-%}
+        {{-linktitle[0]-}}
+        {%-else-%}
+        {{- link.title | escape -}}
+        {%- endif-%}
+        {%- endcapture -%}
+        <li
+            class="{% if link.active %}menu-item--active {% endif %} menu-item-{{forloop.index}}">
+            <a title="{{menuTitle_withoutIcon  | strip }}" href="{{ link.url }}" data-nsw="{{ link.url }}"
+                data-wa="{{ link.url }}/{{locationAvailability_filterTag}}" data-js_updatemenuurl="true" {% if
+                link.current %}class="menu-item--active" {% endif %} {% if link.current %} aria-current="page" {%
+                endif %}>
+                
+                <img src='{{ linktitle[1] | file_img_url: '100x100' }}' alt="{{ menuTitle_withoutIcon }}" width="100" height="100">
+                <span>
+                    {%- render 'menu-titles-test', forloopindex: forloop.index, menutitle: menuTitle_withoutIcon -%}
+                </span>
+            </a>
+
+            
+                    <ul class="child-menu" id="child-menu-{{link.url | remove:'/collections/'}}">
+                        {%- render 'header-submenu', parentMenu: link,
+                        locationAvailability_filterTag:locationAvailability_filterTag -%}
+                    </ul>
+            
+            </li>
+{%- endfor -%}
+</ul>
+
+</div>
+</li>

@@ -1,0 +1,105 @@
+{%-comment-%}{% assign ref_product = article.metafields.fitout_blog.fitout_products.value %}{%-endcomment-%}
+{% assign ref_product = article.metafields.fitout_blog.fitout_products %}
+{%- if ref_product != '' -%}
+<!-- fitout product listing start -->
+{{ 'fitouts-product-listing.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+{{ 'product-listing.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+<!-- <script>
+  
+document.addEventListener( 'DOMContentLoaded', function () {
+
+  
+  var productSlider = new Splide( '.fitouts-product-slider', {
+    gap: 25,
+    perPage: 4,
+    pagination: false,
+    autoWidth: true,
+    breakpoints: {
+		1024: {
+			destroy: true,
+		},
+  }
+  }
+  );
+
+  productSlider.mount();
+  } );
+  </script> -->
+{% endcomment %}
+
+
+
+<div class="fitouts-product-listing">
+    <div class="page-width">
+      <div class="fitouts-product-list-wrap">
+        <div class="section-header">
+              {% if article.metafields.fitout_blog.fitout_client_name %}
+            <h2>Products Used for the {{ article.metafields.fitout_blog.fitout_client_name }} Fitout!</h2>
+            {% else %}
+            <h2>Products Used for the {{ article.title }} </h2>
+            {% endif %}
+        </div>
+        {% assign products_array = ref_product| split:'|' %} 
+        {%- assign productCount = products_array | size -%}
+        {%  assign counter = 0 %}
+        
+        <div class="fitouts-product-slider {% unless products_array.size <= 3 %} swiffy-slider slider-item-show3 slider-nav-round {% endunless %} {% if productCount < 4 %} product-count-{{productCount}} hideSliderArrows{% endif %} small-hide medium-hide">
+        
+            <ul id="main-collection-product-grid" class="slider-container">
+              {% for productvalue in  products_array %}
+                  {% if all_products[productvalue].title != empty %}
+                  <li class="moreinfo-poz-abs product-item" data-product-title="{{all_products[productvalue].title}}">
+
+                    {% render 'card-product',
+                                card_product: all_products[productvalue],
+                                media_size: "adapt",
+                                show_secondary_image: false,
+                                add_image_padding: false,
+                                show_vendor: false,
+                                show_image_outline: true,
+                                show_rating: true
+                    %}
+                    {%  assign counter = counter | plus : 1 %}
+                  </li>
+                  {%- endif -%}
+              {% endfor %}
+              </ul>
+              
+              {%- unless counter <= 3 -%}
+                  <button type="button" class="slider-nav" aria-label="Go left"></button>
+                  <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+              {% endunless %}
+        </div>
+        <div class="fitouts-product-slider {% if productCount < 4 %} product-count-{{productCount}} hideSliderArrows{% endif %} large-up-hide" >
+          <div class="splide__track">
+            <ul id="main-collection-product-grid" class="splide__list ">
+              {% for productvalue in  products_array %}
+                  {% if all_products[productvalue].title != empty %}
+                  <li class="splide__slide moreinfo-poz-abs product-item" data-product-title="{{all_products[productvalue].title}}">
+
+                    {% render 'card-product',
+                                card_product: all_products[productvalue],
+                    media_size: "adapt",
+                    show_secondary_image: false,
+                    add_image_padding: false,
+                    show_vendor: false,
+                    show_image_outline: true,
+                    show_rating: true
+                    %}
+                  </li>
+                  {%- endif -%}
+              {% endfor %}
+              </ul>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+{%- endif -%}
+
+

@@ -1,0 +1,374 @@
+
+{{ 'assembly-details.css' | asset_url | stylesheet_tag }}
+{%- comment -%}{%- section 'assembly-sort'-%}{%- endcomment -%}
+<div class="assembly-page assembly-page--detail"> 
+  <div class="page-width">
+{%- comment -%} <!-- breadcrumb --> {%- endcomment -%}
+<div class="tablet-landscape-up-show breadcrumb-original" id="breadcrumb-original">
+<ol class="breadcrumb">
+<li><em><a href="/pages/assembly" title="Back to the assembly landing page">Assembly</a></em></li>
+<li class="selected-category"></li>
+</ol></div>
+{%- comment -%} <!-- END:: breadcrumb --> {%- endcomment -%}
+{%- comment -%} <!-- clone table holder --> {%- endcomment -%}
+<div class="assembly-table-holder clone-table" id="clone-assembly-table"></div>
+{%- comment -%} <!-- append data table from js --> {%- endcomment -%}  
+<div id="assembly-table" class="drag assembly-table-holder original-table sticky-table sticky-headers sticky-ltr-cells">
+</div>
+{%- comment -%}<!-- get extra informations from landing page. i.e icon, extra text. -->{%- endcomment -%}
+{%- capture assembly -%}
+{%- render 'assemblydata' -%}
+{%- endcapture -%} 
+<!-- Split String data from theme setting  -->
+{%- assign themedata_split = assembly | strip_html | split:'|' -%}
+<!-- ==================================== -->
+<!--  MOBILE DESIGN -->
+<!-- ==================================== -->
+<div class="mobile-assembly-holder">
+  <div class="assembly-table-header">
+    <strong class="mob-selected-category"></strong>
+    <span class="mob-selected-extratext"></span>
+    <span class="mob-selected-icon"></span>
+</div>
+<div class="assembly-accordion-holder"></div>
+</div> 
+<div class="need-instruction"><a href="/pages/contact-us">Unable to find the instructions you need ? <strong>Let us know.</strong></a></div>
+</div>
+  </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>  
+// get url parameter
+var url_string = window.location.href;
+var url = new URL(url_string);
+var url_parameter = url.searchParams.get("category"),
+
+    url_desc = url.searchParams.get("desc"),
+    url_icon = url.searchParams.get("icon");
+    if (url_parameter) {
+      url_parameter = url_parameter
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+    }
+$('.selected-category').text(url_parameter);
+  
+  $.ajax({
+    type: "POST",
+    data:{"category":url_parameter},
+    url: "https://prnt.jasonl.com.au/assembly/Assemblydatadetail/showdata",
+    //url: "https://poptopdesk.com/assembly/Assemblydatadetail/showdata",
+    crossDomain : true,
+    dataType: "json",
+    success: function( response ) {
+    $('.loading-gif').hide();
+    createTable(response);
+    }
+  })
+ 
+//check if title from theme setting equal to title from spreadsheet -->
+
+
+
+    
+function createTable(data){
+  
+  {%- for x in themedata_split -%}
+  {%- assign themedata_split2 = x|split:'=' -%}
+  {%- assign theme_categoryTitle = themedata_split2[0]| strip -%}
+  {%- assign theme_extraText = themedata_split2[1] -%}
+  {%- assign theme_icon = themedata_split2[2] | strip -%}
+
+   var selectedCategory = "{{theme_categoryTitle}}";
+   if( selectedCategory == url_parameter ) {
+    var selectedIcon = "{{theme_icon}}";
+    var selectedExtraText = "{{theme_extraText}}";
+    console.log(selectedIcon);
+  }                                 
+{%- endfor -%}
+// Create table 
+// =========================================== 
+var data_jasonp = data; 
+var mainHolder  = $('#assembly-table');
+  //console.log(data);
+  
+$(mainHolder).append('<div class="table-wrapper"><table class="table table-striped table-striped"><thead></thead><tbody></tbody></table></div>');
+
+for(var j = 0; j<data_jasonp.length; j++){
+  var obj_child_test = data_jasonp[j];
+  if(j == 0){
+    $(mainHolder).find('table thead').append('<tr class="sticky-row"></tr>');
+  }else{
+    $(mainHolder).find('table tbody').append('<tr></tr>');
+  }
+       
+for(var y = 0; y<obj_child_test.length; y++){
+  var obj_grandchild_test = obj_child_test[y];
+  //console.log(obj_grandchild_test);
+  if(j == 0){
+    /* fixed width table */
+    if(y == (obj_child_test.length-1)){
+      $(mainHolder).find('table').prepend('<col width="500">');
+    }else{
+      //$(mainHolder).find('table').prepend('<col width="90">');
+    }
+    /* fixed width table */
+   
+    $(mainHolder).find('table thead tr').append('<th class="th-col-'+y+'"><span class="assembly-col-title-base2"></span><div class="assembly-col-slant"></div><em class="assembly-col-title2">'+obj_grandchild_test+'</em></th>');
+  }else{
+    if(obj_grandchild_test != '' && obj_grandchild_test != 'null' && obj_grandchild_test != 'ASked Mauricio'){
+      var pdfclass = "pdflink";
+      var link = '<a href="'+obj_grandchild_test+'" target="_blank" rel="noopener noreferrer" data-ga4="assembly_downloads"></a>';
+    }else{
+       
+      var pdfclass = "no-pdflink";
+      var link = obj_grandchild_test;
+     }
+    
+    if(y==0){
+      var titleImg = obj_grandchild_test.split('#');
+      var iconImg;
+      if( titleImg[1] != 'null'){
+        iconImg = '<img style="width:50px; height:auto" src="'+titleImg[1]+'" alt="assembly detail"/>';
+      }else{
+        iconImg = ''; 
+      }
+      
+      $(mainHolder).find('table tbody tr:last-child').append('<td class="assembly-table-first-col sticky-cell">'+iconImg+'<span class="title-holder">'+titleImg[0]+'</span></td>');
+    }else{
+      $(mainHolder).find('table tbody tr:last-child').append('<td class="'+pdfclass+'">'+link+'</td>');
+    }
+  }
+}
+}
+  
+
+  // table header 
+  // append main category title, Extra text and Icon image
+    var collectionIcon;
+//   if( url_icon.length ) {
+//   	var selectedIcon = url_icon;
+//   }  
+//alert(selectedIcon);
+switch(selectedIcon) {
+  case "icon-1":
+    collectionIcon = '{%- render "icon-1" -%}';
+    break;
+   case "icon-2":
+    collectionIcon = '{%- render "icon-2" -%}'; // desk
+    break;
+     case "icon-3":
+    collectionIcon = '{%- render "icon-3" -%}'; // workstation
+    break;
+     case "icon-4":
+    collectionIcon = '{%- render "icon-4" -%}';
+    break;
+     case "icon-5":
+    collectionIcon = '{%- render "icon-5" -%}';
+    break;
+     case "icon-6":
+    collectionIcon = '{%- render "icon-6" -%}';
+    break;
+     case "icon-7":
+    collectionIcon = '{%- render "icon-7" -%}';
+    break;
+     case "icon-8":
+    collectionIcon = '{%- render "icon-8" -%}';
+    break;
+     case "icon-9":
+    collectionIcon = '{%- render "icon-9" -%}'; // counter i.e cafe-furniture
+    break;
+     case "icon-10":
+    collectionIcon = '{%- render "icon-10" -%}';
+    break;
+    case "icon-11":
+    collectionIcon = '{%- render "icon-11" -%}';
+    break;
+    case "icon-12":
+    collectionIcon = '{%- render "icon-12" -%}';
+    break;
+  default:
+    // code block
+}
+
+//   if( url_desc.length ) {
+//   	var extraText = url_desc;
+//   }     
+var extraText = selectedExtraText;
+$(mainHolder).find('table thead tr th:first-child').append('<div class="assembly-table-header"><h1><strong>'+url_parameter+'?</strong><span>'+extraText+'</span><span class="selectedicon">'+collectionIcon+'</span></h1></div>');     
+$(mainHolder).find('table thead tr th:first-child').addClass('sticky-cell');
+  
+var count_th = $('thead tr th').length;
+  if(count_th < 8){
+    $('.assembly-table-holder .table').addClass('fixed'); 
+  }
+  
+// table clone
+$( "#assembly-table .table-wrapper" ).clone().appendTo( "#clone-assembly-table" );
+
+
+$(document).ready(function(){
+  $(".assembly-table-holder").css('opacity',1);
+//table clone
+//$( "#assembly-table table.table" ).clone().appendTo( "#clone-assembly-table" );
+// scroll clone and original at same time 
+// horizontal scroll copy from original table to clone table
+  $('.assembly-table-holder').scroll(function(){
+    var thisScrollPoz = $(this).scrollLeft()
+    $('.assembly-table-holder.clone-table').scrollLeft(thisScrollPoz);
+    $('.assembly-table-holder.clone-table thead th.sticky-cell').css('left',thisScrollPoz);
+  });
+    
+    
+// fixed header of clone table
+var cloneTop = 0; 
+$(window).scroll(function(){
+  var headerHt = 155;
+  var scrollPoz = $(this).scrollTop();
+  var childTopPoz = $('.original-table tr:nth-last-child(4)').offset().top;
+  cloneTop++;
+  var recentPoz = $('.clone-table').offset().top;
+  var lastPoz_tr = $('.original-table table tbody tr:last-child').offset().top;
+  // 155 is position from where sticky table should work
+  if(scrollPoz > headerHt){
+    var tablewt = $('.original-table').width();
+    $('.clone-table').addClass('sticky-table-header').css('width',tablewt);
+    $('.assembly-table-holder.original-table').css('marginTop',0);
+    //$('.clone-table').css('visibility','visible');
+    // 440 is height header and height empty space below header
+    if(scrollPoz-155 < (childTopPoz-440)){
+    //$('.clone-table').css('top',scrollPoz - headerHt);
+    //console.log((scrollPoz - 155)+'>'+(childTopPoz));
+    }else{
+    // do nothing
+    }
+    console.log(scrollPoz +'-'+ (lastPoz_tr-400));
+    if(scrollPoz < (lastPoz_tr-300)){
+      $('.clone-table').css('opacity',1);
+    }else{
+      $('.clone-table').css('opacity',0);
+    }
+  }
+  else{
+    $('.clone-table').removeClass('sticky-table-header').css('width','100%');
+    $('.assembly-table-holder.original-table').css('marginTop',-220);
+    //$('.clone-table').css('visibility','hidden');
+    // $('.clone-table').css('top',0);
+    //cloneTop = 0; 
+  }
+})
+// fixed header should be stop    
+})
+//END :: table clone 
+  
+
+// table drag scroll for desktop
+// ================================
+  var mx = 0;
+
+$(".drag").on({
+  mousemove: function(e) {
+    var mx2 = e.pageX - this.offsetLeft;
+    if(mx) this.scrollLeft = this.sx + mx - mx2;
+  },
+  mousedown: function(e) {
+    this.sx = this.scrollLeft;
+    mx = e.pageX - this.offsetLeft;
+  }
+});
+
+$(document).on("mouseup", function(){
+  mx = 0;
+});
+
+// =============================
+// mobile design
+// Mobile HTML append
+// ==============================
+$('.mob-selected-category').text(url_parameter);
+  $('.mob-selected-extratext').text(selectedExtraText);
+  $('.mob-selected-icon').addClass(collectionIcon);
+  function mobile_assemebly(){ 
+    var subcategory = [];
+    for(var j = 0; j<data_jasonp.length; j++){
+      var obj_child_test = data_jasonp[j];
+      var mobHolder = $('.assembly-accordion-holder'); 
+    	
+      $(mobHolder).append('<div class="assembly-accordion-item item-'+j+'"><div class="assembly-accordion-content"><ul></ul></div></div>');
+    	
+      for(var y = 0; y<obj_child_test.length; y++){
+         var obj_grandchild_test = obj_child_test[y];
+		 
+        if(j == 0){ 
+            // create arrays of subcategories
+              subcategory.push(obj_grandchild_test);
+          }
+       else{
+         if(y==0){
+           var titleImg = obj_grandchild_test.split('#');
+           var iconImg;
+      if( titleImg[1] != 'null'){
+        iconImg = '<img style="width:50px; height:auto" src="'+titleImg[1]+'" alt="assembly detail" />';
+      }else{
+        iconImg = ''; 
+      }
+           $(mobHolder).find('.assembly-accordion-item.item-'+j).prepend('<div class="assembly-accordion-title">'+iconImg+'<span class="mob-title-holder">'+titleImg[0]+'</span><span class="action-btn"><span></span><span></span></span></div>');
+         }else{
+           if(obj_grandchild_test != '' && obj_grandchild_test != 'null' && obj_grandchild_test != 'ASked Mauricio'){
+           var pdfclass = "pdflink";
+           var link = '<a href="'+obj_grandchild_test+'">'+subcategory[y]+'</a>';
+             $(mobHolder).find('.assembly-accordion-item.item-'+j+' .assembly-accordion-content ul').append('<li>'+link+'</li>');
+         }else{
+           var pdfclass = "no-pdflink";
+           var link = obj_grandchild_test; 
+         }
+         	//$(mobHolder).find('.assembly-accordion-item.item-'+j+' .assembly-accordion-content ul').append('<li>'+link+'</li>');
+         }   
+       }
+      }
+     } 
+  }
+  mobile_assemebly();
+  
+// ==========================================
+// mobile accordion
+// ==========================================
+  $('.assembly-accordion-item').click(function(){
+	var winScrollPoz = $(window).scrollTop();
+    var _this = $(this);
+    
+    if($(this).hasClass('active')){
+      $(this).find('.assembly-accordion-content').slideUp();
+      $(this).removeClass('active');
+    }else{
+      if($('.assembly-accordion-item.active').length > 0){
+        $('.assembly-accordion-item.active .assembly-accordion-content').slideUp(400,function(){
+            $('.assembly-accordion-item').removeClass('active');
+            var thisPoz = (_this.offset().top)-120;
+            _this.find('.assembly-accordion-content').slideDown();
+            _this.addClass('active');
+            $("html, body").animate({scrollTop:thisPoz});
+        })
+      }else{
+        var thisPoz = (_this.offset().top)-120;
+        _this.find('.assembly-accordion-content').slideDown();
+         _this.addClass('active');
+        $("html, body").animate({scrollTop:thisPoz});
+      }
+    }
+  })
+  
+  
+    } // function end
+</script>
+{%- comment -%}
+<!-- Sticky table column js -->
+<!-- plugin url  :: https://www.jqueryscript.net/table/jQuery-Plugin-For-Sticky-Table-Cells-stickyTable-js.html --> 
+{%- endcomment -%}
+<link rel="stylesheet" href="{{'jquery.stickytable.min.css' | asset_url }}">
+<script src="{{'jquery.stickytable.min.js' | asset_url }}"></script>
+{% schema %}
+  {
+    "name": "Assebmly Details",
+    "settings": []
+  }
+{% endschema %}

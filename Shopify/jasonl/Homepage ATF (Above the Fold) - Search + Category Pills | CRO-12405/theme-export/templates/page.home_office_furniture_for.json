@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "home-office-image-banner",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections-products-theme-settings-v1",
+      "blocks": {
+        "repeater_block_LXrX3e": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Chairs? Clever Choice !",
+            "collection_handle": "office-chairs",
+            "tag_handle": "",
+            "featured_product_handle": "",
+            "featured_product_handle_perth": ""
+          }
+        },
+        "repeater_block_cpEkYB": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Desks? Done!",
+            "collection_handle": "office-desks",
+            "tag_handle": "",
+            "featured_product_handle": "flexi-premium-height-adjustable-single-workstation,quadro-square-leg-office-desk-1200lx700w,quadro-loop-leg-l-shaped-corner-office-desk",
+            "featured_product_handle_perth": "flexi-premium-height-adjustable-single-workstation,quadro-square-leg-office-desk-1200lx700w,quadro-loop-leg-l-shaped-corner-office-desk"
+          }
+        },
+        "repeater_block_3cam4h": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Storage? Sorted!",
+            "collection_handle": "office-workstations",
+            "tag_handle": "",
+            "featured_product_handle": "mobile-pedestal-with-filing-drawers-metal,slim-mobile-pedestal,uniform-small-storage-cupboard-800wx750hx450d",
+            "featured_product_handle_perth": "mobile-pedestal-with-filing-drawers-metal,slim-mobile-pedestal,uniform-small-storage-cupboard-800wx750hx450d"
+          }
+        },
+        "repeater_block_ewqgg7": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Accessories?All Right!",
+            "collection_handle": "sofas-lounges-collaborative-soft-furniture",
+            "tag_handle": "office-work-pods-booths",
+            "featured_product_handle": "pop-monitor-double-arm-black,jasonl-monitor-riser-white-birch,cable-management-basket-single-metal-tray",
+            "featured_product_handle_perth": "pop-monitor-double-arm-black,jasonl-monitor-riser-white-birch,cable-management-basket-single-metal-tray"
+          }
+        }
+      },
+      "block_order": [
+        "repeater_block_LXrX3e",
+        "repeater_block_cpEkYB",
+        "repeater_block_3cam4h",
+        "repeater_block_ewqgg7"
+      ],
+      "settings": {
+        "products_to_show": 3
+      }
+    },
+    "home-office-inspiration": {
+      "type": "home-office-inspiration",
+      "settings": {}
+    },
+    "home-office-lp-got-ideas": {
+      "type": "home-office-lp-got-ideas",
+      "settings": {}
+    },
+    "home-office-why-jasonl": {
+      "type": "home-office-why-jasonl",
+      "settings": {}
+    },
+    "home-office-testimonials": {
+      "type": "home-office-testimonials",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "featured_collections",
+    "home-office-inspiration",
+    "home-office-lp-got-ideas",
+    "home-office-why-jasonl",
+    "home-office-testimonials"
+  ]
+}

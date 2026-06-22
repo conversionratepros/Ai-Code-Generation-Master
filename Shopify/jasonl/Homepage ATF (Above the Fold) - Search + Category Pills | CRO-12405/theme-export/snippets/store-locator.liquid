@@ -1,0 +1,91 @@
+{%- unless skip_styles -%}
+    {{ 'store-locator.css' | asset_url | stylesheet_tag }} 
+{%- endunless -%}
+
+{% capture header_showrooms %}
+<ul class="showroom__list">
+{%- assign store_counts = 8 -%}
+{%- for i in (1..store_counts) -%}
+{%- assign itemid_img = 'store' | append:i | append:'_showroom_img'-%}
+{%- assign itemid_img_photo = 'store' | append:i | append:'_showroom_img_photo'-%}
+{%- assign itemid_mapiframe = 'store' | append:i | append:'_showroom_mapiframe'-%}
+{%- assign itemid_gmaplink = 'store' | append:i | append:'_showroom_link'-%}
+{%- assign itemid_martterportlink = 'store' | append:i | append:'_matterport_id'-%}
+{%- assign itemid_name = 'store' | append:i | append:'_showroom_name'-%}
+{%- assign itemid_page_url = 'store' | append:i | append:'_showroom_page'-%}
+{%- assign itemid_address = 'store' | append:i | append:'_showroom_address'-%}
+{%- assign itemid_phone = 'store' | append:i | append:'_showroom_phone'-%}
+{%- assign itemid_email = 'store' | append:i | append:'_showroom_email'-%}
+{%- assign itemid_officehours = 'store' | append:i | append:'_showroom_officehours'-%}
+{%- assign itemid_order = 'store' | append:i | append:'_showroom_order'-%}
+{%- unless settings[itemid_address] contains 'Granville'-%}
+<li class="showroom__item  showroom__item-{{settings[itemid_order]}}" style="order:{{settings[itemid_order]}}">
+    <div class="showroom-mapholder">
+        <div class="showroom__mapiframe">
+        {%- assign hide_map_iframe = true -%}
+        {% if settings[itemid_mapiframe] != 'null' and hide_map_iframe == false  %}
+            <iframe style=" border: 0px;" src="{{settings[itemid_mapiframe]}}" width="100%" height="100%"
+            style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        {%- else -%}
+            {%- if settings[itemid_img] -%}
+                <a href="{{settings[itemid_gmaplink]}}" class="showroom__mapaddress" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="{{settings[itemid_name] | remove: "showroom" | remove: "Showroom"}} showroom">
+                <img loading="lazy" src="{{settings[itemid_img_photo] | image_url: width: 300 }}" alt="
+                    {%- if altText == blank -%}
+                        {{- settings[itemid_name] -}}
+                    {%- else -%}
+                        {{- altText -}} 
+                    {%- endif -%}
+                " width="300" height="500" class="showroom_location_photo" />
+                <img loading="lazy" src="{{settings[itemid_img] | image_url: width: 300 }}" alt="
+                    {%- if altText == blank -%}
+                        {{- settings[itemid_name] -}}
+                    {%- else -%}
+                        {{- altText -}} 
+                    {%- endif -%}                
+                    " width="300" height="500" />
+                </a>
+            {%- endif -%}
+        {%- endif -%}
+        </div>
+    </div>
+    <div class="showroom-content">
+        {% comment %} {%- assign  city = settings[itemid_name] | replace: 'Showroom', '' | replace: 'Western', ''  | replace: 'City', '' | replace: 'East Coast Distribution Centre', 'Sydney' -%} {% endcomment %}
+        <a href="/pages/{{settings[itemid_page_url]}}" data-ga4="location_engagement" direction_location="{{settings[itemid_name] | remove: "showroom" | remove: "Showroom"}} showroom"><h3>{{settings[itemid_name]}}</h3></a>
+        <a href="{{settings[itemid_gmaplink]}}" class="showroom__mapaddress" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="{{settings[itemid_name] | remove: "showroom" | remove: "Showroom"}} showroom">
+            <address>{{settings[itemid_address]}}</address>
+        </a>
+        <div class="showroom__grp">
+            <p><strong>Call: </strong> <a href="tel:{{settings[itemid_phone]}}"> {{ settings[itemid_phone] }}</a></p>
+            {%- if settings[itemid_email] != empty -%}
+                <p><strong>Email: </strong> 
+                {% render 'hidden-emails' email: settings[itemid_email] %}
+                </p>
+            {%- endif -%}
+        </div>
+        <div class="showroom__grp">
+            {%- unless settings[itemid_name] contains 'Western Sydney Showroom' or settings[itemid_name] contains
+            'Adelaide' -%}
+            {%- endunless -%}
+            <div class="showroom__time">
+            {{- settings[itemid_officehours] -}}
+            </div>
+        </div>
+        <div class="showroom__grp direction-link-grp">
+            <a href="{{settings[itemid_gmaplink]}}" class="getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="{{settings[itemid_name] | remove: "showroom" | remove: "Showroom"}} showroom">Get Directions</a>
+            {% comment %} <a href="#" class="virtual-tour-btn">3D VIRTUAL TOUR</a> {% endcomment %}
+            {% comment %} <!-- Video Modal --> {% endcomment %}
+            {% if settings[itemid_martterportlink] != blank %}
+                {%- render 'custom-modal-virtual-tour', location_name: settings[itemid_name], matterportlink: settings[itemid_martterportlink] -%}
+            {%- endif -%}
+        </div>
+        
+
+    </div>
+</li>
+{%- endunless -%}
+{%- endfor -%}
+{% comment %} <li class="location-dropdown-banner" style="background-image: url({{ 'Warehouse.jpg'  | file_img_url:'478x'}}); background-size: cover;"></li> {% endcomment %}
+</ul>
+{%- endcapture -%}
+{{ header_showrooms | strip_newlines }}

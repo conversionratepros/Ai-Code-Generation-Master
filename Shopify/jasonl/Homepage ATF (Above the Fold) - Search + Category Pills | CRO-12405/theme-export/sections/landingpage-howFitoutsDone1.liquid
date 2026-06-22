@@ -1,0 +1,54 @@
+
+        {{ "landingpage-howfitoutsdone.css" | asset_url | stylesheet_tag }}
+        <div class="howfitoutsdone-container">
+            <div class="page-width">
+                <div class="container">
+                <div class="howfitoutsdone-header">
+                    <h2>Here's how we<br> get your quality<br> fitout done in<br> no-time<span>.</span></h2>
+                    <a class="typeform-share  gclid-contact-typeform button button--primary" data-tf-popup="ctUucWe4" data-tf-opacity="100" data-tf-size="100"
+                        data-tf-transitive-search-params data-tf-iframe-props="title=Hi, how can we help you today?" data-tf-hidden=""
+                        data-tf-on-submit="submit" data-tf-share-ga-instance="" href="javascript:void(0)">
+                        Contact us
+                    </a>
+                </div>
+                <div class="fitout-steps">
+                    <ul>
+                        <li class="active">
+                            {% render 'how-step1.liquid' %}
+                            {%- if template == 'page.home' or template == 'collection' -%}
+                                <p>
+                                    <a class="typeform-share  gclid-contact-typeform link" 
+                                    data-tf-popup="ctUucWe4" 
+                                    data-tf-opacity="100" 
+                                    data-tf-size="100" 
+                                    data-tf-transitive-search-params
+                                    data-tf-iframe-props="title=Hi, how can we help you today?" 
+                                    data-tf-hidden=""
+                                    data-tf-on-submit="submit"
+                                    data-tf-share-ga-instance="" href="javascript:void(0)" 
+                                    >
+                                        Contact us
+                                    </a><br>
+                                    You are here!
+                                </p>
+                            {%- else -%}
+                                <p>{% render 'landingpage-typeform', js:true, label:'Contact us', class:'link typeform-share' %} <br>You are here!</p>
+                            {%- endif -%}
+                        </li>
+                        <li>
+                            {% render 'how-step2.liquid' %}
+                            <p>Site visit with assigned <br>project manager</p>
+                        </li>
+                        <li>
+                            {% render 'how-step3.liquid' %}
+                            <p>Free floor plan and <br>quote within 24 hours</p>
+                        </li>
+                        <li>
+                            {% render 'how-step4.liquid' %}
+                            <p>Beautiful quality <br>fitout. Fast!</p>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>

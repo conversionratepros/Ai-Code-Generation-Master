@@ -1,0 +1,125 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "shipping_and_returns_NTTYVc": {
+          "type": "shipping_and_returns",
+          "settings": {}
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "shipping_and_returns_NTTYVc",
+        "quantity_selector",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "store_availability": {
+      "type": "store_availability",
+      "settings": {}
+    },
+    "range": {
+      "type": "product-range",
+      "settings": {}
+    },
+    "cross-sell": {
+      "type": "cross-sell",
+      "settings": {}
+    },
+    "product-compare": {
+      "type": "product-compare",
+      "settings": {}
+    },
+    "recent_fitouts": {
+      "type": "featured-recent-fitouts-b",
+      "settings": {
+        "needafitout_fitout": "fitouts/mm-geomechanics",
+        "pdp-fitout": "mm-geomechanics,mtk-lawyers,creditor-watch-sydney-nsw"
+      }
+    },
+    "locationMap": {
+      "type": "location-map-1-b_placeholder",
+      "settings": {}
+    },
+    "meetPeople": {
+      "type": "new-meet-people",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "store_availability",
+    "range",
+    "cross-sell",
+    "product-compare",
+    "recent_fitouts",
+    "locationMap",
+    "meetPeople"
+  ]
+}

@@ -1,0 +1,111 @@
+
+<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+{{ 'just-validate-form.css'  | asset_url | stylesheet_tag }}
+<div class="checkout-form-holder">
+    {% if shop.url contains 'jasonldev.myshopify' %}
+        {% assign formUrl = 'https://poptopdesk.com/contact/addtoquotehandler' %}
+    {% else %}
+        {% assign formUrl = 'https://prnt.jasonl.com.au/contact/addtoquotehandler' %}
+    {% endif %}
+    <form action="{{ formUrl }}" id="custom-checkout" method="POST">
+        <div class="fields-block">
+            <div class="heading cols">
+                <div class="col-item col-left">
+                    <h3>Contact</h3>
+                </div>
+{%- comment -%}
+                <div class="col-item col-right">
+                    <p>Have a account? <a href="" class="link">Log in</a></p>
+          </div>
+{%- endcomment -%}   
+            </div>
+
+            <div class="form-field label-holder">
+                
+                    <label>First name</label>    
+                    <input id="ccf_firstname" placeholder="Full name" type="text" name="first-name" value="" >
+               
+            
+                {% comment %} <div class="col-item label-holder">
+                    <label>Last name</label>    
+                    <input id="ccf_lastname" placeholder="Last name" type="text" name="last-name" value="" >
+                </div> {% endcomment %}
+            </div>
+            
+            <div class="form-field cols">
+                <div class="col-item label-holder">
+                    <label>Email</label>
+                    <input placeholder="Email" type="email" name="email" value="" id="ccf_email">
+                </div>
+                <div class="col-item label-holder">
+                        <label>Mobile phone number</label>
+                        <input placeholder="Mobile phone number" type="text" name="phone_number" value="" id="ccf_phone">
+                </div>
+            </div>
+            
+            <div class="form-field label-holder">
+                <label>Company</label>
+                <input placeholder="Company" type="text" name="company" value="" id="ccf_company">
+            </div>
+           
+            <div class="form-field">
+                    <div class="select-holder">
+                        <select id="ccf_state">
+                            <option value="" disabled selected>State/Territory</option>
+                            <option value="Australian Capital Territory">Australian Capital Territory</option>
+                            <option value="New South Wales">New South Wales</option>
+                            <option value="Northern Territory">Northern Territory</option>
+                            <option value="Queensland">Queensland</option>
+                            <option value="South Australia">South Australia</option>
+                            <option value="Tasmania">Tasmania</option>
+                            <option value="Victoria">Victoria</option>
+                            <option value="Western Australia"> Western Australia</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="form-field">
+                {% comment %} <label>Quote Enquiry</label> {% endcomment %}
+                <textarea class="input" id="ccf_quote_enquiry" cols="50" rows="5" placeholder="Quote Enquiry" type="text" name="quote-enquiry" value="" ></textarea>
+            </div>
+            <div class="form-field submit-btn-holder">
+                <input type="submit" class="button button--primary btn-quote" value="Request a Quote" />
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    
+        // function addApartment(){
+        //     const btn = document.querySelector('.link-apartment');
+        //     btn.addEventListener('click', function(){
+        //         document.querySelector('.add-apartmentsuit').classList.toggle("add"); 
+        //         btn.remove();
+        //     })
+        // }
+        // addApartment();
+    
+    function showFormLabel(){
+        const labelHolder = document.querySelectorAll('.label-holder');
+        labelHolder.forEach((e) => {
+            let input = e.querySelector('input');
+            input.addEventListener("keydown", function(){
+                if(!e.classList.contains('active') ){
+                    e.classList.add('active')
+                }else{
+                    if(input.value == "" ){
+                        e.classList.remove('active');
+                    }
+                }
+            })
+            input.addEventListener("blur", function(){
+                if(input.value == "" || input.value == " " ){
+                    input.value = "";
+                        e.classList.remove('active');
+                    }
+            })
+        })
+    }
+    showFormLabel();
+</script>
+ <script src="{{ 'custom-checkout.js' | asset_url }}" defer></script>
+

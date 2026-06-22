@@ -1,0 +1,49 @@
+{%- comment -%} 
+ snippet parameter :
+ - current_secondary_city 
+{%- endcomment -%}
+
+{%- assign is_tag_perth = false -%}
+
+{%- if current_tags contains 'Perth' or current_tags contains 'perth'-%}
+    {%- assign is_tag_perth = true -%} 
+{%- endif -%}
+
+{%- assign is_current_tag_a_subcollection = false -%}
+{%- assign child_collection_city_key = current_secondary_city | downcase | replace:' ','_' | handleize -%}
+{%- for ctag in current_tags -%}
+    {%- assign datavalue = ctag | downcase -%}
+    {%- assign datavalue = datavalue | replace: " ","" -%}
+    {%- assign datavalue = datavalue | slice: 0, 24 -%}
+    {%- assign colnamevalue = datavalue | append: "_t" -%}
+    {% comment %} {%- assign coldescription = datavalue | append: "_ex" -%} {% endcomment %}
+    {%- assign child_collection_city_data = datavalue | append: "_sd" -%}
+   
+
+    {%- assign tagprod = 'tagproducts' -%}
+    {%- comment -%} <h1>Debug 2: {{shop.metafields[tagprod][child_collection_city_data]}}</h1> {%- endcomment -%}
+    {%- if shop.metafields[tagprod][colnamevalue] -%}
+            {%- assign tagtitlevalue = shop.metafields[tagprod][colnamevalue] -%}
+             {%- assign tag_title_desp = shop.metafields[tagprod][child_collection_city_data][child_collection_city_key] -%}
+            {%- assign is_metaFieldTag = true -%}
+            {%- assign collection_hero_title = tagtitlevalue -%}
+            <h1>{{- tagtitlevalue | rstrip -}} <span style="padding-left: 8px;">in</span> 
+            <span class="city">
+                {{current_secondary_city | replace: "Gold coast", "Gold Coast"}}
+            </span>
+            </h1>
+            <p>{{ tag_title_desp }} </p>
+            {%- assign is_current_tag_a_subcollection = true -%}
+    {%- endif -%}
+            {%- comment -%} ISSUE: repeated when multiple tags on URL: {%- render 'collection-title-suffix' -%} {%- endcomment -%}
+            {%- if is_current_tag_a_subcollection  -%}
+                {%- break -%}
+            {%- endif -%}
+{%- endfor -%}
+
+{%- unless tagtitlevalue  -%}
+    {%- if is_tag_perth == true -%}
+    <h1>{{- collection.title | rstrip -}}</h1>
+    {%- render 'collection-title-suffix' -%}
+    {%- endif -%}
+{%- endunless -%}

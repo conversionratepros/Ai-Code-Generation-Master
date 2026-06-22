@@ -1,0 +1,55 @@
+<div class="col" id="block{{ forloop.index }}">
+    <h3>{{ block_title }}</h3>
+
+    <ul>
+      {%- comment -%} NSW Products {%- endcomment -%}
+      {% for handle in nsw_products limit:max_products %}
+       
+        {% assign handle = handle | strip %}
+        {% assign product = all_products[handle] %}
+        {% if product %}
+          <li class="product-item all-products">
+            <a href="{{ product.url }}">
+              <div class="item-img">
+                <picture>
+                    <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="auto">
+                </picture>
+              </div>
+              <div class="item-details">
+                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+              </div>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {%- comment -%} WA Products {%- endcomment -%}
+      {% for handle in wa_products limit:max_products %}
+        {% assign handle = handle | strip %}
+        {% assign product = all_products[handle] %}
+        {% if product %}
+          <li class="product-item perth-products hidden">
+            <a href="{{ product.url }}">
+              <div class="item-img">
+                <picture>
+                    <source srcset="{{ product.featured_image | image_url: width:210 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ product.featured_image | image_url: width: 105 }}" alt="{{ product.featured_image.alt | escape }}" width="105" height="auto">
+                </picture>              </div>
+              <div class="item-details">
+                <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+              </div>
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if view_all_link != blank %}
+        <li class="view-all">
+          <a href="{{ view_all_link }}" class="link">View all</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>

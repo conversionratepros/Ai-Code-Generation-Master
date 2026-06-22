@@ -1,0 +1,54 @@
+    {% comment %} {{ 'video-section.css' | asset_url | stylesheet_tag }} {% endcomment %}
+    {{ 'video-section-3d.css' |  asset_url |  stylesheet_tag }}
+    {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+
+
+
+
+<div class="video-section">
+  {%-comment-%}
+  <deferred-media class="video-section__media deferred-media no-js-hidden" data-media-id="{{ video_id }}"
+    {% if video_img != blank %} style="padding-bottom: {{ 1 | divided_by: section.settings.cover_image.aspect_ratio | times: 100 }}%;"{% endif %}
+  >
+  {% endcomment %}
+  <deferred-media class="video-section__media deferred-media no-js-hidden" data-media-id="{{ video_id }}">
+    <button
+      id="Deferred-Poster-Modal-{{ videoUrl_idOnly}}"
+      class="video-section__poster {{poster_type}} media deferred-media__poster media--landscape"
+      type="button"
+    >
+      {%- if video_img != blank -%}
+        <img
+          src="{{ video_img }}"
+          loading="lazy"
+          width="{{ video_img.width }}"
+          height="{{ video_img.height }}"
+        >
+        {%-comment-%}
+      {%- else -%}
+        <img
+          src="{{ videoCoverImgFromSection }}"
+          loading="lazy"
+          width="{{ videoCoverImgFromSection.width }}"
+          height="{{ videoCoverImgFromSection.height }}"
+        >
+        {%endcomment%}
+      {%- endif -%}
+      <span class="deferred-media__poster-button motion-reduce">
+        {%- render 'icon-play' -%}
+      </span>
+    </button>
+    <template>
+        {%comment%}
+        <iframe src="https://sketchfab.com/models/c0d6945d51194535a8035528d3d7a960/embed" height="370" width="670" webkitallowfullscreen="true" mozallowfullscreen="true" allow="autoplay; fullscreen; vr" frameborder="0"></iframe>
+        {%endcomment%}
+
+        {%- if video_url contains '?' -%}
+        <iframe src="{{video_url}}" height="370" width="670" webkitallowfullscreen="true" mozallowfullscreen="true" allow="autoplay; fullscreen; vr" frameborder="0"></iframe>
+        {%- else -%}
+          <iframe src="{{video_url}}?autostart=1&preload=1&pixel_budget=0" height="370" width="670" webkitallowfullscreen="true" mozallowfullscreen="true" allow="autoplay; fullscreen; vr" frameborder="0"></iframe>
+        {%- endif -%}
+    </template>
+  </deferred-media>
+</div>

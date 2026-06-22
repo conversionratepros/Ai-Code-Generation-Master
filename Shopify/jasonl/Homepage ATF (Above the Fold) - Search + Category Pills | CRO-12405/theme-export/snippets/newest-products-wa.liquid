@@ -1,0 +1,82 @@
+    {%- comment -%}
+        Sunday 19 May 2024
+      - This section is build just for western australia showroom
+      - The logic for this section is copied from popular-products.liquid.  However, this logic is improvised.
+      - The goal of this module is to get Newest Product for Parent Category and Child category for WA
+      - Parent category has been obtained from collection.metafields.popular_products.newest_wa
+      - Child category has been obtained from shop.metafields.tagproducts[products] where [products] implies handle of active child category with suffix '_p_wa' eg. ergonomic-chair_p_wa 
+    {%- endcomment -%}
+     {%-assign subchildHandle = '' -%}
+    {%- if current_tags -%}
+
+  
+        {%- comment -%}
+            - Get active child category because metafield key is made with category handle and suffix '_p_wa' like "ergonomic-chair_p_wa"
+        {%- endcomment -%}
+
+		  {%- for ctag in current_tags -%}
+		      {%-assign subchildHandle = ctag -%}
+		      {% assign datavalue1= subchildHandle | downcase %}
+		      {% assign datavalue= datavalue1 | replace: " ","" %}
+		      {% assign datavalue= datavalue | slice: 0, 24 %}
+		      {% assign products= datavalue | append: "_p_wa" %}
+		          {% if shop.metafields.tagproducts[products] %}
+		              {%-assign subchildHandle = ctag -%}
+		              {% break %}
+		          {% else %}
+		             {%-assign subchildHandle = '' -%}
+		          {% endif %}
+		  {%- endfor -%}
+
+
+		  {%- comment -%} 
+		      - Find out whether the current_tags contains any active sub-collection.
+		      - If yes this child-category. example: /collections/office-chairs/ergonomic-chairs+wa 
+		      - If no this is parent category. example: /collections/office-chairs/wa 
+		  {%- endcomment -%} 
+
+		 {%- endif -%}
+		 
+		  {% if subchildHandle != '' %}
+		    <!-- child category with WA tag and Child-category tag -->
+		    {%- assign instruction_cat = shop.metafields.tagproducts[products]|replace:',','|' -%}   
+		  {% else %}
+		     <!-- child category with just WA tag.  -->
+		    {% assign instruction_cat = collection.metafields.popular_products.newest_wa  %}
+		  {% endif %}
+		  {%- assign metaproducts = instruction_cat | split:'|' -%}
+
+
+
+  	
+  {%- assign totalMeta = metaproducts|size -%}
+  {%- if totalMeta > 0-%}
+      {%- assign x = 0 -%}
+      {% assign skip_card_product_styles = true %}
+      {%- for prodhandle in metaproducts -%}
+          {%-assign product = all_products[prodhandle]-%}
+          {%- if product !=blank -%}
+              {%- unless current_tags contains "contact-to-purchases" or current_tags contains "shipping-speed-nostock"-%}
+                <li class="grid__item popular-item newest-item-wa">
+                 {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    lazy_load: lazy_load,
+                    skip_styles: skip_card_product_styles,
+                    quick_add: section.settings.quick_add,
+                    section_id: section.id,
+                    new_tag:true
+                  %}
+              </li>
+              {%- endunless -%}
+            {%- endif -%}
+          {%- assign x= x | plus:1 -%}
+      {%- endfor -%}
+  {%- endif -%}
+
+
+

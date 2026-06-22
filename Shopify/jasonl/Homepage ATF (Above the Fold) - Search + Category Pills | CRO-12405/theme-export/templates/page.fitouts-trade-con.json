@@ -1,0 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "hero2": {
+            "type": "fitouts-trade_hero",
+            "settings": {}
+        },
+        "client": {
+            "type": "fitouts-trade_clients",
+            "settings": {}
+        },
+        "featured_services": {
+            "type": "featured-services",
+            "settings": {}
+        },
+        "recentfitouts": {
+            "type": "fitouts-trade_recent_fitouts",
+            "settings": {}
+        },
+        "shop_by_department": {
+            "type": "fitouts-trade_shop-by-department",
+            "settings": {}
+        },
+        "customerReviews": {
+            "type": "fitouts-trade_testimonial",
+            "settings": {}
+        },
+        "meet_people": {
+            "type": "new-meet-people",
+            "settings": {}
+        },
+        "columnBlock": {
+            "type": "landingpage-columnBlock1",
+            "settings": {}
+        }
+    },
+    "order": [
+        "hero2",
+        "client",
+        "featured_services",
+        "recentfitouts",
+        "shop_by_department",
+        "customerReviews",
+        "meet_people",
+        "columnBlock"
+    ]
+}

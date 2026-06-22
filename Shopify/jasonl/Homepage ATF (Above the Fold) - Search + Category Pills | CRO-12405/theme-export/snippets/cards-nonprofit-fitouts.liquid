@@ -1,0 +1,32 @@
+
+{%- assign is_svg = false -%}
+{%- if fitouts.metafields.fitout_blog.fitout_logo contains '.svg' -%}
+    {%- assign is_svg = true -%}
+    {%- assign card_logo = fitouts.metafields.fitout_blog.fitout_logo | file_url -%}
+{%- else -%}
+{%- assign card_logo = fitouts.metafields.fitout_blog.fitout_logo | file_img_url: '114x114' -%}
+{%- endif -%}
+
+{%- assign card_img = fitouts.image |  image_url: width: 370, height: 360, crop: 'left' -%}
+{%- assign card_img_2x = fitouts.image |  image_url: width: 740, height: 720, crop: 'left' -%}
+
+<div class="swiper-slide">
+    <a class="thumb-card" href="{{fitouts.url}}">
+        <picture>
+            <source srcset="{{card_img_2x}}" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">    
+            <img class="thumb-card-img" src="{{card_img}}" width="370" height="360" alt="{{fitouts.title}}" />
+        </picture>
+        <div class="thumb-card-body">
+            <img class="thumb-card-logo {% if is_svg == true %}svg-logo{% endif %}" src="{{ card_logo }}" alt="fitout" width="" height="">
+        </div>
+    </a>
+</div>
+<style>
+    .thumb-card-logo.svg-logo, 
+    .swiper-slide img.thumb-card-logo.svg-logo{
+        fill: #000;
+        filter: unset;
+        max-width: 150px;
+        max-height: 70px;
+    }
+</style>

@@ -1,0 +1,244 @@
+{{'blocked-customer.css' | asset_url | stylesheet_tag }}
+{%- capture html -%}
+<div class="bs-wrapper" id="bs-wrapper" data-activePage="page-index">
+  <div class="page-width">
+    <div class="bs-top">
+      <svg class="jasonl-logo" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.05 24.775">
+        <path d="M22.8,5.8H19.2c-.2,0-.2.1-.2.2V7.2a.09794.09794,0,0,0-.1-.1,4.07135,4.07135,0,0,0-1.4-1.2,6.1187,6.1187,0,0,0-4-.4A6.369,6.369,0,0,0,8.7,9.8a8.325,8.325,0,0,0,0,5.4,6.98584,6.98584,0,0,0,1.9,2.9,6.381,6.381,0,0,0,3.7,1.5,5.70769,5.70769,0,0,0,2.9-.4A4.88733,4.88733,0,0,0,19,17.8V19c0,.2,0,.2.2.2h3.6c.2,0,.2-.1.2-.2V6C23.1,5.9,23,5.8,22.8,5.8Zm-5.7,9.8a3.3119,3.3119,0,0,1-4.7-2.5A3.43608,3.43608,0,0,1,14,9.5a3.3685,3.3685,0,0,1,5,2.3c0,.2.1.5.1.7A3.16681,3.16681,0,0,1,17.1,15.6Z" />
+        <path d="M47.1,5.9a7.75588,7.75588,0,0,0-4.5-.4,6.71251,6.71251,0,0,0-4.7,3.3,7.25491,7.25491,0,0,0-.6,6.1,6.14446,6.14446,0,0,0,2,3,7.07139,7.07139,0,0,0,4.8,1.7,6.56512,6.56512,0,0,0,3.2-.7,6.82754,6.82754,0,0,0,4-6,6.95143,6.95143,0,0,0-.9-4A6.07823,6.07823,0,0,0,47.1,5.9Zm-2,9.9a3.18985,3.18985,0,0,1-3.9-2,3.55971,3.55971,0,0,1,1.3-4.1,3.14074,3.14074,0,0,1,4.8,2,2.48542,2.48542,0,0,1,.1.8A3.36656,3.36656,0,0,1,45.1,15.8Z" />
+        <path d="M65.3,10.8a13.55363,13.55363,0,0,0-.2-2,4.13515,4.13515,0,0,0-2-2.8,5.59846,5.59846,0,0,0-3.6-.7,3.726,3.726,0,0,0-2.7,1.5c-.1.1-.1.2-.2.3h0V5.9c0-.2,0-.2-.2-.2H53.1c-.2,0-.3.1-.3.2v13c0,.2,0,.2.2.2h3.5c.2,0,.3,0,.3-.3v-8A1.921,1.921,0,0,1,58.2,9a6.14959,6.14959,0,0,1,1.4-.1A1.70591,1.70591,0,0,1,61,10.2a5.01937,5.01937,0,0,1,.2,1.2v7.3c0,.2,0,.2.2.2h3.5a.26517.26517,0,0,0,.3-.3C65.3,16.3,65.3,13.6,65.3,10.8Z" />
+        <path d="M33.7,11.9a12.53666,12.53666,0,0,0-2.5-.9,7.10415,7.10415,0,0,1-1.8-.8.80737.80737,0,0,1-.4-.9,1.25,1.25,0,0,1,2.4,0,.26517.26517,0,0,0,.3.3h3.2c.4,0,.4,0,.4-.4a4.32012,4.32012,0,0,0-2.1-3.1,5.82292,5.82292,0,0,0-3.4-.7,5.2185,5.2185,0,0,0-3.4,1.4,3.68526,3.68526,0,0,0-1.2,3.5,3.33205,3.33205,0,0,0,2.1,2.5,17.178,17.178,0,0,0,2.9,1.1,4.49453,4.49453,0,0,1,1.2.6,1.12691,1.12691,0,0,1,.2,1.6,1.4362,1.4362,0,0,1-1.5.5,1.38266,1.38266,0,0,1-1.2-1.1c0-.2-.1-.3-.3-.2H25.1c-.1,0-.2,0-.2.2a4.27913,4.27913,0,0,0,2.2,3.4,6.4711,6.4711,0,0,0,5.9.3,4.28989,4.28989,0,0,0,2.8-3.3,3.57121,3.57121,0,0,0-2.1-4Z" />
+        <path d="M6.6,5.8H3.2C3,5.8,3,5.8,3,6V19.7a1.632,1.632,0,0,1-1.4,1.7,6.55208,6.55208,0,0,1-1.4,0c-.1,0-.2,0-.2.1v2.9a.21508.21508,0,0,0,.2.2,6.89252,6.89252,0,0,0,3.5-.1,4.14262,4.14262,0,0,0,2.9-2.7,7.61252,7.61252,0,0,0,.3-2.1V6.1C6.9,5.8,6.8,5.8,6.6,5.8Z" />
+        <path d="M79.9,16.3a2.4375,2.4375,0,0,1-1.2,0,1.83858,1.83858,0,0,1-1.4-.8,1.97808,1.97808,0,0,1-.2-1.1V.9a.26517.26517,0,0,0-.3-.3H73.4a.26517.26517,0,0,0-.3.3V14.4a7.56868,7.56868,0,0,0,.1,1.5A4.44178,4.44178,0,0,0,75.4,19a6.66309,6.66309,0,0,0,4.4.4c.1,0,.1-.1.1-.2V16.3Z" />
+        <path d="M69.6,14.9a2.3,2.3,0,1,0,0,4.6,2.3,2.3,0,1,0,0-4.6Z" />
+        <path d="M4.9,0A2.20485,2.20485,0,0,0,2.6,2.3,2.07692,2.07692,0,0,0,4.9,4.5,2.18163,2.18163,0,0,0,7.2,2.3,2.20485,2.20485,0,0,0,4.9,0Z" />
+      </svg>
+    </div>
+    <div class="bs-body">
+      <div class="bs-body-item page-index active">
+        <div class="bs-body-cnt">
+          <picture class="banner-img">
+            <source media="(max-width:650px)" srcset="https://cdn.shopify.com/s/files/1/1249/7859/files/block-sequence-main-img-mobile-2.png?v=1698663225">
+            <img src="https://cdn.shopify.com/s/files/1/1249/7859/files/block-sequence-main-img.png?v=1697537310" alt="I want to schedule a call" />
+          </picture>
+          <div class="options-body">
+            <div class="body-cnt">
+              <span class="hi">Hi there!</span>
+              <strong class="heading">
+                <span class="lg">Please select the action that <br>best suits <span>you</span>
+                </span>
+                <span class="sm">Please select the <br> action that best <br> suits <span>you</span>
+                </span>
+              </strong>
+              <ul class="options">
+                <li>
+                  <a id="link-schedule-call" class="button bs-ga4-button-track" href="" data-ga4-param-option="Schedule call">I want to schedule a call</a>
+                </li>
+                <li>
+                  <span class="button triggerBtn bs-ga4-button-track" data-ga4-param-option="No longer interested" data-target="page-survey-pick">I am no longer interested</span>
+                </li>
+                <li>
+                  <div class="button triggerBtn" data-target="page-catalogue">
+                    <span class="lg bs-ga4-button-track" data-ga4-param-option="Send me Catalogue">Please send me a JasonL product catalogue</span>
+                    <span class="sm bs-ga4-button-track" data-ga4-param-option="Send me Catalogue">Send me a JasonL catalogue</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- item -->
+      <div class="bs-body-item page-survey-pick">
+        <div class="bs-body-cnt">
+          <div class="options-body">
+            <div class="body-cnt">
+              <strong class="heading">
+                <span class="lg">We will not contact you.</span>
+                <span class="sm">Sales will not be contacting you as you requested</span>
+              </strong>
+              <p>
+                <span class="lg">However we would love to know WHY you are no longer interested.</span>
+                <span class="sm">We will love to know more about your decision. Your input is very valuable to us.</span>
+              </p>
+              <ul class="options">
+                <li>
+                  <span class="button triggerBtn bs-ga4-button-track" data-target="page-survey" data-ga4-param-option="Take survey">Take survey(1min)</span>
+                </li>
+                <li>
+                  <div class="button triggerBtn" data-target="page-catalogue">
+                    <span class="lg bs-ga4-button-track" data-ga4-param-option="Send me Catalogue">Please send me a JasonL product catalogue</span>
+                    <span class="sm bs-ga4-button-track" data-ga4-param-option="Send me Catalogue">Send me a JasonL catalogue</span>
+                  </div>
+                </li>
+              </ul>
+              <!-- <button class="button button-submit">Submit {% render 'icon-arrow' %}</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- item -->
+      <div class="bs-body-item page-survey">
+        <div class="bs-body-cnt">
+          <div class="options-body">
+            <div class="body-cnt">
+              <strong class="heading">Thank you for choosing to help <br>us improve our service </strong>
+              <p>Please choose the reason that best describe why you are no <br>longer interested in hearing from JasonL </p>
+              <ul class="options">
+                <li>
+                  <label class="radio-container">
+                    <span class="label">I am no longer looking for office furniture</span>
+                    <input type="radio" name="reason" value="I am no longer looking for office furniture">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="radio-container">
+                    <span class="label">I have decided to use another supplier</span>
+                    <input type="radio" name="reason" value="I have decided to use another supplier">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="radio-container">
+                    <span class="label">I found what I was looking for cheaper somewhere else</span>
+                    <input type="radio" name="reason" value="I found what I was looking for cheaper somewhere else">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="radio-container">
+                    <span class="label">I found a better quality product somewhere else</span>
+                    <input type="radio" name="reason" value="I found a better quality product somewhere else">
+                    <span class="checkmark"></span>
+                  </label>
+                </li>
+                <li>
+                  <label class="radio-container">
+                    <span class="label">Other: </span>
+                    <input class="other-reason-radio" type="radio" name="reason" value="other">
+                    <span class="checkmark"></span>
+                    <input class="other-reason-text" type="text" name="other" value="" onKeyPress="inputOtherReason()" onKeyUp="inputOtherReason()">
+                  </label>
+                </li>
+              </ul>
+              <p class="enter-reason">Select any reason from above list. </p>
+              <div class="button-holder">
+                <button class="button button-submit" disabled>Submit {% render 'icon-arrow' %}</button>
+                <div class="lds-ring">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- item -->
+      <div class="bs-body-item page-catalogue">
+        <div class="bs-body-cnt">
+          <div class="options-body">
+            <div class="body-cnt">
+              <strong class="heading">
+                <span class="lg">We know you are going to love <br>our product catalogue </span>
+                <span class="sm">You will love our product catalogue</span>
+              </strong>
+              <p>
+                <span class="lg"> Please provide your full name, address and phone. <br> One of our sales reps will send you our catalogue ASAP </span>
+                <span class="sm"> Please enter your Name, Address and Phone and a Sales Rep will send you the catalogue ASAP</span>
+              </p>
+              <div class="options ">
+                <div class="form-holder">
+                  <form action="" method="post" name="requestacatalogueform" id="form-catalogue-full" class="block-sequence-catalogue-form">
+                    <div class="field-item">
+                      <!-- <label>Full Name</label> -->
+                      <input type="text" name="name" placeholder="Full Name*">
+                      <div class="name_error">Your name is required</div>
+                    </div>
+                    <div class="field-item" style="display:none">
+                      <input type="text" id="hidfield" name="hidfield">
+                    </div>
+                    <div class="field-item" style="display:none">
+                      <input type="text" id="catalogueName" name="cataloguename" value="full catalogue">
+                    </div>
+                    <div class="field-item">
+                      <!-- <label>Address</label><span class="required">*</span> -->
+                      <input type="text" name="address" placeholder="Address*">
+                      <div class="address_error">Your address is required</div>
+                    </div>
+                    <div class="field-item select-dropdowns-holder">
+                      <div class="select-dropdowns">
+                        <select name="state" id="catalogueState">
+                          <option value="" disabled="" selected="">State</option>
+                          <option value="New South Wales">New South Wales</option>
+                          <option value="Victoria">Victoria</option>
+                          <option value="Queensland">Queensland</option>
+                          <option value="South Australia">South Australia</option>
+                          <option value="Australian Capital Territory">Australian Capital Territory</option>
+                          <option value="Western Australia">Western Australia</option>
+                          <option value="Tasmania">Tasmania</option>
+                        </select>
+                      </div>
+                      <div class="state_error">State is required</div>
+                    </div>
+                    <!-- <div class="field-item"><input type="text" name="email" placeholder="Email Address*"><div class="email_error">Your email is required</div><div class="email_invalid_error">Invalid email</div></div> -->
+                    <div class="field-item">
+                      <!-- <label>Phone number</label><span class="required">*</span> -->
+                      <input type="text" name="phone" placeholder="Phone*">
+                      <div class="phone_error">Your phone number is required</div>
+                      <div class="phone_invalid_error">Invalid phone</div>
+                    </div>
+                    <div class="form-submit-successful" id="formsubmitstatus"></div>
+                    <div class="field-item">
+                      <input type="submit" class="button button--primary" value="Send me the catalogue">
+                    </div>
+                  </form>
+                </div>
+                <!-- form-holder-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- item -->
+      <div class="bs-body-item page-thankyou">
+        <div class="bs-body-cnt">
+          <div class="thankyou-box">
+            <strong id="thankyou-msg" style="opacity: 1;">Thank you for <span>your Feedback!</span>
+            </strong>
+            <svg id="thankyou-svg" style="opacity: 1;" width="110" height="114" viewBox="0 0 110 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_71_693)">
+                <path d="M54.6098 0.929932C18.9098 0.929932 -0.000151455 17.9399 0.579849 34.6899C0.729849 38.8999 1.95985 44.0599 5.07985 49.0599C7.10985 52.3299 9.92985 55.5299 13.7698 58.3599C15.5598 59.6799 17.5598 60.9199 19.8098 62.0399C19.8398 62.0499 19.8598 62.0699 19.8898 62.0799C26.8398 65.5399 37.0498 67.9499 49.2298 68.3899L52.1198 74.1899H53.1298H53.7498V81.3699C52.3498 81.4799 51.3698 81.7499 51.3698 82.0499V104.27C37.9998 105.79 28.2298 108.14 28.2298 110.27C28.2298 110.35 28.2198 110.44 28.2298 110.52C28.2198 110.6 28.2298 110.68 28.2298 110.77C28.2298 112.33 40.4098 113.99 55.4298 113.99C70.4498 113.99 82.5198 112.34 82.5198 110.77C82.5198 110.69 82.5499 110.6 82.5398 110.52C82.5499 110.44 82.5198 110.35 82.5198 110.27C82.5198 108 72.5199 105.28 59.2498 104.26V82.0499C59.2498 81.7399 58.2698 81.4799 56.8698 81.3699V74.1899H57.3998H57.0898H58.6798L61.1798 68.6999C79.8699 69.1199 90.8098 64.5799 98.2898 58.3499C100.18 56.7799 101.79 55.0999 103.15 53.3699C108.14 46.9999 109.81 39.8999 110 34.6699C110.58 17.9399 91.1998 0.929932 54.6098 0.929932ZM83.6498 14.2499C85.2398 14.2499 86.5298 15.5399 86.5298 17.1299C86.5298 18.7199 85.2398 20.0099 83.6498 20.0099C82.0599 20.0099 80.7698 18.7199 80.7698 17.1299C80.7698 15.5399 82.0599 14.2499 83.6498 14.2499ZM26.7798 14.2499C28.3698 14.2499 29.6598 15.5399 29.6598 17.1299C29.6598 18.7199 28.3698 20.0099 26.7798 20.0099C25.1898 20.0099 23.8998 18.7199 23.8998 17.1299C23.8998 15.5399 25.1898 14.2499 26.7798 14.2499ZM100.04 43.7199C99.8699 44.1399 99.6898 44.5399 99.4998 44.9299C98.4998 46.9699 97.2398 48.9199 95.8898 50.7899C95.3098 51.5999 94.4998 52.3599 93.7798 53.0699C91.4798 55.3899 88.8699 57.0999 86.0398 58.3599C79.0998 61.4599 70.8698 61.8599 62.8698 61.8599C56.5098 61.8599 50.1698 62.2499 43.8098 61.9999C37.4298 61.7499 30.4898 60.8799 24.6098 58.3599C20.6698 56.6799 17.1998 54.2499 14.6998 50.7799C13.3498 48.9099 12.0798 46.9599 11.0898 44.9199C11.0298 44.8099 10.9898 44.6999 10.9298 44.5899C9.86985 42.2999 9.08985 39.4099 9.06985 36.9599C8.99985 29.2899 21.1098 28.8199 27.3198 28.8199H83.2698C89.4798 28.8199 101.59 29.2899 101.52 36.9599C101.5 39.0999 100.9 41.5799 100.04 43.7099V43.7199Z" fill="white" />
+              </g>
+              <defs>
+                <clipPath id="clip0_71_693">
+                  <rect width="109.43" height="113.07" fill="white" transform="translate(0.569824 0.929932)" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- item -->
+    </div>
+    <!-- bs-body-->
+    <div class="page-back triggerBtn" data-target="page-index">{% render 'icon-arrow' %} Go back</div>
+  </div>
+  <!-- page-width-->
+</div>
+{%- endcapture -%}
+{%- assign html_strip_space = html | replace: "  ","" -%}
+{{html_strip_space | strip_newlines }}
+
+<!-- bs-wrapper-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+{{'blocked-customer-email.js' | asset_url | script_tag }}
+
+{% schema %}
+  {
+    "name": "Blocked Customer - Email",
+    "settings": []
+  }
+{% endschema %}

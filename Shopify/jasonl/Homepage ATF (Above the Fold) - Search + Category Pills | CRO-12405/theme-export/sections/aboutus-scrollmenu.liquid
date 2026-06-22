@@ -1,0 +1,89 @@
+{{ 'aboutus-style.css' | asset_url | stylesheet_tag }}
+{{ 'aboutus.css' | asset_url | stylesheet_tag }}
+<div id="page" class="aboutuspage">
+  <div id="shopify-section-aboutus" class="shopify-section">
+    <div class="scroll-menu">
+      <div class="page-width page-width-medium">
+        <ul>
+          <li class="active"><a href="#section-aboutus">About us </a></li>
+          <li><a href="#section-proposition">Proposition </a></li>
+          <li><a href="#section-services">Services </a></li>
+          <li><a href="#section-people">People </a></li>
+          <li><a href="#location-placeholder">Showrooms </a></li>
+          <li><a href="#quality-management">Quality management </a></li>
+          <li><a href="#section-sustainability">Sustainability </a></li>
+          <li><a href="#section-community">Community </a></li>
+          <li><a href="#modern-slavery">Modern slavery </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const links = document.querySelectorAll(".scroll-menu ul li a");
+  for (const link of links) {
+      link.addEventListener("click", clickHandler);
+      //let sectionID = link.getAttribute('href');
+      //scrollActiveMenu(sectionID);
+  }
+  function clickHandler(e) {
+      e.preventDefault();
+      const href = this.getAttribute("href");
+      const offsetTop = document.querySelector(href).offsetTop;
+      scroll({
+          top: offsetTop - 148,
+          behavior: "smooth"
+      });
+      var t = document.querySelectorAll(".scroll-menu ul li");
+      for(t of t) {
+          t.classList.remove('active');
+      }
+      this.parentElement.classList.add('active');
+  }
+
+function scrollActiveMenu(){
+    const sections = document.querySelectorAll('#MainContent .shopify-section');
+  //  console.log(document.getElementById("section-aboutus"));
+
+    const observerOptions = {
+        root: null, // use the document's viewport as the container
+        rootMargin: '0px',
+        threshold: 0.5 // trigger when 50% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // console.log(`${entry.target.id} is in the viewport`);
+              let menuItem = document.querySelector(`.scroll-menu ul li a[href="#${entry.target.id}"]`);
+              // console.log(menuItem);
+              document.querySelector(`.scroll-menu ul li.active`).classList.remove('active');
+                menuItem.parentElement.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+        for (const link of links) {
+          let sectionId = link.getAttribute('href').replace('#','');
+          let section = document.getElementById(sectionId); 
+           observer.observe(section);
+        }
+}
+  document.addEventListener("DOMContentLoaded",(event) => {
+    scrollActiveMenu();
+  })
+  
+  
+</script>
+{% schema %}
+{
+"name": "Aboutus Scroll Menu",
+"class": "section-scroll-menu",
+"settings": [
+{
+"type": "header",
+"content": "About page Menu"
+}
+]
+}
+{% endschema %}

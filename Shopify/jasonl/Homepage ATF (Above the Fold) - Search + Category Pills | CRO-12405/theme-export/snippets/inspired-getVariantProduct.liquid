@@ -1,0 +1,47 @@
+
+
+
+{%- if args contains '&' -%}
+    {%- assign split_args = args | split:'&'-%}
+    {% for args_item in split_args  %}
+        {% if args_item contains 'variant' %}
+            {%- assign split_variant = args_item |  split: '='-%}
+            {% assign variantId = split_variant[1] %}
+        {% endif %}
+    {% endfor %}
+{%- else -%}
+        {%- assign split_variant = args |  split: '='-%}
+        {% assign variantId = split_variant[1] %}
+{%- endif -%}
+
+{% if section.id == 'inspired-fitouts' %}
+            <div class="prod-list-cnt"  data-prodhandle="{{productHandle}}" data-prodvariantid="{% if variantId %}{{variantId}}{% else %}0{% endif  %}"></div>
+{% else %}
+    {% if variantId %}
+        {%- assign prod_handle = productHandle | strip-%}
+        {%- assign product = all_products[prod_handle] -%}
+
+        <div class="prod-list-cnt"  data-prodhandle="{{prod_handle}}" data-prodvariantid="{{variantId}}">
+                {%- for variant in product.variants -%} 
+                        {%- assign finalVariantID = variantId | times: 1-%}
+    
+                        {%- if variant.id == finalVariantID -%}
+                            {% if variant.image != blank %}
+                            <picture><img src="{{variant.image |  image_url: width:150}}"   alt="{{product.title}}" /></picture> 
+                            {% endif %}
+                            <div class="prod-info">
+                                <a href="{{product.url}}" title="{{product.title}}">
+                                    <h5>{{product.title | truncatewords:6, '' }}</h5>
+                                    <p>{{variant.price | money_without_trailing_zeros}} </p>
+                                </a>
+                            </div>			
+                            {%- break -%}
+                        {%- endif -%}
+         	
+                {% endfor %} 
+                <a href="{{product.url}}" class="button button-primary">View product</a>	
+            </div> 
+    {% else %}
+                {% render 'inspired-getBaseProduct', productHandle:productHandle %}
+    {% endif %}
+{% endif %}  

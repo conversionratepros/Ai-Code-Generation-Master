@@ -1,0 +1,97 @@
+{%- comment -%} start assembly instructio {%- endcomment -%}
+<h3 class="no-assembly-insctruction-hide">Assembly instructions</h3>
+
+<ul class="table-list-download">
+  {%- if assemblyinstruction contains ',' -%}
+    {% assign all_inst_url = assemblyinstruction | split: ',' %}
+    {%- for each_url in all_inst_url -%}
+
+      {%- if each_url contains '::' -%}
+        {% assign instruction_array = each_url | split: '::' %}
+        {% assign instruction_url = instruction_array[1] %}
+        {% assign instruction_title = instruction_array[0] %}
+      {% else %}
+        {% assign instruction_url = each_url %}
+        {% assign instruction_title = themeOption_label %}
+      {%- endif -%}
+
+
+      <li class="instruction-item download-item {% if forloop.first %}active{% endif %}">
+        <a
+          class="download-item-cnt-holder"
+          href="{{ instruction_url }}?v={{"now" | date:"%d_%Y"}}"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ga4="assembly_downloads">
+          <div class="instruction-title">{{ instruction_title }}</div>
+          <div class="download-btn">
+            <span class="link">Download</span>
+            {%- render 'icon-download' -%}</div>
+        </a>
+      </li>
+
+    {%- endfor -%}
+  {%- else -%}
+    {%- if assemblyinstruction contains '::' -%}
+      {% assign instruction_array = assemblyinstruction | split: '::' %}
+      {% assign instruction_title = instruction_array[0] %}
+      {% assign instruction_url = instruction_array[1] %}
+    {% else %}
+      {% assign instruction_url = assemblyinstruction %}
+      {% assign instruction_title = themeOption_label %}
+    {%- endif -%}
+
+    {% if instruction_url != blank %}
+      <li class="instruction-item download-item active">
+        <a
+          class="download-item-cnt-holder"
+          href="{{ instruction_url }}?v={{"now" | date:"%d_%Y"}}"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ga4="assembly_downloads">
+          <div class="instruction-title">
+            {{ instruction_title | strip | default: "Assembly Instruction" }}
+          </div>
+          <div class="download-btn">
+            <span class="link">Download</span>
+            {%- render 'icon-download' -%}</div>
+        </a>
+      </li>
+    {% else %}
+      <li class="description-inside-assembly-instruction">
+        {%- render 'description-left-inner-wrap', description_content: description_content -%}
+      </li>
+    {% endif %}
+
+  {%- endif -%}
+</ul>
+{%- comment -%} assembly instruction end {%- endcomment -%}
+
+
+
+{% comment %} 
+
+<div class="complete-instruction-donwload">
+<div class="instruction-title">Quadro 2P Square leg</div>
+<a href="#" class="link_underline download-icon-right">
+Download
+<svg class="download-icon" id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.73 17.73">
+<defs><style>.svg-download-arrow {fill: #c6d644;}</style></defs>
+<path class="svg-download-arrow" d="M8.87,0a8.87,8.87,0,1,0,8.86,8.87A8.87,8.87,0,0,0,8.87,0ZM6.6,8.8V4.28h4.52V8.79h3L8.86,14,3.64,8.8Z"></path>
+</svg>
+</a>
+</div>
+<ul class="table-list-download">
+<li>
+<div class="instruction-title">Echo panel screen</div>
+<a href="#" class="link_underline">Download</a>
+</li>
+<li>
+<div class="instruction-title">Fabric screen</div>
+<a href="#" class="link_underline">Download</a>
+</li>
+</ul>
+
+
+
+{% endcomment %}

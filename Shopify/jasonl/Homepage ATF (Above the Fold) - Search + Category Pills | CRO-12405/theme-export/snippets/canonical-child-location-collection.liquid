@@ -1,0 +1,24 @@
+{%- assign current_path_title = request.path | split : '/' | last -%}
+{%- assign child_collection_found = false -%}
+{%- assign location_name_all = shop.metafields.custom_fields.location_collection__locations -%}
+{%- assign current_path_title_cleaned =  current_path_title | split: "+" | first -%}
+{%- assign current_path_location = current_path_title | split: "+" | last -%}
+
+{%- if location_name_all contains current_path_location -%}
+    {%- for link in linklists.main-menu-image-without-more-testing.links -%}
+        {%- for childlink in link.links -%}
+            {%- assign menu_title =  childlink.url | split: "/" | last -%}
+            {%- if current_path_title_cleaned == menu_title -%}
+                {%- assign child_collection_found = true -%}
+                {{- request.origin -}}{{- childlink.url -}}+{{- current_path_location -}}
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if child_collection_found == true -%}
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}
+{%- if child_collection_found == false -%}
+    {{- canonical_url -}}
+{%- endif -%}

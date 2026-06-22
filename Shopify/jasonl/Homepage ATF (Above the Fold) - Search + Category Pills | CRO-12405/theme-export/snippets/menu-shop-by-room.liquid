@@ -1,0 +1,44 @@
+{{ 'menu-shop-by-room.css' | asset_url | stylesheet_tag }}
+
+{%- assign current_url = request.path -%}
+{%- assign tag_map = 'business' -%}
+
+{% if page.title == 'Hospitality' %}
+    {%- assign tag_map = 'hospitality' -%}
+  {% elsif page.title == 'Education' %}
+    {%- assign tag_map = 'education' -%}
+  {% elsif template == "article.shop-by-rooms" %}
+      {% if article.tags contains 'business' %}
+          {%- assign tag_map = 'business' -%}
+      {% elsif article.tags contains 'hospitality' %}
+              {%- assign tag_map = 'hospitality' -%}
+      {% elsif article.tags contains 'education' %}
+          {%- assign tag_map = 'education' -%}
+      {%- endif -%}
+  {% endif %}
+
+{%- assign menu = linklists['shop-by-rooms'] -%}
+
+{%- if menu.links.size > 0 -%}
+    <div class="menu-shop-by-room dropdown dropdown-6">
+        <span class="menu-label">
+            <span class="arrow-holder">Shop by Room</span>
+        </span>
+        <ul class="menu-list-holder dropdown_menu dropdown_menu--animated dropdown_menu-6">
+            <li class="{% if page.handle == "inspired"  %}childmenu-item--active{% endif %}">
+                <a href="{{ shop.url }}/pages/inspired" title="Get inspired">Get Inspired</a>
+            </li>
+            {%- for link in menu.links -%}
+                {%- assign parent_title = link.title | downcase -%}
+
+                {%- if parent_title == tag_map and link.links.size > 0 -%} 
+                    {%- for child_link in link.links -%}
+                        <li class="{% if child_link.active %}childmenu-item--active{% endif %}">
+                            <a href="{{ child_link.url }}" title="{{ child_link.title }}">{{ child_link.title }}</a>
+                        </li>
+                    {%- endfor -%}
+                {%- endif -%}
+            {%- endfor -%}
+        </ul>
+    </div>
+{%- endif -%}

@@ -1,0 +1,23 @@
+{%- assign perPageLimit = 10 -%}
+{%- paginate blog.articles by perPageLimit -%}
+        {%- assign fitouts = blog.articles -%}            
+        {% render 'inspired-get-fitouts', fitout_articles:fitouts, counter:perPageLimit %}
+{%- endpaginate -%}
+<style>
+        .section-inspired-fitouts{
+                display: none;
+        }
+</style>
+{% schema %}
+{
+"name": "Inspired Fitouts",
+ "tag": "section",
+"class":"section-inspired-fitouts"
+}
+{% endschema %}
+
+
+
+
+
+                

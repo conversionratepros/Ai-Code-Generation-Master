@@ -1,0 +1,194 @@
+{{ 'responsive-menu-header.css' | asset_url | stylesheet_tag }}
+{%- capture main_nav -%}
+<nav class="header-nav">
+    <div class="subnav-overlay"> </div>
+    <div class="sticky-dropdown-helper page-width"></div>
+    <div class="page-width">
+        {%- render 'menu-shop-by-room' -%}
+        <div class="nav-overlay"></div>
+        {%- assign locationAvailability_filterTag = 'perth'-%}
+        {%- assign locationAvailability_filterTag_main = 'perth'-%}
+        <ul class="header-main-menu" id="header-main-menu" role="list">
+            {%- for link in linklists.main-menu-image-without-more-testing.links -%}
+            {% capture menuTitle_withoutIcon %}
+            {%- if link.title contains '|'-%}
+            {%- assign linktitle = link.title | split:'|'-%}
+            {{-linktitle[0]-}}
+            {%-else-%}
+            {{- link.title | escape -}}
+            {%- endif-%}
+            {%- endcapture -%}
+           
+            {%  if menuTitle_withoutIcon contains "More" %}
+                {%- assign locationAvailability_filterTag_main = ''-%}
+            {% endif %}
+            <li
+                class="dropdown dropdown-6 {% if link.active %}menu-item--active {% endif %} menu-item-{{forloop.index}} {% if forloop.index > 12 %}large-up-hide medium-hide{% endif %}{% if link.links.size <= 4 %} small-submenu{% endif %} {% if link.links.size < 1 %} no-dropdown {% endif %} {% if forloop.index < 9 and link.links.size <= 4 %}center-align-submenu{% endif %}">
+
+                {%- comment -%}  
+                - check whether the parent menu item is not child menu. If yes, handle the case for perth using '+' instead of '/' on URL
+                {%- endcomment -%}
+                {%- assign check_link_url = link.url | split:'/' -%}
+                {%- assign concat_character = '/' -%}
+                {%- comment -%} 
+                    parent url : https://www.jasonl.com.au/collections/ergonomic-accessories
+                    child url : https://www.jasonl.com.au/collections/ergonomic-accessories/monitor-arms
+                {%- endcomment -%}
+                {%- if check_link_url.size > 3  -%}
+                    {%- assign concat_character = '+' -%}
+                {%- endif -%}
+                {%- assign menu_title_with_office = "Chairs,Desks,Workstations,Storage,Tables" | split: ',' -%}
+                {%- assign menu_title = menuTitle_withoutIcon | strip -%}
+
+                <a class="parent-collection {% if link.current %} menu-item--active {% endif %}" title="{% if menu_title_with_office contains menu_title %}Office{% endif %} {{ menu_title }}" href="{{ link.url }}" data-nsw="{{ link.url }}"
+                    data-wa="{{ link.url }}{{concat_character}}{{locationAvailability_filterTag_main}}" data-js_updatemenuurl="true" {% if link.current %} aria-current="page" {%
+                    endif %}>
+                    {%-comment-%}{% render 'main-nav-icons', item:link.title %} {%-endcomment-%}
+                    {% comment %} <span>
+                        {%- render 'menu-titles-test', forloopindex: forloop.index, menutitle: menuTitle_withoutIcon -%}
+                    </span> {% endcomment %}
+                    <span>{{menuTitle_withoutIcon}}</span>
+                </a>
+                {%- if link.links.size > 0 -%}
+                <div class="header-child-menu dropdown_menu dropdown_menu--animated dropdown_menu-6">
+                    <div class="child-menu-mid">
+                        <ul>
+                            {%- render 'header-submenu', parentMenu: link,
+                                locationAvailability_filterTag:locationAvailability_filterTag , firstFour : true-%}
+                           
+                        </ul>
+                        {% comment %}
+                        {% unless forloop.last %}
+                            <div class="category-menu-image-title">
+                                All&nbsp;<a href="{{link.url}}" data-nsw="{{ link.url }}"
+                                    data-wa="{{ link.url }}/{{locationAvailability_filterTag}}"
+                                    data-js_updatemenuurl="true"> 
+                                        {% comment %} {{ link.title }} {% endcomment %}
+                                         {% assign menu_title = menuTitle_withoutIcon %}
+
+                                         {% render 'menu-title-alias', menutitle: menu_title %}
+
+                                        {% comment %} {{ menuTitle_withoutIcon | capitalize }} {% endcomment %}
+                                    </a>
+                            </div>
+                        {% endunless %} 
+                        {% endcomment %}
+
+                    </div>
+                    <div class="child-menu-left">
+                        {% comment %} 
+                        <h4>
+                            <a href="{{link.url}}" data-nsw="{{ link.url }}"
+                                data-wa="{{ link.url }}/{{locationAvailability_filterTag}}"
+                                data-js_updatemenuurl="true">
+                                {% unless forloop.last %}
+                                    More
+                                {% endunless %}
+
+                                {% assign menu_heading = menuTitle_withoutIcon %}
+                                {% render 'dropdown-menu-list-heading-alias',  headingtitle: menu_heading %}
+                                {%- render 'icon-arrow'-%}
+                            </a>
+                        </h4> 
+                        {% endcomment %}
+                        <ul class="child-menu" id="child-menu-{{link.url | remove:'/collections/'}}">
+                            {%- render 'header-submenu', parentMenu: link,
+                            locationAvailability_filterTag:locationAvailability_filterTag ,firstFour : false -%}
+                        </ul>
+                        <div class="category-menu-title">
+                            All&nbsp;<a href="{{link.url}}" data-nsw="{{ link.url }}"
+                                data-wa="{{ link.url }}/{{locationAvailability_filterTag}}"
+                                data-js_updatemenuurl="true"> 
+                                    {% comment %} {{ link.title }} {% endcomment %}
+                                        {% assign menu_title = menuTitle_withoutIcon %}
+
+                                        {% render 'menu-title-alias', menutitle: menu_title %}
+
+                                    {% comment %} {{ menuTitle_withoutIcon | capitalize }} {% endcomment %}
+                                </a>
+                        </div>
+                    </div>
+                    <div class="child-menu-right category-menu-image">
+                        {%- assign menu_image = "" %}
+                        {%-if link.title contains '|' -%}
+                        {%- assign image_part = link.title | split: '|' -%}
+                        {%- assign menu_image = image_part[1] | strip -%} 
+                        {%- assign image_alt_text = image_part[2] | strip -%}
+                        {%- assign default_alt_tag = link.url | split: '/' | last |  replace: "-", " " |  capitalize -%}
+                        {%- endif -%}
+
+                        {% if menu_image != "" %}
+                            <picture>
+                                <source srcset="{{ menu_image | file_img_url:'418x'}} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+                                <img src="{{ menu_image | file_img_url: '209x' }}" width="209" height="392" loading="lazy" alt="
+                                {%- if image_alt_text == blank -%}
+                                    {{- default_alt_tag -}}
+                                {%- else -%}
+                                    {{- image_alt_text -}}    
+                                {%- endif -%}"/>
+                            </picture>
+                        {% endif %}
+                        
+                        {% comment %} <div class="category-menu-image-body">
+                            <a href="{{link.url}}" data-nsw="{{ link.url }}"
+                                data-wa="{{ link.url }}/{{locationAvailability_filterTag}}"
+                                data-js_updatemenuurl="true" class="category-menu-image-title">SHOP ALL {% unless forloop.last %}{{ menuTitle_withoutIcon | upcase }}{% endunless %}</a>
+                        </div> {% endcomment %}
+
+                        {% comment %} <h4>{{menuTitle_withoutIcon}}?
+                            <br><span>{%- render 'collection-title-tagline', forloopindex: forloop.index-%}</span>
+                        </h4>
+                        {% render 'main-nav-icons', item:link.title %} {% endcomment %}
+                    </div>
+
+                </div>
+            {% endif %}
+            </li>
+            {%- endfor -%}
+            {% comment %} 
+                April 17 2025
+                This feature is commented as more is already handled in responsive menu
+                and we have remove more from parent menu 
+            {% endcomment %}
+            {% comment %} {% if linklists.main-menu-image-without-more-testing.links.size > 12 %}
+            <li class="dropdown dropdown-6 nav-more nav-more--desktop">
+                <a href="#" class="nav-more-btn"><span>More</span></a>
+                <div class="header-child-menu dropdown_menu dropdown_menu--animated dropdown_menu-6">
+                    <div class="child-menu-left">
+
+                        {%- for link1 in linklists.main-menu-image-without-more-testing.links offset: 12 limit:3 -%}
+                        {% capture menuTitle_withoutIcon1 %}
+                        {%- if link1.title contains '|'-%}
+                        {%- assign linktitle1 = link1.title | split:'|'-%}
+                        {{-linktitle1[0]-}}
+                        {%-else-%}
+                        {{- link1.title | escape -}}
+                        {%- endif-%}
+                        {%- endcapture -%}
+                        <div class="more-col {% if forloop.last %}last{% endif %}">
+                            <h4>
+                                <a href="{{link1.url}}" data-nsw="{{ link1.url }}"
+                                    data-wa="{{ link1.url }}/{{locationAvailability_filterTag}}"
+                                    data-js_updatemenuurl="true">{{- menuTitle_withoutIcon1 -}} 
+                                    {% comment %} {%- render
+                                    'icon-arrow'-%} {% endcomment %}
+                                </a>
+                            </h4>
+                            <ul class="child-menu">
+                                {%- render 'header-submenu', parentMenu:
+                                link1,locationAvailability_filterTag:locationAvailability_filterTag -%}
+                            </ul>
+                        </div>
+                        {%- endfor -%}
+
+                    </div>
+                </div>
+            </li>
+            {% endif %} {% endcomment %}
+            {%- render 'responsive-menu' -%}
+        </ul>
+        <div class="nav-overlay"></div>
+    </div>
+</nav>
+{%- endcapture -%}
+{{ main_nav | strip_newlines }}

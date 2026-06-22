@@ -1,0 +1,92 @@
+{%- assign currentproduct_handle= product.handle | strip -%}
+
+   {%- assign parentexists = '' -%}
+   {%- assign childexists = '' -%}
+   {%- assign stringofcollection='' -%}
+ {%- comment -%}
+    First get parent category 
+  {%- endcomment -%}
+      {%- for productcollection in all_products[currentproduct_handle].collections -%}
+      {%- assign collectiontitle = productcollection.title | strip -%}
+      {%- assign collectionhandle = productcollection.handle | strip -%}
+
+      {%- if collectiontitle =="Office Furniture" %}
+          {%- assign parentexists = collectionhandle | append:':' | append:collectiontitle -%}
+          {%- assign childexists = '' -%}
+          {%- break -%}
+      {%- endif -%}
+   {%- endfor -%}
+
+{%- comment -%}
+Get all the Collection assigned to the Products. 
+{%- endcomment -%}
+{%- for productcollection in all_products[currentproduct_handle].collections -%}
+     {%- assign collectiontitle = productcollection.title | strip -%}
+     {%- if stringofcollection =='' -%}
+         {%- assign stringofcollection=collectiontitle -%}
+     {%- else -%}
+         {%- assign stringofcollection=stringofcollection| append:',,' | append:collectiontitle -%}
+     {%- endif -%}
+{%- endfor -%}
+
+{%- assign arrayofCollection = stringofcollection | split: ',,'%}
+
+
+{%- comment -%}
+This is Second Step of Breadcrumb. In this step collection will be displayed. 
+{%- endcomment -%}
+{%- if parentexists !='' -%}
+{%- for link in linklists['shop-by-workspaces'].links -%}
+  {%- assign mainmenutitle = link.title -%}
+  {%- assign menutitleonly = mainmenutitle | split: "|" -%}
+  {%- if menutitleonly[0] == 'Office Furniture' -%}
+    {%- for childlink in link.links -%}
+            {%- assign leveltwo_collectiontitle = childlink.title | strip -%}
+
+      {%- for allcollection in arrayofCollection -%}
+
+        {%- if allcollection == leveltwo_collectiontitle -%}
+            {%-  assign parent_handle = childlink.handle-%}
+          
+          {%- assign childexists = childlink.title | strip -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+              {%- if childexists !='' -%}
+                  {%- break -%}
+              {%- endif -%}
+        {%- endfor -%}
+  {%- endif -%}
+  {%- if childexists !='' -%}
+        {%- break -%}
+      {%- endif -%}
+{%-endfor-%}
+{%- endif -%}
+
+
+
+{%- assign parent_collection = collections[parent_handle] -%}
+
+{% if parent_collection %}
+
+    {% assign counter = 0 %}
+    {% assign is_top_three = false %}
+  
+    {% for top_product in parent_collection.products %}
+      {% if counter < 3 %}
+        {% if top_product.id == product.id %}
+          {% assign is_top_three = true %}
+        {% endif %}
+        {% assign counter = counter | plus: 1 %}
+      {% else %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+{% else %}
+  <p>This product is not part of any collection.</p>
+{% endif %}
+
+    {% if is_top_three or product.tags contains "best-seller" %}
+      <div class="tag-box"><span>BESTSELLER</span></div>
+
+  {% endif %}

@@ -1,0 +1,90 @@
+{{ "landingpage-hero.css" | asset_url | stylesheet_tag }}
+<style>
+.hero-container{
+background: url({{ section.settings.hero_image | file_url }}) no-repeat 100% 0;
+background-size: cover;
+}
+@media(max-width:1439px){
+.hero-container{
+background-size: cover;
+}
+}
+@media (-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+.hero-container{
+background: url({{ section.settings.hero_image | file_url }}) no-repeat 100% 0;
+background-size: cover;
+}
+}
+@media(min-width:768px) and (max-width:1450px){
+.new-header .hero-container{
+background-size: cover;
+}
+}
+
+
+@media(max-width:767px){
+.hero-container{
+background-image: none;
+}
+.hero-text{
+background-size: contain;
+}
+}
+</style>
+<div class="hero-container">
+
+<div class="page-width">
+<div class="hero-text">
+<h1 class="h1-style">{{ section.settings.hero_title }}</h1>
+<a href="{{ section.settings.button_link }}" class="{%- if section.settings.button_class -%}{{section.settings.button_class}}{%- else -%} {%- endif -%}" >{{ section.settings.button_link_text }}</a>
+</div>
+</div>
+</div>
+
+{% schema %}
+{
+"name": "Hero Section",
+"settings": [
+{
+"type":"header",
+"content":"Instruction",
+"info" : "Home Page data source section settings. Other pages data source is metafield"
+},
+{
+"type": "image_picker",
+"id": "hero_image",
+"label": "Hero Image"
+},
+{
+"type": "text",
+"id": "hero_title",
+"label": "Hero Title",
+"default": "Beautiful fitouts in under 10 days. Easy. Fast"
+},
+{
+"type": "url",
+"id": "button_link",
+"label": "Button Link"
+},
+{
+"type": "text",
+"id": "button_link_text",
+"label": "Link Text",
+"default": "GET A QUOTE"
+},
+{
+"type": "text",
+"id": "class",
+"label": "Class",
+"id": "button_class",
+"label": "Link Class"
+},
+{
+"type": "textarea",
+"id": "hero_description",
+"label": "Description"
+}
+]
+}
+{% endschema %}

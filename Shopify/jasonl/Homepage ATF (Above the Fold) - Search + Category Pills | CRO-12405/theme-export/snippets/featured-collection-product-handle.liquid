@@ -1,0 +1,124 @@
+{%- comment -%} 
+ 1. There are 2 loops. one for NSW and another for Perth
+ 2. These data are managed in theme settings in home page template
+{%- endcomment -%}
+
+<ul>
+    {%- comment -%} 
+    ==========================================================
+    Featured product listing for NSW {%- endcomment -%}
+    {%- assign products_displayed = 0 -%}
+    {%- assign filtered_count = 0 -%}
+    {%- for product_handle in filtered_products_nsw -%}
+        {%- assign is_duplicate = false -%}
+        {%- assign product = all_products[product_handle]-%}
+
+        {%- comment -%} Check if entered product handle is correct! {%- endcomment -%}
+        {%- assign is_product_handle_active = false -%}
+        {%- if product.handle != empty -%}
+             {%- assign is_product_handle_active = true -%}
+        {% endif %}
+
+        {%- if products_displayed < max_products and is_product_handle_active -%}
+          {%- if filtered_products_perth contains product_handle  -%}
+            {%- assign is_duplicate = true -%}
+          {%- endif -%}
+            <li class="product-item all-products nsw nsw-products {% if is_duplicate %} perth-products {% endif %}">
+                <a href="{{ product.url }}">
+                <div class="item-img">
+                    <picture>
+                        <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                        <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                    </picture>
+                </div>
+                <div class="item-details">
+                    <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                    <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                </div>
+                </a>
+            </li>
+            {%- assign filtered_count = filtered_count | plus: 1 -%}
+            {%- assign products_displayed = products_displayed | plus: 1 -%}
+        {%- endif -%}
+    {%- endfor -%}
+
+    {%- comment -%} 
+    -------------------
+    For NSW 
+    - No products
+    - View all 
+    {%- endcomment -%}
+    {%- if products_displayed == 0 or filtered_count == 0 -%}
+        <li class="product-item all-products no-products">
+            No products found.
+        </li>
+    {%- else -%}
+     {%- if products_displayed == max_products -%}
+        <li class="product-item all-products view-all">
+            <a href="{{ collections[collection_handle].url }}" class="link">View all</a>
+        </li>
+     {%- endif -%}
+    {%- endif -%}
+    {% comment %} ------------------------ {% endcomment %}
+
+{%- comment -%} 
+==========================================================
+Featured product listing for Perth {%- endcomment -%}
+{%- assign products_displayed = 0 -%}
+{%- assign filtered_count = 0 -%}
+ {%- for product_handle in filtered_products_perth -%}
+    {%- assign product = all_products[product_handle]-%}
+    {% assign is_duplicate = false %}
+     {%- comment -%} Check if entered product handle is correct! {%- endcomment -%}
+        {%- assign is_product_handle_active = false -%}
+        {%- if product.handle != empty -%}
+             {%- assign is_product_handle_active = true -%}
+        {% endif %}
+    {% comment %} -------------------------- {% endcomment %}
+
+        {%- if filtered_count < max_products and product.tags contains 'Perth' and is_product_handle_active-%}
+            {%- if filtered_products_perth contains product_handle  -%}
+                {%- assign is_duplicate = true -%}
+            {%- endif -%}
+            {% unless is_duplicate %}
+                <li class="product-item perth-products hidden">
+                    <a href="{{ product.url }}">
+                        <div class="item-img">
+                        <picture>
+                            <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                            <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                        </picture>
+                        {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag : loading: 'lazy'}} {% endcomment %}
+                        </div>
+                        <div class="item-details">
+                        <h4>{{ product.title | strip_html | truncatewords: 8  }}</h4>
+                        <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                        </div>
+                    </a>
+                </li>
+                {%- assign filtered_count = filtered_count | plus: 1 -%}
+                {%- assign products_displayed = products_displayed | plus: 1 -%}
+            {% endunless %}
+        {%- endif -%}
+    {%- endfor -%}
+
+    {%- comment -%} 
+    -----------------------------------------
+    Show "View all" button/link only if there are products on the list. 
+    {%- endcomment -%}
+    {%- if products_displayed == 0 or filtered_count == 0 -%}
+        <li class="product-item perth-products hidden no-products">
+            No products found.
+        </li>
+    {%- else -%}
+     {%- if products_displayed == max_products -%}
+        <li class="product-item perth-products hidden view-all">
+            <a href="{{ collections[collection_handle].url }}" class="link">View all</a>
+        </li>
+     {%- endif -%}
+    {%- endif -%}
+    {%- comment -%} 
+    ----------------------------------------------
+    {%- endcomment -%}
+
+</ul>

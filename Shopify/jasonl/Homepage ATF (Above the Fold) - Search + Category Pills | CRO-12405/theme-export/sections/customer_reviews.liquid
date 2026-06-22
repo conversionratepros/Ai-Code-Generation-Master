@@ -1,0 +1,40 @@
+
+            {%- comment -%}
+            Google optimize enabled.
+            ---------------------------------
+            1. Condition : checking office desk
+            Action: Hiding this section.
+            {%- endcomment -%}
+            {%- assign optimize_common_content = false -%}
+            {%- if template == "collection" -%}
+            {%- if collection.handle == "office-desks"-%}
+            {%- assign optimize_common_content = true -%}
+            {%- endif-%}
+            {%- endif -%}
+
+            {%- if optimize_common_content == false -%}
+
+
+
+                        {{ "customer-reviews.css" | asset_url | stylesheet_tag }}
+                        <div class="customer-reviews">
+                            <div class="page-width">
+                                <h2>What Our Customers<br> Have to Say</h2>
+                                <div class="button-holder">
+                                    <a href="https://www.jasonl.com.au/pages/reviews" class="link" target="_blank" rel="noopener noreferrer">View All Reviews</a>
+                                </div>
+                                {%- render 'google-reviews' -%}
+                            
+                            </div>
+                        </div>
+
+
+            {%- endif -%}
+
+
+{% schema %} 
+{ "name": "Customer Reviews",
+"tag": "section",
+"class":"section--customer-reviews left-shadow"
+} 
+{% endschema %}

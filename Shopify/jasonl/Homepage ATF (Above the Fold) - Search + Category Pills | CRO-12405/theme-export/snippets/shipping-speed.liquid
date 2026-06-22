@@ -1,0 +1,97 @@
+
+{%-comment-%}
+        -----------------------------
+        {%- assign product_qty = 0 -%}
+        {%- for variant in product.variants -%}
+        {%- if variant.inventory_quantity > 0 -%}
+        {%- assign product_qty = product_qty | plus: variant.inventory_quantity -%}
+        {%- endif -%}
+        {%- endfor -%}
+
+        {%- for tag in product.tags -%}   
+            {%- if tag contains 'shipping-speed' -%}
+                {%- assign shipping_tag = tag -%}
+                {% if product.available == true %}
+                    <span class="stock shipping-speed-tag {% if product_qty < 1 %}no-stock{%-endif-%}">
+                        {%- if shipping_tag contains 'Next-Day-Dispatch' -%}
+                            Ships in next business day
+                        {%- else -%}
+                            Ships in 3-4 work days
+                        {%- endif -%}
+                    </span>
+                    {%-break-%}
+                {%- else -%}
+                    <span class="stock shipping-speed-tag no-stock">
+                        Out of stock / Pre-Order
+                    </span>
+                    {%-break-%}
+                {%- endif -%}  
+            {%- endif -%}
+        {%- endfor -%}
+        ------------------------------------
+{%-endcomment-%}
+
+{%- assign is_stock = false -%}
+{%- assign is_contactToPurchase = false -%}
+{%- assign is_jasonl = false -%}
+{%- assign is_suppliers = false -%}
+
+{% if product.available == true %}
+    {%- assign is_stock = true -%}
+    {%- for tag in product.tags -%} 
+        {%- if tag contains 'contact-to-purchase'-%}
+              {%- assign is_contactToPurchase = true -%}
+        {%- endif -%}
+    {%- endfor-%}
+
+
+    {%-comment-%}
+    ---------------------
+        {%- for tag in product.tags -%} 
+            {%- if tag contains 'shipping-speed' -%}
+                {%- if tag contains 'Next-Day-Dispatch' -%}
+                        {%- assign is_jasonl = true -%}
+                    {%- else -%}
+                        {%- assign is_suppliers = true -%}
+                    {%- endif -%}
+            {%- endif -%}
+        {%- endfor-%}
+        ----------------------------
+    {%- endcomment -%}
+
+
+
+    {%- assign brand = product.vendor | handleize-%}
+    {%- if brand == 'jasonl' -%}
+        {%- assign is_jasonl = true -%}
+    {%- else -%}
+        {%- assign is_suppliers = true -%}
+    {%- endif -%}
+
+
+
+
+        
+{%- endif -%}
+
+
+
+
+{%- if is_stock == false -%}
+    <span class="stock shipping-speed-tag no-stock">Out of stock / Pre-Order</span> 
+{%- elsif is_contactToPurchase == true -%}  
+    <span class="stock shipping-speed-tag contact-to-purchase">Out of stock / Pre-Order</span>
+{%- elsif is_jasonl == true -%}  
+    <span class="stock shipping-speed-tag">Delivered in 3-5 business days</span>
+{%- elsif is_suppliers == true -%}  
+    <span class="stock shipping-speed-tag">Delivered in 5-7 business days</span>
+{%- else -%}
+    <span class="stock shipping-speed-tag">Delivered in 5-7 business days</span>
+{%- endif -%}
+
+
+
+
+{%- comment -%}
+<!-- TODO:  product with 'contact-to-purchase' not showing  "Out of stock / Pre-Order" on collection page. -->
+{%- endcomment -%}

@@ -1,0 +1,35 @@
+{%- comment -%}
+---------------------------------------------------------
+{%- assign collectionPath = request.path | remove:'/collections/' | downcase | escape -%}
+{%- if collectionPath contains 'melbourne' -%}
+    {%- assign city = 'melbourne' -%}
+{%- elsif collectionPath contains 'brisbane' -%}
+    {%- assign city = 'brisbane' -%}
+{% endif %}
+---------------------------------------------------------
+{%- endcomment -%}
+
+{%- comment -%}
+<!-- {%- assign cities = 'sydney,melbourne,adelaide,brisbane' | split:','-%}  -->
+{%- endcomment -%}
+
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split:','-%}
+
+{% for tagname in current_tags %}
+        {%- assign tag_name = tagname | downcase | escape -%}   
+        {%- if cities contains tag_name -%}
+            {%-assign city = tagname | downcase | escape -%}
+            {%-break-%}
+        {%- endif -%}
+{%- endfor -%}
+
+{%- assign is_tag_perth = false -%}  
+{%- if current_tags contains 'Perth' or current_tags contains 'perth'-%}
+    {%- assign is_tag_perth = true -%} 
+    {%- render 'select-showroom', cities: cities, city: city, is_tag_perth: is_tag_perth-%}
+{%- endif -%}
+
+{%- if is_tag_perth == false -%}
+{%- render 'select-showroom', cities: cities, city: city, is_tag_perth: is_tag_perth-%}
+{%- endif -%}
+

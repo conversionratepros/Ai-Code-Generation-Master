@@ -1,0 +1,29 @@
+{% comment %} there are two files one is in section pdp-header-banner and another is in snippit {% endcomment %}
+{{ 'pdp-header-banner.css' | asset_url | stylesheet_tag }}
+<div class="pdp-header-banner">
+    <a href="/pages/gregory-chairs" class="headerlink"></a>
+    <div class="page-width header-banner-page-width">
+        <div class="banner-text">
+            <div class="banner-text-line">
+                Gregory Chairs is now part of the JasonL family!
+            </div>
+            <picture class="banner-company-logo">  
+                <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                <source srcset="{{ 'gregory-chairs-logo.png' | file_img_url:'54x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                <source srcset="{{ 'gregory-chairs-logo.png' | file_img_url:'54x'}}" media="(min-width: 768px)">
+                <img src="{{ 'gregory-chairs-logo.png' | file_img_url:'54x' }}" alt="gregory chairs" width="54" height="auto">
+            </picture>
+            <a href="/pages/gregory-chairs" class="link">
+                Learn more
+            </a>
+        </div>
+    </div>
+    <picture class="pdp-header-banner-picture">  
+        <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+        <source srcset="{{ 'gregory-header-bg-image.png' | file_img_url:'1000x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+        <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+        <source srcset="{{ 'gregory-header-bg-image.png' | file_img_url:'1000x'}}" media="(min-width: 768px)">
+        <img src="{{ 'gregory-header-bg-image.png' | file_img_url:'1000x' }}" alt="Gregory Chairs is now part of the JasonL family" width="1000" height="auto">
+    </picture>
+</div>

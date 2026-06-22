@@ -1,0 +1,210 @@
+<style>
+    #page-load-info{
+        position: fixed;
+        width:410px;
+        right: -500px;
+        top: 0px;
+        background: #fff;
+        background: #ececec;
+        padding: 0px;
+        z-index: 9999;
+        transition:all 0.3s ease;
+    }
+      #page-load-info *{
+        opacity:0;
+      }
+      #page-load-info:hover{
+        right:0px;
+      }
+      #page-load-info:hover *{
+        opacity:1;
+      }  
+        .product-form__buttons.loading .button,
+        .product-form__buttons.loading button,
+        .product-form__buttons.loading .button-icon-holder {
+          display: none;
+        } 
+        .product-form__buttons.loading {
+          position: relative;
+        }
+        .product-form__buttons.loading:after {
+          content: "";
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 1);
+          z-index: 9;
+        }
+    
+        .product-form__buttons .loader{
+          height:24px; width:24px;
+          position: absolute;
+          left: 0px;
+          top: 4px;
+          z-index: 20;
+          display: none;
+        }
+          .product-form__buttons.loading .loader{
+            display: block;
+          }
+      
+        .product-form__buttons.preorder-show * {
+          display: none;
+        }
+      
+        .product-form__buttons.preorder-show .button.backorder-btn {
+            display: block;
+            border-radius: 6px;
+            padding: 0px 18px;
+        }
+        .product-form__buttons.buynow-show .button, .product-form__buttons.buynow-show button, 
+        .product-form__buttons.buynow-show .button-icon-holder{
+          display: block;
+        }
+        .product-form__buttons.buynow-show .button.backorder-btn{
+          display:none;
+        }
+      </style>
+    
+    {%- assign tagsContainsWA = false -%}
+    {%- for tag in product.tags -%}
+        {%- if tag == 'WA' -%}
+            {%- assign tagsContainsWA = true -%}
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+    
+    <!-- TODO: 
+    Change location id while moving to live.
+    NSW and WA does not require to update in moving to live.
+    -->
+    <!-- dev location = 31412236 -->
+    
+    <script type="application/json">
+      {
+      "store_availability":{
+      "variant": "{{ product.selected_variant.title }}",
+      "location_info":[
+            {%- for l in product.selected_variant.store_availabilities -%}
+                    {%- if l.location.id == 27868748 -%}
+                      {%- assign locationCode = 'NSW' -%}
+                    {%- else -%}
+                      {%- assign locationCode = 'WA' -%}
+                    {%- endif -%}
+                    {
+                      "locationCode":"{{ locationCode }}",
+                      "locationName" : "{{l.location.name}}",
+                      "locationMetafields" : "{{l.location.metafields}}",
+                      "locationId" : "{{ l.location.id }}",
+                      "available" : "{{ l.available}}"
+                    } {% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+            ]
+      }
+    }
+    </script>
+
+
+            {%- comment -%}
+            ------------------------------------------------------------
+            Feb 11 2025
+            On page load on productpage and on quickview modal open:
+            following location wise product availablity is required. this is hidden is frontend.
+            Do not delete or edit below:
+            ------------------------------------------------------------
+            {%- endcomment -%}
+  <div class="locationwise-product-availability">
+        {%- for l in product.selected_or_first_available_variant.store_availabilities -%}
+          {{  l.location.id   }}
+          <!-- dev location id = 31412236 -->
+          {%- if l.location.id == 27868748 -%}
+            {%- assign locationCode = 'NSW' -%}
+          {%- else -%}
+            {%- assign locationCode = 'WA' -%}
+          {%- endif -%}
+
+            <div class="item" style="border-bottom: 1px solid #ccc;">
+              <p class="onloadLocationCode">{{locationCode}}</p>
+              <p class="onloadlocationName">{{l.location.name}}</p>
+              <p class="onloadlocationId">{{ l.location.id }}</p>
+              <div class="av">
+                <span>Availabilty:</span>
+                <strong class="onloadavailable">{{ l.available }}</strong>
+              </div>
+            </div>
+      {%- endfor -%}
+  </div>
+
+<script>
+  productPageOnLoad();
+    function productPageOnLoad(){
+      let region_data_Code;
+      let section_id = '{{section_id}}';
+      if(document.querySelector('product-template')){
+        section_id = `ProductInfo-${section_id}`; //ProductInfo-template--23773602382112__main
+      }else{
+        section_id = `MainProduct-${section_id}`; //MainProduct-quickadd-template--23773602382112__main
+      }
+
+      let ele_section = document.getElementById(section_id);
+      
+        if(localStorage.getItem('region')){
+            let region_data = JSON.parse(localStorage.getItem('region'));
+            region_data_Code = region_data.code;
+        }
+        
+          if(region_data_Code != 'WA' ){
+              region_data_Code = 'NSW';
+          }
+        //const onLoadData = document.getElementById('page-load-info');
+        const onLoadData = ele_section.querySelector('.locationwise-product-availability');
+
+        let items = onLoadData.querySelectorAll('.item');
+        let isLocationFound = false;
+        if(items.length > 0){
+            // if location wise stocks are managed in shopify
+            let i;
+            for(i=0; i<items.length; i++){
+              if(items[i].querySelector('.onloadLocationCode').textContent == region_data_Code){
+                isLocationFound = true;
+                //console.log(items[i].querySelector('.onloadavailable').innerText);
+                ele_section.querySelector('.product-form .product-form__buttons').classList.remove('loading');
+                if(!ele_section.querySelector('.product-form .product-form__buttons').classList.contains('contact-to-purchase-buttons')){
+                  if(items[i].querySelector('.onloadavailable').textContent == 'true'){
+                    ele_section.querySelector('.product-form .product-form__buttons').classList.add('buynow-show');
+                  }else{
+                    ele_section.querySelector('.product-form .product-form__buttons').classList.add('preorder-show');
+                  }
+                }
+                break;
+              }
+            }
+        }
+          // if location wise stocks are not managed in shopify
+
+        if(items.length < 1 ){
+          ele_section.querySelector('.product-form .product-form__buttons').classList.remove('loading');
+          if(!ele_section.querySelector('.product-form .product-form__buttons').classList.contains('contact-to-purchase-buttons')){
+          ele_section.querySelector('.product-form .product-form__buttons').classList.add('buynow-show');
+          ele_section.querySelector('.product-form .product-form__buttons').classList.remove('preorder-show');
+          }
+          return;
+        }
+          // when the user location is 'wa' but the product stock is not set for 'wa'
+          // this means this product is just for NSW not for WA. so it is set to 'back-order'
+        if(items.length > 0 && isLocationFound == false){
+          ele_section.querySelector('.product-form .product-form__buttons').classList.remove('loading');
+          if(!ele_section.querySelector('.product-form .product-form__buttons').classList.contains('contact-to-purchase-buttons')){
+            ele_section.querySelector('.product-form .product-form__buttons').classList.add('preorder-show');
+            ele_section.querySelector('.product-form .product-form__buttons').classList.remove('buynow-show');
+          }
+          return;
+        }
+    }
+</script>
+ {%- comment -%}
+  ------------------------------------------------------------
+ {%- endcomment -%}
+   

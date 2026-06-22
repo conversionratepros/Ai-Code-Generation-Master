@@ -1,0 +1,109 @@
+{{ 'hero-banner.css' | asset_url | stylesheet_tag }}
+{%- if blog.handle == "shop-by-rooms" -%}
+    {%- assign page_content = article.metafields.custom.blog_post_banner_content.value -%}
+{%- else -%}
+    {%- assign page_content = page.metafields.custom.page_banner_content.value -%}
+{%- endif -%}
+{%- if page_content -%}
+<style>
+    .hero-container {
+    background: url({{ page_content.hero_image | image_url: width :1540 }}) no-repeat 100% 0;
+    background-size: cover;
+    border-radius:6px;
+    }
+    
+    @media(max-width:1439px) {
+    .hero-container {
+    background-size: cover;
+    }
+    }
+    
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+    .hero-container {
+    background: url({{ page_content.hero_image | image_url: width :1540 }}) no-repeat 100% 0;
+    background-size: cover;
+    }
+    }
+    
+    @media(min-width:768px) and (max-width:1450px) {
+    .new-header .hero-container {
+    background-size: cover;
+    }
+    }
+    
+    @media(max-width:767px) {
+        .page-width:has(.hero-container){
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .hero-container {
+            background: url({{ page_content.hero_image | image_url: width :1540 }}) no-repeat 100% 0;
+            background-size: cover;
+            height: 270px;
+            border-radius: 0px;
+        }
+        .hero-container.has-description:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(90deg, #FFF, #ffffffab);
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .hero-container.has-description .hero-text {
+            background-size: contain;
+            padding-left: 0;
+        }
+        .hero-container.has-description {
+            height: auto;
+            overflow: hidden;
+        }
+        .inspired-banner img{
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+    }
+
+
+    </style>
+
+
+
+<div class="page-width {% if page_content.description %} hero-banner-image-top-mobile {% endif %}">
+    <div class="hero-container{% if page_content.description %} has-description {% endif %}">
+        {% if page_content.description %} <img src="{{ page_content.hero_image | image_url: width :1540 }}" alt="{%- if page_content.hero_title -%} {{- page_content.hero_title -}} {%- endif -%}" width="1540" height="512" class="mobile-img"> {% endif %}
+        <div class="hero-text">
+            <h1 class="h1-style">{{ page_content.hero_title }}</h1>
+            {%- if page_content.description -%}
+                <p>{{page_content.description}}</p>
+            {%- endif -%}
+            
+            {% render 'typeform-btn', extra_classes: 'typeform-share getaquoteclick link' %}
+            {% comment %} 
+                <a class="typeform-share getaquoteclick link" {{ settings.typeformurls_url_1 }}
+                href="javascript:void(0)">
+                Get a quote
+                </a> 
+            {% endcomment %}
+
+        </div>
+    </div>
+</div>
+{%- endif -%}
+
+
+{% schema %}
+{
+"name": "Page Hero Section",
+"settings": [
+{
+"type":"header",
+"content":"Instruction",
+"info" : "Home Page data source section settings. Other pages data source is metafield"
+}
+]
+}
+{% endschema %}

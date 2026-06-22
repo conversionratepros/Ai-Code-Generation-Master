@@ -1,0 +1,49 @@
+{{ "education-stat-slider.css" | asset_url | stylesheet_tag }}
+<div class="education-stat-slider">
+    <div class="education-stat-swiper-wrap">
+        <!-- Swiper -->
+        <div class="swiper education-stat-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="swiper-slide-content">
+                        <div class="number">72%</div>
+                        <p>of students say flexible furniture boosted their motivation to attend class</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="swiper-slide-content">
+                        <div class="number">84%</div>
+                        <p>of students felt more engaged in activities when the furniture was flexible</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="swiper-slide-content">
+                        <div class="number">72%</div>
+                        <p>of students believe they could earn higher grades with flexible furniture</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+ <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".education-stat-swiper", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 5000,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      },
+    });
+  </script>

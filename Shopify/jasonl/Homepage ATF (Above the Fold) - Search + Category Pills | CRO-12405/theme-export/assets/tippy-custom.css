@@ -1,0 +1,59 @@
+
+.tippy-arrow {
+width: 10px;
+height: 10px;
+}
+.tippy-box[data-theme~='badges'] {
+background-color: #fff4ce; /* Tooltip and arrow color */
+color: #000;
+font-size:13px;
+padding:20px;
+}
+.tippy-box[data-theme~='product-addon'] {
+background-color: #f2f6f9; /* Tooltip and arrow color */
+color: #000;
+font-size:13px;
+padding:0px !important;
+}
+.tippy-box[data-theme~='product-addon'] *{
+padding:0px !important;
+}
+.tippy-box[data-theme~='product-addon'] img{
+max-width:100%;
+display:block;
+}
+
+
+
+/* Include round arrow styles */
+.tippy-box[data-placement^="top"] > .tippy-arrow::before,
+.tippy-box[data-placement^="bottom"] > .tippy-arrow::before,
+.tippy-box[data-placement^="left"] > .tippy-arrow::before,
+.tippy-box[data-placement^="right"] > .tippy-arrow::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background-color: currentColor;
+  width: 8px; /* Adjust size */
+  height: 8px; /* Adjust size */
+}
+
+.tippy-box[data-placement^="top"] > .tippy-arrow::before {
+  box-shadow: 0 4px 0 currentColor;
+  transform: rotate(45deg);
+}
+
+.tippy-box[data-placement^="bottom"] > .tippy-arrow::before {
+  box-shadow: 0 -4px 0 currentColor;
+  transform: rotate(45deg);
+}
+
+.tippy-box[data-placement^="left"] > .tippy-arrow::before {
+  box-shadow: 4px 0 0 currentColor;
+  transform: rotate(45deg);
+}
+
+.tippy-box[data-placement^="right"] > .tippy-arrow::before {
+  box-shadow: -4px 0 0 currentColor;
+  transform: rotate(45deg);
+}

@@ -1,0 +1,77 @@
+{% unless current_tags contains 'resource-hub' %}
+{%- unless current_tags contains "home" -%}
+  {% comment %}Jarred request: not to show case-studies just for home category. {% endcomment %}
+            {% assign fitouts_blog = blogs.fitouts %}
+
+
+            {% comment %} Get current page main category. business, home, trade {% endcomment %}
+            {%- assign blog_category = 'business' -%}
+            {%- if current_tags contains 'home' -%}
+                {%- assign blog_category = 'home' -%}
+            {%- elsif current_tags contains 'trade' -%}
+                {%-  assign blog_category = 'trade' -%}
+              {%- elsif current_tags contains 'education' -%}
+                {%-  assign blog_category = 'education' -%}
+            {%- endif -%} 
+
+
+
+            <div class="page-width" id="section-case-studies">
+                <h2 class="list-heading">Case Studies</h2>
+            <div class="row">
+              <div class="left-side">
+                <ul class="listing listing--list">
+                    {% assign counter = 0  %}
+                {% for blog in fitouts_blog.articles %}
+                    {% unless blog.tags contains 'external-fitouts' or blog.tags contains 'fitouts-enviro'%}
+                      {% comment %} {% if  blog.tags contains blog_category %} {% endcomment %}
+                      {% if  blog.tags contains 'case studies' and  blog.tags contains blog_category %}
+                        <li>
+                            <div class="img-holder">
+                                <a href="{{ blog.url }}" style="background-image: url({{blog.image | img_url: '200x'}});"></a>
+                            </div>
+                            <a href="{{ blog.url }}">
+                            <h3>{{ blog.title }}</h3>
+                            <p class="txt">
+                                {{ blog.metafields.fitout_blog.description | strip_html | truncate: 90 }}
+                            </p>
+                            <p class="date">{{ blog.published_at | date: "%B %d, %Y" }}{% render 'rh-blog-tag' %}</p>
+                            </a>
+                        </li>
+                        {% assign counter = counter | plus:1 %}
+                      {% endif %}
+                    {% endunless %}
+                    {% if counter >= 4 %}
+                      {% break %}
+                    {% endif %}
+                {% endfor %}
+
+                {% comment %} {% if articles_shown < 4  %}
+                  {% render 'rh-blog-limit-ajax', section_id:section.id, section_name:'rh-case-studies', section_tag:'case-studies' %}
+                {% endif %}  {% endcomment %}
+
+                </ul>
+                  {%- if counter >= 4 -%}
+                    {%- render 'rh-viewall-link' -%}
+                  {%- endif -%}
+              </div>
+            </div>
+            </div>
+{%- endunless -%}
+{% endunless %}
+
+{% schema %}
+  {
+"name": "Case Studies",
+"class": "rh-case-studies",
+"tag": "section",
+"settings": [
+  {
+    "type": "text",
+    "id": "exclude_tag",
+    "label": "Enter tags to exclude (comma-separated)",
+    "default": "resources"
+  }
+]
+}
+{% endschema %}

@@ -1,0 +1,85 @@
+<div class="product-models-container">
+    <div class="product-models-col-outer">
+        <div class="product-models-col">
+            <h3 class="title-with-icon">
+                <div class="resource-file resource-revit tracking-revit-button">
+                    <svg viewBox="0 0 188.3 230.7"><path fill="#112a71" d="M99.5 62.2L27.3 35l81.1 85z"></path><path fill="#174ebe" d="M0 224.7l43.2 6L55 167l-43.3-23.3z"></path><path fill="#123c8f" d="M99.5 62.2l44.3 16.7L89.5 0 27.3 35l72.2 27.2z"></path><path fill="#164dbc" d="M108.4 120l28.4-8.5 7-32.6-44.3-16.7z"></path><path d="M99.5 62.2l44.3 16.7-44.3-16.7z"></path><path fill="#113b8f" d="M108.4 120L27.3 35 11.7 143.7 55 167l8-38.2z"></path><path fill="#164cb9" d="M188.3 203.7L108.4 120 63 128.8 55 167l119.5 63.7z"></path></svg>
+                </div>
+                Revit (.rfa)
+            </h3>
+            <ul class="table-list-download">
+                {%- for resourceTitle in product.metafields.productmeta.design_resources_title -%}
+                    {%- if product.metafields.productmeta.design_resources_title[forloop.index0].size > 0 and 
+                           product.metafields.productmeta.design_resources_revit_files[forloop.index0].size > 0 -%}
+                            <li class="download-item {% if forloop.first %}active{% endif %}">
+                                <a href="{{ product.metafields.productmeta.design_resources_revit_files }}" class="download-item-cnt-holder"  target="_blank" rel="noopener noreferrer">
+                                    <div class="instruction-title"><strong>{{resourceTitle}}</strong></div>
+                                    <div class="download-btn"><span class="link">Download</span>{%- render 'icon-download' -%}</div>
+                                </a>
+                            </li>
+                    {%- endif -%}
+                {%- endfor -%}
+            </ul>
+        </div>
+        <div class="product-models-col product-models-col-right">
+            <h3 class="title-with-icon">
+                <div class="resource-file resource-sketch tracking-sketch-button">
+                    <svg viewBox="0 0 196.9 211.9"><path fill="#ff182d" d="M194.2 49.4c-18.7-14.5-37.5-28.9-56-43.8-5.4-4.4-10.6-6.9-17.5-5-2.6.7-5.4.8-8.1 1.1-29.2 3.9-58.5 7.6-87.7 11.4-8.2 1.1-16.4 2.2-24.9 3.3.3 2.1.4 3.7.7 5.3C5 47.6 9.3 73.5 13.8 99.4c1.8 10.7 2.9 21.6 6 32 7.5 25.3 16 50.3 24 75.4.5 1.7 1.1 3.4 1.8 5.2 1.2-.2 2.1-.3 2.9-.5 43.8-12.4 87.6-24.8 131.4-37.1 2.4-.7 3.3-2 3.5-4.3 4.4-38.3 8.9-76.6 13.5-114.8.3-3-.8-4.4-2.7-5.9z"></path><path fill="#FFF" d="M60.5 154.5c-3.1.8-6.3 1.7-9.4 2.2-1 .2-2.9-.6-3.2-1.4-2.3-5.9-4.2-11.9-6.5-18.4 12.5-2.9 24.3-5.6 36.2-8.2.7-.2 2.1.4 2.4 1.1 3.1 5.7 6 11.4 9.1 17.6-9.9 2.4-19.3 4.8-28.6 7.1zM90 108.5c-1.2.2-3.2-.8-3.9-1.9-2.8-4.2-5.2-8.6-7.7-13-1.1-2-2.3-2.9-4.9-2.3-11.6 2.4-23.3 4.5-35 6.9-2.5.5-3.7 0-4.5-2.5-1.7-5.2-3.8-10.4-5.9-16.1 7.5-1.4 14.5-2.7 21.6-3.9 17.3-3 34.6-6.1 52-9 1.2-.2 3 .1 3.6.9 8.5 10.3 16.8 20.7 25.2 31 .1.2.1.5.4 1.2-13.8 3.1-27.3 6-40.9 8.7zM178.6 54.7c-9.1 1.6-18.2 3.3-27.3 4.9-5 .9-10 1.5-14.9 2.7-2.8.7-4.3-.2-6-2.1-8.1-8.4-16.3-16.7-24.3-25.1-1.7-1.8-3.2-2.4-5.8-2-24.9 3.7-49.8 7.2-74.6 10.9-2.6.4-4 0-4.9-2.7-1.6-4.5-3.6-8.8-5.6-13.7 8.8-1.2 17.1-2.3 25.4-3.3 27.3-3.5 54.7-7.1 82-10.5 1.9-.2 4.3 0 5.7 1.1 16.4 12.5 32.5 25.2 48.8 37.8.6.5 1.3.8 2 1.2-.2.2-.4.5-.5.8z"></path></svg>
+                </div>
+                Sketchup (.skp)
+            </h3>
+            <ul class="table-list-download">
+                {%- for resourceTitle in product.metafields.productmeta.design_resources_title -%}
+                    {%- if product.metafields.productmeta.design_resources_title[forloop.index0].size > 0 and 
+                           product.metafields.productmeta.design_resources_sketch_files[forloop.index0].size > 0 -%}
+                            <li class="download-item {% if forloop.first %}active{% endif %}">
+                                <a href="{{ product.metafields.productmeta.design_resources_sketch_files }}" class="download-item-cnt-holder" target="_blank" rel="noopener noreferrer">
+                                    <div class="instruction-title"><strong>{{resourceTitle}}</strong></div>
+                                    <div class="download-btn"><span class="link">Download</span>{%- render 'icon-download' -%}</div>
+                                </a>
+                            </li>
+                    {%- endif -%}
+                {%- endfor -%}
+            </ul>
+
+    </div>
+    </div>
+    <div class="product-spec-catalogue-col">
+        {%- render 'catalogue-card', type:2 -%}
+    </div>
+    </div>
+
+
+
+    
+
+
+
+
+    {% comment %} {% for resourceTitle in product.metafields.productmeta.design_resources_title %}
+        {% if product.metafields.productmeta.design_resources_title[forloop.index0].size > 0  %}  
+          {% if product.metafields.productmeta.design_resources_revit_files[forloop.index0].size > 0  or product.metafields.productmeta.design_resources_sketch_files[forloop.index0].size > 0%}
+                  <div class="instruction-item {% if forloop.index0 == 0 %}instruction-item--first{% endif %} {% if forloop.last %}instruction-item--last{% endif %}">
+                          <div class="item-cnt">
+                          
+                                  <svg class="download-icon" id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.73 17.73">
+                                  <defs><style>.svg-download-arrow {fill: #c6d644;}</style></defs>
+                                  <path class="svg-download-arrow" d="M8.87,0a8.87,8.87,0,1,0,8.86,8.87A8.87,8.87,0,0,0,8.87,0ZM6.6,8.8V4.28h4.52V8.79h3L8.86,14,3.64,8.8Z"></path>
+                                  </svg>
+                                  <span>Download</span>
+                                  <p>{{resourceTitle}}</p>
+                                  {% if product.metafields.productmeta.design_resources_revit_files[forloop.index0].size > 0 %}
+                          <a class="resource-file resource-revit tracking-revit-button" href="{{ product.metafields.productmeta.design_resources_revit_files }}" target="_blank">
+                              <svg viewBox="0 0 188.3 230.7"><path fill="#112a71" d="M99.5 62.2L27.3 35l81.1 85z"/><path fill="#174ebe" d="M0 224.7l43.2 6L55 167l-43.3-23.3z"/><path fill="#123c8f" d="M99.5 62.2l44.3 16.7L89.5 0 27.3 35l72.2 27.2z"/><path fill="#164dbc" d="M108.4 120l28.4-8.5 7-32.6-44.3-16.7z"/><path d="M99.5 62.2l44.3 16.7-44.3-16.7z"/><path fill="#113b8f" d="M108.4 120L27.3 35 11.7 143.7 55 167l8-38.2z"/><path fill="#164cb9" d="M188.3 203.7L108.4 120 63 128.8 55 167l119.5 63.7z"/></svg>
+                          </a>
+                                  {% endif %}
+                                  {% if product.metafields.productmeta.design_resources_sketch_files[forloop.index0].size > 0 %}
+                          <a class="resource-file resource-sketch tracking-sketch-button" href="{{ product.metafields.productmeta.design_resources_sketch_files }}" target="_blank">
+                              <svg viewBox="0 0 196.9 211.9"><path fill="#ff182d" d="M194.2 49.4c-18.7-14.5-37.5-28.9-56-43.8-5.4-4.4-10.6-6.9-17.5-5-2.6.7-5.4.8-8.1 1.1-29.2 3.9-58.5 7.6-87.7 11.4-8.2 1.1-16.4 2.2-24.9 3.3.3 2.1.4 3.7.7 5.3C5 47.6 9.3 73.5 13.8 99.4c1.8 10.7 2.9 21.6 6 32 7.5 25.3 16 50.3 24 75.4.5 1.7 1.1 3.4 1.8 5.2 1.2-.2 2.1-.3 2.9-.5 43.8-12.4 87.6-24.8 131.4-37.1 2.4-.7 3.3-2 3.5-4.3 4.4-38.3 8.9-76.6 13.5-114.8.3-3-.8-4.4-2.7-5.9z"/><path fill="#FFF" d="M60.5 154.5c-3.1.8-6.3 1.7-9.4 2.2-1 .2-2.9-.6-3.2-1.4-2.3-5.9-4.2-11.9-6.5-18.4 12.5-2.9 24.3-5.6 36.2-8.2.7-.2 2.1.4 2.4 1.1 3.1 5.7 6 11.4 9.1 17.6-9.9 2.4-19.3 4.8-28.6 7.1zM90 108.5c-1.2.2-3.2-.8-3.9-1.9-2.8-4.2-5.2-8.6-7.7-13-1.1-2-2.3-2.9-4.9-2.3-11.6 2.4-23.3 4.5-35 6.9-2.5.5-3.7 0-4.5-2.5-1.7-5.2-3.8-10.4-5.9-16.1 7.5-1.4 14.5-2.7 21.6-3.9 17.3-3 34.6-6.1 52-9 1.2-.2 3 .1 3.6.9 8.5 10.3 16.8 20.7 25.2 31 .1.2.1.5.4 1.2-13.8 3.1-27.3 6-40.9 8.7zM178.6 54.7c-9.1 1.6-18.2 3.3-27.3 4.9-5 .9-10 1.5-14.9 2.7-2.8.7-4.3-.2-6-2.1-8.1-8.4-16.3-16.7-24.3-25.1-1.7-1.8-3.2-2.4-5.8-2-24.9 3.7-49.8 7.2-74.6 10.9-2.6.4-4 0-4.9-2.7-1.6-4.5-3.6-8.8-5.6-13.7 8.8-1.2 17.1-2.3 25.4-3.3 27.3-3.5 54.7-7.1 82-10.5 1.9-.2 4.3 0 5.7 1.1 16.4 12.5 32.5 25.2 48.8 37.8.6.5 1.3.8 2 1.2-.2.2-.4.5-.5.8z"/></svg>
+                          </a>
+                          {% endif %}
+                          </div>
+                      </div> 
+                      {% endif  %}
+          {% endif  %}
+      {% endfor %} {% endcomment %}

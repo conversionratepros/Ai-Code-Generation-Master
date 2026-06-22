@@ -1,0 +1,290 @@
+<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+{{ 'just-validate-form.css'  | asset_url | stylesheet_tag }}
+<div class="checkout-form-holder">
+    {% if shop.url ==  'https://www.jasonl.com.au' %}
+        {% assign postUrl = 'https://prnt.jasonl.com.au/b2bfunnel/payto/paytohandler' %}
+    {% else %}
+        {% assign postUrl = 'https://poptopdesk.com/b2bfunnel/payto/paytohandler' %}
+    {% endif %}
+    <form action="{{postUrl}}" id="custom-checkout-payto" method="POST">
+        <div class="fields-block separator">
+            <div class="heading cols">
+                <div class="col-item col-left">
+                    <h3>Contact</h3>
+                </div>  
+            </div>
+
+
+            
+            <div class="form-field">
+                <div class="label-holder">
+                    <label>Email</label>
+                    <input placeholder="Email" type="email" name="email" value="" id="ccf_email">
+                </div>
+            </div>
+            
+           
+            
+            
+            
+     
+            <div class="form-field">
+                <label class="checkbox-container">
+                    <input id="ccf_subscribe" type="checkbox" name="subscribe" value="true" checked="checked">
+                    Email me with news and offers
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+           
+        </div>
+        <!-- END field block. CONTACT -->
+    
+        <div class="fields-block">
+            <div class="heading cols">
+                <div class="col-item col-left">
+                    <h3>Delivery</h3>
+                </div>
+            </div>
+            <!-- END heading -->
+            <div class="form-field input-radio-box">
+                <label class="checkbox-container ">
+                    <input type="radio" checked="checked" name="delivery_method" id="ccf_ship" value="ship" data-value="ship">
+                    Ship
+                    <span class="checkmark radio"></span>
+                    <span class="box"></span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="radio" name="delivery_method" id="ccf_pickup" value="pickup" data-value="pickup">
+                    Pick up
+                    <span class="checkmark radio"></span>
+                    <span class="box"></span>
+                </label>
+                <div class="pickup-info-holder hide" id="pickup-info-holder">
+                    <h4>Pickup locations</h4>
+                    <p>There is 1 store with stock close to your location</p>
+                    <div class="highlight-box pickup-info pickup-info--nsw">
+                        <div class="info-left">
+                            <p>Pick-up at 2A/149 McCredie Road Smithfield, NSW 2164.</p>
+                            <address>2a/149 McCredie Road, Smithfield NSW</address>
+                        </div>
+                        <div class="info-right">
+                            <p>Free</p>
+                            <span>Usually ready in 5+ days</span>
+                        </div>
+                    </div>
+                   {% comment %} <div class="highlight-box pickup-info pickup-info--wa">
+                        <div class="info-left">
+                            <p>Pick-up at 11 King Edward Road, Osbourne Park, WA 6017.</p>
+                            <address>11 King Edward Road, Osborne Park WA</address>
+                        </div>
+                        <div class="info-right">
+                            <p>Free</p>
+                            <span>Usually ready in 5+ days</span>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+            <!-- END Radio inputs -->
+            <div class="address-form-holder" id="shipping_address_form_holder">
+                <div class="form-field label-holder active">
+                    <label>Country/Region</label>
+                    <!-- <input class="input" id="ccf_country" placeholder="Country/Region" type="text" name="shipping_country_region" value="" > -->
+                        <div class="select-holder">
+                            <select id="ccf_country" name="shipping_country_region">
+                                <option value="Au" selected>Australia</option>
+                            </select> 
+                        </div>
+                </div>
+                        
+                <div class="form-field cols">
+                    <div class="col-item label-holder">
+                        <label>First name</label>    
+                        <input id="ccf_firstname" placeholder="First name" type="text" name="firstname" value="" >
+                    </div>
+                
+                    <div class="col-item label-holder">
+                        <label>Last name</label>    
+                        <input id="ccf_lastname" placeholder="Last name" type="text" name="lastname" value="" >
+                    </div>
+                </div>
+            
+            
+                <div class="form-field label-holder">
+                    <label>Company</label>   
+                    <input id="ccf_company2" placeholder="Company (optional)" type="text" name="shipping_company" value="" >
+                </div>
+                <div class="form-field label-holder">
+                    <label>Address</label>   
+                    <input id="ccf_address2" placeholder="Address" type="text" name="shipping_address" value="" >
+                </div>
+                <div class="form-field add-apartmentsuit label-holder">
+                    <span class="link link-apartment">+ Add apartment, suite, etc</span>
+                    <label>Apartment, suite, etc.(optional)</label>   
+                    <input id="ccf_apartment" class="field-apartmentsuit" placeholder="Apartment, suite, etc.(optional)" type="text" name="shipping_apartment" value="" >
+                </div>
+                <div class="form-field cols">
+                    <div class="col-item label-holder">
+                        <label>City</label>
+                        <input id="ccf_city" placeholder="City" type="text" name="shipping_city" value="" >
+                    </div>
+                    <div class="col-item label-holder state-holder">
+                        <label>State/Territory</label>
+                        <div class="select-holder">
+                            <select id="ccf_state" name="shipping_state">
+                                <option value="" disabled selected>State/Territory</option>
+                                <option value="Australian Capital Territory">Australian Capital Territory</option>
+                                <option value="New South Wales">New South Wales</option>
+                                <option value="Northern Territory">Northern Territory</option>
+                                <option value="Queensland">Queensland</option>
+                                <option value="South Australia">South Australia</option>
+                                <option value="Tasmania">Tasmania</option>
+                                <option value="Victoria">Victoria</option>
+                                <option value="Western Australia"> Western Australia</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="col-item label-holder">
+                        <label>Postal code</label>
+                        <input id="ccf_postalcode" placeholder="Postal code" type="text" name="shipping_postalcode" value="" >
+                    </div>
+                </div>
+                <div class="form-field">
+                <div class="label-holder">
+                        <label>Phone</label>
+                        <input placeholder="Phone" type="text" name="phone" value="" id="ccf_phone">
+                </div>
+                </div>
+                    {% comment %} <div class="form-field label-holder">
+                        <label>Phone</label>
+                        <input id="ccf_phone2" placeholder="Phone" type="text" name="phone2" value="" >
+                    </div> {% endcomment %}
+                    {% comment %} <div class="form-field label-holder">
+                        <label>Quote Enquiry</label>
+                        <textarea class="input" id="ccf_quote_enquiry" cols="50" rows="5" placeholder="Quote Enquiry" type="text" name="quote-enquiry" value="" ></textarea>
+                    </div> {% endcomment %}
+            </div>
+        </div>
+        <!-- END field block. DELIVERY -->
+        <div class="fields-block" id="fields-block-shipping-method">
+            <div class="heading">
+                    <h3>Shipping method</h3>
+                    <span class="note">NOTE: All delivery fees are for metro only, if you fall out of our metro postcodes please call 1300 874 053 or email sales@jasonl.com.au for a quote.</span>
+            </div>
+            <!-- END heading -->
+          {% assign deliveryDays = '3 to 5' %}
+          {%- for item in cart.items -%}
+            {% assign prodBrand = item.product.vendor | downcase %}
+            {% if prodBrand != 'jasonl' %}
+               {% assign deliveryDays = '5 to 7' %}
+            {% endif %}
+          {% endfor %}
+            <div class="form-field input-radio-box">
+                <label class="checkbox-container ">
+                    <input type="radio" checked="checked" name="shipping_method" id="ccf_ship_rate" data-value="shipping-method-ship-only" value="">
+                    <div id="shipping-only-label" class="radio-label">Standard {{ deliveryDays }} Business Day Delivery <span data-ratetype="shipping-rate"></span></div>
+                    <span class="radiofield-price" data-ratetype="shipping-rate"></span>
+                    <span class="checkmark radio"></span>
+                    <span class="box"></span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="radio" name="shipping_method" id="ccf_ship_assembly_rate" data-value="shipping-method-ship-and-assembly" value="">
+                    <div id="shipping-with-assembly-label" class="radio-label">Standard {{ deliveryDays }} Business Day Delivery <span data-ratetype="shipping-rate"></span> + Assembly <span data-ratetype="assembly-rate"></span></div>
+                    <span class="radiofield-price" data-ratetype="total-shipping-assembly-rate"></span>
+                    <span class="checkmark radio"></span>
+                    <span class="box"></span>
+                </label>
+                <label class="checkbox-container" style="display: none;">
+                <!-- <input type="radio" name="shipping_method" id="ccf_shippingmethod_disable" data-value="pickup" value="shipping-method-none"> -->
+                  <input type="radio" name="shipping_method" id="ccf_shippingmethod_disable" data-value="pickup" value="Pick-up at 2A/149 McCredie Road Smithfield, NSW 2164.">
+                  
+                Shipping Method disable
+                <span class="radiofield-price"></span>
+                <span class="checkmark radio"></span>
+                    <span class="box"></span>
+                </label>
+            </div>
+            <!-- END Radio inputs -->
+            
+        </div>
+        <!-- shipping method end -->
+        {% render 'custom-checkout-billing-address' %}
+                <div class="fields-block">
+                    <div class="form-field submit-btn-holder">
+                    <input type="submit" class="button button--primary btn-quote" value="Pay now" />
+                </div>
+                <div class="fail-msg-holder" id="fail-msg" style="display: none;">
+                    <div class="fail-msg">
+                        <span class="fail-error-msg">Payment unsuccessful. Please try again after sometime.</span><strong>or</strong>
+                        <p class="other_payment_option" id="other_payment_option">Please select other payment options.</p>
+                    </div>
+                </div>
+                
+        </div>
+              
+
+    </form>
+    <div class="fail-msg-holder" id="fail-msg-payto" style="margin:20px 40px 20px 0px;display: none;">
+                    <div class="fail-msg">
+                        <span class="fail-error-msg">Payto doesn't allow payment above AUD 25000. Please use Credit card.</span>
+                        <strong>or</strong>
+                        <p class="other_payment_option" id="other_payment_option-payto">Please select other payment options.</p>
+                    </div>
+                </div>
+    <div class="fields-block" id="custom-checkout-thnkyou-msg" style="display: none;"></div>
+    <div class="fields-block" id="custom-checkout-loading"></div>
+</div>
+<script>
+    
+        function addApartment(){
+            // const btn = document.querySelector('.link-apartment');
+            // btn.addEventListener('click', function(){
+            //     document.querySelector('.add-apartmentsuit').classList.toggle("add"); 
+            //     btn.remove();
+            // })
+            const btn = document.querySelectorAll('.add-apartmentsuit');
+            for(let i=0; i<btn.length; i++){
+                btn[i].querySelector('.link-apartment').addEventListener('click', function(){
+                    btn[i].classList.toggle("add"); 
+                    btn[i].querySelector('.link-apartment').remove();
+                })  
+            }
+        }
+        addApartment();
+    
+    function showFormLabel(){
+        const labelHolder = document.querySelectorAll('.label-holder');
+        labelHolder.forEach((e) => {
+            if(e.querySelector('input[placeholder]')){
+            let input = e.querySelector('input[placeholder]');
+            input.addEventListener("keydown", function(){
+                if(!e.classList.contains('active') ){
+                    e.classList.add('active')
+                }else{
+                    if(input.value == "" ){
+                        e.classList.remove('active');
+                    }
+                }
+            })
+            input.addEventListener("blur", function(){
+                if(input.value == "" || input.value == " " ){
+                    input.value = "";
+                        e.classList.remove('active');
+                    }
+            })
+            }
+        })
+    }
+    showFormLabel();
+
+    
+
+</script>
+
+ <style>
+   .radio-label{
+     display:inline-block;
+   }
+   
+ </style>
+

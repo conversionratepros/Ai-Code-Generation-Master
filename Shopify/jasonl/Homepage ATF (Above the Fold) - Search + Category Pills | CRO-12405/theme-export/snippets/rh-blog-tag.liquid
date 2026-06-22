@@ -1,0 +1,55 @@
+{%- assign rh_tag = '' -%}
+{%- assign resource_hub_tags = 'business,home,trade,education' | split:',' -%}
+{% comment %} {%- assign selected_tags = selected_tag | split:',' -%} {% endcomment %}
+{%- assign tag_counter = 0 -%}
+
+
+
+
+{%- unless current_tags -%}
+      {%- comment -%}CASE:: main blog page /main/blog without any current_tags on URL {%- endcomment -%}
+      {%- comment -%} ------------------------------------ {%- endcomment -%}
+      {%- for tag in tags -%}
+        {%- if resource_hub_tags contains tag -%}
+            <span class="tag">{{tag}}</span>
+        {%- endif -%}
+      {%- endfor -%} 
+      {%- comment -%} ------------------------------------ {%- endcomment -%}
+{%- else -%}
+      {%- comment -%}CASE:: with any current_tags on URL {%- endcomment -%}
+      {%- comment -%} ------------------------------------ {%- endcomment -%}
+      {%- for tag in tags -%}
+          {% comment %} {%- if current_tags contains 'home' and tag == 'home' -%}
+              in <span class="tag">home</span>
+                  {%- break -%}
+              {%- elsif current_tags contains 'trade'  and tag == 'trade' -%}
+                in <span class="tag">trade</span>
+                  {%- break -%}
+              {%- elsif current_tags contains 'business' or current_tags == '' -%}
+                in <span class="tag">business</span>
+                  {%- break -%}
+                {%- elsif current_tags contains 'education' or current_tags == '' -%}
+                in <span class="tag">education</span>
+                  {%- break -%}
+              {%- endif -%} {% endcomment %}
+
+              {%- if resource_hub_tags contains tag -%}
+                  <span class="tag">{{tag}}</span>
+              {%- endif -%}
+      {%- endfor -%} 
+      {%- comment -%} ------------------------------------ {%- endcomment -%}
+{%- endunless -%}
+
+
+
+{%- comment -%} 
+{%- for tag in tags -%}
+      {%- unless selected_tags contains tag -%}
+       & {{ tag }}
+       {%- assign tag_counter = tag_counter |  plus: 1 -%}
+      {%- endunless -%}
+    {%- if tag_counter > 0 -%}
+      {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- endcomment -%}

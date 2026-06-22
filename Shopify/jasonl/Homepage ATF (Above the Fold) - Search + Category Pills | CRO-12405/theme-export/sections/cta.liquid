@@ -1,0 +1,20 @@
+<!-- fitout team listing start -->
+{{ 'cta.css' | asset_url | stylesheet_tag }}
+<div class="cta-outer-wrapper">
+  <div class="cta-section">
+    <div class="page-width">
+      <h2>Like what you see?</h2>
+      <h3>Let's chat about your space and how we can make it work harder.</h3>
+      <div class="link-wrap">
+          {% comment %} <a class="typeform-share getaquoteclick button button-primary"
+             {{settings.typeformurls_url_1}} 
+             href="javascript:void(0)">
+             <strong>START YOUR FITOUT!A </strong>
+         </a> 
+         {% endcomment %}
+         {% render 'typeform-btn', extra_classes: 'typeform-share getaquoteclick button button-primary', button_text: "<strong>START YOUR FITOUT!</strong>" %}
+  
+      </div>
+    </div>
+  </div>
+</div>

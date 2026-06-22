@@ -1,0 +1,65 @@
+{% comment %}
+<link rel="stylesheet" href="{{ 'footer.css' | asset_url }}" onload="this.media='all'"> {% endcomment %}
+<link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
+{% comment %} 
+ use aditional css if the script is disabled Fallback stylesheet (when JavaScript is disabled)
+ <noscript>{{ 'footer.css' | asset_url | stylesheet_tag }}</noscript> 
+{% endcomment %}
+<footer id="main-footer">
+  <div id="footer-container" class="page-width">
+    {%- render 'footer-left' -%}
+    {%- render 'footer-mid' -%}
+    {%- render 'footer-right' -%}
+  </div>
+</footer>
+
+{% schema %}
+{ "name": "Footer",
+"tag": "section",
+"class":"footer-wrapper",
+"settings": [
+{
+"type": "image_picker",
+"id": "footer_logo",
+"label": "Footer logo"
+},
+{
+"type": "textarea",
+"id": "footer_article",
+"label": "Footer left text"
+},
+{
+"type":"link_list",
+"id":"footer-menu",
+"label":"Menu"
+},
+{
+"type":"header",
+"content":"Google Business Review Settings"
+},
+{
+"type":"html",
+"id":"googlereview-title",
+"label":"Title"
+}
+],
+"blocks": [
+{
+"name": "Showroom contact",
+"type": "showroom-contact",
+"settings": [
+{
+"type":"html",
+"id":"showroom-contact-svg",
+"label":"SVG icon"
+},
+{
+"type":"richtext",
+"id":"showroom-contact-info",
+"label":"Contact info"
+}
+]
+}
+]
+}
+{% endschema %}

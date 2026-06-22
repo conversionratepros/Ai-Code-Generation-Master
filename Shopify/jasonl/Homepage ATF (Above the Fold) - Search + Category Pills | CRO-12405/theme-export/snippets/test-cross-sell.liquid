@@ -1,0 +1,62 @@
+<ul class="addtocart-crossell-wrapper">
+{% comment %} Random Number {% endcomment %}
+{%- assign min = 1 -%}
+{% comment %} {%- assign max = featured_fitouts.size | minus: 1 -%} {% endcomment %}
+{%- assign max = 5 -%}
+{%- assign diff = max | minus: min -%}
+{%- assign random_number = "now" | date: "%N" | modulo: diff | plus: min -%}
+{% comment %} END:: Random Number {% endcomment %}
+
+{%- assign meta_cross_sell = shop.metaobjects.cross_sell.values -%}
+{%- for reviewdata in meta_cross_sell -%}
+    {%- assign collection_id = reviewdata.parent_collection %}
+    {%- assign collection = collections[collection_id] -%}
+    {%- assign meta_parent_collection = collection.handle -%}
+    {% comment %} <p>tester::{{ collection.handle }}</p>
+    <p>tester::{{reviewdata.target_collections}}</p> {% endcomment %}
+    {%- assign meta_target_collections = reviewdata.target_collections.value -%}
+
+<p>random_number : {{random_number}}</p>
+{% assign counter_test = 0 %}
+    {%- for target_collection in meta_target_collections -%}
+        {%- assign target_collection_data =  target_collection | split:'/' -%}
+        {%- assign target_collection_parent = target_collection_data[0] -%}
+        {%- assign target_collection_child = target_collection_data[1] -%}
+
+
+        {% comment %} <p>tester123: {{target_collection}}</p> {% endcomment %}
+        {% comment %} GET PRODUCT {% endcomment %}
+         {%- assign collection_id = collections[target_collection_parent].products -%}
+        {% comment %} {% for cs_product in collections['office-chairs'].products limit:5 %}
+        {% for cs_product in collections.all.products %} 
+        {% endcomment %}
+         {% assign counter = 0 %}
+         {% for cs_product in collections[target_collection_parent].products %}
+            {% comment %} <p>------------------------------</p> {% endcomment %}
+            {% comment %} <p>product : {{cs_product.handle}}</p>
+            <p>target collection : {{cs_product.handle}} -#- {{target_collection}} -#- {{forloop.index}}</p>
+            <p>{{cs_product.tags}} </p> {% endcomment %}
+            {% comment %} <p>counter: {{counter }}</p> {% endcomment %}
+
+            {% comment %} <p>------------------------------</p> {% endcomment %}
+             
+            {% if cs_product.tags contains target_collection_child %}
+                {% assign counter = counter | plus:1 %}
+                {% if counter == random_number %}
+                    {% assign counter_test = counter_test | plus:1 %}
+                    <li data-index="{{counter_test}}">
+                    <p>selected product : {{cs_product.handle}}</p>
+                    {%- render 'card-product', 
+                    card_product:cs_product,
+                    media_aspect_ratio: 'adapt',
+                    show_secondary_image: false
+                -%}
+                </li>
+                    {% break  %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+    {%- endfor -%}
+{%- endfor -%}
+</ul>

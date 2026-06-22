@@ -1,0 +1,19 @@
+{%- capture furniture_for_menu -%}
+{{ 'menu-furniture-for.css' | asset_url | stylesheet_tag }}
+{%- assign menu = linklists['furniture-for'] -%}
+    {%- if menu.links.size > 0 -%}
+     <div class="menu-furniture-for">
+      <span class="module-title">Furniture for</span>
+       <ul> 
+        {%- for link in menu.links -%}
+          <li class="{% if link.current %} active {% endif %}">
+            <a href="{{ link.url }}" title="{{ link.title }} Furniture">
+              {{ link.title }}
+            </a>
+          </li>
+        {%- endfor -%}
+        </ul>
+     </div>
+    {%- endif -%}
+  {%- endcapture -%}
+  {{ furniture_for_menu |  strip_newlines |  replace:"   ", "" }}

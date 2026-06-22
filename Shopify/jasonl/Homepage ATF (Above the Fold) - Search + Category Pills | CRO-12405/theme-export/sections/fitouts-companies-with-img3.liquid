@@ -1,0 +1,160 @@
+{%- comment -%}
+LIST OF FEATURED FITOUTS
+{%- endcomment -%}
+{{ "component-company-logo.css" | asset_url | stylesheet_tag }}
+{{ "fitouts-companies-with-img.css" | asset_url | stylesheet_tag }}
+{{ "fitouts-companies-with-img4.css" | asset_url | stylesheet_tag }}
+{% assign perPageLimit = 8 -%}
+{%- paginate blogs['fitouts'].articles by perPageLimit -%}
+        {%- comment -%} using render gets an error {%- endcomment -%}
+        {%- assign fitout_articles = blog.articles -%}
+            <div class="page-width fitouts-list-with-img" id="fitouts-list-with-img">
+                <div class="fitoutImg__heading heading-with-tab">
+                    <h2>Our featured fitouts</h2>
+                    <span id="active-slider-index"></span>
+                    <div class="fitout-tabs">
+                        <div class="tab active" data-filter="all">All industries</div>
+                        <div class="tab" data-filter="business">Business</div>
+                        <div class="tab" data-filter="home">Home office</div>
+                        <div class="tab" data-filter="trade">Trade</div>
+                        <div class="tab" data-filter="hospitality">Hospitality</div>
+                        <div class="tab" data-filter="npo">NPO</div>
+                    </div>
+                </div>
+                <div data-tatolpage="{{paginate.pages}}" id="fitoutsImg4__list" class="fitoutsImg__col3 swiffy-slider slider-nav-autopause slider-indicators-round slider-item-reveal slider-item-snapstart" style="
+                --swiffy-slider-item-ratio:100/33.3;
+                --swiffy-slider-item-reveal:15%;">
+                    <div class="fitoutsImg__list fitoutImg__ajaxHolder fitoutsImg4-mobile-slider-container slider-container">
+                        {%- assign articleTitle_fromActivePage = article.title -%}
+                        {%- assign fitoutsCounter = 0 -%}
+                        {%- assign tag_class_map = "All industries:all-industries,business:fitout-business,home:fitout-home,trade:fitout-trade,hospitality:fitout-hospitality,NPO:fitout-npo" | split: "," -%}
+                        {%- for article in fitout_articles -%}
+                            {%- assign class_list = "" -%}
+
+                            {%- for tag in article.tags -%}
+                                {%- for mapping in tag_class_map -%}
+                                    {%- assign parts = mapping | split: ":" -%}
+                                    {%- if tag == parts[0] -%}
+                                        {%- assign class_list = class_list | append: parts[1] | append: " " -%}
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            {%- endfor -%}
+
+                        {%- comment -%} Jan 15 2024. 
+                                    Do not show external fitouts in JasonL fitout page. 
+                                    Similar slider dots has beeb removed from below code.
+                                    External fitouts are shown in page/inspired page. 
+                        {%- endcomment -%}
+                        
+                            {%- unless  article.tags contains 'fitouts-inspiration' or article.tags contains 'fitouts-enviro' or article.tags contains 'external-fitouts' -%}
+                                {%- assign articleTitle_fromBlogList = article.title -%}
+
+
+
+                                
+                                {% comment %} {%- unless articleTitle_fromActivePage == articleTitle_fromBlogList -%}
+                                    {%- assign fitoutsCounter = fitoutsCounter | plus: 1 -%}
+                                    {%- render 'fitout-card', article:article, data_category: data_category, class_list : class_list -%}
+                                {%- endunless -%} {% endcomment %}
+
+
+                                {%- if current_tags  -%}
+                                    {%- assign fitoutsCounter = fitoutsCounter | plus: 1 -%}
+                                    {%- render 'fitout-card', article:article, data_category: data_category, class_list : class_list -%}
+                                {%- endif -%}
+
+
+
+                            {%- endunless -%}
+
+
+                        {%- endfor -%}
+                    </div>
+                   
+                    <div id="fitoutsCounter" class="slider-indicators large-up-hide medium-hide" data-fitoutscounter="{{fitoutsCounter}}">
+                        {%- comment -%} slider dots will be appended here by JS {%- endcomment -%}
+                    </div>
+                </div>
+                <div class="button-holder">
+                    <div class="link fitoutImgList_seemore" id="fitoutImg2List_seemore">Load more {%- render 'icon-arrow' -%}<span class="loader"></span></div>
+                </div>
+            </div>
+ 
+{% comment %} {%-  unless current_tags %}
+    <!-- this JS should load on just ajax page url i.e https://www.jasonl.com.au/blogs/fitouts/tagged/fitouts?page={i}  -->
+    <script src="{{'fitouts-companies-with-img4.js' |  asset_url }}" type="text/javascript" defer></script>
+{% endunless %} {% endcomment %}
+
+     {% comment %} this JS should load on just ajax page url i.e https://www.jasonl.com.au/blogs/fitouts/tagged/fitouts?page={i}  {% endcomment %}
+    <script src="{{'fitouts-companies-with-img4.js' |  asset_url }}" type="text/javascript" defer></script>
+
+
+{%- endpaginate -%}
+
+
+{% schema %}
+{
+    "name":"Fitouts featured",
+    "class":"fitouts-companies-with-img fitouts-companies-with-img-2 fitouts-companies-with-img-3",
+    "settings": [
+                {
+                "type": "text",
+                "id": "fitoutscompaniesimg_heading",
+                "label": "Main heading."
+                },
+                {
+                "type": "textarea",
+                "id": "fitoutscompaniesimg_paragraph",
+                "label": "Text content"
+                },
+                {
+                "type":"header",
+                "content":"Button 1"
+                },
+                {
+                "type":"text",
+                "id":"fitoutscompaniesimg_button",
+                "label":"Button title"
+                },
+                {
+                "type":"url",
+                "id":"fitoutscompaniesimg_buttonurl",
+                "label":"Button url"
+                },
+                {
+                "type":"text",
+                "id":"fitoutscompaniesimg_buttonclass",
+                "label":"Class name"
+                },
+                {
+                "type":"text",
+                "id":"fitoutscompaniesimg_buttonattr",
+                "label":"HTML attributes"
+                },
+                {
+                "type":"header",
+                "content":"Button 2"
+                },
+                {
+                "type":"text",
+                "id":"fitoutscompaniesimg_button2",
+                "label":"Button title"
+                },
+                {
+                "type":"url",
+                "id":"fitoutscompaniesimg_buttonurl2",
+                "label":"Button url"
+                },
+                {
+                "type":"text",
+                "id":"fitoutscompaniesimg_buttonclass2",
+                "label":"Class name"
+                },
+                {
+                "type":"text",
+                "id":"fitoutscompaniesimg_buttonattr2",
+                "label":"HTML attributes"
+                }
+    ]
+}
+{% endschema %}

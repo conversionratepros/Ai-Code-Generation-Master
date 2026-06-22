@@ -1,0 +1,13 @@
+{% assign randomNumbers = "" %}
+{% assign min = 1 %}
+{% assign max = 6 %}
+{% assign diff = max | minus: min %}
+{% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+
+{% if randomNumber == 1 or randomNumber == 3 or randomNumber == 5 %}
+    {%- render 'banner-payment-options' -%}
+{% endif %}
+{% if randomNumber == 2 or randomNumber == 4 or randomNumber == 6 %}
+    {%- render 'banner-sustainability' -%}
+{% endif %}
+

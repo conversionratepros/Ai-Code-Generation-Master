@@ -1,0 +1,38 @@
+{%- comment -%} 
+Date: 5th Dec 2025
+Required on slack: 
+                        "
+                        ---------------------------------------------
+                        Rick : Hi @Malaw we'll be adding a QR code to a printed card that will go into each pedestal. It will look like this:
+                        5:34
+                        When they scan the QR code 'it would need to go to a single static URL on the jasonl website and when they land identify their location via geolocation tagging their IP
+                        5:35
+                        Then based on their location redirect to one of these pages
+                        5:37
+                        Sydney: https://g.page/r/Cd5tYzhGUWTJEAE/review
+                        Melbourne: https://g.page/r/CalPe68WHljDEAE/review
+                        Adelaide: https://g.page/r/CUqbKQ_1w4IGEAE/review
+                        Perth: https://g.page/r/CSab6QI7FyTQEAE/review
+                        Gold Coast: https://g.page/r/CYlN4C4if_iqEAE/review
+                        Brisbane: https://g.page/r/CSvrQYLtl0HmEAE/review
+                        5:37
+                        I hope this makes sense, but please let me know if you have questions
+                        ---------------------------------------------
+                        "
+Note 1:                 Condition added on theme.liquid "unless {...........or template == 'page.google-review...}' " to block geotargetly library and perth.js to be render on this template.
+                        So that, geotargetly app can be render on this page in order to get state from the library.
+                        Hence, we don't have to modify perth.js.liquid
+
+{%- endcomment -%}
+
+
+<div class="page-width">
+    <div class="loading-wrap" style="display: flex; flex-direction: column; gap: 10px; algin-items: center; justify-content: center; min-height: 50vh; padding: 30px 0;">
+        <div class="heading-loader" style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+            <h2>Please wait </h2> <div class="loader"></div>
+        </div>
+        <p style="text-align: center;">You're being taken to the correct page</p>
+    </div>
+</div>
+
+

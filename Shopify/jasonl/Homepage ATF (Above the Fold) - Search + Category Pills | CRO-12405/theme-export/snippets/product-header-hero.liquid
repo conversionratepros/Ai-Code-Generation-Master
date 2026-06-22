@@ -1,0 +1,22 @@
+{{ 'product-header-hero.css' | asset_url | stylesheet_tag }}
+<div class="product-header-hero">
+    <picture class="bannerimg">  
+        <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+        <source srcset="{{ productimg | file_img_url:'3800x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+        <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+        <source srcset="{{ productimg | file_img_url:'1900x'}}" media="(min-width: 768px)">
+        <img src="{{ productimg | file_img_url:'768x' }}" alt="{{ banner_heading }}" width="1600" height="auto">
+    </picture>
+    <div class="page-width banner-text-page-width">
+        <div class="banner-text">
+            <h2 class="banner-title">
+                {{ banner_heading }}
+            </h2>
+            <div class="banner-info-text">
+                {{ banner_subheading }}
+            </div>
+            <a href="#product-detail-top" class="button button--primary">BUY NOW</a>
+            <a href="#p-custom-section" class="link">Learn more</a>
+        </div>
+    </div>
+</div>

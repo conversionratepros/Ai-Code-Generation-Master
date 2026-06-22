@@ -1,0 +1,53 @@
+{% comment %} {%- assign min = 1 -%}
+{%- assign max = 3 -%}
+{%- assign diff = max | minus: min -%}
+{%- assign random_number = "now" | date: "%N" | modulo: diff | plus: min -%}
+<h1>{{ random_number }}</h1>
+{% if random_number == 1 %}
+  <button>Buy Now – Fast Checkout</button>
+{% else %}
+  <button>Get Yours Today</button>
+{% endif %} {% endcomment %}
+
+ <button id="test-button-1">Test Button 1</button>
+<button id="test-button-2">Test Button 2</button>
+<style>
+#test-button-1,#test-button-2{
+    display:none
+}
+</style>
+
+<script>
+(function() {
+  var TEST_NAME = "testpage";
+  var STORAGE_KEY = "abtest_" + TEST_NAME;
+
+  function getVariant() {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return saved;
+
+    // Random 50/50 split
+    var variant = Math.random() < 0.5 ? "A" : "B";
+    localStorage.setItem(STORAGE_KEY, variant);
+    return variant;
+  }
+
+  var variant = getVariant();
+
+  // Show correct button
+  if (variant === "A") {
+    document.getElementById("test-button-1").style.display = "block";
+  } else {
+    document.getElementById("test-button-2").style.display = "block";
+  }
+
+  // Push experiment view to dataLayer
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "abtest",
+    test_name: TEST_NAME,
+    variant: variant
+  });
+
+})();
+</script>

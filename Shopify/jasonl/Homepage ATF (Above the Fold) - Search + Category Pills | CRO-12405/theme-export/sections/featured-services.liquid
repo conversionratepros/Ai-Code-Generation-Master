@@ -1,0 +1,129 @@
+<!-- Content Management: Shop Metafield -->
+{{ 'featured-services.css' | asset_url | stylesheet_tag }} 
+{%- capture featured_services -%}
+{%- assign text_count = shop.metafields.custom_fields.text.size -%}
+{%- assign loop_limit = text_count | minus: 1 -%}
+<div class="ab-test-group-A featured-services-section-wrapper {{ section.settings.bg-color }}">
+    <div class="page-width featured-service-has-title">
+    <h2 class="section-title">Get your fitout booked today</h2>
+    <div class="featured-sevices">
+    {%- for i in (0..loop_limit) -%}
+    <div class="service">
+        <picture> 
+            <source srcset="{{ shop.metafields.custom_fields.image[i] | file_img_url : '740x600_crop_center' }} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+            <img src="{{ shop.metafields.custom_fields.image[i] | file_img_url : '370x300_crop_center' }}" alt="{{ shop.metafields.custom_fields.text[i] | strip_html }}" width="370" height="300" loading="lazy">
+        </picture>
+
+        {% comment %} <img src="{{ shop.metafields.custom_fields.image[i] | file_img_url:'1200x450_crop_center' }}" alt="Featured Services [i]" loading="lazy" width="" height=""> {% endcomment %}
+
+    <div class="service-card-body">
+        <div class="icon">{{ shop.metafields.custom_fields.icon[i] }}</div>
+        <p>{{ shop.metafields.custom_fields.text[i] }}</p>
+    </div>
+    </div>
+    {%- endfor -%}
+    </div>
+    </div>
+</div>
+{% comment %} <div class="ab-test-group-B featured-services-wrap-grp-B featured-services-section-wrapper {{ section.settings.bg-color }}">
+    <div class="page-width">
+        <div class="usp-section-container">
+            <div class="text-slider-container">
+                <!-- Swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slider-inner-wrap">
+                                <h2>Fitouts done <br />
+                                in under 10 days. <br />
+                                <span class="thin">Yep, really.</span></h2>
+                                <p>We’ve built a system that moves fast — from planning to install. Most fitouts are done in 10 days or less, without cutting corners. Just ask our happy customers.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="slider-inner-wrap">
+                                <h2>Your own <br /> fitout pro.<br />
+                                <span class="thin">Start to finish.</span></h2>
+                                <p>From day one, you get a real person who knows the ropes and has your back. They’ll guide you through every step, make smart calls and keep things moving – no chasing, no guesswork.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="slider-inner-wrap">
+                                <h2>We plan it,<br /> bring it, build it.<br />
+                                <span class="thin">You just show up.</span></h2>
+                                <p>We’re not here to handball tasks back to you. From free floor plans to delivery and assembly, we take care of the lot. You walk in when it’s ready, no tools or to-do lists required.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="slider-inner-wrap">
+                                <h2>Showrooms across <br /> Australia.<br />
+                                <span class="thin">Swing by anytime.</span></h2>
+                                <p>Want to see it before you buy it? No dramas. Pop into one of our showrooms to test, touch and talk through your fitout – with real people who know their stuff and are happy to help.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="usp-video-container">
+                <div class="usp-video-wrap">
+                    <video autoplay muted loop playsinline style="width: 100%; height: auto;">
+                        <source src="{{'Video-Homepage-LowQ.webm' | file_url }}" type="video/webm" />
+                        <source src="{{'Video-Homepage-MedQ.mp4' | file_url }}" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+{%- endcapture -%}
+{{ featured_services |  strip_newlines }}
+{% comment %} 
+ <script>
+    window.addEventListener("load", (event) => {
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            loop: true,
+            {% comment %} autoplay: {
+                delay: 15000,
+                disableOnInteraction: false
+            }, {% endcomment %}
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    });
+</script> 
+{% endcomment %}
+ 
+{% schema %}
+{
+"name": "Featured Services",
+"class": "featured-services-section",
+"settings": [
+{
+"type":"header",
+"content":"Instruction",
+"info":"Data source is Shop Metafield",
+},
+{
+    "type": "select",
+    "id": "bg-color",
+    "label": "Section backgound color",
+    "options": [
+        {
+        "value": "light",
+        "label": "light"
+        },
+        {
+        "value": "dark",
+        "label": "dark"
+        }
+    ],
+    "default": "light"
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+
+{%- if template == 'page.landing-page-1' or template == 'page.landing-page-2' or template == 'page.landing-page-3' -%}
+    {% comment %} 
+    <a  class="{% if class %}{{class}}{%else%} typeform-share getaquoteclick link {% endif %}" 
+        href="javascript:void(0)" 
+        data-tf-popup="MX2yOaMA" 
+        data-tf-opacity="100" 
+        data-tf-size="100" 
+        data-tf-iframe-props="title=JasonL - Get A Quote V2" 
+        data-tf-transitive-search-params 
+        data-tf-hidden="utm_source=,utm_medium=,utm_campaign=,utm_term=,utm_content=,gclid=,fbclid=,msclkid=,page=,utm_keyword=,device="
+        data-tf-on-submit="submit">
+       {%- if label -%}{{label}}{% else %} Get a quote{% endif %}
+    </a> 
+    {% endcomment %}
+    {% render 'typeform-btn', extra_classes: 'typeform-share getaquoteclick link' %}
+    {%- else -%}
+    {% comment %} 
+    <a  class="{% if class %}{{class}}{%else%} typeform-share getaquoteclick link {% endif %}" 
+        href="javascript:void(0)" 
+        data-tf-popup="SPqugn2G" 
+        data-tf-opacity="100" 
+        data-tf-size="100" 
+        data-tf-iframe-props="title=Marketing - Get A Quote" 
+        data-tf-transitive-search-params 
+        data-tf-hidden="utm_source=,utm_medium=,utm_campaign=,utm_term=,utm_content=,gclid=,fbclid=,msclkid=,page=,utm_keyword=,device="
+        data-tf-on-submit="submit">
+       {%- if label -%}{{label}}{% else %} Get a quote{% endif %}
+    </a> 
+    {% endcomment %}
+    {% render 'typeform-btn', extra_classes: 'typeform-share getaquoteclick link' %}
+    {%- endif -%}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

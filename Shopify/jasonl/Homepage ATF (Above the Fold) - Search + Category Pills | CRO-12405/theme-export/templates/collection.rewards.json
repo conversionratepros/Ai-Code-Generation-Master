@@ -1,0 +1,72 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "sections": {
+        "rewards_hero_banner": {
+            "type": "collection-rewards-hero-banner",
+            "settings": {}
+        },
+        "submenu": {
+            "type": "collection-submenu",
+            "settings": {}
+        },
+        "product-grid": {
+            "type": "main-collection-product-grid1",
+            "settings": {
+              "products_per_page": 45,
+              "columns_desktop": 3,
+              "color_scheme": "scheme-1",
+              "image_ratio": "adapt",
+              "image_shape": "default",
+              "show_secondary_image": false,
+              "show_vendor": false,
+              "show_rating": false,
+              "quick_add": "standard",
+              "enable_filtering": true,
+              "filter_type": "vertical",
+              "enable_sorting": true,
+              "columns_mobile": "2",
+              "padding_top": 36,
+              "padding_bottom": 36
+            }
+          },
+        "fitouts_company_img": {
+            "type": "fitouts-companies-with-img4",
+            "settings": {}
+        },
+        "reviews": {
+            "type": "customer_reviews",
+            "settings": {}
+        },
+       "locationMap": {
+        "type": "location-map-1-b_placeholder",
+        "settings": {}
+      },
+       "featured_services": {
+            "type": "featured-services",
+            "settings": {}
+        },
+        "columnBlock": {
+            "type": "landingpage-columnBlock1",
+            "settings": {}
+        }
+       
+    },
+    "order": [
+        "rewards_hero_banner",
+        "submenu",
+        "product-grid",
+        "fitouts_company_img",
+        "reviews",
+        "locationMap",
+        "featured_services",
+        "columnBlock" 
+    ]
+}

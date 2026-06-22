@@ -1,0 +1,160 @@
+{%- assign is_location_collection = false -%}
+{%- assign is_showroom_collection = false -%}
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split: ',' -%}
+{%- assign city = '' -%}
+
+{% if request.page_type == 'page' %}
+  {%- assign city = page.title | downcase | escape -%}
+  {%- assign is_showroom_collection = true -%}
+
+{% elsif request.page_type == 'collection' %}
+  {% for tagname in current_tags %}
+    {%- assign tag_name = tagname | downcase | escape -%}
+    {%- if cities contains tag_name -%}
+      {%- assign is_location_collection = true -%}
+      {%- assign city = tagname | downcase | escape -%}
+      {%- break -%}
+    {%- endif -%}
+  {% endfor %}
+{% endif %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+{{ 'landingpage-meetpeople.css' | asset_url | stylesheet_tag }}
+{{ 'meetpeople-2.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} Show Perth {%- endcomment -%}
+  {%- assign perth_index = null -%}
+
+  {%- for shopmeta_location in shop.metafields.custom_fields.location_collection_team_main_location -%}
+    {% assign location_showroom = shopmeta_location | downcase | escape %}
+    {%- if location_showroom == 'perth' -%}
+      {% assign perth_index = forloop.index0 %}
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="meetpeople1-container perth-wrap">
+    <div class="page-width page-width-override">
+      <div class="meetpeople-wrapper">
+
+        {%- render 'meetpeople-left', index: perth_index -%}
+
+        {% assign perth_city = shop.metafields.custom_fields.location_collection_team_main_location[perth_index] %}
+        {% assign team_member_index_list = '' %}
+
+        {%- for shopmeta_location_team_member_location in shop.metafields.custom_fields.location_collection_team_member_location -%}
+          {% assign location_showroom = shopmeta_location_team_member_location | downcase | escape %}
+          {%- if perth_city == location_showroom -%}
+            {% assign team_member_index_list = team_member_index_list | append: forloop.index0 | append: ',' %}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {% assign team_member_index_list = team_member_index_list | remove_last: ',' %}
+        {% assign team_member_index_list_array = team_member_index_list | split: ',' %}
+
+        {%- render 'meetpeople-right', team_member_index_list_array: team_member_index_list_array -%}
+
+      </div>
+    </div>
+  </div>
+
+{%- comment -%} SAME OLD LOGIC (Location OR Random) {%- endcomment -%}
+{% assign shopmeta_index = null %}
+
+{% if is_location_collection == true or is_showroom_collection == true %}
+  {% if city != blank %}
+    {% for shopmeta_location in shop.metafields.custom_fields.location_collection_team_main_location %}
+      {% assign location_showroom = shopmeta_location | downcase | escape %}
+      {% if city == location_showroom %}
+        {% assign shopmeta_index = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{% if shopmeta_index == null %}
+  {% assign max_count = shop.metafields.custom_fields.location_collection_team_main_header.size %}
+  {% assign random_index = 'now' | date: '%N' | modulo: max_count %}
+  {% assign shopmeta_index = random_index %}
+{% endif %}
+
+{%- comment -%} Assigned variables are not showing {%- endcomment -%}
+{%- comment -%} 
+{% assign meet-people-header = shop.metafields.custom_fields.location_collection_team_main_header[shopmeta_index] %}
+{% assign meet-people-description = shop.metafields.custom_fields.location_collection_team_main_description[shopmeta_index] %}
+{% assign meet-people-signature = shop.metafields.custom_fields.location_collection_team_main_signature[shopmeta_index] %}
+{% assign meet-people-image = shop.metafields.custom_fields.location_collection_team_main_image[shopmeta_index] %} 
+{%- endcomment -%}
+
+<div class="meetpeople1-container random-wrap">
+  <div class="page-width page-width-override">
+    <div class="">
+      <div class="meetpeople-wrapper">
+        {% render 'meetpeople-left', index: shopmeta_index %}
+
+        {% assign city = shop.metafields.custom_fields.location_collection_team_main_location[shopmeta_index] %}
+        {% assign team_member_index_list = '' %}
+
+        {% if city != blank %}
+          {% for shopmeta_location_team_member_location in shop.metafields.custom_fields.location_collection_team_member_location %}
+            {% assign location_showroom = shopmeta_location_team_member_location | downcase | escape %}
+            {% if city == location_showroom %}
+              {% assign team_member_index_list = team_member_index_list | append: forloop.index0 | append: ',' %}
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% assign review_handles_string = shop.metafields.custom_fields.location_collection_team_main_review_handles[shopmeta_index] %}
+          {% if review_handles_string != blank %}
+            {% assign review_handles_array = review_handles_string | split: ',' %}
+
+            {% for name in review_handles_array %}
+              {% assign name_handle = name | strip | handle %}
+
+              {% for member in shop.metafields.custom_fields.location_collection_team_member_name %}
+                {% assign member_handle = member | strip | handle %}
+                {% if name_handle == member_handle %}
+                  {% assign team_member_index_list = team_member_index_list | append: forloop.index0 | append: ',' %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+
+        {% assign team_member_index_list = team_member_index_list | remove_last: ',' %}
+        {% assign team_member_index_list_array = team_member_index_list | split: ',' %}
+
+        {% render 'meetpeople-right', team_member_index_list_array: team_member_index_list_array %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script>
+function meetPeopleSlider() {
+let winWidth = window.innerWidth;
+if(winWidth > 767 && winWidth < 1200){
+let leftContainer = document.querySelectorAll('.meetpeople-wrapper');
+console.log(leftContainer);
+leftContainer.forEach((e) => {
+console.log(e);
+//let calcWidth = winWidth - 396;
+let calcWidth = winWidth - 40;
+e.style.width = `${calcWidth}px`;
+})
+
+}
+
+new Splide('#splide__meetpeople', {
+perPage: 2,
+autoWidth: true,
+arrows : false,
+}).mount();
+}
+meetPeopleSlider();
+</script> {% endcomment %}{% schema %}
+  {
+    "name": "Meet People 2",
+    "class": "meetpeople-section meetpeople2-section"
+  }
+{% endschema %}

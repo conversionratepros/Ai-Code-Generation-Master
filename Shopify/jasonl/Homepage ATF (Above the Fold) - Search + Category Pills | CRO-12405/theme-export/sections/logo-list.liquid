@@ -1,0 +1,53 @@
+{{ 'logo-list.css' | asset_url | stylesheet_tag }}
+
+<section class="logo-list">
+  <div class="page-width">
+    <div class="logo-wrap">
+        {%- if section.settings.heading != blank -%}
+        <h2 class="main-title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        <ul class="logo-grid">
+        {%- for block in section.blocks -%}
+            <li class="logo-item">
+            {%- if block.settings.logo_svg != blank -%}
+                <span class="icon">{{ block.settings.logo_svg }}</span>
+            {%- endif -%}
+            </li>
+        {%- endfor -%}
+        </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Logo List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Title",
+      "default": "Our Partners"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "logo_svg",
+          "label": "SVG Logo Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo List",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
