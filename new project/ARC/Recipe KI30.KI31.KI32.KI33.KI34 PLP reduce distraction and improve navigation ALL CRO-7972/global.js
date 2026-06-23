@@ -1,5 +1,24 @@
 (function () {
     try {
+        // PAGE EXCLUSIONS — skip running global JS entirely on these pages
+        var EXCLUDED_PATHS = [
+            '/arc/arc-exclusives',
+            '/arc-personalisation',
+            '/new-in'
+        ];
+        var EXCLUDED_CONTAINS = ['/admin', '/brands'];
+        var currentPagePath = window.location.pathname;
+        var isExcludedPage = EXCLUDED_PATHS.indexOf(currentPagePath) !== -1 ||
+            EXCLUDED_CONTAINS.some(function (sub) { return currentPagePath.indexOf(sub) !== -1; });
+        if (isExcludedPage) {
+            console.log("Global JavaScript skipped — excluded page: " + currentPagePath);
+            // strip any leftover test body classes (e.g. cro-7972, CRO_XXXX_Variation) from SPA navigation
+            Array.prototype.slice.call(document.body.classList).forEach(function (cls) {
+                if (/^cro[-_]/i.test(cls)) document.body.classList.remove(cls);
+            });
+            return;
+        }
+
         // LIBRARY FUNCTIONS
         var lib = {
             live(selector, event, callback, context) {
@@ -128,22 +147,13 @@
                     } catch (e) { /* swallow */ }
                 })();
             },
-            test_Recipe_KI14_KI2_Introduce_site_and_brands_ALL_CRO7537() {
-                var currentPath = window.location.pathname;
-                if (currentPath == '/') {
-                    window.crotest_KI14_KI2_Introduce_site_and_brands_ALL = 1;
-                    window._conv_q = window._conv_q || [];
-                    window._conv_q.push(["executeExperiment", "1004189372"]);
-                    console.log("Experiment Recipe KI14.KI2 | Introduce site and brands | ALL | CRO-7537 Activated");
-                }
-            },
             test_Recipe_KI5_Remove_headers_on_PLPs_ALL_CRO7521() {
                 var currentPath = window.location.pathname;
                 if (currentPath.indexOf('/brands') == -1) {
                     lib.waitForElement('#multiForm', function () {
                         window.crotest_KI5_Remove_headers_on_PLPs_ALL_CRO7521 = 1;
                         window._conv_q = window._conv_q || [];
-                        window._conv_q.push(["executeExperiment", "1004197011"]);
+                        window._conv_q.push(["executeExperiment", "1004200203"]);
                         console.log("Experiment Recipe KI5 | Remove headers on PLPs | ALL | CRO-7521 Activated");
                     }, 50, 20000)
 
@@ -155,19 +165,28 @@
                     window._conv_q.push(["executeExperiment", "1004194416"]);
                     console.log("Experiment Recipe KI53 | Reduce visual overwhelm on Delivery page | ALL | CRO-8143 Activated");
                 }, 50, 20000)
+            }, test_PLP_reduce_distraction_improve_navigation_ALL_CRO7972() {
+                var currentPath = window.location.pathname;
+                lib.waitForElement('#multiForm', function () {
+                    if (currentPath.indexOf('/brands') == -1) {
+                        window.crotest_PLP_reduce_distraction_improve_navigation_ALL_CRO7972 = 1;
+                        window._conv_q = window._conv_q || [];
+                        window._conv_q.push(["executeExperiment", "1004198304"]);
+                        console.log("Experiment Recipe KI30.KI31.KI32.KI33.KI34 | PLP reduce distraction and improve navigation | ALL | CRO-7972 Activated");
+                    }
+                }, 50, 20000)
+
+                setTimeout(function () {
+                    if (currentPath.indexOf('/brands') != -1 && document.querySelector('.cro-7972')) {
+                        document.querySelector('body').classList.remove('cro-7972')
+                    }
+                }, 600)
             }, test_Recipe_KI19_Add_conventional_elements_to_the_checkout_ALL_CRO7505() {
                 lib.waitForElement('.cro_My_Bag, .cro_Delivery, .cro_Payment', function () {
                     window.crotest_Recipe_KI19_checkout_ALL_CRO7505 = 1;
                     window._conv_q = window._conv_q || [];
                     window._conv_q.push(["executeExperiment", "1004199433"]);
                     console.log("Experiment Recipe KI19 | Add conventional elements to the checkout | ALL | CRO-7505 Activated");
-                }, 50, 20000)
-            }, test_PLP_reduce_distraction_improve_navigation_ALL_CRO7972() {
-                lib.waitForElement('#multiForm', function () {
-                    window.crotest_PLP_reduce_distraction_improve_navigation_ALL_CRO7972 = 1;
-                    window._conv_q = window._conv_q || [];
-                    window._conv_q.push(["executeExperiment", "1004198304"]);
-                    console.log("Experiment Recipe KI30.KI31.KI32.KI33.KI34 | PLP reduce distraction and improve navigation | ALL | CRO-7972 Activated");
                 }, 50, 20000)
             }
 
@@ -177,18 +196,11 @@
 
         console.log("Global JavaScript Activate");
         experiments.test_checkout();
-        experiments.test_Recipe_KI14_KI2_Introduce_site_and_brands_ALL_CRO7537();
         experiments.test_Recipe_KI5_Remove_headers_on_PLPs_ALL_CRO7521();
         experiments.test_Recipe_KI53_Reduce_visual_overwhelm_on_Delivery_page_ALL_CRO8143();
-        experiments.test_Recipe_KI19_Add_conventional_elements_to_the_checkout_ALL_CRO7505();
         experiments.test_PLP_reduce_distraction_improve_navigation_ALL_CRO7972();
-        /**
-         * Activate all experiments on location change
-         */
-        function activateExpOnPageChange() {
-            //SPA Calls
-        }
-        // lib.listener(activateExpOnPageChange);
+        experiments.test_Recipe_KI19_Add_conventional_elements_to_the_checkout_ALL_CRO7505();
+
     } catch (e) {
         console.log("Error in Global JavaScript");
     }

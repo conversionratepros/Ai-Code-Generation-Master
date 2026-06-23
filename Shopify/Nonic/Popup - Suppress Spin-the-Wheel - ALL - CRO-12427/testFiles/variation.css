@@ -1,0 +1,18 @@
+/* CRO-12427 | Popup | Suppress spin-the-wheel | ALL */
+
+/* ── Hide only the Klaviyo form that IS the spin-to-win widget ──
+   Scoped with :has() so this never touches any other Klaviyo onsite
+   form Nonic might add later (e.g. a plain newsletter signup embed
+   also carries the .klaviyo-form class — only one with a nested
+   .klaviyo-spintowin should ever be hidden). ── */
+body.cro-12427 .klaviyo-form:has(.klaviyo-spintowin) {
+    display: none !important;
+}
+
+/* ── Hide the small "Spin to WIN!" reopen teaser that Klaviyo shows
+   after the popup is dismissed. data-testid is Klaviyo's own stable
+   hook for this exact element, confirmed by inspection — not a class
+   shared with anything else on the page. ── */
+body.cro-12427 [data-testid="animated-teaser"] {
+    display: none !important;
+}
