@@ -1,0 +1,1981 @@
+/* Variation B - Debt Solutions cold-traffic LP | CRO-12316 */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-story {
+  display: none !important;
+}
+
+/* ── Reveal when body class is applied ── */
+body.cro-12316 .cro-12316-story {
+  display: block !important;
+}
+
+/* ── Box-sizing reset ── */
+body.cro-12316 .cro-12316-story,
+body.cro-12316 .cro-12316-story * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ══════════════════════════════
+   SECTION WRAPPER
+══════════════════════════════ */
+
+body.cro-12316 .cro-12316-story {
+  background: #ffffff;
+  padding: 64px 20px;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+body.cro-12316 .cro-12316-story__container {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+
+/* ── "A TRUE STORY" pill badge ── */
+body.cro-12316 .cro-12316-story__pill {
+    display: inline-block;
+    padding: 6px 16px;
+    margin-bottom: 20px;
+    color: var(--secondary-foreground, #FFF);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 1.12px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: var(--Green, #5BAC43);
+    height: 24px;
+    /* display: flex; */
+    /* align-items: center; */
+    /* width: initial; */
+    /* justify-content: center; */
+    /* position: relative; */
+}
+
+/* ── Heading ── */
+body.cro-12316 .cro-12316-story__heading {
+    margin-bottom: 28px !important;
+    color: var(--Font, #0E1216);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ── Subtext ── */
+body.cro-12316 .cro-12316-story__subtext {
+  margin-bottom: 28px !important;
+  color: var(--P, #454E58);
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1; /* 25.2px */
+}
+
+/* ══════════════════════════════
+   CARDS GRID
+══════════════════════════════ */
+
+body.cro-12316 .cro-12316-story__cards {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 40px !important;
+}
+
+body.cro-12316 .cro-12316-story__card {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+/* ── Image wrapper + number badge ── */
+body.cro-12316 .cro-12316-card__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 14px !important;
+  line-height: 0;
+}
+
+body.cro-12316 .cro-12316-card__img {
+  width: 100%;
+  height: 294px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+body.cro-12316 .cro-12316-card__img_mobile{
+    display: none;
+}
+
+body.cro-12316 .cro-12316-card__num {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    color: #FFF;
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 8px;
+    background: #5BAC43;
+    box-shadow: 0 1.25px 3.75px 0 rgba(0, 0, 0, 0.10), 0 1.25px 2.5px -1.25px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Card caption ── */
+body.cro-12316 .cro-12316-card__text {
+  color: var(--Font, #0E1216);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: center;
+}
+
+body.cro-12316 .cro-12316-card__text strong {
+  font-weight: 700;
+}
+
+/* ══════════════════════════════
+   CTA BUTTON
+══════════════════════════════ */
+
+body.cro-12316 .cro-12316-story__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+body.cro-12316 .cro-12316-cta-btn {
+  text-decoration: none;
+  padding: 14px 36px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  border-radius: 99px;
+  background: #E8861A;
+  color: #FFF;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  height: 51px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+}
+
+body.cro-12316 .cro-12316-cta-btn:hover {
+  /* background: #e05a00; */
+  color: #ffffff;
+  text-decoration: none;
+  opacity: .9;
+}
+
+/* ── Trust badges ── */
+body.cro-12316 .cro-12316-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+body.cro-12316 .cro-12316-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #454E58;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+body.cro-12316 .cro-12316-trust__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════
+   MOBILE  ≤ 767px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-story__container {
+    max-width: 768px;
+  }
+
+  body.cro-12316 .cro-12316-story {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-story__heading {
+    font-size: 24px;
+    line-height: 140%;
+    margin-bottom: 20px !important;
+    text-wrap: auto;
+  }
+
+  body.cro-12316 .cro-12316-story__subtext {
+    color: var(--P, #454E58);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    margin-bottom: 32px !important;
+  }
+
+  body.cro-12316 .cro-12316-story__cards {
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 36px !important;
+  }
+
+  body.cro-12316 .cro-12316-card__img{
+    display: none;
+  }
+
+  body.cro-12316 .cro-12316-card__img_mobile{
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  body.cro-12316 .cro-12316-card__img {
+    height: 200px;
+  }
+
+  body.cro-12316 .cro-12316-trust {
+    /* flex-direction: column; */
+    gap: 16px;
+  }
+}
+
+/* ══════════════════════════════
+   TABLET  768px – 1023px
+══════════════════════════════ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  body.cro-12316 .cro-12316-story__heading {
+    font-size: 30px;
+  }
+
+  body.cro-12316 .cro-12316-story__cards {
+    gap: 24px;
+  }
+
+  body.cro-12316 .cro-12316-card__img {
+    /* height: 180px; */
+    height: 220px;
+  }
+
+    body.cro-12316 .cro-12316-card__img_mobile{
+    height: 200px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   MEDIA LOGOS SECTION  .cro-12316-media
+══════════════════════════════════════════════ */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-media {
+  display: none !important;
+}
+
+body.cro-12316 .cro-12316-media {
+  display: block !important;
+}
+
+body.cro-12316 .cro-12316-media,
+body.cro-12316 .cro-12316-media * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cro-12316 .cro-12316-media {
+    padding: 64px 20px;
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    background: #F0F0F0;
+}
+
+body.cro-12316 .cro-12316-media__container {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+
+/* ── Heading ── */
+body.cro-12316 .cro-12316-media__heading {
+    margin-bottom: 36px !important;
+    color: var(--Font, #0E1216);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ── Logo cards row ── */
+body.cro-12316 .cro-12316-media__logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+body.cro-12316 .cro-12316-media__logo-card {
+    flex: 1;
+    min-width: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    height: 99px;
+    border: 0.821px solid #DADADA;
+    background: #FFF;
+}
+
+body.cro-12316 .cro-12316-media__logo-img {
+  display: block;
+  max-height: 66px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ── Google rating: desktop hidden, mobile visible ── */
+body.cro-12316 .cro-12316-media__google {
+  display: none;
+}
+
+/* ── Stars ── */
+body.cro-12316 .cro-12316-media__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+body.cro-12316 .cro-12316-media__star {
+  color: #FBBC05;
+}
+
+body.cro-12316 .cro-12316-media__star--half {
+  position: relative;
+  display: inline-block;
+  color: #D9D9D9;
+}
+
+body.cro-12316 .cro-12316-media__star--half::after {
+  content: '\2605';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #FBBC05;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+/* ── Google score + wordmark ── */
+body.cro-12316 .cro-12316-media__google-score {
+  color: var(--P, #454E58);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+body.cro-12316 .cro-12316-media__google-wordmark {
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+body.cro-12316 .cro-12316-media__google-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px !important;
+}
+
+body.cro-12316 .cro-12316-media__google-text {
+color: var(--P, #454E58);
+font-family: "Open Sans", Helvetica, Arial, sans-serif;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%;
+}
+
+body.cro-12316 .cro-12316-media__google-link {
+  color: var(--P, #454E58);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+/* ══════════════════════════════
+   MEDIA MOBILE  ≤ 1023px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-media {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-media__container {
+    max-width: 480px;
+  }
+
+  body.cro-12316 .cro-12316-media__heading {
+    margin-bottom: 32px !important;
+    color: var(--Font, #0E1216);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    text-wrap: auto;
+  }
+
+  body.cro-12316 .cro-12316-media__logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 12px !important;
+  }
+
+  body.cro-12316 .cro-12316-media__logo-card {
+    height: 70px;
+    padding: 12px 10px;
+  }
+
+  body.cro-12316 .cro-12316-media__logo-img {
+    max-height: 36px;
+  }
+
+  body.cro-12316 .cro-12316-media__google {
+    display: block;
+    margin-top: 12px !important;
+    border-radius: 8px;
+    border: 1px solid #DADADA;
+    background: #FFF;
+    padding: 20px;
+  }
+
+  .callback-form .terms{
+    color: #FFF;
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 15px */
+  }
+}
+
+/* ══════════════════════════════════════════════
+   ERICA QUOTE SECTION  .cro-12316-quote
+══════════════════════════════════════════════ */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-quote {
+  display: none !important;
+}
+
+body.cro-12316 .cro-12316-quote {
+  display: block !important;
+}
+
+body.cro-12316 .cro-12316-quote,
+body.cro-12316 .cro-12316-quote * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cro-12316 .cro-12316-quote {
+  position: relative;
+  background: #EAF7E6;
+  padding: 64px 100px;
+  text-align: center;
+  overflow: hidden;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+/* ── Decorative quotation marks ── */
+body.cro-12316 .cro-12316-quote__deco {
+  position: absolute;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 160px;
+  line-height: 1;
+  color: #B5C9B0;
+  pointer-events: none;
+  user-select: none;
+}
+
+body.cro-12316 .cro-12316-quote__deco--open {
+  top: 10px;
+  left: 24px;
+  line-height: 0.9;
+}
+
+body.cro-12316 .cro-12316-quote__deco--close {
+  bottom: -24px;
+  right: 24px;
+  line-height: 1;
+}
+
+/* ── Inner text container ── */
+body.cro-12316 .cro-12316-quote__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Label ── */
+body.cro-12316 .cro-12316-quote__label {
+    margin-bottom: 36px !important;
+    color: var(--Font, #0E1216);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.12px;
+    text-transform: uppercase;
+}
+
+/* ── Quote text ── */
+body.cro-12316 .cro-12316-quote__text {
+    margin-bottom: 36px !important;
+    color: var(--Font, #0E1216);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+}
+
+/* ── Attribution ── */
+body.cro-12316 .cro-12316-quote__cite {
+  color: var(--Font, #0E1216);
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.12px;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════
+   QUOTE MOBILE  ≤ 1023px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-quote {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-quote__deco {
+    font-size: 120px;
+  }
+
+  body.cro-12316 .cro-12316-quote__deco--open {
+    top: 20px;
+    left: 20px;
+  }
+
+  body.cro-12316 .cro-12316-quote__deco--close {
+    bottom: -20px;
+    right: 20px;
+  }
+
+  body.cro-12316 .cro-12316-quote__text {
+    font-size: 20px;
+    line-height: 150%;
+  }
+}
+
+@media (max-width: 767px) {
+    body.cro-12316 .cro-12316-quote__deco {
+    font-size: 160px;
+  }
+
+  body.cro-12316 .cro-12316-quote__deco--open {
+    top: 30px;
+    left: 20px;
+  }
+
+  body.cro-12316 .cro-12316-quote__deco--close {
+    bottom: -50px;
+    right: 20px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SAVINGS SECTION  .cro-12316-savings
+══════════════════════════════════════════════ */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-savings {
+  display: none !important;
+}
+
+body.cro-12316 .cro-12316-savings {
+  display: block !important;
+}
+
+body.cro-12316 .cro-12316-savings,
+body.cro-12316 .cro-12316-savings * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cro-12316 .cro-12316-savings {
+  background: #ffffff;
+  padding: 64px 20px;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+body.cro-12316 .cro-12316-savings__container {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+
+/* ── Heading ── */
+body.cro-12316 .cro-12316-savings__heading {
+  color: var(--Font, #0E1216);
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  margin-bottom: 16px !important;
+}
+
+/* ── Subtext ── */
+body.cro-12316 .cro-12316-savings__subtext {
+  color: var(--P, #454E58);
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 25.2px */
+  margin-bottom: 36px !important;
+}
+
+/* ── Cards column centred ── */
+body.cro-12316 .cro-12316-savings__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto 40px !important;
+}
+
+/* ── Individual card ── */
+body.cro-12316 .cro-12316-savings__card {
+  background: #ffffff;
+  border: 1px solid #E3E8EF;
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: left;
+}
+
+/* ── Card top: photo left, quote right ── */
+body.cro-12316 .cro-12316-savings__card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px !important;
+}
+
+/* ── Circular photo ── */
+body.cro-12316 .cro-12316-savings__photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* ── Quote text ── */
+body.cro-12316 .cro-12316-savings__quote {
+    flex: 1;
+    color: var(--P, #454E58);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 36px;
+}
+
+body.cro-12316 .cro-12316-savings__quote strong{
+  font-weight: 700;
+}
+
+/* ── Meta row: name | city + saved ── */
+body.cro-12316 .cro-12316-savings__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px !important;
+}
+
+body.cro-12316 .cro-12316-savings__name {
+  color: var(--P, #454E58);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+body.cro-12316 .cro-12316-savings__sep {
+  /* color: #5BAC43; */
+  color: var(--P, rgba(19, 33, 15, 0.40));
+  margin: 0 3px;
+}
+
+body.cro-12316 .cro-12316-savings__saved {
+  color: var(--Dark-Green, #2F8B27);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* ── Progress bar ── */
+body.cro-12316 .cro-12316-savings__bar {
+  width: 100%;
+  height: 20px;
+  background: #E8ECF0;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 10px !important;
+}
+
+body.cro-12316 .cro-12316-savings__bar-fill {
+  height: 100%;
+  background: #5BAC43;
+  border-radius: 99px;
+}
+
+/* ── Before → After amounts ── */
+body.cro-12316 .cro-12316-savings__amounts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body.cro-12316 .cro-12316-savings__before {
+  color: var(--P, #454E58);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+body.cro-12316 .cro-12316-savings__arrow {
+  /* font-size: 14px; */
+  /* color: #9CA3AF; */
+  width: 12px;
+}
+
+body.cro-12316 .cro-12316-savings__after {
+  color: var(--Dark-Green, #2F8B27);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* ── Savings progress bar: desktop hidden ── */
+body.cro-12316 .cro-12316-savings__progress {
+  display: none;
+}
+
+/* ══════════════════════════════
+   SAVINGS MOBILE  ≤ 1023px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-savings {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-savings__heading {
+    font-size: 24px;
+    text-wrap: auto;
+  }
+
+  /* Track bleeds edge-to-edge via negative margin, internal padding keeps cards inset */
+  body.cro-12316 .cro-12316-savings__cards {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    /* margin-left: -20px !important; */
+    margin-right: -20px !important;
+    padding: 0 20px 4px;
+    margin-bottom: 28px !important;
+    max-width: unset;
+  }
+
+  body.cro-12316 .cro-12316-savings__cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Each card nearly full-width so next card peeks */
+  body.cro-12316 .cro-12316-savings__card {
+    flex: none;
+    min-width: calc(100vw - 60px);
+    scroll-snap-align: start;
+    padding: 20px;
+    max-width: 350px;
+    min-width: 350px;
+  }
+
+  body.cro-12316 .cro-12316-savings__card-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  body.cro-12316 .cro-12316-savings__photo {
+    width: 100%;
+    height: 100%;
+  }
+
+  body.cro-12316 .cro-12316-savings__quote {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  body.cro-12316 .cro-12316-savings__meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  body.cro-12316 .cro-12316-savings__subtext {
+    margin-bottom: 32px !important;
+  }
+
+  /* Scroll progress bar */
+  body.cro-12316 .cro-12316-savings__progress {
+    display: block;
+    height: 4px;
+    background: #E0E5EA;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px !important;
+  }
+
+  body.cro-12316 .cro-12316-savings__progress-fill {
+    height: 100%;
+    background: #5BAC43;
+    border-radius: 4px;
+    transition: width 0.15s ease;
+  }
+
+  body.cro-12316 .cro-12316-savings__bar{
+    margin-bottom: 14px !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   AUTHORITY / TRUST BAR  .cro-12316-authority
+══════════════════════════════════════════════ */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-authority {
+  display: none !important;
+}
+
+body.cro-12316 .cro-12316-authority {
+  display: block !important;
+}
+
+body.cro-12316 .cro-12316-authority,
+body.cro-12316 .cro-12316-authority * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cro-12316 .cro-12316-authority {
+  background: #3D8C27;
+  padding: 64px 20px;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  background: var(--brand-green, #51B148);
+}
+
+/* ── Two-column layout: badges left, content right ── */
+body.cro-12316 .cro-12316-authority__container {
+  max-width: 1248px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+/* ── Badges column ── */
+body.cro-12316 .cro-12316-authority__badges {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  width: 260px;
+}
+
+body.cro-12316 .cro-12316-authority__badge-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+body.cro-12316 .cro-12316-authority__badge-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+body.cro-12316 img.cro-12316-authority__badge-img.img-1{
+  width: 144px;
+  height: 144px;
+  object-fit: contain;
+}
+
+body.cro-12316 img.cro-12316-authority__badge-img.img-2{
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+}
+
+body.cro-12316 .cro-12316-authority__chevron {
+  display: block;
+  width: 24px;
+  height: 14px;
+}
+
+/* ── Content column ── */
+body.cro-12316 .cro-12316-authority__content {
+  flex: 1;
+  width: 100%;
+  max-width: 740px;
+  /* margin: 0 auto; */
+}
+
+body.cro-12316 .cro-12316-authority__heading {color: var(--White, #FFF);font-family: "Open Sans", Helvetica, Arial, sans-serif;font-size: 36px;font-style: normal;font-weight: 700;line-height: 140%; /* 50.4px */margin-bottom: 20px;text-wrap: auto;}
+
+body.cro-12316 .cro-12316-authority__text {
+  color: var(--White, #FFF);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-bottom: 28px !important;
+}
+
+body.cro-12316 .cro-12316-authority__text:last-child {
+  margin-bottom: 0 !important;
+}
+
+body.cro-12316 .cro-12316-authority__text strong {
+  font-weight: 700;
+}
+
+/* ══════════════════════════════
+   AUTHORITY MOBILE  ≤ 1023px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-authority {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-authority__container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  body.cro-12316 .cro-12316-authority__badges {
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+
+  }
+
+  body.cro-12316 .cro-12316-authority__badge-row {
+    gap: 24px;
+  }
+
+  body.cro-12316 .cro-12316-authority__badge-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  body.cro-12316 .cro-12316-authority__chevron {
+    display: none;
+  }
+
+  body.cro-12316 .cro-12316-authority__heading {
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      line-height: 140%;
+  }
+
+  body.cro-12316 .cro-12316-authority__text {
+    text-align: center;
+  }
+
+  body.cro-12316 img.cro-12316-authority__badge-img.img-1 {
+    width: 112px;
+    height: 112px;
+}
+  body.cro-12316 .cro-12316-authority__content {
+  margin: 0 auto;
+}
+}
+
+/* ══════════════════════════════════════════════
+   THREE-STEP PROCESS  .cro-12316-steps
+══════════════════════════════════════════════ */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-steps {
+  display: none !important;
+}
+
+body.cro-12316 .cro-12316-steps {
+  display: block !important;
+}
+
+body.cro-12316 .cro-12316-steps,
+body.cro-12316 .cro-12316-steps * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cro-12316 .cro-12316-steps {
+  background: #ffffff;
+  padding: 64px 20px;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+body.cro-12316 .cro-12316-steps__container {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+
+/* ── Heading ── */
+body.cro-12316 .cro-12316-steps__heading {
+  color: var(--Font, #0E1216);
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%; /* 50.4px */
+  margin-bottom: 15px !important;
+}
+
+/* ── Subtext ── */
+body.cro-12316 .cro-12316-steps__subtext {
+  color: var(--P, #454E58);
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 25.2px */
+  margin-bottom: 32px !important;
+}
+
+/* ── Three cards in a row ── */
+body.cro-12316 .cro-12316-steps__cards {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  margin-bottom: 36px !important;
+}
+
+/* ── Individual step card ── */
+body.cro-12316 .cro-12316-steps__card {
+    flex: 1;
+    text-align: left;
+    border-radius: 8px;
+    background: #EAF7E6;
+    padding: 36px 32px;
+}
+
+/* ── Step number ── */
+body.cro-12316 .cro-12316-steps__num {
+  display: block;
+    color: var(--Green, #5BAC43);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1; /* 84px */
+    margin-bottom: 20px !important;
+}
+
+/* ── Step title ── */
+body.cro-12316 .cro-12316-steps__title {
+    margin-bottom: 16px !important;
+    color: var(--Font, #0E1216);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+/* ── Step description ── */
+body.cro-12316 .cro-12316-steps__desc {
+    color: #60705B;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    }
+
+/* ══════════════════════════════
+   STEPS MOBILE  ≤ 1023px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-steps {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-steps__heading {
+    font-size: 24px;
+  }
+
+  body.cro-12316 .cro-12316-steps__cards {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px !important;
+  }
+
+  body.cro-12316 .cro-12316-steps__card {
+    padding: 24px;
+  }
+
+  body.cro-12316 .cro-12316-steps__num {
+    margin-bottom: 15px !important;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  body.cro-12316 .cro-12316-steps__container{
+    max-width: 768px
+  }
+
+  body.cro-12316 .cro-12316-steps__title {
+    margin-bottom: 16px !important;
+    font-size: 20px;
+}
+}
+
+/* ══════════════════════════════════════════════
+   GOOGLE REVIEWS SECTION  .cro-12316-reviews
+══════════════════════════════════════════════ */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-reviews {
+  display: none !important;
+}
+
+body.cro-12316 .cro-12316-reviews {
+  display: block !important;
+}
+
+body.cro-12316 .cro-12316-reviews,
+body.cro-12316 .cro-12316-reviews * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cro-12316 .cro-12316-reviews {
+  background: #F4F6F9;
+  padding: 64px 20px;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+body.cro-12316 .cro-12316-reviews__container {
+  max-width: 1328px;
+  margin: 0 auto;
+}
+
+/* ── Heading ── */
+body.cro-12316 .cro-12316-reviews__heading {
+    color: var(--Font, #0E1216);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 50.4px */
+    margin-bottom: 22px !important;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* ── Subtext ── */
+body.cro-12316 .cro-12316-reviews__subtext {
+    color: var(--P, #454E58);
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 25.2px */
+    margin-bottom: 32px !important;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+body.cro-12316 .cro-12316-reviews__subtext strong {
+  color: var(--P, #454E58);
+  font-weight: 700;
+}
+
+/* ── Desktop: 4-column flex row ── */
+body.cro-12316 .cro-12316-reviews__track {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 0 !important;
+}
+
+/* ── Individual card ── */
+body.cro-12316 .cro-12316-reviews__card {
+  flex: 1;
+  background: #ffffff;
+  /* border: 1px solid #E3E8EF; */
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* ── Card head: stars left, Google logo right ── */
+body.cro-12316 .cro-12316-reviews__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px !important;
+}
+
+/* ── Stars row ── */
+body.cro-12316 .cro-12316-reviews__stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ── Review text ── */
+body.cro-12316 .cro-12316-reviews__text {
+    flex: 1;
+    margin-bottom: 24px !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--P, #454E58);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+/* ── Author row ── */
+body.cro-12316 .cro-12316-reviews__author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto !important;
+}
+
+/* ── Avatar circle ── */
+body.cro-12316 .cro-12316-reviews__avatar {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: #E1FCEB;
+  overflow: hidden;
+  color: var(--Dark-Green, #2F8B27);
+  text-overflow: ellipsis;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+body.cro-12316 .cro-12316-reviews__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+body.cro-12316 .cro-12316-reviews__name {
+    color: var(--Font, #0E1216);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+body.cro-12316 .cro-12316-reviews__time {
+    color: var(--P, #454E58);
+    /* text-align: center; */
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* ── Progress bar: desktop hidden ── */
+body.cro-12316 .cro-12316-reviews__progress {
+  display: none;
+}
+
+/* ══════════════════════════════
+   REVIEWS MOBILE  ≤ 1023px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-reviews {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-reviews__heading {
+    font-size: 24px;
+    margin-bottom: 20px !important;
+    text-wrap: auto;
+  }
+
+  /* Track bleeds edge-to-edge via negative margin, internal padding keeps cards inset */
+  body.cro-12316 .cro-12316-reviews__track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    /* margin-left: -20px !important; */
+    margin-right: -20px !important;
+    padding: 0 20px 4px;
+    margin-bottom: 28px !important;
+  }
+
+  body.cro-12316 .cro-12316-reviews__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Each card ~82% wide so next card peeks ~18% */
+  body.cro-12316 .cro-12316-reviews__card {
+    flex: none;
+    min-width: 320px;
+    scroll-snap-align: start;
+    max-width: 300px;
+  }
+
+
+
+  /* Scroll progress bar */
+  body.cro-12316 .cro-12316-reviews__progress {
+    display: block;
+    height: 4px;
+    background: #E0E5EA;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 14px !important;
+  }
+
+  body.cro-12316 .cro-12316-reviews__progress-fill {
+    height: 100%;
+    background: #5BAC43;
+    border-radius: 4px;
+    transition: width 0.15s ease;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   FAQ ACCORDION  .cro-12316-faq
+══════════════════════════════════════════════ */
+
+/* ── Default hidden (SPA safety) ── */
+.cro-12316-faq {
+  display: none !important;
+}
+
+body.cro-12316 .cro-12316-faq {
+  display: block !important;
+}
+
+body.cro-12316 .cro-12316-faq,
+body.cro-12316 .cro-12316-faq * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.cro-12316 .cro-12316-faq {
+  background: #ffffff;
+  padding: 64px 20px;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+body.cro-12316 .cro-12316-faq__container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* ── Heading ── */
+body.cro-12316 .cro-12316-faq__heading {
+color: #030712;
+text-align: center;
+font-family: "Open Sans", Helvetica, Arial, sans-serif;
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: 140%; /* 50.4px */
+  margin-bottom: 10px !important;
+}
+
+/* ── Subtext ── */
+body.cro-12316 .cro-12316-faq__subtext {
+  color: #4A5565;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 25.2px */
+  margin-bottom: 32px !important;
+}
+
+/* ── Accordion list ── */
+body.cro-12316 .cro-12316-faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+/* ── Individual item card ── */
+body.cro-12316 .cro-12316-faq__item {
+    border-radius: 12px;
+    border: 1px solid #F3F4F6;
+    background: #FFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px -1px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Question button ── */
+body.cro-12316 .cro-12316-faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+body.cro-12316 .cro-12316-faq__q:hover {
+  background: #FAFBFC;
+}
+
+body.cro-12316 .cro-12316-faq__q-text {
+color: var(--Font, #0E1216);
+font-family: "Open Sans", Helvetica, Arial, sans-serif;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+/* ── Chevron: rotates 180° when open ── */
+body.cro-12316 .cro-12316-faq__chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+body.cro-12316 .cro-12316-faq__item--open .cro-12316-faq__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Answer panel: animates height ── */
+body.cro-12316 .cro-12316-faq__a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+body.cro-12316 .cro-12316-faq__item--open .cro-12316-faq__a {
+  max-height: 400px;
+}
+
+body.cro-12316 .cro-12316-faq__a-inner {
+  padding: 0 20px 18px;
+}
+
+body.cro-12316 .cro-12316-faq__a-text {
+  color: var(--P, #454E58);
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  text-align: left;
+  margin-top: 4px;
+}
+
+/* ══════════════════════════════
+   FAQ MOBILE  ≤ 1023px
+══════════════════════════════ */
+
+@media (max-width: 1023px) {
+  body.cro-12316 .cro-12316-faq {
+    padding: 48px 20px;
+  }
+
+  body.cro-12316 .cro-12316-faq__heading {
+    font-size: 24px;
+    text-wrap: auto;
+    margin-bottom: 20px !important;
+  }
+
+  body.cro-12316 .cro-12316-faq__subtext {
+    /* font-size: 14px; */
+  }
+
+  body.cro-12316 .cro-12316-faq__q-text {
+    /* font-size: 14px; */
+  }
+}
+
+
+/* ---------New---Css-------- */
+
+body.cro-12316 section.text-center {
+    display: none;
+}
+
+section#footer-callback .container{
+  padding: 64px 0;
+}
+
+section#footer-callback .container >div:first-child{
+    visibility: hidden;
+    height: 0;
+}
+
+section#footer-callback .container .md\:px-5{
+  border-radius: 8px;
+  background: #5BAC43;
+  padding: 36px 48px;
+  width: 100%;
+  max-width: 100%;
+}
+
+section#footer-callback {
+    padding: 0;
+    background-image: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/DebtBusters/AB+Test+%7C+Debt+Solutions+cold-traffic+LP+%7C+CRO-12316/Bottom-Banner_Desktop.png");
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+section#footer-callback .container .md\:px-5 h2 {
+    text-align: left;
+    color: #FFF;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+}
+
+section#footer-callback .container .md\:px-5 p.lead{
+  color: #FFF;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: left;
+}
+
+.callback-form #main-form-999{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cro-12316-from-name-parent {
+    width: 100%;
+    max-width: 48.5%;
+    order: 1;
+}
+
+.cro-12316-from-surname-parent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 48.5%;
+    order: 2;
+}
+
+.cro-12316-from-conNumber-parent {
+    order: 3;
+}
+
+
+.cro-12316-from-email-parent {
+    order: 4;
+}
+
+.cro-12316-from-idNumber-parent {
+    order: 5;
+}
+.callback-form .terms{
+  order: 6;
+  color: #FFF;
+  text-align: center;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+#footer-callback .submit-buttons{
+  order: 7;
+}
+
+#footer-callback .submit-buttons .w-48{
+  width: 100%;
+  cursor: pointer !important;
+}
+
+#footer-callback .cro-12316-form-whatsapp{
+    display: block !important;
+     order: 8;
+}
+
+.cro-12316-from-name-parent input,
+.cro-12316-from-surname-parent input,
+.cro-12316-from-conNumber-parent input,
+.cro-12316-from-email-parent input {
+  margin-bottom: 12px;
+  height: 48px;
+}
+
+.cro-12316-from-idNumber-parent input{
+  margin-bottom: 24px !important;
+  height: 48px;
+}
+
+.cro-12316-savings__card-top_left {
+  width: 200px;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.cro-12316-savings__card-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.cro-12316-form-whatsapp-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.cro-12316-form-whatsapp-text {
+    color: #FFF;
+    text-align: center;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.cro-12316-form-whatsapp-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.cro-12316-savings__card-top_right {
+  width: 100%;
+}
+
+span.cro-gray-text {
+    color: var(--P, rgba(19, 33, 15, 0.40));
+}
+
+/* body.cro-12316 #footer-callback .submit-buttons .mr-4{
+  display: none;
+}
+
+body.cro-12316 #footer-callback .submit-buttons > div:last-child{
+  width: 100%;
+} */
+
+body.cro-12316 #footer-callback .submit-buttons > div input{
+    height: 51px;
+    background-color: #E8861A;
+}
+
+body.cro-12316 .submit-buttons input[type="submit"] {
+    cursor: pointer;
+}
+
+body.cro-12316 .submit-buttons input[type="submit"]:hover {
+    opacity: .9;
+}
+
+body.cro-12316 section#footer-callback div.text-center{
+  display: none;
+}
+
+body.cro-12316 a.cro-number {
+  text-decoration: underline;
+}
+
+@media (min-width: 1500px){
+  body.cro-12316 section#footer-callback{
+    min-height: 600px;
+  }
+}
+
+@media (min-width: 1500px){
+  body.cro-12316 section#footer-callback{
+    min-height: 700px;
+  }
+}
+
+
+@media (max-width: 1023px) {
+  section#footer-callback .container .md\:px-5 h2{
+    font-size: 22px;
+    line-height: 130%;
+  }
+
+  section#footer-callback .container > div.text-center{
+    display: none;
+  }
+
+  section#footer-callback .container{
+    padding-bottom: 0;
+  }
+
+  body.cro-12316 .cro-12316-savings__container {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+  .cro-12316-savings__card-wrapper {
+    flex-direction: column;
+      gap: 32px;
+    }
+
+    .cro-12316-savings__card-top_left{
+        width: 100px;
+    }
+
+  span.cro-12316-media__google-wordmark {
+  width: 90px;
+}
+
+}
+
+@media (max-width:1023px) and (min-width: 768px) {
+    section#footer-callback .container .md\:px-5{
+        border-radius: 8px;
+        background: #5BAC43;
+        padding: 32px 24px;
+        width: 100%;
+        max-width: 400px;
+        margin-left: 45%;
+    }
+
+    section#footer-callback .container {
+        padding: 45px 0;
+        gap: 0;
+    }
+    
+}
+
+@media (max-width:767px) {
+    section#footer-callback .container .md\:px-5{
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      padding: 32px 24px;
+      border-radius: 8px 8px 0 0;
+    }
+
+      section#footer-callback .container {
+        gap: 0;
+    }
+
+    section#footer-callback {
+        background-image: none;
+        background-color: transparent;
+    }
+
+    .cro-12316-hero-banner-bottom {
+      display: block !important;
+    }
+
+  .cro-12316-hero-banner-inner {
+    width: 100%;
+    height: 300px;
+  }
+
+  img.cro-mobile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  section#footer-callback .container{
+    padding: 0;
+  }
+  
+}
+
+
+@media (min-width: 1300px) {
+  .cro-12316-quote-wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto !important;
+    position: relative;
+  }
+
+  body.cro-12316 .cro-12316-quote__deco--open {
+    top: -10px;
+    left: -125px;
+    line-height: 0.9;
+  }
+
+  body.cro-12316 .cro-12316-quote__deco--close {
+    bottom: -90px;
+    right: -140px;
+    line-height: 1;
+}
+  
+}
