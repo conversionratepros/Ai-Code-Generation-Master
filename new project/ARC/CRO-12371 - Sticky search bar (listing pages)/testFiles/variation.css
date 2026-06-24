@@ -1,0 +1,135 @@
+/* Variation - Sticky search bar (listing pages) | CRO-12371 */
+
+/* ===== Desktop: restyle the existing header search field as a pill, pinned to viewport ===== */
+
+body.cro-12371 #ProductSearchBar {
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #9CA3AF;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  border-color: #9CA3AF;
+}
+
+body.cro-12371 #ProductSearchBar .search-button-override {
+  padding-left: 20px;
+  top: 2px;
+  position: relative;
+  padding-right: 0;
+}
+
+
+body.cro-12371 #ProductSearchBar .js-typeahead-search-field {
+  border-radius: 9999px;
+  padding: 11px;
+  padding-left: 10px;
+  padding-right: 16px;
+}
+
+body.cro-12371 #ProductSearchBar .search-button-override i {
+  font-size: 20px;
+}
+
+body.cro-12371 header#Top .header.header-top.cro-12371-header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: #ffffff;
+}
+
+/* ===== Mobile: new full-width pill search bar below the top icon row, pinned to viewport ===== */
+
+/* Remove the old search icon trigger from the top icon row */
+body.cro-12371 .main-navigation-mobile:not(.typeahead-mobile) label[for="MobileSearchTrigger"] {
+  display: none !important;
+}
+
+/* Hide the "Search" title / close row used by the old slide-down panel UX */
+body.cro-12371 .typeahead-mobile .main-navigation-mobile--header {
+  display: none !important;
+}
+
+/* Force the search panel to always render, in place of the checkbox-toggled overlay.
+   It has been moved by JS to be a direct child of main.site (a sibling of #Page), right
+   below the header, where it sits in NORMAL flow by default -- no fixed positioning, no
+   JS-computed offset needed. Only once it would scroll out of view does JS add the
+   .cro-12371-mobile-fixed class below, which switches it to position:fixed with a
+   slide-in; a spacer <div> (inserted by JS) reserves its height in that state only. */
+body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar {
+  display: block !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  margin-top: 0 !important;
+  background: #ffffff;
+  padding: 8px 16px 12px !important;
+  box-sizing: border-box;
+  box-shadow: none !important;
+}
+
+body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar.cro-12371-mobile-fixed {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  animation: cro-12371-slide-in 0.2s ease-out;
+}
+
+@keyframes cro-12371-slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+body.cro-12371 .typeahead-mobile .grid__col-auto,
+body.cro-12371 .typeahead-mobile .typeahead-mobile__search-field {
+  width: 100%;
+}
+
+body.cro-12371 .typeahead-mobile .mobile-search--container:not(.main-navigation-mobile--header) {
+  box-sizing: border-box;
+  width: 100%;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #9CA3AF;
+  border-radius: 9999px;
+  padding: 0 16px;
+}
+
+body.cro-12371 .typeahead-mobile .js-typeahead-search-field {
+  width: 100% !important;
+  border: none !important;
+}
+
+body.cro-12371 .typeahead-mobile .search-button-override i {
+  font-size: 18px;
+}
+
+@media (max-width: 1023px) {
+
+  body.cro-12371 .typeahead-mobile .grid__col-auto,
+  body.cro-12371 .typeahead-mobile .typeahead-mobile__search-field,
+  body.cro-12371 .typeahead-mobile .grid__col-auto .grid__col-auto-width {
+    padding: 0;
+  }
+
+  body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+
+  body.cro-12371 .typeahead-mobile .js-typeahead-search-field {
+    padding-left: 0;
+  }
+
+  body.cro-12371 .typeahead-mobile .mobile-search--container:not(.main-navigation-mobile--header) .mobile-search--container-item {
+    padding-left: 0;
+  }
+}
