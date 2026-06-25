@@ -70,17 +70,72 @@
 			live(selector, event, callback, context);
 		}
 
-		/* ── Video map (Tile 1: rack-type specific installation video) ── */
-		var RACK_VIDEOS = {
-			'slimline2': '_F4lU9wrBPc',
-			'slimsport': '5xx7oH-lqiw',
-			'slimpro':   'idivsWy7eIA'
+		/* ── Per-rack tile definitions ── */
+		/* id: null → tile renders as placeholder until video is confirmed */
+		var RACK_TILES = {
+			slimline2: [
+				{
+					badge: 'INSTALLATION',
+					heading: 'SEE HOW EASY IT INSTALLS',
+					copy: 'Watch a real-world, step-by-step installation of this rack on your exact vehicle.',
+					id: '_F4lU9wrBPc'
+				},
+				{
+					badge: 'WHY FRONT RUNNER',
+					heading: 'FRONT RUNNER SLIMLINE II ROOF RACK',
+					copy: 'Discover what makes the Slimline II the world\'s most trusted expedition rack — strength, modularity, and proven design.',
+					id: 'V-XQydf0evM'
+				},
+				{
+					badge: 'IN ACTION',
+					heading: 'SLIMLINE II ROOF RACK BY FRONT RUNNER',
+					copy: 'See the complete Slimline II system in the real world — trusted by overlanders and built for any terrain.',
+					id: 'a_m34XmT_DQ'
+				}
+			],
+			slimsport: [
+				{
+					badge: 'INSTALLATION',
+					heading: 'SEE HOW EASY IT INSTALLS',
+					copy: 'Watch a real-world, step-by-step installation of this rack on your exact vehicle.',
+					id: '5xx7oH-lqiw'
+				},
+				{
+					badge: 'WHY FRONT RUNNER',
+					heading: 'SLIMSPORT ROOF RACK BY FRONT RUNNER',
+					copy: 'The SlimSport delivers a low-profile rack solution without sacrificing the modularity Front Runner is known for.',
+					id: 'yZk8bhyAhMA'
+				},
+				{
+					badge: 'IN ACTION',
+					heading: 'SLIMSPORT ROOF RACK IN ACTION',
+					copy: 'Watch the SlimSport rack in real-world use — lightweight, sleek, and built for everyday adventure.',
+					id: null   /* TODO: confirm animation video ID with client */
+				}
+			],
+			slimpro: [
+				{
+					badge: 'INSTALLATION',
+					heading: 'SEE HOW EASY IT INSTALLS',
+					copy: 'Watch a real-world, step-by-step installation of this rack on your exact vehicle.',
+					id: 'idivsWy7eIA'
+				},
+				{
+					badge: 'WHY FRONT RUNNER',
+					heading: 'SLIMPRO VAN RACK BY FRONT RUNNER',
+					copy: 'The SlimPro Van Rack brings overlanding-ready utility to your van — camp it, haul it, live out of it.',
+					id: 'XuK14IkUhAc'
+				},
+				{
+					badge: 'IN ACTION',
+					heading: 'SLIMPRO VAN RACK IN ACTION',
+					copy: 'Explore the SlimPro van rack system in action — designed for van life and built for any adventure.',
+					id: null   /* TODO: confirm animation video ID with client */
+				}
+			]
 		};
 
-		var SVG_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">' +
-			'<circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.62)"/>' +
-			'<polygon points="23,18 23,46 47,32" fill="#ffffff"/>' +
-			'</svg>';
+		var SVG_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none"><foreignObject x="-13.0413" y="-13.0413" width="78.2477" height="78.2487"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(6.52px);clip-path:url(#bgblur_0_4172_178_clip_path);height:100%;width:100%"></div></foreignObject><g data-figma-bg-blur-radius="13.0413"><rect width="52.1653" height="52.1653" rx="6.52066" fill="white" fill-opacity="0.65"/><path d="M33.4336 24.3726C34.6706 25.176 34.6706 26.9869 33.4336 27.7903L23.1174 34.4908C21.7618 35.3714 19.9697 34.3984 19.9697 32.7819V19.3809C19.9697 17.7644 21.7618 16.7915 23.1174 17.672L33.4336 24.3726Z" stroke="#0D0D0D" stroke-width="2.44525"/></g><defs><clipPath id="bgblur_0_4172_178_clip_path" transform="translate(13.0413 13.0413)"><rect width="52.1653" height="52.1653" rx="6.52066"/></clipPath></defs></svg>';
 
 		/* ── Detect which rack type is on this page ── */
 		function getRackType() {
@@ -99,13 +154,28 @@
 			return null;
 		}
 
+		/* ── Safety net: explicitly excluded product types ── */
+		function isExcludedPage() {
+			var url = window.location.href.toLowerCase();
+			if (url.indexOf('pro-bed') > -1) return true;
+			if (url.indexOf('probed') > -1) return true;
+			if (url.indexOf('load-bar') > -1) return true;
+			if (url.indexOf('loadbar') > -1) return true;
+			/* If the rack type cannot be determined, do not inject */
+			if (!getRackType()) return true;
+			return false;
+		}
+
 		/* ── Build a single tile ── */
 		function buildTile(badge, heading, copy, videoId) {
 			var isPlaceholder = (!videoId || videoId === 'PLACEHOLDER');
 			var videoAttr = !isPlaceholder ? ' data-video-id="' + videoId + '"' : '';
 			var mediaHtml = isPlaceholder
 				? '<div class="cro-12323-thumb-placeholder"></div>'
-				: '<img class="cro-12323-thumb" src="https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg" alt="' + heading + '" loading="lazy">' +
+				: '<img class="cro-12323-thumb" src="https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg" ' +
+				  'onload="if(this.naturalWidth<=120&&this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
+				  'onerror="if(this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
+				  'alt="' + heading + '" loading="lazy">' +
 				  '<button class="cro-12323-play" aria-label="Play ' + heading + '">' + SVG_PLAY + '</button>';
 
 			return (
@@ -123,35 +193,16 @@
 		/* ── Build the full section HTML ── */
 		function buildSection() {
 			var rackType = getRackType();
-			var installVideoId = rackType ? RACK_VIDEOS[rackType] : null;
+			var tileDefs = rackType ? RACK_TILES[rackType] : null;
+			if (!tileDefs) return null;
 
 			var tilesHtml = '';
-
-			/* Tile 1 — installation (omitted entirely if no video exists for this rack type) */
-			if (installVideoId) {
-				tilesHtml += buildTile(
-					'INSTALLATION',
-					'SEE HOW EASY IT INSTALLS',
-					'Watch a real-world, step-by-step installation of this rack on your exact vehicle.',
-					installVideoId
-				);
+			for (var i = 0; i < tileDefs.length; i++) {
+				var t = tileDefs[i];
+				/* Tile 1 is the installation guide — omit entirely if no video ID */
+				if (i === 0 && !t.id) continue;
+				tilesHtml += buildTile(t.badge, t.heading, t.copy, t.id);
 			}
-
-			/* Tile 2 — placeholder (update when client provides video) */
-			tilesHtml += buildTile(
-				'PLACEHOLDER',
-				'COMING SOON',
-				'Client video coming soon. Update badge, heading, copy and video ID when details are confirmed.',
-				'PLACEHOLDER'
-			);
-
-			/* Tile 3 — placeholder (update when client provides video) */
-			tilesHtml += buildTile(
-				'PLACEHOLDER',
-				'COMING SOON',
-				'Client video coming soon. Update badge, heading, copy and video ID when details are confirmed.',
-				'PLACEHOLDER'
-			);
 
 			return (
 				'<section class="cro-12323-section">' +
@@ -174,16 +225,18 @@
 			var anchor = document.querySelector('.product-details .lmd\\:flex-row');
 			if (!anchor) return;
 
+			var sectionHtml = buildSection();
+			if (!sectionHtml) return;
+
 			/* Tag the accordion column so CSS can stretch it to full width */
 			var leftCol = anchor.children[0];
 			if (leftCol) {
 				leftCol.classList.add('cro-12323-accordion-col');
-				/* Tag the inner max-w container so we can widen it to match the tile section */
 				var innerContainer = leftCol.querySelector('.mx-auto');
 				if (innerContainer) innerContainer.classList.add('cro-12323-accordion-inner');
 			}
 
-			anchor.insertAdjacentHTML('beforebegin', buildSection());
+			anchor.insertAdjacentHTML('beforebegin', sectionHtml);
 		}
 
 		/* ── Collapse any open accordions on page load ── */
@@ -198,6 +251,7 @@
 
 		/* ── Gate all HTML changes — only run on rack pages ── */
 		function htmlAdd() {
+			if (isExcludedPage()) return;
 			waitForElement(
 				'.product-details nav [data-slot="breadcrumb-item"] a[href*="/category/rack-systems/racks"]',
 				function () {
