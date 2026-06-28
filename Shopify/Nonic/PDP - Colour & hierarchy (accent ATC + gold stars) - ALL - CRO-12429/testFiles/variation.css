@@ -1,0 +1,64 @@
+/* CRO-12429 | PDP | Colour & hierarchy (accent ATC + gold stars) | ALL */
+
+/* ── 1. Add to Cart — terracotta accent (#C75B33)
+   .main-product-atc is shared by both the main buy box submit button and
+   the sticky bar button, so one rule covers both locations.
+   .product-form__submit is added as belt-and-suspenders for any second buy
+   box that may render further down the page. ── */
+body.cro-12429 .main-product-atc,
+body.cro-12429 .product-form__submit {
+    background-color: #C75B33 !important;
+    border-color: #C75B33 !important;
+    color: #fff !important;
+}
+
+body.cro-12429 .main-product-atc::after,
+body.cro-12429 .product-form__submit::after {
+    box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset)) rgba(var(--color-button-text), var(--border-opacity)), 0 0 0 var(--buttons-border-width) #C75B33;
+}
+
+
+body.cro-12429 .main-product-atc:hover::after,
+body.cro-12429 .product-form__submit:hover::after {
+    box-shadow:
+        0 0 0 calc(var(--buttons-border-width) + var(--border-offset)) rgba(var(--color-button-text), var(--border-opacity)),
+        0 0 0 var(--buttons-border-width) #b34e2b;
+}
+
+body.cro-12429 .main-product-atc:hover,
+body.cro-12429 .product-form__submit:hover {
+    background-color: #b34e2b !important;
+    border-color: #b34e2b !important;
+}
+
+/* ── 2. "GET YOURS NOW" promo buttons — quiet green outline
+   These anchors live inside .buttons-container blocks in the custom-columns
+   sections. Making them transparent/outlined stops them competing with the
+   terracotta primary ATC above. Using the site's existing brand green
+   (#3f603f) so they remain on-brand without introducing a new colour. ── */
+body.cro-12429 .buttons-container a.button--primary {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: 2px solid #3f603f !important;
+    color: #3f603f !important;
+    box-shadow: none !important;
+}
+
+body.cro-12429 .buttons-container a.button--primary:hover {
+    background-color: rgba(63, 96, 63, 0.08) !important;
+}
+
+/* ── 3. Review rating stars — gold (#FFC400)
+   Two distinct star widget implementations exist on this page:
+
+   a) .trustpilot-stars — uses square SVG paths with fill="#3f603f" baked
+      directly as a presentation attribute; the overlay div clips to show
+      the proportional fill. CSS fill: overrides SVG presentation attributes.
+
+   b) .rating-stars (custom-columns blocks) — uses SVG paths with
+      fill="currentColor"; colour is inherited via the --star-color CSS
+      variable (set to #ffcc00 inline). Overriding fill directly is more
+      reliable than fighting the custom property cascade. ── */
+body.cro-12429 .trustpilot-stars .rating-stars__container--overlay path[fill="#3f603f"] {
+    fill: #FFC400 !important;
+}

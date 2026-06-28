@@ -71,71 +71,76 @@
 		}
 
 		/* ── Per-rack tile definitions ── */
-		/* id: null → tile renders as placeholder until video is confirmed */
+		/* Copy/badges are universal per Marten's Figma update (approved 2026-06-28).  */
+		/* TODO: Replace tile 1 id values with new installation guide videos from Chris */
+		/*       Slimline 2: confirm new YouTube ID (title: "Front Runner Dometic Slimline II Roof Rack Installation Guide") */
+		/*       Slimsport:  confirm new YouTube ID (title: "Front Runner Dometic Slimsport Roof Rack Installation Guide")  */
+		/*       Slimpro:    confirm new YouTube ID (title: "Front Runner Dometic Slimpro Roof Rack Installation Guide")    */
 		var RACK_TILES = {
 			slimline2: [
 				{
-					badge: 'INSTALLATION',
-					heading: 'SEE HOW EASY IT INSTALLS',
-					copy: 'Watch a real-world, step-by-step installation of this rack on your exact vehicle.',
-					id: '_F4lU9wrBPc'
+					badge: 'Easy install',
+					heading: 'NO DRILLING REQUIRED',
+					copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.',
+					id: '_F4lU9wrBPc'   /* TODO: update to new Chris install guide video */
 				},
 				{
-					badge: 'WHY FRONT RUNNER',
-					heading: 'FRONT RUNNER SLIMLINE II ROOF RACK',
-					copy: 'Discover what makes the Slimline II the world\'s most trusted expedition rack — strength, modularity, and proven design.',
+					badge: 'Built to last',
+					heading: 'BUILT TO CARRY THE HEAVY STUFF',
+					copy: 'Engineered to hold serious loads. Tested in the toughest conditions.',
 					id: 'V-XQydf0evM'
 				},
 				{
-					badge: 'IN ACTION',
-					heading: 'SLIMLINE II ROOF RACK BY FRONT RUNNER',
-					copy: 'See the complete Slimline II system in the real world — trusted by overlanders and built for any terrain.',
+					badge: 'Trusted worldwide',
+					heading: 'THE ROOF RACK THE WORLD CHOOSES',
+					copy: 'Trusted by overlanders worldwide. The Front Runner standard.',
 					id: 'a_m34XmT_DQ'
 				}
 			],
 			slimsport: [
 				{
-					badge: 'INSTALLATION',
-					heading: 'SEE HOW EASY IT INSTALLS',
-					copy: 'Watch a real-world, step-by-step installation of this rack on your exact vehicle.',
-					id: '5xx7oH-lqiw'
+					badge: 'Easy install',
+					heading: 'NO DRILLING REQUIRED',
+					copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.',
+					id: '5xx7oH-lqiw'   /* TODO: update to new Chris install guide video */
 				},
 				{
-					badge: 'WHY FRONT RUNNER',
-					heading: 'SLIMSPORT ROOF RACK BY FRONT RUNNER',
-					copy: 'The SlimSport delivers a low-profile rack solution without sacrificing the modularity Front Runner is known for.',
+					badge: 'Built to last',
+					heading: 'BUILT TO CARRY THE HEAVY STUFF',
+					copy: 'Engineered to hold serious loads. Tested in the toughest conditions.',
 					id: 'yZk8bhyAhMA'
 				},
 				{
-					badge: 'IN ACTION',
-					heading: 'SLIMSPORT ROOF RACK IN ACTION',
-					copy: 'Watch the SlimSport rack in real-world use — lightweight, sleek, and built for everyday adventure.',
-					id: null   /* TODO: confirm animation video ID with client */
+					badge: 'Trusted worldwide',
+					heading: 'THE ROOF RACK THE WORLD CHOOSES',
+					copy: 'Trusted by overlanders worldwide. The Front Runner standard.',
+					id: null   /* TODO: confirm video ID with client */
 				}
 			],
 			slimpro: [
 				{
-					badge: 'INSTALLATION',
-					heading: 'SEE HOW EASY IT INSTALLS',
-					copy: 'Watch a real-world, step-by-step installation of this rack on your exact vehicle.',
-					id: 'idivsWy7eIA'
+					badge: 'Easy install',
+					heading: 'NO DRILLING REQUIRED',
+					copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.',
+					id: 'idivsWy7eIA'   /* TODO: update to new Chris install guide video */
 				},
 				{
-					badge: 'WHY FRONT RUNNER',
-					heading: 'SLIMPRO VAN RACK BY FRONT RUNNER',
-					copy: 'The SlimPro Van Rack brings overlanding-ready utility to your van — camp it, haul it, live out of it.',
+					badge: 'Built to last',
+					heading: 'BUILT TO CARRY THE HEAVY STUFF',
+					copy: 'Engineered to hold serious loads. Tested in the toughest conditions.',
 					id: 'XuK14IkUhAc'
 				},
 				{
-					badge: 'IN ACTION',
-					heading: 'SLIMPRO VAN RACK IN ACTION',
-					copy: 'Explore the SlimPro van rack system in action — designed for van life and built for any adventure.',
-					id: null   /* TODO: confirm animation video ID with client */
+					badge: 'Trusted worldwide',
+					heading: 'THE ROOF RACK THE WORLD CHOOSES',
+					copy: 'Trusted by overlanders worldwide. The Front Runner standard.',
+					id: null   /* TODO: confirm video ID with client */
 				}
 			]
 		};
 
-		var SVG_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53" fill="none"><foreignObject x="-13.0413" y="-13.0413" width="78.2477" height="78.2487"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(6.52px);clip-path:url(#bgblur_0_4172_178_clip_path);height:100%;width:100%"></div></foreignObject><g data-figma-bg-blur-radius="13.0413"><rect width="52.1653" height="52.1653" rx="6.52066" fill="white" fill-opacity="0.65"/><path d="M33.4336 24.3726C34.6706 25.176 34.6706 26.9869 33.4336 27.7903L23.1174 34.4908C21.7618 35.3714 19.9697 34.3984 19.9697 32.7819V19.3809C19.9697 17.7644 21.7618 16.7915 23.1174 17.672L33.4336 24.3726Z" stroke="#0D0D0D" stroke-width="2.44525"/></g><defs><clipPath id="bgblur_0_4172_178_clip_path" transform="translate(13.0413 13.0413)"><rect width="52.1653" height="52.1653" rx="6.52066"/></clipPath></defs></svg>';
+		/* Arrow-only SVG — white frosted background handled by CSS on the button */
+		var SVG_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none"><path d="M20.3926 11.3315C21.6295 12.135 21.6295 13.9458 20.3926 14.7493L10.0764 21.4498C8.72074 22.3304 6.92871 21.3574 6.92871 19.7409V6.33988C6.92871 4.72341 8.72074 3.75051 10.0764 4.63101L20.3926 11.3315Z" stroke="#0D0D0D" stroke-width="2.44525"/></svg>';
 
 		/* ── Detect which rack type is on this page ── */
 		function getRackType() {
@@ -173,19 +178,19 @@
 			var mediaHtml = isPlaceholder
 				? '<div class="cro-12323-thumb-placeholder"></div>'
 				: '<img class="cro-12323-thumb" src="https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg" ' +
-				  'onload="if(this.naturalWidth<=120&&this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
-				  'onerror="if(this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
-				  'alt="' + heading + '" loading="lazy">' +
-				  '<button class="cro-12323-play" aria-label="Play ' + heading + '">' + SVG_PLAY + '</button>';
+				'onload="if(this.naturalWidth<=120&&this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
+				'onerror="if(this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
+				'alt="' + heading + '" loading="lazy">' +
+				'<button class="cro-12323-play" aria-label="Play ' + heading + '">' + SVG_PLAY + '</button>';
 
 			return (
 				'<div class="cro-12323-tile' + (isPlaceholder ? ' cro-12323-tile--placeholder' : '') + '">' +
-					'<span class="cro-12323-badge">' + badge + '</span>' +
-					'<h3 class="cro-12323-tile__heading">' + heading + '</h3>' +
-					'<div class="cro-12323-tile__video"' + videoAttr + '>' +
-						mediaHtml +
-					'</div>' +
-					'<p class="cro-12323-tile__copy">' + copy + '</p>' +
+				'<span class="cro-12323-badge">' + badge + '</span>' +
+				'<h3 class="cro-12323-tile__heading">' + heading + '</h3>' +
+				'<div class="cro-12323-tile__video"' + videoAttr + '>' +
+				mediaHtml +
+				'</div>' +
+				'<p class="cro-12323-tile__copy">' + copy + '</p>' +
 				'</div>'
 			);
 		}
@@ -205,16 +210,16 @@
 			}
 
 			return (
-				'<section class="cro-12323-section">' +
-					'<div class="cro-12323-inner">' +
-						'<div class="cro-12323-header">' +
-							'<h2 class="cro-12323-title">3 Big Reasons Drivers Trust Front Runner</h2>' +
-							'<p class="cro-12323-subtitle">Built for overlanding. Trusted worldwide. Watch real-world videos that prove this rack is built for adventure.</p>' +
-						'</div>' +
-						'<div class="cro-12323-tiles">' +
-							tilesHtml +
-						'</div>' +
-					'</div>' +
+				'<section class="cro-12323-section" style="display: none;">' +
+				'<div class="cro-12323-inner">' +
+				'<div class="cro-12323-header">' +
+				'<h2 class="cro-12323-title">3 Big Reasons Drivers Trust Front Runner</h2>' +
+				'<p class="cro-12323-subtitle">Built for overlanding. Trusted worldwide. Watch real-world videos that prove this rack is built for adventure.</p>' +
+				'</div>' +
+				'<div class="cro-12323-tiles">' +
+				tilesHtml +
+				'</div>' +
+				'</div>' +
 				'</section>'
 			);
 		}
