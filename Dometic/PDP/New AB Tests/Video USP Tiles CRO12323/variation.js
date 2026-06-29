@@ -70,75 +70,44 @@
 			live(selector, event, callback, context);
 		}
 
-		/* ── Per-rack tile definitions ── */
-		/* Copy/badges are universal per Marten's Figma update (approved 2026-06-28).  */
-		/* TODO: Replace tile 1 id values with new installation guide videos from Chris */
-		/*       Slimline 2: confirm new YouTube ID (title: "Front Runner Dometic Slimline II Roof Rack Installation Guide") */
-		/*       Slimsport:  confirm new YouTube ID (title: "Front Runner Dometic Slimsport Roof Rack Installation Guide")  */
-		/*       Slimpro:    confirm new YouTube ID (title: "Front Runner Dometic Slimpro Roof Rack Installation Guide")    */
-		var RACK_TILES = {
-			slimline2: [
-				{
-					badge: 'Easy install',
-					heading: 'NO DRILLING REQUIRED',
-					copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.',
-					id: '_F4lU9wrBPc'   /* TODO: update to new Chris install guide video */
-				},
-				{
-					badge: 'Built to last',
-					heading: 'BUILT TO CARRY THE HEAVY STUFF',
-					copy: 'Engineered to hold serious loads. Tested in the toughest conditions.',
-					id: 'V-XQydf0evM'
-				},
-				{
-					badge: 'Trusted worldwide',
-					heading: 'THE ROOF RACK THE WORLD CHOOSES',
-					copy: 'Trusted by overlanders worldwide. The Front Runner standard.',
-					id: 'a_m34XmT_DQ'
-				}
-			],
-			slimsport: [
-				{
-					badge: 'Easy install',
-					heading: 'NO DRILLING REQUIRED',
-					copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.',
-					id: '5xx7oH-lqiw'   /* TODO: update to new Chris install guide video */
-				},
-				{
-					badge: 'Built to last',
-					heading: 'BUILT TO CARRY THE HEAVY STUFF',
-					copy: 'Engineered to hold serious loads. Tested in the toughest conditions.',
-					id: 'yZk8bhyAhMA'
-				},
-				{
-					badge: 'Trusted worldwide',
-					heading: 'THE ROOF RACK THE WORLD CHOOSES',
-					copy: 'Trusted by overlanders worldwide. The Front Runner standard.',
-					id: null   /* TODO: confirm video ID with client */
-				}
-			],
-			slimpro: [
-				{
-					badge: 'Easy install',
-					heading: 'NO DRILLING REQUIRED',
-					copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.',
-					id: 'idivsWy7eIA'   /* TODO: update to new Chris install guide video */
-				},
-				{
-					badge: 'Built to last',
-					heading: 'BUILT TO CARRY THE HEAVY STUFF',
-					copy: 'Engineered to hold serious loads. Tested in the toughest conditions.',
-					id: 'XuK14IkUhAc'
-				},
-				{
-					badge: 'Trusted worldwide',
-					heading: 'THE ROOF RACK THE WORLD CHOOSES',
-					copy: 'Trusted by overlanders worldwide. The Front Runner standard.',
-					id: null   /* TODO: confirm video ID with client */
-				}
-			]
+		/* ── Localised copy ── */
+		/* Add a new key matching the locale prefix (e.g. 'de', 'fr') when the  */
+		/* client provides translations. Falls back to 'en' for any unknown locale. */
+		var COPY = {
+			en: {
+				sectionTitle: '3 Big Reasons Drivers Trust Front Runner',
+				sectionSubtitle: 'Built for overlanding. Trusted worldwide. Watch real-world videos that prove this rack is built for adventure.',
+				tiles: [
+					{ badge: 'Easy install', heading: 'NO DRILLING REQUIRED', copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.' },
+					{ badge: 'Built to last', heading: 'BUILT TO CARRY THE HEAVY STUFF', copy: 'Engineered to hold serious loads. Tested in the toughest conditions.' },
+					{ badge: 'Trusted worldwide', heading: 'THE ROOF RACK THE WORLD CHOOSES', copy: 'Trusted by overlanders worldwide. The Front Runner standard.' }
+				]
+			},
+			/* ── TODO: replace all German strings below once client provides translations ── */
+			de: {
+				sectionTitle: '3 Big Reasons Drivers Trust Front Runner',
+				sectionSubtitle: 'Built for overlanding. Trusted worldwide. Watch real-world videos that prove this rack is built for adventure.',
+				tiles: [
+					{ badge: 'Easy install', heading: 'NO DRILLING REQUIRED', copy: 'Mounts to your factory mounting points. No tools beyond what\'s in the kit.' },
+					{ badge: 'Built to last', heading: 'BUILT TO CARRY THE HEAVY STUFF', copy: 'Engineered to hold serious loads. Tested in the toughest conditions.' },
+					{ badge: 'Trusted worldwide', heading: 'THE ROOF RACK THE WORLD CHOOSES', copy: 'Trusted by overlanders worldwide. The Front Runner standard.' }
+				]
+			}
 		};
 
+		/* ── Detect page locale from the URL (e.g. /de-de/ → 'de') ── */
+		function getLang() {
+			var match = window.location.pathname.match(/^\/([a-z]{2})-[a-z]{2}\//);
+			return match ? match[1] : 'en';
+		}
+
+		/* ── Get the copy object for the current locale, falling back to English ── */
+		function getCopy() {
+			var lang = getLang();
+			return COPY[lang] || COPY['en'];
+		}
+
+		/* Arrow-only SVG — frosted white background is applied via CSS on the button */
 		/* Arrow-only SVG — white frosted background handled by CSS on the button */
 		var SVG_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none"><path d="M20.3926 11.3315C21.6295 12.135 21.6295 13.9458 20.3926 14.7493L10.0764 21.4498C8.72074 22.3304 6.92871 21.3574 6.92871 19.7409V6.33988C6.92871 4.72341 8.72074 3.75051 10.0764 4.63101L20.3926 11.3315Z" stroke="#0D0D0D" stroke-width="2.44525"/></svg>';
 
@@ -166,28 +135,72 @@
 			if (url.indexOf('probed') > -1) return true;
 			if (url.indexOf('load-bar') > -1) return true;
 			if (url.indexOf('loadbar') > -1) return true;
-			/* If the rack type cannot be determined, do not inject */
 			if (!getRackType()) return true;
 			return false;
 		}
 
+		/* ── Read video thumbnails from the control's hidden video list ── */
+		/* The control doesn't always put the installation guide first,   */
+		/* so we detect it by aria-label and force it to tile 1.          */
+		/* Returns up to 3 entries: { thumbnail, videoId }               */
+		function readControlVideos() {
+			var btns = Array.prototype.slice.call(
+				document.querySelectorAll('.product-content ul li button[aria-label^="play "]')
+			);
+
+			var installBtn = null;
+			var otherBtns = [];
+			for (var i = 0; i < btns.length; i++) {
+				var label = (btns[i].getAttribute('aria-label') || '').toLowerCase();
+				if (label.indexOf('install') > -1) {
+					installBtn = btns[i];
+				} else {
+					otherBtns.push(btns[i]);
+				}
+			}
+
+			/* Ordered: install guide first, then remaining in DOM order, cap at 3 */
+			var ordered = [];
+			if (installBtn) ordered.push(installBtn);
+			for (var j = 0; j < otherBtns.length && ordered.length < 3; j++) {
+				ordered.push(otherBtns[j]);
+			}
+
+			var videos = [];
+			for (var k = 0; k < ordered.length; k++) {
+				var img = ordered[k].querySelector('img');
+				var src = img ? img.src : null;
+				var videoId = null;
+				if (src) {
+					var match = src.match(/\/vi\/([^/]+)\//);
+					if (match) {
+						videoId = match[1];
+						/* Upgrade to maxresdefault for our larger tiles */
+						src = 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
+					}
+				}
+				videos.push({ thumbnail: src, videoId: videoId });
+			}
+			return videos;
+		}
+
 		/* ── Build a single tile ── */
-		function buildTile(badge, heading, copy, videoId) {
-			var isPlaceholder = (!videoId || videoId === 'PLACEHOLDER');
-			var videoAttr = !isPlaceholder ? ' data-video-id="' + videoId + '"' : '';
-			var mediaHtml = isPlaceholder
-				? '<div class="cro-12323-thumb-placeholder"></div>'
-				: '<img class="cro-12323-thumb" src="https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg" ' +
-				'onload="if(this.naturalWidth<=120&&this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
-				'onerror="if(this.src.indexOf(\'maxresdefault\')>-1){this.src=\'https://img.youtube.com/vi/' + videoId + '/sddefault.jpg\';}" ' +
+		/* videoId is stored on the tile so the click handler can locate the  */
+		/* correct control button by matching img src, regardless of DOM order */
+		function buildTile(badge, heading, copy, thumbnail, videoId) {
+			var hasThumb = !!(thumbnail && videoId);
+			var mediaHtml = hasThumb
+				? '<img class="cro-12323-thumb" src="' + thumbnail + '" ' +
+				'onerror="if(this.src.indexOf(\'maxresdefault\')>-1){this.src=this.src.replace(\'maxresdefault\',\'hqdefault\');}" ' +
 				'alt="' + heading + '" loading="lazy">' +
-				'<button class="cro-12323-play" aria-label="Play ' + heading + '">' + SVG_PLAY + '</button>';
+				'<button class="cro-12323-play" aria-label="Play ' + heading + '">' + SVG_PLAY + '</button>'
+				: '<div class="cro-12323-thumb-placeholder"></div>';
 
 			return (
-				'<div class="cro-12323-tile' + (isPlaceholder ? ' cro-12323-tile--placeholder' : '') + '">' +
+				'<div class="cro-12323-tile' + (hasThumb ? '' : ' cro-12323-tile--placeholder') + '">' +
 				'<span class="cro-12323-badge">' + badge + '</span>' +
 				'<h3 class="cro-12323-tile__heading">' + heading + '</h3>' +
-				'<div class="cro-12323-tile__video"' + videoAttr + '>' +
+				'<div class="cro-12323-tile__video"' + (videoId ? ' data-video-id="' + videoId + '"' : '') + '>' +
 				mediaHtml +
 				'</div>' +
 				'<p class="cro-12323-tile__copy">' + copy + '</p>' +
@@ -196,25 +209,27 @@
 		}
 
 		/* ── Build the full section HTML ── */
-		function buildSection() {
-			var rackType = getRackType();
-			var tileDefs = rackType ? RACK_TILES[rackType] : null;
-			if (!tileDefs) return null;
+		function buildSection(controlVideos) {
+			if (!getRackType()) return null;
 
+			var copy = getCopy();
 			var tilesHtml = '';
-			for (var i = 0; i < tileDefs.length; i++) {
-				var t = tileDefs[i];
-				/* Tile 1 is the installation guide — omit entirely if no video ID */
-				if (i === 0 && !t.id) continue;
-				tilesHtml += buildTile(t.badge, t.heading, t.copy, t.id);
+			for (var i = 0; i < copy.tiles.length; i++) {
+				var t = copy.tiles[i];
+				var cv = controlVideos[i];
+				/* Tile 1 is the installation guide — omit entirely if the control has no video for it */
+				if (i === 0 && (!cv || !cv.thumbnail)) continue;
+				tilesHtml += buildTile(t.badge, t.heading, t.copy, cv ? cv.thumbnail : null, cv ? cv.videoId : null);
 			}
 
+			if (!tilesHtml) return null;
+
 			return (
-				'<section class="cro-12323-section" style="display: none;">' +
+				'<section class="cro-12323-section">' +
 				'<div class="cro-12323-inner">' +
 				'<div class="cro-12323-header">' +
-				'<h2 class="cro-12323-title">3 Big Reasons Drivers Trust Front Runner</h2>' +
-				'<p class="cro-12323-subtitle">Built for overlanding. Trusted worldwide. Watch real-world videos that prove this rack is built for adventure.</p>' +
+				'<h2 class="cro-12323-title">' + copy.sectionTitle + '</h2>' +
+				'<p class="cro-12323-subtitle">' + copy.sectionSubtitle + '</p>' +
 				'</div>' +
 				'<div class="cro-12323-tiles">' +
 				tilesHtml +
@@ -225,12 +240,12 @@
 		}
 
 		/* ── Inject the section before the second-fold flex row ── */
-		function injectSection() {
+		function injectSection(controlVideos) {
 			if (document.querySelector('.cro-12323-section')) return;
 			var anchor = document.querySelector('.product-details .lmd\\:flex-row');
 			if (!anchor) return;
 
-			var sectionHtml = buildSection();
+			var sectionHtml = buildSection(controlVideos);
 			if (!sectionHtml) return;
 
 			/* Tag the accordion column so CSS can stretch it to full width */
@@ -258,9 +273,15 @@
 		function htmlAdd() {
 			if (isExcludedPage()) return;
 			waitForElement(
-				'.product-details nav [data-slot="breadcrumb-item"] a[href*="/category/rack-systems/racks"]',
+				'.product-details nav [data-slot="breadcrumb-item"] a[href*="/rack-systems/racks"]',
 				function () {
-					waitForElement('.product-details .lmd\\:flex-row', injectSection);
+					/* Read the control buttons first, then inject our section */
+					waitForElement('.product-content ul li button[aria-label^="play "]', function () {
+						var controlVideos = readControlVideos();
+						waitForElement('.product-details .lmd\\:flex-row', function () {
+							injectSection(controlVideos);
+						});
+					});
 					waitForElement('.product-details [data-slot="accordion-trigger"]', function () {
 						setTimeout(collapseOpenAccordions, 300);
 					});
@@ -282,15 +303,24 @@
 			waitForElement('body', trigger);
 		}
 
-		/* ── Play video on tile click (replace thumbnail with embedded iframe) ── */
+		/* ── On tile click: trigger the corresponding control video button     ── */
+		/* The control button is hidden via CSS but still in the DOM;          ── */
+		/* clicking it programmatically fires React's event handler and        ── */
+		/* opens the same modal the control uses.                              ── */
+		/* We match by video ID (from the button's img src) so ordering in     ── */
+		/* the control list doesn't matter.                                    ── */
 		function croEventHandkler() {
 			live('.cro-12323-tile__video', 'click', function () {
 				var videoId = this.getAttribute('data-video-id');
 				if (!videoId) return;
-				if (this.querySelector('iframe')) return;
-				this.innerHTML =
-					'<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" ' +
-					'frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+				var btns = document.querySelectorAll('.product-content ul li button[aria-label^="play "]');
+				for (var i = 0; i < btns.length; i++) {
+					var img = btns[i].querySelector('img');
+					if (img && img.src && img.src.indexOf(videoId) > -1) {
+						btns[i].click();
+						return;
+					}
+				}
 			});
 		}
 
