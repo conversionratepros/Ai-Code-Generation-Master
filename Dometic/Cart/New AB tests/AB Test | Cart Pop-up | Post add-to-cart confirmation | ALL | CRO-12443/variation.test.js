@@ -277,9 +277,28 @@ test.describe('Popup content', () => {
         expect(src).toBe(IMG);
     });
 
-    test('view cart link points to correct URL', async ({ page }) => {
+    test('view cart link is derived from current page locale (en → /cart)', async ({ page }) => {
+        /* Mock page is served from mock.dometic.test/pdp — locale segment = "pdp".
+           We verify the URL is constructed as origin + / + locale + / + slug.
+           For a real en-za page this produces https://www.dometic.com/en-za/cart. */
         const href = await page.locator('.cro-12443-view-cart').getAttribute('href');
-        expect(href).toBe('https://www.dometic.com/en-za/cart');
+        expect(href).toContain(MOCK_ORIGIN);
+        expect(href).toContain('/cart');
+    });
+
+    test('view cart link uses warenkorb slug for de locale', async ({ page }) => {
+        const { css, js } = getVariation();
+        const deUrl = `${MOCK_ORIGIN}/de-de/pdp`;
+        await page.route(deUrl, route =>
+            route.fulfill({ contentType: 'text/html', body: buildMockHtml() })
+        );
+        await page.goto(deUrl, { waitUntil: 'domcontentloaded' });
+        await page.addStyleTag({ content: css });
+        await page.evaluate(js);
+        await page.waitForTimeout(400);
+
+        const href = await page.locator('.cro-12443-view-cart').getAttribute('href');
+        expect(href).toBe(`${MOCK_ORIGIN}/de-de/warenkorb`);
     });
 
     test('heading text is "Added to your bag"', async ({ page }) => {

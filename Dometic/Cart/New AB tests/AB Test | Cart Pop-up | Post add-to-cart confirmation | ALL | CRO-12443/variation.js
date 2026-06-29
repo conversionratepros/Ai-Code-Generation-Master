@@ -118,7 +118,7 @@
             "</div>" +
             "</div>" +
             '<div class="cro-12443-actions">' +
-            '<a href="https://www.dometic.com/en-za/cart" class="cro-12443-view-cart">View cart</a>' +
+            '<a href="" class="cro-12443-view-cart">View cart</a>' +
             '<button class="cro-12443-continue" type="button">Continue shopping</button>' +
             "</div>" +
             "</div>" +
@@ -127,6 +127,13 @@
         function injectPopup() {
             if (document.querySelector(".cro-12443-overlay")) return;
             document.body.insertAdjacentHTML("beforeend", popupHtml);
+            var t = getLocaleText();
+            var heading = document.querySelector(".cro-12443-heading");
+            if (heading) heading.textContent = t.heading;
+            var cartLink = document.querySelector(".cro-12443-view-cart");
+            if (cartLink) { cartLink.href = getCartUrl(); cartLink.textContent = t.viewCart; }
+            var continueBtn = document.querySelector(".cro-12443-continue");
+            if (continueBtn) continueBtn.textContent = t.continueShopping;
         }
 
         function populatePopup() {
@@ -145,6 +152,12 @@
             if (origPriceEl) {
                 origPriceEl.textContent = productData.originalPrice;
                 origPriceEl.style.display = productData.originalPrice ? "" : "none";
+            }
+
+            /* Red sale price only when an original (strikethrough) price also exists */
+            var priceWrap = document.querySelector(".cro-12443-price-wrap");
+            if (priceWrap) {
+                priceWrap.classList.toggle("cro-12443-price-wrap--sale", !!productData.originalPrice);
             }
         }
 
@@ -239,6 +252,33 @@
             };
         }
 
+        /* ── Locale-aware UI strings ── */
+        function getLocaleText() {
+            var lang = (window.location.pathname.split("/")[1] || "").split("-")[0].toLowerCase();
+            var map = {
+                de: {
+                    heading: "In den Warenkorb gelegt",
+                    viewCart: "Warenkorb ansehen",
+                    continueShopping: "Weiter einkaufen",
+                },
+            };
+            return map[lang] || {
+                heading: "Added to your bag",
+                viewCart: "View cart",
+                continueShopping: "Continue shopping",
+            };
+        }
+
+        /* ── Derive locale-aware cart URL from the current page URL ──
+           Verified live against Dometic's site: de→warenkorb, fr→panier, nl→winkelwagen,
+           it→carrello, es→carrito, pl→koszyk. All others (en, sv, da, fi, pt, …) use "cart". */
+        function getCartUrl() {
+            var locale = (window.location.pathname.split("/")[1] || "en-za").toLowerCase();
+            var lang = locale.split("-")[0];
+            var slugs = { de: "warenkorb", fr: "panier", nl: "winkelwagen", it: "carrello", es: "carrito", pl: "koszyk" };
+            return window.location.origin + "/" + locale + "/" + (slugs[lang] || "cart");
+        }
+
         function onATBClick() {
             captureProductData();
             addToBagClicked = true;
@@ -254,6 +294,19 @@
             injectPopup();
             patchFetch();
             patchXHR();
+
+            /* React/Next.js hydration (~2s after load) can wipe the body class and
+               remove injected DOM nodes it doesn't recognise. Poll for 10s and restore
+               both if they disappear. Interval stops itself after the hydration window. */
+            var hydrationGuard = setInterval(function () {
+                if (!document.body.classList.contains(variation_name)) {
+                    document.body.classList.add(variation_name);
+                }
+                if (!document.querySelector(".cro-12443-overlay")) {
+                    injectPopup();
+                }
+            }, 300);
+            setTimeout(function () { clearInterval(hydrationGuard); }, 6000);
         }
 
         /* ── Event handlers ── */
@@ -295,7 +348,7 @@
             });
 
             /* Close (✕) button */
-            live(".cro-12443-close", "click", function () {
+            live(".cro-12443-close, .cro-12443-view-cart", "click", function () {
                 closePopup();
             });
 

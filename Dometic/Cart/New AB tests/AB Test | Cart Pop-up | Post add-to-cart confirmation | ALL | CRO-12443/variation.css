@@ -136,7 +136,11 @@ body.CRO12443 .cro-12443-sale-price {
     font-family: "canada-type-gibson", "gibson-fallback", sans-serif;
     font-size: 15px;
     font-weight: 700;
-    color: #0d0d0d;
+    color: #000000;
+}
+
+body.CRO12443 .cro-12443-price-wrap--sale .cro-12443-sale-price {
+    color: #D2433E;
 }
 
 body.CRO12443 .cro-12443-original-price {

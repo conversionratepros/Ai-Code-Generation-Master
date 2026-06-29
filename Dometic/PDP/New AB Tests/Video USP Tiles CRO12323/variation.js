@@ -139,47 +139,70 @@
 			return false;
 		}
 
+		/* ── Known video IDs for tiles 2 and 3 per rack type ── */
+		/* Some pages carry extra product-specific videos in the control that   */
+		/* must not appear in our tiles. Pinning tile 2 and 3 by ID ensures we  */
+		/* always pull the correct generic rack videos regardless of how many   */
+		/* videos the control lists or in what order.                           */
+		var RACK_VIDEO_IDS = {
+			slimline2: ['j4SgRDYt4Xw', 'a_m34XmT_DQ'],
+			slimsport:  ['yZk8bhyAhMA', 'PyLzCAS0i3s'],
+			slimpro:    ['XuK14IkUhAc', 'zC-ofGog5sU']
+		};
+
 		/* ── Read video thumbnails from the control's hidden video list ── */
-		/* The control doesn't always put the installation guide first,   */
-		/* so we detect it by aria-label and force it to tile 1.          */
-		/* Returns up to 3 entries: { thumbnail, videoId }               */
+		/* Tile 1 — installation guide — is detected by aria-label.             */
+		/* Tiles 2 & 3 are matched by the known video IDs above so that         */
+		/* product-specific extra videos on some pages are never picked up.     */
+		/* Returns up to 3 entries: { thumbnail, videoId }                     */
 		function readControlVideos() {
+			var rackType = getRackType();
+			var knownIds = rackType ? RACK_VIDEO_IDS[rackType] : [];
 			var btns = Array.prototype.slice.call(
 				document.querySelectorAll('.product-content ul li button[aria-label^="play "]')
 			);
 
-			var installBtn = null;
-			var otherBtns = [];
-			for (var i = 0; i < btns.length; i++) {
-				var label = (btns[i].getAttribute('aria-label') || '').toLowerCase();
-				if (label.indexOf('install') > -1) {
-					installBtn = btns[i];
-				} else {
-					otherBtns.push(btns[i]);
-				}
+			/* Helper: extract YouTube ID from a button's img src */
+			function getVideoId(btn) {
+				var img = btn.querySelector('img');
+				if (!img || !img.src) return null;
+				var m = img.src.match(/\/vi\/([^/]+)\//);
+				return m ? m[1] : null;
 			}
 
-			/* Ordered: install guide first, then remaining in DOM order, cap at 3 */
-			var ordered = [];
-			if (installBtn) ordered.push(installBtn);
-			for (var j = 0; j < otherBtns.length && ordered.length < 3; j++) {
-				ordered.push(otherBtns[j]);
+			/* Helper: build a video entry from a button */
+			function makeEntry(btn) {
+				var videoId = getVideoId(btn);
+				var src = videoId
+					? 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'
+					: null;
+				return { thumbnail: src, videoId: videoId };
 			}
+
+			/* Tile 1: product-specific installation guide (detected by label) */
+			var installBtn = null;
+			for (var i = 0; i < btns.length; i++) {
+				var label = (btns[i].getAttribute('aria-label') || '').toLowerCase();
+				if (label.indexOf('install') > -1) { installBtn = btns[i]; break; }
+			}
+
+			/* Tiles 2 & 3: match by pinned video ID */
+			function findBtnById(id) {
+				for (var i = 0; i < btns.length; i++) {
+					if (getVideoId(btns[i]) === id) return btns[i];
+				}
+				return null;
+			}
+
+			var ordered = [
+				installBtn,
+				knownIds[0] ? findBtnById(knownIds[0]) : null,
+				knownIds[1] ? findBtnById(knownIds[1]) : null
+			];
 
 			var videos = [];
 			for (var k = 0; k < ordered.length; k++) {
-				var img = ordered[k].querySelector('img');
-				var src = img ? img.src : null;
-				var videoId = null;
-				if (src) {
-					var match = src.match(/\/vi\/([^/]+)\//);
-					if (match) {
-						videoId = match[1];
-						/* Upgrade to maxresdefault for our larger tiles */
-						src = 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
-					}
-				}
-				videos.push({ thumbnail: src, videoId: videoId });
+				videos.push(ordered[k] ? makeEntry(ordered[k]) : { thumbnail: null, videoId: null });
 			}
 			return videos;
 		}
@@ -225,7 +248,7 @@
 			if (!tilesHtml) return null;
 
 			return (
-				'<section class="cro-12323-section">' +
+				'<section class="cro-12323-section" style="display: none;">' +
 				'<div class="cro-12323-inner">' +
 				'<div class="cro-12323-header">' +
 				'<h2 class="cro-12323-title">' + copy.sectionTitle + '</h2>' +
@@ -291,6 +314,11 @@
 
 		function trigger() {
 			var intervalCallAgain = setInterval(function () {
+				/* Only restore the body class on pages this test should target.      */
+				/* On non-target pages global.js removes it — we must not fight back. */
+				if (!isExcludedPage() && !document.body.classList.contains(variation_name)) {
+					document.body.classList.add(variation_name);
+				}
 				waitForElement('.product-details', htmlAdd);
 			}, 400);
 			setTimeout(function () {
@@ -301,6 +329,38 @@
 		function init() {
 			addClass('body', variation_name);
 			waitForElement('body', trigger);
+		}
+
+		/* ── Re-run on SPA navigation ── */
+		/* Next.js uses pushState/replaceState for routing; on each navigation    */
+		/* React remounts the page and the body class is lost. Re-initialise so   */
+		/* the class and section are restored on the new page if it is a rack PDP */
+		function onLocationChange() {
+			/* Small delay to let Next.js finish its DOM swap before we inspect */
+			setTimeout(function () {
+				/* Only re-activate on target pages; let global.js handle removal elsewhere */
+				if (!isExcludedPage()) {
+					addClass('body', variation_name);
+				}
+				trigger();
+			}, 300);
+		}
+
+		if (!window.cro_12323_nav) {
+			(function () {
+				var _push = history.pushState;
+				var _replace = history.replaceState;
+				history.pushState = function () {
+					_push.apply(history, arguments);
+					onLocationChange();
+				};
+				history.replaceState = function () {
+					_replace.apply(history, arguments);
+					onLocationChange();
+				};
+				window.addEventListener('popstate', onLocationChange);
+			})();
+			window.cro_12323_nav = true;
 		}
 
 		/* ── On tile click: trigger the corresponding control video button     ── */
