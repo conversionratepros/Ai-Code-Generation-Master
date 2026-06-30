@@ -1,0 +1,4 @@
+/* Hide the empty separator containers left above the product list after the three sections are moved */
+body.CRP_ARC_SW_Brand_Banner_Below .cro-12345-spacer {
+    display: none !important;
+}
