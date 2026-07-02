@@ -9,7 +9,8 @@
     "step4": "playwright test --grep \"Step 4\" --reporter=line",
     "step5": "playwright test --grep \"Step 5\" --reporter=line",
     "all": "playwright test --reporter=line",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "host": "fecli host config.json"
   },
   "dependencies": {
     "@playwright/test": "^1.60.0"

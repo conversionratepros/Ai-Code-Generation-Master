@@ -54,17 +54,28 @@
 
 			if (debug) console.log(variation_name, 'containers before product list:', containersBefore.length);
 
-			// Move every content-bearing container (in original order) to after the product list.
-			// Empty spacers (no text, no img) get hidden in place instead.
+			// Move brand content (banner images, description paragraphs, featured carousels)
+			// to after the product list.
+			// Heading-only containers (e.g. "New & Exclusive") stay in their original position.
+			// Truly empty separator containers get hidden in place.
 			var anchor = productListContainer;
 			for (var i = 0; i < containersBefore.length; i++) {
 				var c = containersBefore[i];
-				var hasContent = !!(c.textContent.trim() || c.querySelector('img'));
-				if (hasContent) {
+				var hasImg      = !!c.querySelector('img');
+				var hasP        = !!c.querySelector('p');
+				var hasCarousel = !!c.querySelector('.ProductListCarousel');
+				var isEmpty     = !c.textContent.trim() && !hasImg && !hasCarousel;
+
+				if (hasImg || hasP || hasCarousel) {
+					// Brand banner, description, or featured carousel — move after product list
 					anchor.insertAdjacentElement('afterend', c);
 					anchor = c;
-				} else {
+				} else if (isEmpty) {
+					// Empty separator — hide in place
 					c.classList.add('cro-12345-spacer');
+				} else {
+					// Heading-only container (h2 etc.) — leave in place, mark for CSS targeting
+					c.classList.add('cro-12345-heading-block');
 				}
 			}
 		}

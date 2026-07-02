@@ -1,139 +1,124 @@
 /* ── CRO-12302 Dual-Image PLP ── */
 
 /* Wrapper: contain the two stacked slides and arrows */
-.product-photo-actions-wrapper.cro12302-init {
+html body.cro12302 .product-photo-actions-wrapper.cro12302-init {
     position: relative !important;
     overflow: hidden;
 }
 
 /* ── Slides ── */
 
-.cro12302-slide--1 {
-    display: block;
+html body.cro12302 .cro12302-slide--1 {
+    display: block !important;
+    position: relative !important;
     transition: opacity 0.3s ease;
 }
 
 /* Slide 2 sits on top of slide 1, hidden by default */
-.cro12302-slide--2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
+html body.cro12302 .cro12302-slide--2 {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    display: block !important;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
 
-.cro12302-slide--2 img {
-    width: 100%;
-    height: 100%;
+html body.cro12302 .cro12302-slide--2 img {
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover;
-    display: block;
+    display: block !important;
 }
 
 /* Active: fade in slide 2, fade out slide 1 */
-.cro12302-at-2 .cro12302-slide--1 {
+html body.cro12302 .cro12302-at-2 .cro12302-slide--1 {
     opacity: 0;
     pointer-events: none;
 }
 
-.cro12302-at-2 .cro12302-slide--2 {
+html body.cro12302 .cro12302-at-2 .cro12302-slide--2 {
     opacity: 1;
     pointer-events: auto;
 }
 
 /* ── Arrows ── */
 
-.cro12302-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #fff;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
-    transition: box-shadow 0.15s ease;
+html body.cro12302 .cro12302-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    width: 16px !important;
+    height: 26px !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
 }
 
-.cro12302-arrow:hover {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
-}
-
-.cro12302-arrow svg {
-    width: 16px;
-    height: 16px;
-    color: #1a1a1a;
+html body.cro12302 .cro12302-arrow svg {
+    width: 100%;
+    height: 100%;
     display: block;
 }
 
 /* Next arrow: right edge — visible on image 1 */
-.cro12302-arrow--next {
-    right: 8px;
-    display: flex;
+html body.cro12302 .cro12302-arrow--next {
+    right: 8px !important;
+    left: auto !important;
+    display: flex !important;
 }
 
 /* Prev arrow: left edge — hidden on image 1 */
-.cro12302-arrow--prev {
-    left: 8px;
-    display: none;
+html body.cro12302 .cro12302-arrow--prev {
+    left: 8px !important;
+    right: auto !important;
+    display: none !important;
+}
+
+html body.cro12302 .cro12302-arrow--prev svg {
+    transform: scaleX(-1);
 }
 
 /* Swap which arrow shows when on image 2 */
-.cro12302-at-2 .cro12302-arrow--next {
-    display: none;
+html body.cro12302 .cro12302-at-2 .cro12302-arrow--next {
+    display: none !important;
 }
 
-.cro12302-at-2 .cro12302-arrow--prev {
-    display: flex;
+html body.cro12302 .cro12302-at-2 .cro12302-arrow--prev {
+    display: flex !important;
 }
 
 /* ── Indicator bar ── */
 
-.cro12302-indicator {
+html body.cro12302 .cro12302-indicator {
     display: flex;
-    gap: 4px;
+    gap: 3.5px;
     width: 100%;
-    padding: 6px 0 0;
+    padding: 6px 3.5px 0;
     box-sizing: border-box;
 }
 
-.cro12302-seg {
+html body.cro12302 .cro12302-seg {
     flex: 1;
-    height: 3px;
-    border-radius: 2px;
-    background: #EAEAEA;
+    height: 3.5px;
+    border-radius: 33554400px;
+    background: #E5E5E5;
     cursor: pointer;
     transition: background 0.2s ease;
 }
 
-.cro12302-seg--active {
-    background: #1a1a1a;
-}
-
-/* ── Mobile: slightly larger tap targets ── */
-
-@media (max-width: 767px) {
-    .cro12302-arrow {
-        width: 36px;
-        height: 36px;
-    }
-
-    .cro12302-arrow svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .cro12302-seg {
-        height: 3px;
-    }
+html body.cro12302 .cro12302-seg--active {
+    background: #171717;
 }
