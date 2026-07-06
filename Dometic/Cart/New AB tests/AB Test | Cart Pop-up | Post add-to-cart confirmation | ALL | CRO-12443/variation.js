@@ -328,8 +328,10 @@
                            positives from related-product tile buttons. */
                         var isATB =
                             ariaLabel === "add to bag" ||
+                            ariaLabel === "in den warenkorb" ||
                             (inBuyBox && el.type === "submit") ||
                             (inBuyBox && ariaLabel.indexOf("add to cart") !== -1) ||
+                            (inBuyBox && ariaLabel.indexOf("in den warenkorb") !== -1) ||
                             (text === "add to bag");
                         if (isATB) {
                             onATBClick();

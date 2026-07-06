@@ -26,6 +26,32 @@
             return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
 
+        // Backend saving objects from __NEXT_DATA__, keyed by product id (the
+        // .measure-this element's DOM id). The native savings badge renders
+        // from saving.percent / saving.fixed, which are computed server-side
+        // from unrounded prices — arithmetic on the rounded display prices
+        // drifts by 1% / R1 (e.g. R999/R1,800 shows 45% computed vs 44% native).
+        function getSavingsMap() {
+            if (window.cro_10185_savings) return window.cro_10185_savings;
+            var map = {};
+            try {
+                var el = document.getElementById('__NEXT_DATA__');
+                if (el) {
+                    (function walk(node) {
+                        if (!node || typeof node !== 'object') return;
+                        if (node.id && node.price && node.saving && typeof node.saving === 'object') {
+                            map[node.id] = node.saving;
+                        }
+                        for (var k in node) {
+                            if (node[k] && typeof node[k] === 'object') walk(node[k]);
+                        }
+                    })(JSON.parse(el.textContent));
+                }
+            } catch (e) { }
+            window.cro_10185_savings = map;
+            return map;
+        }
+
         // Normalizes casing (source text varies: "more options", "MORE OPTIONS",
         // "More Options") without ever discarding the actual dynamic content.
         function toTitleCase(str) {
@@ -104,15 +130,39 @@
             if (gridCell) gridCell.classList.add('cro-10185-grid-cell');
 
             // ── Savings calculation ───────────────────────────────────────────
+            // Priority: backend saving object → hidden native badge text →
+            // computed from display prices (last resort, can drift by 1%/R1).
             var sellingPrice = parsePrice(sellingEl);
             var originalPrice = parsePrice(originalEl);
-            var hasSaving = originalPrice > 0 && sellingPrice > 0 && originalPrice > sellingPrice;
+            var computedSaving = (originalPrice > 0 && sellingPrice > 0 && originalPrice > sellingPrice)
+                ? originalPrice - sellingPrice : 0;
             var saving = 0, pct = 0;
+            var pctSource = 'none';
+
+            var backendSaving = getSavingsMap()[card.id];
+            if (backendSaving && backendSaving.percent > 0) {
+                pct = backendSaving.percent;
+                saving = backendSaving.fixed ? backendSaving.fixed.value : 0;
+                pctSource = 'backend';
+            }
+            if (!pct) {
+                // SPA-loaded card absent from __NEXT_DATA__: the native badge
+                // (hidden by our CSS but still in the DOM) has the true percent.
+                var nativeBadge = card.querySelector('.savings-badge');
+                var badgePct = nativeBadge && (nativeBadge.textContent || '').match(/(\d+)\s*%/);
+                if (badgePct) {
+                    pct = parseInt(badgePct[1], 10);
+                    pctSource = 'badge';
+                }
+            }
+            if (!pct && computedSaving) {
+                pct = Math.round((computedSaving / originalPrice) * 100);
+                pctSource = 'computed';
+            }
+            if (!saving) saving = computedSaving;
+            var hasSaving = pct > 0 && saving > 0;
 
             if (hasSaving) {
-                saving = originalPrice - sellingPrice;
-                pct = Math.round((saving / originalPrice) * 100);
-
                 // SAVE badge on image
                 var saveBadge = document.createElement('div');
                 saveBadge.className = 'cro-10185-save-badge';
@@ -225,6 +275,7 @@
                     ? Array.prototype.map.call(pillContainer.querySelectorAll('.pill'), function (p) { return p.textContent.trim(); })
                     : [];
                 console.log('[CRO-10185 pills]', heading, pillTexts);
+                console.log('[CRO-10185 savings]', heading, { pct: pct, saving: saving, source: pctSource });
             })();
 
         }

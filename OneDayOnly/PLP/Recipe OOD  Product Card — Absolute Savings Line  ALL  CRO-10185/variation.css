@@ -199,7 +199,7 @@ body.cro-t-odo-10185 .cro-10185-pills-container {
     display: flex !important;
     flex-wrap: wrap;
     gap: 4px;
-    max-width: calc(100% - 48px);
+    max-width: calc(100% - 68px);
 }
 
 /* Pill base */
@@ -339,4 +339,8 @@ body.cro-t-odo-10185 .cro-10185-savings-line--empty {
     .cro-10185-h2-parent>div:last-child>div:not(.collapsed, [width="100%"]) {
         min-height: 460px;
     }
+}
+
+.cro-10185-h2-parent>div:last-child>.expanded {
+    height: auto !important;
 }

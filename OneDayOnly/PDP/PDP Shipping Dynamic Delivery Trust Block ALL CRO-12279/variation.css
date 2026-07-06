@@ -1,0 +1,121 @@
+/* Variation B - AB Test | Shipping - Dynamic Delivery Trust Block | ALL | CRO-12279 */
+
+/* ─── Hide original Excludes shipping + ETA container ───────────────────────
+   The site's own flex row already positions this to the right of the price.
+   We hide it and drop our trust block in its place (inserted as next sibling).
+──────────────────────────────────────────────────────────────────────────── */
+body.cro-12279 [data-cro-12279-original-shipping] {
+    display: none !important;
+}
+
+/* ─── Trust block: shared base ──────────────────────────────────────────── */
+body.cro-12279 .cro-12279-trust-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ─── Line 1 — Delivery estimate ────────────────────────────────────────── */
+body.cro-12279 .cro-12279-delivery-estimate {
+    color: #444;
+    text-align: right;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* ─── Line 2 — On-time proof pill ──────────────────────────────────────── */
+body.cro-12279 .cro-12279-ontime-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 6px;
+    color: #16A34A;
+    text-align: right;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    /* line-height: 16.25px; */
+    line-height: normal;
+    border-radius: 4px;
+    background: #E4F3E6;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body.cro-12279 .cro-12279-ontime-pill span {
+    color: #16A34A;
+    font-family: 'Montserrat', sans-serif;
+    /* white-space: nowrap; */
+}
+
+/* ─── Line 3 — Shipping qualifier ──────────────────────────────────────── */
+body.cro-12279 .cro-12279-shipping-qualifier {
+    color: #99A1AF;
+    text-align: right;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13.75px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* ─── Responsive defaults (desktop) ────────────────────────────────────── */
+body.cro-12279 .cro-12279-trust-block-desktop {
+    display: flex;
+    align-items: flex-end;
+    /* right-align all three lines */
+}
+
+body.cro-12279 .cro-12279-trust-block-mobile {
+    display: none;
+}
+
+/* ─── Mobile (≤1023px) ──────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+
+    /* Swap which block is visible */
+    body.cro-12279 .cro-12279-trust-block-desktop {
+        display: none;
+    }
+
+    /* The desktop block's parent has its own padding/margin that survives
+       even when its children are hidden — collapse it so no blank gap
+       is left behind where the desktop block used to render. */
+    body.cro-12279 .cro-12279-desktop-shipping-slot {
+        padding: 0 !important;
+        margin: 0 !important;
+        min-height: 0 !important;
+    }
+
+    body.cro-12279 .cro-12279-trust-block-mobile {
+        display: flex;
+        align-items: flex-start;
+        padding: 2px 0 16px;
+        /* border-bottom: 1px solid #e5e7eb; */
+        margin-bottom: 0px;
+        width: 100%;
+        flex: 0 0 100%;
+        /* break out of any row-direction flex parent */
+    }
+
+    /* Mobile row: pill and qualifier sit side-by-side, wrapping if needed */
+    body.cro-12279 .cro-12279-trust-block-mobile .cro-12279-mobile-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        margin-top: 4px;
+    }
+
+    body.cro-12279 .cro-12279-trust-block-mobile .cro-12279-delivery-estimate {
+        display: block;
+        white-space: normal;
+    }
+
+    /* On mobile the shipping qualifier is inline with the pill */
+    body.cro-12279 .cro-12279-trust-block-mobile .cro-12279-shipping-qualifier {
+        display: inline;
+    }
+}

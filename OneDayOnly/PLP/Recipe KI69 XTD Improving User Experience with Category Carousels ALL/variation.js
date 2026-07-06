@@ -384,24 +384,6 @@
     }
 
     // =========================
-    // QA PILL LOG
-    // =========================
-    function logProductPills(products) {
-        if (!debug) return;
-        var rows = products.map(function (p) {
-            var pills = [];
-            if (p.savingPercent) pills.push("SAVE " + p.savingPercent);
-            if (p.bestSeller) pills.push("BEST SELLER");
-            if (p.leftQuantity) pills.push(p.leftQuantity + " left");
-            if (p.blueTag && p.blueTag.toLowerCase().indexOf("size") === -1) pills.push(p.blueTag);
-            return { name: p.name, pills: pills.join(" | ") || "(none)" };
-        });
-        console.log("KI69 QA — product pills (" + rows.length + " products), match against control:");
-        if (console.table) console.table(rows);
-        else rows.forEach(function (r) { console.log(r.name + "  ->  " + r.pills); });
-    }
-
-    // =========================
     // BUILD EXPERIENCE
     // =========================
     function buildExperience() {
@@ -410,8 +392,6 @@
             if (debug) console.log("KI69: No products found in __NEXT_DATA__");
             return;
         }
-
-        logProductPills(products);
 
         var groups = sortGroups(groupProducts(products));
         var validGroups = groups.filter(function (g) { return g.products.length > 0; });

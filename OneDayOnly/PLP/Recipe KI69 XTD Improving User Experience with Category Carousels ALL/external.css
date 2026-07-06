@@ -1,0 +1,437 @@
+body .crp-01-hidden {
+    display: none;
+}
+
+.crp-01-root {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 0;
+    margin: 32px auto;
+    padding: 0 16px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.crp-01-root * {
+    box-sizing: border-box;
+}
+
+.crp-01-category {
+    margin-bottom: 40px;
+}
+
+.crp-01-category__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.crp-01-category__title {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #3C3D3D;
+    text-transform: capitalize;
+}
+
+.crp-01-category__viewall {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    border: none;
+    border-radius: 999px;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #A31C8029;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #A31C80;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.crp-01-category__viewall:hover {
+    background: #efc8ea;
+}
+
+.crp-01-carousel {
+    position: relative;
+}
+
+.crp-01-carousel__track {
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.crp-01-carousel__track::-webkit-scrollbar {
+    display: none;
+}
+
+.crp-01-carousel__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    gap: 12px;
+    padding: 8px;
+    background: #FFFFFF;
+    border: 1px solid #2727271F;
+    box-shadow: 0px 2px 4px 0px #00000014;
+}
+
+.crp-01-carousel__nav--prev {
+    left: -18px;
+}
+
+.crp-01-carousel__nav--next {
+    right: -18px;
+}
+
+.crp-01-carousel__nav[hidden] {
+    display: none;
+}
+
+.crp-01-card {
+    flex: 0 0 calc(25% - 24px);
+    scroll-snap-align: start;
+}
+
+.crp-01-card__media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.crp-01-card__media:hover {
+    box-shadow: 1px 3px 20px 0 rgba(58, 63, 71, 0.13);
+}
+
+.crp-01-card__media img {
+    transition: all 0.3s ease;
+}
+
+.crp-01-card__media:hover img {
+    transform: scale(1.04);
+}
+
+.crp-01-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.crp-01-card--soldout .crp-01-card__img {
+    opacity: .5;
+}
+
+.crp-01-card__soldout {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+    padding: 6px 14px;
+    background: rgba(0, 0, 0, .7);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 6px;
+}
+
+.crp-01-badge-save {
+    position: absolute;
+    top: 0;
+    right: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 8px 14px 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background: #3C3C3C;
+    z-index: 9;
+    transition: all 0.3s ease;
+}
+
+.crp-01-card__media:hover .crp-01-badge-save,
+.crp-01-card:hover .crp-01-badge-save {
+    background: #e50e62;
+}
+
+.crp-01-badge-save .crp-01-badge-save-text {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.crp-01-badge-save .crp-01-badge-save-percent {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.crp-01-card__pills {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: flex;
+    gap: 4px;
+}
+
+.crp-01-pill {
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 9px;
+    line-height: 12px;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crp-01-pill--save {
+    background: #DF1215;
+    color: #FFFFFF;
+}
+
+.crp-01-pill--options {
+    background: #FFFFFF;
+    border: 1px solid #0088C9;
+    color: #3C3C3C;
+}
+
+.crp-01-pill--yellow {
+    background: #ffd400;
+    color: #1f2430;
+}
+
+.crp-01-card__brand {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    color: #3C3D3D;
+    margin-bottom: 2px;
+}
+
+.crp-01-card__name {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    color: #69737B;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 7px;
+}
+
+.crp-01-card__price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.crp-01-card__prices {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.crp-01-card__from {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    color: #3C3D3D;
+}
+
+.crp-01-card__price {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 27px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #3C3D3D;
+}
+
+.crp-01-card:hover .crp-01-card__price {
+    color: #e50e62;
+}
+
+.crp-01-card__retail {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-decoration: line-through;
+    color: #69737B;
+}
+
+.crp-01-card__add {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    padding: 4px;
+    background: #EDEFF1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crp-01-card__add:hover {
+    background: #e0e3e8;
+}
+
+.crp-01-root--expanded .crp-01-category:not(.crp-01-category--expanded) {
+    display: none;
+}
+
+.crp-01-category--expanded .crp-01-carousel__nav {
+    display: none;
+}
+
+.crp-01-category--expanded .crp-01-carousel__track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    overflow: visible;
+    scroll-snap-type: none;
+}
+
+.crp-01-category--expanded .crp-01-category__viewall svg {
+    display: none;
+}
+
+@media (max-width: 1023px) {
+    .crp-01-carousel__track {
+        gap: 24px;
+    }
+
+    .crp-01-card {
+        flex: 0 0 calc((100% - 48px) / 2.3);
+    }
+
+    .crp-01-carousel__nav {
+        display: none;
+    }
+
+    .crp-01-category {
+        margin-bottom: 24px;
+    }
+
+    .crp-01-card__from {
+        display: none;
+    }
+
+    .crp-01-card__prices {
+        flex-direction: column;
+    }
+
+    .crp-01-card__add {
+        background: transparent;
+    }
+
+    .crp-01-card__media {
+        border: 1px solid #00000014;
+    }
+
+    .crp-01-category--expanded .crp-01-carousel__track {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .crp-01-category__title {
+        font-size: 18px;
+    }
+
+    .crp-01-category__viewall {
+        font-size: 14px;
+    }
+}
+
+@media (max-width:480px) {
+    .crp-01-card__pills {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .crp-01-badge-save {
+        padding: 8px;
+    }
+
+    .crp-01-badge-save .crp-01-badge-save-text {
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .crp-01-badge-save .crp-01-badge-save-percent {
+        font-size: 16px;
+        line-height: 16px;
+    }
+}
+
+@media (max-width:360px) {
+    .crp-01-card {
+        flex: 0 0 calc((100% - 32px) / 2);
+    }
+
+    .crp-01-carousel__track {
+        gap: 16px;
+    }
+
+    .crp-01-category--expanded .crp-01-carousel__track {
+        gap: 16px;
+    }
+}

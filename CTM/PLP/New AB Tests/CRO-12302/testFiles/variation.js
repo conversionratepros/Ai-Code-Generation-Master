@@ -3,6 +3,12 @@
         var debug = 0;
         var variation_name = 'cro12302';
 
+        // Tile PLPs share a template with accessory PLPs (adhesive, grout, spacers,
+        // tools, underfloor heating) which all live under an "essentials" subcategory —
+        // this test must not fire on those, only genuine tile listing pages.
+        var NON_TILE_PATH_PATTERN = /essentials|adhesive|grout|spacer/i;
+        if (NON_TILE_PATH_PATTERN.test(location.pathname)) return;
+
         function waitForElement(selector, trigger) {
             var interval = setInterval(function () {
                 if (document && document.querySelector(selector) && document.querySelectorAll(selector).length > 0) {
@@ -28,50 +34,65 @@
             cards.forEach(function (card) {
                 var wishlist = card.querySelector('[data-role="add-to-links"]');
                 var link = card.querySelector('a.product-item-link');
-                if (wishlist && wishlist.id && link) {
-                    skuMap[wishlist.id] = { card: card, pdpUrl: link.href };
+                var img = card.querySelector('.product-image-photo');
+                if (wishlist && wishlist.id && link && img) {
+                    skuMap[wishlist.id] = { card: card, pdpUrl: link.href, currentImgPath: img.src.split('?')[0] };
                 }
             });
 
             var skus = Object.keys(skuMap);
             if (!skus.length) { callback({}); return; }
 
-            var query = '{ products(filter: { sku: { in: ' + JSON.stringify(skus) + ' } }, pageSize: 50) { items { sku media_gallery { url position } } } }';
+            var query = '{ products(filter: { sku: { in: ' + JSON.stringify(skus) + ' } }, pageSize: 50) { items { sku media_gallery { url position disabled } } } }';
 
             fetch('/graphql', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Store': 'ZA' },
                 body: JSON.stringify({ query: query })
             })
-            .then(function (r) { return r.json(); })
-            .then(function (data) {
-                var items = (data && data.data && data.data.products && data.data.products.items) || [];
-                var results = {};
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    var items = (data && data.data && data.data.products && data.data.products.items) || [];
+                    var results = {};
 
-                items.forEach(function (item) {
-                    var entry = skuMap[item.sku];
-                    if (!entry || !item.media_gallery || item.media_gallery.length < 2) return;
+                    items.forEach(function (item) {
+                        var entry = skuMap[item.sku];
+                        if (!entry || !item.media_gallery || item.media_gallery.length < 2) return;
 
-                    // media_gallery is NOT returned in merchant-configured order, so sort
-                    // by position first (position 0 is treated as the existing PLP image).
-                    var gallery = item.media_gallery.slice().sort(function (a, b) {
-                        return a.position - b.position;
+                        // media_gallery is NOT returned in merchant-configured order, so sort
+                        // by position first. Position 0 is NOT reliably the image already
+                        // shown on the PLP (the small_image role can point to any gallery
+                        // slot) — walk forward until we find a file that actually differs
+                        // from what's on screen, so slide 2 never duplicates slide 1.
+                        // Entries can also be individually disabled in Magento (hidden from
+                        // the PDP gallery) while still coming back from this query — skip them.
+                        var gallery = item.media_gallery
+                            .filter(function (g) { return !g.disabled; })
+                            .sort(function (a, b) { return a.position - b.position; });
+
+                        var img2Url = null;
+                        for (var i = 0; i < gallery.length; i++) {
+                            if (gallery[i].url.split('?')[0] !== entry.currentImgPath) {
+                                img2Url = gallery[i].url;
+                                break;
+                            }
+                        }
+                        if (!img2Url) return;
+
+                        results[item.sku] = {
+                            card: entry.card,
+                            pdpUrl: entry.pdpUrl,
+                            img2: img2Url + '&width=700'
+                        };
                     });
 
-                    results[item.sku] = {
-                        card: entry.card,
-                        pdpUrl: entry.pdpUrl,
-                        img2: gallery[1].url + '&width=700'
-                    };
+                    if (debug) console.log('[CRO12302] GraphQL:', items.length, 'products,', Object.keys(results).length, 'eligible (2+ images)');
+                    callback(results);
+                })
+                .catch(function (err) {
+                    if (debug) console.warn('[CRO12302] GraphQL error:', err);
+                    callback({});
                 });
-
-                if (debug) console.log('[CRO12302] GraphQL:', items.length, 'products,', Object.keys(results).length, 'eligible (2+ images)');
-                callback(results);
-            })
-            .catch(function (err) {
-                if (debug) console.warn('[CRO12302] GraphQL error:', err);
-                callback({});
-            });
         }
 
         /* ── Build slider for one card ── */
@@ -86,10 +107,15 @@
             var slide1 = wrapper.querySelector('a');
             if (slide1) slide1.classList.add('cro12302-slide', 'cro12302-slide--1');
 
+            // The theme's hover-zoom rule only matches an <a> with this exact inline
+            // style (it targets a[style*="aspect-ratio"]), so slide 2 needs it too or
+            // it silently loses the hover effect slide 1 has.
+            var slide1Style = slide1 ? slide1.getAttribute('style') || '' : '';
+
             // Slide 2
             wrapper.insertAdjacentHTML('beforeend',
-                '<a href="' + pdpUrl + '" class="cro12302-slide cro12302-slide--2" tabindex="-1" aria-hidden="true">' +
-                    '<img src="' + img2 + '" loading="lazy" alt="">' +
+                '<a href="' + pdpUrl + '" style="' + slide1Style + '" class="cro12302-slide cro12302-slide--2" tabindex="-1" aria-hidden="true">' +
+                '<img src="' + img2 + '" class="product-image-photo default_image" loading="lazy" alt="">' +
                 '</a>' +
                 '<button class="cro12302-arrow cro12302-arrow--next" aria-label="Next image" type="button">' + ICON_CHEVRON + '</button>' +
                 '<button class="cro12302-arrow cro12302-arrow--prev" aria-label="Previous image" type="button">' + ICON_CHEVRON + '</button>'
@@ -98,8 +124,8 @@
             // Indicator bar — goes between image area and product name
             actionsEl.insertAdjacentHTML('afterend',
                 '<div class="cro12302-indicator">' +
-                    '<div class="cro12302-seg cro12302-seg--active" data-idx="0"></div>' +
-                    '<div class="cro12302-seg" data-idx="1"></div>' +
+                '<div class="cro12302-seg cro12302-seg--active" data-idx="0"></div>' +
+                '<div class="cro12302-seg" data-idx="1"></div>' +
                 '</div>'
             );
 
