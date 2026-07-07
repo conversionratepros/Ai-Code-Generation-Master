@@ -28,9 +28,11 @@
 
         // Backend saving objects from __NEXT_DATA__, keyed by product id (the
         // .measure-this element's DOM id). The native savings badge renders
-        // from saving.percent / saving.fixed, which are computed server-side
-        // from unrounded prices — arithmetic on the rounded display prices
-        // drifts by 1% / R1 (e.g. R999/R1,800 shows 45% computed vs 44% native).
+        // from saving.percent, so only that percent guarantees a match with
+        // control — arithmetic on the display prices drifts on .5 boundaries
+        // (e.g. R999/R1,800 computes to 45% where the native badge shows 44%).
+        // saving.fixed is NOT used: it's percent-derived and rounded, the
+        // savings line shows the exact rand difference instead.
         function getSavingsMap() {
             if (window.cro_10185_savings) return window.cro_10185_savings;
             var map = {};
@@ -130,19 +132,21 @@
             if (gridCell) gridCell.classList.add('cro-10185-grid-cell');
 
             // ── Savings calculation ───────────────────────────────────────────
-            // Priority: backend saving object → hidden native badge text →
-            // computed from display prices (last resort, can drift by 1%/R1).
+            // Percent: backend saving object → hidden native badge text →
+            // computed (last resort) — display-price math drifts on .5 (45 vs 44).
+            // Rand amount: exact difference of the displayed prices (CRO-12212
+            // pattern) — backend saving.fixed is percent-derived and rounded
+            // (says R170 where R400 − R229 = R171).
             var sellingPrice = parsePrice(sellingEl);
             var originalPrice = parsePrice(originalEl);
-            var computedSaving = (originalPrice > 0 && sellingPrice > 0 && originalPrice > sellingPrice)
+            var saving = (originalPrice > 0 && sellingPrice > 0 && originalPrice > sellingPrice)
                 ? originalPrice - sellingPrice : 0;
-            var saving = 0, pct = 0;
+            var pct = 0;
             var pctSource = 'none';
 
             var backendSaving = getSavingsMap()[card.id];
             if (backendSaving && backendSaving.percent > 0) {
                 pct = backendSaving.percent;
-                saving = backendSaving.fixed ? backendSaving.fixed.value : 0;
                 pctSource = 'backend';
             }
             if (!pct) {
@@ -155,11 +159,10 @@
                     pctSource = 'badge';
                 }
             }
-            if (!pct && computedSaving) {
-                pct = Math.round((computedSaving / originalPrice) * 100);
+            if (!pct && saving) {
+                pct = Math.round((saving / originalPrice) * 100);
                 pctSource = 'computed';
             }
-            if (!saving) saving = computedSaving;
             var hasSaving = pct > 0 && saving > 0;
 
             if (hasSaving) {

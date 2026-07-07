@@ -65,6 +65,26 @@ var observer = new MutationObserver(function () {
 observer.observe(sel, { childList: true, subtree: true });
 ```
 
+### Pricing (CRO-12212)
+
+| Element | Selector |
+|---|---|
+| Desktop price | `#product-price` (h2, always in DOM at every viewport) |
+| Desktop was-price | `#product-price`'s `nextElementSibling` div (absent on non-discounted products — validate text looks like `R…`) |
+| Desktop price container | parent of `#product-price` (`.show-for-desktop.css-roynbj`) |
+| Mobile price block | `.hide-for-desktop` inside the sticky buy bar |
+
+- **PDP grid container**: find it by walking up from `[data-action="add-to-cart"]` until an ancestor's computed `grid-template-areas` contains `carousel`. Base (mobile) areas: `"carousel" "title" "actions" "payflex" "additional" "price" "details" "button"`; desktop areas set at `min-width: 1024px`. Rows are auto (`grid-auto-flow: row`, no `grid-template-rows`), so extra areas can be added via a scoped `grid-template-areas` override.
+- **Mobile sticky buy bar** = the `grid-area: button` child (`position: sticky; bottom: 16px`, `grid-template-columns: 1fr 1fr` = price | CTA).
+- **Breakpoints**: mobile <768, tablet 768–1023, desktop ≥1024. `hide-for-desktop` hides ≥1024; `show-for-desktop` hides ≤1023. Buy bar price font steps 1.28571rem → 1.92857rem at 768px (html font-size is 14px).
+- **`__NEXT_DATA__` pricing**: `product.price.value`, `product.retailPrice.value` are exact; `product.saving.fixed` is **percent-derived and rounded** (e.g. R2,100 when the true retail − price = R2,101) — compute savings as `retail − price`, don't use `saving.fixed`.
+- **Expired deals**: React replaces the whole buy box with an "AG NO MAN! This deal has expired!" panel after hydration (SSR HTML still contains prices). Deals rotate daily — always QA against a product from today's homepage.
+- `[data-action="add-to-cart"]` is added by **our global.js**, not the site — it only exists where the Convert project JS runs. When testing locally with Playwright, inject `OneDayOnly/global.js` before the variation files.
+
+### Design spec workflow (no Figma)
+
+ODO specs now come as HTML previews at `design.conversionratepros.co.za/onedayonly/...` — an index page linking `control-desktop.html`, `variant-desktop.html`, `control-mobile.html`, `variant-mobile.html` (saved post-hydration DOM of the live page with the change applied inline). To extract the exact change: download all four, pretty-print (`.replace(/></g,'>\n<')`), and `diff` control vs variant — the designer's inline styles are the spec values.
+
 ### "I want" Button
 
 - The primary CTA displays dynamic text: **"I want one"**, **"I want two"**, etc.
@@ -92,3 +112,4 @@ observer.observe(sel, { childList: true, subtree: true });
 - **Init flow:** `waitForElement('#product-quantity-select')` → `init()` → add body class → `waitForElement('[data-action="add-to-cart"]')` → build/inject UI.
 - **Duplicate-run guard:** `if (!window.cro_XXXXX) { window.cro_XXXXX = true; ... }`
 - **CSS scoping:** always prefix every rule with `body.cro-t-odo-XXXXX` to avoid polluting the global scope.
+- **SPA navigation is handled by Convert itself** — do NOT add `locationchange` re-init listeners inside variation.js. Convert re-executes the experiment on client-side navigation (global.js pushes `executeExperiment` on locationchange); the `window.cro_XXXXX` guard then prevents duplicate observers, and build functions are idempotent.

@@ -1,0 +1,112 @@
+/* Recipe OOD | PDP — Buy Box Strikethrough Price | ALL | CRO-12212 */
+
+/* ===== Desktop buy box: price + red strikethrough was-price on one line ===== */
+/* [cro-12212-price-row] = the .show-for-desktop container around #product-price */
+body.cro-t-odo-12212 [cro-12212-price-row] {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0 12px;
+}
+
+body.cro-t-odo-12212 [cro-12212-price-row] #product-price {
+    margin-bottom: 0;
+}
+
+body.cro-t-odo-12212 [cro-12212-price-row] #product-price+div:not(.cro-12212-savings) {
+    color: #E50E62;
+    font-weight: 600;
+    text-decoration: line-through;
+    margin-bottom: 0;
+}
+
+/* "Retail R3,500 — You save R2,101" line (desktop + mobile) */
+body.cro-t-odo-12212 .cro-12212-savings {
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #747E86;
+    margin-top: 6px;
+    text-decoration: none;
+}
+
+/* ===== Mobile: move the price block up to sit under the product name ===== */
+@media screen and (max-width: 1023px) {
+
+    /* Add a "newprice" row between title and actions (rows are auto-sized) */
+    body.cro-t-odo-12212 [cro-12212-grid] {
+        grid-template-areas:
+            "carousel"
+            "title"
+            "newprice"
+            "actions"
+            "payflex"
+            "additional"
+            "price"
+            "details"
+            "button" !important;
+    }
+
+    body.cro-t-odo-12212 .cro-12212-mobile-price {
+        grid-area: newprice;
+        width: 100%;
+    }
+
+    /* Hide the original price inside the sticky buy bar; CTA takes the full width */
+    body.cro-t-odo-12212 [cro-12212-old-price] {
+        display: none !important;
+    }
+
+    body.cro-t-odo-12212 [cro-12212-buybar] {
+        display: block;
+    }
+
+    body.cro-t-odo-12212 [cro-12212-btn-wrap] {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    body.cro-t-odo-12212 [cro-12212-btn-wrap] [data-action="add-to-cart"] {
+        width: 100%;
+    }
+
+    /* Injected mobile price row — typography mirrors the original buy bar price */
+    body.cro-t-odo-12212 .cro-12212-mobile-row {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0 10px;
+    }
+
+    body.cro-t-odo-12212 .cro-12212-mobile-now {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.28571rem;
+        color: #444444;
+    }
+
+    body.cro-t-odo-12212 .cro-12212-mobile-was {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #E50E62;
+        text-decoration: line-through;
+    }
+}
+
+/* Tablet sizes match the site's 768px step-up for the buy bar price */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    body.cro-t-odo-12212 .cro-12212-mobile-now {
+        font-size: 1.92857rem;
+    }
+
+    body.cro-t-odo-12212 .cro-12212-mobile-was {
+        font-size: 1.28571rem;
+    }
+}
+
+body.cro-t-odo-12212 [cro-12212-price-row]>div[color="black"] {
+    width: 100%;
+}

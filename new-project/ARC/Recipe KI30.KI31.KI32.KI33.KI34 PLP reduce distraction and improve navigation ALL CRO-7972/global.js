@@ -1,12 +1,14 @@
 (function () {
     try {
         // PAGE EXCLUSIONS — skip running global JS entirely on these pages
+        // NOTE: '/brands' is NOT globally excluded — CRO-12345 runs on brand pages.
+        // Brand-page blocking for other tests is handled inside each experiment.
         var EXCLUDED_PATHS = [
             '/arc/arc-exclusives',
             '/arc-personalisation',
             '/new-in'
         ];
-        var EXCLUDED_CONTAINS = ['/admin', '/brands'];
+        var EXCLUDED_CONTAINS = ['/admin'];
         var currentPagePath = window.location.pathname;
         var isExcludedPage = EXCLUDED_PATHS.indexOf(currentPagePath) !== -1 ||
             EXCLUDED_CONTAINS.some(function (sub) { return currentPagePath.indexOf(sub) !== -1; });
@@ -17,6 +19,125 @@
                 if (/^cro[-_]/i.test(cls)) document.body.classList.remove(cls);
             });
             return;
+        }
+
+        // =====================================================
+        // ARC PAGE GUARD — used ONLY by CRO-12345 (brand banner).
+        // Other experiments keep their own page checks and are
+        // NOT gated by this guard.
+        // =====================================================
+
+        function normalizeArcPath(path) {
+            path = path || window.location.pathname || '/';
+            path = String(path).split('?')[0].split('#')[0].toLowerCase();
+
+            try {
+                path = decodeURIComponent(path);
+            } catch (e) {
+                // keep original path if decode fails
+            }
+
+            // remove trailing slash except homepage
+            if (path.length > 1) {
+                path = path.replace(/\/+$/, '');
+            }
+
+            return path || '/';
+        }
+
+        function isArcExcludedPage(path) {
+            path = normalizeArcPath(path);
+
+            var excludedPatterns = [
+                // Homepage
+                /^\/$/,
+
+                // No-touch brands
+                /^\/brands\/dior(\/.*)?$/,
+                /^\/dior-makeup(\/.*)?$/,
+                /^\/dior-fragrance(\/.*)?$/,
+                /^\/brands\/chanel(\/.*)?$/,
+                /^\/chanel-makeup(\/.*)?$/,
+
+                // Premium brands - test only after brand sign-off
+                /^\/brands\/sol-de-janeiro(\/.*)?$/,
+                /^\/brands\/drunk-elephant(\/.*)?$/,
+                /^\/brands\/nars(\/.*)?$/,
+                /^\/brands\/maison-margiela(\/.*)?$/,
+                /^\/brands\/kylie-cosmetics-by-kylie-jenner(\/.*)?$/,
+                /^\/brands\/dolce-gabbana(\/.*)?$/,
+                /^\/brands\/bvlgari(\/.*)?$/,
+                /^\/bvlgari-fragrances(\/.*)?$/,
+
+                // Promo / campaign / deals / clearance pages
+                /^\/fathers-day(\/.*)?$/,
+                /^\/15-off-r1500$/,
+                /^\/offers$/,
+                /^\/last-of-the-best$/,
+
+                // Checkout / cart / functional pages
+                // /^\/arc\/arc-checkout(\/.*)?$/,
+                // /^\/arc-checkout(\/.*)?$/,
+
+                // PDP pages only: /products/<slug>/<id>
+                /^\/products\/[^\/]+\/[^\/]+$/
+            ];
+
+            // Optional safety exclusion
+            if (path.indexOf('/admin') !== -1) {
+                return true;
+            }
+
+            for (var i = 0; i < excludedPatterns.length; i++) {
+                if (excludedPatterns[i].test(path)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function isArcAllowedListingPage(path) {
+            path = normalizeArcPath(path);
+
+            if (isArcExcludedPage(path)) {
+                return false;
+            }
+
+            var allowedPatterns = [
+                // Main listing/category pages
+                /^\/products$/,
+                /^\/makeup(\/.*)?$/,
+                /^\/skincare(\/.*)?$/,
+                /^\/fragrance(\/.*)?$/,
+                /^\/haircare(\/.*)?$/,
+                /^\/body(\/.*)?$/,
+                /^\/accessories(\/.*)?$/,
+                /^\/new-in(\/.*)?$/,
+                /^\/arc\/arc-exclusives(\/.*)?$/,
+                /^\/arc-personalisation(\/.*)?$/,
+
+                // Standard brand pages are allowed by default,
+                // except no-touch/premium brands already blocked above.
+                /^\/brands\/[^\/]+(\/.*)?$/
+            ];
+
+            for (var i = 0; i < allowedPatterns.length; i++) {
+                if (allowedPatterns[i].test(path)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function arcPageGuard(context) {
+            if (!isArcAllowedListingPage(window.location.pathname)) {
+                console.log('CRO-12345 skipped — ARC excluded/not-in-scope page: ' + window.location.pathname + (context ? ' | ' + context : ''));
+                return false;
+            }
+
+            return true;
         }
 
         // LIBRARY FUNCTIONS
@@ -82,28 +203,47 @@
                 }, delayTimeout);
             },
             listener(trigger) {
+                if (window.__arcGlobalLocationListenerAdded) return;
+                window.__arcGlobalLocationListenerAdded = true;
+
                 window.addEventListener("locationchange", function () {
                     trigger();
                 });
-                history.pushState = ((f) =>
-                    function pushState() {
-                        var ret = f.apply(this, arguments);
-                        window.dispatchEvent(new Event("pushstate"));
+
+                if (!window.__arcGlobalHistoryPatched) {
+                    window.__arcGlobalHistoryPatched = true;
+
+                    history.pushState = ((f) =>
+                        function pushState() {
+                            var ret = f.apply(this, arguments);
+                            window.dispatchEvent(new Event("pushstate"));
+                            window.dispatchEvent(new Event("locationchange"));
+                            return ret;
+                        })(history.pushState);
+                    history.replaceState = ((f) =>
+                        function replaceState() {
+                            var ret = f.apply(this, arguments);
+                            window.dispatchEvent(new Event("replacestate"));
+                            window.dispatchEvent(new Event("locationchange"));
+                            return ret;
+                        })(history.replaceState);
+                    window.addEventListener("popstate", () => {
                         window.dispatchEvent(new Event("locationchange"));
-                        return ret;
-                    })(history.pushState);
-                history.replaceState = ((f) =>
-                    function replaceState() {
-                        var ret = f.apply(this, arguments);
-                        window.dispatchEvent(new Event("replacestate"));
-                        window.dispatchEvent(new Event("locationchange"));
-                        return ret;
-                    })(history.replaceState);
-                window.addEventListener("popstate", () => {
-                    window.dispatchEvent(new Event("locationchange"));
-                });
+                    });
+                }
             },
         };
+
+        // SPA cleanup for CRO-12345 only — remove its classes when
+        // navigating away from an allowed brand page
+        lib.listener(function () {
+            var path = normalizeArcPath(window.location.pathname);
+            var isValidBrandPage = path.indexOf('/brands/') === 0 && isArcAllowedListingPage(path);
+            if (!isValidBrandPage) {
+                document.body.classList.remove('CRP_ARC_SW_Brand_Banner_Below');
+                document.body.classList.remove('cro-12345-done');
+            }
+        });
 
         /**
          * Trigger converion goal
@@ -188,6 +328,28 @@
                     window._conv_q.push(["executeExperiment", "1004199433"]);
                     console.log("Experiment Recipe KI19 | Add conventional elements to the checkout | ALL | CRO-7505 Activated");
                 }, 50, 20000)
+            }, test_Recipe_AB_Test_Brand_banner_Move_below_products_ALL_CRO12345: function () {
+                var currentPath = normalizeArcPath(window.location.pathname);
+                var isOnBrandPage = currentPath.indexOf('/brands/') === 0;
+
+                if (isOnBrandPage && arcPageGuard('CRO-12345')) {
+                    lib.waitForElement('#multiForm', function () {
+                        if (!arcPageGuard('CRO-12345 callback')) {
+                            return;
+                        }
+
+                        window.crotest_AB_Test_Brand_banner_Move_below_products_ALL_CRO12345 = 1;
+                        window._conv_q = window._conv_q || [];
+                        window._conv_q.push(['executeExperiment', '1004203197']);
+
+                        console.log('Experiment AB Test | Brand banner | Move below products | ALL | CRO - 12345 Activated');
+                    }, 50, 20000);
+                } else {
+                    if (document.body.classList.contains('CRP_ARC_SW_Brand_Banner_Below')) {
+                        document.body.classList.remove('CRP_ARC_SW_Brand_Banner_Below');
+                        document.body.classList.remove('cro-12345-done');
+                    }
+                }
             }
 
 
@@ -200,8 +362,8 @@
         experiments.test_Recipe_KI53_Reduce_visual_overwhelm_on_Delivery_page_ALL_CRO8143();
         experiments.test_PLP_reduce_distraction_improve_navigation_ALL_CRO7972();
         experiments.test_Recipe_KI19_Add_conventional_elements_to_the_checkout_ALL_CRO7505();
-
+        experiments.test_Recipe_AB_Test_Brand_banner_Move_below_products_ALL_CRO12345();
     } catch (e) {
-        console.log("Error in Global JavaScript");
+        console.log("Error in Global JavaScript", e);
     }
 })();
