@@ -1,0 +1,423 @@
+{% comment %}
+  CRO-12425 | Product row (Winskopies / Topverkopers)
+  Addable section (can be placed multiple times). Heading left, "Sien alles"
+  link right, manually picked products in a peek carousel:
+    - desktop: 5 full cards + a half-peek 6th, arrow buttons
+    - mobile: 1 card + ~20% peek of the next, swipe to scroll
+  No infinite scroll — stops at the first and last product.
+
+  Cards reuse the theme's product-grid-item snippet (image, title, vendor,
+  price, sale/sold-out badges, quick-buy button) restyled via scoped CSS.
+  Review stars come from Judge.me via the standard reviews.rating /
+  reviews.rating_count metafields the app syncs to — no widget JS needed.
+  The theme's own rating row is hidden and replaced with the design's
+  "stars (count)" row so the count renders as "(3)".
+{% endcomment %}
+
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="cro-12425-product-row"
+></script>
+
+{% style %}
+  #shopify-section-{{ section.id }} .cro-12425-prow {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 40px {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__heading {
+    margin: 0;
+    font-weight: 800;
+    font-size: 28px;
+    color: #1d1d1d;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__link {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #007a80;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__link:hover {
+    text-decoration: underline;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__body {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__track {
+    display: flex;
+    gap: 14px;
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide {
+    flex: 0 0 calc((100% - 70px) / 5.5);
+    min-width: 0;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+  }
+
+  /* --- arrows --- */
+  #shopify-section-{{ section.id }} .cro-12425-prow__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #007a80;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(29, 29, 29, 0.25);
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__arrow svg {
+    width: 16px;
+    height: 16px;
+    stroke: #ffffff;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__arrow--prev { left: -19px; }
+  #shopify-section-{{ section.id }} .cro-12425-prow__arrow--next { right: -19px; }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__arrow[disabled] {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  @media screen and (min-width: 860px) {
+    #shopify-section-{{ section.id }} .cro-12425-prow__arrow {
+      display: flex;
+    }
+  }
+
+  /* --- card overrides (reused product-grid-item, restyled to design) --- */
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productgrid--item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productitem {
+    padding: 15px 15px 8px;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productitem--title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 16.8px;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productitem--title a {
+    color: #007a80;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productitem--vendor {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productitem--vendor a {
+    color: #737373;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productitem--price {
+    text-align: center;
+    justify-content: center;
+    color: #484848;
+  }
+
+  /* theme rating row is replaced by our own star row below the card */
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .product__rating {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__slide .productitem--action-atc {
+    background-color: #e99114;
+    border-color: #e99114;
+    border-radius: 4px;
+    color: #ffffff;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px 14px;
+    margin-top: auto;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__rating .rating__star {
+    fill: #ffb500;
+    color: #ffb500;
+    width: 15px;
+    height: 15px;
+  }
+
+  #shopify-section-{{ section.id }} .cro-12425-prow__rating-count {
+    font-size: 13.6px;
+    color: #737373;
+  }
+
+  @media screen and (max-width: 1079px) and (min-width: 640px) {
+    #shopify-section-{{ section.id }} .cro-12425-prow__slide {
+      flex-basis: calc((100% - 28px) / 2.5);
+    }
+  }
+
+  @media screen and (max-width: 859px) {
+    #shopify-section-{{ section.id }} .cro-12425-prow {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .cro-12425-prow__heading {
+      font-size: 22px;
+    }
+  }
+
+  @media screen and (max-width: 639px) {
+    #shopify-section-{{ section.id }} .cro-12425-prow__slide {
+      flex-basis: 80%;
+    }
+  }
+{% endstyle %}
+
+<div class="cro-12425-prow">
+  <div class="cro-12425-prow__header">
+    {% if section.settings.heading != blank %}
+      <h2 class="cro-12425-prow__heading">{{ section.settings.heading | escape }}</h2>
+    {% endif %}
+
+    {% if section.settings.link_label != blank and section.settings.link != blank %}
+      <a class="cro-12425-prow__link" href="{{ section.settings.link }}">
+        {{ section.settings.link_label | escape }}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true" focusable="false">
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <polyline points="13 5 20 12 13 19"></polyline>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="cro-12425-prow__body" data-cro-12425-carousel>
+    <button
+      class="cro-12425-prow__arrow cro-12425-prow__arrow--prev"
+      type="button"
+      aria-label="Vorige"
+      data-cro-12425-prev
+      disabled
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <ul class="cro-12425-prow__track" data-cro-12425-track>
+      {% for block in section.blocks %}
+        {% assign row_product = block.settings.product %}
+        {% if row_product == blank and request.design_mode != true %}
+          {% continue %}
+        {% endif %}
+
+        <li class="cro-12425-prow__slide" data-cro-12425-slide {{ block.shopify_attributes }}>
+          {%
+            render 'product-grid-item',
+            product: row_product,
+          %}
+
+          {% if row_product.metafields.reviews.rating.value != blank and row_product.metafields.reviews.rating_count > 0 %}
+            <div class="cro-12425-prow__rating">
+              {%
+                render 'rating-stars',
+                value: row_product.metafields.reviews.rating.value.rating,
+                scale_max: row_product.metafields.reviews.rating.value.scale_max,
+              %}
+              <span class="cro-12425-prow__rating-count" aria-hidden="true">
+                ({{ row_product.metafields.reviews.rating_count }})
+              </span>
+              <span class="visually-hidden">
+                {{ row_product.metafields.reviews.rating_count }}
+                {{ 'general.accessibility.star_reviews_text' | t }}
+              </span>
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <button
+      class="cro-12425-prow__arrow cro-12425-prow__arrow--next"
+      type="button"
+      aria-label="Volgende"
+      data-cro-12425-next
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var section = document.currentScript.closest('.shopify-section') || document;
+
+    section.querySelectorAll('[data-cro-12425-carousel]').forEach(function (root) {
+      if (root.dataset.croInitialized) return;
+      root.dataset.croInitialized = 'true';
+
+      var track = root.querySelector('[data-cro-12425-track]');
+      var prev = root.querySelector('[data-cro-12425-prev]');
+      var next = root.querySelector('[data-cro-12425-next]');
+      if (!track || !prev || !next) return;
+
+      function step() {
+        var slide = track.querySelector('[data-cro-12425-slide]');
+        return slide ? slide.getBoundingClientRect().width + 14 : track.clientWidth;
+      }
+
+      function updateArrows() {
+        var maxScroll = track.scrollWidth - track.clientWidth - 1;
+        prev.disabled = track.scrollLeft <= 0;
+        next.disabled = track.scrollLeft >= maxScroll;
+      }
+
+      prev.addEventListener('click', function () {
+        track.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', function () {
+        track.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+      track.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows, { passive: true });
+      updateArrows();
+
+      // Products with options must go to the product page to choose options
+      // (the theme default opens a quickshop modal). Capture phase so this
+      // wins over the theme's delegated handler.
+      root.addEventListener(
+        'click',
+        function (event) {
+          var trigger = event.target.closest('[data-quickshop-slim]');
+          if (!trigger) return;
+
+          var item = trigger.closest('[data-product-item]');
+          var url = item && item.getAttribute('data-product-quickshop-url');
+          if (!url) return;
+
+          event.preventDefault();
+          event.stopPropagation();
+          window.location.href = url;
+        },
+        true
+      );
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "CRO-12425 Product Row",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Winskopies"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Sien alles"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO-12425 Product Row",
+      "category": "CRO"
+    }
+  ]
+}
+{% endschema %}

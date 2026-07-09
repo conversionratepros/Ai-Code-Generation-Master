@@ -44,3 +44,37 @@ When a CRO spec calls for a merchant-editable repeating tile list (image + text 
 | CRO-12287 | Get a Quote — Typeform sitewide router | — | Sitewide "Get a Quote" Typeform redesign |
 | CRO-12327 | Credibility Trust Bar | — | Trust bar, test 1 of credibility system |
 | CRO-12405 | Homepage ATF — Search + Category Pills | `templates/index.cro-12405.json` → `sections/cro-12405-hero-search.liquid` | Replaces static homepage hero with a predictive-search bar (reuses Dawn's nav search exactly), a Typeform "Get a Quote" link (reuses header's trigger exactly), and 8 editable category tiles (image_picker + url, falls back to bundled Figma placeholder images) |
+
+## GA4 Event Tracking on JasonL (CRO-12465 findings)
+
+The GA4 property `G-W3QG4GQNB5` is loaded on every page **twice into the default
+`dataLayer`**: by GTM (`GTM-TCCRT9`) and by a plain theme `gtag/js?id=G-W3QG4GQNB5`
+include (plus a third copy inside Shopify's sandboxed Google & YouTube channel pixel,
+which is unreachable from page JS). Consequences for firing custom GA4 events:
+
+- **`window.gtag(...)` silently drops events.** The site's `window.gtag` is
+  `function(){o.push(arguments)}` where `o` is a stale captured queue that is never
+  processed — verified: no collect hit fires.
+- **A second isolated gtag instance (`gtag/js?...&l=customLayer`) never processes its
+  queue** because `google_tag_manager['G-W3QG4GQNB5']` is already registered — the layer
+  stays raw (`push === Array.prototype.push`).
+- **What works:** push a gtag-style `arguments` object straight onto the default layer
+  (must be an Arguments object, not an array):
+
+  ```js
+  function g() { window.dataLayer.push(arguments); }
+  g('event', 'my_event', { my_param: 'x', send_to: 'G-W3QG4GQNB5' });
+  ```
+
+  Verified live: collect POST to `analytics.google.com/g/collect` with
+  `en=my_event&ep.my_param=x`, often **batched** — the event name sits in the POST body,
+  not the URL, so network checks must inspect the body.
+
+## Formbricks (survey tool used by CRO-12465)
+
+- Responses are submitted with the public unauthenticated client API:
+  `POST https://app.formbricks.com/api/v1/client/{environmentId}/responses` with
+  `{ surveyId, finished: true, data: { [questionId]: ["<choice label>"] } }`.
+- The "workspace" ID in the new Formbricks dashboard URL
+  (`/workspaces/{id}/surveys/...`) **is** the client-API environment ID.
+- Choice answers are matched by **label text**, not choice ID.

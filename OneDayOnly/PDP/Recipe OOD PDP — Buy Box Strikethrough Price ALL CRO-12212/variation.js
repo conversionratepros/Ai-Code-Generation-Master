@@ -3,6 +3,7 @@
         var VARIATION = 'cro-t-odo-12212';
 
         var priceObserver = null;
+        var backendCache = {};
 
         function waitForElement(selector, cb) {
             var tries = 0;
@@ -99,21 +100,73 @@
             }
         }
 
-        // Single source of truth: the desktop buy box price elements (React keeps them
-        // updated in the DOM at every viewport). The savings amount is the exact
-        // retail − price difference — never the rounded percent-derived backend figure.
+        // Backend product object for the CURRENT page. window.__NEXT_DATA__ is a
+        // page-load snapshot and goes stale on client-side navigation, so only trust
+        // it when product.id matches the URL slug; otherwise fetch this PDP's HTML
+        // once and parse its __NEXT_DATA__ (no /_next/data JSON route — the CDN
+        // rewrites it to HTML). Returns null while a fetch is pending or failed.
+        function getBackendProduct() {
+            var m = location.pathname.match(/\/products\/([^\/?#]+)/);
+            var slug = m && m[1];
+            if (!slug) return null;
+
+            try {
+                var nd = window.__NEXT_DATA__;
+                var p = nd && nd.props && nd.props.pageProps && nd.props.pageProps.product;
+                if (p && p.id === slug) return p;
+            } catch (e) { }
+
+            var cached = backendCache[slug];
+            if (cached && cached !== 'pending' && cached !== 'failed') return cached;
+            if (!cached) {
+                backendCache[slug] = 'pending';
+                fetch(location.href, { credentials: 'same-origin' })
+                    .then(function (r) { return r.text(); })
+                    .then(function (html) {
+                        var match = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+                        var fresh = match ? JSON.parse(match[1]).props.pageProps.product : null;
+                        if (fresh && fresh.id === slug) {
+                            backendCache[slug] = fresh;
+                            updateDisplay();
+                        } else {
+                            backendCache[slug] = 'failed';
+                        }
+                    })
+                    .catch(function () { backendCache[slug] = 'failed'; });
+            }
+            return null;
+        }
+
+        // Prices come from the desktop buy box DOM (React keeps them updated at every
+        // viewport). The savings line comes from the backend saving object in
+        // __NEXT_DATA__ (client-requested, 2026-07-09) — note saving.fixed is
+        // percent-derived and rounded, so it can differ from exact retail − price
+        // by a rand or two (R2,100 vs R2,101 on the spec product); accepted.
+        // Exact DOM math is only the fallback while backend data is unavailable.
         function updateDisplay() {
             var els = getDesktopPriceEls();
             if (!els) return;
 
             var nowText = els.priceEl.textContent.trim();
             var wasText = els.wasEl ? els.wasEl.textContent.trim() : '';
-            var now = parsePrice(nowText);
-            var was = parsePrice(wasText);
-            var savings =
-                now !== null && was !== null && was > now
-                    ? 'Retail ' + formatRand(was) + ' — You save ' + formatRand(was - now)
-                    : '';
+
+            var savings = '';
+            var product = getBackendProduct();
+            if (product) {
+                if (product.saving && product.saving.fixed && product.saving.fixed.formattedValue) {
+                    var retail =
+                        product.retailPrice && product.retailPrice.formattedValue
+                            ? product.retailPrice.formattedValue
+                            : wasText;
+                    savings = 'Retail ' + retail + ' — You save ' + product.saving.fixed.formattedValue;
+                }
+            } else {
+                var now = parsePrice(nowText);
+                var was = parsePrice(wasText);
+                if (now !== null && was !== null && was > now) {
+                    savings = 'Retail ' + formatRand(was) + ' — You save ' + formatRand(was - now);
+                }
+            }
 
             // Desktop savings line lives inside the (now flex) price row
             var dSav = els.row.querySelector('.cro-12212-savings');

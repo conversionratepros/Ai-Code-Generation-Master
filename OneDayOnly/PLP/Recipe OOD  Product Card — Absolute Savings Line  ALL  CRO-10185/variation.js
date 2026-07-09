@@ -31,27 +31,64 @@
         // from saving.percent, so only that percent guarantees a match with
         // control — arithmetic on the display prices drifts on .5 boundaries
         // (e.g. R999/R1,800 computes to 45% where the native badge shows 44%).
-        // saving.fixed is NOT used: it's percent-derived and rounded, the
-        // savings line shows the exact rand difference instead.
+        // The rand amount is saving.fixed.formattedValue (client-requested,
+        // 2026-07-09) — it's percent-derived and rounded (R170 where
+        // R400 − R229 = R171), accepted; exact DOM math is only the fallback
+        // for cards absent from the page-load payload.
+        function collectSavings(node, map) {
+            if (!node || typeof node !== 'object') return;
+            if (node.id && node.price && node.saving && typeof node.saving === 'object') {
+                map[node.id] = node.saving;
+            }
+            for (var k in node) {
+                if (node[k] && typeof node[k] === 'object') collectSavings(node[k], map);
+            }
+        }
+
         function getSavingsMap() {
             if (window.cro_10185_savings) return window.cro_10185_savings;
             var map = {};
             try {
                 var el = document.getElementById('__NEXT_DATA__');
-                if (el) {
-                    (function walk(node) {
-                        if (!node || typeof node !== 'object') return;
-                        if (node.id && node.price && node.saving && typeof node.saving === 'object') {
-                            map[node.id] = node.saving;
-                        }
-                        for (var k in node) {
-                            if (node[k] && typeof node[k] === 'object') walk(node[k]);
-                        }
-                    })(JSON.parse(el.textContent));
-                }
+                if (el) collectSavings(JSON.parse(el.textContent), map);
             } catch (e) { }
             window.cro_10185_savings = map;
             return map;
+        }
+
+        // Cards on SPA-navigated shop pages aren't in the page-load payload, so
+        // their backend saving.fixed is unknown at processCard time. Fetch the
+        // current page's HTML once per pathname (no /_next/data JSON route — the
+        // CDN rewrites it to HTML), merge its __NEXT_DATA__ savings into the map,
+        // then correct any already-rendered lines that used the computed fallback.
+        var fetchedPaths = {};
+        function refreshSavingsMap() {
+            var path = location.pathname;
+            if (fetchedPaths[path]) return;
+            fetchedPaths[path] = true;
+            fetch(location.href, { credentials: 'same-origin' })
+                .then(function (r) { return r.text(); })
+                .then(function (html) {
+                    var m = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+                    if (!m) return;
+                    collectSavings(JSON.parse(m[1]), getSavingsMap());
+                    updateRenderedLines();
+                })
+                .catch(function () { });
+        }
+
+        function updateRenderedLines() {
+            var map = getSavingsMap();
+            document.querySelectorAll('.measure-this[data-cro-10185]').forEach(function (card) {
+                var s = map[card.id];
+                if (!s || !s.fixed || !s.fixed.formattedValue) return;
+                var line = card.querySelector('.cro-10185-savings-line');
+                if (!line || line.classList.contains('cro-10185-savings-line--empty')) return;
+                var pct = s.percent > 0 ? s.percent : 0;
+                line.textContent = 'You save ' + s.fixed.formattedValue + (pct ? ' (' + pct + '%)' : '');
+                var badgePct = card.querySelector('.cro-10185-save-pct');
+                if (badgePct && pct) badgePct.textContent = pct + '%';
+            });
         }
 
         // Normalizes casing (source text varies: "more options", "MORE OPTIONS",
@@ -134,20 +171,30 @@
             // ── Savings calculation ───────────────────────────────────────────
             // Percent: backend saving object → hidden native badge text →
             // computed (last resort) — display-price math drifts on .5 (45 vs 44).
-            // Rand amount: exact difference of the displayed prices (CRO-12212
-            // pattern) — backend saving.fixed is percent-derived and rounded
-            // (says R170 where R400 − R229 = R171).
+            // Rand amount: backend saving.fixed.formattedValue (client-requested,
+            // 2026-07-09; rounded — R170 where R400 − R229 = R171, accepted) →
+            // exact difference of the displayed prices for cards not in the map.
             var sellingPrice = parsePrice(sellingEl);
             var originalPrice = parsePrice(originalEl);
             var saving = (originalPrice > 0 && sellingPrice > 0 && originalPrice > sellingPrice)
                 ? originalPrice - sellingPrice : 0;
             var pct = 0;
             var pctSource = 'none';
+            var savingText = null;
+            var amountSource = 'none';
 
             var backendSaving = getSavingsMap()[card.id];
+            if (!backendSaving) refreshSavingsMap();
             if (backendSaving && backendSaving.percent > 0) {
                 pct = backendSaving.percent;
                 pctSource = 'backend';
+            }
+            if (backendSaving && backendSaving.fixed && backendSaving.fixed.formattedValue) {
+                savingText = backendSaving.fixed.formattedValue;
+                amountSource = 'backend';
+            } else if (saving > 0) {
+                savingText = 'R' + formatAmount(saving);
+                amountSource = 'computed';
             }
             if (!pct) {
                 // SPA-loaded card absent from __NEXT_DATA__: the native badge
@@ -163,7 +210,7 @@
                 pct = Math.round((saving / originalPrice) * 100);
                 pctSource = 'computed';
             }
-            var hasSaving = pct > 0 && saving > 0;
+            var hasSaving = pct > 0 && !!savingText;
 
             if (hasSaving) {
                 // SAVE badge on image
@@ -181,7 +228,7 @@
                 var savingsLine = document.createElement('div');
                 savingsLine.className = 'cro-10185-savings-line';
                 if (hasSaving) {
-                    savingsLine.textContent = 'You save R' + formatAmount(saving) + ' (' + pct + '%)';
+                    savingsLine.textContent = 'You save ' + savingText + ' (' + pct + '%)';
                 } else {
                     savingsLine.classList.add('cro-10185-savings-line--empty');
                     savingsLine.setAttribute('aria-hidden', 'true');
@@ -278,7 +325,7 @@
                     ? Array.prototype.map.call(pillContainer.querySelectorAll('.pill'), function (p) { return p.textContent.trim(); })
                     : [];
                 console.log('[CRO-10185 pills]', heading, pillTexts);
-                console.log('[CRO-10185 savings]', heading, { pct: pct, saving: saving, source: pctSource });
+                console.log('[CRO-10185 savings]', heading, { pct: pct, pctSource: pctSource, amount: savingText, amountSource: amountSource });
             })();
 
         }
