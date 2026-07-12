@@ -21,15 +21,46 @@ template to 50% of visitors; control stays on the live `index.json`.
 | `sections/cro-12425-icon-row.liquid` | Audience shortcut circles (4 default items) |
 | `sections/cro-12425-category-grid.liquid` | "Koop volgens kategorie" image + colour cards |
 | `sections/cro-12425-trust-strip.liquid` | USP strip (3 default items) |
-| `sections/cro-12425-product-row.liquid` | Peek carousel product row (used twice: Winskopies + Topverkopers) |
+| `sections/cro-12425-rows-figma-css.liquid` | CSS-only Figma restyle of the control's `custom-product-rows` section (used for both rows) |
+| `sections/cro-12425-product-row.liquid` | Original bespoke product row — **superseded**, kept as fallback, not in the template |
 | `sections/cro-12425-brand-story.liquid` | "Die Afrikaanse aanlyn mark" text banner |
-| `assets/cro-12425-icon-*.svg` | 7 default icons exported from Figma (4 audience + 3 trust) |
+| `snippets/cro-12425-icon.liquid` | All 7 default icons (4 audience + 3 trust) inlined as SVG |
+| `_figma-source-svgs/` | Raw Figma exports — reference only, **do not upload** |
 
-Upload all `sections/`, `assets/` and `templates/` files to the live theme
-(they are additive), then open the theme editor on the new template to
-finish content.
+Upload all `sections/`, `snippets/` and `templates/` files to the live theme
+(they are additive — no asset uploads needed), then open the theme editor on
+the new template to finish content.
 
 ## Key decisions / how it works
+
+- **Product rows reuse the CONTROL's own section** (`custom-product-rows`,
+  already live on the control homepage) instead of the bespoke
+  `cro-12425-product-row`, per client preference. It already matches the
+  Figma carousel spec (5.5-card desktop peek, 80% mobile cards, teal arrows
+  with disabled ends, hover price→ATC swap, `★★★★★ (n)` row hidden at 0
+  reviews). `cro-12425-rows-figma-css.liquid` — added once to the variant
+  template only — closes the visual gaps: heading font/alignment, "Shop all"
+  button → "Sien alles →" top-right link, dots hidden, 1280px width, mobile
+  gutters/no arrows, card fonts. Control rendering is untouched.
+- **Behavioural notes inherited from the control section** (all identical to
+  control = good test parity, but flag to the client vs the spec):
+  products are **collection-driven and randomised per pageview**
+  (Fisher-Yates shuffle, capped by `max_products`) — not manual picks; the
+  client curates by editing the collection (Topverkopers currently points at
+  `all` — swap for a curated collection). Multi-variant products add their
+  first available variant directly (no "Kies opsies" step). ATC is a full
+  form POST to /cart/add (navigates to cart). The sold-out button label is
+  hard-coded English "Sold Out". The sale badge is red, top-left.
+
+- **Icons are inline SVG** (`snippets/cro-12425-icon.liquid`), not theme
+  assets. The Figma exports were sanitized before inlining: canvas backdrop
+  rects and neighbouring-element mask artifacts (trust-strip border lines,
+  the sale tag's parent circle border) removed, and every internal SVG `id`
+  namespaced per icon so seven inline SVGs on one page can't collide
+  (colliding clip-path ids resolve to the first match document-wide and
+  break rendering). White viewBox-sized rects inside `<clipPath>` defs were
+  deliberately kept — removing them empties the clip and blanks the icon.
+  A per-item `image_picker` still overrides the inline default.
 
 - **Judge.me stars**: Judge.me syncs ratings to the standard
   `product.metafields.reviews.rating` / `reviews.rating_count` metafields and

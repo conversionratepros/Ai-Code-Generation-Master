@@ -4,10 +4,9 @@
   Items are addable/removable blocks. The heading is a net-new addition
   (the design shows no heading here) — it only renders when set.
 
-  Icon precedence per block: uploaded image > bundled default icon asset.
-  Default icon assets shipped with this test:
-    cro-12425-icon-vir-mans.svg, cro-12425-icon-vir-vroue.svg,
-    cro-12425-icon-babas-kinders.svg, cro-12425-icon-uitverkoping.svg
+  Icon precedence per block: uploaded image > inline default icon.
+  Default icons render inline from snippets/cro-12425-icon.liquid
+  (no theme asset uploads needed).
 {% endcomment %}
 
 <script
@@ -146,13 +145,7 @@
                 lazy: true,
               %}
             {% elsif block.settings.default_icon != 'none' %}
-              <img
-                src="{{ block.settings.default_icon | prepend: 'cro-12425-icon-' | append: '.svg' | asset_url }}"
-                alt=""
-                width="53"
-                height="53"
-                loading="lazy"
-              >
+              {% render 'cro-12425-icon', icon: block.settings.default_icon %}
             {% endif %}
           </span>
           <span class="cro-12425-icon-row__label">{{ block.settings.label | escape }}</span>

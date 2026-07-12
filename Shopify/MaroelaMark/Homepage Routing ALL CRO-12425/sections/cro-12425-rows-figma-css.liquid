@@ -1,0 +1,150 @@
+{% comment %}
+  CRO-12425 | Figma restyle for the control's "Product Rows Custom" section
+  CSS-ONLY. Added once to the variant template (index.cro-12425.json), so
+  these overrides exist only on the variant page. The control section file
+  (sections/custom-product-rows.liquid) is NOT edited, and control rendering
+  is untouched.
+
+  The control section already matches the Figma carousel spec (5.5-card
+  desktop peek, 80% mobile cards, teal arrows with disabled ends, hover
+  price/ATC swap, star row hidden at 0 reviews). This file closes the gaps:
+    1. Heading: Cutive serif centred  ->  theme heading font 800, dark, left
+    2. "Shop all" bottom button       ->  "Sien alles ->" text link top-right
+    3. Dot navigation                 ->  hidden (not in the design)
+    4. Full-bleed                     ->  1280px content width
+    5. Mobile: arrows hidden, 16px side padding (Figma mobile spec)
+    6. Card title/price font          ->  theme heading font (design match)
+
+  Specificity note: the control section styles use single-class selectors;
+  every override here uses a two-class descendant selector so it wins
+  without !important (except where the control itself uses !important).
+{% endcomment %}
+
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="cro-12425-rows-figma-css"
+></script>
+
+{% style %}
+  /* 4. content width + anchor for the repositioned "Sien alles" link */
+  .custom-section-outer {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+
+  /* 1. heading per Figma */
+  .custom-section-outer .custom-rows-heading {
+    font-family: var(--heading-font-family), sans-serif;
+    font-weight: 800;
+    color: #1d1d1d;
+    text-align: left;
+    font-size: 28px;
+    margin: 0 0 12px;
+    padding: 0 50px;
+  }
+
+  /* 2. "Shop all" button becomes a top-right "Sien alles →" text link */
+  .custom-section-outer .custom-shopall-wrap {
+    position: absolute;
+    top: {{ section.settings.link_top_offset }}px;
+    right: 50px;
+    margin: 0;
+  }
+
+  .custom-section-outer .custom-btn-shopall {
+    background: none;
+    color: #007a80;
+    font-family: var(--heading-font-family), sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 0;
+    text-transform: none;
+  }
+
+  .custom-section-outer .custom-btn-shopall::after {
+    content: " \2192";
+  }
+
+  .custom-section-outer .custom-btn-shopall:hover {
+    text-decoration: underline;
+    opacity: 1;
+  }
+
+  /* 3. no dots in the design */
+  .custom-section-outer .custom-dot-navigation {
+    display: none;
+  }
+
+  /* 6. card typography on theme heading font (control hardcodes Proxima Nova) */
+  .custom-section-outer .custom-txt-title {
+    font-family: var(--heading-font-family), sans-serif;
+    font-size: 16.8px;
+  }
+
+  .custom-section-outer .custom-txt-price {
+    font-family: var(--heading-font-family), sans-serif;
+    font-size: 18.4px;
+  }
+
+  .custom-section-outer .custom-btn-atc {
+    font-family: var(--button-font-family), sans-serif;
+    border-radius: 4px;
+  }
+
+  /* 5. mobile per Figma: tighter gutters, swipe only (no arrows) */
+  @media screen and (max-width: 768px) {
+    .custom-section-outer .custom-rows-heading {
+      font-size: 22px;
+      padding: 0 16px;
+    }
+
+    .custom-section-outer .custom-row-container {
+      padding: 0 16px;
+    }
+
+    .custom-row-container .custom-carousel-arrow {
+      display: none;
+    }
+
+    .custom-section-outer .custom-shopall-wrap {
+      right: 16px;
+    }
+
+    .custom-section-outer .custom-btn-shopall {
+      font-size: 14px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "CRO-12425 Rows Figma CSS",
+  "class": "cro-12425-rows-figma-css",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "CSS-only. Restyles every 'Product Rows Custom' section on this template to the CRO-12425 Figma design. Add once per template; remove to restore the control styling. Does not affect other templates."
+    },
+    {
+      "type": "range",
+      "id": "link_top_offset",
+      "label": "\"Sien alles\" link distance from section top",
+      "info": "Align with the row heading. Increase if the section's top padding is increased.",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO-12425 Rows Figma CSS",
+      "category": "CRO"
+    }
+  ]
+}
+{% endschema %}

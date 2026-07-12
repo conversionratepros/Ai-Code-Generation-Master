@@ -3,10 +3,9 @@
   Inline centred row of icon + text items between horizontal rules.
   Non-interactive; items wrap when horizontal space runs out.
 
-  Icon precedence per block: uploaded image > bundled default icon asset.
-  Default icon assets shipped with this test:
-    cro-12425-icon-aflewering.svg, cro-12425-icon-terugstuur.svg,
-    cro-12425-icon-veilige-betaling.svg
+  Icon precedence per block: uploaded image > inline default icon.
+  Default icons render inline from snippets/cro-12425-icon.liquid
+  (no theme asset uploads needed).
 {% endcomment %}
 
 <script
@@ -40,7 +39,8 @@
   }
 
   .cro-12425-trust__icon,
-  .cro-12425-trust__icon img {
+  .cro-12425-trust__icon img,
+  .cro-12425-trust__icon svg {
     width: 26px;
     height: 26px;
     display: block;
@@ -78,13 +78,7 @@
               lazy: true,
             %}
           {% elsif block.settings.default_icon != 'none' %}
-            <img
-              src="{{ block.settings.default_icon | prepend: 'cro-12425-icon-' | append: '.svg' | asset_url }}"
-              alt=""
-              width="26"
-              height="26"
-              loading="lazy"
-            >
+            {% render 'cro-12425-icon', icon: block.settings.default_icon %}
           {% endif %}
         </span>
         <span class="cro-12425-trust__text">{{ block.settings.text | escape }}</span>

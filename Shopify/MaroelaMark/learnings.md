@@ -127,6 +127,67 @@ function waitForElement(selector, callback) {
   `section.settings.image_picker` values
 - Mobile breakpoint used across CRO sections: 860px (matches header collapse)
 
+## Inline SVG Icons from Figma Exports (CRO-12425)
+
+- Prefer one `snippets/cro-XXXXX-icon.liquid` with a `{% case icon %}` of
+  inline SVGs over uploading icon assets — one file, no asset step
+- Figma `download_assets` SVG exports of nested nodes carry junk that MUST be
+  sanitized before inlining (verify by rendering on a non-white background):
+  - a grey `#E5E5E5` viewBox-sized backdrop rect + page-sized white rects
+  - neighbouring-element artifacts drawn via `path-N-inside` masks (e.g. the
+    trust strip's border hairlines, a parent circle's border) — remove the
+    `<mask>` defs, then any path still referencing a removed mask id
+  - do NOT remove white viewBox-sized rects inside `<clipPath>` — an empty
+    clipPath clips the whole icon away (blank icon)
+- Namespace all internal `id`s per icon (`cro12425-{slug}-…`) — several inline
+  SVGs on one page share the document id space; duplicate clip-path ids
+  resolve to the first match and break rendering
+
+## Gotcha: New Shopify "code space" editor does NOT autosave
+
+- Files created/edited in the new VS Code-style admin code editor stay as
+  **browser-local drafts** until each file is explicitly saved (Cmd+S / Save
+  button per file). Symptom: file visible in the editor's file tree, but the
+  customizer template list, storefront `?view=` URL, and Themes "Last saved"
+  don't reflect it. Timeline panel shows "File Saved" as hollow/pending.
+- Alternate `index.*.json` templates only appear in the customizer's
+  "Home page" dropdown (chevron + submenu) once ≥2 saved index templates
+  exist; the customizer fetches the template list on page load only.
+- Fast diagnostic chain: storefront `/?view={suffix}` (bypasses editor) →
+  theme ID match between code editor and customizer URLs → per-file save state.
+
+## Gotcha: Customizer cannot open alternate index (home) templates
+
+- Confirmed on this store (2026-07): the Home page dropdown never lists
+  alternate `index.*.json` templates, search finds them but clicking
+  redirects to the control home page, and `editor?template=index.{suffix}`
+  gets stripped from the URL. Products/collections/pages route fine because
+  they are resources with template assignment; home is not.
+- **Workaround — duplicate-theme edit flow**: duplicate the live theme →
+  on the duplicate, replace `index.json` contents with the variant template
+  JSON → customize the duplicate (variant is now its default home page) →
+  copy the edited `index.json` back into the live theme's
+  `index.{suffix}.json` → verify via `/?view={suffix}` → delete duplicate.
+- Safe because template JSON is store-level: images are
+  `shopify://shop_images/<filename>` refs and products are handles — the
+  JSON ports between themes verbatim.
+
+## Restyling an existing section per-template (CSS-only section pattern)
+
+- To reuse a live/control section in a CRO template with different styling,
+  ship a **CSS-only section** (`{% style %}` + empty-ish schema) and add it
+  once to the CRO template JSON — overrides then exist only on that
+  template; the shared section file is never edited
+- Beat the original's single-class selectors with two-class descendant
+  selectors — no `!important` needed
+- Theme font hooks: `var(--heading-font-family)`, `var(--body-font-family)`,
+  `var(--button-font-family)` (Empire 12/13 exposes these on :root)
+- The newer live theme (in `Meta Social Pre-Lander CRO-12245/Theme/`) has
+  `sections/custom-product-rows.liquid`: collection-driven peek carousel,
+  **randomises products per pageview** (Fisher-Yates), direct first-variant
+  ATC via form POST, hard-coded English "Sold Out", stars from
+  `reviews.rating_count` only (always 5 gold stars)
+
 ## Tests Built
 
 | Test | Task | Template | Description |

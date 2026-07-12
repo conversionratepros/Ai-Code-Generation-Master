@@ -139,41 +139,35 @@
       "settings": {}
     },
     "cro_row_winskopies": {
-      "type": "cro-12425-product-row",
-      "blocks": {
-        "product_1": { "type": "product", "settings": {} },
-        "product_2": { "type": "product", "settings": {} },
-        "product_3": { "type": "product", "settings": {} },
-        "product_4": { "type": "product", "settings": {} },
-        "product_5": { "type": "product", "settings": {} },
-        "product_6": { "type": "product", "settings": {} }
-      },
-      "block_order": ["product_1", "product_2", "product_3", "product_4", "product_5", "product_6"],
+      "type": "custom-product-rows",
       "settings": {
-        "heading": "Winskopies",
-        "link_label": "Sien alles",
-        "link": "shopify://collections/uitverkoping",
-        "padding_top": 40,
-        "padding_bottom": 20
+        "collection": "uitverkoping",
+        "heading_text": "Winskopies",
+        "show_heading": true,
+        "enable_cta": true,
+        "cta_text": "Sien alles",
+        "max_products": 12,
+        "top_padding": 36,
+        "bottom_padding": 20
       }
     },
     "cro_row_topverkopers": {
-      "type": "cro-12425-product-row",
-      "blocks": {
-        "product_1": { "type": "product", "settings": {} },
-        "product_2": { "type": "product", "settings": {} },
-        "product_3": { "type": "product", "settings": {} },
-        "product_4": { "type": "product", "settings": {} },
-        "product_5": { "type": "product", "settings": {} },
-        "product_6": { "type": "product", "settings": {} }
-      },
-      "block_order": ["product_1", "product_2", "product_3", "product_4", "product_5", "product_6"],
+      "type": "custom-product-rows",
       "settings": {
-        "heading": "Topverkopers",
-        "link_label": "Sien alles",
-        "link": "shopify://collections/all",
-        "padding_top": 20,
-        "padding_bottom": 40
+        "collection": "all",
+        "heading_text": "Topverkopers",
+        "show_heading": true,
+        "enable_cta": true,
+        "cta_text": "Sien alles",
+        "max_products": 12,
+        "top_padding": 20,
+        "bottom_padding": 36
+      }
+    },
+    "cro_rows_figma_css": {
+      "type": "cro-12425-rows-figma-css",
+      "settings": {
+        "link_top_offset": 42
       }
     },
     "cro_brand_story": {
@@ -203,6 +197,7 @@
     "cro_trust_strip",
     "cro_row_winskopies",
     "cro_row_topverkopers",
+    "cro_rows_figma_css",
     "cro_brand_story"
   ]
 }
