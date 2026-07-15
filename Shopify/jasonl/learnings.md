@@ -44,6 +44,30 @@ When a CRO spec calls for a merchant-editable repeating tile list (image + text 
 | CRO-12287 | Get a Quote — Typeform sitewide router | — | Sitewide "Get a Quote" Typeform redesign |
 | CRO-12327 | Credibility Trust Bar | — | Trust bar, test 1 of credibility system |
 | CRO-12405 | Homepage ATF — Search + Category Pills | `templates/index.cro-12405.json` → `sections/cro-12405-hero-search.liquid` | Replaces static homepage hero with a predictive-search bar (reuses Dawn's nav search exactly), a Typeform "Get a Quote" link (reuses header's trigger exactly), and 8 editable category tiles (image_picker + url, falls back to bundled Figma placeholder images) |
+| CRO-12359 | PDP V2 — USPs, keep shipping table | `templates/product.crp.json` → `sections/main-product_crp.liquid` | V2 of the PDP buy-box test: in-place edit of the existing crp variant template (shipping `<details>` now `open` by default; USP row-1 word now category-mapped via `get_product_category`, office-chairs → "Ergonomic", fallback "Modular"; over-$10k quote link switched to settings-driven Typeform attrs) |
+
+## The `crp` PDP Variant Template (layered CRO tests)
+
+`templates/product.crp.json` → `sections/main-product_crp.liquid` is a long-lived
+variant PDP that CRO tests layer onto rather than rebuild:
+- `buy-buttons_crp.liquid` came from **CRO-12170** (Add to Quote journey — Add to Cart
+  hidden in DOM but kept for form submission, ATQ/Back-Order full-width via
+  `.crp-buy-box` in `main-product-crp.css`).
+- The fulfilment USP list, assembly notice, `shipping-rates-table_crp.liquid`, and
+  returns block were added for **CRO-12359**.
+- Buy Now is removed via the template JSON (`buy_buttons` block →
+  `"show_dynamic_checkout": false`), not by editing the snippet — the payment button
+  is Shopify's dynamic checkout `{{ form | payment_button }}`.
+- Body class is `product-crp` (from `body-classes.liquid`:
+  `{{template.name}}-{{template.suffix}}`); `main-product-crp.css` mirrors
+  `product-page.css` rules there because that stylesheet scopes to `.product-template`.
+- Stock-state UI: `.crp-instock-text` / `.crp-backorder-text` are both in the DOM;
+  CSS toggles them via `html:has(.product-form__buttons.preorder-show)` (class set by
+  `product-info.js` and by Liquid for `contact-to-purchase` products).
+- Product category for per-category copy: `{% render 'get_product_category', product: product %}`
+  returns the product's parent collection **title** by matching `product.collections`
+  against the `main-menu-image-without-more-testing` linklist (same lookup the contact
+  popup uses) — handleize it before mapping.
 
 ## GA4 Event Tracking on JasonL (CRO-12465 findings)
 

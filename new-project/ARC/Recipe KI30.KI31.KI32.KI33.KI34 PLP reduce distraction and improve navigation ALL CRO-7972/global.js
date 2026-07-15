@@ -6,7 +6,8 @@
         var EXCLUDED_PATHS = [
             '/arc/arc-exclusives',
             '/arc-personalisation',
-            '/new-in'
+            '/new-in',
+            '/sales'
         ];
         var EXCLUDED_CONTAINS = ['/admin'];
         var currentPagePath = window.location.pathname;
@@ -289,7 +290,7 @@
             },
             test_Recipe_KI5_Remove_headers_on_PLPs_ALL_CRO7521() {
                 var currentPath = window.location.pathname;
-                if (currentPath.indexOf('/brands') == -1) {
+                if (currentPath.indexOf('/brands') == -1 || currentPath.indexOf('/sales') == -1) {
                     lib.waitForElement('#multiForm', function () {
                         window.crotest_KI5_Remove_headers_on_PLPs_ALL_CRO7521 = 1;
                         window._conv_q = window._conv_q || [];
@@ -308,7 +309,7 @@
             }, test_PLP_reduce_distraction_improve_navigation_ALL_CRO7972() {
                 var currentPath = window.location.pathname;
                 lib.waitForElement('#multiForm', function () {
-                    if (currentPath.indexOf('/brands') == -1) {
+                    if (currentPath.indexOf('/brands') == -1 || currentPath.indexOf('/sales') == -1) {
                         window.crotest_PLP_reduce_distraction_improve_navigation_ALL_CRO7972 = 1;
                         window._conv_q = window._conv_q || [];
                         window._conv_q.push(["executeExperiment", "1004198304"]);
@@ -350,9 +351,33 @@
                         document.body.classList.remove('cro-12345-done');
                     }
                 }
+            }, test_AB_Test_PLP_discovery_blocks_Move_below_product_grid_ALL_CRO12370() {
+                var currentPath = window.location.pathname;
+                lib.waitForElement('#multiForm', function () {
+                    if (currentPath.indexOf('/brands') == -1 || currentPath.indexOf('/sales') == -1) {
+                        window.crotest_AB_Test_PLP_discovery_blocks_Move_below_product_grid_CRO12370 = 1;
+                        window._conv_q = window._conv_q || [];
+                        window._conv_q.push(["executeExperiment", "1004203738"]);
+                        console.log("Experiment AB Test | PLP discovery blocks | Move below product grid | ALL | CRO-12370 Activated");
+                    }
+                }, 50, 20000)
+
+                setTimeout(function () {
+                    if (currentPath.indexOf('/brands') != -1 && document.querySelector('.cro-12370')) {
+                        document.querySelector('body').classList.remove('cro-12370')
+                    }
+                }, 600)
+            },
+            test_AB_Test_Mobile_Nav_Bottom_navigation_bar_MOBILE_CRO12435() {
+                if (window.crotest_AB_Test_Mobile_Nav_Bottom_navigation_bar_MOBILE_CRO12435) return;
+                var currentPath = window.location.pathname.toLowerCase();
+                if (currentPath.indexOf('checkout') == -1 && currentPath.indexOf('/default.aspx') == -1) {
+                    window.crotest_AB_Test_Mobile_Nav_Bottom_navigation_bar_MOBILE_CRO12435 = 1;
+                    window._conv_q = window._conv_q || [];
+                    window._conv_q.push(["executeExperiment", "1004204275"]);
+                    console.log("Experiment AB Test | Mobile Nav | Bottom navigation bar | MOBILE | CRO-12435 Activated");
+                }
             }
-
-
         };
 
 
@@ -363,6 +388,9 @@
         experiments.test_PLP_reduce_distraction_improve_navigation_ALL_CRO7972();
         experiments.test_Recipe_KI19_Add_conventional_elements_to_the_checkout_ALL_CRO7505();
         experiments.test_Recipe_AB_Test_Brand_banner_Move_below_products_ALL_CRO12345();
+
+        experiments.test_AB_Test_PLP_discovery_blocks_Move_below_product_grid_ALL_CRO12370();
+        experiments.test_AB_Test_Mobile_Nav_Bottom_navigation_bar_MOBILE_CRO12435();
     } catch (e) {
         console.log("Error in Global JavaScript", e);
     }

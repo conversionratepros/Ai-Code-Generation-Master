@@ -1,0 +1,538 @@
+/* ============================================================
+   CRO-12357 | Tile Calculator | Rory open-state redesign | ALL
+   Restyles the native Magento tile-calculator modal to the new
+   single-column design. All rules scoped to body.cro12357.
+   ============================================================ */
+
+/* ---------- modal shell ---------- */
+/* theme gives the inner wrap a fixed height sized for the old two-column layout */
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-inner-wrap {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 520px;
+    width: calc(100% - 32px);
+    height: auto !important;
+    max-height: 90vh;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-footer {
+    display: none !important;
+}
+
+/* ---------- header bar ---------- */
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .modal-title {
+    display: block !important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #101828;
+}
+
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close {
+    position: static;
+    margin: 0;
+    padding: 0;
+}
+
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close::before {
+    color: #99a1af;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close:hover::before {
+    color: #4a5565;
+}
+
+/* ---------- modal body ---------- */
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto !important;
+    overflow-y: auto !important;
+    padding: 16px;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] {
+    height: auto !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .description {
+    margin: 0 0 16px;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .description strong {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #4a5565;
+}
+
+/* ---------- floor / wall selector ---------- */
+html body.cro12357 .area-calculator-wrap .cro-12357-toggle {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 16px;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-toggle-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 38px;
+    padding: 9px;
+    background: #fff;
+    border: 1px solid #d1d5dc;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #364153;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-toggle-btn:hover {
+    border-color: #6d6d6d;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-toggle-btn.active {
+    background: #6d6d6d;
+    border-color: #6d6d6d;
+    color: #fff;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-toggle-btn svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+/* ---------- how to measure ---------- */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .how-to {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background: #f0fdf4;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 0 0 16px;
+    cursor: pointer;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .how-to label {
+    flex: 1;
+    width: auto !important;
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #008236;
+    cursor: pointer;
+}
+
+/* theme draws its own arrow on the label — replaced by the injected chevron */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .how-to label::before,
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .how-to label::after {
+    display: none !important;
+    content: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-chevron {
+    display: flex;
+    align-items: center;
+    color: #008236;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .how-to.active .cro-12357-chevron {
+    transform: rotate(180deg);
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .how-to img {
+    display: none;
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .how-to.active img {
+    display: block;
+}
+
+/* ---------- single column layout ---------- */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator-input {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result {
+    display: flex !important;
+    flex-direction: column;
+    width: 100% !important;
+    max-width: none !important;
+    position: static !important;
+    transform: none !important;
+    height: auto !important;
+    padding: 0 !important;
+    background: #fff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result > img {
+    display: none !important;
+}
+
+/* ---------- area cards ---------- */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 0 0 12px;
+}
+
+/* the theme numbers rows via a ::before counter — replaced by the card header */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro::before {
+    display: none !important;
+    content: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-card-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    order: -1;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-card-title {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #101828;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-bin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #404040;
+    cursor: pointer;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-bin:hover {
+    background: #f3f4f6;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-bin svg {
+    display: block;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input {
+    flex: 1;
+    min-width: 0;
+    height: auto !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input > div {
+    position: relative;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* theme floats labels above the inputs with position:absolute — bring them back into flow */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .label-title {
+    position: static !important;
+    height: auto !important;
+    margin: 0 0 6px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    color: #717182;
+}
+
+/* native-added rows have unclassed inputs — cover both via the wrapper */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input:not(.area-res) input[type="number"] {
+    width: 100%;
+    height: 36px;
+    margin: 0 !important;
+    padding: 4px 32px 4px 12px;
+    background: #fff;
+    border: 1px solid #6d6d6d;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0a0a0a;
+    box-shadow: none;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-unit {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #717182;
+    pointer-events: none;
+}
+
+/* the divider between width and length becomes the multiply sign */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    width: 24px;
+    height: 36px;
+    background: none;
+    border: 0;
+}
+
+/* the theme renders a lowercase "x" in .divider::before — restyle it to the design's multiply sign */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .divider::before {
+    content: "\00d7" !important;
+    font-size: 16px;
+    line-height: 1;
+    color: #717182;
+    position: static !important;
+    margin: 0 !important;
+}
+
+/* per-card total line reuses the native square-meters value */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input.area-res {
+    flex: none;
+    width: 100%;
+    order: 9;
+    margin-top: 12px;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input.area-res .label-title {
+    display: none;
+}
+
+/* native trashcan on added rows — replaced by the card-header bin */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-res .area-room {
+    display: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input.area-res p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #101828;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input.area-res p::before {
+    content: "Total area: ";
+    font-weight: 400;
+}
+
+/* ---------- floor / wall card filtering ---------- */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-zone-floor .sin-ro[data-cro12357-zone="wall"],
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-zone-wall .sin-ro[data-cro12357-zone="floor"] {
+    display: none !important;
+}
+
+/* ---------- add area ---------- */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-add-room {
+    margin: 4px 0 0;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .btn-add-room {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background: #eaf9eb;
+    border: 1px dashed #1a7b24;
+    border-radius: 7px;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .btn-add-room::before,
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .btn-add-room::after {
+    display: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .btn-add-room span {
+    font-size: 15px;
+    color: #1a7b24;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .btn-add-room:hover {
+    background: #dcf3de;
+}
+
+/* ---------- swipe up + summary ---------- */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .swiper {
+    display: block !important;
+    order: 1;
+    margin: 16px 0 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    color: #717182;
+    cursor: pointer;
+    background: none !important;
+    position: static !important;
+}
+
+/* theme draws a drag-handle pill on the swiper element */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .swiper::before,
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .swiper::after {
+    display: none !important;
+    content: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .totalbox {
+    order: 2;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 2px;
+    transition: max-height 0.3s ease;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-summary-open .area-result .totalbox {
+    max-height: 400px;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .totalbox h2 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #101828;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .totalbox ul {
+    margin: 0 0 12px;
+    padding: 12px 0 0;
+    border-top: 1px solid #f3f4f6;
+    list-style: none;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .totalbox li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 6px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #101828;
+}
+
+/* ---------- add to cart ---------- */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_container {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_container .add-to-cart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 48px;
+    background: #00a63e !important;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* theme draws its own cart icon on the button — replaced by the injected one */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_container .add-to-cart-btn::before,
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_container .add-to-cart-btn::after {
+    display: none !important;
+    content: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_container .add-to-cart-btn:hover {
+    background: #008236 !important;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-cart-icon {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-hide {
+    display: none !important;
+}
+
+html body.cro12357 .area-calculator-wrap .cro-12357-boxes-label {
+    display: inline !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_container .add-to-cart-note {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    color: #717182;
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 767px) {
+    html body.cro12357 .modal-popup.area-calculator-wrap .modal-inner-wrap {
+        width: calc(100% - 24px);
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}

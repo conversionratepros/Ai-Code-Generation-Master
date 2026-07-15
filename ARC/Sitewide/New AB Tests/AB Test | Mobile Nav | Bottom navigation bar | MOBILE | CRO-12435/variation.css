@@ -3,6 +3,18 @@
 body.cro-12435 {
   --cro-12435-nav-height: 60px;
   --cro-12435-search-height: 52px;
+  --cro-12435-search-open-height: 71px;
+  /* Both set live by bindViewportPin (variation.js).
+     --cro-12435-pin: gap between the layout viewport's bottom and the actual visible
+     bottom edge (on-screen keyboard / iOS collapsing address bar). All bottom-pinned
+     elements add it to their `bottom` instead of being translateY'd: a transform on
+     .typeahead-mobile would make it the containing block for its position:fixed
+     descendants (suggestions sheet, close-X), silently re-basing their bottom/top
+     values against the 71px panel instead of the viewport.
+     --cro-12435-vvh: the visible viewport height, so the suggestions sheet's "75% of
+     the screen" is 75% of what the shopper can actually see while the keyboard is up. */
+  --cro-12435-pin: 0px;
+  --cro-12435-vvh: 100vh;
 }
 
 .cro-12435-bottom-nav {
@@ -21,7 +33,7 @@ body.cro-12435 {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: var(--cro-12435-pin, 0px);
     z-index: 9998;
     height: var(--cro-12435-nav-height);
     padding-bottom: env(safe-area-inset-bottom, 0);
@@ -55,6 +67,7 @@ body.cro-12435 {
     width: 22px;
     height: 22px;
     stroke: currentColor;
+    /* stroke: #1b1fc4; */
     fill: none;
     stroke-width: 1.7;
     stroke-linecap: round;
@@ -69,7 +82,12 @@ body.cro-12435 {
   }
 
   body.cro-12435 .cro-12435-nav-item.cro-12435-active {
-    color: #ab2454;
+    /* color: #ab2454; */
+    color: #1b1fc4;
+  }
+
+  body.cro-12435 .cro-12435-nav-item.cro-12435-active span {
+    color: #1b1fc4;
   }
 
   /* Keep page content clear of the fixed bottom nav.
@@ -85,7 +103,7 @@ body.cro-12435 {
     position: fixed !important;
     top: auto !important;
     left: 0 !important;
-    bottom: var(--cro-12435-nav-height) !important;
+    bottom: calc(var(--cro-12435-nav-height) + var(--cro-12435-pin, 0px)) !important;
     width: 100% !important;
     height: var(--cro-12435-search-height) !important;
     min-height: 0 !important;
@@ -100,36 +118,59 @@ body.cro-12435 {
 	   open/close now runs on this class instead - toggled in bindSearchStateSync. */
   body.cro-12435 .typeahead-mobile.cro-12435-search-open {
     display: block !important;
-    height: 73px !important;
+    height: var(--cro-12435-search-open-height) !important;
   }
 
-  /* Native "Search" title row + its close-X are replaced by our bottom-nav Search toggle.
-	   The header's own search icon (label[for="MobileSearchTrigger"].menu__link--icon) is untouched. */
-  body.cro-12435 .main-navigation-mobile--header {
+  /* Top nav's own search icon keeps the control's original top-anchored, full-width look
+     (this restates the site's own un-scoped .typeahead-mobile declaration) instead of our
+     bottom-pinned redesign - toggled by bindTopIconTrigger/bindSearchStateSync in variation.js. */
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open-native {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    bottom: auto !important;
+    left: 0 !important;
+    width: 90vw !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 0 .6em !important;
+    background-color: #fff !important;
+    box-shadow: none !important;
+    z-index: 9999 !important;
+  }
+
+  /* Everything below only restyles the control when it's opened via the bottom nav
+     (.cro-12435-search-open). Opened via the top nav's own icon (.cro-12435-search-open-native),
+     none of this applies, so the title row, close-X, placeholder and button all stay exactly
+     as the unmodified control ships them. */
+
+  /* Native "Search" title row + its close-X are replaced by our bottom-nav Search toggle. */
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .main-navigation-mobile--header {
     display: none !important;
   }
 
-  body.cro-12435 .typeahead-mobile__search-field.dw-mod {
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .typeahead-mobile__search-field.dw-mod {
     padding: 0;
   }
 
-  body.cro-12435 .typeahead-mobile .mobile-search--container {
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .mobile-search--container {
     height: 100%;
     align-items: center;
     padding: 13px 14px;
     background: #ffffff;
   }
 
-  body.cro-12435 .typeahead-mobile .js-typeahead-search-field {
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .js-typeahead-search-field {
     order: 1;
     flex: 1;
     height: 46px;
     padding: 0 12px;
-    border: 1px solid #d3d3d3 !important;
+    /* border: 1px solid #d3d3d3 !important; */
+    border: 1.5px solid #1b1fc4 !important;
     border-radius: 4px;
   }
 
-  body.cro-12435 .typeahead-mobile .search-button-override {
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .search-button-override {
     order: 2;
     margin-left: 8px;
     white-space: nowrap;
@@ -147,25 +188,32 @@ body.cro-12435 {
   }
 
   /* ---------- Suggestions list ---------- */
-  /* Sheet fills the bottom 75% of the screen (spec): 133px = 60px nav + 73px
-     open search bar sitting below it, so the list's top edge lands at 25vh. */
-  body.cro-12435 .typeahead-mobile .dropdown.dropdown--absolute-position {
+  /* Sheet fills the bottom 75% of the visible screen (spec): its bottom edge sits on the
+     search bar's top (nav + open search bar + keyboard/toolbar pin), and its height is 75%
+     of the visible viewport minus that stack, so the top edge lands at 25% of whatever is
+     on screen - with or without the keyboard, on any screen height. No hardcoded px stack:
+     a fixed 133px went stale the moment the bar heights changed and ignored the keyboard. */
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .dropdown.dropdown--absolute-position {
     position: fixed !important;
     top: auto !important;
     left: 0 !important;
-    bottom: 133px !important;
+    bottom: calc(var(--cro-12435-pin, 0px) + var(--cro-12435-nav-height) + var(--cro-12435-search-open-height)) !important;
     width: 100% !important;
-    height: calc(75vh - 133px) !important;
+    height: calc(var(--cro-12435-vvh, 100vh) * .75 - var(--cro-12435-nav-height) - var(--cro-12435-search-open-height)) !important;
     overflow-y: auto !important;
     margin: 0 !important;
     z-index: 9999;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, .08);
   }
 
-  body.cro-12435 .cro-12435-suggestions-close {
+  /* Anchored from the bottom like the sheet (sheet top = pin + 75% of visible viewport,
+     X top sits 8px below it, X is 32px tall -> bottom = sheet top - 40px), so it tracks
+     the keyboard instead of a fixed 25vh top that assumes the whole screen is visible. */
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .cro-12435-suggestions-close {
     position: fixed;
     right: 12px;
-    top: calc(25vh + 8px);
+    top: auto;
+    bottom: calc(var(--cro-12435-pin, 0px) + var(--cro-12435-vvh, 100vh) * .75 - 40px);
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -178,11 +226,11 @@ body.cro-12435 {
     padding: 0;
   }
 
-  body.cro-12435 .cro-12435-suggestions-close.cro-12435-visible {
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .cro-12435-suggestions-close.cro-12435-visible {
     display: flex;
   }
 
-  body.cro-12435 .see-all-results-fullwidth.dw-mod {
+  body.cro-12435 .typeahead-mobile.cro-12435-search-open .see-all-results-fullwidth.dw-mod {
     padding: 0px;
     margin: 10px auto 10px;
     width: calc(97vw - 15px);
@@ -199,4 +247,11 @@ body.cro-12435 {
   .cro-12435-search-open .center-container {
     padding: 0;
   }
+
+  .cro-12435-search-open-native .see-all-results-fullwidth.dw-mod {
+    padding: 0.6em;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
 }

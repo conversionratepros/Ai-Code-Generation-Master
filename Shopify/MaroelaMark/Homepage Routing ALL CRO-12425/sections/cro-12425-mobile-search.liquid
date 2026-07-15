@@ -41,8 +41,13 @@
     }
 
     {% if section.settings.hide_header_search_icon %}
-      .site-header-mobile-search-button,
-      [data-site-header-mobile-search-button] {
+      {% comment %}
+        Only the search trigger BUTTON. Never target
+        [data-site-header-mobile-search-button] — the theme puts that
+        attribute on .site-header-main (the whole hamburger/logo/cart row)
+        when its "show mobile search bar" setting is off.
+      {% endcomment %}
+      button.site-header-mobile-search-button {
         display: none !important;
       }
     {% endif %}

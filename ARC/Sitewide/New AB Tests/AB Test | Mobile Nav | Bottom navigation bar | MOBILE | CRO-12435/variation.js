@@ -104,8 +104,23 @@
     }
 
     function toggleSearchBar() {
+      window.cro_12435_last_trigger = 'bottom';
       var label = document.querySelector('label.menu__link--icon[for="MobileSearchTrigger"]');
       if (label) label.click();
+    }
+
+    /* Top nav's own search icon should still open the control in its native (top-anchored,
+       full-width) look, while our bottom-nav Search button keeps the custom bottom-pinned
+       look - both drive the same checkbox, so bindSearchStateSync needs to know which one
+       fired. e.isTrusted separates a real tap here from the synthetic .click() toggleSearchBar
+       triggers on this same label. */
+    function bindTopIconTrigger() {
+      var label = document.querySelector('label.menu__link--icon[for="MobileSearchTrigger"]');
+      if (!label || label.hasAttribute('data-cro-12435-bound')) return;
+      label.setAttribute('data-cro-12435-bound', 'true');
+      label.addEventListener('click', function (e) {
+        if (e.isTrusted) window.cro_12435_last_trigger = 'top';
+      });
     }
 
     function closeSearchBar() {
@@ -160,6 +175,22 @@
       }
     }
 
+    /* The input/button are the same DOM nodes for both trigger paths, so if the shopper
+       opened via the bottom nav (custom copy) and later opens via the top icon (native
+       look), the old placeholder/button label would otherwise linger. Puts them back to
+       the control's original copy for the native-look path. */
+    function restoreNativeSearchCopy() {
+      var input = document.querySelector('.js-typeahead-search-field');
+      if (input && input.getAttribute('placeholder') !== 'Find it here') {
+        input.setAttribute('placeholder', 'Find it here');
+      }
+      var btn = document.querySelector('.typeahead-mobile .search-button-override');
+      if (btn && btn.classList.contains('cro-12435-search-btn')) {
+        btn.classList.remove('cro-12435-search-btn');
+        btn.innerHTML = '<i class="far fa-search"></i>';
+      }
+    }
+
     function injectSuggestionsClose() {
       if (document.querySelector('.cro-12435-suggestions-close')) return;
       var list = document.getElementById('MobileProductSearchBarContent');
@@ -193,11 +224,35 @@
       checkbox.addEventListener('change', function () {
         var panel = document.querySelector('.typeahead-mobile');
         if (checkbox.checked) {
-          if (panel) panel.classList.add('cro-12435-search-open');
-          updateSearchCopy();
+          if (panel) {
+            if (window.cro_12435_last_trigger === 'top') {
+              panel.classList.add('cro-12435-search-open-native');
+              panel.classList.remove('cro-12435-search-open');
+              /* Now that the panel lives at <body> level (see relocateSearchPanel), a plain
+                 `top:0` no longer lands it just under the header the way it did when nested
+                 inside #Top - top:0 there means the top of the whole document. Anchor it to
+                 the header's live bottom edge instead so it still appears right under the
+                 header and scrolls away with the page exactly like the original control. */
+              var header = document.getElementById('Top');
+              if (header) {
+                var headerBottom = header.getBoundingClientRect().bottom + window.scrollY;
+                panel.style.setProperty('top', headerBottom + 'px', 'important');
+              }
+              restoreNativeSearchCopy();
+            } else {
+              panel.classList.add('cro-12435-search-open');
+              panel.classList.remove('cro-12435-search-open-native');
+              panel.style.removeProperty('top');
+              updateSearchCopy();
+            }
+          }
           focusSearchInput();
         } else {
-          if (panel) panel.classList.remove('cro-12435-search-open');
+          if (panel) {
+            panel.classList.remove('cro-12435-search-open');
+            panel.classList.remove('cro-12435-search-open-native');
+            panel.style.removeProperty('top');
+          }
           closeSuggestions();
         }
         syncActiveNav();
@@ -225,11 +280,15 @@
       document.body.appendChild(panel);
     }
 
-    // iOS Safari jump fix: as the address bar collapses/expands mid-scroll, its layout
-    // viewport height changes momentarily, so `position:fixed; bottom:Npx` elements visibly
-    // shift before settling. window.visualViewport reports the actual visible area (already
-    // net of the toolbar), so we shift the bottom nav/search bar/suggestions by the
-    // difference via transform, keeping them pinned to the true visible bottom edge.
+    // Keyboard / iOS address-bar pin: `position:fixed; bottom:Npx` anchors to the layout
+    // viewport, which the on-screen keyboard (and iOS's collapsing toolbar) covers without
+    // resizing. window.visualViewport reports the truly visible area, so publish the gap
+    // between the two as --cro-12435-pin plus the visible height as --cro-12435-vvh; every
+    // pinned element folds them into its own `bottom`/`height` in variation.css.
+    // Deliberately NOT a translateY on the elements: a transform on .typeahead-mobile turns
+    // it into the containing block for its position:fixed descendants (the suggestions
+    // sheet and close-X), silently re-basing their bottom/top against the 71px panel instead
+    // of the viewport - the sheet flew upwards whenever the keyboard opened.
     function bindViewportPin() {
       if (!window.visualViewport || window.cro_12435_viewport_bound) return;
       window.cro_12435_viewport_bound = true;
@@ -239,13 +298,8 @@
         ticking = false;
         var vv = window.visualViewport;
         var offset = Math.max(0, window.innerHeight - (vv.height + vv.offsetTop));
-        var shift = offset ? 'translateY(-' + offset + 'px)' : '';
-        var nav = document.querySelector('.cro-12435-bottom-nav');
-        var panel = document.querySelector('.typeahead-mobile');
-        var suggestions = document.getElementById('MobileProductSearchBarContent');
-        if (nav) nav.style.transform = shift;
-        if (panel) panel.style.transform = shift;
-        if (suggestions) suggestions.style.transform = shift;
+        document.body.style.setProperty('--cro-12435-pin', offset + 'px');
+        document.body.style.setProperty('--cro-12435-vvh', vv.height + 'px');
       }
 
       function requestUpdate() {
@@ -359,6 +413,7 @@
       relocateSearchPanel();
       injectSuggestionsClose();
       bindSearchStateSync();
+      bindTopIconTrigger();
       bindMenuStateSync();
       bindOutsideClose();
       bindViewportPin();

@@ -78,6 +78,28 @@
     display: none;
   }
 
+  /* QA bug 4: arrows sat flush against the first/last card at text height.
+     Widen the desktop gutter so the 40px arrow clears the cards, and centre
+     the arrows on the card image band (like the Figma) instead of the whole
+     card. */
+  @media screen and (min-width: 769px) {
+    .custom-section-outer .custom-row-container {
+      padding: 0 56px;
+    }
+
+    .custom-section-outer .custom-arrow-prev {
+      left: 0;
+    }
+
+    .custom-section-outer .custom-arrow-next {
+      right: 0;
+    }
+
+    .custom-section-outer .custom-carousel-arrow {
+      top: 30%;
+    }
+  }
+
   /* 6. card typography on theme heading font (control hardcodes Proxima Nova) */
   .custom-section-outer .custom-txt-title {
     font-family: var(--heading-font-family), sans-serif;

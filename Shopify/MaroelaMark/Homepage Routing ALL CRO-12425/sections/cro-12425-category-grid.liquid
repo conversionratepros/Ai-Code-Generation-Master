@@ -45,6 +45,9 @@
   }
 
   .cro-12425-catgrid__media {
+    /* block, not inline: an inline span ignores overflow clipping, so the
+       border radius never showed on the image inside */
+    display: block;
     position: relative;
     aspect-ratio: 1 / 1;
     border-radius: 6px;
@@ -56,11 +59,13 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 6px;
   }
 
   .cro-12425-catgrid__media .placeholder--image {
     width: 100%;
     height: 100%;
+    border-radius: 6px;
   }
 
   .cro-12425-catgrid__media--colour {
