@@ -1,0 +1,414 @@
+{
+  "version": "0.4",
+  "title": "LDI Welcome V2 (CRO-10002)",
+  "type": "page",
+  "content": [
+    {
+      "id": "1f9c6de",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · header"
+      },
+      "elements": [
+        {
+          "id": "dd0838e",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<header class=\"site-header\">\n    <div class=\"header-inner\">\n      <a href=\"#\" class=\"logo-wrap\">\n        <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020030/logo.png\" alt=\"London Dental Institute\" class=\"logo\" />\n      </a>\n      <div class=\"google-badge\">\n        <span class=\"g-icon\" aria-hidden=\"true\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\">\n            <path fill=\"#4285F4\" d=\"M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z\"/>\n            <path fill=\"#34A853\" d=\"M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.9-3c-1.1.7-2.4 1.2-4 1.2-3.1 0-5.7-2.1-6.6-4.9H1.4v3.1C3.4 21.4 7.4 24 12 24z\"/>\n            <path fill=\"#FBBC05\" d=\"M5.4 14.4c-.2-.7-.4-1.4-.4-2.4s.1-1.6.4-2.4V6.5H1.4C.5 8.2 0 10 0 12s.5 3.8 1.4 5.5l4-3.1z\"/>\n            <path fill=\"#EA4335\" d=\"M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C17.9 1.2 15.2 0 12 0 7.4 0 3.4 2.6 1.4 6.5l4 3.1C6.3 6.8 8.9 4.8 12 4.8z\"/>\n          </svg>\n        </span>\n        <span class=\"rating\"><strong>4.9</strong> / 5</span>\n        <span class=\"stars\" aria-label=\"4.9 out of 5\">\n          <svg width=\"82\" height=\"16\" viewBox=\"0 0 82 16\" fill=\"#FBBC05\">\n            <path d=\"M8 0l2.2 4.9L15.5 5.5l-3.9 3.6.9 5.4L8 11.9 3.5 14.5l.9-5.4L.5 5.5l5.3-.6z\"/>\n            <path d=\"M28.5 0l2.2 4.9L36 5.5l-3.9 3.6.9 5.4-4.5-2.6L24 14.5l.9-5.4L21 5.5l5.3-.6z\"/>\n            <path d=\"M49 0l2.2 4.9 5.3.6-3.9 3.6.9 5.4L49 11.9l-4.5 2.6.9-5.4-3.9-3.6 5.3-.6z\"/>\n            <path d=\"M69.5 0l2.2 4.9 5.3.6-3.9 3.6.9 5.4-4.5-2.6L65 14.5l.9-5.4L62 5.5l5.3-.6z\"/>\n          </svg>\n        </span>\n      </div>\n    </div>\n  </header>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "0e8e48e",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · hero"
+      },
+      "elements": [
+        {
+          "id": "2434eae",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-hero\" id=\"hero\">\n      <div class=\"hero-panel\">\n        <div class=\"hero-content\">\n          <div class=\"hero-copy\">\n            <span class=\"eyebrow\">Postgraduate Dental Courses</span>\n            <h1 class=\"hero-heading\">Take on more of the cases you currently refer out</h1>\n            <p class=\"body-text\">\n              The London Dental Institute gives you the knowledge, skills and confidence to expand what you treat,\n              through UK-accredited postgraduate training delivered online and studied without stepping away from\n              practice.\n            </p>\n          </div>\n          <div class=\"hero-actions\">\n            <a href=\"#form-section\" class=\"btn btn-primary open-register\">\n              Register your interest\n              <svg class=\"btn-arrow\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n                <path d=\"M3 9h11M9.5 4.5L14 9l-4.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.8\"\n                  stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n              </svg>\n            </a>\n            <blockquote class=\"hero-quote\">\n              <p>“I could not take a step back, so the online environment was perfect for me.”</p>\n              <cite>Dr Mark Travis · United Kingdom | PG Dip. Graduate</cite>\n            </blockquote>\n          </div>\n        </div>\n      </div>\n      <div class=\"hero-image\">\n        <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020029/hero.jpg\" alt=\"Dentist reviewing a patient's dental X-ray\" />\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "c0f72ba",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · benefits"
+      },
+      "elements": [
+        {
+          "id": "e12191c",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-benefits\">\n      <div class=\"container\">\n        <h2 class=\"section-heading text-center\">Why dentists choose LDI</h2>\n        <div class=\"benefit-grid\">\n          <div class=\"benefit-card\">\n            <span class=\"benefit-icon\" aria-hidden=\"true\">\n              <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#2b5e7d\" stroke-width=\"1.5\"\n                stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                <path d=\"M12 2l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V5l7-3z\" />\n                <path d=\"M9 12l2 2 4-4\" />\n              </svg>\n            </span>\n            <h3 class=\"benefit-title\">UK-accredited qualifications</h3>\n            <p class=\"body-text\">Recognised credentials that expand the cases you can treat</p>\n          </div>\n          <div class=\"benefit-card\">\n            <span class=\"benefit-icon\" aria-hidden=\"true\">\n              <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#2b5e7d\" stroke-width=\"1.5\"\n                stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                <circle cx=\"9\" cy=\"8\" r=\"3.2\" />\n                <path d=\"M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6\" />\n                <path d=\"M16 5.2a3 3 0 010 5.6M17.5 14.4c2.6.5 4 2.6 4 5.6\" />\n              </svg>\n            </span>\n            <h3 class=\"benefit-title\">Taught by expert faculty</h3>\n            <p class=\"body-text\">Specialists and experienced clinicians from around the world</p>\n          </div>\n          <div class=\"benefit-card\">\n            <span class=\"benefit-icon\" aria-hidden=\"true\">\n              <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#2b5e7d\" stroke-width=\"1.5\"\n                stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                <circle cx=\"12\" cy=\"12\" r=\"9.5\" />\n                <path d=\"M2.5 12h19M12 2.5c2.7 2.6 4.2 6 4.2 9.5s-1.5 6.9-4.2 9.5c-2.7-2.6-4.2-6-4.2-9.5S9.3 5.1 12 2.5z\" />\n              </svg>\n            </span>\n            <h3 class=\"benefit-title\">Global dental network</h3>\n            <p class=\"body-text\">A worldwide community of dentists and faculty</p>\n          </div>\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "19230a1",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · about"
+      },
+      "elements": [
+        {
+          "id": "0d2a49c",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-gray section-about\">\n      <div class=\"container about-grid\">\n        <div class=\"about-image\">\n          <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020006/about.jpg\" alt=\"London Dental Institute clinicians\" />\n        </div>\n        <div class=\"about-text\">\n          <h2 class=\"section-heading\">Who we are</h2>\n          <p class=\"body-text\">\n            The London Dental Institute delivers flexible, fully online postgraduate education for dentists around the\n            world. Our UK-accredited programmes combine expert-led teaching, interactive modules and clinical simulation\n            kits, helping dentists build confidence, advance their clinical skills and treat more cases in-house.\n            Through a global network of dentists and faculty, we make postgraduate dental education accessible to\n            working clinicians wherever they practice.\n          </p>\n          <a href=\"#form-section\" class=\"btn btn-primary open-register\">\n            Register your interest\n            <svg class=\"btn-arrow\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n              <path d=\"M3 9h11M9.5 4.5L14 9l-4.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"\n                stroke-linejoin=\"round\" />\n            </svg>\n          </a>\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "72dd41f",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · usp"
+      },
+      "elements": [
+        {
+          "id": "64645ed",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-usp\">\n      <div class=\"container\">\n        <div class=\"usp-header\">\n          <h2 class=\"section-heading text-center\">Can you really learn dentistry online?</h2>\n          <p class=\"body-text text-center usp-sub\">\n            Yes. Our programmes pair online study with hands-on clinical training and direct support from tutors.\n          </p>\n        </div>\n        <div class=\"benefit-grid\">\n          <div class=\"benefit-card\">\n            <span class=\"benefit-icon\" aria-hidden=\"true\">\n              <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#2b5e7d\" stroke-width=\"1.5\"\n                stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                <rect x=\"2.5\" y=\"4\" width=\"19\" height=\"13\" rx=\"1.5\" />\n                <path d=\"M8 21h8M12 17v4\" />\n              </svg>\n            </span>\n            <h3 class=\"benefit-title\">A learning environment built for clinicians</h3>\n            <p class=\"body-text\">Study anytime, anywhere.</p>\n          </div>\n          <div class=\"benefit-card\">\n            <span class=\"benefit-icon\" aria-hidden=\"true\">\n              <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#2b5e7d\" stroke-width=\"1.5\"\n                stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                <path d=\"M4 4h12a2 2 0 012 2v6a2 2 0 01-2 2H9l-4 3v-3H4a2 2 0 01-2-2V6a2 2 0 012-2z\" />\n                <path d=\"M7 8h6M7 11h4\" />\n              </svg>\n            </span>\n            <h3 class=\"benefit-title\">1:1 clinical case mentoring</h3>\n            <p class=\"body-text\">Expert guidance on real cases.</p>\n          </div>\n          <div class=\"benefit-card\">\n            <span class=\"benefit-icon\" aria-hidden=\"true\">\n              <svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#2b5e7d\" stroke-width=\"1.5\"\n                stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                <path d=\"M12 3c3 0 5 2 5 5 0 2-1 3-1 5v2H8v-2c0-2-1-3-1-5 0-3 2-5 5-5z\" />\n                <path d=\"M9 19h6M10 21.5h4\" />\n              </svg>\n            </span>\n            <h3 class=\"benefit-title\">Hands-on clinical simulation kit</h3>\n            <p class=\"body-text\">Practise before treating patients.</p>\n          </div>\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "ea108fa",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · demo"
+      },
+      "elements": [
+        {
+          "id": "c78257a",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-demo\">\n      <div class=\"container demo-grid\">\n        <div class=\"demo-text\">\n          <div class=\"demo-head\">\n            <span class=\"eyebrow eyebrow-light\">Free 2-Minute Demo</span>\n            <h2 class=\"section-heading demo-heading\">See what it's like to study at London Dental Institute</h2>\n          </div>\n          <p class=\"body-text demo-body\">\n            Take a guided tour inside our Virtual Learning Environment and see exactly how you'll learn. Explore the\n            modules, clinical demos, 1:1 case support and global community before you enrol.\n          </p>\n          <form class=\"demo-form\" action=\"#\" method=\"POST\">\n            <div class=\"demo-inputs\">\n              <input type=\"text\" name=\"name\" placeholder=\"Enter your name\" required />\n              <input type=\"email\" name=\"email\" placeholder=\"Enter your email address\" required />\n            </div>\n            <button type=\"submit\" class=\"btn btn-purple btn-full\">\n              Send me the demo\n              <svg class=\"btn-arrow\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n                <path d=\"M3 9h11M9.5 4.5L14 9l-4.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\" />\n              </svg>\n            </button>\n          </form>\n          <div class=\"demo-note\">\n            <svg width=\"19\" height=\"19\" viewBox=\"0 0 20 20\" fill=\"none\">\n              <circle cx=\"10\" cy=\"10\" r=\"9\" stroke=\"rgba(255,255,255,.5)\" stroke-width=\"1.3\" />\n              <path d=\"M6 10l2.5 2.5L14 7\" stroke=\"#bfe0f0\" stroke-width=\"1.6\" stroke-linecap=\"round\"\n                stroke-linejoin=\"round\" />\n            </svg>\n            <span>No commitment, just a look inside.</span>\n          </div>\n        </div>\n        <div class=\"demo-visual\">\n          <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020027/demo-vle.png\" alt=\"Inside the LDI Virtual Learning Environment\" />\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "3dc0eda",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · testimonials"
+      },
+      "elements": [
+        {
+          "id": "80bb859",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-testimonials\">\n      <div class=\"container\">\n        <div class=\"section-heading-wrap text-center\">\n          <span class=\"eyebrow\">Testimonials from recent graduates</span>\n          <h2 class=\"section-heading\">What graduates say about studying with us</h2>\n        </div>\n        <div class=\"testimonial-grid\">\n          <a class=\"testimonial-card\" href=\"#\"><img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020033/testimonial-1.png\"\n              alt=\"Dr. Mark Travis testimonial\" /></a>\n          <a class=\"testimonial-card\" href=\"#\"><img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020037/testimonial-2.png\"\n              alt=\"Dr. Thabo Travis testimonial\" /></a>\n          <a class=\"testimonial-card\" href=\"#\"><img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020040/testimonial-3.png\"\n              alt=\"Dr. Muchaneta Vipvahene testimonial\" /></a>\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "5b74b86",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · courses"
+      },
+      "elements": [
+        {
+          "id": "6482093",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-courses\">\n      <div class=\"container\">\n        <h2 class=\"section-heading text-center\">Qualifications that expand what you treat</h2>\n        <div class=\"course-grid\">\n          <a class=\"course-card\" href=\"#\"><img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020016/course-1.png\"\n              alt=\"Diploma in Orthodontics & Dentofacial Orthopaedics\" /></a>\n          <a class=\"course-card\" href=\"#\"><img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020023/course-2.png\"\n              alt=\"Diploma in Aesthetic & Restorative Dentistry\" /></a>\n          <a class=\"course-card\" href=\"#\"><img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020025/course-3.png\"\n              alt=\"Diploma in Dental Implantology & Oral Surgery\" /></a>\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "c0919f8",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · course-benefit"
+      },
+      "elements": [
+        {
+          "id": "956b02c",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-course-benefit\">\n      <div class=\"container\">\n        <h2 class=\"section-heading text-center\">How LDI helps you treat more of your own cases</h2>\n        <div class=\"cb-grid\">\n          <div class=\"cb-item\">\n            <span class=\"cb-check\" aria-hidden=\"true\"></span>\n            <p class=\"body-text\">Get going from day one with <strong>1:1 clinical support</strong> from our tutor team</p>\n          </div>\n          <div class=\"cb-item\">\n            <span class=\"cb-check\" aria-hidden=\"true\"></span>\n            <p class=\"body-text\">Learn through <strong>clinically-directed teaching</strong> on the cases you'll actually\n              treat</p>\n          </div>\n          <div class=\"cb-item\">\n            <span class=\"cb-check\" aria-hidden=\"true\"></span>\n            <p class=\"body-text\">Build skills on real cases with <strong>hands-on practical training</strong></p>\n          </div>\n          <div class=\"cb-item\">\n            <span class=\"cb-check\" aria-hidden=\"true\"></span>\n            <p class=\"body-text\">Apply an <strong>evidence-based approach</strong> grounded in current clinical practice</p>\n          </div>\n          <div class=\"cb-item\">\n            <span class=\"cb-check\" aria-hidden=\"true\"></span>\n            <p class=\"body-text\"><strong>Reduce referrals</strong> and keep more cases in-house</p>\n          </div>\n          <div class=\"cb-item\">\n            <span class=\"cb-check\" aria-hidden=\"true\"></span>\n            <p class=\"body-text\">Build a <strong>stronger, more sustainable</strong> practice by keeping high-value work in\n              your own chair</p>\n          </div>\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "2e5128d",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · study"
+      },
+      "elements": [
+        {
+          "id": "65aabe2",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-study\">\n      <div class=\"container study-grid\">\n        <div class=\"study-text\">\n          <div class=\"study-head\">\n            <span class=\"eyebrow\">For the LDI community</span>\n            <h2 class=\"section-heading\">Monthly live webinars</h2>\n          </div>\n          <p class=\"body-text\">\n            Every month our faculty hosts a free, expert-led webinar on an essential topic across the dental\n            specialities, sharing current evidence and practical guidance you can apply straight away. Join the\n            community and experience learning at LDI for yourself.\n          </p>\n          <ul class=\"study-features\">\n            <li><span class=\"feature-check\" aria-hidden=\"true\"></span>Live, expert-led sessions</li>\n            <li><span class=\"feature-check\" aria-hidden=\"true\"></span>Open to the whole community</li>\n            <li><span class=\"feature-check\" aria-hidden=\"true\"></span>No cost to attend</li>\n          </ul>\n          <a href=\"#form-section\" class=\"btn btn-primary open-register\">\n            Register your interest\n            <svg class=\"btn-arrow\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n              <path d=\"M3 9h11M9.5 4.5L14 9l-4.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"\n                stroke-linejoin=\"round\" />\n            </svg>\n          </a>\n        </div>\n        <div class=\"study-image\">\n          <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020031/studyclubs.jpg\" alt=\"LDI faculty presenting a live webinar\" />\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "cf03b1c",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · accreditation"
+      },
+      "elements": [
+        {
+          "id": "467bdca",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-accreditation\">\n      <div class=\"container accred-grid\">\n        <div class=\"accred-logos\">\n          <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020010/accreditation.png\" alt=\"EduQual and ADEE accreditation\" />\n        </div>\n        <div class=\"accred-text\">\n          <div class=\"accred-head\">\n            <span class=\"eyebrow\">Accreditation</span>\n            <h2 class=\"section-heading\">Recognised, accredited dental education</h2>\n          </div>\n          <p class=\"body-text\">\n            Our diplomas are accredited by EduQual (Level 7), meeting the quality standards required to provide a\n            globally recognised qualification. LDI is also an institutional member of the Association for Dental\n            Education in Europe, working to raise standards and bring dental education closer together across the region.\n          </p>\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "867eac9",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · form"
+      },
+      "elements": [
+        {
+          "id": "eeadc8c",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<section class=\"section section-form\" id=\"form-section\">\n      <div class=\"container form-grid\">\n        <div class=\"form-text\">\n          <div class=\"form-head\">\n            <span class=\"eyebrow\">Get Started</span>\n            <h2 class=\"section-heading\">Register your interest and we'll send you the details</h2>\n          </div>\n          <!-- TODO: replace action / wire to WP form plugin shortcode on build -->\n          <form class=\"register-form\" action=\"#\" method=\"POST\">\n            <div class=\"form-row\">\n              <div class=\"form-group\">\n                <label for=\"first-name\">First Name:*</label>\n                <input type=\"text\" id=\"first-name\" name=\"first_name\" required />\n              </div>\n              <div class=\"form-group\">\n                <label for=\"last-name\">Last Name:*</label>\n                <input type=\"text\" id=\"last-name\" name=\"last_name\" required />\n              </div>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"email\">Email Address:*</label>\n              <input type=\"email\" id=\"email\" name=\"email\" required />\n            </div>\n            <label class=\"checkbox-row\">\n              <input type=\"checkbox\" name=\"is_professional\" required />\n              <span>I am a registered dental professional *</span>\n            </label>\n            <button type=\"submit\" class=\"btn btn-primary\">\n              Register your interest\n              <svg class=\"btn-arrow\" width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n                <path d=\"M3 9h11M9.5 4.5L14 9l-4.5 4.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\" />\n              </svg>\n            </button>\n            <p class=\"form-disclaimer\">\n              By registering, you consent to receive future communications from us in accordance with our Privacy\n              Policy.\n            </p>\n          </form>\n        </div>\n        <div class=\"form-image\">\n          <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020028/form.jpg\" alt=\"LDI clinical simulation kit\" />\n        </div>\n      </div>\n    </section>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "c95b483",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · footer"
+      },
+      "elements": [
+        {
+          "id": "6a6e558",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<footer class=\"site-footer\">\n    <div class=\"footer-inner\">\n      <a href=\"#\" class=\"logo-wrap\">\n        <img src=\"https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020030/logo.png\" alt=\"London Dental Institute\" class=\"logo\" />\n      </a>\n      <p class=\"copyright\">© London Dental Institute 2026</p>\n    </div>\n  </footer>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "8a1fa4a",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "_title": "LDI V2 · modal"
+      },
+      "elements": [
+        {
+          "id": "0508c6c",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"ldi-v2\">\n<div class=\"modal-overlay\" id=\"register-modal\" aria-hidden=\"true\">\n    <div class=\"modal-dialog\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"register-modal-title\">\n      <button class=\"modal-close\" type=\"button\" aria-label=\"Close\" data-close-modal>\n        <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\">\n          <path d=\"M2 2L16 16M16 2L2 16\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" />\n        </svg>\n      </button>\n      <div class=\"modal-body\">\n        <div class=\"modal-head\">\n          <span class=\"eyebrow\">Register your interest</span>\n          <h2 class=\"section-heading\" id=\"register-modal-title\">Fill in your details below and we'll send you\n            everything you need to get started</h2>\n        </div>\n        <!-- ═══ Gravity Form 41 ═══\n             In the WordPress/Elementor build, drop this shortcode into a Shortcode widget\n             (or use the Gravity Forms widget → Form 41) inside the popup.\n             Renders the live form and saves submissions to Forms → Entries.\n             Field map: input_1 = First Name · input_3 = Last Name · input_2 = Email ·\n                        input_5.1 = \"I am a registered dental professional *\" checkbox\n             Note: shortcodes only render inside WordPress — the local preview shows the code as text. -->\n        <div class=\"modal-form gf-embed\">\n          [gravityform id=\"41\" title=\"false\" description=\"false\" ajax=\"true\"]\n        </div>\n      </div>\n    </div>\n  </div>\n\n<script>\n    // ─── Register modal ───────────────────────────────────────────────\n    (function () {\n      const modal = document.getElementById('register-modal');\n      let lastFocused = null;\n\n      function openModal(e) {\n        if (e) e.preventDefault();\n        lastFocused = document.activeElement;\n        modal.classList.add('is-open');\n        modal.setAttribute('aria-hidden', 'false');\n        document.body.style.overflow = 'hidden';\n      }\n\n      function closeModal() {\n        modal.classList.remove('is-open');\n        modal.setAttribute('aria-hidden', 'true');\n        document.body.style.overflow = '';\n        if (lastFocused) lastFocused.focus();\n      }\n\n      document.querySelectorAll('.open-register').forEach(btn => btn.addEventListener('click', openModal));\n      modal.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));\n      // click outside dialog closes\n      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });\n      // ESC closes\n      document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });\n    })();\n  </script>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": []
+}

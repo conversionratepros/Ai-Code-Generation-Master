@@ -30,7 +30,7 @@ html body.cro12357 .modal-popup.area-calculator-wrap .modal-header {
     flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
+    padding: 12px 16px;
     border-bottom: 1px solid #e5e7eb;
 }
 
@@ -47,14 +47,30 @@ html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .modal-title 
 
 html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close {
     position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
     margin: 0;
     padding: 0;
+    line-height: 0;
+}
+
+/* keep the theme's "Close" text label out of the flex box so only the ✕ shows and centres */
+html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close>span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
 }
 
 html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close::before {
     color: #99a1af;
     font-size: 20px;
     line-height: 20px;
+    margin: 0;
 }
 
 html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close:hover::before {
@@ -67,7 +83,7 @@ html body.cro12357 .modal-popup.area-calculator-wrap .modal-content {
     min-height: 0;
     height: auto !important;
     overflow-y: auto !important;
-    padding: 16px;
+    padding: 12px 16px 16px;
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] {
@@ -76,6 +92,8 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] {
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .description {
     margin: 0 0 16px;
+    padding: 0 !important;
+    border: 0 !important;
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .description strong {
@@ -109,7 +127,9 @@ html body.cro12357 .area-calculator-wrap .cro-12357-toggle-btn {
     color: #364153;
     cursor: pointer;
     box-shadow: none;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    /* only the border animates — background/colour swap instantly so the active
+       state never shows a mid-transition white flash when toggling (bugs 11 & 12) */
+    transition: border-color 0.15s ease;
 }
 
 html body.cro12357 .area-calculator-wrap .cro-12357-toggle-btn:hover {
@@ -186,12 +206,17 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
+    /* theme locks this at a fixed height sized for the old two-column layout,
+       which left dead space between the inputs and the summary (bugs 5, 6, 8) */
+    height: auto !important;
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator-input {
     width: 100% !important;
     max-width: none !important;
     padding: 0 !important;
+    /* drop the theme's flex-basis:56% so the block sizes to its content */
+    flex: 0 0 auto !important;
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result {
@@ -199,6 +224,8 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result {
     flex-direction: column;
     width: 100% !important;
     max-width: none !important;
+    /* drop the theme's flex-basis:44% that inflated this block's height */
+    flex: 0 0 auto !important;
     position: static !important;
     transform: none !important;
     height: auto !important;
@@ -209,7 +236,7 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result {
     box-shadow: none !important;
 }
 
-html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result > img {
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result>img {
     display: none !important;
 }
 
@@ -277,7 +304,7 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-in
     height: auto !important;
 }
 
-html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input > div {
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input>div {
     position: relative;
     padding: 0 !important;
     margin: 0 !important;
@@ -371,6 +398,14 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-in
     font-weight: 400;
 }
 
+/* the native value markup is "12.00<span> m²</span>" — pull the unit back over the
+   leading space so it reads "12.00m²" with no gap (bug 10) */
+
+
+/* html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .area-input.area-res p:not(.label-title) > span {
+    margin-left: -0.28em;
+} */
+
 /* ---------- floor / wall card filtering ---------- */
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-zone-floor .sin-ro[data-cro12357-zone="wall"],
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-zone-wall .sin-ro[data-cro12357-zone="floor"] {
@@ -402,6 +437,7 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .btn-add-room::a
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .btn-add-room span {
     font-size: 15px;
+    font-weight: 400;
     color: #1a7b24;
 }
 
@@ -441,8 +477,59 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .to
     transition: max-height 0.3s ease;
 }
 
+/* ---------- summary popup (bug 17) ----------
+   clicking "Swipe up …" lifts the whole .area-result (swipe hint + summary + CTA)
+   out into a fixed bottom-sheet popup over a dim backdrop, instead of expanding
+   the summary inline inside the calculator. */
+html body.cro12357 .area-calculator-wrap .cro-12357-summary-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(16, 24, 40, 0.5);
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-summary-open .cro-12357-summary-backdrop {
+    display: block;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-summary-open .area-result {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    width: 100% !important;
+    max-width: 520px;
+    margin: 0 auto;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 8px 16px 16px !important;
+    background: #fff !important;
+    border-radius: 16px 16px 0 0 !important;
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* drag-pill at the top of the open sheet */
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-summary-open .area-result .swiper {
+    margin: 0 0 12px !important;
+    padding-top: 12px !important;
+    border-top: 0 !important;
+}
+
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-summary-open .area-result .swiper::before {
+    content: "" !important;
+    display: block !important;
+    width: 40px;
+    height: 4px;
+    margin: 0 auto 12px;
+    border-radius: 999px;
+    background: #d1d5dc;
+}
+
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-summary-open .area-result .totalbox {
-    max-height: 400px;
+    max-height: none;
+    overflow: visible;
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .totalbox h2 {
@@ -467,7 +554,7 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .to
     margin: 0 0 6px;
     font-size: 14px;
     line-height: 20px;
-    color: #101828;
+    color: #404040;
 }
 
 /* ---------- add to cart ---------- */
@@ -528,11 +615,56 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_contain
     color: #717182;
 }
 
+html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator {
+    gap: 0;
+}
+
 /* ---------- mobile ---------- */
 @media (max-width: 767px) {
+
+    /* full-screen sheet on mobile — no page content peeking behind (bug 1) */
+    html body.cro12357 .modal-popup.area-calculator-wrap {
+        padding: 0 !important;
+    }
+
     html body.cro12357 .modal-popup.area-calculator-wrap .modal-inner-wrap {
-        width: calc(100% - 24px);
-        max-height: 90vh;
-        overflow-y: auto;
+        width: 100% !important;
+        max-width: none !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden;
+    }
+
+    /* header pinned, only the body scrolls; content flows tight from the top so the
+       summary + CTA sit directly under the inputs with no floating gaps (bugs 5, 6, 8, 13) */
+    html body.cro12357 .modal-popup.area-calculator-wrap .modal-content {
+        flex: 1 1 auto;
+    }
+
+    html body.cro12357 .modal-popup.area-calculator-wrap .modal-header .action-close::before {
+        margin: 0 !important;
+    }
+
+    .modal-popup.area-calculator-wrap .area-calculator-input {
+        row-gap: 8px;
+    }
+
+    html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-add-room {
+        margin: 0;
+    }
+
+    html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator {
+        gap: 0;
+        padding: 0;
+    }
+
+    html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result {
+        row-gap: 0px;
+    }
+
+    html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .swiper {
+        margin: 20px 0;
     }
 }

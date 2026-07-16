@@ -19,5 +19,12 @@ Header · Hero · Benefits ("Why dentists choose LDI") · About ("Who we are") �
 - **Testimonial and course cards are exported as full images** (`assets/testimonial-*.png`, `assets/course-*.png`) — text is baked into the image. They stack cleanly on mobile. For the Elementor build these become real editable content.
 - Benefit/USP **icons and the check marks are recreated inline** (SVG / CSS), approximating the Figma icons.
 - The Google-reviews badge is recreated in CSS/SVG (`4.9 / 5` + stars).
-- The **register + demo forms are non-functional** — wire to the WP form plugin / endpoint on build (`action="#"` placeholders marked with TODO in `index.html`).
+- **Register modal = Gravity Form 41** (same as the control at `/welcome/`). The hero, About and Study-clubs "Register your interest" buttons open a popup modal containing the GF 41 shortcode:
+  ```
+  [gravityform id="41" title="false" description="false" ajax="true"]
+  ```
+  In the Elementor build, place this in a Shortcode widget (or the Gravity Forms widget → Form 41) inside the popup. Field map: `input_1`=First Name · `input_3`=Last Name · `input_2`=Email · `input_5.1`="I am a registered dental professional *" checkbox.
+  **Note:** shortcodes only render inside WordPress, so the local `index.html` preview shows the shortcode as text in a dashed placeholder box — that's expected.
+- **Verify data is passing (on WordPress):** submit the modal form, then check **WP admin → Forms → Entries → Form 41** — the submission appears as a new entry. Also confirm notification emails fire.
+- The **demo section form** is still a static mockup — wire to its own Gravity Form / endpoint on build.
 - Photographic assets pulled from Figma: `hero.jpg`, `about.jpg`, `demo-vle.png`, `studyclubs.jpg`, `form.jpg`, `accreditation.png` (EduQual + ADEE), `logo.png`.

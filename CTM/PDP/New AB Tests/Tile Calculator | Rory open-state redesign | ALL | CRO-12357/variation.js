@@ -98,10 +98,11 @@
 					row.setAttribute("data-cro12357-zone", activeZone);
 				}
 				if (!row.querySelector(".cro-12357-card-head")) {
+					/* every card gets a bin; renumberRows hides it on each zone's first card */
 					row.insertAdjacentHTML(
 						"afterbegin",
 						'<div class="cro-12357-card-head"><span class="cro-12357-card-title"></span>' +
-						(i > 0 ? '<button type="button" class="cro-12357-bin" aria-label="Remove area">' + icons.bin + "</button>" : "") +
+						'<button type="button" class="cro-12357-bin" aria-label="Remove area">' + icons.bin + "</button>" +
 						"</div>"
 					);
 				}
@@ -117,10 +118,17 @@
 			updateRowLabels(modal);
 		}
 
+		/* each zone numbers its own cards from 1 (bug 16); the first card of each zone hides its bin */
 		function renumberRows(modal) {
-			var titles = modal.querySelectorAll(".area-calculator-input .sin-ro .cro-12357-card-title");
-			for (var i = 0; i < titles.length; i++) {
-				titles[i].textContent = "Area " + (i + 1);
+			var counts = { floor: 0, wall: 0 };
+			var rows = modal.querySelectorAll(".area-calculator-input .sin-ro");
+			for (var i = 0; i < rows.length; i++) {
+				var zone = rows[i].getAttribute("data-cro12357-zone") || "floor";
+				counts[zone] = (counts[zone] || 0) + 1;
+				var title = rows[i].querySelector(".cro-12357-card-title");
+				if (title) title.textContent = "Area " + counts[zone];
+				var bin = rows[i].querySelector(".cro-12357-bin");
+				if (bin) bin.style.display = counts[zone] === 1 ? "none" : "";
 			}
 		}
 
@@ -159,13 +167,19 @@
 					btns[b].classList.toggle("active", btns[b].getAttribute("data-zone") === zone);
 				}
 
-				/* empty cards move over to the newly selected zone so the shopper never faces a blank list */
-				var rows = modal.querySelectorAll(".area-calculator-input .sin-ro");
-				for (var r = 0; r < rows.length; r++) {
-					if (isRowEmpty(rows[r])) {
-						rows[r].setAttribute("data-cro12357-zone", zone);
+				/* Floor and Wall keep completely independent card lists — cards never move
+				   between zones (bug 16). If the selected zone has no card yet, add a fresh
+				   Area 1 so it starts with one by default and never shows blank (bug 14).
+				   Only act on the visible modal instance to avoid desyncing the hidden one. */
+				if (modal.closest(".area-calculator-wrap._show")) {
+					var zoneRows = modal.querySelectorAll('.area-calculator-input .sin-ro[data-cro12357-zone="' + zone + '"]');
+					if (zoneRows.length === 0) {
+						var addBtn = modal.querySelector(".btn-add-room");
+						if (addBtn) addBtn.click();
 					}
 				}
+
+				renumberRows(modal);
 				updateRowLabels(modal);
 				updateIntroText(modal);
 			}
@@ -193,11 +207,16 @@
 			}
 		}
 
-		/* swipe up / click reveals the native summary block on every breakpoint */
+		/* swipe up / click opens the full summary in a separate popup sheet (bug 17) */
 		function bindSummaryToggle(modal) {
 			var swiper = modal.querySelector(".area-result .swiper");
 			if (!swiper || swiper.getAttribute("data-cro12357-bound")) return;
 			swiper.setAttribute("data-cro12357-bound", "1");
+
+			/* dim backdrop behind the summary sheet; clicking it closes (handled in croEventHandler) */
+			if (!modal.querySelector(".cro-12357-summary-backdrop")) {
+				modal.insertAdjacentHTML("beforeend", '<div class="cro-12357-summary-backdrop"></div>');
+			}
 
 			swiper.addEventListener("click", function () {
 				modal.classList.toggle("cro-12357-summary-open");
@@ -216,12 +235,31 @@
 			}, { passive: true });
 		}
 
+		/* the theme locks .area-calculator to a fixed height (sized for its old two-column
+		   layout) via an #tile_calc_modal !important rule that out-specifies our stylesheet,
+		   which leaves dead space between the inputs and the summary (bugs 5, 6, 8, 13).
+		   Inline !important is the only thing that beats an ID + !important rule. */
+		function fitHeights(modal) {
+			modal.style.setProperty("height", "auto", "important");
+			var ac = modal.querySelector(".area-calculator");
+			if (ac) {
+				ac.style.setProperty("height", "auto", "important");
+				ac.style.setProperty("min-height", "0", "important");
+				ac.style.setProperty("flex", "0 0 auto", "important");
+				/* old two-column layout left a 56px column gutter (now a vertical gap above the
+				   summary) and a 132px bottom padding (trailing gap under the CTA) */
+				ac.style.setProperty("gap", "0", "important");
+				ac.style.setProperty("padding-bottom", "0", "important");
+			}
+		}
+
 		function decorateModal(modal) {
 			injectToggle(modal);
 			injectChevron(modal);
 			decorateRows(modal);
 			fixCartButton(modal);
 			bindSummaryToggle(modal);
+			fitHeights(modal);
 		}
 
 		function decorateAll() {
@@ -249,6 +287,14 @@
 				var toggleBtn = target.closest ? target.closest(".cro-12357-toggle-btn") : null;
 				if (toggleBtn) {
 					setZone(toggleBtn.getAttribute("data-zone"));
+					return;
+				}
+
+				/* clicking the dim backdrop closes the summary sheet (bug 17) */
+				var backdrop = target.closest ? target.closest(".cro-12357-summary-backdrop") : null;
+				if (backdrop) {
+					var sumModal = backdrop.closest('[id="tile_calc_modal"]');
+					if (sumModal) sumModal.classList.remove("cro-12357-summary-open");
 					return;
 				}
 

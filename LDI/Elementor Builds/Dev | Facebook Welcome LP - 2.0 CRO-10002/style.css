@@ -526,6 +526,80 @@ button {
 
 .copyright { font-size: 13px; color: #6b7079; }
 
+/* ═══════════════════════════════ REGISTER MODAL ═══════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+  background: rgba(3, 11, 61, .6);
+}
+
+.modal-overlay.is-open { display: flex; }
+
+.modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin: auto;
+  background: var(--white);
+  padding: 48px;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
+  animation: modal-in .22s ease;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text);
+  transition: background-color .2s ease;
+}
+
+.modal-close:hover { background: var(--gray-bg); }
+
+.modal-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+.modal-head .section-heading { font-size: 24px; }
+
+.modal-form { gap: 20px; width: 100%; }
+.modal-form .req { color: #ec5555; }
+
+.hp-field {
+  position: absolute !important;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* Gravity Form 41 embed placeholder (renders as the live form on WordPress) */
+.gf-embed {
+  padding: 22px;
+  border: 1px dashed var(--input-border);
+  border-radius: 4px;
+  background: var(--input-bg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  color: #6b7079;
+  text-align: center;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    TABLET
    ═══════════════════════════════════════════════════════════════ */
