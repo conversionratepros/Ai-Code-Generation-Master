@@ -106,12 +106,25 @@
 						"</div>"
 					);
 				}
-				/* "m" unit marker inside each dimension field */
 				var inputWraps = row.querySelectorAll(".area-input:not(.area-res) > div");
 				for (var j = 0; j < inputWraps.length; j++) {
+					/* native-added rows are built without labels — inject them so the Wall
+					   zone's cards show "Width/Height in meters" like the original row (bug 19);
+					   updateRowLabels() then keeps the second label in sync with the zone */
+					if (!inputWraps[j].querySelector(".label-title")) {
+						inputWraps[j].insertAdjacentHTML(
+							"afterbegin",
+							'<p class="label-title">' + (j === 0 ? "Width" : "Length") + ' in <span class="line-break">meters</span></p>'
+						);
+					}
+					/* "m" unit marker inside each dimension field */
 					if (!inputWraps[j].querySelector(".cro-12357-unit")) {
 						inputWraps[j].insertAdjacentHTML("beforeend", '<span class="cro-12357-unit">m</span>');
 					}
+					/* the browser restores history form values into these fields on back
+					   navigation — opt out, the calculator resets instead (bug 20) */
+					var inp = inputWraps[j].querySelector("input");
+					if (inp) inp.setAttribute("autocomplete", "off");
 				}
 			}
 			renumberRows(modal);
@@ -207,6 +220,19 @@
 			}
 		}
 
+		/* lock the main popup's height while the summary sheet is open — lifting the
+		   summary out of the flow would otherwise shrink the popup behind it (bug 21) */
+		function setSummaryOpen(modal, open) {
+			var wrap = modal.closest(".modal-inner-wrap");
+			if (open && !modal.classList.contains("cro-12357-summary-open")) {
+				if (wrap) wrap.style.setProperty("height", wrap.offsetHeight + "px", "important");
+				modal.classList.add("cro-12357-summary-open");
+			} else if (!open && modal.classList.contains("cro-12357-summary-open")) {
+				modal.classList.remove("cro-12357-summary-open");
+				if (wrap) wrap.style.removeProperty("height");
+			}
+		}
+
 		/* swipe up / click opens the full summary in a separate popup sheet (bug 17) */
 		function bindSummaryToggle(modal) {
 			var swiper = modal.querySelector(".area-result .swiper");
@@ -219,7 +245,7 @@
 			}
 
 			swiper.addEventListener("click", function () {
-				modal.classList.toggle("cro-12357-summary-open");
+				setSummaryOpen(modal, !modal.classList.contains("cro-12357-summary-open"));
 			});
 
 			var touchStartY = null;
@@ -229,8 +255,8 @@
 			swiper.addEventListener("touchend", function (e) {
 				if (touchStartY === null) return;
 				var delta = touchStartY - e.changedTouches[0].clientY;
-				if (delta > 30) modal.classList.add("cro-12357-summary-open");
-				if (delta < -30) modal.classList.remove("cro-12357-summary-open");
+				if (delta > 30) setSummaryOpen(modal, true);
+				if (delta < -30) setSummaryOpen(modal, false);
 				touchStartY = null;
 			}, { passive: true });
 		}
@@ -250,6 +276,36 @@
 				   summary) and a 132px bottom padding (trailing gap under the CTA) */
 				ac.style.setProperty("gap", "0", "important");
 				ac.style.setProperty("padding-bottom", "0", "important");
+			}
+		}
+
+		/* Returning from another page (e.g. the cart) the browser restores its history
+		   form values — but only into fields that existed in the initial HTML, so the
+		   original Floor row comes back filled while added Wall rows come back empty.
+		   Per spec the calculator simply resets to 0 when returning (bug 20). */
+		function resetCalculator() {
+			var modals = getModals();
+			for (var m = 0; m < modals.length; m++) {
+				var modal = modals[m];
+				/* drop rows the native JS added in the previous visit (bfcache restores) */
+				var removes = modal.querySelectorAll(".area-calculator-input .sin-ro .remove_room_btn");
+				for (var r = removes.length - 1; r >= 0; r--) {
+					removes[r].click();
+				}
+				var inputs = modal.querySelectorAll(".area-calculator-input .sin-ro .area-input:not(.area-res) input");
+				var dirty = false;
+				for (var i = 0; i < inputs.length; i++) {
+					if (inputs[i].value !== "") {
+						inputs[i].value = "";
+						dirty = true;
+					}
+				}
+				if (dirty && inputs[0]) {
+					inputs[0].dispatchEvent(new Event("input", { bubbles: true }));
+					inputs[0].dispatchEvent(new Event("change", { bubbles: true }));
+					inputs[0].dispatchEvent(new Event("keyup", { bubbles: true }));
+				}
+				renumberRows(modal);
 			}
 		}
 
@@ -294,7 +350,7 @@
 				var backdrop = target.closest ? target.closest(".cro-12357-summary-backdrop") : null;
 				if (backdrop) {
 					var sumModal = backdrop.closest('[id="tile_calc_modal"]');
-					if (sumModal) sumModal.classList.remove("cro-12357-summary-open");
+					if (sumModal) setSummaryOpen(sumModal, false);
 					return;
 				}
 
@@ -345,6 +401,20 @@
 			for (var m = 0; m < modals.length; m++) {
 				observeRows(modals[m]);
 			}
+
+			/* reset to 0 when arriving/returning (bug 20): once now, once after the
+			   browser's late history form-restore at load, and on bfcache restores */
+			resetCalculator();
+			if (document.readyState === "complete") {
+				setTimeout(resetCalculator, 500);
+			} else {
+				window.addEventListener("load", function () {
+					setTimeout(resetCalculator, 500);
+				});
+			}
+			window.addEventListener("pageshow", function (e) {
+				if (e.persisted) resetCalculator();
+			});
 		}
 
 		if (!window.cro_12357) {

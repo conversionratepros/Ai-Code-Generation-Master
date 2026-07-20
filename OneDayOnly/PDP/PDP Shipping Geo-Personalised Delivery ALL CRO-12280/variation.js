@@ -65,21 +65,11 @@
       });
     }
 
-    /* Only South African visitors get the personalised city greeting —
-       everyone else (or unresolved geo) sees DEFAULT_HEADING. Convert may
-       return the country as an ISO code or full name, so match both. */
-    function isSouthAfrica(geo) {
-      var c = geo && geo.country;
-      return typeof c === "string" && /^(ZA|South Africa)$/i.test(c.trim());
-    }
-
     function buildHeading() {
       var geo = getGeo();
-      if (isSouthAfrica(geo)) {
-        var loc = geo.city || geo.state;
-        if (loc && typeof loc === "string") {
-          return titleCase(loc.trim()) + HEADING_SUFFIX;
-        }
+      var loc = geo && (geo.city || geo.state || geo.country);
+      if (loc && typeof loc === "string") {
+        return titleCase(loc.trim()) + HEADING_SUFFIX;
       }
       return DEFAULT_HEADING;
     }
@@ -129,7 +119,17 @@
       var allEls = Array.prototype.slice.call(document.querySelectorAll("*"));
       for (var i = 0; i < allEls.length; i++) {
         var el = allEls[i];
-        if (el.children.length > 0) continue;
+        /* Skip STYLE/SCRIPT — the injected <style> carries a CSS comment
+           mentioning "Excludes shipping" and would be matched otherwise. */
+        if (el.tagName === "STYLE" || el.tagName === "SCRIPT") continue;
+        /* Treat a <br>-only element as a leaf — some products split
+           "Excludes shipping" across text nodes with a trailing <br>,
+           which would otherwise fail a strict childless check. */
+        var hasRealChild = false;
+        for (var c = 0; c < el.children.length; c++) {
+          if (el.children[c].tagName !== "BR") { hasRealChild = true; break; }
+        }
+        if (hasRealChild) continue;
         if (!/excludes shipping/i.test(el.textContent)) continue;
 
         var cur = el;
@@ -141,6 +141,11 @@
         if (!cur.hasAttribute("data-cro-12280-original-shipping") &&
           !cur.closest("[data-cro-12280-original-shipping]")) {
           cur.setAttribute("data-cro-12280-original-shipping", "1");
+          /* tag the wrapper too so its own margin/padding/border can be
+             collapsed once the hidden shipping block leaves an empty box */
+          if (cur.parentElement) {
+            cur.parentElement.classList.add("cro-12280-shipping-parent");
+          }
         }
       }
     }
@@ -178,18 +183,59 @@
       return null;
     }
 
+    /*
+     * Where to place the badge. Preferred = the Payflex cell (badge sits
+     * below Payflex per the design). Cheaper products have no Payflex
+     * section, so fall back to the buy-box PRICE cell — located by walking
+     * up from the original "ETA / Excludes shipping" block (present on every
+     * PDP) to the first ancestor with an explicit (non-"auto") grid-row.
+     */
+    /* Set when the badge is placed via the no-Payflex fallback, so init()
+       can add an extra body class for scoping product-specific CSS. */
+    var usedFallbackAnchor = false;
+
+    function findAnchorCell() {
+      usedFallbackAnchor = false;
+      var payflex = findPayflexCell();
+      if (payflex) return payflex;
+
+      usedFallbackAnchor = true;
+
+      var allEls = Array.prototype.slice.call(document.querySelectorAll("*"));
+      var leaf = null;
+      var leafLen = Infinity;
+      for (var i = 0; i < allEls.length; i++) {
+        var el = allEls[i];
+        if (el.tagName === "STYLE" || el.tagName === "SCRIPT") continue;
+        if (el.children.length > 0) continue;
+        var txt = el.textContent;
+        if (/working day|excludes shipping/i.test(txt) && txt.length < leafLen) {
+          leaf = el;
+          leafLen = txt.length;
+        }
+      }
+      if (!leaf) return null;
+
+      var cur = leaf;
+      for (var up = 0; up < 10 && cur; up++) {
+        if (getComputedStyle(cur).gridRow !== "auto") return cur;
+        cur = cur.parentElement;
+      }
+      return null;
+    }
+
     function buildBadgeHtml(leadTime) {
       var deliveryLine = leadTime
         ? '<div class="cro-12280-badge-delivery"><strong>Arrives in ' + leadTime +
         ' working days</strong>.</div>'
         : "";
-      return '<div class="cro-12280-badge">' +
+      return '<div class="cro-12280-badge-parent"><div class="cro-12280-badge">' +
         '<span class="cro-12280-badge-icon">' + PIN_SVG + "</span>" +
         '<div class="cro-12280-badge-text">' +
         '<div class="cro-12280-badge-heading">' + buildHeading() + "</div>" +
         deliveryLine +
         '<div class="cro-12280-badge-qualifier">Shipping calculated at checkout</div>' +
-        "</div></div>";
+        "</div></div> </div>";
     }
 
     var injectAttempts = 0;
@@ -197,7 +243,7 @@
     function injectBadge() {
       if (document.querySelector(".cro-12280-badge")) return;
 
-      var payflexCell = findPayflexCell();
+      var payflexCell = findAnchorCell();
       if (!payflexCell) return;
 
       /* Give the ETA text a few ticks to hydrate before falling back to a
@@ -207,6 +253,7 @@
       if (!leadTime && injectAttempts < 10) return;
 
       payflexCell.insertAdjacentHTML("beforeend", buildBadgeHtml(leadTime));
+      payflexCell.classList.add("cro-12280-parent");
       tagOriginalShipping();
     }
 
@@ -219,6 +266,11 @@
       if (document.querySelector(".cro-12280-badge") &&
         !document.body.classList.contains(variation_name)) {
         addClass("body", variation_name);
+        /* extra class for products with no Payflex section, so their
+           layout can be tweaked in isolation */
+        if (usedFallbackAnchor) {
+          document.body.classList.add(variation_name + "-no-payflex");
+        }
       }
     }
 

@@ -26,6 +26,10 @@ body.cro-12280 .cro-12280-badge {
     border-left: 3px solid #0093d0;
 }
 
+body.cro-12280 .cro-12280-parent {
+    padding-bottom: 12px;
+}
+
 body.cro-12280 .cro-12280-badge-icon {
     flex: 0 0 14px;
     width: 14px;
@@ -76,9 +80,40 @@ body.cro-12280 .cro-12280-badge-qualifier {
     line-height: 14px;
 }
 
+body.cro-12280.cro-12280-no-payflex .cro-12280-badge-parent {
+    border-top: none;
+    border-bottom: 1px solid #99abb9;
+    padding-bottom: 12px;
+}
+
 /* ─── Mobile (≤1023px) — slightly tighter vertical padding per design ───── */
 @media (max-width: 1023px) {
     body.cro-12280 .cro-12280-badge {
         padding: 10px 12px 10px 15px;
     }
+
+    .cro-12280-shipping-parent {
+        padding: 0;
+        border: none;
+    }
+
+    body.cro-12280.cro-12280-no-payflex .cro-12280-badge-parent {
+        border-top: 1px solid #99abb9;
+    }
+}
+
+.cro-12280-parent>div:nth-child(1) {
+    order: 1;
+}
+
+.cro-12280-parent>div.cro-12280-badge-parent {
+    order: 3;
+}
+
+.cro-12280-parent>div[color="darkGrey"] {
+    order: 2;
+}
+
+.cro-12280-badge-parent {
+    border-top: 1px solid #99abb9;
 }

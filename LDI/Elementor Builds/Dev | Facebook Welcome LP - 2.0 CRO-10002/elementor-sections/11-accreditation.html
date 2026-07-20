@@ -1,20 +1,72 @@
 <div class="ldi-v2">
 <section class="section section-accreditation">
-      <div class="container accred-grid">
-        <div class="accred-logos">
-          <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020010/accreditation.png" alt="EduQual and ADEE accreditation" />
-        </div>
-        <div class="accred-text">
-          <div class="accred-head">
-            <span class="eyebrow">Accreditation</span>
-            <h2 class="section-heading">Recognised, accredited dental education</h2>
-          </div>
-          <p class="body-text">
-            Our diplomas are accredited by EduQual (Level 7), meeting the quality standards required to provide a
-            globally recognised qualification. LDI is also an institutional member of the Association for Dental
-            Education in Europe, working to raise standards and bring dental education closer together across the region.
-          </p>
-        </div>
-      </div>
-    </section>
+                <div class="container accred-grid">
+                    <div class="accred-logos">
+                        <!-- CSS kept here (in the HTML widget) so the separate Custom CSS file isn't touched -->
+                        <style>
+                            .ldi-v2 .accred-logo-box {
+                                display: flex;
+                                flex-direction: column;
+                                border: 1px solid #e2e5e8;
+                                border-radius: 4px;
+                                width: 100%;
+                                overflow: hidden;
+                            }
+                            .ldi-v2 .accred-logo-cell {
+                                flex: 1 1 0;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 44px 24px;
+                            }
+                            .ldi-v2 .accred-logo-cell img {
+                                width: auto;
+                                max-width: 100%;
+                                max-height: 56px;
+                                height: auto;
+                                object-fit: contain;
+                            }
+                            .ldi-v2 .accred-logo-cell + .accred-logo-cell {
+                                border-top: 1px solid #e2e5e8;
+                            }
+                            @media (max-width: 900px) {
+                                .ldi-v2 .accred-logo-box { flex-direction: row; }
+                                .ldi-v2 .accred-logo-cell { padding: 28px 14px; }
+                                .ldi-v2 .accred-logo-cell img { max-height: 40px; }
+                                .ldi-v2 .accred-logo-cell + .accred-logo-cell {
+                                    border-top: 0;
+                                    border-left: 1px solid #e2e5e8;
+                                }
+                                /* design shows the text above the logos on mobile */
+                                .ldi-v2 .section-accreditation .accred-logos { order: 2; }
+                                .ldi-v2 .section-accreditation .accred-text { order: 1; }
+                            }
+                        </style>
+                        <div class="accred-logo-box">
+                            <div class="accred-logo-cell">
+                                <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/20135137/eduQual.png"
+                                    alt="EduQual" />
+                            </div>
+                            <div class="accred-logo-cell">
+                                <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/20135132/adee.png"
+                                    alt="ADEE — Advancing Education and Oral Health" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accred-text">
+                        <div class="accred-head">
+                            <span class="eyebrow">Accreditation</span>
+                            <h2 class="section-heading">Recognised, accredited dental education</h2>
+                        </div>
+                        <p class="body-text">
+                            Our diplomas are accredited by EduQual (Level 7), meeting the quality standards required to
+                            provide a
+                            globally recognised qualification. LDI is also an institutional member of the Association
+                            for Dental
+                            Education in Europe, working to raise standards and bring dental education closer together
+                            across the region.
+                        </p>
+                    </div>
+                </div>
+            </section>
 </div>

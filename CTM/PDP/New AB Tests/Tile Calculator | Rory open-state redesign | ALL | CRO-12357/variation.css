@@ -217,6 +217,7 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator
     padding: 0 !important;
     /* drop the theme's flex-basis:56% so the block sizes to its content */
     flex: 0 0 auto !important;
+    row-gap: 8px;
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result {
@@ -533,7 +534,7 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"].cro-12357-summar
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .totalbox h2 {
-    margin: 0 0 8px;
+    margin: 0 0 0px;
     font-size: 16px;
     line-height: 24px;
     font-weight: 600;
@@ -543,7 +544,7 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .to
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .totalbox ul {
     margin: 0 0 12px;
     padding: 12px 0 0;
-    border-top: 1px solid #f3f4f6;
+    /* border-top: 1px solid #f3f4f6; */
     list-style: none;
 }
 
@@ -608,7 +609,7 @@ html body.cro12357 .area-calculator-wrap .cro-12357-boxes-label {
 }
 
 html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .to-cart_container .add-to-cart-note {
-    margin-top: 8px;
+    margin-top: 0px;
     text-align: center;
     font-size: 12px;
     line-height: 16px;
@@ -666,5 +667,13 @@ html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-calculator
 
     html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .area-result .swiper {
         margin: 20px 0;
+    }
+
+    html body.cro12357 .area-calculator-wrap [id="tile_calc_modal"] .sin-ro .label-title {
+        display: flex;
+    }
+
+    html body.cro12357 .modal-popup.area-calculator-wrap {
+        z-index: 9999999999;
     }
 }

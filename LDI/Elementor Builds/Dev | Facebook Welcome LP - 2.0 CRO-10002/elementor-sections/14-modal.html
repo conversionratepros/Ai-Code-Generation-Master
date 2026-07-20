@@ -1,58 +1,195 @@
 <div class="ldi-v2">
 <div class="modal-overlay" id="register-modal" aria-hidden="true">
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="register-modal-title">
-      <button class="modal-close" type="button" aria-label="Close" data-close-modal>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-      </button>
-      <div class="modal-body">
-        <div class="modal-head">
-          <span class="eyebrow">Register your interest</span>
-          <h2 class="section-heading" id="register-modal-title">Fill in your details below and we'll send you
-            everything you need to get started</h2>
-        </div>
-        <!-- ═══ Gravity Form 41 ═══
+            <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="register-modal-title">
+                <button class="modal-close" type="button" aria-label="Close" data-close-modal>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </button>
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <h2 class="modal-title" id="register-modal-title">Register your interest</h2>
+                        <p class="modal-subtitle">Fill in your details below and we'll send you everything you need to
+                            get started.</p>
+                    </div>
+                    <!-- ═══ Gravity Form 41 ═══
              In the WordPress/Elementor build, drop this shortcode into a Shortcode widget
              (or use the Gravity Forms widget → Form 41) inside the popup.
              Renders the live form and saves submissions to Forms → Entries.
              Field map: input_1 = First Name · input_3 = Last Name · input_2 = Email ·
                         input_5.1 = "I am a registered dental professional *" checkbox
              Note: shortcodes only render inside WordPress — the local preview shows the code as text. -->
-        <div class="modal-form gf-embed">
-          [gravityform id="41" title="false" description="false" ajax="true"]
+                    <div class="modal-form gf-embed">
+                        [gravityform id="41" title="false" description="false" ajax="true"]
+                    </div>
+                    <p class="modal-disclaimer">By registering, you consent to receive future communications from us in
+                        accordance with our <a href="https://londondentalinstitute.com/privacy-policy/">Privacy Policy</a>.</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
 <script>
-    // ─── Register modal ───────────────────────────────────────────────
-    (function () {
-      const modal = document.getElementById('register-modal');
-      let lastFocused = null;
+            // ─── Register modal ───────────────────────────────────────────────
+            (function () {
+                const modal = document.getElementById('register-modal');
+                let lastFocused = null;
 
-      function openModal(e) {
-        if (e) e.preventDefault();
-        lastFocused = document.activeElement;
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
+                function openModal(e) {
+                    if (e) e.preventDefault();
+                    lastFocused = document.activeElement;
+                    modal.classList.add('is-open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
 
-      function closeModal() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (lastFocused) lastFocused.focus();
-      }
+                function closeModal() {
+                    modal.classList.remove('is-open');
+                    modal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                    if (lastFocused) lastFocused.focus();
+                }
 
-      document.querySelectorAll('.open-register').forEach(btn => btn.addEventListener('click', openModal));
-      modal.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
-      // click outside dialog closes
-      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-      // ESC closes
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
-    })();
-  </script>
+                document.querySelectorAll('.open-register').forEach(btn => btn.addEventListener('click', openModal));
+                modal.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
+                // click outside dialog closes
+                modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+                // ESC closes
+                document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+            })();
+        </script>
+
+<script>
+            // ─── Replace our testimonials section with the control's Elementor testimonials ───
+            // The control section is the Elementor element that sits immediately after our HTML widget:
+            //   [data-widget_type="html.default"] + div.elementor-element
+            (function () {
+                function waitForElement(selector, cb, tries) {
+                    tries = tries || 0;
+                    if (document.querySelector(selector)) return cb();
+                    if (tries > 100) return;               // ~20s safety cap
+                    setTimeout(function () { waitForElement(selector, cb, tries + 1); }, 200);
+                }
+
+                function swapTestimonials() {
+                    var ourTestimonials = document.querySelector('.ldi-v2 .section-testimonials');
+                    if (!ourTestimonials) return;
+                    var htmlWidget = ourTestimonials.closest('[data-widget_type="html.default"]');
+                    var controlSection = htmlWidget ? htmlWidget.nextElementSibling : null;
+                    if (!controlSection || !controlSection.classList.contains('elementor-element')) return;
+                    if (controlSection.getAttribute('data-ldi-swapped')) return;
+                    controlSection.setAttribute('data-ldi-swapped', '1');
+
+                    // drop our testimonials, put the control section in its place
+                    controlSection.classList.add('ldi-testimonials-slot');
+                    ourTestimonials.replaceWith(controlSection);
+
+                    // force lazy-loaded video thumbnails to render after the move
+                    controlSection.querySelectorAll('[data-bg]').forEach(function (el) {
+                        if (!el.style.backgroundImage) {
+                            el.style.backgroundImage = "url('" + el.getAttribute('data-bg') + "')";
+                        }
+                    });
+                    window.dispatchEvent(new Event('resize'));
+                }
+
+                // wait for BOTH the control section and our section to be in the DOM
+                waitForElement('[data-widget_type="html.default"] + div.elementor-element', function () {
+                    waitForElement('.ldi-v2 .section-testimonials', function () {
+                        swapTestimonials();
+                    });
+                });
+            })();
+        </script>
+
+<script>
+            // ─── Static demo/bottom lead forms: custom validation → forward to Gravity Form 41 (in modal) ───
+            (function () {
+                var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var GF_ID = 41; // the ONLY real Gravity Form lives inside the register modal
+
+                function validate(form) {
+                    var ok = true;
+                    form.querySelectorAll('.form-group').forEach(function (g) {
+                        var input = g.querySelector('input');
+                        if (!input) return;
+                        var slot = g.querySelector('[data-error]');
+                        var msg = '';
+                        if (input.type === 'checkbox') {
+                            if (!input.checked) msg = 'This field is required.';
+                        } else if (!input.value.trim()) {
+                            msg = 'This field is required.';
+                        } else if (input.type === 'email' && !EMAIL.test(input.value.trim())) {
+                            msg = 'Please enter a valid email address.';
+                        }
+                        g.classList.toggle('has-error', !!msg);
+                        if (slot) slot.textContent = msg;
+                        if (msg) ok = false;
+                    });
+                    var summary = form.querySelector('.lead-error-summary');
+                    if (summary) summary.hidden = ok;
+                    return ok;
+                }
+
+                function forwardToGravityForm(data, done) {
+                    var f1 = document.getElementById('input_' + GF_ID + '_1');   // First Name
+                    var f3 = document.getElementById('input_' + GF_ID + '_3');   // Last Name
+                    var f2 = document.getElementById('input_' + GF_ID + '_2');   // Email
+                    var chk = document.getElementById('choice_' + GF_ID + '_5_1'); // checkbox
+                    var btn = document.getElementById('gform_submit_button_' + GF_ID);
+                    if (!(f1 && f3 && f2 && btn)) { done(); return; } // GF not present -> fail open
+                    f1.value = data.first; f3.value = data.last; f2.value = data.email;
+                    if (chk) chk.checked = true;
+                    [f1, f3, f2].forEach(function (el) { el.dispatchEvent(new Event('input', { bubbles: true })); });
+                    if (chk) chk.dispatchEvent(new Event('change', { bubbles: true }));
+
+                    var finished = false;
+                    function finish() { if (finished) return; finished = true; done(); }
+                    if (window.jQuery) {
+                        window.jQuery(document).one('gform_confirmation_loaded', function (e, formId) {
+                            if (String(formId) === String(GF_ID)) finish();
+                        });
+                    }
+                    btn.click(); // fires Gravity Forms' AJAX submit
+                    setTimeout(finish, 4500); // fallback if the confirmation event doesn't fire
+                }
+
+                // once ANY form is submitted, show the thank-you in EVERY inline form section
+                function showAllThankYou() {
+                    document.querySelectorAll('.js-lead-form').forEach(function (f) { f.hidden = true; });
+                    document.querySelectorAll('.lead-thankyou').forEach(function (t) { t.hidden = false; });
+                }
+
+                document.querySelectorAll('.js-lead-form').forEach(function (form) {
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        if (!validate(form)) return;
+                        var btn = form.querySelector('button[type="submit"]');
+                        if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
+                        forwardToGravityForm({
+                            first: form.querySelector('[name="first_name"]').value.trim(),
+                            last: form.querySelector('[name="last_name"]').value.trim(),
+                            email: form.querySelector('[name="email"]').value.trim()
+                        }, showAllThankYou);
+                    });
+                    // clear a field's error as the user corrects it
+                    form.querySelectorAll('input').forEach(function (input) {
+                        input.addEventListener('input', function () {
+                            var g = input.closest('.form-group');
+                            if (g && g.classList.contains('has-error')) {
+                                g.classList.remove('has-error');
+                                var slot = g.querySelector('[data-error]');
+                                if (slot) slot.textContent = '';
+                            }
+                        });
+                    });
+                });
+
+                // also covers submitting the real Gravity Form 41 directly inside the modal
+                if (window.jQuery) {
+                    window.jQuery(document).on('gform_confirmation_loaded', function (e, formId) {
+                        if (String(formId) === String(GF_ID)) showAllThankYou();
+                    });
+                }
+            })();
+        </script>
 </div>

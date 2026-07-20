@@ -74,11 +74,12 @@
                 document.querySelector(".buy-me-box [class*='price']") ||
                 document.querySelector(".product-details [class*='price']");
             if (priceEl) {
-                /* Extract individual currency amounts from text like
-                   "Sale price R 2,700.00Original price R 3,000.00"
-                   Regex matches: R / $ / € / £ followed by digits, commas, and decimals */
+                /* Extract individual currency amounts. Handles both orderings:
+                   symbol-first  "Sale price R 2,700.00Original price R 3,000.00" (en-za)
+                   symbol-last   "Aktionspreis 879,00 €Originalpreis 1465,00 €"   (de-de)
+                   The two alternatives cover: [symbol][number]  and  [number][symbol]. */
                 var fullText = priceEl.textContent;
-                var amounts = fullText.match(/[R$€£]\s*[\d,]+(?:\.\d{1,2})?/g) || [];
+                var amounts = fullText.match(/[R$€£]\s*[\d.,]+|[\d.,]+\s*[R$€£]/g) || [];
                 productData.salePrice = amounts[0] ? amounts[0].trim() : "";
                 productData.originalPrice = amounts[1] ? amounts[1].trim() : "";
                 /* Fallback: if no currency symbol matched, take first non-empty line */
@@ -316,6 +317,32 @@
                .buy-me-box, and React intercepts bubble-phase clicks before they reach document.
                Capture fires before React touches the event. Walk up 3 levels to handle clicks
                on inner SVG/span children. */
+            // document.addEventListener("click", function (e) {
+            //     var el = e.target;
+            //     for (var i = 0; i < 3 && el && el.tagName; i++) {
+            //         if (el.tagName === "BUTTON") {
+            //             var ariaLabel = (el.getAttribute("aria-label") || "").toLowerCase();
+            //             var text = (el.textContent || "").trim().toLowerCase();
+            //             var inBuyBox = !!(el.closest && el.closest(".buy-me-box"));
+            //             /* "Add to bag" anywhere = Dometic's sticky CTA (outside .buy-me-box).
+            //                "Add to cart" and submit only inside .buy-me-box to avoid false
+            //                positives from related-product tile buttons. */
+            //             var isATB =
+            //                 ariaLabel === "add to bag" ||
+            //                 ariaLabel === "In den Warenkorb" ||
+            //                 (inBuyBox && el.type === "submit") ||
+            //                 (inBuyBox && ariaLabel.indexOf("add to cart") !== -1) ||
+            //                 (inBuyBox && ariaLabel.indexOf("In den Warenkorb") !== -1) ||
+            //                 (text === "add to bag");
+            //             if (isATB) {
+            //                 onATBClick();
+            //                 return;
+            //             }
+            //         }
+            //         el = el.parentElement;
+            //     }
+            // }, true);
+
             document.addEventListener("click", function (e) {
                 var el = e.target;
                 for (var i = 0; i < 3 && el && el.tagName; i++) {
