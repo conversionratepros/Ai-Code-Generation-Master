@@ -5,7 +5,7 @@
         <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
         <header class="site-header">
             <div class="header-inner">
-                <a href="https://londondentalinstitute.com/welcome-v2/" class="logo-wrap">
+                <a href="#" class="logo-wrap">
                     <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020030/logo.png"
                         alt="London Dental Institute" class="logo" />
                 </a>
@@ -287,65 +287,29 @@
                             Explore the
                             modules, clinical demos, 1:1 case support and global community before you enrol.
                         </p>
-                        <div class="lead-wrap">
-                            <!-- Static inputs + custom validation; on success forwards to Gravity Form 41 in the modal -->
-                            <form class="demo-form js-lead-form" novalidate>
-                                <div class="lead-error-summary" hidden>
-                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                                        <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.4" />
-                                        <path d="M10 5.5v5M10 13.5h.01" stroke="currentColor" stroke-width="1.6"
-                                            stroke-linecap="round" />
-                                    </svg>
-                                    <span>There was a problem with your submission. Please review the fields
-                                        below.</span>
-                                </div>
-                                <div class="demo-form-fields">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="demo-first-name">First name:<span class="req">*</span></label>
-                                            <input type="text" id="demo-first-name" name="first_name" />
-                                            <span class="field-error" data-error></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="demo-last-name">Last name:<span class="req">*</span></label>
-                                            <input type="text" id="demo-last-name" name="last_name" />
-                                            <span class="field-error" data-error></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="demo-email">Email address:<span class="req">*</span></label>
-                                        <input type="email" id="demo-email" name="email" />
-                                        <span class="field-error" data-error></span>
-                                    </div>
-                                    <div class="form-group checkbox-field">
-                                        <label class="checkbox-row">
-                                            <input type="checkbox" name="is_professional" />
-                                            <span>I am a registered dental professional <span
-                                                    class="req">*</span></span>
-                                        </label>
-                                        <span class="field-error" data-error></span>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-purple btn-full">
-                                    Send me the demo
-                                    <svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                                        <path d="M3 9h11M9.5 4.5L14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.8"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
-                                <div class="demo-note">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19"
-                                        fill="none">
-                                        <path d="M16.8696 5.06689L7.01332 14.9231L2.5332 10.443" stroke="#BFE0F0"
-                                            stroke-width="1.74236" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                    <span>No commitment, just a look inside.</span>
-                                </div>
-                            </form>
-                            <div class="lead-thankyou" hidden>
-                                <h3 class="lead-thankyou-title">Thank you!</h3>
-                                <p class="body-text">Thanks for registering your interest — we'll be in touch with
-                                    everything you need to get started.</p>
+                        <!-- CSS kept in the HTML widget so the separate Custom CSS file isn't touched -->
+                        <style>
+                            /* First/Last side-by-side for the dedicated study (81) + demo (82) Gravity Forms */
+                            .ldi-v2 .gform_wrapper #field_81_1,
+                            .ldi-v2 .gform_wrapper #field_82_1 {
+                                grid-column: 1 / 2;
+                            }
+
+                            .ldi-v2 .gform_wrapper #field_81_3,
+                            .ldi-v2 .gform_wrapper #field_82_3 {
+                                grid-column: 2 / 3;
+                            }
+                        </style>
+                        <div class="demo-form gf-embed">
+                            <!-- Gravity Form 82 = dedicated demo form (created by client in WP) -->
+                            [gravityform id="82" title="false" description="false" ajax="true"]
+                            <div class="demo-note">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19"
+                                    fill="none">
+                                    <path d="M16.8696 5.06689L7.01332 14.9231L2.5332 10.443" stroke="#BFE0F0"
+                                        stroke-width="1.74236" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <span>No commitment, just a look inside.</span>
                             </div>
                         </div>
                     </div>
@@ -542,7 +506,7 @@
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg></span>No cost to attend</li>
                         </ul>
-                        <a href="#form-section" class="btn btn-primary open-register">
+                        <a href="#" class="btn btn-primary open-study-modal">
                             Send me the schedule
                             <svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                 <path d="M3 9h11M9.5 4.5L14 9l-4.5 4.5" stroke="currentColor" stroke-width="1.8"
@@ -731,7 +695,7 @@
         <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
         <footer class="site-footer">
             <div class="footer-inner">
-                <a href="https://londondentalinstitute.com/welcome-v2/" class="logo-wrap">
+                <a href="#" class="logo-wrap">
                     <svg class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         width="142" height="48" viewBox="0 0 142 48" fill="none" role="img"
                         aria-label="London Dental Institute">
@@ -772,6 +736,31 @@
              Note: shortcodes only render inside WordPress — the local preview shows the code as text. -->
                     <div class="modal-form gf-embed">
                         [gravityform id="41" title="false" description="false" ajax="true"]
+                    </div>
+                    <p class="modal-disclaimer">By registering, you consent to receive future communications from us in
+                        accordance with our <a href="https://londondentalinstitute.com/privacy-policy/">Privacy
+                            Policy</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ STUDY / WEBINAR MODAL (Gravity Form 81) ═══════════════════════════════ -->
+        <div class="modal-overlay" id="study-modal" aria-hidden="true">
+            <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="study-modal-title">
+                <button class="modal-close" type="button" aria-label="Close" data-close-modal>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </button>
+                <div class="modal-body">
+                    <div class="modal-head">
+                        <h2 class="modal-title" id="study-modal-title">Register your interest</h2>
+                        <p class="modal-subtitle">Fill in your details below and we'll send you the monthly webinar
+                            schedule.</p>
+                    </div>
+                    <div class="modal-form gf-embed">
+                        <!-- Gravity Form 81 = dedicated study/webinar form (created by client in WP) -->
+                        [gravityform id="81" title="false" description="false" ajax="true"]
                     </div>
                     <p class="modal-disclaimer">By registering, you consent to receive future communications from us in
                         accordance with our <a href="https://londondentalinstitute.com/privacy-policy/">Privacy
@@ -841,6 +830,17 @@
                             el.style.backgroundImage = "url('" + el.getAttribute('data-bg') + "')";
                         }
                     });
+
+                    // update copy to match the new design (node 29-794) — headings/roles only
+                    controlSection.querySelectorAll('.elementor-heading-title').forEach(function (el) {
+                        var t = el.textContent.trim();
+                        if (t === 'How our courses have helped our graduates') {
+                            el.textContent = 'What graduates say about studying with us';
+                        } else if (t.indexOf('PG. Dip Graduate') > -1) {
+                            el.textContent = t.replace('PG. Dip Graduate', 'PG Dip. Graduate');
+                        }
+                    });
+
                     window.dispatchEvent(new Event('resize'));
                 }
 
@@ -942,6 +942,51 @@
                         if (String(formId) === String(GF_ID)) showAllThankYou();
                     });
                 }
+            })();
+        </script>
+
+        <script>
+            // ─── Study / webinar modal (Gravity Form 81) — independent of the register modal ───
+            (function () {
+                var modal = document.getElementById('study-modal');
+                if (!modal) return;
+                var lastFocused = null;
+                function openModal(e) {
+                    if (e) e.preventDefault();
+                    lastFocused = document.activeElement;
+                    modal.classList.add('is-open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeModal() {
+                    modal.classList.remove('is-open');
+                    modal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                    if (lastFocused) lastFocused.focus();
+                }
+                document.querySelectorAll('.open-study-modal').forEach(function (b) { b.addEventListener('click', openModal); });
+                modal.querySelectorAll('[data-close-modal]').forEach(function (el) { el.addEventListener('click', closeModal); });
+                modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+                document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+            })();
+        </script>
+
+        <script>
+            // ─── Gravity Form 82 (demo) submit button label → "Send me the demo" ───
+            (function () {
+                function setDemoButtonText() {
+                    var btn = document.getElementById('gform_submit_button_82');
+                    if (!btn) return;
+                    if (btn.tagName === 'INPUT') btn.value = 'Send me the demo';
+                    else btn.textContent = 'Send me the demo';
+                }
+                if (window.jQuery) {
+                    window.jQuery(document).on('gform_post_render', function (e, formId) {
+                        if (String(formId) === '82') setDemoButtonText();
+                    });
+                }
+                if (document.readyState !== 'loading') setDemoButtonText();
+                else document.addEventListener('DOMContentLoaded', setDemoButtonText);
             })();
         </script>
     </div>
