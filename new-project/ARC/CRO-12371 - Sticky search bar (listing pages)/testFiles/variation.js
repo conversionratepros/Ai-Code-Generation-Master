@@ -1,6 +1,5 @@
 (function () {
   try {
-    /* main variables */
     var debug = 0;
     var variation_name = "cro-12371";
 
@@ -27,7 +26,27 @@
       }
     }
 
-    /* ---- Desktop: pin the whole header.header-top row (logo, search, icons) to the viewport ---- */
+    var ribbonHeight = 0;
+
+    // The client runs a separate promo ribbon (id^="wps-ribbon") in normal document
+    // flow above header#Top -- it is not ours to hide. It scrolls away like any other
+    // in-flow content, so once fixed the header's `top` must shrink from the ribbon's
+    // height down to 0 as the page scrolls, or the fixed header sits at top:0 and gets
+    // covered by the ribbon (the ribbon's z-index is effectively max) while it's still
+    // on screen. position:sticky can't do this here -- header#Top (its containing
+    // block) is barely taller than the bar itself, so a sticky child runs out of room
+    // to stick within a few dozen pixels of scroll and scrolls away regardless.
+    function measureRibbon() {
+      var ribbon = document.querySelector('[id^="wps-ribbon"]');
+      ribbonHeight = ribbon ? ribbon.getBoundingClientRect().height : 0;
+    }
+
+    function updateHeaderTop() {
+      var bar = document.querySelector('header#Top .header.header-top');
+      if (!bar) return;
+      bar.style.top = Math.max(0, ribbonHeight - window.scrollY) + 'px';
+    }
+
     function positionDesktopHeader() {
       var bar = document.querySelector('header#Top .header.header-top');
       var headerEl = document.querySelector('header#Top');
@@ -35,21 +54,17 @@
       headerEl.style.paddingTop = '';
       var h = bar.offsetHeight;
       headerEl.style.paddingTop = h + 'px';
-      /* Force the fixed positioning inline too, so it doesn't depend on the external
-         stylesheet having applied yet. */
       bar.style.position = 'fixed';
-      bar.style.top = '0';
       bar.style.left = '0';
       bar.style.width = '100%';
       bar.classList.add('cro-12371-header-fixed');
+      measureRibbon();
+      updateHeaderTop();
     }
 
     function initDesktop() {
       positionDesktopHeader();
 
-      /* Re-settle for a few seconds after init to catch late layout shifts (cookie
-         banners, lazy-loaded promo strips, late CSS) that would otherwise leave the
-         spacer padding stale. */
       var settleTries = 0;
       var settleInterval = setInterval(function () {
         positionDesktopHeader();
@@ -62,15 +77,19 @@
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(positionDesktopHeader, 150);
       });
+
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            updateHeaderTop();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
     }
 
-    /* ---- Mobile: leave the panel in normal flow (right below the header, where it
-       naturally renders) until it would scroll out of view, then switch it to
-       position:fixed with a slide-in. A zero-height sentinel marks exactly where the
-       panel naturally sits; once the sentinel scrolls above the viewport the panel is no
-       longer visible in its normal spot, so we fix it to the top. Scrolling back up past
-       the sentinel reverts it to normal flow. This needs no JS-computed top offset at all
-       while in normal flow, and only needs the spacer while fixed. */
     function initMobile() {
       var panel = document.querySelector('.typeahead-mobile');
       var pageEl = document.getElementById('Page');
@@ -89,7 +108,7 @@
 
       function makeFixed() {
         if (panel.classList.contains('cro-12371-mobile-fixed')) return;
-        var height = panel.offsetHeight; /* measure while still in normal flow */
+        var height = panel.offsetHeight;
         spacer.style.height = height + 'px';
         panel.classList.add('cro-12371-mobile-fixed');
       }
@@ -100,10 +119,21 @@
         spacer.style.height = '0px';
       }
 
+      // Track scroll direction. When the mobile browser chrome collapses on scroll-down,
+      // the visual viewport briefly expands upward, which can fool the IntersectionObserver
+      // into thinking the sentinel is visible. Guarding makeStatic on !scrollingDown
+      // prevents the false trigger — the chrome only collapses while scrolling down.
+      var lastScrollY = window.scrollY;
+      var scrollingDown = false;
+      window.addEventListener('scroll', function () {
+        scrollingDown = window.scrollY > lastScrollY;
+        lastScrollY = window.scrollY;
+      }, { passive: true });
+
       if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && !scrollingDown) {
               makeStatic();
             } else if (entry.boundingClientRect.top < 0) {
               makeFixed();
@@ -120,7 +150,6 @@
       }
     }
 
-    /* Branch on whichever search markup the server actually rendered for this device, rather than guessing a width breakpoint */
     function init() {
       addClass('body', variation_name);
       if (document.querySelector('.typeahead-mobile')) {

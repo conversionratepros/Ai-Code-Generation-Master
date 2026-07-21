@@ -2,7 +2,7 @@
 
 /* ===== Desktop: restyle the existing header search field as a pill, pinned to viewport ===== */
 
-body.cro-12371 #ProductSearchBar {
+/* body.cro-12371 #ProductSearchBar {
   box-sizing: border-box;
   background: #ffffff;
   border: 1px solid #9CA3AF;
@@ -13,10 +13,11 @@ body.cro-12371 #ProductSearchBar {
 }
 
 body.cro-12371 #ProductSearchBar .search-button-override {
-  padding-left: 20px;
-  top: 2px;
+  padding-left: 18px;
+  top: 9px;
   position: relative;
-  padding-right: 0;
+  padding-right: 0px;
+  left: -5px;
 }
 
 
@@ -25,11 +26,16 @@ body.cro-12371 #ProductSearchBar .js-typeahead-search-field {
   padding: 11px;
   padding-left: 10px;
   padding-right: 16px;
+  border: none !important;
+}
+
+body.cro-12371 #ProductSearchBar .typeahead-search-field input.js-typeahead-search-field:focus {
+  box-shadow: none !important;
 }
 
 body.cro-12371 #ProductSearchBar .search-button-override i {
-  font-size: 20px;
-}
+  font-size: 16px;
+} */
 
 body.cro-12371 header#Top .header.header-top.cro-12371-header-fixed {
   position: fixed;
@@ -71,7 +77,8 @@ body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar {
 
 body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar.cro-12371-mobile-fixed {
   position: fixed !important;
-  top: 0 !important;
+  /* top: 0 !important; */
+  top: env(safe-area-inset-top, 0) !important;
   left: 0;
   right: 0;
   z-index: 9999;
@@ -123,6 +130,18 @@ body.cro-12371 .typeahead-mobile .search-button-override i {
   body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar {
     padding-top: 16px !important;
     padding-bottom: 16px !important;
+    border-bottom: var(--stroke-weight-1, 1px) solid var(--color-grey-90, #E5E5E5);
+    border-top: var(--stroke-weight-1, 1px) solid var(--color-grey-90, #E5E5E5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body.cro-12371 ul.dropdown li.see-all-results-fullwidth {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   body.cro-12371 .typeahead-mobile .js-typeahead-search-field {
