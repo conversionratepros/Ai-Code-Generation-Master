@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KI67 — Local Add-to-Cart Test</title>
+
+  <!-- The real test stylesheet -->
+  <link rel="stylesheet" href="variation.css" />
+
+  <style>
+    /* Harness-only styling (not part of the test) */
+    body { margin: 0; font-family: Montserrat, Arial, sans-serif; background: #f7f8fa; }
+    .cro30-harness-bar {
+      background: #0093D0; color: #fff; padding: 12px 20px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .cro30-harness-bar strong { font-size: 15px; }
+    .cro30-harness-bar span { font-size: 13px; opacity: .9; }
+    .cro30-harness-bar button {
+      background: #fff; color: #0093D0; border: 0; border-radius: 6px;
+      padding: 6px 12px; font-weight: 700; cursor: pointer; font-size: 13px;
+    }
+    /* Fake site scaffold so variation.js can find its anchors */
+    #__next { max-width: 1240px; margin: 0 auto; padding: 20px; }
+    .spacer { height: 1px; }
+  </style>
+</head>
+<body>
+
+  <div class="cro30-harness-bar">
+    <strong>KI67 Local Cart Test</strong>
+    <span id="cart-status">Cart: (none yet — a guest cart is created on first add)</span>
+    <button id="show-cart">Log current cart ID</button>
+    <button id="clear-cart">Clear stored cart</button>
+  </div>
+
+  <!-- Mimic the live OneDayOnly Next.js structure that variation.js looks for -->
+  <div id="__next">
+    <div class="spacer"></div>
+    <div>
+      <!-- variation.js tags the [width="1"] element as the main container -->
+      <div class="css-nmn8l6" width="1">
+        <!-- native (control) filter bar placeholder; variation hides this -->
+        <div style="padding:8px 0;color:#888;font-size:13px;">[native control filter bar]</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------------------------------------------------------------
+       1) Mock __NEXT_DATA__ exactly like the live shopPage feed, seeded
+          with REAL in-stock SKUs so the add-to-cart hits real products.
+       --------------------------------------------------------------- */
+    const SEED = [
+      { id:"14-pro-14-core-5-16gb-ram-512gb-ssd-win-11-pro-laptop-with-notebook-sleeve-mouse-model-pc14250-20260723", sku:"REN-BTO010-PC14250+WM126+K62562EU", type:"SIMPLE", shortName:"14\" Core 5 16GB 512GB Laptop Bundle", brand:"Dell", price:"R22,499", retail:"R32,000", saving:30, image:"https://odo-cdn.imgix.net/catalog/product/1/7/1784813698800.jpeg" },
+      { id:"matte-black-aluminum-outdoor-solar-lantern-20260709", sku:"HL-2260|9", type:"SIMPLE", shortName:"Black Aluminum Solar Lantern", brand:"Lumière Lighting", price:"R699", retail:"R2,500", saving:72, image:"https://odo-cdn.imgix.net/catalog/product/1/7/1782719787844.jpeg" },
+      { id:"18000pa-deebot-x8-omni-wet-and-dry-robot-vacuum-cleaner-with-omni-station-20260717", sku:"SEN-X8-OMNI", type:"SIMPLE", shortName:"18000Pa DEEBOT X8 OMNI Robovac", brand:"Ecovacs", price:"R8,399", retail:"R14,000", saving:40, image:"https://odo-cdn.imgix.net/catalog/product/1/7/1784295602511.jpeg" },
+      { id:"24-piece-air-tight-glass-storage-containers-20260709", sku:"NBO-JH240307-24|37", type:"SIMPLE", shortName:"24-Piece Air Tight Glass Containers", brand:"Storinity", price:"R479", retail:"R1,600", saving:70, image:"https://odo-cdn.imgix.net/catalog/product/1/7/1780995670954.jpeg" },
+      /* This one has REQUIRED options (size) — quick-add should fail gracefully
+         and redirect to the PDP, demonstrating the fallback path. */
+      { id:"ladies-platform-sneakers-20260722", sku:"FOM-PLATFORM", type:"SIMPLE", shortName:"Ladies Platform Sneakers (needs size)", brand:"Freedom of Movement", price:"R1,399", retail:"R2,000", saving:30, image:"https://odo-cdn.imgix.net/catalog/product/1/7/1784798549679.jpeg" },
+    ];
+
+    window.__NEXT_DATA__ = {
+      props: { pageProps: { shopPage: { items: [
+        { props: { items: SEED.map(p => ({
+          id: p.id,
+          sku: p.sku,
+          type: p.type,
+          isSoldOut: false,
+          shortName: p.shortName,
+          brand: p.brand,
+          price: { formattedValue: p.price },
+          retailPrice: { formattedValue: p.retail },
+          saving: { percent: p.saving },
+          image: { url: p.image },
+          topLevelCategories: [{ id: "electronics" }],
+          isBestSeller: false,
+          blueTag: "",
+          xLeftQuantity: ""
+        })) } }
+      ] } } }
+    };
+
+    /* ---------------------------------------------------------------
+       2) Harness controls
+       --------------------------------------------------------------- */
+    function readCartId() {
+      try {
+        const raw = localStorage.getItem("persist:cart");
+        if (!raw) return null;
+        let slice = JSON.parse(raw);
+        let cart = slice.cart;
+        if (typeof cart === "string") cart = JSON.parse(cart);
+        return cart && cart.id;
+      } catch (e) { return null; }
+    }
+    function refreshStatus() {
+      const id = readCartId();
+      document.getElementById("cart-status").textContent = id
+        ? "Cart ID: " + id
+        : "Cart: (none yet — a guest cart is created on first add)";
+    }
+    document.getElementById("show-cart").addEventListener("click", () => {
+      const id = readCartId();
+      console.log("Current cart ID:", id);
+      alert(id ? ("Cart ID:\n" + id) : "No cart yet. Click a + button to create a guest cart.");
+      refreshStatus();
+    });
+    document.getElementById("clear-cart").addEventListener("click", () => {
+      localStorage.removeItem("persist:cart");
+      refreshStatus();
+      alert("Stored cart cleared. Next add will create a fresh guest cart.");
+    });
+    refreshStatus();
+    // Keep the status line in sync after adds
+    setInterval(refreshStatus, 1500);
+
+    /* The variation hides the custom grid until a filter is active. Auto-tick
+       the first Category option once it renders so the cards (and their +
+       buttons) are visible immediately for testing. */
+    (function revealGrid() {
+      const t0 = Date.now();
+      const iv = setInterval(() => {
+        const cb = document.querySelector('[data-options="category"] input[type="checkbox"]');
+        if (cb) {
+          clearInterval(iv);
+          cb.checked = true;
+          cb.dispatchEvent(new Event("change", { bubbles: true }));
+        } else if (Date.now() - t0 > 20000) {
+          clearInterval(iv);
+        }
+      }, 100);
+    })();
+  </script>
+
+  <!-- 3) The real variation script under test -->
+  <script src="variation.js"></script>
+</body>
+</html>

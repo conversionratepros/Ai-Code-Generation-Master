@@ -34,6 +34,365 @@
     }
 
     // =========================
+    // CART API (OneDayOnly GraphQL)
+    // =========================
+    // Matches the site's own CartInfo fragment so @cart/SET_CART renders the
+    // header + drawer correctly (upsells/messages omitted — non-critical).
+    const CART_INFO_FRAGMENT = `fragment CartInfo on Cart {
+    id errors hasAlcohol hasPromotionalDeal
+    pargo { isAvailable isFree message }
+    pudo { isAvailable isFree message }
+    items {
+      id sku name brand type isAlcohol isDisabled isEarly isExpired isSoldOut error
+      quantity quantityLeft isGiftVoucher
+      price { value formattedValue }
+      total { value formattedValue }
+      image { id url path label isCensored }
+      customerDeliveryTime { label description }
+      activeToDate
+      ... on SimpleCartItem { customizableOptions { valueId label value } }
+      ... on ConfigurableCartItem { configurableOptions { id label code value { id label } } }
+      product {
+        id realId activeToDate
+        permanentShop { id name }
+        xLeftQuantity
+        retailPrice { value }
+        saving { fixed { value } }
+        price { value }
+        stockConfig { isQuantityDecimal minimumSaleQuantity maximumSaleQuantity quantityIncrement { isEnabled value } }
+        topLevelCategories { id name }
+      }
+    }
+    email isGiftable
+    giftMessage { id sender recipient { name phone } message occasion }
+    paymentMethods { code name shortDescription description isSelected }
+    voucher
+    totals {
+      tax { total { value formattedValue } items { code label amount { value formattedValue } percent } }
+      discount { total { value formattedValue } items { label code amount { value formattedValue } percent } }
+      storeCreditUsed { label amount { value formattedValue } }
+      grandTotal { value formattedValue }
+      subtotal { value formattedValue }
+      shipping { value formattedValue }
+    }
+    quantity weight
+    guestCustomer { firstName lastName email }
+    __typename
+  }`;
+
+    const CART = {
+        endpoint: "https://graphql.onedayonly.co.za/",
+        localKey: "cro30_guest_cart_id",
+        _memId: null,
+        _store: null,
+
+        // The site's cart lives in its (in-memory, unpersisted) Redux store. We
+        // reach that store through a React fiber so we can (a) read the same
+        // cart id the site uses and (b) dispatch @cart/SET_CART so the header
+        // and cart drawer update immediately after we add. Without this the
+        // item lands in the server cart but the site UI never refreshes.
+        getStore() {
+            if (this._store && this._store.dispatch) return this._store;
+            const PREFIXES = ["__reactFiber$", "__reactInternalInstance$"];
+            const getFiber = (el) => {
+                for (const k in el) {
+                    for (const p of PREFIXES) if (k.startsWith(p)) return el[k];
+                }
+                return null;
+            };
+            let start = null;
+            for (const el of document.querySelectorAll("body *")) {
+                const f = getFiber(el);
+                if (f) { start = f; break; }
+            }
+            if (!start) return null;
+
+            const queue = [start];
+            const seen = new Set();
+            let hops = 0;
+            while (queue.length && hops < 20000) {
+                const n = queue.shift();
+                if (!n || seen.has(n)) continue;
+                seen.add(n);
+                hops++;
+                const mp = n.memoizedProps;
+                if (mp) {
+                    if (mp.store && mp.store.dispatch && mp.store.getState) { this._store = mp.store; return mp.store; }
+                    if (mp.value && mp.value.store && mp.value.store.dispatch) { this._store = mp.value.store; return mp.value.store; }
+                }
+                if (n.child) queue.push(n.child);
+                if (n.sibling) queue.push(n.sibling);
+                if (n.return) queue.push(n.return);
+            }
+            return null;
+        },
+
+        // Read the cart id the site is currently using from its Redux store.
+        getStoreCartId() {
+            try {
+                const store = this.getStore();
+                const id = store && store.getState().cart && store.getState().cart.cart && store.getState().cart.cart.id;
+                return id || null;
+            } catch (e) {
+                return null;
+            }
+        },
+
+        // Fallback: the site also mirrors its active cart into the Apollo cache
+        // as a `Cart:<id>` entry.
+        getSiteCartId() {
+            try {
+                const client = window.__APOLLO_CLIENT__;
+                if (!client || !client.cache) return null;
+                const data = client.cache.extract();
+                const key = Object.keys(data).find((k) => /^Cart:/.test(k));
+                if (key) return (data[key] && data[key].id) || key.replace(/^Cart:/, "") || null;
+            } catch (e) {
+                /* ignore */
+            }
+            return null;
+        },
+
+        getCartId() {
+            // 1) the site's live Redux cart, 2) Apollo cache, 3) our cached guest cart
+            return (
+                this.getStoreCartId() ||
+                this.getSiteCartId() ||
+                this._memId ||
+                localStorage.getItem(this.localKey) ||
+                null
+            );
+        },
+
+        rememberCartId(id) {
+            if (!id) return;
+            this._memId = id;
+            try {
+                localStorage.setItem(this.localKey, id);
+            } catch (e) {
+                /* storage may be unavailable */
+            }
+        },
+
+        // Auth token lives in the site's redux store (in memory). We send
+        // cookies via credentials:include, so guest/session auth still works;
+        // the Bearer header is added only if we can find a token.
+        getToken() {
+            try {
+                const raw = localStorage.getItem("persist:customer");
+                if (!raw) return null;
+                let token = JSON.parse(raw).token;
+                if (typeof token === "string" && token.startsWith('"')) token = JSON.parse(token);
+                return typeof token === "string" ? token : null;
+            } catch (e) {
+                return null;
+            }
+        },
+
+        // Push the updated cart into the site's Redux store so the header count
+        // and cart drawer reflect our add immediately (same action the site
+        // dispatches after its own add-to-cart).
+        syncSiteCart(cart) {
+            if (!cart) return;
+            try {
+                const store = this.getStore();
+                if (!store) return;
+                store.dispatch({ type: "@global/SET_CART_IS_LOADING", payload: false });
+                store.dispatch({ type: "@cart/SET_CART", payload: cart });
+            } catch (e) {
+                /* best-effort only */
+            }
+        },
+
+        async _post(query, variables) {
+            const headers = { "Content-Type": "application/json" };
+            const token = this.getToken();
+            if (token) headers["Authorization"] = `Bearer ${token}`;
+
+            const res = await fetch(this.endpoint, {
+                method: "POST",
+                credentials: "include",
+                headers,
+                body: JSON.stringify({ query, variables }),
+            });
+            const json = await res.json();
+            if (json.errors && json.errors.length) {
+                const err = new Error(json.errors[0].message);
+                err.category = json.errors[0]?.extensions?.category;
+                throw err;
+            }
+            return json.data;
+        },
+
+        async ensureCartId() {
+            let id = this.getCartId();
+            if (id) return id;
+            const data = await this._post("mutation { createEmptyCart }", {});
+            id = data?.createEmptyCart || null;
+            this.rememberCartId(id);
+            return id;
+        },
+
+        async addToCart({ sku, type = "SIMPLE", quantity = 1, parentSku }) {
+            const cartId = await this.ensureCartId();
+            const input = { type, sku, quantity };
+            if (parentSku) input.parentSku = parentSku;
+
+            // Fetch the full cart (site's CartInfo shape) so we can hand a
+            // complete object to the Redux store and the drawer renders.
+            const query = `mutation addCartItems($cartId: ID, $input: [AddCartItemInput!]!, $recaptcha: String) {
+        addCartItems(cartId: $cartId, input: $input, recaptcha: $recaptcha) { ...CartInfo }
+      }
+      ${CART_INFO_FRAGMENT}`;
+
+            const data = await this._post(query, { cartId, input: [input], recaptcha: "" });
+            const cart = data?.addCartItems || null;
+            if (cart && cart.id) this.rememberCartId(cart.id);
+            this.syncSiteCart(cart);
+            return cart;
+        },
+    };
+
+    // =========================
+    // ADD-TO-CART UI (toast + button states)
+    // =========================
+    function ensureCartUI() {
+        if (document.querySelector(".cro30-cart-style")) return;
+        const style = document.createElement("style");
+        style.className = "cro30-cart-style";
+        style.textContent = `
+      .cro30-product-ShowCard.is-loading svg { display:none; }
+      .cro30-product-ShowCard.is-loading::after{
+        content:""; width:16px; height:16px; border-radius:50%;
+        border:2px solid rgba(95,105,113,0.3); border-top-color:#5f6971;
+        animation: cro30spin .7s linear infinite;
+      }
+      .cro30-product-ShowCard.is-success{ background:#1aa251; }
+      .cro30-product-ShowCard.is-success svg line{ stroke:#fff; }
+      .cro30-product-ShowCard.is-error{ background:#e50e62; }
+      .cro30-toast-wrap{
+        position: fixed; z-index: 1000000; right: 20px; bottom: 20px;
+        display:flex; flex-direction:column; gap:10px; pointer-events:none;
+      }
+      .cro30-toast{
+        background:#3c3d3d; color:#fff; font-family:Montserrat,sans-serif;
+        font-size:14px; line-height:20px; font-weight:600;
+        padding:12px 16px; border-radius:8px; max-width:320px;
+        box-shadow:0 6px 24px rgba(0,0,0,0.2);
+        opacity:0; transform:translateY(8px); transition:all .25s ease;
+        pointer-events:auto;
+      }
+      .cro30-toast.show{ opacity:1; transform:translateY(0); }
+      .cro30-toast.success{ background:#1aa251; }
+      .cro30-toast.error{ background:#e50e62; }
+      .cro30-toast a{ color:#fff; text-decoration:underline; margin-left:6px; }
+    `;
+        document.head.appendChild(style);
+
+        const wrap = document.createElement("div");
+        wrap.className = "cro30-toast-wrap";
+        document.body.appendChild(wrap);
+    }
+
+    // The site's cart is a slide-out drawer opened by its header button; there
+    // is no standalone /cart page (that 404s). Open the drawer in-app rather
+    // than hard-navigating, which would also drop an unpersisted guest cart.
+    function openSiteCart() {
+        const toggle = document.querySelector('[aria-label="Toggle cart"]');
+        if (toggle) {
+            toggle.click();
+            return;
+        }
+        window.location.href = "https://www.onedayonly.co.za/checkout";
+    }
+
+    function showToast(message, type = "success", withCartLink) {
+        ensureCartUI();
+        const wrap = document.querySelector(".cro30-toast-wrap");
+        if (!wrap) return;
+
+        const toast = document.createElement("div");
+        toast.className = `cro30-toast ${type}`;
+        toast.innerHTML = withCartLink
+            ? `${message} <a href="#" class="cro30-view-cart">View cart</a>`
+            : message;
+        if (withCartLink) {
+            const link = toast.querySelector(".cro30-view-cart");
+            if (link) link.addEventListener("click", (e) => { e.preventDefault(); openSiteCart(); });
+        }
+        wrap.appendChild(toast);
+
+        requestAnimationFrame(() => toast.classList.add("show"));
+        setTimeout(() => {
+            toast.classList.remove("show");
+            setTimeout(() => toast.remove(), 300);
+        }, 4000);
+    }
+
+    function setBtnState(btn, cls) {
+        if (!btn) return;
+        btn.classList.remove("is-loading", "is-success", "is-error");
+        if (cls) btn.classList.add(cls);
+    }
+
+    async function handleAddToCart(btn) {
+        const card = btn.closest(".cro30-product-card");
+        if (!card) return;
+
+        const sku = normText(card.getAttribute("cro-sku"));
+        const type = normText(card.getAttribute("cro-type")) || "SIMPLE";
+        const url = normText(card.getAttribute("cro-url"));
+        const pdpHref = `https://www.onedayonly.co.za/products/${url}`;
+
+        if (!sku) {
+            showToast("Sorry, this item can’t be added right now.", "error");
+            return;
+        }
+        if (btn.classList.contains("is-loading")) return;
+
+        setBtnState(btn, "is-loading");
+
+        try {
+            const cart = await CART.addToCart({ sku, type });
+            setBtnState(btn, "is-success");
+            const qty = cart?.quantity != null ? ` (${cart.quantity} in cart)` : "";
+            showToast(`Added to cart${qty}.`, "success", "https://www.onedayonly.co.za/cart");
+            if (debug) console.log("✅ addToCart", cart);
+        } catch (err) {
+            setBtnState(btn, "is-error");
+            if (debug) console.warn("⚠️ addToCart failed:", err.message, err.category);
+
+            // Products that need a size/colour selection can't be quick-added —
+            // send the shopper to the PDP to choose options.
+            if (/required option/i.test(err.message) || /not available/i.test(err.message)) {
+                showToast("Please choose options on the product page.", "error");
+                setTimeout(() => (window.location.href = pdpHref), 900);
+            } else if (err.category === "graphql-authentication" || /log ?in/i.test(err.message)) {
+                showToast("Please sign in to add items to your cart.", "error");
+            } else {
+                showToast("Couldn’t add to cart. Please try again.", "error");
+            }
+        } finally {
+            setTimeout(() => setBtnState(btn, null), 1600);
+        }
+    }
+
+    function bindCartEvents() {
+        const main = getMainContainer();
+        if (!main || main.__cro30CartBound) return;
+        main.__cro30CartBound = true;
+
+        main.addEventListener("click", (e) => {
+            const btn = e.target.closest(".cro30-product-ShowCard");
+            if (!btn) return;
+            // The card is wrapped in an <a>; stop the click from navigating.
+            e.preventDefault();
+            e.stopPropagation();
+            handleAddToCart(btn);
+        });
+    }
+
+    // =========================
     // LOADER
     // =========================
     const LOADER_MS = 1000;
@@ -855,6 +1214,7 @@
         renderBrandOptions(brandOptions);
 
         bindLeftFilterEvents();
+        bindCartEvents();
         updateSelectToggleLabels();
 
         // default state
@@ -896,6 +1256,9 @@
                     ) || 0,
                 retailPrice: product?.retailPrice?.formattedValue || "",
                 productUrl: product?.id || "#",
+                sku: product?.sku || "",
+                productType: (product?.type || "SIMPLE").toString().toUpperCase(),
+                isSoldOut: product?.isSoldOut || false,
                 name: product.shortName || "No Name",
                 brand: product.brand || "No Brand",
                 categoryName:
@@ -933,8 +1296,10 @@
             productCard.setAttribute("cro-saving", product.savingPercentOfCard);
             productCard.setAttribute("cro-brandName", product.brand);
             productCard.setAttribute("cro-categoryName", product.categoryName);
-            productCard.setAttribute("cro-saving", product.savingPercentOfCard);
             productCard.setAttribute("cro-bestseller", product.bestSeller);
+            productCard.setAttribute("cro-sku", product.sku);
+            productCard.setAttribute("cro-type", product.productType);
+            productCard.setAttribute("cro-url", product.productUrl);
 
             productCard.innerHTML = `
         <a href="https://www.onedayonly.co.za/products/${product.productUrl}" class="cro30-product-card-link">

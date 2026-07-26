@@ -1,0 +1,1112 @@
+/* ============================================================
+   CRO-12526 (v2) — Full Page PDP Redesign (Buy-first)
+   Top section: breadcrumb/meta row, gallery restyle, buy box.
+
+   Figma tokens (node 31:1133):
+   ink #161616 · gray #777777 · lime #C6D644 · orange #FF9F17
+   dividers #E9E9E9 · callout bg #F6FAFB
+   radius: cards/images 18px · inputs/ATQ 8px · lime CTAs 5px
+   ============================================================ */
+
+:root {
+  --cro12526v2-ink: #161616;
+  --cro12526v2-gray: #777777;
+  --cro12526v2-lime: #c6d644;
+  --cro12526v2-orange: #ff9f17;
+  --cro12526v2-divider: #e9e9e9;
+}
+
+/* ---------- Top bar: breadcrumb + range/SKU ---------- */
+
+.cro12526v2-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 1rem 0 1.5rem;
+}
+
+.cro12526v2-breadcrumb {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--cro12526v2-gray);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  min-width: 0;
+}
+
+.cro12526v2-breadcrumb__link {
+  color: var(--cro12526v2-gray);
+  text-decoration: none;
+}
+
+.cro12526v2-breadcrumb__link:hover {
+  color: var(--cro12526v2-ink);
+  text-decoration: underline;
+}
+
+.cro12526v2-breadcrumb__sep {
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-breadcrumb__current {
+  color: var(--cro12526v2-ink);
+  font-weight: 500;
+}
+
+.cro12526v2-meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+
+.cro12526v2-meta__range {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--cro12526v2-gray);
+}
+
+/* SKU — control's sku-holder (copy icon + showsku popup opener),
+   repositioned into the meta row and restyled to the design's
+   lime-underlined "SKU" chip. Functionality untouched. */
+.cro12526v2-meta__sku-holder {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  position: static;
+}
+
+.cro12526v2-meta__sku-holder .linkcpyicon {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.cro12526v2-meta__sku-holder .linkcpyicon.copied svg path {
+  fill: var(--cro12526v2-lime);
+}
+
+.cro12526v2-meta__sku-holder .sku-container,
+.cro12526v2-meta__sku-holder .showsku {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  position: static;
+}
+
+.cro12526v2-meta .showsku .simple-popup-modal__opener button.link,
+.cro12526v2-meta__sku-btn {
+  background: none;
+  border: 0;
+  margin: 0;
+  padding: 0 0 0.2rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--cro12526v2-ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--cro12526v2-lime);
+  box-shadow: none;
+}
+
+.cro12526v2-meta__sku {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.cro12526v2-meta__sku-value {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-topmeta--mobile {
+  display: none;
+}
+
+/* ---------- Layout ---------- */
+
+.cro12526v2-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 63fr) minmax(0, 37fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ---------- Gallery ---------- */
+
+.cro12526v2-gallery {
+  position: relative;
+}
+
+.cro12526v2-gallery__tag {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Reused best-seller-tag snippet, restyled to the design's pill */
+.cro12526v2-gallery__tag .tag-box {
+  background: var(--cro12526v2-orange);
+  border-radius: 24px;
+  padding: 0.5rem 1.2rem;
+  display: inline-block;
+}
+
+.cro12526v2-gallery__tag .tag-box span {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* When the viewer is open the tag must not float over it */
+.cro12526v2-gallery:has(.product-slider-holder.zoomin) .cro12526v2-gallery__tag {
+  display: none;
+}
+
+/* Existing Swiper gallery, CSS-only restyle (snippet untouched).
+   Scope every rule to :not(.zoomin) so the existing viewer pop-up
+   keeps its own look and behaviour exactly. */
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .main-slider .swiper-slide img {
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+/* No prev/next arrows on the inline gallery (spec) — viewer keeps its own */
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .swiper-button-prev-prod-gallery,
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .swiper-button-next-prod-gallery,
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .swiper-pagination-product-slider,
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .swiper-button-close {
+  display: none !important;
+}
+
+/* Thumbnails: row below the main image, active = black border */
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container {
+  margin-top: 1.6rem;
+}
+
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide img {
+  border-radius: 11px;
+  display: block;
+}
+
+.cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide.swiper-slide-thumb-active {
+  border-color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-gallery__view-all {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 1.4rem 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6rem;
+  cursor: pointer;
+  color: var(--cro12526v2-ink);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.cro12526v2-gallery__view-all:hover .cro12526v2-gallery__view-all-text {
+  text-decoration: underline;
+}
+
+/* ---------- Buy box ---------- */
+
+.cro12526v2-buybox {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cro12526v2-title {
+  margin: 0;
+  color: var(--cro12526v2-ink);
+  font-weight: 500;
+  font-size: 5rem;
+  line-height: 5.8rem;
+  letter-spacing: 0;
+}
+
+.cro12526v2-title--mobile {
+  display: none;
+}
+
+.cro12526v2-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cro12526v2-rating__stars {
+  position: relative;
+  display: inline-block;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--cro12526v2-divider);
+}
+
+.cro12526v2-rating__stars-fill {
+  position: absolute;
+  inset: 0;
+  width: var(--cro12526v2-rating, 100%);
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-rating__stars::after {
+  content: '\2605\2605\2605\2605\2605';
+}
+
+.cro12526v2-rating__text {
+  font-size: 1.4rem;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-price__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+}
+
+.cro12526v2-price__amount .price,
+.cro12526v2-price__amount .price__regular,
+.cro12526v2-price__amount .price-item--regular,
+.cro12526v2-price__amount .price__sale,
+.cro12526v2-price__amount .price-item--sale {
+  margin: 0;
+  color: var(--cro12526v2-ink);
+  font-size: 4.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.cro12526v2-price__amount .price--on-sale .price-item--regular {
+  font-size: 2rem;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-price__gst {
+  font-size: 1.4rem;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-price__note {
+  margin: 0.8rem 0 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--cro12526v2-gray);
+}
+
+/* ---------- Option fields ---------- */
+
+.cro12526v2-options {
+  border-top: 1px solid var(--cro12526v2-divider);
+  border-bottom: 1px solid var(--cro12526v2-divider);
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Figma spacing parity (QA round 2): the theme's product-page.css bleeds
+   into this area — variant-selects gets a grey border box, and
+   .product-form__input (on our fieldsets) carries accordion padding,
+   borders and margins that inflated the 25px field gaps. Neutralise all
+   of it inside the options container so the flex gaps above are the ONLY
+   spacing. */
+.cro12526v2-variants,
+variant-selects.cro12526v2-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.cro12526v2-options .product-form__input,
+.cro12526v2-options fieldset.cro12526v2-field {
+  margin: 0;
+  padding: 0;
+  border: none;
+  max-width: none;
+  width: 100%;
+  min-width: 0;
+}
+
+.cro12526v2-options .option-item-holder {
+  padding: 0;
+  margin: 0;
+  border: none;
+  min-width: 0;
+}
+
+.cro12526v2-field {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cro12526v2-field__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  padding: 0;
+}
+
+/* legend needs float reset to behave as a flex row across browsers */
+legend.cro12526v2-field__head {
+  float: left;
+}
+
+legend.cro12526v2-field__head + * {
+  clear: both;
+}
+
+.cro12526v2-field__label {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-field__num {
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-field__value {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--cro12526v2-ink);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
+}
+
+.cro12526v2-select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.cro12526v2-select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5.9rem;
+  padding: 0 4rem 0 1.2rem;
+  border: 1px solid var(--cro12526v2-divider);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--cro12526v2-gray);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.cro12526v2-select:focus-visible {
+  outline: 2px solid var(--cro12526v2-ink);
+  outline-offset: 1px;
+}
+
+.cro12526v2-select-caret {
+  position: absolute;
+  right: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--cro12526v2-ink);
+}
+
+/* ---------- Swatches (control's radio+label+img markup, restyled) ---------- */
+
+.cro12526v2-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cro12526v2-swatches input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Figma geometry (node 4:10/4:12): 60px outer box, 50px inner square
+   (radius 10); selected state = 1px ink border on the outer box with a
+   4px gap (padding), outer radius 15. */
+.cro12526v2-options .cro12526v2-swatches label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem !important;
+  height: 6rem !important;
+  min-width: 6rem !important;
+  min-height: 6rem !important;
+  padding: 0.4rem !important;
+  margin: 0 !important;
+  border: 1px solid transparent !important;
+  border-radius: 15px !important;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fff;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--cro12526v2-ink);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.cro12526v2-options .cro12526v2-swatches label img {
+  width: 5rem;
+  height: 5rem;
+  max-width: none;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Active swatch: black border ring with 4px gap, per design.
+   !important because theme CSS zeroes label border-width (computed
+   "rgb(22,22,22) 0px" — verified live, QA round 4). */
+.cro12526v2-options .cro12526v2-swatches input[type='radio']:checked + label {
+  border: 1px solid var(--cro12526v2-ink) !important;
+}
+
+.cro12526v2-swatches input[type='radio']:focus-visible + label {
+  outline: 2px solid var(--cro12526v2-ink);
+  outline-offset: 2px;
+}
+
+.cro12526v2-swatches input[type='radio'].disabled + label,
+.cro12526v2-swatches input[type='radio'][disabled] + label {
+  opacity: 0.4;
+}
+
+.cro12526v2-swatches .seperator {
+  display: none;
+}
+
+/* ---------- Purchase details ---------- */
+
+.cro12526v2-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0 0.4rem;
+}
+
+.cro12526v2-details__line {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-details__line strong {
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-details__bullet {
+  color: var(--cro12526v2-ink);
+  font-weight: 700;
+}
+
+.cro12526v2-details__change {
+  display: inline;
+}
+
+.cro12526v2-details__change-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 1.4rem;
+  color: var(--cro12526v2-gray);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cro12526v2-details__change-btn:hover {
+  color: var(--cro12526v2-ink);
+}
+
+/* ---------- Actions ---------- */
+
+.cro12526v2-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cro12526v2-actions__row {
+  display: flex;
+  gap: 1.6rem;
+  align-items: stretch;
+  margin-bottom: 1rem;
+}
+
+/* The theme's section-main-product.css forces .product-form__input to
+   flex: 0 0 100% / max-width: 44rem, which made the qty wrapper hog the
+   whole row and squeezed Add to Cart to ~56px (QA round 1, point 5).
+   Override every one of those properties explicitly. */
+.cro12526v2-qty,
+.cro12526v2-actions__row .product-form__input.product-form__quantity {
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+}
+
+.cro12526v2-buybox .cro12526v2-qty .quantity {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 13rem !important;
+  min-width: 13rem !important;
+  height: 6.4rem !important;
+  min-height: 6.4rem !important;
+  padding: 0 !important;
+  border: 1.5px solid var(--cro12526v2-divider) !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+/* Kill Dawn's pseudo-element border/shadow overlays on the stepper */
+.cro12526v2-buybox .cro12526v2-qty .quantity::before,
+.cro12526v2-buybox .cro12526v2-qty .quantity::after {
+  content: none !important;
+  box-shadow: none !important;
+}
+
+.cro12526v2-buybox .cro12526v2-qty .quantity__button {
+  width: 4rem !important;
+  min-width: 4rem !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--cro12526v2-ink) !important;
+}
+
+.cro12526v2-buybox .cro12526v2-qty .quantity__button .svg-wrapper,
+.cro12526v2-buybox .cro12526v2-qty .quantity__button svg {
+  width: 1.2rem !important;
+  height: auto !important;
+}
+
+.cro12526v2-buybox .cro12526v2-qty .quantity__input {
+  width: 4.6rem !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+  color: var(--cro12526v2-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* The quantity label only carries the control's "(x in basket)" rules-cart
+   span (required by product-info.js — see section comment). Style it as a
+   small caption under the stepper; it is `hidden` while the cart is empty. */
+.cro12526v2-qty .quantity__label {
+  display: block;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-qty .quantity__label .quantity__rules-cart.hidden {
+  display: none;
+}
+
+.cro12526v2-qty .quantity::before,
+.cro12526v2-qty .quantity::after {
+  content: none;
+  box-shadow: none;
+}
+
+.cro12526v2-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  min-height: 6.4rem;
+  padding: 1rem 2.8rem;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+
+.cro12526v2-btn:hover {
+  filter: brightness(0.96);
+}
+
+.cro12526v2-btn__icon {
+  flex-shrink: 0;
+}
+
+.cro12526v2-btn--cart {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  border-radius: 5px;
+  font-size: 1.4rem;
+}
+
+.cro12526v2-btn--cart[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cro12526v2-btn--cart.cro12526v2-btn--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cro12526v2-btn--quote,
+.cro12526v2-btn--backorder {
+  background: #fff;
+  border: 1.5px solid var(--cro12526v2-ink);
+  color: var(--cro12526v2-ink);
+  font-size: 1.7rem;
+}
+
+/* Back-order state — parity verified live on the control's
+   lark-drafting-chair PDP (QA round 2): when perth.js/product-info.js set
+   preorder-show on the (hidden) real .product-form__buttons, the control
+   shows ONLY the Back-Order button — Add to Cart AND Add to Quote are
+   hidden (quantity stepper stays). Mirror all three on the visible set,
+   plus a click guard in cro-12526-v2-pdp.js so a stale click can never
+   add a back-ordered product. */
+.cro12526v2-btn--backorder {
+  display: none;
+}
+
+html:has(.product-form__buttons.preorder-show) .cro12526v2-btn--quote {
+  display: none;
+}
+
+/* QA round 4 (user request): keep Add to Cart VISIBLE but disabled/greyed
+   on back-order state instead of hiding it — the JS forwarder still
+   refuses the click, pointer-events blocks it entirely. */
+html:has(.product-form__buttons.preorder-show) .cro12526v2-btn--cart {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
+html:has(.product-form__buttons.preorder-show) .cro12526v2-btn--backorder {
+  display: inline-flex;
+}
+
+/* Delivery line follows the same stock-state toggle */
+html:has(.product-form__buttons.preorder-show) .cro12526v2-details__line--instock {
+  display: none;
+}
+
+html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--backorder {
+  display: none;
+}
+
+.cro12526v2-actions__note {
+  margin: 0;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--cro12526v2-gray);
+}
+
+/* REAL control buttons — collapsed but present so form submission,
+   drawer wiring and state classes keep working. Never display:none the
+   form itself: height/overflow collapse keeps it measurable. */
+.cro12526v2-realbuttons {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* ---------- Legals + callout ---------- */
+
+.cro12526v2-legals {
+  border-top: 1px solid var(--cro12526v2-divider);
+  padding: 2rem 0.4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cro12526v2-legals__line {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-legals__link {
+  color: var(--cro12526v2-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cro12526v2-callout {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  background: #f6fafb;
+  border-radius: 8px;
+  padding: 1.6rem;
+}
+
+.cro12526v2-callout__icon {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--cro12526v2-orange);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cro12526v2-callout__text {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-callout__link {
+  color: var(--cro12526v2-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+/* ---------- Fitout CTA ---------- */
+
+.cro12526v2-fitout {
+  background: var(--cro12526v2-ink);
+  border-radius: 8px;
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.cro12526v2-fitout__eyebrow {
+  margin: 0;
+  color: var(--cro12526v2-lime);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.cro12526v2-fitout__copy {
+  margin: 0;
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.53;
+}
+
+.cro12526v2-fitout__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  border-radius: 5px;
+  padding: 1.5rem 3rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cro12526v2-fitout__btn:hover {
+  filter: brightness(0.96);
+}
+
+/* ---------- Mobile ---------- */
+
+@media screen and (max-width: 989px) {
+  .cro12526v2-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.4rem;
+  }
+
+  .cro12526v2-title {
+    font-size: 3rem;
+  }
+}
+
+/* ---------- Mobile (Figma node 276:272) ----------
+   Order (matches DOM naturally): title, gallery, range/SKU row, reviews,
+   price, options, details, actions, legals, callout, fitout. */
+
+@media screen and (max-width: 749px) {
+  /* Breadcrumb + top meta row: desktop only (spec) */
+  .cro12526v2-topbar {
+    display: none;
+  }
+
+  .cro12526v2-layout {
+    gap: 1.5rem;
+  }
+
+  .cro12526v2-title--desktop {
+    display: none;
+  }
+
+  .cro12526v2-title--mobile {
+    display: block;
+    font-size: 2rem;
+    line-height: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Gallery: radius 8, tag inset 8px, thumbs 75px high radius 8 */
+  .cro12526v2-gallery__tag {
+    top: 0.8rem;
+    left: 0.8rem;
+  }
+
+  .cro12526v2-gallery .product-slider-holder:not(.zoomin) .main-slider .swiper-slide img {
+    border-radius: 8px;
+  }
+
+  .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container {
+    margin-top: 0.8rem;
+  }
+
+  .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide {
+    border-radius: 8px;
+    height: 7.5rem;
+  }
+
+  .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide img {
+    border-radius: 7px;
+    height: 100%;
+    width: auto;
+  }
+
+  /* QA round 4: no "View all images" on mobile */
+  .cro12526v2-gallery__view-all {
+    display: none;
+  }
+
+  /* Range left, SKU chip right, below the gallery */
+  .cro12526v2-topmeta--mobile {
+    display: block;
+    margin-top: 1.5rem;
+  }
+
+  .cro12526v2-topmeta--mobile .cro12526v2-meta {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .cro12526v2-rating__text {
+    font-size: 1.3rem;
+  }
+
+  /* Price 28px, notes 13px */
+  .cro12526v2-price__amount .price,
+  .cro12526v2-price__amount .price__regular,
+  .cro12526v2-price__amount .price-item--regular,
+  .cro12526v2-price__amount .price__sale,
+  .cro12526v2-price__amount .price-item--sale {
+    font-size: 2.8rem;
+  }
+
+  .cro12526v2-price__gst,
+  .cro12526v2-price__note {
+    font-size: 1.3rem;
+  }
+
+  /* Options: py 30, gap 15, 14px headings, ink-bordered dropdown */
+  .cro12526v2-options {
+    padding: 3rem 0;
+    gap: 1.5rem;
+  }
+
+  .cro12526v2-variants,
+  variant-selects.cro12526v2-variants {
+    gap: 1.5rem;
+  }
+
+  .cro12526v2-field__label,
+  .cro12526v2-field__value {
+    font-size: 1.4rem;
+  }
+
+  .cro12526v2-select {
+    height: 6rem;
+    border-color: var(--cro12526v2-ink);
+  }
+
+  /* Purchase details: 12px, gap 15 */
+  .cro12526v2-details {
+    gap: 1.5rem;
+  }
+
+  .cro12526v2-details__line {
+    font-size: 1.2rem;
+  }
+
+  .cro12526v2-details__change-btn {
+    font-size: 1.2rem;
+  }
+
+  /* Actions: qty (ink border) flexes, ATC fixed-ish, both 60px radius 8 */
+  .cro12526v2-actions__row {
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cro12526v2-qty {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .cro12526v2-buybox .cro12526v2-qty .quantity {
+    height: 6rem !important;
+    min-height: 6rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    justify-content: space-between !important;
+    border: 1px solid var(--cro12526v2-ink) !important;
+  }
+
+  .cro12526v2-btn {
+    min-height: 6rem;
+    padding: 1rem 1.6rem;
+  }
+
+  .cro12526v2-btn--cart {
+    flex: 1.7 1 0;
+    border-radius: 8px;
+    font-size: 1.5rem;
+  }
+
+  .cro12526v2-btn--quote,
+  .cro12526v2-btn--backorder {
+    border-width: 1px;
+    font-size: 1.5rem;
+  }
+
+  /* Legals 12px, callout radius 10 */
+  .cro12526v2-legals {
+    padding-top: 2.5rem;
+  }
+
+  .cro12526v2-legals__line {
+    font-size: 1.2rem;
+  }
+
+  .cro12526v2-callout {
+    border-radius: 10px;
+  }
+
+  /* Fitout: p 20, full-width 60px lime button, radius 8 */
+  .cro12526v2-fitout {
+    padding: 2rem;
+  }
+
+  .cro12526v2-fitout__eyebrow {
+    font-size: 1.4rem;
+  }
+
+  .cro12526v2-fitout__copy {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
+  .cro12526v2-fitout__btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 6rem;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    padding: 1.5rem 3rem;
+  }
+}

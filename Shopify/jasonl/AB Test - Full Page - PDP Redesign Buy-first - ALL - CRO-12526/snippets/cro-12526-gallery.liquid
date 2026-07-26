@@ -1,0 +1,34 @@
+{%- comment -%}
+  CRO-12526 — Gallery wrapper.
+
+  Reuses `product-media-gallery-custom` (Swiper main-slider + thumbs-container +
+  the existing full-screen "zoomin" image viewer popup) completely unchanged —
+  per spec the popup itself must not be touched. This snippet only:
+    1. Adds the promo/bestseller tag INSIDE the gallery, top-left, above the main
+       image (moved here from its old spot above the product title in
+       main-product_crp.liquid — see `best-seller-tag.liquid`, reused unchanged).
+    2. Adds a "View all images" link below the gallery that opens the same popup
+       by clicking the existing #product-slider-zoom trigger (see cro-12526-pdp.js).
+    3. Restyles thumbnail active-state border + hides the inline prev/next arrows
+       (CSS only, in cro-12526-pdp.css) — arrows inside the zoomed popup itself are
+       left alone since the popup is "unchanged" per spec.
+    4. Swipe gestures are already native Swiper.js behaviour — no extra JS needed.
+{%- endcomment -%}
+
+<div class="cro12526-gallery">
+  <div class="cro12526-gallery__tag">
+    {%- render 'best-seller-tag' -%}
+  </div>
+
+  {% render 'product-media-gallery-custom' %}
+
+  <button type="button" class="cro12526-gallery__view-all" data-cro12526-view-all-images>
+    <span>view all images</span>
+    <span class="cro12526-gallery__view-all-icon" aria-hidden="true">
+      {{- 'icon-arrow.svg' | inline_asset_content -}}
+    </span>
+  </button>
+
+  {%- comment -%} Mobile-only range/SKU block, per spec displays below the gallery on mobile instead of beside the breadcrumb. {%- endcomment -%}
+  {%- render 'cro-12526-breadcrumb-meta', context: 'mobile' -%}
+</div>

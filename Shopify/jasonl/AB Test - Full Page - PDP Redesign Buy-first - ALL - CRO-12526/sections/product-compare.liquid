@@ -1,0 +1,423 @@
+<div id="compareproduct" class="page-width compareproduct-container"> 	
+    <!-- Try to find the compare tag on the main product itself -->
+{%- assign mainproduct_handle = product.handle -%}
+{%- assign compareproducts_availability = false -%}
+{%- assign mainfrom_sizehandle = '' -%}
+
+{%- assign maintags = product.tags -%}
+{% for producttag in maintags %}
+	{%-if producttag contains 'compare' -%}
+    	{%- assign compare_taghandle = producttag | remove:'-compare'-%}
+			{% assign cross_tag_filter_first= compare_taghandle | downcase | strip | replace: " ","" | slice: 0, 24 | append: "_x" %}
+			{% if shop.metafields.tagproducts[cross_tag_filter_first] %} 
+				{% if shop.metafields.tagproducts[cross_tag_filter_first] != mainproduct_handle %}
+                    {%- assign compareproducts_availability = true -%}
+                    {%- assign cross_tag_filter = cross_tag_filter_first -%}
+                    {%-break-%}
+				{% endif %}
+			{% endif %}
+    {%-endif-%}
+{% endfor %}
+
+<!-- Try to find the compare tag on the main product for the sizes product -->
+{% unless compareproducts_availability %}
+	{% if product.description contains "[redirect]" %}
+        {%- assign productDescription = product.description | split:"[redirect]" -%}
+        {%- assign handlevalue = productDescription[1] | split:"[/redirect]" -%}
+        {% assign mainProductHandle = handlevalue[0] %}
+		{% if mainProductHandle %}
+			{% assign mainProductHandle = mainProductHandle | strip %}
+			{% unless mainProductHandle == mainproduct_handle %}
+				{% assign mainfrom_sizehandle= mainProductHandle%}
+                {% for mainproduct_tags in all_products[mainProductHandle].tags %}
+                     {%-if mainproduct_tags contains 'compare' -%}
+                          {%- assign compare_taghandle = mainproduct_tags | remove:'-compare'-%}
+                          {% assign cross_tag_filter_first= compare_taghandle | downcase | strip | replace: " ","" | slice: 0, 24 | append: "_x" %}
+                          {% if shop.metafields.tagproducts[cross_tag_filter_first] %}
+								{% if shop.metafields.tagproducts[cross_tag_filter_first] != mainproduct_handle %}
+                                    {%- assign compareproducts_availability = true -%}
+                                    {%- assign cross_tag_filter = cross_tag_filter_first -%}
+                                    {%-break-%}
+								{% endif %}
+                          {% endif %}
+                         
+                     {%-endif-%}
+                {% endfor %}
+			{% endunless %}
+		{% endif %}
+	{% endif %}
+{% endunless %}
+
+{% unless compareproducts_availability %} 
+	{% for producttag in maintags %}
+        {% assign cross_tag_filter_first= producttag | downcase | strip | replace: " ","" | slice: 0, 24 | append: "_x" %}
+        {% if shop.metafields.tagproducts[cross_tag_filter_first] %}
+			 {% if shop.metafields.tagproducts[cross_tag_filter_first] != mainproduct_handle %}
+                {%- assign compareproducts_availability = true -%}
+                {%- assign cross_tag_filter = cross_tag_filter_first -%}
+			{% endif %}
+        {% endif %}
+	{% endfor %}
+
+    {% unless compareproducts_availability %}
+		{% if mainfrom_sizehandle %}
+			{% for mainproduct_tags in all_products[mainfrom_sizehandle].tags %}
+                 {% assign cross_tag_filter_first= mainproduct_tags | downcase | strip | replace: " ","" | slice: 0, 24 | append: "_x" %}
+                 {% if shop.metafields.tagproducts[cross_tag_filter_first] %}
+						{% if shop.metafields.tagproducts[cross_tag_filter_first] != mainproduct_handle %}
+                            {%- assign compareproducts_availability = true -%}
+                            {%- assign cross_tag_filter = cross_tag_filter_first -%}
+						{% endif %}
+                 {% endif %}  
+            {% endfor %}
+		{% endif %}
+    {% endunless %}
+{% endunless %}
+
+<!-- This is the starting of the End. -->
+
+{% assign attributekeylist='' %}
+{% assign attributevaluelist='' %}
+{%- if product.description contains "<h3>delivery</h3>"-%}
+      {%- assign btmDesp = product.description | split:"<h3>delivery</h3>" -%}
+ {%-else-%}
+      {%- assign btmDesp = product.description | split:"<h3>warranty</h3>" -%}
+ {%-endif-%}
+{%- assign topDesp = btmDesp[0] | split : '<div class="pro-detail">'-%}
+{%- assign tableCnt = topDesp[1] | split : '<img' -%}
+
+{% assign mainproduct_property=tableCnt[0] | strip_newlines | strip | split: '<div class="pro-detail-row">' %}
+  	{% for each_property in mainproduct_property %}
+  		{% if each_property contains '<span>' %}
+  			{% assign propertykey_parent= each_property | split: '<span>' %}
+  			{% assign propertykey_array =propertykey_parent[1] |split:'</span>' %}
+  			{% assign propertykey =propertykey_array[0] | strip %}
+  			{% if propertykey_array[1] contains '<p>'%}
+  				{% assign propertyvalue_parent =propertykey_array[1] |split:'<p>' %}
+  				{% assign propertyvalue_array =propertyvalue_parent[1] |split:'</p>' %}
+  				{% assign propertyvalue =propertyvalue_array[0] | strip %}
+  			{% else %}
+  				{% assign propertyvalue_array =propertykey_array[1] | split:'</div>' %}
+  				{% assign propertyvalue =propertyvalue_array[0] | strip %}
+  			{% endif %}
+  			
+  			{% if attributekeylist == '' %}
+  				{% assign attributekeylist= propertykey %}
+  			{% else %}
+  				{% assign attributekeylist= attributekeylist | append: ',,' | append:propertykey %}
+  			{% endif %}
+  
+  			{% if attributevaluelist == '' %}
+  				{% assign attributevaluelist= propertyvalue %}
+  			{% else %}
+  				{% assign attributevaluelist= attributevaluelist | append: ',,' | append:propertyvalue %}
+  			{% endif %}
+  		{% endif %}
+  	{% endfor %}
+
+<!-- This is the starting of the End. -->
+
+{% if compareproducts_availability %} 
+	{% if shop.metafields.tagproducts[cross_tag_filter] %}
+    	{%- assign best_selling = shop.metafields.tagproducts[cross_tag_filter] -%}
+		<!-- Best Selling New Loop Starts -->
+ 
+		<div class="compare-holder">
+            <span class="mobile-compare-arrow large-up-hide medium-hide" ></span>
+              <div class="seemore_holder seemore_active" style="max-height:600px">
+                <div class="comparesection__seemore">
+                    <div class="seemore__content">
+              <div class="compare-table-holder">
+                 
+                  <div id="compare-main-table" class="compare-main-table div-table-wrapper">
+                      <div class="table-row table-head">
+                            <div class="compare-icon-block table-col compare-table-title-col cro12526-compare-head">
+                                {%- comment -%}
+                                  CRO-12526: eyebrow + heading + paragraph added to match the
+                                  Figma "Compare alternatives" comp. Everything below this — the
+                                  tag-metafield resolution, comparison rows, buy-buttons, see
+                                  more/less — is the EXISTING control logic, untouched.
+                                {%- endcomment -%}
+                                <div class="cro12526-eyebrow"><span class="cro12526-eyebrow__dot" aria-hidden="true"></span>Still deciding?</div>
+                                <h2 class="compare-table-title cro12526-section-heading">Compare alternatives</h2>
+                                <p class="cro12526-compare-paragraph">Genuine like-for-like options in the same class — not padding. This product's column is highlighted.</p>
+                            </div>
+                            <div id="activeproduct" class="activeproduct table-col">
+                                <div class="compare-cnt-holder">
+                                    <span class="cro12526-compare-badge">This product</span>
+                                    <a class="prod-img-holder img-holder-bg-enable" href="{{product.url}}">
+                                        <img class="lazy" src="{{product.featured_image | img_url: '350x' }}" alt="{{collectionTitle_imgAlt}} - {{product.title}} - 1" width="350" height="233"/>
+                                    </a>
+                                    <p>{{product.title | truncatewords:8}}</p>
+                                    {%- assign product_qty = 0 -%}
+                                    {%- for variant in product.variants -%}
+                                        {%- if variant.inventory_quantity > 0 -%}
+                                            {%- assign product_qty = product_qty | plus: variant.inventory_quantity -%}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+
+                                    
+                                {%- comment -%}
+                                ----------------------------------------------------------
+                                {%- if product_qty > 0 -%}      
+                                        {%- if is_bulk == false -%}
+                                            <span class="stock"><i class="fonticon-circular-tick1"></i><strong>In Stock.</strong></span>
+                                        {%- endif -%}
+                                    {%- else -%}
+                                        <span class="stock no-stock"><i class="fonticon-circular-cross1"></i><span>Out of stock / Pre-Order</span></span>
+                                    {%- endif -%}
+                                    ----------------------------------------------------------
+                                    {%- endcomment -%}
+
+
+                                    <strong class="price" style="visibility: visible;">{{product.variants[0].price | money | remove: '.00'}}</strong>
+                                
+                                    {% render 'shipping-speed',  
+                                        product:product %}
+
+                                    {% render 'rating', 
+                                    product_card_product:product, 
+                                    show_rating:true %}
+
+                                    
+                                    {% assign product_form_id = 'quick-add-' | append: section.id | append: product.id %}
+                                    {%- render 'buy-buttons',
+                                        block: "compare-product",
+                                        product: product,
+                                        product_form_id: product_form_id,
+                                        section_id: section.id,
+                                        skip_styles: true,
+                                        -%}
+
+                                </div>
+                            </div>
+
+
+                          {% assign best_sellingarray = best_selling | split: "," %}
+                          {%- assign counter = 0 -%}
+                          {%- assign first_compareproductlist = '' -%}
+                          {%- assign second_compareproductlist = '' -%}
+                          {%- assign third_compareproductlist = '' -%}
+                          {%- for relatedproduct_one in best_sellingarray -%}
+                              {% assign relatedproduct =all_products[relatedproduct_one] %}
+
+                              {%- assign stock = 0 -%}
+                              {%- for variant in relatedproduct.variants -%}
+                                  {%- if variant.inventory_quantity > 0 -%}
+                                      {%- assign stock = stock | plus: variant.inventory_quantity -%}
+                                  {%- endif -%}
+                              {%- endfor -%}
+
+                              {%- unless relatedproduct.title == product.title -%}
+                                  {%- if stock > 0 -%}
+                                      {%-assign newProductloader_html = false -%}
+                                      {%- if relatedproduct.description contains "<h3>delivery</h3>"-%}
+                                          {%- assign btmDesp = relatedproduct.description | split:"<h3>delivery</h3>" -%}
+                                      {%-else-%}
+                                          {%- assign btmDesp = relatedproduct.description | split:"<h3>warranty</h3>" -%}
+                                          {%-assign newProductloader_html = true -%}
+                                      {%-endif-%}
+                                      {%- assign topDesp = btmDesp[0] | split : '<div class="pro-detail">'-%}
+                                      {%- assign tableCnt = topDesp[1] | split : '<img' -%}
+                                      {%- if tableCnt[0] -%}
+                                          {%- assign counter = counter | plus:1 -%}
+                                          {%- if counter <= 2 -%}
+                                              <div class="compare-product-item table-col" data-product="{{relatedproduct.title | truncatewords:8 }}" data-position={{counter}}>
+                                                  <div class ="compare-cnt-holder">
+                                                      <a class="prod-img-holder img-holder-bg-enable" href="{{relatedproduct.url}}">
+                                                          <img class="lazy" src="{{relatedproduct.featured_image | img_url:'350x' }}" alt="{{relatedproduct.title}}" />
+                                                      </a>
+                                                      <p><a class="compare_prodtitle" href="{{relatedproduct.url}}">{{relatedproduct.title | truncatewords:8 }}</a></p>
+                                                      
+                                                      {%- assign product_qty = 0 -%}
+                                                      {%- for variant in relatedproduct.variants -%}
+                                                          {%- if variant.inventory_quantity > 0 -%}
+                                                              {%- assign product_qty = product_qty | plus: variant.inventory_quantity -%}
+                                                          {%- endif -%}
+                                                      {%- endfor -%}
+
+
+                                                      {%- if product_qty > 0 -%}      
+                                                          {%- if is_bulk == false -%}
+                                                              <span class="stock"><i class="fonticon-circular-tick1"></i><strong>In Stock.</strong></span>'
+                                                          {%- endif -%}
+                                                      {%- else -%}
+                                                          <span class="stock no-stock"><i class="fonticon-circular-cross1"></i><strong>No Stock.</strong></span>
+                                                      {%- endif -%}
+
+
+                                                      <strong class="price non-rental-object" style="visibility: visible;">{{relatedproduct.variants[0].price | money | remove: '.00'}}</strong>
+                                                    {% render 'shipping-speed',  
+                                                    product:relatedproduct %}
+
+                                                    {% comment %} rohit no-rating displayed in compare table in design
+                                                    {% render 'rating', 
+                                                    product_card_product:relatedproduct, 
+                                                    show_rating:true %} 
+                                                    {% endcomment %}
+
+                                                   
+                                                    {%- render 'buy-buttons',
+                                                        block: "compare-product",
+                                                        product: relatedproduct,
+                                                        product_form_id: product_form_id,
+                                                        section_id: section.id,
+                                                        skip_styles: true,
+                                                      -%}
+                                                  </div>
+                                              </div>
+
+                                              {%- assign mainproduct_property=tableCnt[0] | strip_newlines | strip | split: '<div class="pro-detail-row">' -%}
+                        
+                        					{%- comment -%}
+                                                <!-- This loop is to check if there is any attribute which is not present on the main product. If yes append to attribute list. -->
+                                            {%- endcomment -%}
+                                              {% for each_property in mainproduct_property %}
+                                                  {% assign keyarrayvalue =attributekeylist | split:',,' %}
+                                                  {% if each_property contains '<span>' %}
+                                                      {% assign propertykey_parent= each_property | split: '<span>' %}
+                                                      {% assign propertykey_array =propertykey_parent[1] |split:'</span>' %}
+                                                      {% assign propertykey =propertykey_array[0] | strip %}
+                                                      {% if keyarrayvalue contains propertykey %}
+                                                          {% continue %}
+                                                      {% else %}
+                                                          {% if attributekeylist == '' %}
+                                                              {% assign attributekeylist= propertykey %}
+                                                          {% else %}
+                                                              {% assign attributekeylist= attributekeylist | append: ',,' | append:propertykey %}
+                                                          {% endif %}
+                                                      {% endif %}
+                                                  {% endif %}
+                                              {% endfor %}
+                        
+                        
+                                              {% assign keyarrayvalue =attributekeylist | split:',,' %}
+                        					  {% assign loopindex = 1 %}
+                                              {% for keydata in keyarrayvalue %}
+                                                  {% assign keyonly = keydata %}
+                                                  {% assign propertyvalue = '' %}
+                                                  {% for each_property in mainproduct_property %}
+                                                      {% if each_property contains '<span>' %}
+                                                          {% assign propertykey_parent= each_property | split: '<span>' %}
+                                                          {% assign propertykey_array =propertykey_parent[1] |split:'</span>' %}
+                                                          {% assign propertykey =propertykey_array[0] | strip %}
+                                                          {% if keyonly == propertykey %}
+                                                              {% if propertykey_array[1] contains '<p>'%}
+                                                                  {% assign propertyvalue_parent =propertykey_array[1] |split:'<p>' %}
+                                                                  {% assign propertyvalue_array =propertyvalue_parent[1] |split:'</p>' %}
+                                                                  {% assign propertyvalue =propertyvalue_array[0] | strip %}
+                                                              {% else %}
+                                                                  {% assign propertyvalue_array =propertykey_array[1] | split:'</div>' %}
+                                                                  {% assign propertyvalue =propertyvalue_array[0] | strip %}
+                                                              {% endif %}
+                                                              {% break %}
+                                                          {% endif %}
+                                                      {% endif %}
+                                                  {% endfor %}
+                                                  {% if loopindex ==1 %}
+                                                      {%- if counter == 1 -%}
+                                                          {% assign first_compareproductlist =propertyvalue %}
+                                                      {%- elsif counter == 2 -%}
+                                                          {% assign second_compareproductlist =propertyvalue %}
+                                                      {%- elsif counter == 3 -%}
+                                                          {% assign third_compareproductlist =propertyvalue %}
+                                                      {% else %}
+                                                      {% endif %}
+
+                                                  {% else %}
+                                                      {%- if counter == 1 -%}
+                                                          {% assign first_compareproductlist= first_compareproductlist | append: ',,' | append:propertyvalue %}
+                                                      {%- elsif counter == 2 -%}
+                                                          {% assign second_compareproductlist= second_compareproductlist | append: ',,' | append:propertyvalue %}
+                                                      {%- elsif counter == 3 -%}
+                                                          {% assign third_compareproductlist= third_compareproductlist | append: ',,' | append:propertyvalue %}
+                                                      {% else %}
+                                                      {% endif %}
+
+                                                  {% endif %}
+                                                  {% assign loopindex = loopindex | plus:1 %}	
+                                              {% endfor %}
+
+                                          {%-else-%}
+                                              {%- break -%}
+                                          {%- endif -%}
+                                      {%- endif -%}
+                                  {%- endif -%}
+                              {%- endunless -%}
+                          {%- endfor -%} {%-comment-%} END forloop of 'relatedproduct' {%-endcomment-%}
+                        </div>
+
+                      {% assign mainproductattribute_array = attributevaluelist | split:',,' %}
+                      {% assign firstproductattribute_array = first_compareproductlist | split:',,' %}
+                      {% assign secondproductattribute_array = second_compareproductlist | split:',,' %}
+                      {% assign thirdproductattribute_array = third_compareproductlist | split:',,' %}
+
+                      {% for keyelement in keyarrayvalue %}
+                          <div class="table-desp table-row" data-label="{{ keyelement }}">
+                              <div class="compare-label table-col">{{ keyelement }}</div>
+                              <div class="compare-active-value table-col">
+                                  {%- comment -%}
+                                   <span class="mob-compare-label">{{ keyelement }}</span>
+                                   {%-endcomment-%}
+                                  <span>{{ mainproductattribute_array[forloop.index0] | replace : "office-chairs-seating","office-chairs" }}</span>
+                                </div>
+                              <div class="table-col">{{ firstproductattribute_array[forloop.index0] | replace : "office-chairs-seating","office-chairs" }} </div>
+                              <div class="table-col">{{ secondproductattribute_array[forloop.index0] | replace : "office-chairs-seating","office-chairs" }} </div>
+                              <div class="table-col">{{ thirdproductattribute_array[forloop.index0] | replace : "office-chairs-seating","office-chairs" }}</div>
+                          </div>
+                      {% endfor%}
+                    </div>
+              </div>
+              </div>
+              
+          </div>
+          </div>
+          </div>
+          <span class="btn-seemore compare-btn-seemore" data-height="90000" data-elementid="compareproduct">See more </span>
+          <a href="javascript:void(0)" class="cro12526-compare-recommend typeform-share getaquoteclick" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">
+            Not sure? We'll recommend
+            <span class="svg-wrapper" aria-hidden="true">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+          </a>
+		<!-- Best Selling New Loop Ends -->
+    {% endif %}
+{% endif %}
+
+</div>
+<script>
+    {% if template == 'product' or template == 'product.crp' or template == 'product.cro-12359' or template == 'product.cro-12526' %}
+        function btnSeemore(){
+                var ele_seemore = document.querySelectorAll(".btn-seemore");
+                var x;
+                for (x= 0; x < ele_seemore.length; x++) {
+                    let visibleHeight = parseInt(ele_seemore[x].getAttribute('data-height'));
+                    let target_el_id = ele_seemore[x].getAttribute('data-elementid');
+                    let target_el = document.getElementById(target_el_id);
+                ele_seemore[x].addEventListener("click", function() {
+                    let seemore_holder = target_el.querySelector('.seemore_holder');
+                        seemore_holder.classList.toggle("seemore_active");
+                    if(seemore_holder.style.maxHeight == visibleHeight + "px" ){
+                        var actualheight = seemore_holder.offsetHeight;
+                        seemore_holder.style.height = "auto";
+                        seemore_holder.style.maxHeight = actualheight + "px";
+                        this.textContent = "See more";
+                        this.classList.remove("seeless");
+                    }else{
+                        seemore_holder.style.height = null;
+                        seemore_holder.style.maxHeight = visibleHeight + "px";
+                        this.textContent = "See less";
+                        this.classList.add("seeless");
+                    }
+                });
+                }
+            }
+        document.addEventListener("DOMContentLoaded", function(event) { 
+          btnSeemore();
+        });
+        {%- endif -%}
+</script>
+{% schema %}
+{ "name": "Product compare (CRO-12526)",
+"tag": "section",
+"class":"section-product-compare cro12526-product-compare"
+} 
+{% endschema %}

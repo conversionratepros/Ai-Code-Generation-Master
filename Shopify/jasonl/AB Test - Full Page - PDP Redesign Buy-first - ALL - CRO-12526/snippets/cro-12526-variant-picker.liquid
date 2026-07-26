@@ -1,0 +1,73 @@
+{%- comment -%}
+  CRO-12526 — Variant picker.
+
+  Reuses the native Dawn <variant-selects> custom element (unchanged JS in
+  assets/product-info.js already loaded by the theme) so option selection keeps
+  existing behaviour: URL updates, price updates live, no page reload. This is a
+  new markup wrapper around it (not a control-file edit) because the spec's
+  presentation — option 1 (size) as a real <select> dropdown, remaining options as
+  colour swatches with a heading + selected-value readout — doesn't match either of
+  the control theme's uniform per-block picker_type ('button' for all options).
+
+  Each option still renders through the EXISTING `product-variant-options` snippet
+  (dropdown branch for option 1, swatch branch — via `swatch-input` — for the rest),
+  so swatch colours/images and the hidden native <select>/radio inputs are 100%
+  the same underlying markup product-info.js already knows how to read; only the
+  wrapping chrome is new.
+
+  Accepts:
+  - product, block, product_form_id, section (implicit global)
+{%- endcomment -%}
+
+{%- liquid
+  assign show_variant = true
+  for option in product.options_with_values
+    if option.values.size == 1
+      assign show_variant = false
+    endif
+  endfor
+-%}
+{%- unless product.has_only_default_variant or show_variant == false -%}
+  <variant-selects id="variant-selects-{{ section.id }}" data-section="{{ section.id }}" class="cro12526-variants">
+    {%- for option in product.options_with_values -%}
+      {%- assign option_num = forloop.index -%}
+      {%- if forloop.first -%}
+        {%- comment -%} Option 1 — Size — real <select> dropdown, selecting navigates to the matching variant (native behaviour). {%- endcomment -%}
+        <div class="cro12526-field cro12526-field--dropdown">
+          <div class="cro12526-field__head">
+            <p class="cro12526-field__label"><span class="cro12526-field__num">{{ option_num }}.</span> Select a {{ option.name | downcase }}</p>
+            <p class="cro12526-field__value" data-selected-value>{{ option.selected_value }}</p>
+          </div>
+          <div class="select cro12526-select-wrap">
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select cro12526-select"
+              name="options[{{ option.name | escape }}]"
+              form="{{ product_form_id }}"
+            >
+              {% render 'product-variant-options', product: product, option: option, block: block, picker_type: 'dropdown' %}
+            </select>
+            <span class="svg-wrapper cro12526-select-caret">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </div>
+        </div>
+      {%- else -%}
+        {%- comment -%} Remaining options — colour swatches with heading + selected-value text, black border on the active swatch (CSS). {%- endcomment -%}
+        <fieldset class="cro12526-field cro12526-field--swatch js product-form__input product-form__input--swatch">
+          <legend class="cro12526-field__head">
+            <span class="cro12526-field__label"><span class="cro12526-field__num">{{ option_num }}.</span> Select a {{ option.name | downcase }}</span>
+            <span class="cro12526-field__value" data-selected-value>{{ option.selected_value }}</span>
+          </legend>
+          <div class="cro12526-swatches">
+            {% render 'product-variant-options', product: product, option: option, block: block, picker_type: 'swatch' %}
+          </div>
+        </fieldset>
+      {%- endif -%}
+    {%- endfor -%}
+
+    <script type="application/json" data-selected-variant>
+      {{ product.selected_or_first_available_variant | json }}
+    </script>
+  </variant-selects>
+{%- endunless -%}

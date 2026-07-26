@@ -1,0 +1,149 @@
+{%- comment -%}
+  CRO-12526 (v2) — Breadcrumb + Range/SKU meta row.
+
+  Breadcrumb resolves parent -> child straight off product.collections
+  (first two collections that are not "all" and not range-template
+  collections), ending on the product title as plain text. This is an
+  intentional, user-approved simplification of the control theme's
+  snippets/breadcrumb-2.liquid (~330 lines of tag/linklist heuristics) —
+  QA a sample of products per top-level category before go-live.
+
+  Range comes from product.metafields.custom.range, falling back to
+  product.metafields.productmeta.range. Neither exists in the store today
+  (client action point) — the range element is omitted when blank.
+
+  SKU — CONTROL FUNCTIONALITY, REPOSITIONED (QA round 1, point 1):
+  the control's sku-holder is reproduced here unchanged in behaviour —
+  copy-to-clipboard icon (#cpylinkbtn-title, control's own inline script
+  pattern binds .linkcpyicon) + the `product-sku` snippet (the "SKU"
+  pop-up opener + variant SKU / per-location quantity modal). Only its
+  position moved (control: beside price → v2: breadcrumb row / below
+  gallery on mobile). This block must render EXACTLY ONCE on the page —
+  product-info.js's showsku() does unguarded getElementById calls on
+  #cpylinkbtn-title and .showsku[data-variant-id] on EVERY option change,
+  and duplicate modal ids would break the popup. It therefore renders in
+  the 'desktop' context only; the mobile block reuses the SAME modal via
+  its own modal-opener and mirrors the SKU value via [data-cro12526v2-sku]
+  (updated from the variantChange pub/sub payload in cro-12526-v2-pdp.js).
+
+  Params:
+  - context: 'desktop' renders breadcrumb + meta with the real sku-holder;
+    'mobile' renders the range/SKU meta block that sits below the gallery.
+{%- endcomment -%}
+
+{%- liquid
+  assign crumb_parent = null
+  assign crumb_child = null
+  for coll in product.collections
+    unless coll.handle == 'all' or coll.template_suffix contains 'range'
+      if crumb_parent == null
+        assign crumb_parent = coll
+      elsif crumb_child == null and coll.handle != crumb_parent.handle
+        assign crumb_child = coll
+      endif
+    endunless
+  endfor
+
+  assign product_range = product.metafields.custom.range
+  if product_range == blank
+    assign product_range = product.metafields.productmeta.range
+  endif
+  comment
+    QA round 4 fallback: the range metafield is still empty (pending client
+    action), but the theme already models ranges as collections whose
+    template_suffix contains "range" (same membership rule
+    sections/product-range.liquid uses) — so derive the display name from
+    the first such collection (e.g. "Quadro Range"). The metafield, once
+    populated, still wins.
+  endcomment
+  if product_range == blank
+    for coll in product.collections
+      if coll.template_suffix contains 'range'
+        assign product_range = coll.title
+        break
+      endif
+    endfor
+  endif
+  assign product_sku = product.selected_or_first_available_variant.sku
+-%}
+
+{%- if context == 'mobile' -%}
+  <div class="cro12526v2-topmeta cro12526v2-topmeta--mobile">
+    <div class="cro12526v2-meta">
+      {%- if product_range != blank -%}
+        <p class="cro12526v2-meta__range">{{ product_range }}</p>
+      {%- endif -%}
+      {%- if product_sku != blank -%}
+        <p class="cro12526v2-meta__sku">
+          {%- comment -%}
+            Opens the SAME showsku modal the desktop block rendered. Chip
+            only, no inline value — matches Figma (see desktop note).
+          {%- endcomment -%}
+          <modal-opener class="cro12526v2-meta__sku-opener no-js-hidden" data-modal="#PopupModal-showsku" data-productid="{{ product.id }}">
+            <button type="button" class="link cro12526v2-meta__sku-btn">SKU</button>
+          </modal-opener>
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- else -%}
+  <div class="cro12526v2-topbar">
+    <nav class="cro12526v2-breadcrumb" aria-label="breadcrumb">
+      {%- if crumb_parent -%}
+        <a class="cro12526v2-breadcrumb__link" href="{{ crumb_parent.url }}">{{ crumb_parent.title }}</a>
+        <span class="cro12526v2-breadcrumb__sep" aria-hidden="true">/</span>
+      {%- endif -%}
+      {%- if crumb_child -%}
+        <a class="cro12526v2-breadcrumb__link" href="{{ crumb_child.url }}">{{ crumb_child.title }}</a>
+        <span class="cro12526v2-breadcrumb__sep" aria-hidden="true">/</span>
+      {%- endif -%}
+      <span class="cro12526v2-breadcrumb__current" aria-current="page">{{ product.title }}</span>
+    </nav>
+    <div class="cro12526v2-topmeta cro12526v2-topmeta--desktop">
+      <div class="cro12526v2-meta">
+        {%- if product_range != blank -%}
+          <p class="cro12526v2-meta__range">{{ product_range }}</p>
+        {%- endif -%}
+
+        {%- comment -%}
+          Control sku-holder, repositioned: copy icon (+ its control-pattern
+          clipboard script) and the product-sku popup opener/modal. Markup
+          mirrors main-product_crp.liquid's sku-holder block.
+        {%- endcomment -%}
+        <div class="sku-holder cro12526v2-meta__sku-holder">
+          <div class="linkcpyicon" id="cpylinkbtn-title" title="{{ product.selected_or_first_available_variant.sku }}">
+            <svg id="linkiconLayer_2" data-name="linkiconLayer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.22 13.21" width="14px" height="14px">
+              <g id="linkiconLayer_1-2" data-name="linkiconLayer 1">
+                <path d="m7.08,12.19s0,0,0,0l-1.03-1.03c-.24-.24-.24-.62,0-.85.24-.24.62-.24.85,0l1.03,1.03c.45.44,1.05.67,1.67.67,0,0,.01,0,.02,0,.64,0,1.24-.26,1.69-.71s.7-1.05.71-1.69c0-.64-.23-1.24-.67-1.7l-1.81-1.81c-.25-.25-.54-.43-.86-.56-.33-.12-.67-.17-1.02-.15-.35.02-.68.12-.99.29-.31.17-.57.39-.78.67-.2.27-.58.32-.85.12-.27-.2-.32-.58-.12-.85.31-.42.71-.76,1.16-1.01.46-.25.96-.4,1.48-.43.52-.04,1.04.04,1.53.22.49.18.93.46,1.3.83l1.81,1.81s0,0,0,0c.66.69,1.03,1.59,1.02,2.55,0,.96-.39,1.86-1.06,2.53-.68.68-1.58,1.05-2.53,1.06-.01,0-.02,0-.03,0-.94,0-1.84-.36-2.52-1.02Zm-2.95-3.4c-.49-.18-.93-.46-1.3-.83l-1.81-1.81s0,0,0,0C.35,5.45,0,4.55,0,3.59c0-.96.39-1.86,1.06-2.53C1.74.39,2.64,0,3.59,0c.96,0,1.86.35,2.55,1.02,0,0,0,0,0,0l1.04,1.03c.24.24.24.62,0,.85-.24.24-.62.24-.85,0l-1.04-1.03c-.46-.44-1.06-.68-1.7-.68-.64,0-1.24.26-1.69.71-.45.45-.7,1.05-.71,1.69,0,.64.23,1.24.67,1.7l1.81,1.81c.25.25.54.43.86.56.33.12.67.17,1.02.15.35-.02.68-.12.99-.29.31-.17.57-.39.78-.67.2-.27.58-.32.85-.12.27.2.32.58.12.85-.31.42-.71.76-1.16,1.01-.46.25-.96.4-1.48.43-.09,0-.18,0-.26,0-.43,0-.86-.08-1.26-.23Z"/>
+              </g>
+            </svg>
+          </div>
+          {%- if template.name == 'product' -%}
+            <script>
+              document.addEventListener("DOMContentLoaded", (event) => {
+                var cpysku = document.querySelectorAll('.linkcpyicon');
+                for (let i = 0; i < cpysku.length; i++) {
+                  cpysku[i].addEventListener('click', function () {
+                    const sku = this.getAttribute('title');
+                    navigator.clipboard.writeText(sku).then(() => {
+                      this.classList.add("copied");
+                      setTimeout(() => {
+                        this.classList.remove("copied");
+                      }, 1000);
+                    });
+                  });
+                }
+              });
+            </script>
+          {%- endif -%}
+          {%- render 'product-sku' -%}
+        </div>
+        {%- comment -%}
+          No inline SKU value text (QA round 3): the raw variant.sku on this
+          store is a compound data string ("NONE,{sku},NONE|0,517,0()"), and
+          the Figma shows the "SKU" chip only — the value lives in the popup.
+        {%- endcomment -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}

@@ -41,22 +41,23 @@
       ribbonHeight = ribbon ? ribbon.getBoundingClientRect().height : 0;
     }
 
+    // All positioning (fixed/left/width/padding-top) lives in variation.css, scoped
+    // under body.cro-12371. JS only ever writes CSS custom properties -- never
+    // element.style.<property> directly -- so that if the global exclusion script
+    // strips the cro-12371 body class on a given page, every consuming rule stops
+    // matching immediately and nothing is left behind to manually clean up.
     function updateHeaderTop() {
       var bar = document.querySelector('header#Top .header.header-top');
       if (!bar) return;
-      bar.style.top = Math.max(0, ribbonHeight - window.scrollY) + 'px';
+      var offset = Math.max(0, ribbonHeight - window.scrollY);
+      document.body.style.setProperty('--cro-12371-header-offset', offset + 'px');
     }
 
     function positionDesktopHeader() {
       var bar = document.querySelector('header#Top .header.header-top');
       var headerEl = document.querySelector('header#Top');
       if (!bar || !headerEl) return;
-      headerEl.style.paddingTop = '';
-      var h = bar.offsetHeight;
-      headerEl.style.paddingTop = h + 'px';
-      bar.style.position = 'fixed';
-      bar.style.left = '0';
-      bar.style.width = '100%';
+      document.body.style.setProperty('--cro-12371-header-height', bar.offsetHeight + 'px');
       bar.classList.add('cro-12371-header-fixed');
       measureRibbon();
       updateHeaderTop();
@@ -109,14 +110,14 @@
       function makeFixed() {
         if (panel.classList.contains('cro-12371-mobile-fixed')) return;
         var height = panel.offsetHeight;
-        spacer.style.height = height + 'px';
+        document.body.style.setProperty('--cro-12371-mobile-spacer-height', height + 'px');
         panel.classList.add('cro-12371-mobile-fixed');
       }
 
       function makeStatic() {
         if (!panel.classList.contains('cro-12371-mobile-fixed')) return;
         panel.classList.remove('cro-12371-mobile-fixed');
-        spacer.style.height = '0px';
+        document.body.style.setProperty('--cro-12371-mobile-spacer-height', '0px');
       }
 
       // Track scroll direction. When the mobile browser chrome collapses on scroll-down,

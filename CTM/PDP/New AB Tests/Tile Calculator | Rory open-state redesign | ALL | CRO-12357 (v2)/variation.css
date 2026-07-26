@@ -376,6 +376,11 @@ body.cro-12357-v2 .cro-12357-swipe {
   color: #717182;
 }
 
+/* desktop: "Click here…" copy shown, mobile-only copy hidden (swapped in the mobile media query) */
+body.cro-12357-v2 .cro-12357-swipe .cro-12357-swipe-mobile {
+  display: none;
+}
+
 body.cro-12357-v2 .cro-12357-note {
   margin: 0;
   text-align: center;
@@ -512,5 +517,18 @@ body.cro-12357-open {
     min-height: 100dvh;
     max-height: 100dvh;
     border-radius: 0;
+  }
+
+  /* mobile: "Swipe up…" copy shown instead of the desktop "Click here…" copy */
+  body.cro-12357-v2 .cro-12357-swipe .cro-12357-swipe-desktop {
+    display: none;
+  }
+
+  body.cro-12357-v2 .cro-12357-swipe .cro-12357-swipe-mobile {
+    display: inline;
+  }
+
+  body.cro-12357-v2 .cro-12357-swipe {
+    cursor: default;
   }
 }

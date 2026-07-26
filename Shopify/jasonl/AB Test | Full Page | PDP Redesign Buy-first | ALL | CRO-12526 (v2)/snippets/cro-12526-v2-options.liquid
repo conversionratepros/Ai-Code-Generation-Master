@@ -1,0 +1,189 @@
+{%- comment -%}
+  CRO-12526 (v2) — Buy-box option selectors.
+
+  Matches the CONTROL's option model exactly (verified against
+  sections/main-product_crp.liquid lines ~990-1064 and the live PDP):
+
+  1. "Size" is NOT a Shopify variant option. It comes from the
+     product.metafields.productmeta.product_sizes markup metafield
+     ([title]..[/title] + [item][opt]label[/opt][redirect]handle[/redirect]
+     ..[/item], optional [default]) and every size is a SEPARATE PRODUCT —
+     choosing one navigates to that product's URL. Control renders it as a
+     link list; per the design this build renders the same data as a
+     <select> whose change navigates (cro-12526-v2-pdp.js), keeping the
+     existing link-through behaviour.
+  2. Real Shopify options (leg colour, top colour, modesty panel, ...)
+     follow, numbered AFTER the size field when it rendered (the control's
+     size_count offset). They render through the EXISTING
+     product-variant-options snippet with picker_type 'button' — the exact
+     same radio + label + option-image markup and metafield image source
+     (productmeta.product_options) the control uses — inside a native Dawn
+     <variant-selects>, so product-info.js keeps handling selection, price
+     swap, URL update and the variantChange pub/sub event unmodified.
+     Only the wrapping chrome (numbered heading + selected-value readout)
+     and CSS restyle (square swatches, black border on checked) are new.
+
+  Accepts: product, block (the variant_picker block), product_form_id.
+{%- endcomment -%}
+
+{%- liquid
+  assign sizesdata = product.metafields.productmeta.product_sizes | strip
+  assign size_count = 0
+-%}
+
+{%- if sizesdata != '' and sizesdata contains '[item]' -%}
+  {%- unless product.has_only_default_variant -%}
+    {%- liquid
+      assign size_count = 1
+      assign size_titleonly = 'Select a size'
+      if sizesdata contains '[title]'
+        assign size_title_array = sizesdata | split: '[title]'
+        for size_titlevalue in size_title_array
+          if size_titlevalue contains '[/title]'
+            assign size_title_array_value = size_titlevalue | split: '[/title]'
+            assign size_titleonly = size_title_array_value[0]
+          endif
+        endfor
+      endif
+
+      comment
+        Pass 1 — resolve the selected size label: the item whose redirect
+        handle is THIS product wins; the [default]-flagged item is the
+        fallback (same precedence the control's active-class logic implies).
+      endcomment
+      assign size_item_array = sizesdata | split: '[item]'
+      assign selected_size = ''
+      assign default_size = ''
+      for size_itemvalue in size_item_array
+        if size_itemvalue contains '[/item]'
+          assign size_optonly = ''
+          assign redirectonly = ''
+          if size_itemvalue contains '[opt]'
+            assign size_opt_array = size_itemvalue | split: '[opt]'
+            for size_optvalue in size_opt_array
+              if size_optvalue contains '[/opt]'
+                assign size_opt_array_value = size_optvalue | split: '[/opt]'
+                assign size_optonly = size_opt_array_value[0]
+              endif
+            endfor
+          endif
+          if size_itemvalue contains '[redirect]'
+            assign redirect_array = size_itemvalue | split: '[redirect]'
+            for redirectvalue in redirect_array
+              if redirectvalue contains '[/redirect]'
+                assign redirect_arrayvalue = redirectvalue | split: '[/redirect]'
+                assign redirectonly = redirect_arrayvalue[0] | strip
+              endif
+            endfor
+          endif
+          if redirectonly == product.handle
+            assign selected_size = size_optonly
+          endif
+          if size_itemvalue contains '[default]'
+            assign default_size = size_optonly
+          endif
+        endif
+      endfor
+      if selected_size == ''
+        assign selected_size = default_size
+      endif
+    -%}
+
+    <div class="cro12526v2-field cro12526v2-field--size">
+      <div class="cro12526v2-field__head">
+        <p class="cro12526v2-field__label">
+          <span class="cro12526v2-field__num">{{ size_count }}.</span> {{ size_titleonly }}
+        </p>
+        <p class="cro12526v2-field__value" data-cro12526v2-size-value>{{ selected_size }}</p>
+      </div>
+      <div class="cro12526v2-select-wrap">
+        <select class="cro12526v2-select" data-cro12526v2-size-select aria-label="{{ size_titleonly | escape }}">
+          {%- for size_itemvalue in size_item_array -%}
+            {%- if size_itemvalue contains '[/item]' -%}
+              {%- liquid
+                assign size_optonly = ''
+                assign redirectonly = ''
+                if size_itemvalue contains '[opt]'
+                  assign size_opt_array = size_itemvalue | split: '[opt]'
+                  for size_optvalue in size_opt_array
+                    if size_optvalue contains '[/opt]'
+                      assign size_opt_array_value = size_optvalue | split: '[/opt]'
+                      assign size_optonly = size_opt_array_value[0]
+                    endif
+                  endfor
+                endif
+                if size_itemvalue contains '[redirect]'
+                  assign redirect_array = size_itemvalue | split: '[redirect]'
+                  for redirectvalue in redirect_array
+                    if redirectvalue contains '[/redirect]'
+                      assign redirect_arrayvalue = redirectvalue | split: '[/redirect]'
+                      assign redirectonly = redirect_arrayvalue[0] | strip
+                    endif
+                  endfor
+                endif
+              -%}
+              {%- if size_optonly != '' and redirectonly != '' -%}
+                <option
+                  value="{{ routes.root_url }}products/{{ redirectonly }}"
+                  {% if redirectonly == product.handle %}selected{% endif %}
+                >{{ size_optonly }}</option>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </select>
+        <svg class="cro12526v2-select-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  {%- endunless -%}
+{%- endif -%}
+
+{%- liquid
+  comment
+    Control parity: main-product_crp's picker renders nothing when any
+    option has a single value (its show_variant check) or when the product
+    has only the default variant.
+  endcomment
+  assign show_variant = true
+  for option in product.options_with_values
+    if option.values.size == 1
+      assign show_variant = false
+    endif
+  endfor
+-%}
+{%- unless product.has_only_default_variant or show_variant == false -%}
+  <variant-selects
+    id="variant-selects-{{ section.id }}"
+    data-section="{{ section.id }}"
+    class="cro12526v2-variants"
+    {{ block.shopify_attributes }}
+  >
+    {%- for option in product.options_with_values -%}
+      {%- assign option_counter = forloop.index -%}
+      {%- assign option_num = forloop.index | plus: size_count -%}
+      <fieldset class="cro12526v2-field cro12526v2-field--swatches js product-form__input">
+        <legend class="cro12526v2-field__head">
+          <span class="cro12526v2-field__label">
+            <span class="cro12526v2-field__num">{{ option_num }}.</span> {{ option.name }}
+          </span>
+          <span class="cro12526v2-field__value" data-cro12526v2-option-value>{{ option.selected_value }}</span>
+        </legend>
+        <div class="cro12526v2-swatches option-item-holder">
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: 'button',
+            optionforloopindex: forloop.index
+          %}
+          {%- render 'addon_data', option_index: option_counter, option: option, option_selected: option.selected_value -%}
+        </div>
+      </fieldset>
+    {%- endfor -%}
+
+    <script type="application/json" data-selected-variant>
+      {{ product.selected_or_first_available_variant | json }}
+    </script>
+  </variant-selects>
+{%- endunless -%}
