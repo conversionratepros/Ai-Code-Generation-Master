@@ -1,0 +1,64 @@
+{%- comment -%}
+  CRO-12526 (v2) — Final CTA band (Figma 38:927).
+  NOTE: this section appears in the page design but NOT in the written
+  spec — flagged in user-story.md. Static + settings-driven. "Plan my
+  fitout" opens the sitewide Typeform (same trigger as the buy box CTA);
+  "Book a showroom visit" defaults to the showrooms section anchor.
+{%- endcomment -%}
+
+{{ 'cro-12526-v2-pdp.css' | asset_url | stylesheet_tag }}
+
+<div class="cro12526v2-finalcta">
+  <div class="page-width cro12526v2-finalcta__inner">
+    <div class="cro12526v2-finalcta__left">
+      <div class="cro12526v2-eyebrow cro12526v2-eyebrow--ondark">
+        <span class="cro12526v2-eyebrow__dot" aria-hidden="true"></span>
+        <span class="cro12526v2-eyebrow__text">{{ section.settings.eyebrow }}</span>
+      </div>
+      <h2 class="cro12526v2-finalcta__heading">{{ section.settings.heading }}</h2>
+      <a class="cro12526v2-finalcta__btn typeform-share get-a-quote-btn-ab getaquoteclick" href="javascript:void(0)" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">
+        <span>{{ section.settings.button_label }}</span>
+        <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1 4H19M19 4L15.5 1M19 4L15.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <p class="cro12526v2-finalcta__note">{{ section.settings.note }}</p>
+    </div>
+    <div class="cro12526v2-finalcta__right">
+      <p class="cro12526v2-finalcta__copy">{{ section.settings.copy }}</p>
+      <p class="cro12526v2-finalcta__call">
+        Call <a href="tel:{{ section.settings.phone | replace: ' ', '' }}">{{ section.settings.phone }}</a>
+      </p>
+      <p class="cro12526v2-finalcta__meta">
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        <span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+        Prefer to see it first?
+        <a class="cro12526v2-finalcta__showroom-link" href="{{ section.settings.showroom_url | default: '#cro12526v2-showrooms' }}"><strong>Book a showroom visit</strong> &rarr;</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12526 V2 Final CTA",
+  "tag": "section",
+  "class": "section-cro12526v2-finalcta",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "No obligation, no runaround" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tell us what you're planning." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Plan my fitout" },
+    { "type": "text", "id": "note", "label": "Note under button", "default": "Takes 60 seconds. No spam, no obligation." },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Right column copy",
+      "default": "JasonL team will come back within 2 business hours on weekdays — no obligation, no runaround. And if we're not the right fit, we'll tell you."
+    },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "1300 864 264" },
+    { "type": "text", "id": "email", "label": "Email", "default": "sales@jasonl.com.au" },
+    { "type": "url", "id": "showroom_url", "label": "Showroom link (defaults to showrooms section anchor)" }
+  ],
+  "presets": [{ "name": "CRO-12526 V2 Final CTA" }]
+}
+{% endschema %}

@@ -13,11 +13,12 @@
 | Gallery (tag inside gallery, thumbs, view-all, existing viewer reused) | ✅ Built (this round) |
 | Buy box (title, rating, price, options, delivery, freight, qty, ATC/ATQ/Back-Order, legals, fitout CTA) | ✅ Built (this round) |
 | Tab section | ✅ Ported verbatim from control (spec: unchanged) |
-| Complete the Setup | ⏳ Awaiting design hand-off |
-| Compare Alternatives | ⏳ Awaiting design hand-off (template currently keeps control's `product-compare` section) |
-| New Here? A Bit of Us | ⏳ Awaiting design hand-off |
-| Planning a Whole Office? | ⏳ Awaiting design hand-off |
-| Come See It (showrooms) | ⏳ Awaiting design hand-off (template currently keeps control's sections) |
+| Complete the Setup | ✅ Built (round 2, Figma 33:357) |
+| Compare Alternatives | ✅ Built (round 2, fork of `product-compare.liquid`, Figma 38:244) |
+| New Here? A Bit of Us | ✅ Built (round 2, Figma 38:464) |
+| Planning a Whole Office? | ✅ Built (round 2, Figma 38:649) |
+| Come See It (showrooms) | ✅ Built (round 2, Figma 38:726) |
+| Final CTA band | ✅ Built (round 2, Figma 38:927 — **in the design but NOT in the written spec**; remove `final_cta` from the template JSON if unwanted) |
 
 ## Files
 
@@ -27,6 +28,48 @@
 - `snippets/cro-12526-v2-gallery.liquid` — wrapper around the UNCHANGED `product-media-gallery-custom` (Swiper + existing zoom viewer); adds in-gallery promo tag (`best-seller-tag` reused) and the "View all images" trigger.
 - `snippets/cro-12526-v2-options.liquid` — size dropdown (sibling-product metafield links) + Shopify options via the control's own `product-variant-options` (picker_type `button`) inside a native `<variant-selects>`.
 - `assets/cro-12526-v2-pdp.css`, `assets/cro-12526-v2-pdp.js`.
+
+## Round 2 build — below-fold sections (2026-07-26)
+
+Template now composes: main → store_availability → **complete-setup** →
+**compare** → **about-us** → **planning** → **showrooms** → **final-cta**.
+Control's `range`, `recent_fitouts`, `locationMap` and `meetPeople` section
+entries were REMOVED from the variant template (replaced by the redesign's
+narrative sections — restore any of them in the template JSON if the client
+objects). `store_availability` kept (functional).
+
+- **Complete the setup** (`cro-12526-v2-complete-setup.liquid`) — control's
+  cross-sell handle-resolution logic verbatim (tags → `{tag}_c` → `{key}_x`
+  handle lists, [redirect] parent fallback, zero-stock skip); new card markup;
+  per-card real product forms inside `<product-form>` (same drawer flow as the
+  buy box; JS sets pay-online/request-quote pre-select in capture phase);
+  MOQ minimum submitted as quantity; shows up to 4 cards (design) vs
+  control's 3. Per-collection headings = section blocks (collection picker +
+  text) — client still to supply values; default heading setting meanwhile.
+- **Compare** (`cro-12526-v2-compare.liquid`) — FORK of `product-compare.liquid`;
+  deltas only: new header (eyebrow/heading/copy/"Not sure? We'll recommend"
+  Typeform link), "This product" badge, template gate extended (control's
+  covers only product/product.crp — See more would silently not bind), schema
+  rename. Rows/attribute parsing/buy-buttons untouched.
+- **About us** (`cro-12526-v2-about-us.liquid`) — static; stats as blocks;
+  logos strip + fit-out photo are image_pickers falling back to bundled
+  Figma exports (`cro-12526-v2-about-logos.svg`, `cro-12526-v2-about-fitout.png`);
+  "See Recent Projects" → /blogs/fitouts ("Proyects" typo corrected).
+- **Planning** (`cro-12526-v2-planning.liquid`) — static; steps as blocks;
+  consult button URL setting is PENDING client — falls back to the sitewide
+  Typeform until set so the CTA is never dead ("hole" typo corrected).
+- **Showrooms** (`cro-12526-v2-showrooms.liquid`) — reads the SAME global
+  `settings.store{N}_showroom_*` fields as the control's showrooms (no
+  re-platforming); Granville excluded like control; 360° pop-up reuses
+  `custom-modal-virtual-tour` unchanged (visible pill forwards the click; JS
+  moves the modal-dialog to body on first open); phone is click-to-call;
+  right-hand image = active row's existing per-location photo (hover/focus
+  swaps; hidden on tablet/mobile); row arrow links to the showroom page —
+  ASSUMED answer to the spec's "confirm what the arrow does".
+  "walk-trough" typo corrected to "walk-through".
+- **Final CTA** (`cro-12526-v2-final-cta.liquid`) — design-only addition (not
+  in spec); static; Plan-my-fitout → Typeform; "Book a showroom visit" →
+  showrooms anchor by default.
 
 ## Control-logic mapping (all user-verified 2026-07-26)
 
@@ -152,6 +195,27 @@ NOT a window property — the subscribe guard now probes the bare identifier
 6. **Fonts matched to Figma** — desktop title 50px/58, price 48px (previously
    42/44); mobile values from round 3 unchanged (title 20px/35, price 28px,
    details/legals 12px).
+
+## QA round 5 (2026-07-26) — first formal QA pass (Slack thread 1785079510.699799)
+
+8 bugs reported on finch-ergonomic-mesh-chair; 6 fixed (CSS only), 2 verified
+as control parity and answered in-thread with evidence:
+
+- **1+8 badge**: theme styles the tag's inner span (#F9BA06 + own padding) —
+  styling the outer box produced a two-tone badge and "extra space" (which was
+  also partly the 2px letter-spacing rendering after the final R). Fixed on the
+  span with asymmetric right padding (-2px).
+- **2 "none" X icon**: control draws it via CSS scoped to
+  `.product-form__input--pill`; recreated the identical X under our scope.
+- **4 italic links**: added `font-style: italic` to callout links.
+- **5 dropdown ring**: removed the select's 2px `:focus-visible` outline.
+- **7 radius**: computes 18px with the deployed CSS (stale QA screenshot);
+  hardened with `!important`.
+- **3 mobile viewer + 6 desktop swipe**: measured and screenshotted identical
+  behaviour on the live control (same viewer metrics; control desktop gallery
+  does not mouse-drag either — the zoom-trigger button overlays the image on
+  both). Reported as control parity; any change there is a change to the
+  shared control component and needs a product decision.
 
 ## QA notes for this round
 

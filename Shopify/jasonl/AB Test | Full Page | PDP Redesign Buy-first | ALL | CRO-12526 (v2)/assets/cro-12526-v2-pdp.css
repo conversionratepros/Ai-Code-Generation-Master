@@ -159,21 +159,30 @@
   pointer-events: none;
 }
 
-/* Reused best-seller-tag snippet, restyled to the design's pill */
+/* Reused best-seller-tag snippet, restyled to the design's pill.
+   QA r5 bugs 1+8: the theme styles the inner SPAN (#F9BA06 bg + its own
+   4px/15px padding) — colouring the outer .tag-box produced a two-tone
+   badge with doubled padding that read as an "extra space". Style the
+   span itself and neutralise the box. Right padding is 2px smaller than
+   left to swallow the trailing letter-spacing after the final R. */
 .cro12526v2-gallery__tag .tag-box {
-  background: var(--cro12526v2-orange);
-  border-radius: 24px;
-  padding: 0.5rem 1.2rem;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0;
   display: inline-block;
 }
 
 .cro12526v2-gallery__tag .tag-box span {
-  color: #fff;
+  display: inline-block;
+  background-color: var(--cro12526v2-orange) !important;
+  color: #fff !important;
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
   line-height: 1.3;
+  padding: 0.5rem 1rem 0.5rem 1.2rem !important;
+  border-radius: 24px !important;
 }
 
 /* When the viewer is open the tag must not float over it */
@@ -185,7 +194,7 @@
    Scope every rule to :not(.zoomin) so the existing viewer pop-up
    keeps its own look and behaviour exactly. */
 .cro12526v2-gallery .product-slider-holder:not(.zoomin) .main-slider .swiper-slide img {
-  border-radius: 18px;
+  border-radius: 18px !important;
   cursor: pointer;
 }
 
@@ -446,9 +455,12 @@ legend.cro12526v2-field__head + * {
   cursor: pointer;
 }
 
+/* QA r5 bug 5: no border/ring while the dropdown is open — the previous
+   2px focus outline showed whenever the select had focus. */
+.cro12526v2-select:focus,
 .cro12526v2-select:focus-visible {
-  outline: 2px solid var(--cro12526v2-ink);
-  outline-offset: 1px;
+  outline: none;
+  box-shadow: none;
 }
 
 .cro12526v2-select-caret {
@@ -531,6 +543,38 @@ legend.cro12526v2-field__head + * {
 
 .cro12526v2-swatches .seperator {
   display: none;
+}
+
+/* QA r5 bug 2: the control's X for the "none" option comes from
+   product-page.css rules scoped to .product-form__input--pill — a class
+   these fieldsets don't have, so the span rendered blank. Same X,
+   re-scoped (two rotated 1px #cdcdcd lines). */
+.cro12526v2-options .cro12526v2-swatches label .icon-none {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cro12526v2-options .cro12526v2-swatches label .icon-none::before,
+.cro12526v2-options .cro12526v2-swatches label .icon-none::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 15px;
+  background: #cdcdcd;
+  margin-top: -7px;
+}
+
+.cro12526v2-options .cro12526v2-swatches label .icon-none::before {
+  transform: rotate(45deg);
+}
+
+.cro12526v2-options .cro12526v2-swatches label .icon-none::after {
+  transform: rotate(-45deg);
 }
 
 /* ---------- Purchase details ---------- */
@@ -851,6 +895,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-callout__link {
   color: var(--cro12526v2-ink);
+  font-style: italic;
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
@@ -1108,5 +1153,1019 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
     border-radius: 8px;
     font-size: 1.5rem;
     padding: 1.5rem 3rem;
+  }
+}
+
+/* ============================================================
+   Below-fold sections (round 2 of the build):
+   Complete the setup (33:357) · Compare (38:244) · About us (38:464)
+   Planning (38:649) · Showrooms (38:726) · Final CTA (38:927)
+   ============================================================ */
+
+/* ---------- Shared eyebrow ---------- */
+
+.cro12526v2-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cro12526v2-eyebrow__dot {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: var(--cro12526v2-lime);
+  flex-shrink: 0;
+}
+
+.cro12526v2-eyebrow__text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 3.12px;
+  text-transform: uppercase;
+  color: var(--cro12526v2-ink);
+  line-height: 1.3;
+}
+
+.cro12526v2-eyebrow--ondark .cro12526v2-eyebrow__text {
+  color: #fff;
+}
+
+/* Shared lime-underlined arrow link (About us "See Recent Projects") */
+.cro12526v2-underline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.cro12526v2-underline-btn:hover {
+  border-bottom-color: var(--cro12526v2-ink);
+}
+
+/* ---------- Complete the setup ---------- */
+
+.cro12526v2-setup {
+  background: #f6fafb;
+  padding: 10.5rem 0;
+}
+
+.cro12526v2-setup__heading {
+  margin: 0 0 1.5rem;
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-setup__subline {
+  margin: 0 0 4rem;
+  font-size: 2.2rem;
+  line-height: 1.5;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-setup__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.cro12526v2-setup-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cro12526v2-setup-card__media {
+  display: block;
+  height: 27rem;
+  background: #fff;
+}
+
+.cro12526v2-setup-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cro12526v2-setup-card__body {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  flex: 1 1 auto;
+}
+
+.cro12526v2-setup-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1 1 auto;
+}
+
+.cro12526v2-setup-card__category {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cro12526v2-gray);
+  line-height: 1.4;
+}
+
+.cro12526v2-setup-card__title {
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: var(--cro12526v2-ink);
+  text-decoration: none;
+}
+
+.cro12526v2-setup-card__title:hover {
+  text-decoration: underline;
+}
+
+.cro12526v2-setup-card__price {
+  margin: 0.7rem 0 0;
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-setup-card__form .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cro12526v2-setup-card__atc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 5.6rem;
+  background: var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  border: 0;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+  position: relative;
+}
+
+.cro12526v2-setup-card__atc[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cro12526v2-setup-card__atc .loading__spinner {
+  position: absolute;
+  right: 1.4rem;
+}
+
+.cro12526v2-setup-card__atq {
+  background: none;
+  border: 0;
+  padding: 0;
+  align-self: center;
+  font-size: 1.4rem;
+  color: var(--cro12526v2-gray);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.cro12526v2-setup-card__atq:hover {
+  color: var(--cro12526v2-ink);
+}
+
+/* ---------- Compare alternatives (restyle over the control fork) ---------- */
+
+.section-cro12526v2-compare .compare-table-title-col .cro12526v2-eyebrow {
+  margin-bottom: 1rem;
+}
+
+.section-cro12526v2-compare .compare-table-title.cro12526v2-compare__heading {
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cro12526v2-ink);
+  margin: 0 0 2rem;
+}
+
+.cro12526v2-compare__copy {
+  margin: 0 0 2rem;
+  font-size: 2.2rem;
+  line-height: 1.64;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-compare__recommend {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cro12526v2-ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--cro12526v2-lime);
+  padding-bottom: 0.2rem;
+  cursor: pointer;
+}
+
+.cro12526v2-compare__badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  border-radius: 24px;
+  padding: 0.4rem 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-cro12526v2-compare .activeproduct {
+  background: #f6fafb;
+  border-radius: 10px 10px 0 0;
+}
+
+.section-cro12526v2-compare .compare-active-value {
+  background: #f6fafb;
+}
+
+.section-cro12526v2-compare .table-desp:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+.section-cro12526v2-compare .table-desp .table-col {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  padding: 1.5rem 2rem;
+}
+
+.section-cro12526v2-compare .btn-seemore {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cro12526v2-ink);
+  cursor: pointer;
+}
+
+/* ---------- About us ---------- */
+
+.cro12526v2-about {
+  background: #f6fafb;
+  padding: 10rem 0 5rem;
+}
+
+.cro12526v2-about__top {
+  display: flex;
+  align-items: center;
+  gap: 8rem;
+  margin-bottom: 3rem;
+}
+
+.cro12526v2-about__intro {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cro12526v2-about__heading {
+  margin: 0 0 2rem;
+  font-size: 5.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-about__copy {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.68;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-about__stats {
+  flex-shrink: 0;
+  width: 47%;
+  max-width: 74.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7.4rem 0;
+}
+
+.cro12526v2-about__stat {
+  border-left: 1px solid var(--cro12526v2-ink);
+  padding: 0 2rem;
+}
+
+.cro12526v2-about__stat-figure {
+  margin: 0;
+  font-size: 4.4rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-about__stat-label {
+  margin: 0.8rem 0 0;
+  font-size: 1.6rem;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-about__panel {
+  display: flex;
+  align-items: stretch;
+  gap: 3.6rem;
+  background: #e5ecf0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.cro12526v2-about__panel-content {
+  flex: 1 1 50%;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.cro12526v2-about__panel-heading {
+  margin: 0 0 0.5rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-about__panel-copy {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: var(--cro12526v2-ink);
+  max-width: 59rem;
+}
+
+.cro12526v2-about__logos img,
+.cro12526v2-about__logos svg.cro12526v2-about__logos-svg {
+  max-width: 56.7rem;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cro12526v2-about__panel-image {
+  flex: 1 1 50%;
+  min-height: 39.3rem;
+}
+
+.cro12526v2-about__panel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Planning ---------- */
+
+.cro12526v2-planning {
+  padding: 10rem 0 3rem;
+}
+
+.cro12526v2-planning__title {
+  margin-bottom: 3rem;
+}
+
+.cro12526v2-planning__heading {
+  margin: 0 0 2.4rem;
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-planning__copy {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.5;
+  color: var(--cro12526v2-gray);
+  max-width: 93rem;
+}
+
+.cro12526v2-planning__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4rem;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.cro12526v2-planning__step-day {
+  margin: 0 0 2.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 5.6px;
+  text-transform: uppercase;
+  color: var(--cro12526v2-lime);
+}
+
+.cro12526v2-planning__step-heading {
+  margin: 0 0 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-planning__step-copy {
+  margin: 0;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-planning__bar {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background: #e5ecf0;
+  border-radius: 8px;
+  padding: 4rem;
+}
+
+.cro12526v2-planning__bar-copy {
+  margin: 0;
+  flex: 1 1 auto;
+  font-size: 1.8rem;
+  line-height: 1.56;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-planning__cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  border-radius: 42px;
+  padding: 2rem 3rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cro12526v2-planning__cta:hover {
+  filter: brightness(0.96);
+}
+
+/* ---------- Showrooms ---------- */
+
+.cro12526v2-showrooms {
+  padding: 10rem 0 5rem;
+}
+
+.cro12526v2-showrooms__title {
+  margin-bottom: 3.5rem;
+}
+
+.cro12526v2-showrooms__heading {
+  margin: 0;
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-showrooms__layout {
+  display: flex;
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.cro12526v2-showrooms__rows {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cro12526v2-showrooms__row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding: 1.8rem 2rem 1.8rem 1rem;
+  border-bottom: 1px solid rgba(119, 119, 119, 0.4);
+}
+
+.cro12526v2-showrooms__row:first-child {
+  border-top: 1px solid rgba(119, 119, 119, 0.4);
+}
+
+.cro12526v2-showrooms__row.is-active {
+  background: #f6fafb;
+  border-radius: 10px 0 0 10px;
+}
+
+.cro12526v2-showrooms__name {
+  margin: 0;
+  flex: 0 0 16rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--cro12526v2-ink);
+}
+
+.cro12526v2-showrooms__address {
+  margin: 0;
+  flex: 1 1 26rem;
+  min-width: 0;
+  font-size: 1.7rem;
+  color: var(--cro12526v2-gray);
+}
+
+.cro12526v2-showrooms__tour-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--cro12526v2-ink);
+  border-radius: 42px;
+  padding: 1.4rem 2.8rem;
+  font-size: 1.7rem;
+  line-height: 1.3;
+  color: var(--cro12526v2-gray);
+  cursor: pointer;
+}
+
+.cro12526v2-showrooms__tour-btn strong {
+  color: var(--cro12526v2-ink);
+  font-weight: 600;
+}
+
+.cro12526v2-showrooms__tour-native {
+  display: none;
+}
+
+.cro12526v2-showrooms__phone {
+  flex: 0 0 11rem;
+  font-size: 1.7rem;
+  color: var(--cro12526v2-ink);
+  text-decoration: none;
+}
+
+.cro12526v2-showrooms__phone:hover {
+  text-decoration: underline;
+}
+
+.cro12526v2-showrooms__link {
+  color: var(--cro12526v2-ink);
+  display: inline-flex;
+}
+
+.cro12526v2-showrooms__image {
+  flex: 0 0 37.1rem;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f6fafb;
+}
+
+.cro12526v2-showrooms__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Final CTA ---------- */
+
+.cro12526v2-finalcta {
+  background: var(--cro12526v2-ink);
+  padding: 13rem 0;
+}
+
+.cro12526v2-finalcta__inner {
+  display: flex;
+  gap: 8rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cro12526v2-finalcta__left {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cro12526v2-finalcta__heading {
+  margin: 0 0 3rem;
+  font-size: 4.4rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #fff;
+  max-width: 44rem;
+}
+
+.cro12526v2-finalcta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  border-radius: 42px;
+  padding: 1.6rem 3rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cro12526v2-finalcta__btn:hover {
+  filter: brightness(0.96);
+}
+
+.cro12526v2-finalcta__note {
+  margin: 1.6rem 0 0;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cro12526v2-finalcta__note strong,
+.cro12526v2-finalcta__right a {
+  color: #fff;
+}
+
+.cro12526v2-finalcta__right {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.cro12526v2-finalcta__copy {
+  margin: 0 0 3rem;
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 48rem;
+}
+
+.cro12526v2-finalcta__call {
+  margin: 0 0 2rem;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.cro12526v2-finalcta__call a {
+  color: var(--cro12526v2-lime);
+  text-decoration: none;
+}
+
+.cro12526v2-finalcta__meta {
+  margin: 0;
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cro12526v2-finalcta__meta a {
+  text-decoration: none;
+}
+
+.cro12526v2-finalcta__meta a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Below-fold responsive ---------- */
+
+@media screen and (max-width: 989px) {
+  .cro12526v2-setup__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cro12526v2-about__top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+
+  .cro12526v2-about__stats {
+    width: 100%;
+    max-width: none;
+    gap: 4rem 0;
+  }
+
+  .cro12526v2-about__panel {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cro12526v2-about__panel-image {
+    min-height: 28rem;
+  }
+
+  .cro12526v2-planning__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cro12526v2-planning__bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cro12526v2-showrooms__image {
+    display: none;
+  }
+
+  .cro12526v2-showrooms__row.is-active {
+    border-radius: 10px;
+  }
+
+  .cro12526v2-finalcta__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .cro12526v2-setup {
+    padding: 5rem 0;
+  }
+
+  .cro12526v2-setup__heading,
+  .section-cro12526v2-compare .compare-table-title.cro12526v2-compare__heading,
+  .cro12526v2-planning__heading,
+  .cro12526v2-showrooms__heading {
+    font-size: 3rem;
+  }
+
+  .cro12526v2-about__heading {
+    font-size: 3.4rem;
+  }
+
+  .cro12526v2-setup__subline,
+  .cro12526v2-compare__copy,
+  .cro12526v2-about__copy,
+  .cro12526v2-planning__copy {
+    font-size: 1.6rem;
+  }
+
+  .cro12526v2-setup__grid,
+  .cro12526v2-planning__steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cro12526v2-about {
+    padding: 5rem 0 3rem;
+  }
+
+  .cro12526v2-about__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 0;
+  }
+
+  .cro12526v2-about__stat-figure {
+    font-size: 2.8rem;
+  }
+
+  .cro12526v2-about__panel-content {
+    padding: 2.4rem;
+    gap: 2.4rem;
+  }
+
+  .cro12526v2-planning {
+    padding: 5rem 0 2rem;
+  }
+
+  .cro12526v2-planning__bar {
+    padding: 2.4rem;
+  }
+
+  .cro12526v2-planning__cta {
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+  }
+
+  .cro12526v2-showrooms {
+    padding: 5rem 0 3rem;
+  }
+
+  .cro12526v2-showrooms__row {
+    padding: 1.6rem 1rem;
+    gap: 0.6rem 1.6rem;
+  }
+
+  .cro12526v2-showrooms__name {
+    flex: 1 1 100%;
+    font-size: 1.8rem;
+  }
+
+  .cro12526v2-showrooms__address {
+    flex: 1 1 100%;
+    font-size: 1.4rem;
+  }
+
+  .cro12526v2-showrooms__tour-btn {
+    padding: 1rem 1.8rem;
+    font-size: 1.4rem;
+  }
+
+  .cro12526v2-showrooms__phone {
+    font-size: 1.4rem;
+  }
+
+  .cro12526v2-finalcta {
+    padding: 6rem 0;
+  }
+
+  .cro12526v2-finalcta__heading {
+    font-size: 3rem;
+  }
+
+  .cro12526v2-finalcta__call {
+    font-size: 2.2rem;
+  }
+}
+
+/* ============================================================
+   QA round 6 (2026-07-27) — alignment + compare table + mobile
+   ============================================================ */
+
+/* 1. Top bar mirrors the main grid so the range sits exactly at the
+   buy-box column's left edge and SKU at its right edge (Figma 217:111 —
+   the right container is the buy-box column with space-between). */
+.cro12526v2-topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 63fr) minmax(0, 37fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+.cro12526v2-topmeta--desktop {
+  min-width: 0;
+}
+
+.cro12526v2-topmeta--desktop .cro12526v2-meta {
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* 2. Compare table — the control caps EVERY cell at max-width:159px
+   (product-page.css .compare-holder .div-table-wrapper .table-row
+   .table-col) which crushed the new 50px heading into one character
+   per line and blew the row height out. Re-track the grid per the
+   design: wide fixed label/title column + equal product columns. */
+.section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row {
+  grid-template-columns: minmax(26rem, 34rem) repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  padding: 10px 0;
+}
+
+.section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row .table-col {
+  max-width: none;
+  min-width: 0;
+}
+
+.section-cro12526v2-compare .div-table-wrapper .compare-icon-block {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.section-cro12526v2-compare .compare-table-title-col .cro12526v2-eyebrow {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.section-cro12526v2-compare .compare-table-title.cro12526v2-compare__heading,
+.section-cro12526v2-compare .cro12526v2-compare__copy {
+  width: 100%;
+  text-align: left;
+}
+
+.section-cro12526v2-compare .div-table-wrapper .compare-table-title-col .compare-table-title,
+body.product .div-table-wrapper .compare-table-title-col .compare-table-title.cro12526v2-compare__heading {
+  max-width: none;
+  margin-bottom: 2rem;
+}
+
+.section-cro12526v2-compare .compare-table-title.cro12526v2-compare__heading {
+  font-size: 4rem;
+  line-height: 1.2;
+}
+
+.section-cro12526v2-compare .cro12526v2-compare__copy {
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+
+.cro12526v2-compare__recommend-pill {
+  display: none;
+}
+
+/* 3. Mobile: horizontal-scroll compare table (Figma 276:387) — fixed
+   column tracks so every row's cells stay aligned inside one scroller. */
+@media screen and (max-width: 749px) {
+  .section-cro12526v2-compare .compare-main-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row {
+    grid-template-columns: 19.6rem repeat(3, 21rem);
+    gap: 0;
+    width: max-content;
+    padding: 0;
+  }
+
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row .table-col {
+    padding: 0.6rem 1.2rem;
+  }
+
+  .section-cro12526v2-compare .compare-table-title.cro12526v2-compare__heading {
+    font-size: 2.8rem;
+    line-height: 3.5rem;
+  }
+
+  .section-cro12526v2-compare .cro12526v2-compare__copy {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
+  /* header link swaps to the full-width pill below the table */
+  .section-cro12526v2-compare .cro12526v2-compare__recommend {
+    display: none;
+  }
+
+  .cro12526v2-compare__recommend-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    min-height: 5.3rem;
+    margin-top: 2rem;
+    border: 1px solid rgba(119, 119, 119, 0.4);
+    border-radius: 50px;
+    color: var(--cro12526v2-ink);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* 4. Setup cards + planning steps: horizontal scroll rows on mobile
+     (Figma 276:377 / 276:1069) instead of a tall single-column stack. */
+  .cro12526v2-setup__grid {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .cro12526v2-setup-card {
+    flex: 0 0 26rem;
+  }
+
+  .cro12526v2-setup-card__media {
+    height: 19rem;
+  }
+
+  .cro12526v2-planning__steps {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 2.4rem;
+  }
+
+  .cro12526v2-planning__step {
+    flex: 0 0 26rem;
   }
 }

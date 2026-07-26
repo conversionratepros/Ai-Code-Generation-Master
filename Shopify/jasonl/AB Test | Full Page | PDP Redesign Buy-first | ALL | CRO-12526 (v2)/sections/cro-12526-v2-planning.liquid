@@ -1,0 +1,100 @@
+{%- comment -%}
+  CRO-12526 (v2) — "Planning a whole office?" (Figma 38:649).
+  Static section; all copy from the spec (design's "hole" typo corrected to
+  "whole" per spec). Four steps as editable blocks. The consult button's
+  destination is a pending client action point — until the URL setting is
+  filled, the button falls back to opening the sitewide Typeform (same
+  trigger as Plan my fitout), so the CTA is never dead.
+{%- endcomment -%}
+
+{{ 'cro-12526-v2-pdp.css' | asset_url | stylesheet_tag }}
+
+<div class="cro12526v2-planning">
+  <div class="page-width">
+    <div class="cro12526v2-planning__title">
+      <div class="cro12526v2-eyebrow">
+        <span class="cro12526v2-eyebrow__dot" aria-hidden="true"></span>
+        <span class="cro12526v2-eyebrow__text">{{ section.settings.eyebrow }}</span>
+      </div>
+      <h2 class="cro12526v2-planning__heading">{{ section.settings.heading }}</h2>
+      <p class="cro12526v2-planning__copy">{{ section.settings.copy }}</p>
+    </div>
+
+    <div class="cro12526v2-planning__steps">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <div class="cro12526v2-planning__step" {{ block.shopify_attributes }}>
+            <p class="cro12526v2-planning__step-day">{{ block.settings.day }}</p>
+            <p class="cro12526v2-planning__step-heading">{{ block.settings.heading }}</p>
+            <p class="cro12526v2-planning__step-copy">{{ block.settings.copy }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="cro12526v2-planning__bar">
+      <p class="cro12526v2-planning__bar-copy">
+        <strong>{{ section.settings.bar_strong }}</strong>
+        {{ section.settings.bar_copy }}
+      </p>
+      {%- if section.settings.consult_url != blank -%}
+        <a class="cro12526v2-planning__cta" href="{{ section.settings.consult_url }}">{{ section.settings.consult_label }}</a>
+      {%- else -%}
+        {%- comment -%}
+          Client has not supplied the destination yet (pending action point)
+          — fall back to the sitewide Typeform so the button still works.
+        {%- endcomment -%}
+        <a class="cro12526v2-planning__cta typeform-share get-a-quote-btn-ab getaquoteclick" href="javascript:void(0)" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">{{ section.settings.consult_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12526 V2 Planning",
+  "tag": "section",
+  "class": "section-cro12526v2-planning",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Planning a whole office?" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Don't pick it part by part. Let's plan it." },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Paragraph",
+      "default": "Tell us the headcount and the space. We'll come back with a layout, a single quote and an install date — desks, chairs, storage, pods, the lot. One conversation instead of forty product pages."
+    },
+    { "type": "text", "id": "bar_strong", "label": "Bottom bar lead-in (bold)", "default": "How is 10 days possible?" },
+    {
+      "type": "textarea",
+      "id": "bar_copy",
+      "label": "Bottom bar copy",
+      "default": "Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing."
+    },
+    { "type": "text", "id": "consult_label", "label": "Button label", "default": "Start step 1 — book a free consult" },
+    { "type": "url", "id": "consult_url", "label": "Button URL (client to supply — Typeform fallback until set)" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "day", "label": "Day label" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "textarea", "id": "copy", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO-12526 V2 Planning",
+      "blocks": [
+        { "type": "step", "settings": { "day": "Day 0", "heading": "Chat & measure", "copy": "Tell us your headcount, floor and deadline. We'll come and measure — or work straight from your floorplan." } },
+        { "type": "step", "settings": { "day": "Days 1–2", "heading": "Free layout & quote", "copy": "A real layout for your actual space, with an itemised quote. Yours to keep, no obligation." } },
+        { "type": "step", "settings": { "day": "Days 3–8", "heading": "We pick & deliver", "copy": "Everything's in stock in our Australian warehouses — not on a ship. Our trucks, our schedule." } },
+        { "type": "step", "settings": { "day": "By day 10", "heading": "Installed & working", "copy": "Our own installers build it, place it and take every box away. You walk in to a finished office." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

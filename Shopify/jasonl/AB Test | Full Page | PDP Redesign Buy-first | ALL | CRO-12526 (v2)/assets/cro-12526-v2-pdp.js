@@ -286,6 +286,92 @@
     });
   }
 
+  /* ----------------------------------------------------------
+     6. "Complete the setup" cards — real per-card product forms
+        (Dawn product-form handles the fetch + drawer). We only set
+        the drawer's payment pre-select before submit: ATC → Buy
+        online, ATQ → Add to quote (ATQ submits the same form).
+     ---------------------------------------------------------- */
+  function initSetupCards() {
+    document.addEventListener(
+      'click',
+      function (e) {
+        var atc = e.target.closest('[data-cro12526v2-setup-atc]');
+        if (atc) {
+          try {
+            localStorage.setItem('clickedCartBtn', 'Add to cart');
+            localStorage.setItem('minicart-payement-option', 'pay-online');
+          } catch (err) {}
+          return;
+        }
+        var atq = e.target.closest('[data-cro12526v2-setup-atq]');
+        if (atq && !atq.hasAttribute('disabled')) {
+          var form = document.getElementById(atq.getAttribute('data-cro12526v2-setup-form'));
+          if (!form) return;
+          try {
+            localStorage.setItem('clickedCartBtn', 'Add to quote');
+            localStorage.setItem('minicart-payement-option', 'request-quote');
+          } catch (err) {}
+          if (form.requestSubmit) {
+            form.requestSubmit();
+          } else {
+            form.submit();
+          }
+        }
+      },
+      true // capture: pre-select must be written before product-form's submit runs
+    );
+  }
+
+  /* ----------------------------------------------------------
+     7. Showrooms — visible 360° pill forwards to the row's reused
+        (hidden) custom-modal-virtual-tour opener; the side image
+        shows the active row's existing per-location photo.
+     ---------------------------------------------------------- */
+  function initShowrooms() {
+    var rows = document.querySelectorAll('[data-cro12526v2-showroom-row]');
+    if (!rows.length) return;
+    var imagePane = document.querySelector('[data-cro12526v2-showroom-image]');
+
+    function activate(row) {
+      rows.forEach(function (r) {
+        r.classList.toggle('is-active', r === row);
+      });
+      if (!imagePane) return;
+      var tpl = row.querySelector('template[data-cro12526v2-showroom-img]');
+      imagePane.innerHTML = '';
+      if (tpl) imagePane.appendChild(tpl.content.cloneNode(true));
+    }
+
+    rows.forEach(function (row) {
+      var tourBtn = row.querySelector('[data-cro12526v2-tour-btn]');
+      if (tourBtn) {
+        tourBtn.addEventListener('click', function () {
+          // Reused modal must live outside the [hidden] wrapper to display —
+          // move it up to the row once, then forward the click.
+          var nativeWrap = row.querySelector('.cro12526v2-showrooms__tour-native');
+          if (nativeWrap && nativeWrap.hasAttribute('hidden')) {
+            var dialog = nativeWrap.querySelector('modal-dialog');
+            if (dialog) document.body.appendChild(dialog);
+            nativeWrap.removeAttribute('hidden');
+            nativeWrap.style.display = 'none';
+          }
+          var nativeBtn = nativeWrap ? nativeWrap.querySelector('modal-opener button') : null;
+          if (nativeBtn) nativeBtn.click();
+        });
+      }
+      row.addEventListener('mouseenter', function () {
+        activate(row);
+      });
+      row.addEventListener('focusin', function () {
+        activate(row);
+      });
+    });
+
+    var first = document.querySelector('[data-cro12526v2-showroom-row].is-active') || rows[0];
+    activate(first);
+  }
+
   function init() {
     initGallery();
     initSizeSelect();
@@ -294,6 +380,8 @@
     initOptionReadouts();
     renderDeliveryLine();
     initLocationPopupSync();
+    initSetupCards();
+    initShowrooms();
   }
 
   waitForElement('#product-detail-top', function () {

@@ -70,42 +70,115 @@
       "type": "store_availability",
       "settings": {}
     },
-    "range": {
-      "type": "product-range",
-      "settings": {}
-    },
     "cross-sell": {
-      "type": "cross-sell",
+      "type": "cro-12526-v2-complete-setup",
       "settings": {}
     },
     "product-compare": {
-      "type": "product-compare",
+      "type": "cro-12526-v2-compare",
       "settings": {}
     },
-    "recent_fitouts": {
-      "type": "featured-recent-fitouts-b",
-      "settings": {
-        "needafitout_fitout": "fitouts/mm-geomechanics",
-        "pdp-fitout": "mm-geomechanics,mtk-lawyers,creditor-watch-sydney-nsw"
-      }
-    },
-    "locationMap": {
-      "type": "location-map-1-b_placeholder",
+    "about_us": {
+      "type": "cro-12526-v2-about-us",
+      "blocks": {
+        "stat1": {
+          "type": "stat",
+          "settings": {
+            "figure": "Since 2008",
+            "label": "Australian-owned and run"
+          }
+        },
+        "stat2": {
+          "type": "stat",
+          "settings": {
+            "figure": "40,000+",
+            "label": "Workplaces furnished"
+          }
+        },
+        "stat3": {
+          "type": "stat",
+          "settings": {
+            "figure": "7 Showrooms",
+            "label": "Showrooms across country"
+          }
+        },
+        "stat4": {
+          "type": "stat",
+          "settings": {
+            "figure": "In-house",
+            "label": "Delivery & Install crew"
+          }
+        }
+      },
+      "block_order": [
+        "stat1",
+        "stat2",
+        "stat3",
+        "stat4"
+      ],
       "settings": {}
     },
-    "meetPeople": {
-      "type": "new-meet-people",
+    "planning": {
+      "type": "cro-12526-v2-planning",
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "day": "Day 0",
+            "heading": "Chat & measure",
+            "copy": "Tell us your headcount, floor and deadline. We'll come and measure — or work straight from your floorplan."
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "day": "Days 1–2",
+            "heading": "Free layout & quote",
+            "copy": "A real layout for your actual space, with an itemised quote. Yours to keep, no obligation."
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "day": "Days 3–8",
+            "heading": "We pick & deliver",
+            "copy": "Everything's in stock in our Australian warehouses — not on a ship. Our trucks, our schedule."
+          }
+        },
+        "step4": {
+          "type": "step",
+          "settings": {
+            "day": "By day 10",
+            "heading": "Installed & working",
+            "copy": "Our own installers build it, place it and take every box away. You walk in to a finished office."
+          }
+        }
+      },
+      "block_order": [
+        "step1",
+        "step2",
+        "step3",
+        "step4"
+      ],
+      "settings": {}
+    },
+    "showrooms": {
+      "type": "cro-12526-v2-showrooms",
+      "settings": {}
+    },
+    "final_cta": {
+      "type": "cro-12526-v2-final-cta",
       "settings": {}
     }
   },
   "order": [
     "main",
     "store_availability",
-    "range",
     "cross-sell",
     "product-compare",
-    "recent_fitouts",
-    "locationMap",
-    "meetPeople"
+    "about_us",
+    "planning",
+    "showrooms",
+    "final_cta"
   ]
 }

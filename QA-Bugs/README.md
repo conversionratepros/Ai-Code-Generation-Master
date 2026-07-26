@@ -207,6 +207,7 @@ REQUIRED: Red box around the exact element that is wrong — one red box per bug
 |---------|-------------|
 | CRO-7740 | `Minimizing installation products on cart (V2) \| CRO-7740` |
 | CRO-12425 | `Shopify/MaroelaMark/Homepage Routing ALL CRO-12425` (Shopify sections, not variation.js/css — fixes go in `sections/*.liquid`, user re-uploads to theme) |
+| CRO-12526 | `Shopify/jasonl/AB Test \| Full Page \| PDP Redesign Buy-first \| ALL \| CRO-12526 (v2)` (Shopify theme test — fixes in `assets/cro-12526-v2-pdp.css/.js` + `snippets/`, user re-uploads to preview theme 188303442208; screenshots in `QA-Bugs/screenshots/cro-12526-v2/`) |
 
 Add new tests to this table as they are worked on.
 
