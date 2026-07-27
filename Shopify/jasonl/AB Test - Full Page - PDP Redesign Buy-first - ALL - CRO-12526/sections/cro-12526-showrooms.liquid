@@ -1,0 +1,103 @@
+{%- comment -%}
+  CRO-12526 — "Come see it" / Showrooms section. Updates the existing showrooms
+  section per spec. Data source is reused UNCHANGED from snippets/store-locator.liquid
+  (the same global theme settings: store{N}_showroom_name / _address / _phone /
+  _showroom_img / _matterport_id — merchant-editable in Theme Settings, not here,
+  exactly as in the control section) — only the row markup is new to match the
+  Figma design. The 360 popup reuses snippets/custom-modal-virtual-tour.liquid
+  UNCHANGED (Dawn modal-opener/modal-dialog: close icon, black overlay, closes on
+  outside click or Escape — all native, no new JS needed).
+
+  Retains the original section's only theme-editor setting id, `showrooms_heading`,
+  for compatibility (see spec: "Shopify Theme Editor Settings" requirement), and adds
+  a new `eyebrow` setting for the "Come see it" label above it.
+
+  NOTE (flagged per spec): the trailing arrow icon on each row is carried over from
+  the Figma design ("Arrow copia 8") with no defined behaviour — it is rendered as a
+  decorative, non-interactive element here. Confirm with design/PM what it should do
+  (e.g. "get directions" link, matches store-locator.liquid's existing
+  `getdirectionbtn` which this section does not currently expose) before go-live.
+{%- endcomment -%}
+
+{{ 'cro-12526-pdp.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+<div class="cro12526-showrooms" id="cro12526-showrooms">
+  <div class="page-width">
+    <div class="cro12526-section-head cro12526-section-head--center">
+      <div class="cro12526-eyebrow"><span class="cro12526-eyebrow__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</div>
+      <h2 class="cro12526-section-heading">{{ section.settings.showrooms_heading }}</h2>
+    </div>
+
+    <div class="cro12526-showrooms__layout">
+      <ul class="cro12526-showrooms__rows">
+        {%- assign store_counts = 8 -%}
+        {%- for i in (1..store_counts) -%}
+          {%- assign itemid_name = 'store' | append: i | append: '_showroom_name' -%}
+          {%- assign itemid_address = 'store' | append: i | append: '_showroom_address' -%}
+          {%- assign itemid_phone = 'store' | append: i | append: '_showroom_phone' -%}
+          {%- assign itemid_img = 'store' | append: i | append: '_showroom_img' -%}
+          {%- assign itemid_martterportlink = 'store' | append: i | append: '_matterport_id' -%}
+          {%- assign itemid_order = 'store' | append: i | append: '_showroom_order' -%}
+
+          {%- unless settings[itemid_address] contains 'Granville' or settings[itemid_name] == blank -%}
+            <li class="cro12526-showroom-row" style="order:{{ settings[itemid_order] }}">
+              <p class="cro12526-showroom-row__name">{{ settings[itemid_name] | remove: 'Showroom' | remove: 'showroom' | strip }}</p>
+              <p class="cro12526-showroom-row__address">{{ settings[itemid_address] }}</p>
+
+              {%- if settings[itemid_martterportlink] != blank -%}
+                <div class="cro12526-showroom-row__tour">
+                  {%- render 'custom-modal-virtual-tour', location_name: settings[itemid_name], matterportlink: settings[itemid_martterportlink] -%}
+                </div>
+              {%- else -%}
+                <span class="cro12526-showroom-row__tour cro12526-showroom-row__tour--disabled">360&deg; Virtual walk-through</span>
+              {%- endif -%}
+
+              {%- if settings[itemid_phone] != blank -%}
+                <a class="cro12526-showroom-row__phone" href="tel:{{ settings[itemid_phone] | remove: ' ' }}">{{ settings[itemid_phone] }}</a>
+              {%- endif -%}
+
+              {%- comment -%} Trailing arrow — decorative only, behaviour TBD, see note above. {%- endcomment -%}
+              <span class="cro12526-showroom-row__arrow" aria-hidden="true">
+                {{- 'icon-arrow.svg' | inline_asset_content -}}
+              </span>
+            </li>
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+
+      {%- if section.settings.side_image != blank -%}
+        <div class="cro12526-showrooms__side-image">
+          {{ section.settings.side_image | image_url: width: 742 | image_tag: loading: 'lazy', alt: 'JasonL showroom' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12526 Showrooms",
+  "tag": "section",
+  "class": "showrooms-wrapper cro12526-showrooms-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "showrooms_heading",
+      "label": "Heading title"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Come see it"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image",
+      "label": "Side image"
+    }
+  ]
+}
+{% endschema %}

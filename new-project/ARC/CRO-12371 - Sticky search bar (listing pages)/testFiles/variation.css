@@ -39,11 +39,19 @@ body.cro-12371 #ProductSearchBar .search-button-override i {
 
 body.cro-12371 header#Top .header.header-top.cro-12371-header-fixed {
   position: fixed;
-  top: 0;
+  top: var(--cro-12371-header-offset, 0px);
   left: 0;
   width: 100%;
   z-index: 9999;
   background: #ffffff;
+}
+
+/* Compensates the flow-height lost when the row above goes position:fixed. Height is
+   measured at runtime (varies with viewport/content) and passed in via a CSS custom
+   property rather than an inline style, so this rule -- and its effect -- disappears
+   the instant the global exclusion script removes the cro-12371 body class. */
+body.cro-12371 header#Top {
+  padding-top: var(--cro-12371-header-height, 0px);
 }
 
 /* ===== Mobile: new full-width pill search bar below the top icon row, pinned to viewport ===== */
@@ -73,6 +81,12 @@ body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar {
   padding: 8px 16px 12px !important;
   box-sizing: border-box;
   box-shadow: none !important;
+}
+
+/* Reserves the fixed panel's height only while it's fixed; 0 otherwise. Height comes
+   in via a custom property (see cro-12371-header-height above for why). */
+body.cro-12371 .cro-12371-mobile-spacer {
+  height: var(--cro-12371-mobile-spacer-height, 0px);
 }
 
 body.cro-12371 .typeahead-mobile.cro-12371-mobile-bar.cro-12371-mobile-fixed {

@@ -1,0 +1,155 @@
+/* CRO-12299 | Recipe | PLP Mobile Quick-Filter Chip Row | MOBILE */
+
+/* Mobile only — matches the site's own 767px breakpoint (see control-mobile.html
+   theme CSS, e.g. ".mobile-sticky" behaviour), not the 768px used elsewhere in
+   this repo, so our show/hide lines up exactly with when the theme's own mobile
+   sticky filter bar takes over. */
+
+/* ── Row wrapper ──
+   Figma node 2:41 is exactly 35px tall (chip height 31.5px, centred with
+   ~1.75px above/below) — no extra vertical padding on the wrapper itself. */
+html body.cro12299 .cro12299-chip-row {
+    display: none;
+    /* mobile-only: enabled in the @media block below */
+    width: 100%;
+    /* height: 35px; */
+    box-sizing: border-box;
+    /* background: #fff; */
+}
+
+/* ── Variant 1 (PRIMARY): single row, horizontal scroll ──
+   Chips never wrap; the row's natural content width already exceeds a
+   mobile viewport (matches Figma node 2:41), so the last chip sits
+   partially cut off at the edge to hint scrollability — no extra CSS
+   trick required beyond nowrap + overflow-x. */
+html body.cro12299 .cro12299-chip-track {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 7px;
+    /* Figma: consistent ~7px gap between chip edges (item-spacing/7) */
+    flex-wrap: wrap;
+    /* overflow-x: auto; */
+    /* overflow-y: hidden; */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+html body.cro12299 .cro12299-chip-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── Variant 2: two rows, wraps instead of scrolling ──
+   Set CRO12299_VARIANT = 2 in variation.js — it adds this modifier class
+   to <body>. Only the track's flow direction changes; chip markup,
+   selection logic, and all click handling are identical to Variant 1. */
+html body.cro12299-v2 .cro12299-chip-row {
+    height: auto;
+    min-height: 35px;
+}
+
+html body.cro12299-v2 .cro12299-chip-track {
+    height: auto;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    row-gap: 7px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* ── Chip base ── */
+/* Figma: pill (radius 33554400px = fully round), 1px #D4D4D4 border,
+   white fill, 31.5px tall, Source Sans Pro 13px / lh 20.15px, #333 text. */
+html body.cro12299 .cro12299-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    gap: 8px;
+    height: 31.5px;
+    padding: 0 13.25px;
+    border: 1px solid #D4D4D4;
+    border-radius: 999px;
+    background: #fff;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 13px;
+    line-height: 20.15px;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html body.cro12299 .cro12299-chip svg {
+    display: block;
+    flex-shrink: 0;
+    width: 12.25px;
+    height: 12.25px;
+}
+
+/* ── Colour swatch (Grey / White / Beige) ── */
+html body.cro12299 .cro12299-swatch {
+    display: block;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ── Selected state ──
+   Figma "Active state" frame (node 2:1360): dark fill is #161616 (CTM's
+   Cod Gray token), not the chip text colour #333 — sampled directly from
+   the frame. Selected labels are bold. */
+html body.cro12299 .cro12299-chip--selected {
+    background: #161616;
+    border-color: #161616;
+    color: #fff;
+    font-weight: 400;
+}
+
+html body.cro12299 .cro12299-chip--selected svg path {
+    stroke: #fff;
+}
+
+/* Colour chips keep their swatch visible when selected — just add a
+   lighter ring so it still reads against the dark fill. */
+html body.cro12299 .cro12299-chip--selected .cro12299-swatch {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── "Clear all" chip — always first when present ──
+   Figma "Active state" frame (node 2:1360): white fill, brand red
+   (#ED1C24, same token used sitewide e.g. the promo bar/SALE badge)
+   border + bold text + icon. */
+html body.cro12299 .cro12299-chip--clear {
+    background: #fff;
+    border-color: #ED1C24;
+    color: #ED1C24;
+    font-weight: 700;
+}
+
+html body.cro12299 .cro12299-chip--clear svg path {
+    stroke: #ED1C24;
+}
+
+/* ── "All filters" — always visible, entry point into the existing
+   Amasty slide-out sheet. Never gets a selected state of its own. ── */
+html body.cro12299 .cro12299-chip--all {
+    font-weight: 600;
+}
+
+/* ── Mobile only ── */
+@media (max-width: 767px) {
+    html body.cro12299 .cro12299-chip-row {
+        display: block;
+        /* padding-top: 20px; */
+        margin-top: 20px;
+    }
+
+    html body.cro12299 #maincontent {
+        margin-top: 15px !important;
+    }
+}

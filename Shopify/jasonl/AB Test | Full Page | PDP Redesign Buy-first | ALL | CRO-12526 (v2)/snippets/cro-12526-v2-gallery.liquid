@@ -1,0 +1,42 @@
+{%- comment -%}
+  CRO-12526 (v2) — Gallery wrapper.
+
+  Reuses snippets/product-media-gallery-custom.liquid UNCHANGED — that
+  snippet owns the Swiper main slider (.main-slider), the thumbnail
+  Swiper (.thumbs-container) and the existing full-screen image viewer
+  (the .zoomin state on .product-slider-holder, opened by the
+  #product-slider-zoom trigger and closed by #swiper-button-close).
+  Per spec the viewer pop-up must stay exactly as it is, so this wrapper
+  only adds chrome around it:
+
+  1. Promotional tag INSIDE the gallery, top-left over the main image —
+     moved here from its control position above the product title.
+     `best-seller-tag` snippet reused unchanged.
+  2. "View all images" link below the thumbnails — cro-12526-v2-pdp.js
+     forwards its click (and clicks on the main slide image) onto the
+     existing #product-slider-zoom trigger.
+  3. CSS-only restyle in cro-12526-v2-pdp.css: prev/next arrows hidden
+     while NOT in .zoomin (the viewer itself keeps its arrows), black
+     border on .swiper-slide-thumb-active, thumbnail row sizing.
+  4. Swipe gestures are native Swiper behaviour — nothing to add.
+
+  Mobile: the range/SKU meta block renders below the gallery here
+  (context: 'mobile'), matching the spec.
+{%- endcomment -%}
+
+<div class="cro12526v2-gallery">
+  <div class="cro12526v2-gallery__tag">
+    {%- render 'best-seller-tag' -%}
+  </div>
+
+  {% render 'product-media-gallery-custom' %}
+
+  <button type="button" class="cro12526v2-gallery__view-all" data-cro12526v2-view-all>
+    <span class="cro12526v2-gallery__view-all-text">View all images</span>
+    <svg class="cro12526v2-gallery__view-all-icon" width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M1 4H19M19 4L15.5 1M19 4L15.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  {%- render 'cro-12526-v2-breadcrumb-meta', context: 'mobile' -%}
+</div>

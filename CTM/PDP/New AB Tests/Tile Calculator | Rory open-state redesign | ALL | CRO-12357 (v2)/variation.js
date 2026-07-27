@@ -86,7 +86,10 @@
       '<div class="cro-12357-zones" id="cro-12357-zones">' + zoneLists + '</div>' +
       '<button class="cro-12357-add-area" id="cro-12357-add-area" type="button">Add Area</button>' +
       '<div class="cro-12357-footer">' +
-      '<button class="cro-12357-swipe" id="cro-12357-swipe" type="button">Swipe up to view full Calculation Summary</button>' +
+      '<button class="cro-12357-swipe" id="cro-12357-swipe" type="button">' +
+      '<span class="cro-12357-swipe-desktop">Click here to view full Calculation Summary</span>' +
+      '<span class="cro-12357-swipe-mobile">Swipe up to view full Calculation Summary</span>' +
+      '</button>' +
       '<button class="cro-12357-atc" id="cro-12357-atc-main" type="button">' + ICON.cart + '<span class="cro-12357-atc-label">Add 0 boxes to cart</span></button>' +
       '<p class="cro-12357-note">Click "Add to Cart" to view your quote | order</p>' +
       '</div>' +
@@ -123,6 +126,7 @@
     var $ = function (s) { return host.querySelector(s); };
     var overlay = $('#cro-12357-overlay'), modalEl = $('#cro-12357-modal'), zonesEl = $('#cro-12357-zones');
     var sheet = $('#cro-12357-sheet'), sheetBackdrop = $('#cro-12357-sheet-backdrop'), howto = $('#cro-12357-howto');
+    var bodyEl = $('.cro-12357-body');
     var state = { zone: zones[0], boxes: 0, withExtra: 0 };
 
     function activeList() { return zonesEl.querySelector('.cro-12357-cards[data-zone="' + state.zone + '"]'); }
@@ -228,7 +232,30 @@
       var isOpen = howto.classList.toggle('is-open');
       this.setAttribute('aria-expanded', String(isOpen));
     });
-    $('#cro-12357-swipe').addEventListener('click', openSheet);
+    /* Desktop: plain click opens the summary. Mobile: requires an actual swipe-up gesture
+       (a tap alone must not open it) — QA follow-up: "Click here…" desktop / "Swipe up…" mobile.
+       The gesture is tracked on the whole modal (not just the button) so a swipe up anywhere
+       reveals the summary, but only once the scrollable body is already at its bottom — this
+       stops it from hijacking a normal scroll through the area cards. */
+    var isMobile = function () { return window.matchMedia('(max-width: 767px)').matches; };
+    var swipeBtn = $('#cro-12357-swipe');
+    var panelTouchStartY = null;
+    swipeBtn.addEventListener('click', function (e) {
+      if (isMobile()) { e.preventDefault(); return; }
+      openSheet();
+    });
+    modalEl.addEventListener('touchstart', function (e) {
+      if (!isMobile()) { return; }
+      panelTouchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    modalEl.addEventListener('touchend', function (e) {
+      if (!isMobile() || panelTouchStartY === null) { return; }
+      var dy = panelTouchStartY - e.changedTouches[0].clientY;
+      panelTouchStartY = null;
+      if (dy <= 40) { return; }                            // upward drag > 40px counts as a swipe
+      var atBottom = bodyEl.scrollHeight - bodyEl.scrollTop - bodyEl.clientHeight < 4;
+      if (atBottom) { openSheet(); }
+    });
     $('#cro-12357-sheet-swipe').addEventListener('click', closeSheet);
     sheetBackdrop.addEventListener('click', closeSheet);
     $('#cro-12357-close').addEventListener('click', close);

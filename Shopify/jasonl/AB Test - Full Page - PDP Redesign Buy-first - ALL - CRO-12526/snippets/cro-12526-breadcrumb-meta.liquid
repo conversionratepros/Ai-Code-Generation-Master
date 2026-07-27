@@ -1,0 +1,82 @@
+{%- comment -%}
+  CRO-12526 — Breadcrumb + Range/SKU meta row.
+
+  NOTE (deviation from control, documented in test-analysis.md):
+  The live theme's breadcrumb (`snippets/breadcrumb-2.liquid`) resolves parent/child
+  category via a long chain of tag + linklist string-matching heuristics that is very
+  hard to port safely without risking silent breadcrumb breakage on products it wasn't
+  tuned for. CRO-12526 instead builds a small, defensive breadcrumb straight off
+  `product.collections`, matching the spec: parent category -> child category ->
+  product name (plain text). This is intentionally simpler than breadcrumb-2 and should
+  be QA'd against a sample of products before go-live.
+
+  Params:
+  - context: 'desktop' or 'mobile' — controls which meta (range/SKU) block renders.
+    Breadcrumb itself is desktop-only per spec (hidden on mobile via CSS, not omitted,
+    so no extra Liquid branching is needed there).
+{%- endcomment -%}
+
+{%- liquid
+  assign crumb_parent = null
+  assign crumb_child = null
+  for coll in product.collections
+    unless coll.handle == 'all' or coll.template_suffix contains 'range'
+      if crumb_parent == null
+        assign crumb_parent = coll
+      elsif crumb_child == null and coll.handle != crumb_parent.handle
+        assign crumb_child = coll
+      endif
+    endunless
+  endfor
+
+  assign product_range = product.metafields.custom.range
+  if product_range == blank
+    assign product_range = product.metafields.productmeta.range
+  endif
+  assign product_sku = product.selected_or_first_available_variant.sku
+-%}
+
+{%- if context == 'mobile' -%}
+  {%- if product_range != blank or product_sku != blank -%}
+    <div class="cro12526-meta cro12526-meta--mobile">
+      {%- if product_range != blank -%}
+        <p class="cro12526-meta__range">{{ product_range }}</p>
+      {%- endif -%}
+      {%- if product_sku != blank -%}
+        <div class="cro12526-meta__sku">
+          <span class="cro12526-meta__sku-label">SKU</span>
+          <span class="cro12526-meta__sku-value">{{ product_sku }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- else -%}
+  <div class="cro12526-topbar hide-on-mobile">
+    <nav class="cro12526-breadcrumb" aria-label="breadcrumb">
+      <p class="cro12526-breadcrumb__crumbs">
+        {%- if crumb_parent -%}
+          <a href="{{ crumb_parent.url }}">{{ crumb_parent.title }}</a>
+          <span class="cro12526-breadcrumb__sep">/</span>
+        {%- endif -%}
+        {%- if crumb_child -%}
+          <a href="{{ crumb_child.url }}">{{ crumb_child.title }}</a>
+          <span class="cro12526-breadcrumb__sep">/</span>
+        {%- endif -%}
+        <span class="cro12526-breadcrumb__current">{{ product.title }}</span>
+      </p>
+    </nav>
+    {%- if product_range != blank or product_sku != blank -%}
+      <div class="cro12526-meta cro12526-meta--desktop">
+        {%- if product_range != blank -%}
+          <p class="cro12526-meta__range">{{ product_range }}</p>
+        {%- endif -%}
+        {%- if product_sku != blank -%}
+          <div class="cro12526-meta__sku">
+            <span class="cro12526-meta__sku-label">SKU</span>
+            <span class="cro12526-meta__sku-value">{{ product_sku }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

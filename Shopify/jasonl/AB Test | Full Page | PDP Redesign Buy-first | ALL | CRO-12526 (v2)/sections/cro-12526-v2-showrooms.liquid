@@ -1,0 +1,127 @@
+{%- comment -%}
+  CRO-12526 (v2) — "Come see it" showrooms (Figma 38:726).
+
+  Data comes from the SAME global theme settings the control's showrooms
+  use (settings.store{N}_showroom_* / store{N}_matterport_id, N = 1..8,
+  consumed by snippets/store-locator.liquid) — per learnings.md, showroom
+  content is already fully merchant-editable there; do NOT re-platform it
+  onto blocks. Granville is excluded exactly like the control snippet.
+
+  The 360° pop-up REUSES snippets/custom-modal-virtual-tour.liquid
+  unchanged (Dawn modal-opener/modal-dialog: close icon + overlay +
+  outside-click close, only renders when a matterport id is set). The
+  design's "walk-trough" typo is corrected to "walk-through" per spec —
+  the visible pill is ours; the snippet's own trigger is hidden by CSS and
+  forwarded to by cro-12526-v2-pdp.js.
+
+  Row arrow links to the showroom's page (control links the name there) —
+  flagged in user-story.md as the assumed answer to the spec's "confirm
+  what the arrow does".
+
+  The right-hand image shows the active row's existing per-location photo
+  (store{N}_showroom_img_photo): first row by default, updated on row
+  hover/focus (JS adds is-active).
+{%- endcomment -%}
+
+{{ 'cro-12526-v2-pdp.css' | asset_url | stylesheet_tag }}
+
+<div class="cro12526v2-showrooms" id="cro12526v2-showrooms">
+  <div class="page-width">
+    <div class="cro12526v2-showrooms__title">
+      <div class="cro12526v2-eyebrow">
+        <span class="cro12526v2-eyebrow__dot" aria-hidden="true"></span>
+        <span class="cro12526v2-eyebrow__text">{{ section.settings.eyebrow }}</span>
+      </div>
+      <h2 class="cro12526v2-showrooms__heading">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="cro12526v2-showrooms__layout">
+      <div class="cro12526v2-showrooms__rows">
+        {%- assign store_counts = 8 -%}
+        {%- assign row_index = 0 -%}
+        {%- for i in (1..store_counts) -%}
+          {%- liquid
+            assign itemid_name = 'store' | append: i | append: '_showroom_name'
+            assign itemid_address = 'store' | append: i | append: '_showroom_address'
+            assign itemid_phone = 'store' | append: i | append: '_showroom_phone'
+            assign itemid_img_photo = 'store' | append: i | append: '_showroom_img_photo'
+            assign itemid_page_url = 'store' | append: i | append: '_showroom_page'
+            assign itemid_matterport = 'store' | append: i | append: '_matterport_id'
+            assign itemid_order = 'store' | append: i | append: '_showroom_order'
+            assign sr_name = settings[itemid_name]
+          -%}
+          {%- if sr_name == blank -%}{%- continue -%}{%- endif -%}
+          {%- comment -%}
+            Spec/design list exactly SEVEN showrooms — the global settings also
+            carry "East Coast Distribution Centre", which is a warehouse, not a
+            showroom (verified live: it rendered an 8th row). Excluded by name,
+            same pattern as the control's Granville exclusion below.
+          {%- endcomment -%}
+          {%- if sr_name contains 'East Coast Distribution' -%}{%- continue -%}{%- endif -%}
+          {%- unless settings[itemid_address] contains 'Granville' -%}
+            {%- assign row_index = row_index | plus: 1 -%}
+            <div
+              class="cro12526v2-showrooms__row{% if row_index == 1 %} is-active{% endif %}"
+              data-cro12526v2-showroom-row
+              data-cro12526v2-showroom-index="{{ row_index }}"
+              style="order:{{ settings[itemid_order] | default: row_index }}"
+            >
+              {%- comment -%}
+                Display-name cleanup: the settings name Perth as
+                "Perth & Distribution Centre" — design shows just "Perth".
+              {%- endcomment -%}
+              <p class="cro12526v2-showrooms__name">{{ sr_name | remove: 'showroom' | remove: 'Showroom' | remove: '& Distribution Centre' | remove: '&amp; Distribution Centre' | strip }}</p>
+              <p class="cro12526v2-showrooms__address">{{ settings[itemid_address] }}</p>
+              <div class="cro12526v2-showrooms__tour" data-cro12526v2-tour>
+                {%- if settings[itemid_matterport] != blank -%}
+                  <button type="button" class="cro12526v2-showrooms__tour-btn" data-cro12526v2-tour-btn>
+                    <strong>360&deg;</strong>&nbsp;Virtual walk-through
+                  </button>
+                  <div class="cro12526v2-showrooms__tour-native" hidden>
+                    {%- render 'custom-modal-virtual-tour', location_name: sr_name, matterportlink: settings[itemid_matterport] -%}
+                  </div>
+                {%- endif -%}
+              </div>
+              <a class="cro12526v2-showrooms__phone" href="tel:{{ settings[itemid_phone] | replace: ' ', '' }}">{{ settings[itemid_phone] }}</a>
+              <a class="cro12526v2-showrooms__link" href="/pages/{{ settings[itemid_page_url] }}" aria-label="View {{ sr_name | escape }} page">
+                <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M1 4H19M19 4L15.5 1M19 4L15.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              {%- if settings[itemid_img_photo] -%}
+                <template data-cro12526v2-showroom-img>
+                  <img
+                    src="{{ settings[itemid_img_photo] | image_url: width: 742 }}"
+                    alt="{{ sr_name | escape }}"
+                    width="371"
+                    height="664"
+                    loading="lazy"
+                  >
+                </template>
+              {%- endif -%}
+            </div>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="cro12526v2-showrooms__image" data-cro12526v2-showroom-image aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12526 V2 Showrooms",
+  "tag": "section",
+  "class": "section-cro12526v2-showrooms",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Come see it" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Showrooms? Seven of them" },
+    {
+      "type": "paragraph",
+      "content": "Showroom names, addresses, phones, images and 360° tour IDs come from Theme settings → the global store1–store8 showroom fields (same source as the site's existing showrooms)."
+    }
+  ],
+  "presets": [{ "name": "CRO-12526 V2 Showrooms" }]
+}
+{% endschema %}

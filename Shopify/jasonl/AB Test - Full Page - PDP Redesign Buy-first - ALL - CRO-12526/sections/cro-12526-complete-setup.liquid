@@ -1,0 +1,218 @@
+{%- comment -%}
+  CRO-12526 — "Complete the setup" section.
+
+  Reuses the EXISTING "Combines well with" recommendation logic from
+  sections/cross-sell.liquid VERBATIM (the shop.metafields.tagproducts "_c"-suffixed
+  tag lookup, including its [redirect] fallback for size-variant products) — only the
+  presentation markup below is new, per spec (eyebrow, editable heading, fixed
+  subline, price, category label, Add to Cart + small "Add to quote" link per card).
+  card-product-cross-sell.liquid is intentionally NOT reused here because the spec's
+  card recipe (category label, "Add to quote" link) doesn't match its markup; the
+  underlying product resolution logic is what's reused, not the render partial.
+
+  See test-analysis.md for the PENDING client action: the section heading below is a
+  schema text setting (per-collection heading copy is a merchant/client decision,
+  not something to hardcode).
+{%- endcomment -%}
+
+{{ 'cro-12526-pdp.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} ==================== Verbatim resolution logic from cross-sell.liquid ==================== {%- endcomment -%}
+{%- assign crossellList = '' -%}
+{%- assign allhandllist = '' -%}
+{%- assign remaininghandles = '' -%}
+
+{% for tagz in product.tags %}
+  {% assign tag_data= tagz | downcase %}
+  {% assign tag_data= tag_data | replace: " ","" %}
+  {% assign tag_data= tag_data | slice: 0, 24 %}
+  {% assign crossselltagz = tag_data | append: "_c" %}
+  {% if shop.metafields.tagproducts[crossselltagz] %}
+    {% assign crosssellproducts= shop.metafields.tagproducts[crossselltagz] %}
+    {% assign crossList = crosssellproducts | split: "," %}
+    {%- for individuallist in crossList -%}
+      {% assign cross_tag_filter= individuallist | downcase | strip %}
+      {% assign cross_tag_filter= cross_tag_filter | replace: " ","" %}
+      {% assign cross_tag_filter= cross_tag_filter | slice: 0, 24 %}
+      {% assign cross_tag_filter= cross_tag_filter | append: "_x" %}
+      {% if shop.metafields.tagproducts[cross_tag_filter] %}
+        {% unless crossellList contains cross_tag_filter %}
+          {% assign crossconcatvalue = cross_tag_filter | split: "," %}
+          {% if crossellList != '' %}
+            {% assign crossellList = crossellList | concat: crossconcatvalue %}
+          {% else %}
+            {% assign crossellList = crossconcatvalue %}
+          {% endif %}
+        {% endunless %}
+      {% endif %}
+    {%- endfor -%}
+  {% endif %}
+{% endfor %}
+
+{%- if crossellList == '' -%}
+  {% assign mainfrom_sizehandle= product.handle %}
+  {% if product.description contains "[redirect]" %}
+    {%- assign productDescription = product.description | split:"[redirect]" -%}
+    {%- assign handlevalue = productDescription[1] | split:"[/redirect]" -%}
+    {% assign mainProductHandle = handlevalue[0] %}
+    {% if mainProductHandle %}
+      {% assign mainProductHandle = mainProductHandle | strip %}
+      {% unless mainProductHandle == mainproduct_handle %}
+        {% assign mainfrom_sizehandle= mainProductHandle%}
+        {% for mainproduct_tags in all_products[mainProductHandle].tags %}
+          {% assign tag_data= mainproduct_tags | downcase %}
+          {% assign tag_data= tag_data | replace: " ","" %}
+          {% assign tag_data= tag_data | slice: 0, 24 %}
+          {% assign crossselltagz = tag_data | append: "_c" %}
+          {% if shop.metafields.tagproducts[crossselltagz] %}
+            {% assign crosssellproducts= shop.metafields.tagproducts[crossselltagz] %}
+            {% assign crossList = crosssellproducts | split: "," %}
+            {%- for individuallist in crossList -%}
+              {% assign cross_tag_filter= individuallist | downcase | strip %}
+              {% assign cross_tag_filter= cross_tag_filter | replace: " ","" %}
+              {% assign cross_tag_filter= cross_tag_filter | slice: 0, 24 %}
+              {% assign cross_tag_filter= cross_tag_filter | append: "_x" %}
+              {% if shop.metafields.tagproducts[cross_tag_filter] %}
+                {% unless crossellList contains cross_tag_filter %}
+                  {% assign crossconcatvalue = cross_tag_filter | split: "," %}
+                  {% if crossellList != '' %}
+                    {% assign crossellList = crossellList | concat: crossconcatvalue %}
+                  {% else %}
+                    {% assign crossellList = crossconcatvalue %}
+                  {% endif %}
+                {% endunless %}
+              {% endif %}
+            {%- endfor -%}
+          {% endif %}
+        {% endfor %}
+      {% endunless %}
+    {% endif %}
+  {% endif %}
+{%- endif -%}
+
+{%- if crossellList != '' -%}
+  {%- assign requiredTags = 5 -%}
+  {%- assign totalNoofTags = crossellList | size -%}
+  {%- assign totalTagtoFloat = totalNoofTags | times: 1.0 -%}
+  {%- assign dividedNumber = requiredTags | divided_by: totalTagtoFloat -%}
+  {%- assign dividedNumberInt= dividedNumber | ceil -%}
+  {%- for productlevel in crossellList -%}
+    {% assign producthandlelist = shop.metafields.tagproducts[productlevel] %}
+    {% assign products_handle_array = producthandlelist | split:"," %}
+    {% assign counterval = 1 %}
+    {%- for individualhandles in products_handle_array -%}
+      {% unless allhandllist contains individualhandles %}
+        {% if counterval > dividedNumberInt %}
+          {% assign individualconcat = individualhandles | split: "," %}
+          {% if remaininghandles != '' %}
+            {% assign remaininghandles = remaininghandles | concat: individualconcat %}
+          {% else %}
+            {% assign remaininghandles = individualconcat %}
+          {% endif %}
+          {% break %}
+        {% endif %}
+        {% assign individualconcat = individualhandles | split: "," %}
+        {% if allhandllist != '' %}
+          {% assign allhandllist = allhandllist | concat: individualconcat %}
+        {% else %}
+          {% assign allhandllist = individualconcat %}
+        {% endif %}
+        {%- assign counterval = counterval | plus: 1 -%}
+      {% endunless %}
+    {%- endfor -%}
+  {%- endfor -%}
+  {% if remaininghandles != '' %}
+    {% assign allhandllist = allhandllist | concat: remaininghandles %}
+  {% endif %}
+  {%- assign producthandles = allhandllist -%}
+{%- endif -%}
+
+{%- comment -%} ==================== CRO-12526 presentation ==================== {%- endcomment -%}
+{% if allhandllist != '' %}
+<div class="cro12526-complete-setup" id="cro12526-complete-setup">
+  <div class="page-width">
+    <div class="cro12526-section-head">
+      <div class="cro12526-eyebrow"><span class="cro12526-eyebrow__dot" aria-hidden="true"></span>Complete the setup</div>
+      <h2 class="cro12526-section-heading">
+        {%- if section.settings.heading != blank -%}
+          {{ section.settings.heading }}
+        {%- else -%}
+          A desk on its own isn't a workstation.
+        {%- endif -%}
+      </h2>
+      <p class="cro12526-section-subline">Add the pieces that finish it — or take the lot as a bundle and save.</p>
+    </div>
+
+    <ul class="cro12526-cs-cards">
+      {%- assign totalproducttoshow = 0 -%}
+      {%- for cross_sell in producthandles limit: 4 -%}
+        {%- if totalproducttoshow >= 4 -%}{%- break -%}{%- endif -%}
+        {%- assign cs_product = all_products[cross_sell] -%}
+        {%- if cs_product.title != blank -%}
+          {%- assign product_qty = 0 -%}
+          {%- for variantz in cs_product.variants -%}
+            {%- if variantz.inventory_quantity > 0 -%}
+              {%- assign product_qty = product_qty | plus: variantz.inventory_quantity -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if product_qty > 0 -%}
+            {%- assign totalproducttoshow = totalproducttoshow | plus: 1 -%}
+          {%- else -%}
+            {%- continue -%}
+          {%- endif -%}
+
+          <li class="cro12526-cs-card">
+            <a href="{{ cs_product.url }}" class="cro12526-cs-card__image">
+              <img
+                src="{{ cs_product.featured_image | image_url: width: 740 }}"
+                srcset="{{ cs_product.featured_image | image_url: width: 370 }} 1x, {{ cs_product.featured_image | image_url: width: 740 }} 2x"
+                alt="{{ cs_product.featured_image.alt | default: cs_product.title | escape }}"
+                width="370"
+                height="270"
+                loading="lazy"
+              >
+            </a>
+            <div class="cro12526-cs-card__body">
+              <div class="cro12526-cs-card__text">
+                <p class="cro12526-cs-card__category">{{ cs_product.type | default: cs_product.collections.first.title | upcase }}</p>
+                <a href="{{ cs_product.url }}" class="cro12526-cs-card__title">{{ cs_product.title | truncatewords: 8 }}</a>
+                <p class="cro12526-cs-card__price">{{ cs_product.price | money }}</p>
+              </div>
+
+              <product-form class="product-form cro12526-cs-card__form" data-section-id="{{ section.id }}">
+                {%- form 'product', cs_product, id: 'cro12526-cs-form-' | append: cs_product.id, class: 'form' -%}
+                  <input type="hidden" name="id" value="{{ cs_product.selected_or_first_available_variant.id }}">
+                  <button type="submit" name="add" class="cro12526-btn cro12526-btn--primary cro12526-cs-card__addcart" data-cro12526-cs-addcart>
+                    Add to Cart
+                  </button>
+                {%- endform -%}
+              </product-form>
+              <button type="button" class="cro12526-cs-card__addquote" data-cro12526-cs-addquote data-cro12526-cs-form="cro12526-cs-form-{{ cs_product.id }}">
+                Add to quote
+              </button>
+            </div>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "CRO-12526 Complete setup",
+  "tag": "section",
+  "class": "section-cro12526-complete-setup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "info": "PENDING client action — copy is supplied per collection by the client. Falls back to a generic heading if left blank.",
+      "default": "A desk on its own isn't a workstation."
+    }
+  ]
+}
+{% endschema %}

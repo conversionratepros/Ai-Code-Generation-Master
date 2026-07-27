@@ -1,0 +1,854 @@
+{%- comment -%}
+  CRO-12526 — Full Page PDP Redesign (Buy-first) — main-product section.
+
+  New alternate-template section (templates/product.cro-12526.json). Does NOT edit
+  sections/main-product_crp.liquid or main-product.liquid. Reuses, via {% render %}
+  only (never copies-and-edits unless explicitly noted), the following EXISTING
+  control snippets:
+    - best-seller-tag.liquid          (promo tag; relocated by markup position only)
+    - product-media-gallery-custom.liquid (gallery + the existing zoom/viewer popup)
+    - product-variant-options.liquid  (via cro-12526-variant-picker.liquid wrapper)
+    - buy-buttons_crp.liquid          (real add-to-cart/quote/backorder submit logic —
+                                        rendered hidden, visible buttons forward .click())
+    - price.liquid                    (kept out of the flow deliberately — see price
+                                        block below; a custom price container is used
+                                        instead so it can be sized per Figma, but it
+                                        keeps the exact `id="price-{{ section.id }}"`
+                                        convention product-info.js swaps on variant
+                                        change, so live price updates still work
+                                        natively without new JS)
+    - get_product_category.liquid is NOT used (see cro-12526-breadcrumb-meta.liquid
+      for why a new, simpler breadcrumb was built instead of breadcrumb-2.liquid)
+
+  The "Tab Section" block near the bottom of this file (Description / Spec sheet /
+  Dimensions / Brochure / 3D models / Assembly instructions / Warranty) is copied
+  VERBATIM from sections/main-product_crp.liquid lines ~1-32, ~138-197 and
+  ~1274-1533, per the spec's explicit "leave completely unchanged, reuse as-is, no
+  edits" instruction. Do not restyle or restructure this block in future revisions
+  without checking it against the control file again.
+{%- endcomment -%}
+
+{{ 'cro-12526-pdp.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-detail-tab.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-12526-pdp.js' | asset_url }}" defer="defer"></script>
+
+{%- comment -%} ==================== Verbatim from main-product_crp.liquid: warranty-present check ==================== {%- endcomment -%}
+{%- assign is_warranty_present = false -%}
+{% assign badges_meta = product.metafields.productmeta.badges | strip %}
+{% assign badges = badges_meta | split:'|' %}
+{%  assign warranty_year = product.metafields.productmeta.badges | split: '|' | last  %}
+{% assign warranty_year = warranty_year | remove: 'yr' %}
+{% if warranty_year contains '_' %}
+  {% assign parts = warranty_year | split: '_' %}
+  {% assign warranty_decimal = parts[0] | append: '.' | append: parts[1] | plus: 0 %}
+{% else %}
+  {% assign warranty_decimal = warranty_year | plus: 0 %}
+{% endif %}
+{%  if warranty_decimal > 0 %}
+    {%- assign is_warranty_present = true -%}
+{% endif %}
+
+{%- comment -%} ==================== Verbatim from main-product_crp.liquid: tab content variable assigns ==================== {%- endcomment -%}
+{%- assign description = product.metafields.productmeta.product_tab_description -%}
+{%- assign specification = product.metafields.productmeta.product_tab_specification | replace : "office-chairs-seating","office-chairs" -%}
+{%- assign dimension = product.metafields.productmeta.product_tab_dimension -%}
+{%- assign rows = specification | split: '<div class="pro-detail-row">' -%}
+{%- assign filtered_dimension_rows = "" -%}
+{%- for row in rows %}
+  {%- if row contains "(mm)" %}
+    {%- assign filtered_dimension_rows = filtered_dimension_rows | append: "<div class='pro-detail-row'>" | append: row %}
+  {%- endif %}
+{%- endfor %}
+{%- assign assemblyinstruction = product.metafields.productdata.assemblyinstruction -%}
+{% for resourceTitle in product.metafields.productmeta.design_resources_title %}
+ {% if product.metafields.productmeta.design_resources_title[forloop.index0].size > 0  %}
+ {% if product.metafields.productmeta.design_resources_revit_files[forloop.index0].size > 0  or product.metafields.productmeta.design_resources_sketch_files[forloop.index0].size > 0%}
+ {%- assign model = true-%}
+ {% endif  %}
+ {% endif  %}
+{% endfor %}
+
+{%- comment -%} ==================== CRO-12526 own assigns ==================== {%- endcomment -%}
+{%- liquid
+  assign product_form_id = 'product-form-' | append: section.id
+  assign variant = product.selected_or_first_available_variant
+  assign min_order_qty = 1
+  if variant.metafields.custom.min_order_quantity_variant
+    assign min_order_qty = variant.metafields.custom.min_order_quantity_variant
+  elsif product.metafields.custom.min_order_quantity
+    assign min_order_qty = product.metafields.custom.min_order_quantity
+  endif
+
+  assign crp_vendor = product.vendor | handleize
+  if crp_vendor == 'jasonl'
+    assign crp_deliverdays = settings.delivery_days_jasonl | times: 1
+  else
+    assign crp_deliverdays = settings.delivery_days_suppliers | times: 1
+  endif
+
+  assign is_backorder = false
+  if product.tags contains 'contact-to-purchase'
+    assign is_backorder = true
+  endif
+
+  assign pr_rating = product.metafields.reviews.rating.value
+  assign pr_rating_count = product.metafields.reviews.rating_count.value
+
+  assign price_cents = variant.price
+  if price_cents <= 100000
+    assign freight_amount = 4900
+  elsif price_cents <= 200000
+    assign freight_amount = 14900
+  elsif price_cents <= 1000000
+    assign freight_amount = 19900
+  else
+    assign freight_amount = -1
+  endif
+-%}
+
+<div class="page-width cro12526-pdp" id="product-detail-top">
+
+  {%- render 'cro-12526-breadcrumb-meta', context: 'desktop' -%}
+
+  <div class="cro12526-main-row">
+
+    <div class="cro12526-gallery-col">
+      {%- render 'cro-12526-gallery' -%}
+    </div>
+
+    <div class="cro12526-buybox-col">
+      {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {%- when 'title' -%}
+            <div class="cro12526-title-block" {{ block.shopify_attributes }}>
+              <h1 class="cro12526-title">{{ product.title | escape }}</h1>
+
+              {%- comment -%}
+                Star rating + review count — data source pending client action (no
+                review app currently wired in; see test-analysis.md). Degrades to
+                nothing when the metafield is blank, which is the case for every
+                product today.
+              {%- endcomment -%}
+              {%- if pr_rating != blank -%}
+                <div class="cro12526-rating">
+                  <span class="cro12526-rating__stars" style="--rating: {{ pr_rating.rating | default: pr_rating }};" aria-hidden="true">
+                    {%- for i in (1..5) -%}
+                      <svg width="12" height="11" viewBox="0 0 12 11" fill="currentColor"><polygon points="6,0 7.7,4.1 12,4.1 8.6,6.7 9.9,10.9 6,8.4 2.1,10.9 3.4,6.7 0,4.1 4.3,4.1"/></svg>
+                    {%- endfor -%}
+                  </span>
+                  <span class="cro12526-rating__text">
+                    {{ pr_rating.rating | default: pr_rating }} · {{ pr_rating_count | default: 0 }} reviews
+                  </span>
+                </div>
+              {%- endif -%}
+            </div>
+
+          {%- when 'price' -%}
+            <div class="cro12526-price-block" {{ block.shopify_attributes }}>
+              <div id="price-{{ section.id }}" class="cro12526-price" data-cro12526-price>
+                {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: 'cro12526-price__amount' -%}
+              </div>
+              <p class="cro12526-price__note">Configured price updates as you choose options below.</p>
+            </div>
+
+          {%- when 'variant_picker' -%}
+            {%- render 'cro-12526-variant-picker', product: product, block: block, product_form_id: product_form_id -%}
+
+            {%- comment -%} ---------- Purchase details: delivery date / location / freight ---------- {%- endcomment -%}
+            <div class="cro12526-purchase-details">
+              {%- if product.available and is_backorder == false -%}
+                <p class="cro12526-purchase-details__line">
+                  <strong>·</strong> Get it by
+                  <strong id="cro12526-delivery-date-{{ section.id }}" class="cro12526-delivery-date" data-cro12526-delivery-days="{{ crp_deliverdays }}">…</strong>
+                  — to <strong id="cro12526-location-name-{{ section.id }}" class="cro12526-location-name">your area</strong>
+                  <span class="link cro12526-change-location">
+                    (<modal-opener class="simple-popup-modal__opener no-js-hidden" data-modal="#PopupModal-modal_change_location"><button type="button">change</button></modal-opener>)
+                  </span>
+                </p>
+              {%- endif -%}
+
+              {%- if is_backorder -%}
+                {%- assign crp_today_ts = 'now' | date: '%s' -%}
+                {%- assign crp_avail_ts = product.metafields.productmeta.custom_availability_date | date: '%s' -%}
+                {%- if product.metafields.productmeta.custom_availability_date != blank and crp_avail_ts > crp_today_ts -%}
+                  {%- assign crp_backorder_date = product.metafields.productmeta.custom_availability_date | date: "%a, %d %b, %Y" -%}
+                {%- else -%}
+                  {%- assign crp_backorder_date = shop.metafields.custom_fields.availability_date | date: "%a, %d %b, %Y" -%}
+                {%- endif -%}
+                {%- if crp_backorder_date != blank -%}
+                  <p class="cro12526-purchase-details__line">
+                    <strong>·</strong> Estimated availability date: <strong>{{ crp_backorder_date }}</strong>
+                  </p>
+                {%- endif -%}
+              {%- endif -%}
+
+              <p class="cro12526-purchase-details__line" data-cro12526-freight-line data-cro12526-price-cents="{{ price_cents }}">
+                <strong>·</strong>
+                {%- if freight_amount == -1 -%}
+                  Freight — calculated at checkout.
+                {%- else -%}
+                  <strong>Freight from {{ freight_amount | money_without_trailing_zeros }}</strong> — calculated at checkout.
+                {%- endif -%}
+              </p>
+            </div>
+
+          {%- when 'quantity_selector' -%}
+            {%- comment -%} ---------- Actions: quantity stepper + Add to cart, then Add to quote / Back-Order ---------- {%- endcomment -%}
+            <div class="cro12526-actions">
+              <div class="cro12526-actions__row">
+                <quantity-input class="quantity cro12526-qty" data-url="{{ product.url }}" data-section="{{ section.id }}">
+                  <button class="quantity__button cro12526-qty__btn" name="minus" type="button" aria-label="Decrease quantity">
+                    <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+                  </button>
+                  <input
+                    class="quantity__input cro12526-qty__input"
+                    type="number"
+                    name="quantity"
+                    id="Quantity-{{ section.id }}"
+                    data-min="{{ min_order_qty }}"
+                    min="{{ min_order_qty }}"
+                    step="{{ product.selected_or_first_available_variant.quantity_rule.increment | default: 1 }}"
+                    value="{{ min_order_qty }}"
+                    form="{{ product_form_id }}"
+                  >
+                  <button class="quantity__button cro12526-qty__btn" name="plus" type="button" aria-label="Increase quantity">
+                    <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+                  </button>
+                </quantity-input>
+
+                <button
+                  type="button"
+                  class="cro12526-btn cro12526-btn--primary cro12526-btn--addcart"
+                  data-cro12526-add-to-cart
+                  {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                >
+                  <span class="svg-wrapper">{{- 'icon-cart.svg' | inline_asset_content -}}</span>
+                  {%- if product.selected_or_first_available_variant.available == false -%}Sold out{%- else -%}Add to Cart{%- endif -%}
+                </button>
+              </div>
+
+              <div class="cro12526-actions__secondary">
+                {%- if is_backorder -%}
+                  <button type="button" class="cro12526-btn cro12526-btn--outline" data-cro12526-backorder>
+                    Back-Order
+                  </button>
+                {%- else -%}
+                  <button type="button" class="cro12526-btn cro12526-btn--outline" data-cro12526-add-to-quote>
+                    <span class="svg-wrapper">{{- 'icon-star.svg' | inline_asset_content -}}</span>
+                    Add to quote
+                  </button>
+                {%- endif -%}
+                <p class="cro12526-actions__note">Need a quote? Paying by PO? We do both.</p>
+              </div>
+            </div>
+
+          {%- when 'buy_buttons' -%}
+            {%- comment -%}
+              Real functional layer — rendered hidden. cro-12526-pdp.js forwards
+              clicks from the visible buttons above onto the real submit/quote/
+              backorder buttons rendered here, so add-to-cart, add-to-quote and the
+              existing back-order popup all keep their exact existing behaviour
+              (slide-out cart drawer, localStorage pre-select of Buy online /
+              Request a quote tab, MOQ handling, gift-card recipient fields, etc.)
+              without editing buy-buttons_crp.liquid at all.
+            {%- endcomment -%}
+            <div class="cro12526-hidden-buybuttons" data-cro12526-realbuttons hidden>
+              {%- render 'buy-buttons_crp',
+                block: block,
+                product: product,
+                product_form_id: product_form_id,
+                section_id: section.id,
+                show_pickup_availability: false
+              -%}
+            </div>
+
+            {%- comment -%} ---------- Supporting info ---------- {%- endcomment -%}
+            <div class="cro12526-supporting">
+              <div class="cro12526-supporting__legals">
+                <p class="cro12526-supporting__line">
+                  <strong>·</strong> There is a 14-day return policy on this product
+                  ( <a class="link" href="https://www.jasonl.com.au/pages/shipping-and-returns" target="_blank" rel="noopener noreferrer">T&amp;Cs</a> )
+                </p>
+                <p class="cro12526-supporting__line">
+                  <strong>·</strong> Nationwide assembly available at checkout.
+                </p>
+              </div>
+
+              <div class="cro12526-warning-callout">
+                <span class="cro12526-warning-callout__icon" aria-hidden="true">!</span>
+                <div class="cro12526-warning-callout__text">
+                  <p class="cro12526-warning-callout__title">Metro areas &amp; Ground floor only.</p>
+                  <p>
+                    Extra needs?
+                    <a href="javascript:void(0)" class="typeform-share getaquoteclick cro12526-inline-link" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">Contact us</a>
+                    or check our
+                    <a href="https://www.jasonl.com.au/pages/shipping-and-returns" target="_blank" rel="noopener noreferrer" class="cro12526-inline-link">Shipping &amp; Returns</a>.
+                  </p>
+                </div>
+              </div>
+
+              <div class="cro12526-fitout-cta">
+                <p class="cro12526-fitout-cta__eyebrow">Kitting out a whole office?</p>
+                <p class="cro12526-fitout-cta__copy">
+                  Don't pick it part by part. Tell us what you need and we'll plan it —
+                  layout, quote and install, all handled.
+                </p>
+                <a href="javascript:void(0)" class="cro12526-btn cro12526-btn--primary typeform-share getaquoteclick" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">
+                  Plan my fitout
+                  <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                </a>
+              </div>
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- comment -%} ==================== Tab Section — verbatim from main-product_crp.liquid, unedited ==================== {%- endcomment -%}
+<div class="tabborder quick-add-hidden"></div>
+<div class="page-width">
+  <div class="product-description-section quick-add-hidden">
+    <div class="page-width tab-section-container">
+      <div class="product-detail-tab tab-col">
+        <div class="product-tab-nav">
+          <ul class="tab">
+            {%- if description != blank -%}
+            <li class="tab-link {% if description != blank %}active{% endif %}" data-tab="description">
+              <span class="icon">{{- 'icon-description-paper.svg' | inline_asset_content -}}</span>
+              Description
+            </li>
+            {%- endif -%}
+            {%- if specification != blank -%}
+            <li class="tab-link {% if description == blank and specification != blank %}active{% endif %}" data-tab="spec">
+              <span class="icon">{{- 'icon-spec.svg' | inline_asset_content -}}</span>
+              Spec sheet
+            </li>
+            {%- endif -%}
+            {%- if dimension != blank -%}
+              <li class="tab-link {% if description == blank and specification == blank and dimension != blank %}active{% endif %}" data-tab="dimension">
+                <span class="icon">{{- 'icon-dimension.svg' | inline_asset_content -}}</span>
+                Dimensions
+              </li>
+            {%- endif -%}
+            {% if description contains '.pdf' %}
+              <li class="tab-link" data-tab="brochures">
+                <span class="icon">{{- 'icon-brochure.svg' | inline_asset_content -}}</span>
+                Brochure
+              </li>
+            {% endif %}
+            {%- if model != blank -%}
+            <li class="tab-link {% if description == blank and specification == blank and dimension == blank and model != blank %}active{% endif %}" data-tab="models">
+              <span class="icon">{{- 'icon-3dmodels.svg' | inline_asset_content -}}</span>
+              3D models
+            </li>
+            {%- endif -%}
+            {%- if assemblyinstruction != blank or product.metafields.productmeta.assembly_video -%}
+            <li class="tab-link {% if description == blank and specification == blank and dimension == blank and model == blank and assemblyinstruction != blank %}active{% endif %}" data-tab="assembly">
+              <span class="icon">{{- 'icon-assembly.svg' | inline_asset_content -}}</span>
+              Assembly instructions
+            </li>
+            {%- endif -%}
+            {%- if is_warranty_present == true -%}
+            <li class="tab-link {% if description == blank and specification == blank and dimension == blank and model == blank and assemblyinstruction == blank and is_warranty_present == true %}active{% endif %}" data-tab="warranty">
+              <span class="icon">{{- 'icon-warranty.svg' | inline_asset_content -}}</span>
+              Warranty
+            </li>
+            {%- endif -%}
+          </ul>
+        </div>
+        <div class="tab-container">
+        {%- if description != blank -%}
+          <div class="tab-content {% if description != blank %}active{% endif %}" id="description">
+            <div class="description-tab-content">
+              <div class="description-left">
+                {%- render 'description-left-inner-wrap', description_content: description -%}
+              </div>
+              <div class="descrption-right">
+                {%- render 'product-video' -%}
+                {%- render 'modular-product' -%}
+                {%- render 'sustainable-product' -%}
+                {%- render 'long-lasting-product' -%}
+                {%- render 'catalogue-card', type:1 -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if specification != blank -%}
+          <div class="tab-content  {% if description == blank and specification != blank %}active{% endif %}" id="spec">
+            <div class="product-spec-sheet-container">
+              <div class="product-spec-col">
+                {%- capture brandName -%}
+                  <div class="pro-detail-row">
+                    <span>Brand</span>
+                    <p>{{product.vendor}}</p>
+                  </div>
+                {%- endcapture -%}
+                {%- if specification contains 'Brand'-%}
+                 {{ specification }}
+                {%- else -%}
+                  {{brandName}}
+                  {{ specification}}
+                {%- endif -%}
+              </div>
+              <div class="product-spec-catalogue-col">
+                {%- render 'catalogue-card' , type:2 -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if dimension != blank -%}
+          <div class="tab-content {% if description == blank and specification == blank and dimension != blank %}active{% endif %}" id="dimension">
+            <div class="product-dimensions-container">
+              <div class="product-spec-col">
+                <div class="pro-detail">
+                  {{ filtered_dimension_rows }}
+                </div>
+              </div>
+              <div class="diagram-inside-tab">
+                {%- render 'product-tab-dimension', diagram_dimension: dimension -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+          <div class="tab-content {% if description == blank and specification == blank and dimension != blank %}active{% endif %}" id="brochures">
+            <div class="brochures-wrap">
+              <div class="brochure-background-img">
+                <img src="{{ 'brochures_bg_img.png' | file_img_url: '383x' }}" alt="brochures_bg_img" width="383" height="125">
+              </div>
+              <div class="brochures-content-wrap">
+                <h3>Brochures</h3>
+                {%- render 'brochures-list', description_with_brochures: description -%}
+              </div>
+            </div>
+          </div>
+              {%- if model != blank -%}
+                <div class="tab-content {% if description == blank and specification == blank and dimension == blank and model != blank %}active{% endif %}" id="models">
+                  <div class="product__assembly custom-accordion custom-accordion--normal">
+                    {%- render 'product-tab-cnt-3dmodel' -%}
+                  </div>
+                </div>
+                {%- endif -%}
+                {%- if assemblyinstruction != blank or product.metafields.productmeta.assembly_video != blank -%}
+                <div class="tab-content {% if description == blank and specification == blank and dimension == blank and model == blank and assemblyinstruction != blank %}active{% endif %}" id="assembly">
+                  {%- if assemblyinstruction != blank or product.metafields.productmeta.assembly_video != blank -%}
+                    <div class="product__assembly custom-accordion custom-accordion--normal">
+                      <div class="product-assembly-container">
+                        <div class="product-spec-col product-assembly-col">
+                          <div class="assembly-instructions-col">
+                              {%- render 'product-assembly-instruction', assemblyinstruction:assemblyinstruction, svg_download_arrow:svg_download_arrow,  description_content: description -%}
+                          </div>
+                          <div class="notes-col">
+                            {% assign is_empty =  product.metafields.custom.notes | remove : " " | downcase %}
+                            {% if is_empty != "null" %}
+                              <h3>Notes</h3>
+                              {% if product.metafields.custom.notes %}
+                                {% assign note_list = product.metafields.custom.notes | split : "|" %}
+                              {% endif %}
+                              <ul class="dot-list">
+                                {% if note_list %}
+                                  {% for note in note_list %}
+                                    <li>{{ note }}</li>
+                                  {% endfor %}
+                                {% else %}
+                                  <li>Pre-drill pattern provided</li>
+                                  <li>Allen key set provided</li>
+                                  <li>2 persons required for installation</li>
+                                {% endif %}
+                              </ul>
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="product-spec-catalogue-col">
+                          {%- render 'catalogue-card', type:2 -%}
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if is_warranty_present == true -%}
+                <div class="tab-content {% if description == blank and specification == blank and dimension == blank and model == blank and assemblyinstruction == blank and is_warranty_present == true %}active{% endif %}" id="warranty">
+                  <div class="tab-container-with-right-catalogue">
+                        <div class="warranty-dis-col">
+                          <div class="warranty-dis-col-inner">
+                          {%- for badge in badges -%}
+                            {%- for metaobj_badge in shop.metaobjects.product_badges.values -%}
+                              {%- if badge ==  metaobj_badge.badge_name.value -%}
+                                {%- if metaobj_badge.badge_name.value contains '1yr' or metaobj_badge.badge_name.value contains '2yr' or metaobj_badge.badge_name.value contains '3yr' or metaobj_badge.badge_name.value contains '5yr' or metaobj_badge.badge_name.value contains '10yr' -%}
+                                  <img src="{{ metaobj_badge.badge_image.value | img_url }}" alt="{{ badge }} Warranty" width="59" height="59" />
+                                  {%- render 'product-warranty', badge:badge-%}
+                                  {%- break -%}
+                                {%- endif -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {%- endfor -%}
+                          </div>
+                        </div>
+                        <div class="product-spec-catalogue-col">
+                          {%- render 'catalogue-card', type:2 -%}
+                        </div>
+                      </div>
+                </div>
+              {%- endif -%}
+              </div>
+          </div>
+          {%- render 'product-tab-dimension', diagram_dimension: dimension -%}
+        </div>
+        <div class="companies_list_slider_wrap">
+          {% render 'companies_list_slider_product' %}
+        </div>
+    </div>
+  </div>
+</div>
+{%- if template contains 'product' -%}
+  <script src="{{ 'product-detail-tab.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- comment -%}
+  Schema below carries over EVERY block type and setting from
+  sections/main-product_crp.liquid's schema unchanged (same ids, options, defaults),
+  per the spec's critical "retain the same editable theme-editor settings" rule —
+  only "name", the buy_buttons.show_dynamic_checkout default (false, since Buy Now
+  is out of scope for this test same as the crp template), and a couple of gallery
+  defaults to match this design (gallery_layout/media_position) were touched.
+{%- endcomment -%}
+{% schema %}
+{
+  "name": "CRO-12526 Main product",
+  "tag": "section",
+  "class": "section cro12526-main-product-section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "text",
+      "name": "t:sections.main-product.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "t:sections.main-product.blocks.text.settings.text.default",
+          "label": "t:sections.main-product.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "t:sections.main-product.blocks.text.settings.text_style.options__1.label" },
+            { "value": "subtitle", "label": "t:sections.main-product.blocks.text.settings.text_style.options__2.label" },
+            { "value": "uppercase", "label": "t:sections.main-product.blocks.text.settings.text_style.options__3.label" }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    { "type": "title", "name": "t:sections.main-product.blocks.title.name", "limit": 1 },
+    { "type": "price", "name": "t:sections.main-product.blocks.price.name", "limit": 1 },
+    {
+      "type": "sku",
+      "name": "t:sections.main-product.blocks.sku.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "t:sections.main-product.blocks.sku.settings.text_style.options__1.label" },
+            { "value": "subtitle", "label": "t:sections.main-product.blocks.sku.settings.text_style.options__2.label" },
+            { "value": "uppercase", "label": "t:sections.main-product.blocks.sku.settings.text_style.options__3.label" }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.sku.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "inventory",
+      "name": "t:sections.main-product.blocks.inventory.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            { "value": "body", "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__1.label" },
+            { "value": "subtitle", "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__2.label" },
+            { "value": "uppercase", "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__3.label" }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.inventory.settings.text_style.label"
+        },
+        {
+          "type": "range",
+          "id": "inventory_threshold",
+          "label": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.label",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "info": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.info",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "show_inventory_quantity",
+          "label": "t:sections.main-product.blocks.inventory.settings.show_inventory_quantity.label",
+          "default": true
+        }
+      ]
+    },
+    { "type": "shipping_and_returns", "name": "Shipping and Returns", "limit": 1 },
+    { "type": "quantity_selector", "name": "t:sections.main-product.blocks.quantity_selector.name", "limit": 1 },
+    {
+      "type": "variant_picker",
+      "name": "t:sections.main-product.blocks.variant_picker.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            { "value": "dropdown", "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label" },
+            { "value": "button", "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label" }
+          ],
+          "default": "button",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        },
+        {
+          "id": "swatch_shape",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.label",
+          "type": "select",
+          "options": [
+            { "value": "circle", "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__1.label" },
+            { "value": "square", "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__2.label" },
+            { "value": "none", "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__3.label" }
+          ],
+          "default": "circle"
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:sections.main-product.blocks.buy_buttons.name",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_dynamic_checkout", "default": false, "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label" },
+        { "type": "checkbox", "id": "show_gift_card_recipient", "default": true, "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label" }
+      ]
+    },
+    { "type": "description", "name": "t:sections.main-product.blocks.description.name", "limit": 1 },
+    { "type": "specification", "name": "Specification", "limit": 1 },
+    { "type": "design-resources", "name": "design-resources", "limit": 1 },
+    { "type": "warranty", "name": "Warranty", "limit": 1 },
+    { "type": "delivery-and-returns", "name": "Delivery and Returns", "limit": 1 },
+    { "type": "custom-quote-1", "name": "Custom quote 1", "settings": [] },
+    {
+      "type": "assembly-instructions",
+      "name": "Assembly Instructions",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "assembly-instruction-label", "label": "label" }
+      ]
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-product.blocks.share.name",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "share_label", "label": "t:sections.main-product.blocks.share.settings.text.label", "default": "t:sections.main-product.blocks.share.settings.text.default" },
+        { "type": "paragraph", "content": "t:sections.main-product.blocks.share.settings.featured_image_info.content" },
+        { "type": "paragraph", "content": "t:sections.main-product.blocks.share.settings.title_info.content" }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "t:sections.custom-liquid.name",
+      "settings": [
+        { "type": "liquid", "id": "custom_liquid", "label": "t:sections.custom-liquid.settings.custom_liquid.label", "info": "t:sections.custom-liquid.settings.custom_liquid.info" }
+      ]
+    },
+    {
+      "type": "collapsible_tab",
+      "name": "t:sections.main-product.blocks.collapsible_tab.name",
+      "settings": [
+        { "type": "text", "id": "heading", "default": "t:sections.main-product.blocks.collapsible_tab.settings.heading.default", "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info", "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label" },
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            { "value": "none", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__1.label" },
+            { "value": "check_mark", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__8.label" },
+            { "value": "heart", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__16.label" },
+            { "value": "question_mark", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__32.label" },
+            { "value": "return", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__34.label" },
+            { "value": "ruler", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__35.label" },
+            { "value": "star", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__41.label" },
+            { "value": "truck", "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__43.label" }
+          ],
+          "default": "check_mark",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.label"
+        },
+        { "type": "richtext", "id": "content", "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label" },
+        { "type": "page", "id": "page", "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label" }
+      ]
+    },
+    {
+      "type": "popup",
+      "name": "t:sections.main-product.blocks.popup.name",
+      "settings": [
+        { "type": "text", "id": "text", "default": "t:sections.main-product.blocks.popup.settings.link_label.default", "label": "t:sections.main-product.blocks.popup.settings.link_label.label" },
+        { "id": "page", "type": "page", "label": "t:sections.main-product.blocks.popup.settings.page.label" }
+      ]
+    },
+    {
+      "type": "rating",
+      "name": "t:sections.main-product.blocks.rating.name",
+      "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "t:sections.main-product.blocks.rating.settings.paragraph.content" }
+      ]
+    },
+    {
+      "type": "complementary",
+      "name": "t:sections.main-product.blocks.complementary_products.name",
+      "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "t:sections.main-product.blocks.complementary_products.settings.paragraph.content" },
+        { "type": "text", "id": "block_heading", "default": "t:sections.main-product.blocks.complementary_products.settings.heading.default", "label": "t:sections.main-product.blocks.complementary_products.settings.heading.label" },
+        { "type": "checkbox", "id": "make_collapsible_row", "default": false, "label": "t:sections.main-product.blocks.complementary_products.settings.make_collapsible_row.label" },
+        { "type": "range", "id": "product_list_limit", "min": 1, "max": 10, "step": 1, "default": 10, "label": "t:sections.main-product.blocks.complementary_products.settings.product_list_limit.label" },
+        { "type": "range", "id": "products_per_page", "min": 1, "max": 4, "step": 1, "default": 3, "label": "t:sections.main-product.blocks.complementary_products.settings.products_per_page.label" },
+        {
+          "type": "select",
+          "id": "pagination_style",
+          "options": [
+            { "value": "dots", "label": "t:sections.main-product.blocks.complementary_products.settings.pagination_style.options.option_1" },
+            { "value": "counter", "label": "t:sections.main-product.blocks.complementary_products.settings.pagination_style.options.option_2" },
+            { "value": "numbers", "label": "t:sections.main-product.blocks.complementary_products.settings.pagination_style.options.option_3" }
+          ],
+          "label": "t:sections.main-product.blocks.complementary_products.settings.pagination_style.label",
+          "default": "counter"
+        },
+        {
+          "type": "select",
+          "id": "image_ratio",
+          "options": [
+            { "value": "portrait", "label": "t:sections.main-product.blocks.complementary_products.settings.image_ratio.options.option_1" },
+            { "value": "square", "label": "t:sections.main-product.blocks.complementary_products.settings.image_ratio.options.option_2" }
+          ],
+          "label": "t:sections.main-product.blocks.complementary_products.settings.image_ratio.label",
+          "default": "square"
+        },
+        { "type": "checkbox", "id": "enable_quick_add", "label": "t:sections.main-product.blocks.complementary_products.settings.enable_quick_add.label", "default": false }
+      ]
+    },
+    {
+      "type": "icon-with-text",
+      "name": "t:sections.main-product.blocks.icon_with_text.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "options": [
+            { "value": "horizontal", "label": "t:sections.main-product.blocks.icon_with_text.settings.layout.options__1.label" },
+            { "value": "vertical", "label": "t:sections.main-product.blocks.icon_with_text.settings.layout.options__2.label" }
+          ],
+          "default": "horizontal",
+          "label": "t:sections.main-product.blocks.icon_with_text.settings.layout.label"
+        },
+        { "type": "image_picker", "id": "image_1", "label": "t:sections.main-product.blocks.icon_with_text.settings.image_1.label" },
+        { "type": "inline_richtext", "id": "heading_1", "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_1.default", "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_1.label" },
+        { "type": "image_picker", "id": "image_2", "label": "t:sections.main-product.blocks.icon_with_text.settings.image_2.label" },
+        { "type": "inline_richtext", "id": "heading_2", "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_2.default", "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_2.label" },
+        { "type": "image_picker", "id": "image_3", "label": "t:sections.main-product.blocks.icon_with_text.settings.image_3.label" },
+        { "type": "inline_richtext", "id": "heading_3", "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default", "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label" }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "checkbox", "id": "enable_sticky_info", "default": false, "label": "t:sections.main-product.settings.enable_sticky_info.label" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    { "type": "header", "content": "t:sections.main-product.settings.header.content", "info": "t:sections.main-product.settings.header.info" },
+    {
+      "type": "select",
+      "id": "media_size",
+      "options": [
+        { "value": "small", "label": "t:sections.main-product.settings.media_size.options__1.label" },
+        { "value": "medium", "label": "t:sections.main-product.settings.media_size.options__2.label" },
+        { "value": "large", "label": "t:sections.main-product.settings.media_size.options__3.label" }
+      ],
+      "default": "large",
+      "label": "t:sections.main-product.settings.media_size.label",
+      "info": "t:sections.main-product.settings.media_size.info"
+    },
+    { "type": "checkbox", "id": "constrain_to_viewport", "default": true, "label": "t:sections.main-product.settings.constrain_to_viewport.label" },
+    {
+      "type": "select",
+      "id": "media_fit",
+      "options": [
+        { "value": "contain", "label": "t:sections.main-product.settings.media_fit.options__1.label" },
+        { "value": "cover", "label": "t:sections.main-product.settings.media_fit.options__2.label" }
+      ],
+      "default": "contain",
+      "label": "t:sections.main-product.settings.media_fit.label"
+    },
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "options": [
+        { "value": "stacked", "label": "t:sections.main-product.settings.gallery_layout.options__1.label" },
+        { "value": "columns", "label": "t:sections.main-product.settings.gallery_layout.options__2.label" },
+        { "value": "thumbnail", "label": "t:sections.main-product.settings.gallery_layout.options__3.label" },
+        { "value": "thumbnail_slider", "label": "t:sections.main-product.settings.gallery_layout.options__4.label" }
+      ],
+      "default": "thumbnail",
+      "label": "t:sections.main-product.settings.gallery_layout.label"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "options": [
+        { "value": "left", "label": "t:sections.main-product.settings.media_position.options__1.label" },
+        { "value": "right", "label": "t:sections.main-product.settings.media_position.options__2.label" }
+      ],
+      "default": "left",
+      "label": "t:sections.main-product.settings.media_position.label",
+      "info": "t:sections.main-product.settings.media_position.info"
+    },
+    {
+      "type": "select",
+      "id": "image_zoom",
+      "options": [
+        { "value": "lightbox", "label": "t:sections.main-product.settings.image_zoom.options__1.label" },
+        { "value": "hover", "label": "t:sections.main-product.settings.image_zoom.options__2.label" },
+        { "value": "none", "label": "t:sections.main-product.settings.image_zoom.options__3.label" }
+      ],
+      "default": "lightbox",
+      "label": "t:sections.main-product.settings.image_zoom.label",
+      "info": "t:sections.main-product.settings.image_zoom.info"
+    },
+    {
+      "type": "select",
+      "id": "mobile_thumbnails",
+      "options": [
+        { "value": "columns", "label": "t:sections.main-product.settings.mobile_thumbnails.options__1.label" },
+        { "value": "show", "label": "t:sections.main-product.settings.mobile_thumbnails.options__2.label" },
+        { "value": "hide", "label": "t:sections.main-product.settings.mobile_thumbnails.options__3.label" }
+      ],
+      "default": "show",
+      "label": "t:sections.main-product.settings.mobile_thumbnails.label"
+    },
+    { "type": "checkbox", "id": "hide_variants", "default": false, "label": "t:sections.main-product.settings.hide_variants.label" },
+    { "type": "checkbox", "id": "enable_video_looping", "default": false, "label": "t:sections.main-product.settings.enable_video_looping.label" },
+    { "type": "header", "content": "t:sections.all.padding.section_padding_heading" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 0 }
+  ]
+}
+{% endschema %}

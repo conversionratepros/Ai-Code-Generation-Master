@@ -1636,6 +1636,17 @@
 
             <!-- ═══════════════════════════════════ 1. HERO ═══════════════════════════════════ -->
             <section class="section section-hero" id="hero">
+                <!-- CSS kept in the HTML widget so the separate Custom CSS file isn't touched -->
+                <style>
+                    /* cap the above-the-fold hero at 617px on desktop; it must not grow as the screen widens */
+                    @media (min-width: 901px) {
+                        .ldi-v2 .section-hero {
+                            height: 617px;
+                            max-height: 617px;
+                            overflow: hidden;
+                        }
+                    }
+                </style>
                 <div class="hero-panel">
                     <div class="hero-content">
                         <div class="hero-copy">
@@ -2257,7 +2268,7 @@
                 </button>
                 <div class="modal-body">
                     <div class="modal-head">
-                        <h2 class="modal-title" id="study-modal-title">Register your interest</h2>
+                        <h2 class="modal-title" id="study-modal-title">Monthly live webinars</h2>
                         <p class="modal-subtitle">Fill in your details below and we'll send you the monthly webinar
                             schedule.</p>
                     </div>
@@ -2265,7 +2276,7 @@
                         <!-- Gravity Form 81 = dedicated study/webinar form (created by client in WP) -->
                         [gravityform id="81" title="false" description="false" ajax="true"]
                     </div>
-                    <p class="modal-disclaimer">By registering, you consent to receive future communications from us in
+                    <p class="modal-disclaimer">By continuing, you consent to receive future communications from us in
                         accordance with our <a href="https://londondentalinstitute.com/privacy-policy/">Privacy Policy</a>.</p>
                 </div>
             </div>
@@ -2340,6 +2351,21 @@
                             el.textContent = 'What graduates say about studying with us';
                         } else if (t.indexOf('PG. Dip Graduate') > -1) {
                             el.textContent = t.replace('PG. Dip Graduate', 'PG Dip. Graduate');
+                        }
+                    });
+
+                    // replace the testimonial lightbox videos with the new Vimeo URLs (mapped by name)
+                    var TESTIMONIAL_VIDEOS = {
+                        'Dr. Mark Travis': 'https://player.vimeo.com/video/1205803699?autoplay=1&rel=0&controls=0#t=',
+                        'Dr. Thabo Twala': 'https://player.vimeo.com/video/1205803701?autoplay=1&rel=0&controls=0#t=',
+                        'Dr. Madhunandan Vijayakumar': 'https://player.vimeo.com/video/1205803700?autoplay=1&rel=0&controls=0#t='
+                    };
+                    controlSection.querySelectorAll('a[data-elementor-lightbox-video]').forEach(function (a) {
+                        var card = a.closest('.waf-testimonial-card-item') || a.closest('[data-element_type="container"]');
+                        var nameEl = card && card.querySelector('h3');
+                        var name = nameEl ? nameEl.textContent.trim() : '';
+                        if (TESTIMONIAL_VIDEOS[name]) {
+                            a.setAttribute('data-elementor-lightbox-video', TESTIMONIAL_VIDEOS[name]);
                         }
                     });
 
@@ -2474,21 +2500,23 @@
         </script>
 
         <script>
-            // ─── Gravity Form 82 (demo) submit button label → "Send me the demo" ───
+            // ─── Gravity Form submit-button labels (82 = demo, 81 = study/webinar) ───
             (function () {
-                function setDemoButtonText() {
-                    var btn = document.getElementById('gform_submit_button_82');
+                var LABELS = { '82': 'Send me the demo', '81': 'Send me the schedule' };
+                function setBtn(fid) {
+                    var btn = document.getElementById('gform_submit_button_' + fid);
                     if (!btn) return;
-                    if (btn.tagName === 'INPUT') btn.value = 'Send me the demo';
-                    else btn.textContent = 'Send me the demo';
+                    if (btn.tagName === 'INPUT') btn.value = LABELS[fid];
+                    else btn.textContent = LABELS[fid];
                 }
+                function setAll() { Object.keys(LABELS).forEach(setBtn); }
                 if (window.jQuery) {
                     window.jQuery(document).on('gform_post_render', function (e, formId) {
-                        if (String(formId) === '82') setDemoButtonText();
+                        if (LABELS[String(formId)]) setBtn(String(formId));
                     });
                 }
-                if (document.readyState !== 'loading') setDemoButtonText();
-                else document.addEventListener('DOMContentLoaded', setDemoButtonText);
+                if (document.readyState !== 'loading') setAll();
+                else document.addEventListener('DOMContentLoaded', setAll);
             })();
         </script>
     </div>

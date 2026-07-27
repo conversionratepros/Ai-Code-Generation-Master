@@ -138,29 +138,29 @@
       root.innerHTML =
         '<div class="' + NS + '__scrim" data-arc-close></div>' +
         '<div class="' + NS + '__panel">' +
-          '<span class="' + NS + '__grab" aria-hidden="true"></span>' +
-          '<button type="button" class="' + NS + '__close" data-arc-close aria-label="Close">&times;</button>' +
-          '<div class="' + NS + '__head">' +
-            '<span class="' + NS + '__tick" aria-hidden="true"><i class="fal fa-check"></i></span>' +
-            '<span class="' + NS + '__title">Added to your bag</span>' +
-          '</div>' +
-          '<div class="' + NS + '__item">' +
-            '<span class="' + NS + '__thumb"><img alt=""></span>' +
-            '<span class="' + NS + '__meta">' +
-              '<span class="' + NS + '__name"></span>' +
-              '<span class="' + NS + '__size"></span>' +
-              itemPrice +
-            '</span>' +
-          '</div>' +
-          '<div class="' + NS + '__divider" aria-hidden="true"></div>' +
-          '<div class="' + NS + '__summary">' +
-            '<span class="' + NS + '__summary-count">Your bag</span>' +
-            '<span class="' + NS + '__summary-total"></span>' +
-          '</div>' +
-          '<div class="' + NS + '__actions">' +
-            '<a class="' + NS + '__btn ' + NS + '__btn--primary" href="' + CHECKOUT_URL + '">Checkout now</a>' +
-            '<button type="button" class="' + NS + '__btn ' + NS + '__btn--secondary" data-arc-close>Continue shopping</button>' +
-          '</div>' +
+        '<span class="' + NS + '__grab" aria-hidden="true"></span>' +
+        '<button type="button" class="' + NS + '__close" data-arc-close aria-label="Close">&times;</button>' +
+        '<div class="' + NS + '__head">' +
+        '<span class="' + NS + '__tick" aria-hidden="true"><i class="fal fa-check"></i></span>' +
+        '<span class="' + NS + '__title">Added to your bag</span>' +
+        '</div>' +
+        '<div class="' + NS + '__item">' +
+        '<span class="' + NS + '__thumb"><img alt=""></span>' +
+        '<span class="' + NS + '__meta">' +
+        '<span class="' + NS + '__name"></span>' +
+        '<span class="' + NS + '__size"></span>' +
+        itemPrice +
+        '</span>' +
+        '</div>' +
+        '<div class="' + NS + '__divider" aria-hidden="true"></div>' +
+        '<div class="' + NS + '__summary">' +
+        '<span class="' + NS + '__summary-count">Your bag</span>' +
+        '<span class="' + NS + '__summary-total"></span>' +
+        '</div>' +
+        '<div class="' + NS + '__actions">' +
+        '<a class="' + NS + '__btn ' + NS + '__btn--primary" href="' + CHECKOUT_URL + '">Checkout now</a>' +
+        '<button type="button" class="' + NS + '__btn ' + NS + '__btn--secondary" data-arc-close>Continue shopping</button>' +
+        '</div>' +
         '</div>';
 
       /* fill item */
@@ -249,7 +249,7 @@
     var dl = (window.dataLayer = window.dataLayer || []);
     var originalPush = dl.push;
     dl.push = function () {
-      try { for (var i = 0; i < arguments.length; i++) handleEvent(arguments[i]); } catch (err) {}
+      try { for (var i = 0; i < arguments.length; i++) handleEvent(arguments[i]); } catch (err) { }
       return originalPush.apply(this, arguments);
     };
   } catch (e) {

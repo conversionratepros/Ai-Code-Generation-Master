@@ -1,0 +1,184 @@
+{
+  "sections": {
+    "main": {
+      "type": "cro-12526-v2-main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "store_availability": {
+      "type": "store_availability",
+      "settings": {}
+    },
+    "cross-sell": {
+      "type": "cro-12526-v2-complete-setup",
+      "settings": {}
+    },
+    "product-compare": {
+      "type": "cro-12526-v2-compare",
+      "settings": {}
+    },
+    "about_us": {
+      "type": "cro-12526-v2-about-us",
+      "blocks": {
+        "stat1": {
+          "type": "stat",
+          "settings": {
+            "figure": "Since 2008",
+            "label": "Australian-owned and run"
+          }
+        },
+        "stat2": {
+          "type": "stat",
+          "settings": {
+            "figure": "40,000+",
+            "label": "Workplaces furnished"
+          }
+        },
+        "stat3": {
+          "type": "stat",
+          "settings": {
+            "figure": "7 Showrooms",
+            "label": "Showrooms across country"
+          }
+        },
+        "stat4": {
+          "type": "stat",
+          "settings": {
+            "figure": "In-house",
+            "label": "Delivery & Install crew"
+          }
+        }
+      },
+      "block_order": [
+        "stat1",
+        "stat2",
+        "stat3",
+        "stat4"
+      ],
+      "settings": {}
+    },
+    "planning": {
+      "type": "cro-12526-v2-planning",
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "day": "Day 0",
+            "heading": "Chat & measure",
+            "copy": "Tell us your headcount, floor and deadline. We'll come and measure — or work straight from your floorplan."
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "day": "Days 1–2",
+            "heading": "Free layout & quote",
+            "copy": "A real layout for your actual space, with an itemised quote. Yours to keep, no obligation."
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "day": "Days 3–8",
+            "heading": "We pick & deliver",
+            "copy": "Everything's in stock in our Australian warehouses — not on a ship. Our trucks, our schedule."
+          }
+        },
+        "step4": {
+          "type": "step",
+          "settings": {
+            "day": "By day 10",
+            "heading": "Installed & working",
+            "copy": "Our own installers build it, place it and take every box away. You walk in to a finished office."
+          }
+        }
+      },
+      "block_order": [
+        "step1",
+        "step2",
+        "step3",
+        "step4"
+      ],
+      "settings": {}
+    },
+    "showrooms": {
+      "type": "cro-12526-v2-showrooms",
+      "settings": {}
+    },
+    "final_cta": {
+      "type": "cro-12526-v2-final-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "store_availability",
+    "cross-sell",
+    "product-compare",
+    "about_us",
+    "planning",
+    "showrooms",
+    "final_cta"
+  ]
+}

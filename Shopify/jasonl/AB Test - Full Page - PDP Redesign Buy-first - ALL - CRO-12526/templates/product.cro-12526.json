@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "main": {
+      "type": "cro-12526-main-product",
+      "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "complete-setup": {
+      "type": "cro-12526-complete-setup",
+      "settings": {}
+    },
+    "product-compare": {
+      "type": "product-compare",
+      "settings": {}
+    },
+    "about-us": {
+      "type": "cro-12526-about-us",
+      "settings": {}
+    },
+    "planning": {
+      "type": "cro-12526-planning",
+      "settings": {}
+    },
+    "showrooms": {
+      "type": "cro-12526-showrooms",
+      "settings": {
+        "showrooms_heading": "Showrooms? Seven of them"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "complete-setup",
+    "product-compare",
+    "about-us",
+    "planning",
+    "showrooms"
+  ]
+}

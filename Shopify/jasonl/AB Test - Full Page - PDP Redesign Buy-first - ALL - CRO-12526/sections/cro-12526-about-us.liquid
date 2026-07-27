@@ -1,0 +1,95 @@
+{%- comment -%}
+  CRO-12526 — "New here? A bit of us" section. Static content block per spec, built
+  as a fresh section (no existing control section covers this content). All copy is
+  schema-editable so merchants can update stats/copy without a code deploy.
+  "See Recent Projects" links to /blogs/fitouts per spec (design.html's "Proyects" /
+  design's "Proyects" typo corrected to "Projects" here).
+{%- endcomment -%}
+
+{{ 'cro-12526-pdp.css' | asset_url | stylesheet_tag }}
+
+<div class="cro12526-about" id="cro12526-about">
+  <div class="page-width">
+    <div class="cro12526-about__top">
+      <div class="cro12526-about__intro">
+        <div class="cro12526-eyebrow"><span class="cro12526-eyebrow__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</div>
+        <h2 class="cro12526-section-heading">{{ section.settings.heading }}</h2>
+        <div class="cro12526-about__copy">{{ section.settings.paragraph }}</div>
+      </div>
+
+      <div class="cro12526-stats">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stat' -%}
+            <div class="cro12526-stats__item" {{ block.shopify_attributes }}>
+              <p class="cro12526-stats__value">{{ block.settings.value }}</p>
+              <p class="cro12526-stats__label">{{ block.settings.label }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="cro12526-about__panel">
+      <div class="cro12526-about__panel-copy">
+        <h3>{{ section.settings.panel_heading }}</h3>
+        <p>{{ section.settings.panel_paragraph }}</p>
+        {%- if section.settings.logos_image != blank -%}
+          <div class="cro12526-about__logos">
+            {{ section.settings.logos_image | image_url: width: 1134 | image_tag: loading: 'lazy', alt: 'Customer logos' }}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="cro12526-about__panel-image">
+        {%- if section.settings.panel_image != blank -%}
+          {{ section.settings.panel_image | image_url: width: 1540 | image_tag: loading: 'lazy', alt: section.settings.panel_heading | escape }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="cro12526-about__cta">
+      <a href="https://www.jasonl.com.au/blogs/fitouts" class="cro12526-underline-link">
+        See Recent Projects
+        <span class="svg-wrapper" aria-hidden="true">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12526 About us",
+  "tag": "section",
+  "class": "section-cro12526-about-us",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "New here? A bit of us" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Here's who's behind it." },
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "default": "<p>JasonL is an Australian commercial furniture company. Since 2008, we've supplied everything from home office desks to complete office fit-outs, delivered and installed by our own team.</p>"
+    },
+    { "type": "header", "content": "Trust panel" },
+    { "type": "text", "id": "panel_heading", "label": "Panel heading", "default": "A few of the teams we've delivered to." },
+    {
+      "type": "textarea",
+      "id": "panel_paragraph",
+      "label": "Panel paragraph",
+      "default": "These organisations have bought from JasonL. We're not claiming endorsement — just that they trusted us with the order."
+    },
+    { "type": "image_picker", "id": "logos_image", "label": "Customer logos image" },
+    { "type": "image_picker", "id": "panel_image", "label": "Fit-out image" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "Since 2008" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Australian-owned and run" }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}
