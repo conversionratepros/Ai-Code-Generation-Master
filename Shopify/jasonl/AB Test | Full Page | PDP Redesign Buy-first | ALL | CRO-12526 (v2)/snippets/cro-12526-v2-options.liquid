@@ -96,8 +96,29 @@
         </p>
         <p class="cro12526v2-field__value" data-cro12526v2-size-value>{{ selected_size }}</p>
       </div>
-      <div class="cro12526v2-select-wrap">
-        <select class="cro12526v2-select" data-cro12526v2-size-select aria-label="{{ size_titleonly | escape }}">
+      {%- comment -%}
+        Custom dropdown (replaces the native <select> — client request):
+        the native OS picker cannot be styled (no option hover, QA bug 34)
+        and fires no event when dismissed (stale caret state). This field
+        is purely navigational — options are sibling-product URLs, it is
+        NOT a form input — so a custom listbox is safe. Behaviour wired in
+        cro-12526-v2-pdp.js (open/close, outside-click, keyboard, navigate).
+      {%- endcomment -%}
+      <div class="cro12526v2-select-wrap" data-cro12526v2-size-dropdown>
+        <button
+          type="button"
+          class="cro12526v2-select cro12526v2-dropdown__toggle"
+          data-cro12526v2-size-toggle
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-label="{{ size_titleonly | escape }}"
+        >
+          <span data-cro12526v2-size-current>{{ selected_size }}</span>
+        </button>
+        <svg class="cro12526v2-select-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <ul class="cro12526v2-dropdown__list" data-cro12526v2-size-list role="listbox" hidden>
           {%- for size_itemvalue in size_item_array -%}
             {%- if size_itemvalue contains '[/item]' -%}
               {%- liquid
@@ -123,17 +144,20 @@
                 endif
               -%}
               {%- if size_optonly != '' and redirectonly != '' -%}
-                <option
-                  value="{{ routes.root_url }}products/{{ redirectonly }}"
-                  {% if redirectonly == product.handle %}selected{% endif %}
-                >{{ size_optonly }}</option>
+                <li role="presentation">
+                  <button
+                    type="button"
+                    class="cro12526v2-dropdown__option{% if redirectonly == product.handle %} is-selected{% endif %}"
+                    role="option"
+                    data-cro12526v2-size-option
+                    data-url="{{ routes.root_url }}products/{{ redirectonly }}"
+                    {% if redirectonly == product.handle %}aria-selected="true"{% endif %}
+                  >{{ size_optonly }}</button>
+                </li>
               {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
-        </select>
-        <svg class="cro12526v2-select-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        </ul>
       </div>
     </div>
   {%- endunless -%}

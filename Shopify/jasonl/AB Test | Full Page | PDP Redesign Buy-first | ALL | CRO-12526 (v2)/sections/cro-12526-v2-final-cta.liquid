@@ -22,7 +22,8 @@
           <path d="M1 4H19M19 4L15.5 1M19 4L15.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <p class="cro12526v2-finalcta__note">{{ section.settings.note }}</p>
+      {%- comment -%} QA bug 57: bold tail on one line. {%- endcomment -%}
+      <p class="cro12526v2-finalcta__note">{{ section.settings.note }} <strong>{{ section.settings.note_bold }}</strong></p>
     </div>
     <div class="cro12526v2-finalcta__right">
       <p class="cro12526v2-finalcta__copy">{{ section.settings.copy }}</p>
@@ -33,9 +34,22 @@
         <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
         <span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
         Prefer to see it first?
-        <a class="cro12526v2-finalcta__showroom-link" href="{{ section.settings.showroom_url | default: '#cro12526v2-showrooms' }}"><strong>Book a showroom visit</strong> &rarr;</a>
+        <a class="cro12526v2-finalcta__showroom-link" href="{{ section.settings.showroom_url | default: '#cro12526v2-showrooms' }}"><strong>Book a showroom visit</strong>&nbsp;&rarr;</a>
       </p>
     </div>
+  </div>
+
+  {%- comment -%}
+    QA bug 58 (per Donavan): mobile-only brand block — jason.l wordmark,
+    description, Google rating line. Desktop keeps the theme footer as-is.
+  {%- endcomment -%}
+  <div class="cro12526v2-finalcta__brand">
+    <p class="cro12526v2-finalcta__brand-logo" aria-label="jason.l">jason.l</p>
+    <p class="cro12526v2-finalcta__brand-copy">{{ section.settings.brand_copy }}</p>
+    <p class="cro12526v2-finalcta__brand-rating">
+      <span class="cro12526v2-finalcta__brand-star" aria-hidden="true">&#9733;</span>
+      {{ section.settings.brand_rating }}
+    </p>
   </div>
 </div>
 
@@ -48,7 +62,15 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "No obligation, no runaround" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Tell us what you're planning." },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Plan my fitout" },
-    { "type": "text", "id": "note", "label": "Note under button", "default": "Takes 60 seconds. No spam, no obligation." },
+    { "type": "text", "id": "note", "label": "Note under button", "default": "Takes 60 seconds." },
+    { "type": "text", "id": "note_bold", "label": "Note bold tail", "default": "No spam, no obligation" },
+    {
+      "type": "textarea",
+      "id": "brand_copy",
+      "label": "Mobile brand description",
+      "default": "JasonL® is Australian owned and operated. We design, deliver and install office fitouts and furniture Australia-wide — Sydney, Melbourne, Brisbane, Perth, Adelaide and Canberra."
+    },
+    { "type": "text", "id": "brand_rating", "label": "Mobile rating line", "default": "4.8 on Google  •  1,900+ reviews" },
     {
       "type": "textarea",
       "id": "copy",

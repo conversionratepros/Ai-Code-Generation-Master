@@ -236,9 +236,18 @@
                       {%- render 'loading-spinner' -%}
                     </button>
                     {%- comment -%}
-                      Add to quote link REMOVED per client QA 2026-07-27
-                      (spec originally required it; overruled by the user).
+                      Bug 9 (QA): spec requires this link even though the comp
+                      omits it — restored after an interim removal request.
                     {%- endcomment -%}
+                    <button
+                      type="button"
+                      class="cro12526v2-setup-card__atq"
+                      data-cro12526v2-setup-atq
+                      data-cro12526v2-setup-form="{{ cs_form_id }}"
+                      {% if cs_variant.available == false %}disabled{% endif %}
+                    >
+                      Add to quote
+                    </button>
                   {%- endform -%}
                 </product-form>
               </div>

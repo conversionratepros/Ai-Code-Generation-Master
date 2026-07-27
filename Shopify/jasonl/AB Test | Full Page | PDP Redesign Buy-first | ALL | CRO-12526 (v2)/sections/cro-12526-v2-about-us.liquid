@@ -145,12 +145,18 @@
             loading="lazy"
           >
         {%- else -%}
+          {%- comment -%}
+            If the bundled fallback asset is missing from the theme the
+            broken-image icon must not show — onerror hides the pane until
+            the client uploads a photo via the section setting.
+          {%- endcomment -%}
           <img
             src="{{ 'cro-12526-v2-about-fitout.jpg' | asset_url }}"
             alt="JasonL office fit-out"
             width="770"
             height="393"
             loading="lazy"
+            onerror="this.closest('.cro12526v2-about__panel-image').style.display='none'"
           >
         {%- endif -%}
       </div>
@@ -191,8 +197,8 @@
       "label": "Panel copy",
       "default": "These organisations have bought from JasonL. We're not claiming endorsement — just that they trusted us with the order."
     },
-    { "type": "image_picker", "id": "logos_image", "label": "Customer logos strip (falls back to bundled image)" },
-    { "type": "image_picker", "id": "panel_image", "label": "Fit-out photo (falls back to bundled image)" },
+    { "type": "image_picker", "id": "logos_image", "label": "Customer logos image (replaces the built-in logos)" },
+    { "type": "image_picker", "id": "panel_image", "label": "Right-side fit-out photo" },
     { "type": "text", "id": "projects_label", "label": "Projects link label", "default": "See Recent Projects" },
     { "type": "url", "id": "projects_url", "label": "Projects link URL" }
   ],

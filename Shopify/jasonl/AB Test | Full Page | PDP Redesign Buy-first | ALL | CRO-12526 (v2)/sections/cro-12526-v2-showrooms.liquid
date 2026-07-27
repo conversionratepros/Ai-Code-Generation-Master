@@ -33,6 +33,10 @@
         <span class="cro12526v2-eyebrow__text">{{ section.settings.eyebrow }}</span>
       </div>
       <h2 class="cro12526v2-showrooms__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.mobile_subtext != blank -%}
+        {%- comment -%} QA bug 54: mobile design shows this paragraph under the heading. {%- endcomment -%}
+        <p class="cro12526v2-showrooms__subtext">{{ section.settings.mobile_subtext }}</p>
+      {%- endif -%}
     </div>
 
     <div class="cro12526v2-showrooms__layout">
@@ -48,6 +52,7 @@
             assign itemid_page_url = 'store' | append: i | append: '_showroom_page'
             assign itemid_matterport = 'store' | append: i | append: '_matterport_id'
             assign itemid_order = 'store' | append: i | append: '_showroom_order'
+            assign itemid_gmaplink = 'store' | append: i | append: '_showroom_link'
             assign sr_name = settings[itemid_name]
           -%}
           {%- if sr_name == blank -%}{%- continue -%}{%- endif -%}
@@ -70,19 +75,52 @@
                 Display-name cleanup: the settings name Perth as
                 "Perth & Distribution Centre" — design shows just "Perth".
               {%- endcomment -%}
-              <p class="cro12526v2-showrooms__name">{{ sr_name | remove: 'showroom' | remove: 'Showroom' | remove: '& Distribution Centre' | remove: '&amp; Distribution Centre' | strip }}</p>
-              <p class="cro12526v2-showrooms__address">{{ settings[itemid_address] }}</p>
+              <p class="cro12526v2-showrooms__name">
+                <span>{{ sr_name | remove: 'showroom' | remove: 'Showroom' | remove: '& Distribution Centre' | remove: '&amp; Distribution Centre' | strip }}</span>
+                <span class="cro12526v2-showrooms__chevron" aria-hidden="true"></span>
+              </p>
+              {%- liquid
+                comment
+                  Bug 22: settings addresses carry extra note lines
+                  ("Opposite Bunnings...", "(Use 2A/2c Car Park)") — join the
+                  address lines, then strip parentheticals and wayfinding notes.
+                endcomment
+                assign sr_address = settings[itemid_address] | newline_to_br | replace: '<br />', ' ' | replace: '<br/>', ' ' | replace: '<br>', ' ' | strip_html
+                assign sr_address = sr_address | split: '(' | first
+                assign sr_address = sr_address | split: 'Opposite' | first | strip
+                assign sr_last = sr_address | slice: -1, 1
+                if sr_last == ','
+                  assign sr_trim_len = sr_address.size | minus: 1
+                  assign sr_address = sr_address | slice: 0, sr_trim_len
+                endif
+              -%}
+              <p class="cro12526v2-showrooms__address">{{ sr_address }}</p>
               <div class="cro12526v2-showrooms__tour" data-cro12526v2-tour>
                 {%- if settings[itemid_matterport] != blank -%}
                   <button type="button" class="cro12526v2-showrooms__tour-btn" data-cro12526v2-tour-btn>
                     <strong>360&deg;</strong>&nbsp;Virtual walk-through
                   </button>
                   <div class="cro12526v2-showrooms__tour-native" hidden>
-                    {%- render 'custom-modal-virtual-tour', location_name: sr_name, matterportlink: settings[itemid_matterport] -%}
+                    {%- liquid
+                      comment
+                        Bug 23: names containing "&" (Perth & Distribution Centre)
+                        produced an invalid CSS selector in the reused modal's
+                        data-modal attribute — handleize for a safe id.
+                      endcomment
+                      assign sr_modal_name = sr_name | handleize
+                    -%}
+                    {%- render 'custom-modal-virtual-tour', location_name: sr_modal_name, matterportlink: settings[itemid_matterport] -%}
                   </div>
                 {%- endif -%}
               </div>
               <a class="cro12526v2-showrooms__phone" href="tel:{{ settings[itemid_phone] | replace: ' ', '' }}">{{ settings[itemid_phone] }}</a>
+              {%- comment -%} Mobile accordion (QA bug 56): "See on Google" link — existing per-store map link setting. {%- endcomment -%}
+              {%- if settings[itemid_gmaplink] != blank -%}
+                <a class="cro12526v2-showrooms__google" href="{{ settings[itemid_gmaplink] }}" target="_blank" rel="noopener noreferrer">
+                  <span>See on Google</span>
+                  <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 4H19M19 4L15.5 1M19 4L15.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {%- endif -%}
               <a class="cro12526v2-showrooms__link" href="/pages/{{ settings[itemid_page_url] }}" aria-label="View {{ sr_name | escape }} page">
                 <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M1 4H19M19 4L15.5 1M19 4L15.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -117,6 +155,12 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Come see it" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Showrooms? Seven of them" },
+    {
+      "type": "textarea",
+      "id": "mobile_subtext",
+      "label": "Mobile sub-text (shown under the heading on mobile only)",
+      "default": "Tell us the headcount and the space. We'll come back with a layout, a single quote and an install date — desks, chairs, storage, pods, the lot. One conversation instead of forty product pages."
+    },
     {
       "type": "paragraph",
       "content": "Showroom names, addresses, phones, images and 360° tour IDs come from Theme settings → the global store1–store8 showroom fields (same source as the site's existing showrooms)."

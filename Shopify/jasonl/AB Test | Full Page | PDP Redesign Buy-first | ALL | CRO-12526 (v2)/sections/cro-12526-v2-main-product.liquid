@@ -861,9 +861,10 @@
 
         </div>
         {% comment %} companies list slider {% endcomment %}
-        <div class="companies_list_slider_wrap">
-          {% render 'companies_list_slider_product' %}
-          </div>
+        {%- comment -%}
+          QA bug 33: "Companies currently using this product" slider removed
+          from the redesign (was part of the verbatim control tail).
+        {%- endcomment -%}
         {% comment %} companies list slider end {% endcomment %}
     </div>
 

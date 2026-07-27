@@ -53,30 +53,119 @@
     var viewAllBtn = document.querySelector('[data-cro12526v2-view-all]');
     if (viewAllBtn) viewAllBtn.addEventListener('click', openExistingViewer);
 
-    var mainSlider = document.querySelector('.cro12526v2-gallery .main-slider');
-    if (mainSlider) {
-      mainSlider.addEventListener('click', function (e) {
-        var holder = document.querySelector('.product-slider-holder');
-        if (holder && holder.classList.contains('zoomin')) return; // viewer already open
-        if (e.target.closest('.swiper-slide')) openExistingViewer();
-      });
+    // The reused best-seller-tag snippet outputs "BESTSELLER" as one word;
+    // the Figma pill reads "BEST SELLER". The snippet stays untouched
+    // (control reuse), so split the word here — our gallery tag only.
+    var tagSpan = document.querySelector('.cro12526v2-gallery__tag .tag-box span');
+    if (tagSpan && /^\s*BESTSELLER\s*$/i.test(tagSpan.textContent)) {
+      tagSpan.textContent = 'BEST SELLER';
     }
+
+    var mainSlider = document.querySelector('.cro12526v2-gallery .main-slider');
+    if (!mainSlider) return;
+
+    // QA bug 6 (final resolution): Swiper's native pointer drag DOES work
+    // on desktop — verified live; drags under 50% of the slide width were
+    // snapping back (default longSwipesRatio). Soften the thresholds on
+    // the EXISTING instance so normal human drags register. No custom
+    // drag code: Swiper handles the gesture and suppresses the post-drag
+    // click natively (the zoom overlay still opens the viewer on click).
+    function tuneSwiper() {
+      var sw = mainSlider.swiper;
+      if (!sw) return false;
+      sw.params.longSwipesRatio = 0.15;
+      sw.params.longSwipesMs = 500;
+      sw.params.threshold = 5;
+      return true;
+    }
+    if (!tuneSwiper()) {
+      var tries = 0;
+      var t = setInterval(function () {
+        if (tuneSwiper() || ++tries > 40) clearInterval(t);
+      }, 250);
+    }
+
+    // stop the browser's native image ghost-drag from fighting the gesture
+    mainSlider.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+    });
   }
 
   /* ----------------------------------------------------------
-     2. Size dropdown — sizes are SEPARATE PRODUCTS on JasonL
-        (productmeta.product_sizes metafield). Selecting one links
-        through to that product, keeping the control's behaviour.
+     2. Size dropdown — CUSTOM listbox (replaces the native <select>;
+        client request). Sizes are SEPARATE PRODUCTS on JasonL
+        (productmeta.product_sizes), so choosing one simply navigates —
+        this is not a form input, which is why a custom dropdown is safe.
+        Full lifecycle control fixes the native-picker limitations:
+        styled option hover, reliable caret state, outside-click close.
      ---------------------------------------------------------- */
   function initSizeSelect() {
-    var sizeSelect = document.querySelector('[data-cro12526v2-size-select]');
-    if (!sizeSelect) return;
-    sizeSelect.addEventListener('change', function () {
-      var readout = document.querySelector('[data-cro12526v2-size-value]');
-      if (readout && sizeSelect.selectedIndex > -1) {
-        readout.textContent = sizeSelect.options[sizeSelect.selectedIndex].text;
+    var wrap = document.querySelector('[data-cro12526v2-size-dropdown]');
+    if (!wrap) return;
+    var toggle = wrap.querySelector('[data-cro12526v2-size-toggle]');
+    var list = wrap.querySelector('[data-cro12526v2-size-list]');
+    if (!toggle || !list) return;
+    var options = Array.prototype.slice.call(list.querySelectorAll('[data-cro12526v2-size-option]'));
+
+    function setOpen(open) {
+      wrap.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        list.removeAttribute('hidden');
+        var sel = list.querySelector('.is-selected') || options[0];
+        if (sel) sel.focus();
+      } else {
+        list.setAttribute('hidden', '');
       }
-      if (sizeSelect.value) window.location.href = sizeSelect.value;
+    }
+    function isOpen() {
+      return wrap.classList.contains('is-open');
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!isOpen());
+    });
+    toggle.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        setOpen(true);
+      }
+    });
+
+    options.forEach(function (opt, i) {
+      opt.addEventListener('click', function () {
+        var current = document.querySelector('[data-cro12526v2-size-current]');
+        var readout = document.querySelector('[data-cro12526v2-size-value]');
+        if (current) current.textContent = opt.textContent.trim();
+        if (readout) readout.textContent = opt.textContent.trim();
+        setOpen(false);
+        var url = opt.getAttribute('data-url');
+        if (url) window.location.href = url;
+      });
+      opt.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          (options[i + 1] || options[0]).focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          (options[i - 1] || options[options.length - 1]).focus();
+        } else if (e.key === 'Escape') {
+          setOpen(false);
+          toggle.focus();
+        } else if (e.key === 'Tab') {
+          setOpen(false);
+        }
+      });
+    });
+
+    document.addEventListener('pointerdown', function (e) {
+      if (isOpen() && !wrap.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        toggle.focus();
+      }
     });
   }
 
@@ -361,9 +450,25 @@
         });
       }
       row.addEventListener('mouseenter', function () {
-        activate(row);
+        // hover-activate is a desktop behaviour; on touch, the synthetic
+        // mouseenter fired before click would pre-activate the row and the
+        // accordion toggle would instantly close it again.
+        if (window.matchMedia('(hover: hover)').matches) activate(row);
       });
       row.addEventListener('focusin', function () {
+        activate(row);
+      });
+      // QA bug 56: mobile accordion — tapping a row expands it (single-open)
+      // and tapping the OPEN row collapses it again. Toggle-off is
+      // mobile-only: on desktop a row must stay active to drive the side
+      // image, and hover handles switching there.
+      row.addEventListener('click', function (e) {
+        if (e.target.closest('a, button')) return; // links/tour keep working
+        var mobile = window.matchMedia('(max-width: 749px)').matches;
+        if (mobile && row.classList.contains('is-active')) {
+          row.classList.remove('is-active');
+          return;
+        }
         activate(row);
       });
     });

@@ -34,17 +34,18 @@
 
     <div class="cro12526v2-planning__bar">
       <p class="cro12526v2-planning__bar-copy">
-        <strong>{{ section.settings.bar_strong }}</strong>
+        <strong>{{ section.settings.bar_strong }}</strong><br class="cro12526v2-br-mobile" aria-hidden="true">
         {{ section.settings.bar_copy }}
       </p>
       {%- if section.settings.consult_url != blank -%}
         <a class="cro12526v2-planning__cta" href="{{ section.settings.consult_url }}">{{ section.settings.consult_label }}</a>
       {%- else -%}
         {%- comment -%}
-          Client has not supplied the destination yet (pending action point)
-          — fall back to the sitewide Typeform so the button still works.
+          QA bug 32: the destination is a pending client action point and the
+          Typeform fallback was rejected — until the URL setting is filled the
+          button renders visible but INERT (no popup, no navigation).
         {%- endcomment -%}
-        <a class="cro12526v2-planning__cta typeform-share get-a-quote-btn-ab getaquoteclick" href="javascript:void(0)" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">{{ section.settings.consult_label }}</a>
+        <span class="cro12526v2-planning__cta cro12526v2-planning__cta--pending" role="button" aria-disabled="true">{{ section.settings.consult_label }}</span>
       {%- endif -%}
     </div>
   </div>

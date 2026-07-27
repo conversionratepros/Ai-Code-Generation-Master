@@ -217,6 +217,65 @@ as control parity and answered in-thread with evidence:
   both). Reported as control parity; any change there is a change to the
   shared control component and needs a product decision.
 
+## QA rounds 7–9 (2026-07-27) — Slack bugs 9–34 + compare revert
+
+- Bugs 9–24 and 28–34: all fixed (see the two Slack thread summaries for
+  per-bug root causes). Highlights: control's `translateX(-30px)` clipped the
+  compare heading; "Perth & Distribution Centre" broke the tour modal's CSS
+  selector (handleized); planning consult button is now INERT until the client
+  URL setting is filled (Typeform fallback rejected by QA); companies slider
+  removed; desktop drag-swipe implemented in our JS (this Swiper build ignores
+  mouse drags — the control cannot drag either); mobile `.zoomin` viewer is a
+  true fullscreen overlay (deviation from control, QA-mandated).
+- **Compare section (round 9, client decision): control UI kept UNTOUCHED.**
+  All table/card/See-more restyling was removed — the control's own compare
+  CSS renders the table exactly as live. Only additive Figma elements remain:
+  eyebrow, new heading text (control's own title styling), category-aware
+  copy, orange "This product" badge, recommend pill. This supersedes the
+  round-6 grid re-tracking and the mobile horizontal-scroll compare.
+- About Us: fit-out photo + logos are merchant-editable (image_picker
+  settings); missing fallback asset now hides gracefully instead of showing a
+  broken image. `cro-12526-v2-about-fitout.jpg` still needs uploading.
+- Client data still pending: Gold Coast matterport ID, per-collection
+  headings, consult button URL, range metafield, review source.
+
+## Final verification round (2026-07-27, Playwright vs preview)
+
+Deployed state at verification: sections + JS current, CSS still round-6/7,
+fit-out JPG missing. Full bug matrix result:
+
+- **Verified LIVE (sections already deployed):** 9 (card ATQ), 14 ("chair's"),
+  22 (clean addresses), 23 (Perth tour opens), 32 (inert consult), 33
+  (companies gone), 7 showroom rows, "Perth" name.
+- **Verified via injected local CSS (lands with the CSS upload):** 3 (mobile
+  fullscreen viewer), 5, 10–13 (control compare UI + additive elements), 15,
+  17–20, 24 (dark overlay), 28–31, 34.
+- **Bug 6 FINAL RESOLUTION:** Swiper's native pointer drag was working all
+  along — drags under the default 50% longSwipesRatio snap back (identical on
+  control). Custom drag code removed (it listened to mouse events, which
+  headless never fired — and pointer-porting it would have double-advanced);
+  instead cro-12526-v2-pdp.js softens the EXISTING instance's thresholds
+  (longSwipesRatio .15, longSwipesMs 500, threshold 5) + prevents native img
+  ghost-drag. Verified live: 30% drags advance both directions, post-drag
+  click suppressed by Swiper (viewer does not open).
+- **Bug 16:** requires `cro-12526-v2-about-fitout.jpg` upload (asset 404s);
+  about-us section additionally hides the pane gracefully via onerror.
+- **Bug 21:** client data — empty `store8_matterport_id` (Gold Coast).
+- Bug 34 caret flip made class-based (`is-open` on the select wrap) —
+  `:focus` sibling selectors alone were unreliable.
+
+## Round 12 (2026-07-27) — custom size dropdown
+
+The native size `<select>` is replaced by a custom listbox (client request):
+toggle button (reuses the field styles) + absolutely-positioned option panel
+with hover/selected states, keyboard support (arrows/Escape/Tab), and
+outside-click close. SAFE swap because the size field is purely navigational
+(sibling-product URLs — not a form input; product-info.js never reads it).
+This resolves the two native-select limitations QA hit: unstylable option
+hover (bug 34) and the untrackable picker-dismiss state (stale caret).
+Files: cro-12526-v2-options.liquid, cro-12526-v2-pdp.js, cro-12526-v2-pdp.css.
+Also: gallery badge text is split "BEST SELLER" via JS (guarded, our tag only).
+
 ## QA notes for this round
 
 - Verify breadcrumb crumbs on a sample of products per top-level category (simplified logic).

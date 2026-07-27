@@ -155,7 +155,27 @@
                                     <span class="cro12526v2-eyebrow__text">Still deciding?</span>
                                 </div>
                                 <h2 class="compare-table-title cro12526v2-compare__heading">Compare alternatives</h2>
-                                <p class="cro12526v2-compare__copy">Genuine like-for-like options in the same class &mdash; not padding. This desk&rsquo;s column is highlighted.</p>
+                                {%- capture cro12526v2_cat -%}{% render 'get_product_category', product: product %}{%- endcapture -%}
+                                {%- liquid
+                                  comment
+                                    Bug 14: category-aware noun (same get_product_category
+                                    lookup CRO-12359 uses for its USP word).
+                                  endcomment
+                                  assign cro12526v2_cat_h = cro12526v2_cat | handleize
+                                  assign cro12526v2_word = 'product'
+                                  if cro12526v2_cat_h contains 'chair' or cro12526v2_cat_h contains 'seating'
+                                    assign cro12526v2_word = 'chair'
+                                  elsif cro12526v2_cat_h contains 'desk' or cro12526v2_cat_h contains 'workstation'
+                                    assign cro12526v2_word = 'desk'
+                                  elsif cro12526v2_cat_h contains 'table'
+                                    assign cro12526v2_word = 'table'
+                                  elsif cro12526v2_cat_h contains 'storage'
+                                    assign cro12526v2_word = 'storage'
+                                  elsif cro12526v2_cat_h contains 'screen' or cro12526v2_cat_h contains 'partition'
+                                    assign cro12526v2_word = 'screen'
+                                  endif
+                                -%}
+                                <p class="cro12526v2-compare__copy">Genuine like-for-like options in the same class &mdash; not padding. This {{ cro12526v2_word }}&rsquo;s column is highlighted.</p>
                                 <a class="cro12526v2-compare__recommend typeform-share get-a-quote-btn-ab getaquoteclick" href="javascript:void(0)" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">Not sure? We&rsquo;ll recommend</a>
                             </div>
                             <div id="activeproduct" class="activeproduct table-col">
