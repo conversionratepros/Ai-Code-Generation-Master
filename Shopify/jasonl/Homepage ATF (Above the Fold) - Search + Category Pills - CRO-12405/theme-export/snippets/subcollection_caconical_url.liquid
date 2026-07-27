@@ -1,0 +1,54 @@
+{% assign menu_collections = "" %}
+{%- for parentMenu in linklists.shop-by-products.links -%}
+  {% assign collection_handle = parentMenu.url | remove: "/collections/" | split: "/" | first %}
+  {% if menu_collections == "" %}
+    {% assign menu_collections = collection_handle %}
+  {% else %}
+    {% assign menu_collections = menu_collections | append: "," | append: collection_handle %}
+  {% endif %}
+{%- endfor -%}
+{% assign menu_collections = menu_collections | split: "," %}
+{% assign current_tag = current_tags | first %}
+{% assign matching_collections = "" %}
+{%- for parentMenu in linklists.shop-by-products.links -%}
+  {% assign parent_collection = parentMenu.url | remove: "/collections/" | split: "/" | first %}
+  {%- for childlink in parentMenu.links -%}
+    {% assign child_collection_handle = childlink.url | remove: "/collections/" | split: "/" | last %}
+    {% if child_collection_handle == current_tag %}
+      {% if matching_collections == "" %}
+        {% assign canonical_url = "/collections/" | append: parent_collection | append: "/" | append: current_tag %}
+        {% assign matching_collections = canonical_url %}
+      {% endif %}
+    {% endif %}
+  {%- endfor -%}
+{%- endfor -%}
+{% if matching_collections != "" %}
+    {%- assign cities = shop.metafields.custom_fields.location_collection__locations | split:','-%}
+    {%- for tagname in current_tags -%}
+            {%- assign tag_name = tagname | downcase | escape -%}   
+            {%- if cities contains tag_name -%}
+                {%-assign city = tag_name -%}
+                {%-break-%}
+            {%- endif -%}
+    {%- endfor -%}
+    {%- if city -%}
+        <link rel="canonical" href="{{ shop.url }}{{ matching_collections }}+{{ city }}">
+      {%- else -%}
+         <link rel="canonical" href="{{ shop.url }}{{ matching_collections }}">
+{% endif %}
+{% else %}
+    {%- assign cities = shop.metafields.custom_fields.location_collection__locations | split:','-%}
+    {%- for tagname in current_tags -%}
+            {%- assign tag_name = tagname | downcase | escape -%}   
+            {%- if cities contains tag_name -%}
+                {%-assign city = tag_name -%}
+                {%-break-%}
+            {%- endif -%}
+    {%- endfor -%}
+    {%- if city -%}
+        {%- assign canonical_url_clean = canonical_url | split: '?' | first -%}
+        <link rel="canonical" href="{{ canonical_url_clean }}">
+      {%- else -%}
+         <link rel="canonical" href="{{canonical_url}}">
+{% endif %}
+{% endif %}

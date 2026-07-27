@@ -1,0 +1,137 @@
+.assembly-page {
+    padding-top: 25px;
+    padding-bottom: 100px;
+}
+
+.assembly-menu {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0px 0 -12px;
+    width: calc(100% + 24px);
+}
+
+.assembly-menu ul {
+    list-style: none;
+    paddding: 0px;
+    margin: 0px;
+}
+
+.assembly-menu ul li {
+    float: left;
+    width: 25%;
+    background: transparent;
+    padding: 0px 12px;
+    margin: 0 0 14px 0;
+}
+
+.animate {
+    opacity: 0;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    margin-top: 30px;
+}
+
+.animate svg,
+.animate h4 {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    -webkit-transition: opacity 0.4s ease;
+    -moz-transition: opacity 0.4s ease;
+    -ms-transition: opacity 0.4s ease;
+    -o-transition: opacity 0.4s ease;
+}
+
+.animate--show {
+    opacity: 1;
+    margin-top: 0px;
+}
+
+.animate--show svg,
+.animate--show h4 {
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .assembly-menu ul li {
+        width: 33.33%;
+    }
+}
+
+@media (max-width: 767px) {
+    .assembly-menu ul li {
+        width: 50%;
+    }
+}
+
+@media (max-width: 500px) {
+    .assembly-menu ul li {
+        width: 100%;
+    }
+}
+
+.assembly-menu ul li a {
+    display: block;
+    height: 313px;
+    background: #f4f4f4;
+    border-radius: 6px;
+    text-align: center;
+    padding: 45px 0;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+}
+
+.assembly-menu ul li a:hover {
+    background: #bcd141;
+}
+
+.assembly-menu ul li a:hover svg path,
+.assembly-menu ul li a:hover svg polygon,
+.assembly-menu ul li a:hover svg rect {
+    fill: #fff;
+}
+
+.assembly-menu ul li a:hover h4 span {
+    color: #fff;
+}
+
+.assembly-menu ul li a svg.svg,
+.assembly-menu ul li a svg {
+    fill: #dadada;
+    height: 100%;
+    width: 100%;
+    max-width: 190px;
+    max-height: 160px;
+}
+
+.assembly-menu ul li a svg path,
+.assembly-menu ul li a svg polygon,
+.assembly-menu ul li a svg rect {
+    fill: #dadada;
+}
+
+.assembly-menu ul li a img {
+    /* 	opacity: 0; */
+    height: 100%;
+    width: 100%;
+    max-width: 190px;
+    max-height: 160px;
+}
+
+.assembly-menu ul li a h4 {
+    color: #010101;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0 0 0;
+    font-family: var(--font-body-family);
+}
+
+.assembly-menu ul li a h4 span {
+    display: block;
+    color: #b6b6b6;
+    font-size: 18px;
+}

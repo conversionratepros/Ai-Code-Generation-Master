@@ -1,0 +1,90 @@
+{{ 'quick-reads-section.css' | asset_url | stylesheet_tag }}
+<div class="quick-reads-section">
+    <div class="page-width">
+        <h2>Quick reads for <br class="large-hide"> Adelaide businesses</h2>
+        <div class="bloglist-with-banner-wrap">
+            <div class="blog-list-wrap">
+                {%- assign blog_handle_list = '6-office-fitout-ideas-that-boost-productivity-in-adelaide-workplaces,5-signs-your-adelaide-office-needs-a-full-chair-refresh,8-expert-tips-for-choosing-the-right-office-desk-for-your-adelaide-staff,7-problems-office-workstations-solve-for-adelaide-businesses' -%}
+                {%- assign bloglist = blog_handle_list | split:',' -%}
+                {%- for fitout in bloglist -%}
+                    {%- assign fitout_articles = blogs['main'].articles -%}
+                    {%- for fitout_article in  fitout_articles -%}
+                        {%- assign fitout_handle = 'main/' | append:fitout -%}
+                        {%- if fitout_article.handle == fitout_handle -%}
+                            <div class="blog-list {% if forloop.last %}last-list{% endif %}">
+                                <div class="blog-img">
+                                    <a href="{{ fitout_article.url }}">
+                                        <picture>
+                                            <img src="{{ fitout_article.image.src |  image_url: width: '300x' }}" alt="quick reads" width="150" height="120" loading="lazy">
+                                        </picture>
+                                    </a>
+                                </div>
+                                <div class="blog-list-body-wrap-outer">
+                                    <div class="blog-list-body">
+                                        <div class="blog-list-body-wrap">
+                                            <div class="blog-title"><a href="{{ fitout_article.url }}">{{ fitout_article.title }}</a></div>
+                                            <div class="blog-dis"><a href="{{ fitout_article.url }}">{{ fitout_article.excerpt | strip_html }}</a></div>
+                                            <div class="blog-list-footer">
+                                                <span class="date-time">{{ fitout_article.published_at  | date: "%b %d, %Y" }} in</span>
+                                                <span class="blog-tag">
+                                                    {% for tag in fitout_article.tags %}
+                                                        {{ tag }} 
+                                                        {% if forloop.index != fitout_article.tags.size %}
+                                                            ,
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+                <div class="blog-list has-viewbtn">
+                    <div class="blog-img"> </div>
+                    <div class="blog-list-body-wrap-outer">
+                        <div class="blog-list-body">
+                            <div class="blog-list-body-wrap">
+                                <a href="/blogs/main" class="btn view-all-btn">VIEW ALL</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-list-banner">
+                <div class="banner-ad-top">
+                    <picture class="bannerimg">
+                        <source srcset="{{ 'adelaide-brochure.jpg' | file_img_url: '885x' }}" media="(min-width: 768px)">
+                        <img src="{{ 'adelaide-brochure.jpg' | file_img_url: '335x' }}" alt="adelaide brochure" width="885px" height="298px" loading="lazy">
+                    </picture>
+                    <div class="banner-title">
+                        <div class="banner-title-text-arrow">
+                            The complete guide to buying office furniture in Adelaide
+                        </div>
+                        <a href="https://jasonl-items.s3.ap-southeast-2.amazonaws.com/other-resources/The+complete+guide+to+buying+office+furniture+in+Adelaide.pdf" class="btn" target="_blank">DOWNLOAD NOW</a>
+                    </div>
+                    <a href="https://jasonl-items.s3.ap-southeast-2.amazonaws.com/other-resources/The+complete+guide+to+buying+office+furniture+in+Adelaide.pdf" class="bottom-right-btn" target="_blank">FREE RESOURCE</a>
+                </div>
+                <div class="banner-bottom-section">
+                    <div class="bottom-heading-info-col">
+                        <div class="bottom-title-wrap">
+                            <h3 class="bottom-title">
+                                Don't miss our next free guide.
+                            </h3>
+                        </div>
+                        <div class="bottom-info">We're building a growing collection of guides, checklists, and articles made to help SA businesses plan smarter and create better workspaces. Register when you download to get free updates as we release new resources.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% schema %}
+{ "name": "Quick reads", "tag": "section", "class": "section--quick-reads left-shadow" }
+{% endschema %}

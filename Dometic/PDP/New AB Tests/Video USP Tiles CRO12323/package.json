@@ -4,9 +4,14 @@
   "description": "",
   "main": "variation.js",
   "scripts": {
-    "host": "npx fecli host config.json"
+    "host": "npx fecli host config.json",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  }
 }

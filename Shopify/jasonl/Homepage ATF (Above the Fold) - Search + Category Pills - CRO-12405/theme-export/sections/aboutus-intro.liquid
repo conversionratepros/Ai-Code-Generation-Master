@@ -1,0 +1,76 @@
+{{ 'aboutus-intro.css' | asset_url | stylesheet_tag }}
+<section
+  id="section-aboutus"
+  class="intro right-bg-img"
+  style="background-image: url('{{ 'aboutus-intro-large.png' | file_img_url: '1064x710' }}')"
+>
+  <div class="page-width">
+    <div class="intro__intro-wrapper">
+      <div class="intro__info">
+        <div class="intro_info-wrapper">
+          <div>
+            <h1 class="intro__title h3">
+              Nice to<br>
+              seat you!
+            </h1>
+            <div class="intro__text">
+              <strong>We are JasonL, and our purpose is to <br>
+                enable people to do great work.</strong
+              >
+              <div class="description intro__description">
+                <p>
+                  We achieve this by offering a tailored selection of stocked products and prompt services, fostering
+                  success in workplaces across the country.
+                </p>
+                <p>
+                  Operating in both private and public sectors, we serve growing SMEs, franchises, educational
+                  institutions, government agencies, and NFPs. Through collaboration with designers, builders, and
+                  project managers, we deliver comprehensive fit-out solutions to optimize workspaces.
+                </p>
+                <p>At JasonL, we value honesty, reliability, and the well-being of employees.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro__img-container">
+        <!-- Mobile -->
+        <img src="{{ 'intro-img1.png' | file_img_url:'master' }}" alt="We are JasonL" loading="lazy">
+      </div>
+
+      <div class="intro__our-values">
+        <div class="intro__box">
+          <strong>OUR VALUES</strong>
+          <div class="description intro__value-description">
+            <p>We’re authentically different. We add true value. We are true to our customers and ourselves.</p>
+            <p>
+              We get it done. <br>
+              Hard work. <br>
+              Fast work. <br>
+              Smart work. <br>
+            </p>
+            <p>We have a can-do attitude. We go above and beyond to delight our customers unexpectedly.</p>
+            <p>We care. We are a team who looks out for our customers and each other.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Intro",
+  "class": "aboutus-intro",
+  "settings": [{
+    "type":"header",
+    "content": "Left column",
+    "info": "This column supports column header, Highlight copy, and paragraphs."
+  },{
+    "type": "text",
+    "label": "Column header",
+    "id": "intro_left_column_header"
+  }]
+}
+{% endschema %}

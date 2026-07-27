@@ -1,7 +1,13 @@
 (function () {
     try {
-        var debug = 1;
+        var debug = 0;
         var variation_name = 'cro12302';
+
+        // Tile PLPs share a template with accessory PLPs (adhesive, grout, spacers,
+        // tools, underfloor heating) which all live under an "essentials" subcategory —
+        // this test must not fire on those, only genuine tile listing pages.
+        var NON_TILE_PATH_PATTERN = /essentials|adhesive|grout|spacer/i;
+        if (NON_TILE_PATH_PATTERN.test(location.pathname)) return;
 
         function waitForElement(selector, trigger) {
             var interval = setInterval(function () {
@@ -18,57 +24,75 @@
             if (el) el.classList.add(cls);
         }
 
-        var ICON_NEXT = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
-        var ICON_PREV = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+        var ICON_CHEVRON = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.5264 25.6514" fill="none"><path d="M1.1748 1.14648C2.00492 0.280665 3.4164 0.284992 4.24023 1.16016L14.3662 11.2852H14.3652C15.2463 12.1134 15.2459 13.5367 14.3652 14.3652L4.24121 24.4912L4.24023 24.4902C3.41631 25.3661 2.00502 25.3704 1.1748 24.5039C1.16514 24.495 1.15594 24.4856 1.14648 24.4766V24.4756C0.276198 23.6407 0.284765 22.2181 1.1748 21.3965L9.71973 12.8008L1.16016 4.24121V4.24023C0.284992 3.4164 0.280665 2.00492 1.14648 1.1748C1.15101 1.1699 1.15559 1.16501 1.16016 1.16016C1.16501 1.15559 1.1699 1.15101 1.1748 1.14648Z" fill="white" stroke="black" stroke-width="0.75"/></svg>';
 
         /* ── Single GraphQL request for all PLP products ── */
 
-        function fetchAllGalleries(callback) {
-            var cards = document.querySelectorAll('.product-item');
+        function fetchAllGalleries(cards, callback) {
             var skuMap = {};
 
             cards.forEach(function (card) {
                 var wishlist = card.querySelector('[data-role="add-to-links"]');
                 var link = card.querySelector('a.product-item-link');
-                if (wishlist && wishlist.id && link) {
-                    skuMap[wishlist.id] = { card: card, pdpUrl: link.href };
+                var img = card.querySelector('.product-image-photo');
+                if (wishlist && wishlist.id && link && img) {
+                    skuMap[wishlist.id] = { card: card, pdpUrl: link.href, currentImgPath: img.src.split('?')[0] };
                 }
             });
 
             var skus = Object.keys(skuMap);
             if (!skus.length) { callback({}); return; }
 
-            var query = '{ products(filter: { sku: { in: ' + JSON.stringify(skus) + ' } }, pageSize: 50) { items { sku media_gallery { url } } } }';
+            var query = '{ products(filter: { sku: { in: ' + JSON.stringify(skus) + ' } }, pageSize: 50) { items { sku media_gallery { url position disabled } } } }';
 
             fetch('/graphql', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Store': 'ZA' },
                 body: JSON.stringify({ query: query })
             })
-            .then(function (r) { return r.json(); })
-            .then(function (data) {
-                var items = (data && data.data && data.data.products && data.data.products.items) || [];
-                var results = {};
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    var items = (data && data.data && data.data.products && data.data.products.items) || [];
+                    var results = {};
 
-                items.forEach(function (item) {
-                    var entry = skuMap[item.sku];
-                    // Only process products with 2+ images
-                    if (!entry || item.media_gallery.length < 2) return;
-                    results[item.sku] = {
-                        card: entry.card,
-                        pdpUrl: entry.pdpUrl,
-                        img1: item.media_gallery[0].url + '&width=700',
-                        img2: item.media_gallery[1].url + '&width=700'
-                    };
+                    items.forEach(function (item) {
+                        var entry = skuMap[item.sku];
+                        if (!entry || !item.media_gallery || item.media_gallery.length < 2) return;
+
+                        // media_gallery is NOT returned in merchant-configured order, so sort
+                        // by position first. Position 0 is NOT reliably the image already
+                        // shown on the PLP (the small_image role can point to any gallery
+                        // slot) — walk forward until we find a file that actually differs
+                        // from what's on screen, so slide 2 never duplicates slide 1.
+                        // Entries can also be individually disabled in Magento (hidden from
+                        // the PDP gallery) while still coming back from this query — skip them.
+                        var gallery = item.media_gallery
+                            .filter(function (g) { return !g.disabled; })
+                            .sort(function (a, b) { return a.position - b.position; });
+
+                        var img2Url = null;
+                        for (var i = 0; i < gallery.length; i++) {
+                            if (gallery[i].url.split('?')[0] !== entry.currentImgPath) {
+                                img2Url = gallery[i].url;
+                                break;
+                            }
+                        }
+                        if (!img2Url) return;
+
+                        results[item.sku] = {
+                            card: entry.card,
+                            pdpUrl: entry.pdpUrl,
+                            img2: img2Url + '&width=700'
+                        };
+                    });
+
+                    if (debug) console.log('[CRO12302] GraphQL:', items.length, 'products,', Object.keys(results).length, 'eligible (2+ images)');
+                    callback(results);
+                })
+                .catch(function (err) {
+                    if (debug) console.warn('[CRO12302] GraphQL error:', err);
+                    callback({});
                 });
-
-                if (debug) console.log('[CRO12302] GraphQL:', items.length, 'products,', Object.keys(results).length, 'eligible (2+ images)');
-                callback(results);
-            })
-            .catch(function (err) {
-                if (debug) console.warn('[CRO12302] GraphQL error:', err);
-                callback({});
-            });
         }
 
         /* ── Build slider for one card ── */
@@ -83,20 +107,25 @@
             var slide1 = wrapper.querySelector('a');
             if (slide1) slide1.classList.add('cro12302-slide', 'cro12302-slide--1');
 
+            // The theme's hover-zoom rule only matches an <a> with this exact inline
+            // style (it targets a[style*="aspect-ratio"]), so slide 2 needs it too or
+            // it silently loses the hover effect slide 1 has.
+            var slide1Style = slide1 ? slide1.getAttribute('style') || '' : '';
+
             // Slide 2
             wrapper.insertAdjacentHTML('beforeend',
-                '<a href="' + pdpUrl + '" class="cro12302-slide cro12302-slide--2" tabindex="-1" aria-hidden="true">' +
-                    '<img src="' + img2 + '" loading="lazy" alt="">' +
+                '<a href="' + pdpUrl + '" style="' + slide1Style + '" class="cro12302-slide cro12302-slide--2" tabindex="-1" aria-hidden="true">' +
+                '<img src="' + img2 + '" class="product-image-photo default_image" loading="lazy" alt="">' +
                 '</a>' +
-                '<button class="cro12302-arrow cro12302-arrow--next" aria-label="Next image" type="button">' + ICON_NEXT + '</button>' +
-                '<button class="cro12302-arrow cro12302-arrow--prev" aria-label="Previous image" type="button">' + ICON_PREV + '</button>'
+                '<button class="cro12302-arrow cro12302-arrow--next" aria-label="Next image" type="button">' + ICON_CHEVRON + '</button>' +
+                '<button class="cro12302-arrow cro12302-arrow--prev" aria-label="Previous image" type="button">' + ICON_CHEVRON + '</button>'
             );
 
             // Indicator bar — goes between image area and product name
             actionsEl.insertAdjacentHTML('afterend',
                 '<div class="cro12302-indicator">' +
-                    '<div class="cro12302-seg cro12302-seg--active" data-idx="0"></div>' +
-                    '<div class="cro12302-seg" data-idx="1"></div>' +
+                '<div class="cro12302-seg cro12302-seg--active" data-idx="0"></div>' +
+                '<div class="cro12302-seg" data-idx="1"></div>' +
                 '</div>'
             );
 
@@ -159,15 +188,45 @@
 
         /* ── Init ── */
 
-        function init() {
-            addClass('body', variation_name);
+        // Only fetch/build for cards not already handled — lets this run again
+        // safely after "View More" / infinite-scroll appends fresh .product-item cards.
+        function processCards() {
+            var newCards = Array.prototype.filter.call(document.querySelectorAll('.product-item'), function (card) {
+                var wrapper = card.querySelector('.product-photo-actions-wrapper');
+                return wrapper && !wrapper.classList.contains('cro12302-init');
+            });
+            if (!newCards.length) return;
 
-            fetchAllGalleries(function (results) {
+            fetchAllGalleries(newCards, function (results) {
                 Object.keys(results).forEach(function (sku) {
                     var r = results[sku];
                     buildSlider(r.card, r.pdpUrl, r.img2);
                 });
             });
+        }
+
+        function init() {
+            addClass('body', variation_name);
+            processCards();
+
+            // PLP grids here load extra products via AJAX (e.g. "View More" / infinite
+            // scroll) without a page reload. That AJAX appends a whole new sibling grid
+            // (e.g. "amscroll-pages") next to the original one rather than new <li>s into
+            // it, so watch the shared grid container, not just the first grid itself.
+            var firstItem = document.querySelector('.product-item');
+            var watchTarget = firstItem && (firstItem.parentElement.parentElement || firstItem.parentElement);
+            if (watchTarget && window.MutationObserver) {
+                var pending = false;
+                var observer = new MutationObserver(function () {
+                    if (pending) return;
+                    pending = true;
+                    setTimeout(function () {
+                        pending = false;
+                        processCards();
+                    }, 300);
+                });
+                observer.observe(watchTarget, { childList: true, subtree: true });
+            }
         }
 
         waitForElement('.product-item', init);

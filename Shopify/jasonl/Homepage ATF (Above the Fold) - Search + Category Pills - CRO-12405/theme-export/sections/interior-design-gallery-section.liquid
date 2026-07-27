@@ -1,0 +1,54 @@
+{{ 'interior-design-gallery-section.css' | asset_url | stylesheet_tag }}
+<section class="interior-design-gallery-section">
+    <div class="page-width">
+        <div class="gallery-wrap">
+            <div class="gallery-left gallery-card">
+                <picture class="card-img">
+                    <img src="{{ 'interior-gallery-1.jpg' | file_img_url: '756x' }}" alt="Interior Inspiration" width="756" height="718">
+                </picture>
+                <div class="gallery-body">
+                    <h2 class="gallery-title">
+                        INSPIRATION
+                    </h2>
+                    <div class="gallery-info">
+                        See what's <br class="large-hide"> <i>possible</i> inside <br class="large-hide">our projects <br class="large-hide">portfolio
+                    </div>
+                    <a href="/pages/inspired" class="btn">OUR PORTFOLIO</a>
+                </div>
+            </div>
+            <div class="gallery-right">
+                <div class="gallery-card">
+                    <picture class="card-img">
+                        <img src="{{ 'interior-gallery-2.jpg' | file_img_url: '756x' }}" alt="Interior Inspiration" width="756" height="300">
+                    </picture>
+                </div>
+                <div class="galery-right-2-col">
+                    <div class="gallery-card">
+                        <picture class="card-img">
+                            <img src="{{ 'interior-gallery-3.jpg' | file_img_url: '756x' }}" alt="Interior Inspiration" width="756" height="300">
+                        </picture>
+                    </div>
+                    <div class="gallery-card">
+                        <picture class="card-img">
+                            <img src="{{ 'interior-gallery-4.jpg' | file_img_url: '756x' }}" alt="Interior Inspiration" width="756" height="300">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Interior design gallery",
+  "settings": [
+  ],
+  "presets": [
+    {
+      "name": "Interior design gallery"
+    }
+  ]
+}
+{% endschema %}

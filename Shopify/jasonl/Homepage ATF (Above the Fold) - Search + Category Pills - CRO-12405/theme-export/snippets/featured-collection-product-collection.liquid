@@ -1,0 +1,59 @@
+<ul>
+    {% assign listed_products = "" %}
+    
+    {%- for product in filtered_products -%}
+        {%- if products_displayed < max_products -%}
+            {% assign listed_products = listed_products | append: ',' | append: product.handle %}
+            <li class="product-item all-products nsw-products {% if product.tags contains 'Perth' %} perth-products {% endif %}">
+                <a href="{{ product.url }}">
+                <div class="item-img">
+                    <picture>
+                    <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                    <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                    </picture>
+                    {% comment %} {{ product.featured_image | image_url: width: 150 | image_tag : loading: 'lazy' }} {% endcomment %}
+                </div>
+                <div class="item-details">
+                    <h4>{{ product.title | strip_html | truncatewords: 8 }}</h4>
+                    <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                </div>
+                </a>
+            </li>
+
+            {%- assign products_displayed = products_displayed | plus: 1 -%}
+        {%- endif -%}
+
+        {%- if filtered_count < max_products and product.tags contains 'Perth' -%}
+            {% unless listed_products contains product.handle %}
+                <li class="product-item perth-products hidden">
+                    <a href="{{ product.url }}">
+                        <div class="item-img">
+                        <picture>
+                            <source srcset="{{ product.featured_image | image_url: width:300 }} 2x" media="(min-resolution: 2dppx)">
+                            <img src="{{ product.featured_image | image_url: width: 150 }}" alt="{{ product.featured_image.alt | escape }}" width="150" height="84">
+                        </picture>
+                        {% comment %} {{ product.featured_image | image_url: width: 214 | image_tag : loading: 'lazy'}} {% endcomment %}
+                        </div>
+                        <div class="item-details">
+                        <h4>{{ product.title | strip_html | truncatewords: 8  }}</h4>
+                        <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                        </div>
+                    </a>
+                </li>
+            {% endunless %}
+            {%- assign filtered_count = filtered_count | plus: 1 -%}
+        {%- endif -%}
+    {%- endfor -%}
+
+   {%- if products_displayed == 0 or filtered_count == 0 -%}
+        <li class="no-products">
+            No products found with the selected filter.
+        </li>
+    {%- else -%}
+        {%- if products_displayed == max_products -%}
+            <li class="view-all">
+                <a href="{{ collections[collection_handle].url }}" class="link">View all</a>
+            </li>
+        {%- endif -%}
+    {%- endif -%}
+</ul>

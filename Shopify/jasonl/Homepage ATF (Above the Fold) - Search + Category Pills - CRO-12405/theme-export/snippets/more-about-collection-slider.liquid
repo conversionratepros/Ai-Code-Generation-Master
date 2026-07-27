@@ -1,0 +1,88 @@
+{{ 'more-about-collection-slider.css' | asset_url | stylesheet_tag }}
+  {% comment %} <!-- Swiper --> {% endcomment %}
+  <div class="swiper more-about-collection-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="thumbnail-card">
+            <a href="#" class="card-link-on-panel">
+                <img src="{{ item_card1_image | file_img_url: '400x195', crop: 'center' }}" alt="San Fran workstation" width="100%" height="auto" class="card-img" />
+                <div class="thumbnail-card-body">
+                    <div class="card-title">
+                        San Fran workstation
+                    </div>
+                    <div class="card-link-icon">
+                        <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                            </path>
+                        </svg>  
+                    </div>
+                </div>
+            </a>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="thumbnail-card">
+            <a href="#" class="card-link-on-panel">
+                <img src="{{ item_card1_image | file_img_url: '400x195', crop: 'center' }}" alt="San Fran workstation" width="100%" height="auto" class="card-img" />
+                <div class="thumbnail-card-body">
+                    <div class="card-title">
+                        San Fran workstation
+                    </div>
+                    <div class="card-link-icon">
+                        <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                            </path>
+                        </svg>  
+                    </div>
+                </div>
+            </a>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="thumbnail-card">
+            <a href="#" class="card-link-on-panel">
+                <img src="{{ item_card1_image | file_img_url: '400x195', crop: 'center' }}" alt="San Fran workstation" width="100%" height="auto" class="card-img" />
+                <div class="thumbnail-card-body">
+                    <div class="card-title">
+                        San Fran workstation
+                    </div>
+                    <div class="card-link-icon">
+                        <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                            </path>
+                        </svg>  
+                    </div>
+                </div>
+            </a>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+<!-- Initialize Swiper -->
+<script>
+    
+    window.addEventListener("load", (event) => {
+         
+        var swiper = new Swiper(".more-about-collection-swiper", {
+            slidesPerView: 1.3,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction"
+            },
+            breakpoints: {
+                800: {
+                    slidesPerView: 3
+                }
+            }
+
+        });
+
+        if (window.innerWidth > 768) {
+            swiper.destroy(true, true);
+        } 
+    });
+    
+  </script>

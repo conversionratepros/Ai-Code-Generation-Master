@@ -1,0 +1,259 @@
+ <!-- TODO: Shipping info is static. This need to be seperate theme sections.-->
+                  {%- comment -%}
+                  <div
+                    class="shipping-info {%- if product.options.size == 1 and product.variants.size < 2-%}shipping-info-right-space{% endif %}">
+                  </div>
+                  {%- endcomment -%}
+                  <div class="shipping-info {% if product.variants.size < 2 %}shipping-info-right-space{% endif %}">
+                    <div class="shipping-info--left">
+                      <div class="item-shipping">
+                        <h3 class="h4">Shipping</h3>
+                        <ul class="list-bullet">
+
+
+                        {%- comment -%}
+                          Tue 18 Nov 2025
+                          Issue: When Gregory landing page was live. We noticed product with 'contact-to-purchase' tag was not showing "Estimated availabilty date".
+                          To fix the issue "availability_class" variable created including product.tags contains 'contact-to-purchase' logic
+                        {%- endcomment -%}
+                          {%- assign availability_class = "available" -%}
+                          {% if product.selected_or_first_available_variant.available == false or product.tags contains 'contact-to-purchase'%}
+                             {%- assign availability_class = "notAvailable" -%}
+                          {% endif %}
+
+                          <li class="product-delivery-date variant-availability {{availability_class}}">
+                            {%- if product.available -%}
+                            {%- unless product.tags contains 'contact-to-purchase'-%}
+                            
+                            <div class="shippingspeed-deliverydays">
+                              {%- assign deliverdays = 0 -%}
+                                {%- assign vendor_jasonl = product.vendor | handleize -%}
+                                {%- if vendor_jasonl == 'jasonl'  -%}
+                                    {% assign deliveryday_jason = settings.delivery_days_jasonl %}
+                                    {%- assign deliverdays = deliveryday_jason | times: 1 -%}
+                                {%-else-%}
+                                    {% assign deliveryday_suppliers = settings.delivery_days_suppliers %}
+                                    {%- assign deliverdays = deliveryday_suppliers | times: 1 -%}
+                                {%- endif -%}
+                            </div>
+
+
+
+
+
+
+                            {%- if deliverdays > 0 -%}
+                            <script>
+                              // Define calcWeekend in the global scope
+                              window.calcWeekend = function(element, deliverydays) {
+                                let sat = 'Sat';
+                                let sun = 'Sun';
+                                var today = new Date();
+                                var year = today.getFullYear();
+                                var hours = today.getHours();
+                                var today_str = today.toString();
+                                var today_split = today_str.split(" ");
+                                var today_day = today_split[0];
+                                {% comment %} console.log('Today: '+ today_day); {% endcomment %}
+
+                                /* Chrismas Holiday 
+                                  ---------------- */
+                                var xmas_month = today_split[1];
+                                var xmas_date = today_split[2];
+                                /* ------- */
+
+                                var i;
+                                var weekend_counter = 0;
+                                // Order placed on saturday or sunday. Add 1 day on total delivery days.
+                                if (today_day == sat || today_day == sun) {
+                                    deliverydays = deliverydays + 1;
+                                  }
+                                // Order placed at or after 3pm. Add 1 day on total delivery days.
+                                if(hours >= 15){
+                                  if (today_day != sat && today_day != sun) {
+                                  deliverydays = deliverydays + 1;
+                                  }
+                                }
+                                // Exclude Saturday and Sunday
+                                for (i = 0; i < deliverydays; i++) {
+                                  today.setDate(today.getDate() + 1);
+                                  today_str = today.toString();
+                                  today_split = today_str.split(" ");
+                                  today_day = today_split[0];
+                                  var today_month = today_split[1];
+                                  var today_date = today_split[2];
+                                  {% comment %} console.log('Today: ' + today_day); {% endcomment %}
+                                  if(today_day == sat || today_day == sun){
+                                    deliverydays = deliverydays + 1;
+                                  }
+                                }
+                                
+                                let deliveryDate = element;
+                                if(deliveryDate){
+
+
+                                  if(xmas_month == 'Dec' && (xmas_date == '18' || xmas_date == '19') ){
+                                    deliveryDate.innerHTML = `<p>Get it by <strong>Wed, 7 Jan 2026</strong></p>`; 
+                                  } else if (xmas_month == 'Dec' && (xmas_date == '20' || xmas_date == '21') ){ 
+                                    deliveryDate.innerHTML = `<p>Get it by <strong>Thu, 8 Jan 2026</strong></p>`;
+                                  } else if (xmas_month == 'Dec' && (xmas_date == '22' || xmas_date == '23' || xmas_date == '24') ){ 
+                                    deliveryDate.innerHTML = `<p>Get it by <strong>Fri, 9 Jan 2026</strong></p>`;
+                                  } else if (xmas_month == 'Dec' && (xmas_date == '25' || xmas_date == '26' || xmas_date == '27' || xmas_date == '28' || xmas_date == '29' || xmas_date == '30' ) ){ 
+                                    deliveryDate.innerHTML = `<p>Get it by <strong>Mon, 12 Jan 2026</strong></p>`; 
+                                  } else if (xmas_month == 'Dec' && (xmas_date == '31' ) ){
+                                    deliveryDate.innerHTML = `<p>Get it by <strong>Tue, 13 Jan 2026</strong></p>`;
+                                  } else if (xmas_month == 'Jan' && (xmas_date == '01' || xmas_date == '02' || xmas_date == '03' ) ){
+                                    deliveryDate.innerHTML = `<p>Get it by <strong>Tue, 13 Jan 2026</strong></p>`;
+                                   } else if (xmas_month == 'Jan' && (xmas_date == '04' || xmas_date == '05' ) ){ 
+                                    deliveryDate.innerHTML = `<p>Get it by <strong>Wed, 14 Jan 2026</strong></p>`;
+                                  }else{
+                                      deliveryDate.innerHTML = '<p>Get it by  <strong>'+today_day+', '+today_date+' '+today_month+' '+year+'</strong></p>';
+                                  }
+
+                                  //deliveryDate.innerHTML = '<p>Get it by <strong>'+today_day+', '+today_date+' '+today_month+' '+year+'</strong></p>';     
+                                }
+                              }
+                              
+                              // Define updateAllDeliveryDates in the global scope
+                              window.updateAllDeliveryDates = function(deliveryDays) {
+                                const elements = document.querySelectorAll('.delivery-date');
+                                elements.forEach(element => {
+                                  window.calcWeekend(element, deliveryDays);
+                                });
+                              }
+
+                              document.addEventListener("DOMContentLoaded", function() {
+                                // Only run on the product page, not in quick view
+                                if (!document.querySelector('quick-add-modal')) {
+                                  // product page
+                                  let element_deliveryDate = document.getElementById('delivery-date');
+                                  if(element_deliveryDate){
+                                    window.calcWeekend(element_deliveryDate, {{deliverdays}});
+                                  }
+                                }
+                                // collection page
+                              });
+                              
+                              // Update when quick view modal content is loaded
+                              document.addEventListener('product-info:loaded', function(event) {
+                                // Only run in quick view modal context
+                                if (event.target && event.target.closest('quick-add-modal')) {
+                                  const deliveryDateElements = event.target.querySelectorAll('.delivery-date');
+                                  if (deliveryDateElements.length > 0) {
+                                    deliveryDateElements.forEach(element => {
+                                      const deliveryDays = parseInt(element.dataset.deliveryDays);
+                                      if (!isNaN(deliveryDays)) {
+                                        window.calcWeekend(element, deliveryDays);
+                                      }
+                                    });
+                                  }
+                                }
+                              });
+                            </script>
+                            {%- endif -%}
+
+                            {%-endunless-%}
+                            {%-endif-%}
+                            {%- if product.available -%}
+                            {%- unless product.tags contains 'contact-to-purchase'-%}
+                            <span id="delivery-date" class="delivery-date" data-delivery-days="{{deliverdays}}">Get it by <strong>{{deliverydays}}* </strong></span>
+                            {%-endunless-%}
+                            {%-endif-%}
+
+                          </li>
+                          <li class="product-current-location">
+                            <div class="product-current-location-label">Your location: <strong class="product-current-location-name" id="main-prod-location-name"></strong></div>
+                            <div class="link main-prod-change-locations" id="main-prod-change-locations">
+                                    <modal-opener class="simple-popup-modal__opener no-js-hidden" data-modal="#PopupModal-modal_change_location" >
+                                          (&nbsp;<button>change</button>&nbsp;)
+                                    </modal-opener>
+                            </div>
+                          </li>
+                          <li class="product-availability variant-availability {{availability_class}}" >
+                            {% assign today = 'now' | date: '%s' %}
+
+                              {% if product.metafields.productmeta.custom_availability_date != blank %}
+                                {% assign product_date = product.metafields.productmeta.custom_availability_date | date: '%s' %}
+                                {% if product_date > today %}
+                                  <p>
+                                    Estimated availability date: 
+                                    <strong>{{ product.metafields.productmeta.custom_availability_date | date: "%a, %d %b, %Y" }}</strong>
+                                  </p>
+                                {% else %}
+                                  <p>
+                                    Estimated availability date: 
+                                    <strong>{{ shop.metafields.custom_fields.availability_date | date: "%a, %d %b, %Y" }}</strong>
+                                  </p>
+                                {% endif %}
+                              {% else %}
+                                <p>
+                                  Estimated availability date: 
+                                  <strong>{{ shop.metafields.custom_fields.availability_date | date: "%a, %d %b, %Y" }}</strong>
+                                </p>
+                              {% endif %}
+
+
+                            <script>
+                              /*
+                              function changeDateFormat(){
+                                const metaDate = "{{ shop.metafields.custom_fields.availability_date | date }}";
+                                var metaDate_split = metaDate.split('-');
+                                // year, month, date
+                                var newDate = new Date(metaDate_split[0], metaDate_split[1], metaDate_split[2]);
+                                 var date_str = newDate.toString();
+                                  var date_split = date_str.split(" ");
+                                  var date_day = date_split[0];             
+                                  date_day = date_split[0];
+                                  var date_month = date_split[1];
+                                  var date_date = date_split[2];
+                                  console.log("{{ shop.metafields.custom_fields.availability_date }}");
+                                  const element = document.querySelector('.product-availability');
+                                  element.innerHTML = `<p>Estimated availability date: <strong>${date_day}, ${date_month} ${date_date} </strong></p>`
+
+                              }
+                              */
+                              //changeDateFormat();
+                            </script>
+                          </li>
+                          <li class="show-estimation">Shipping is calculated on final <strong>basket value</strong>
+                            <!-- <a onclick="showIntoView()" href="#delivery-returns" id="estimated-shipping">See estimated shipping here</a>  -->
+                              {%- comment -%} 
+                              <span class="link" onclick="deliveryShowIntoView(this)" data-table="shipping" id="estimated-shipping"
+                              data-id="{{product.id}}-{{section.id}}">See estimated shipping here</span> 
+                              {%- endcomment -%}
+                          </li>
+                          <li class="show-estimation">Nationwide <strong>assembly is available during checkout</strong> or on quote request
+                            {%- comment -%}
+                              <span class="link" onclick="deliveryShowIntoView(this)" data-table="assembly" id="estimated-assembly"
+                              data-id="{{product.id}}-{{section.id}}">See estimated assembly cost here</span>
+                               {%- endcomment -%}
+                          </li>
+                          {%- comment -%}
+                          <li>Final shipping calculated basket size during checkout</li>
+                          <li>FREE collection - open 5 days a week</li>
+                          {% endcomment %}
+                        </ul>
+                      </div>
+                      <div class="item-return">
+                        <h3 class="h4" id="top">Return</h3>
+                        <ul class="list-bullet">
+                          <li>
+                            <p>There is a 14-day return policy on this product. <a class="link" href="https://www.jasonl.com.au/pages/shipping-and-returns" target="_blank" rel="noopener noreferrer">T&Cs apply</a></p>
+                          </li>
+                        </ul>  
+                      </div>
+                    </div>
+                    {%- comment -%}
+                    <div class="shipping-info--right">
+                      <div class="free-shipping-badge">
+                        <p><span>Free<br>shipping</span><span>on orders<br>over $1,000</span></p>
+                      </div>
+                    </div>
+                    {%- endcomment -%}
+                  </div>
+                  <!-- END: Shipping info -->
+
+<script>
+  // Remove duplicate function definitions at the bottom of the file
+  // The functions are now defined in the global scope above
+</script>

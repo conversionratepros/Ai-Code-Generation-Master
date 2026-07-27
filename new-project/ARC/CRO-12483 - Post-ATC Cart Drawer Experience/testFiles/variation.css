@@ -1,0 +1,334 @@
+/* Variation B - Post-ATC | Cart Drawer Experience | ALL | CRO-12483 */
+
+/* Suppress the native Dynamicweb "Item added to bag" modal — this test replaces it */
+body.cro-12483 #AddedToCart {
+    display: none !important;
+}
+
+body.cro-12483 .arcAtc,
+body.cro-12483 .arcAtc * {
+    box-sizing: border-box;
+}
+
+body.cro-12483 .arcAtc {
+    position: fixed;
+    inset: 0;
+    z-index: 9999999999;
+    font-family: "DM Sans", -apple-system, Segoe UI, Roboto, sans-serif;
+    color: #141414;
+}
+
+body.cro-12483 .arcAtc__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 20, 20, .32);
+    cursor: pointer;
+    animation: arcAtcFade .28s ease both;
+}
+
+body.cro-12483 .arcAtc__panel {
+    position: absolute;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+body.cro-12483 .arcAtc__grab {
+    display: none;
+}
+
+body.cro-12483 .arcAtc__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    border-radius: 50%;
+    color: #6b6b6b;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+}
+
+body.cro-12483 .arcAtc__close:hover {
+    background: #f2f2f2;
+    color: #141414;
+}
+
+body.cro-12483 .arcAtc__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+body.cro-12483 .arcAtc__tick {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #1841c4;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    animation: arcAtcPop .34s cubic-bezier(.2, 1.3, .4, 1) both;
+}
+
+body.cro-12483 .arcAtc__title {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+}
+
+body.cro-12483 .arcAtc__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+body.cro-12483 .arcAtc__thumb {
+    flex: 0 0 auto;
+    width: 66px;
+    height: 66px;
+    border: 1px solid #ececec;
+    border-radius: 0;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+body.cro-12483 .arcAtc__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+body.cro-12483 .arcAtc__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+body.cro-12483 .arcAtc__name {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+body.cro-12483 .arcAtc__size {
+    font-size: 13px;
+    color: #6b6b6b;
+}
+
+body.cro-12483 .arcAtc__price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+body.cro-12483 .arcAtc__was {
+    font-size: 12px;
+    font-weight: 500;
+    color: #9a9a9a;
+    text-decoration: line-through;
+}
+
+body.cro-12483 .arcAtc__now {
+    font-size: 14px;
+    font-weight: 700;
+    color: #141414;
+}
+
+body.cro-12483 .arcAtc--sale .arcAtc__now {
+    color: #ff1694;
+}
+
+/* ---- divider + live bag summary row ---- */
+body.cro-12483 .arcAtc__divider {
+    height: 1px;
+    width: 100%;
+    background: #e7e7e7;
+}
+
+body.cro-12483 .arcAtc__summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+body.cro-12483 .arcAtc__summary-count {
+    font-size: 14px;
+    color: #141414;
+}
+
+body.cro-12483 .arcAtc__summary-total {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+body.cro-12483 .arcAtc__bag-was {
+    font-size: 13px;
+    font-weight: 500;
+    color: #9a9a9a;
+    text-decoration: line-through;
+}
+
+body.cro-12483 .arcAtc__bag-now {
+    font-size: 15px;
+    font-weight: 700;
+    color: #141414;
+}
+
+body.cro-12483 .arcAtc__bag-now--sale {
+    color: #ff1694;
+}
+
+body.cro-12483 .arcAtc__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body.cro-12483 .arcAtc__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    border-radius: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity .15s, background .15s, border-color .15s;
+}
+
+body.cro-12483 .arcAtc__btn--primary,
+body.cro-12483 .arcAtc__btn--primary:hover,
+body.cro-12483 .arcAtc__btn--primary:focus {
+    background: #141414;
+    color: #fff !important;
+    border: 1.5px solid #141414;
+}
+
+body.cro-12483 .arcAtc__btn--primary:hover {
+    opacity: .88;
+}
+
+body.cro-12483 .arcAtc__btn--secondary,
+body.cro-12483 .arcAtc__btn--secondary:hover,
+body.cro-12483 .arcAtc__btn--secondary:focus {
+    color: #141414 !important;
+    border: 1.5px solid #141414;
+}
+
+body.cro-12483 .arcAtc__btn--secondary {
+    background: #fff;
+}
+
+body.cro-12483 .arcAtc__btn--secondary:hover {
+    background: #f6f6f6;
+}
+
+/* ---------- MOBILE: bottom sheet ---------- */
+body.cro-12483 .arcAtc--mobile .arcAtc__panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-radius: 18px 18px 0 0;
+    padding: 12px 20px calc(20px + env(safe-area-inset-bottom));
+    gap: 18px;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, .16);
+    animation: arcAtcUp .34s cubic-bezier(.22, .9, .28, 1) both;
+}
+
+body.cro-12483 .arcAtc--mobile .arcAtc__grab {
+    display: block;
+    width: 40px;
+    height: 4px;
+    border-radius: 99px;
+    background: #e1e1e1;
+    margin: 2px auto 4px;
+}
+
+body.cro-12483 .arcAtc--mobile .arcAtc__close {
+    top: 12px;
+}
+
+/* ---------- DESKTOP: content-sized card, top-right near the basket ---------- */
+body.cro-12483 .arcAtc--desktop .arcAtc__panel {
+    top: 20px;
+    right: 20px;
+    height: auto;
+    max-height: calc(100vh - 40px);
+    width: 404px;
+    border-radius: 14px;
+    padding: 30px 32px 28px;
+    gap: 22px;
+    overflow: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .20);
+    animation: arcAtcIn .36s cubic-bezier(.22, .9, .28, 1) both;
+}
+
+body.cro-12483 .arcAtc--desktop .arcAtc__title {
+    font-size: 21px;
+}
+
+body.cro-12483 .arcAtc--desktop .arcAtc__close {
+    top: 16px;
+    right: 16px;
+}
+
+@keyframes arcAtcUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes arcAtcIn {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes arcAtcFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes arcAtcPop {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

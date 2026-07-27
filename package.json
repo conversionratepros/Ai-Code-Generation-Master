@@ -4,7 +4,9 @@
     "serve:cro-10185": "node \"OneDayOnly/PLP/Recipe OOD  Product Card — Absolute Savings Line  ALL  CRO-10185/serve-local.js\""
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "browser-sync": "^3.0.4",
+    "fecli": "^0.4.0",
     "playwright": "^1.60.0"
   }
 }

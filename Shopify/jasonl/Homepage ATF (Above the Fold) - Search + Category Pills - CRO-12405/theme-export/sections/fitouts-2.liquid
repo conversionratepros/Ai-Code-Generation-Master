@@ -1,0 +1,43 @@
+{{ 'fitouts-2.css' | asset_url | stylesheet_tag }}
+<div class="fitouts-2-wrap">
+    <div class="page-width">
+        <div class="title-with-btn">
+            <h2 class="section-title">Office fitouts we've nailed</h2>
+            <a href="/blogs/fitouts" class="btn">VIEW ALL</a>
+        </div>
+        <div class="fitout-list">
+            {%- assign fitout_handle_list = "torrens-university,mtk-lawyers,orange-sky-australia" -%}
+            {%- assign bloglist = fitout_handle_list | split:',' -%}
+            {%- for fitout in bloglist -%}
+                {%- assign fitout_articles = blogs['fitouts'].articles -%}
+                {%- for fitout_article in fitout_articles -%}
+                    {%- assign fitout_handle = 'fitouts/' | append:fitout -%}
+                    {%- if fitout_article.handle == fitout_handle -%}
+                        <div class="card">
+                                <a href="{{ fitout_article.url }}">
+                                    <div class="card-thumb">
+                                        <picture>
+                                            <img src="{{ fitout_article.image.src |  image_url: width: '500x', height: '320x', crop: 'center' }}" alt="Office fitouts" width="500" height="320" loading="lazy">
+                                        </picture>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ fitout_article.title }}
+                                    </div>
+                                </a>
+                            </div>
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endfor -%}
+            <div class="btn-sm">
+                <a href="/blogs/fitouts" class="btn">VIEW ALL</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Fitous",
+"class": "fitouts-2-section"
+}
+{% endschema %}

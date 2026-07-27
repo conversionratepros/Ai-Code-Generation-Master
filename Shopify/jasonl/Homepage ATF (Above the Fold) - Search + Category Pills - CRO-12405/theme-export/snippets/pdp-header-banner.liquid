@@ -1,0 +1,56 @@
+{% comment %} there are two files one is in section pdp-header-banner and another is in snippit {% endcomment %}
+{{ 'pdp-header-banner.css' | asset_url | stylesheet_tag }}
+<div class="pdp-header-banner">
+    {% assign xmas_header = false %}
+    {% if xmas_header == true %}
+        {% render 'xmas-msg-header-banner' %}
+    {% else %}
+        {% comment %} 
+        <a href="/pages/gregory-chairs" class="headerlink"></a>
+        <div class="page-width header-banner-page-width">
+            <div class="banner-text">
+                <div class="banner-text-line">
+                    Gregory Chairs is now part of the JasonL family!
+                </div>
+                <picture class="banner-company-logo">  
+                    <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                    <source srcset="{{ 'gregory-chairs-logo.png' | file_img_url:'54x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                    <source srcset="{{ 'gregory-chairs-logo.png' | file_img_url:'54x'}}" media="(min-width: 768px)">
+                    <img src="{{ 'gregory-chairs-logo.png' | file_img_url:'54x' }}" alt="" width="54" height="auto">
+                </picture>
+                <a href="/pages/gregory-chairs" class="link">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <picture class="pdp-header-banner-picture">  
+            <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+            <source srcset="{{ 'gregory-header-bg-image.png' | file_img_url:'1000x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+            <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+            <source srcset="{{ 'gregory-header-bg-image.png' | file_img_url:'1000x'}}" media="(min-width: 768px)">
+            <img src="{{ 'gregory-header-bg-image.png' | file_img_url:'1000x' }}" alt="" width="1000" height="auto">
+        </picture> 
+        {% endcomment %}
+        <div class="page-width header-banner-page-width">
+            {% comment %} <a href="/pages/interior-design" class="headerlink"></a> {% endcomment %}
+            <div class="banner-text">
+                <div class="banner-text-line">
+                    <span class="banner-text-heading">Want to elevate your space?</span>
+                    {% comment %} <span class="dot">&#8226;</span> {% endcomment %}
+                    <span class="dis-txt">A dedicated designer makes all the difference.</span>
+                </div>
+                <a href="/pages/interior-design" class="link orange-txt">
+                    Find out more
+                </a>
+            </div>
+            {% comment %} <picture class="pdp-header-banner-picture">  
+                <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                <source srcset="{{ 'header-design-studio-img.png' | file_img_url:'1000x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                <source srcset="{{ 'header-design-studio-img.png' | file_img_url:'1000x'}}" media="(min-width: 768px)">
+                <img src="{{ 'header-design-studio-img.png' | file_img_url:'1000x' }}" alt="" width="1000" height="auto">
+            </picture>  {% endcomment %}
+        </div>
+    {% endif %}
+</div>

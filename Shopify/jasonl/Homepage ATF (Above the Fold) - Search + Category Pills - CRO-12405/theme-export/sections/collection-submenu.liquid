@@ -1,0 +1,275 @@
+
+{%- include 'collection-location-check' -%}
+{%- if is_collection_location == true -%}
+<div class="location-collection-grid-heading">
+  <div class="page-width">
+    {% capture location-colleciton-heading-child-category %}
+
+              {%- for ctag in current_tags -%}
+                    {% assign datavalue= ctag | downcase %}
+                    {% assign datavalue= datavalue | replace: " ","" %}
+                    {% assign datavalue= datavalue | slice: 0, 24 %}
+                    {% assign colnamevalue= datavalue | append: "_t" %}
+                    {%- assign tagprod = 'tagproducts' -%}
+                  {% if shop.metafields[tagprod][colnamevalue] %}
+                        {% assign tagtitlevalue= shop.metafields[tagprod][colnamevalue] %}
+                        {{ tagtitlevalue }}
+                    {% endif %}
+              {%- endfor -%}
+
+    {% endcapture %}
+
+    <h2> 
+          Our range of 
+          {% if location-colleciton-heading-child-category != blank %}
+                {{location-colleciton-heading-child-category }} 
+          {% else %} 
+                {{collection.title }} 
+          {% endif %} 
+          in {{collectionShowroom | capitalize}} 
+      </h2>
+  </div>
+</div>
+{%- else -%}
+    {%- comment -%}
+    ----------------------------------------------------------
+      If collection or sub collection does not contain Range (Tile block 1, slider), then show sub-menu on that collection page.
+    ----------------------------------------------------------
+    {%- endcomment -%}
+    {%- comment -%}
+    ----------------------------------------------------------
+          {%- unless current_tags -%}
+              {%- assign tileBlock1_title = collection.metafields.collectionmeta.collection_tile_block_1_title -%}
+              {%- assign tileBlock1_subtitle = collection.metafields.collectionmeta.collection_tile_block_1_subtit-%}
+              {%- assign tileBlock1_present = false -%}
+              {% for tile1_title in tileBlock1_title %} 
+                  {%- if tileBlock1_title != blank and tileBlock1_subtitle[forloop.index0]  != blank  -%}
+                      {%- assign tileBlock1_present = true -%}
+                      {%- break -%}
+                  {%- endif -%}
+              {%- endfor -%}
+          {%- else -%}
+                  {% for tagname in current_tags %}
+                      {%-assign ctag = tagname -%}
+                      {%-break-%}
+                  {%- endfor -%}
+                  {%- assign tagprod = 'tagproducts' -%}
+                  {% assign datavalue= ctag | downcase %}
+                  {% assign datavalue= datavalue | replace: " ","" %}
+                  {% assign datavalue= datavalue | slice: 0, 24 %}
+                  {% assign tile1_metaKey = datavalue | append: "_t1" %}
+                  {%- assign tile1_metaValues = shop.metafields[tagprod][tile1_metaKey] -%}
+
+                  {%- assign tileBlock1_present = false -%}
+                          {%- if tile1_metaValues -%}
+                              {%- assign tileBlock1_present = true -%}
+                          {%- endif -%}
+          {%- endunless -%}
+
+            {%- if collection.handle == 'home-office-furniture' or collection.handle == 'cafe-hospitality-furniture' or collection.handle == 'education-furniture' or tileBlock1_present == false -%}
+            {%- endif -%} 
+            ----------------------------------------------------------
+      {%- endcomment -%}
+
+
+
+
+      {{ 'component-collection-submenu.css' | asset_url | stylesheet_tag }}
+      <div class="submenu-static-holder {% if current_tags %} submenu-child-page{%endif%}">    
+      {%- assign navigation_handle = 'main-menu-image-without-more-testing' -%}
+      {%- if collection.handle == 'office-furniture'-%}
+          {%- assign navigation_handle = "shop-by-workspaces" -%}
+      {%- endif -%}
+          {%- for link in linklists[navigation_handle].links -%}
+              {%- assign child_list_handle = link.object.handle -%}
+              {%- if link.active -%}
+                  {% if link.links != blank %}
+						            <div class="submenu submenu-static left-shadow">
+                      		<div class="page-width">
+                            {%-comment-%}
+                            {%- render 'collection-excerpt' -%}
+                            {%-endcomment-%}
+                                <div class="submenu-item-holder">
+                                    <ul id="submenu-list" class="">
+                                        {%-if current_tags -%}
+                                            <li class="shopall">
+                                              <a href="{{- shop.url -}}{{- link.url -}}"><p>Shop all</p></a>
+                                            </li>
+                                        {%- endif -%}
+                                        {%- assign countSubmenuItems = link.links.size-%}
+                                        
+                                          {%- for childlink in link.links -%}
+                                              {%- assign parent_url = childlink.url -%} 
+                                              {%- assign stringSplit = parent_url | split:'/' -%}
+                                              {%-assign urlIndex = stringSplit | size | minus:1-%}
+                                              {%- assign childCollection = stringSplit[urlIndex] -%}
+                                        {%- if childlink.title -%}
+                                                <li {% if childlink.active %} class="site-nav--active"{% endif %}>  
+                                                     {%-comment-%}Get product url{%-endcomment-%}
+                                                      {%- if collections[stringSplit[urlIndex]].products_count == 1 -%}
+                                                        {%- for productss in collections[stringSplit[urlIndex]].products -%}
+                                                            {%- assign prod_url = productss.url -%}
+                                                        {%- endfor -%}
+                                                      {%- else -%}
+                                                        {%- assign prod_url = submenu_url -%}
+                                                      {% endif %}
+
+                                                      {%-comment-%}Get image url{%-endcomment-%}
+
+                                                  {% if collections[stringSplit[urlIndex]].products.size != 0 %}
+                                                      {%- if collections[stringSplit[urlIndex]].image-%}
+                                                            {%- assign submenu_imgsrc = collections[stringSplit[urlIndex]].image | img_url:'150x'-%}
+                                                  			    {%- assign submenu_imgsrc_mob = collections[stringSplit[urlIndex]].image | img_url:'85x'-%}
+                                                      {%-else-%}
+                                                            {%- for productss in collections[stringSplit[urlIndex]].products limit:1 -%}
+                                                                {%- assign submenu_imgsrc = productss.featured_image| img_url:'150x' -%}
+                                                  				      {%- assign submenu_imgsrc_mob = productss.featured_image| img_url:'85x' -%}
+                                                            {%- endfor -%}
+                                                      {%-endif-%}
+                                                  {% else %}
+                                                 
+                                                        {% assign lasttagvalue= stringSplit[urlIndex] %}
+                                                  		{% assign lasttagvalue = lasttagvalue | strip | split:'?' | first | split :'/' | last %}
+                                                         {% assign lasttagvalue= lasttagvalue | downcase %}
+                                                         {% assign lasttagvalue= lasttagvalue | replace: " ","" %}
+                                                         {% assign lasttagvalue= lasttagvalue | slice: 0, 24 | strip %}
+                                                         {% assign tagimageurl= lasttagvalue | append: "_i" | strip%}
+                                                         {% assign tagprods = 'tagproducts' %}
+    
+                                                         {% if shop.metafields[tagprods][tagimageurl] %}
+                                                            {% assign imageurl= shop.metafields[tagprods][tagimageurl] | strip %}
+                                                            {%- assign submenu_imgsrc = imageurl | file_img_url: '150x' -%}
+                                                   			    {%- assign submenu_imgsrc_mob = imageurl | file_img_url: '85x' -%}                                                 
+                                                        {% else %}
+                                                    
+                                                            {%- assign submenu_imgsrc = 'none'| img_url:'150x' -%}
+                                                   			    {%- assign submenu_imgsrc_mob ='none'| img_url:'85x'  -%}
+                                                        {% endif %}
+                                                    {%-endif-%}
+                                                  
+                                                       {%- assign colHandle = 'nav-'| append:childlink.handle  -%}
+
+                                                      {%- assign submenu_thumb = submenu_imgsrc_mob -%}
+                                                      {%- assign submenu_thumb_desktop = submenu_imgsrc -%}
+                                                  {% comment %}
+                                                      {%-if childlink.handle == 'cafe-tables' -%}
+                                                           {%- assign submenu_thumb = '//cdn.shopify.com/s/files/1/1249/7859/files/QDWS0606.B.ME_85x.jpg?v=8721014519502207334' -%}
+                                                          {%- assign submenu_thumb_desktop = '//cdn.shopify.com/s/files/1/1249/7859/files/QDWS0606.B.ME_150x.jpg' -%}
+                                                      {%- endif -%}
+                                                  {% endcomment %}
+
+                                                                  <a href="{{childlink.url}}" 
+                                                                     class="site-nav__link" 
+                                                                     data-collectiontag="{{childlink.title}}" 
+                                                                     data-productCounter="{{collections[colHandle].products_count}}" 
+                                                                     data-imgsrc="{{submenu_thumb_desktop}}"
+                                                                     data-colHandle = "{{colHandle}}">
+                                                                      <span class="submenu-img-holder">
+                                                                    
+                                                                        <picture>
+                                                                            <source media="(min-width: 1100px)" srcset="{{ submenu_thumb_desktop }}">
+                                                                            <img src="{{submenu_thumb}}" alt="{{childlink.title | escape}}" style="width:auto;" />
+                                                                        </picture>
+                                                                    </span>
+                                                                      <p>{{- childlink.title | escape -}}</p>
+                                                                  </a>
+                                                	</li>
+                                        {%- endif -%}
+                                        
+                               {%- endfor -%}
+
+                                  </ul>
+                                  <div id="submenu-viewall" class="submenu-viewall iconarrow iconarrow--down {% if countSubmenuItems < 8%} medium-hide large-up-hide {%endif%}">
+                                    <span>show all categories</span>
+                                  </div>
+                                </div>	
+                      		</div>
+                    	</div>
+					{%- endif -%}
+ 					{%-break-%}
+ 				{%-endif-%}
+		{%- endfor -%}
+
+        <script>    
+      const submenuViewAll = document.getElementById('submenu-viewall');
+      const submenulist = document.getElementById('submenu-list');
+      let submenu_visible_height = 185;
+      if(screen.width > 767 && screen.width < 1101 ){
+        submenu_visible_height = 200;
+      }
+      if(screen.width > 1100){
+        submenu_visible_height = 280;
+      }
+      // hide view all button for the list less than minimum number of list
+      if(submenuViewAll ){
+        if(submenulist.offsetHeight < submenu_visible_height){
+          submenuViewAll.classList.add('small-hide');
+        }
+        submenuViewAll.addEventListener("click", function(){   
+            toggleSubmenu();
+        });
+      }
+
+
+      function toggleSubmenu(){
+        const container = document.getElementById('submenu-list');
+        const toggleClass = document.querySelectorAll(".submenu-open");
+        console.log(toggleClass.length);
+        if(toggleClass.length > 0){
+          container.classList.remove("submenu-open");
+          submenuViewAll.classList.remove("iconarrow--up");
+          submenuViewAll.classList.add("iconarrow--down");
+          submenuViewAll.innerHTML = "<span>show all categories</span>";
+          document.body.scrollTop = document.documentElement.scrollTop = 0;
+        }else{
+          container.classList.add("submenu-open");
+              submenuViewAll.classList.remove("iconarrow--down");
+          submenuViewAll.classList.add("iconarrow--up");
+          submenuViewAll.innerHTML = "<span>show less</span>";
+        }
+      }
+        </script>
+        {%-comment-%}
+        ----------------------------------------------------------
+              {%-unless current_tags -%}
+              {%-else-%}  
+                  <div class="page-width">
+                    <div class="title-wrapper title-wrapper--reverse collection-title">
+                        {%- for ctag in current_tags -%}
+                              {% assign datavalue= ctag | downcase %}
+                              {% assign datavalue= datavalue | replace: " ","" %}
+                              {% assign datavalue= datavalue | slice: 0, 24 %}
+                              {% assign colnamevalue= datavalue | append: "_t" %}
+                              {% assign coldescription= datavalue | append: "_ex" %}
+                              {%- assign tagprod = 'tagproducts' -%}
+                              {% if shop.metafields[tagprod][colnamevalue] %}
+                                    {% assign tagtitlevalue= shop.metafields[tagprod][colnamevalue] %}
+                                    {%- assign is_metaFieldTag = true -%}
+                                        <h1>{{ tagtitlevalue }}</h1>
+                                        <span class="que-mark">?</span>
+                                {% endif %}
+                                {%- render 'collection-title-suffix' -%}
+                                {% if shop.metafields[tagprod][coldescription] %}
+                                        {% assign tagdescription= shop.metafields[tagprod][coldescription] %}
+                                    <p class="coll-excerpt-desp">{{ tagdescription }}</p>
+                                {% endif %}
+                          {%- endfor -%}
+                      </div>
+                    </div>
+              {%-endunless-%}
+        ----------------------------------------------------------
+      {%-endcomment-%}
+
+
+</div>
+
+ {%- endif -%}
+
+    {% schema %} 
+    { "name": "Collection Submenu",
+    "class":"collection-submenu-section"
+    } 
+    {% endschema %}
+
+
+

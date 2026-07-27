@@ -1,0 +1,14 @@
+
+{%- if metaProductHandle contains '?'-%}
+    {%- assign split_metaProductHandle = metaProductHandle | split:'?'-%}
+    {%- assign productHandle = split_metaProductHandle[0] -%}
+    {%- if split_metaProductHandle[1] contains 'variant' -%}
+        {%- render 'inspired-getVariantProduct', productHandle:productHandle, args: split_metaProductHandle[1] -%}
+    {%- else -%}
+        {% comment %} {%- render 'inspired-getBaseProduct', productHandle:productHandle-%} {% endcomment %}
+        {%- render 'inspired-getVariantProduct', productHandle:productHandle -%}
+    {%- endif -%}
+{%- else -%}
+    {% comment %} {%- render 'inspired-getBaseProduct', productHandle:metaProductHandle-%} {% endcomment %}
+    {%- render 'inspired-getVariantProduct', productHandle:metaProductHandle -%}
+{%- endif -%}

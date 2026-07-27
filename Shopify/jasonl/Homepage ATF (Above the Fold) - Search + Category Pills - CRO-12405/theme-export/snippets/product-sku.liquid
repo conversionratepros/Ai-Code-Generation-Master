@@ -1,0 +1,71 @@
+
+{% if prod_variant_size < 2 %}
+                        <div class="sku-container hide-sm quick-add-hidden">
+                              <div class="showsku showsku--withoutOption" data-productid="{{product.id}}" data-variant-id = "{{ product.selected_or_first_available_variant.id }}">
+                                {%- capture modal_content -%}
+                                    <h2 data-type="without option">{{ product.title }}</h2>
+                                    {%- assign variantQuantity =product.selected_or_first_available_variant.inventory_quantity -%}
+                                    {%- if variantQuantity > 100 -%}
+                                      {%- assign variantQuantity = 100 -%}
+                                    {%- endif -%}
+                                    <ul class="locations-sku-quantity" style="margin-bottom:10px">
+                                      {%- for variant in product.variants -%}
+                                        <li class="item-sku {% if product.selected_or_first_available_variant.id == variant.id %}show{% endif %}" data-variant-item="{{variant.id}}" data-sku="{{variant.sku}}"><strong>SKU: </strong>{{variant.sku}}</li>
+                                        <li class="item-title {% if product.selected_or_first_available_variant.id == variant.id %}show{% endif %}" data-variant-item="{{variant.id}}"><strong>Variant: </strong>{{variant.title}}</li>
+                                      {%- endfor -%}
+                                    </ul>
+                                    <ul id="locations-sku-quantity" class="locations-sku-quantity">
+                                      <li class="show"><div class="loader"></div></li>
+                                    </ul>
+                              {%- endcapture -%}
+                              {%- capture btn_data_attributes -%}
+                                  data-productid="{{product.id}}"
+                              {%- endcapture -%}
+                              {%- render 'simple-popup-modal',
+                              modal_id: 'showsku',
+                              modal_size:'small',
+                              modal_label:'SKU', 
+                              modal_content: modal_content,
+                              modal_button_class:'link', 
+                              modal_button_data_attributes:btn_data_attributes
+                              -%}
+                          </div>
+                        </div> 
+    {% else %}
+
+                        {%- comment -%} show SKU {%- endcomment -%}
+                        <div class="sku-container quick-add-hidden">
+                            <div class="showsku" data-variant-id = "{{ product.selected_or_first_available_variant.id }}">
+                            {%- capture modal_content -%}
+                                <h2 data-type="with option">{{ product.title }}</h2>
+                                {%- assign variantQuantity =product.selected_or_first_available_variant.inventory_quantity -%}
+                                {%- if variantQuantity > 100 -%}
+                                        {%- assign variantQuantity =100 -%}
+                                {%- endif -%}
+                                <ul class="locations-sku-quantity" style="margin-bottom:10px">
+                                    {%- for variant in product.variants -%}
+                                    <li class="item-sku {% if product.selected_or_first_available_variant.id == variant.id %}show{% endif %}" data-variant-item="{{variant.id}}" data-sku="{{variant.sku}}"><strong>SKU: </strong>{{variant.sku}}</li>
+                                    <li class="item-title {% if product.selected_or_first_available_variant.id == variant.id %}show{% endif %}" data-variant-item="{{variant.id}}"><strong>Variant: </strong>{{variant.title}}</li>
+                                    {%- endfor -%}
+                                </ul>  
+                                    <ul id="locations-sku-quantity" class="locations-sku-quantity">
+                                        <li class="show"><div class="loader"></div></li>
+                                    </ul>
+                            {%- endcapture -%}
+
+                            {%- capture btn_data_attributes -%}
+                                data-productid="{{product.id}}"
+                            {%- endcapture -%}
+                            {%- render 'simple-popup-modal',
+                                        modal_id: 'showsku',
+                                        modal_size:'small',
+                                        modal_label:'SKU' ,
+                                        modal_content: modal_content,
+                                        modal_class: 'show-sku',
+                                        modal_button_class:'link',
+                                        modal_button_data_attributes:btn_data_attributes
+                            -%}
+                            </div>
+                        </div>
+
+    {%- endif -%}

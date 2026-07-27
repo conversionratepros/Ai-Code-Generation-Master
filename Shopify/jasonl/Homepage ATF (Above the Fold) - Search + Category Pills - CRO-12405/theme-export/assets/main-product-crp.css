@@ -1,0 +1,536 @@
+/* ============================================================
+   CRP: PDP Add to Quote Journey — main-product-crp.css
+   v2 — grid-column span fix + tabs JS condition fix
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   Fulfillment list (Modular / In Stock / 10-day fitouts)
+   ---------------------------------------------------------- */
+.crp-fulfillment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.crp-fulfillment-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.crp-fulfillment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: #f0f0f0;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.crp-fulfillment-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #1e2939;
+}
+
+.crp-fulfillment-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: #1e2939;
+}
+
+/* ----------------------------------------------------------
+   Add to Quote — full width (hide Add to Cart, size ATQ)
+   ---------------------------------------------------------- */
+.crp-buy-box .add-to-cart-btn {
+  display: none !important;
+}
+
+.crp-buy-box .button-icon-holder {
+  grid-column: 1 / -1;
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.crp-buy-box .addtoquote-mainproduct-btn {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Override the 2-column explicit grid set by product-form.css — single-column so ATQ fills full width */
+.crp-buy-box {
+  grid-template-columns: 1fr !important;
+}
+
+.crp-buy-box .backorder-btn {
+  grid-column: 1 / -1;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* On mobile, un-hide the ATQ button inside the buy box so it sits beside the qty selector (Figma spec).
+   product-page.css hides .button-icon-holder inside qty-cartBtn-holder at <768px — override that here. */
+@media (max-width: 767px) {
+  .crp-buy-box .button-icon-holder {
+    display: block !important;
+  }
+}
+
+/* Hide the standalone mobile trigger on mobile — buy box ATQ button handles it now */
+@media (max-width: 767px) {
+  .mobile-add-to-quote-trigger {
+    display: none !important;
+  }
+}
+
+/* ----------------------------------------------------------
+   Assembly notice (below Add to Quote button)
+   ---------------------------------------------------------- */
+.crp-assembly-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 140%;
+  color: #161616;
+}
+
+.crp-assembly-notice::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  min-width: 4px;
+  border-radius: 50%;
+  background: #161616;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* ----------------------------------------------------------
+   Flat-rate shipping collapsible
+   ---------------------------------------------------------- */
+.crp-shipping-collapsible {
+ 
+  border-radius: 4px;
+  background: #ebf0f2;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .crp-shipping-collapsible {
+     margin-top: 0px;
+  }
+}
+
+.crp-shipping-details > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+  
+}
+
+.crp-shipping-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.crp-shipping-summary-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #000;
+  line-height: 1.3;
+}
+
+.crp-shipping-chevron {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #202020;
+  border-bottom: 2px solid #202020;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-right: 2px;
+  margin-bottom: 3px;
+}
+
+.crp-shipping-details[open] .crp-shipping-chevron {
+  transform: rotate(-135deg);
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+
+.crp-shipping-body {
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding: 8px 12px 2px;
+}
+
+/* 3-column rate table */
+.crp-rate-columns {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  padding: 0 0 1px;
+}
+
+.crp-rate-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 4px;
+  text-align: center;
+  flex: 1 1 0;
+}
+
+.crp-rate-col:nth-child(2) {
+  border-left: 1px solid #e5e9ec;
+  border-right: 1px solid #e5e9ec;
+}
+
+.crp-rate-range {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #161616;
+  white-space: nowrap;
+}
+
+.crp-rate-price {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #161616;
+}
+
+.crp-shipping-divider {
+  border: none;
+  border-top: 1px solid #e5e9ec;
+  margin: 0;
+}
+
+/* Orders over $10k row */
+.crp-rate-over10k {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+.crp-rate-over10k-label {
+  color: #000;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.crp-rate-over10k-link {
+  color: #c0d333 !important;
+  font-weight: 600;
+  text-decoration: underline !important;
+  text-decoration-color: #c0d333 !important;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+/* Nationwide delivery row */
+.crp-nationwide-delivery {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 12px 14px;
+  border-radius: 0 0 4px 4px;
+}
+
+.crp-nationwide-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #161616;
+  background-color: #F0F0F0;
+    border-radius: 50%;
+}
+
+.crp-nationwide-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.crp-nationwide-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  color: #161616;
+  line-height: 19px;
+}
+
+/* ----------------------------------------------------------
+   Returns section (bottom of buy box)
+   ---------------------------------------------------------- */
+.crp-returns {
+  margin-top: 16px;
+}
+
+.crp-returns-heading {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: inherit;
+  color: #121212 
+}
+
+.crp-returns-item {
+  font-size: 13px;
+  color: #161616;
+  line-height: 23.4px;
+  padding-top: 0px !important;
+  margin-top: 3.5px !important;
+  position: relative;
+  padding-left: 22px;
+}
+
+.crp-returns-item::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  min-width: 4px;
+  border-radius: 50%;
+  background: #161616;
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+
+/* ----------------------------------------------------------
+   Breadcrumb — re-scope product-page.css rules to .product-crp
+   product-page.css scopes all breadcrumb rules to .product-template
+   but this template renders with body class .product-crp, so rules
+   don't apply. Mirror them here.
+   ---------------------------------------------------------- */
+.product-crp ul.breadcrumb-menu {
+  padding: 13px 0 0;
+  line-height: 15px;
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+}
+
+.product-crp ul.breadcrumb-menu:not(:has(li)) {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .product-crp ul.breadcrumb-menu {
+    display: inline-block;
+    padding: 0;
+  }
+}
+
+.product-crp ul.breadcrumb-menu li {
+  float: left;
+  width: auto;
+  position: relative;
+}
+
+.product-crp ul.breadcrumb-menu li:first-child {
+  padding-left: 0;
+}
+
+.product-crp ul.breadcrumb-menu li span {
+  color: rgb(178, 178, 178);
+}
+
+.product-crp ul.breadcrumb-menu li a {
+  display: inline-block;
+  font-size: 11px;
+  padding: 0 20px 0 0;
+  position: relative;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .product-crp ul.breadcrumb-menu li a {
+    padding: 0 16px 0 0;
+  }
+}
+
+.product-crp ul.breadcrumb-menu li a::before {
+  content: '';
+  position: absolute;
+  right: 7px;
+  top: calc(50% - 4px);
+  width: 4px;
+  height: 4px;
+  border-width: 0 1px 1px 0;
+  border-style: none solid solid none;
+  border-color: currentcolor rgb(169, 169, 169) rgb(169, 169, 169) currentcolor;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 767px) {
+  .product-crp ul.breadcrumb-menu li a::before {
+    right: 6px;
+  }
+}
+
+.product-crp ul.breadcrumb-menu li:first-child a {
+  padding-left: 0;
+}
+
+@media (max-width: 1024px) {
+  .product-crp ul.breadcrumb-menu li.breadcrumb-child-collection {
+    display: none;
+  }
+}
+
+.product-crp ul.breadcrumb-menu li.breadcrumb-child-collection a span {
+  color: rgb(169, 169, 169);
+}
+
+.product-crp ul.breadcrumb-menu li.child-collection-first {
+  display: block;
+}
+
+.product-crp ul.breadcrumb-menu li:last-child a::before {
+  transform: rotate(45deg);
+  border-color: rgb(32, 32, 32);
+}
+
+.product-crp ul.breadcrumb-menu li.breadcrumb-child-collection.child-collection-first a span {
+  color: rgb(22, 22, 22);
+}
+
+/* ----------------------------------------------------------
+   In stock fulfillment item — swap text based on stock state.
+   .crp-instock-text  = "In stock – ready to ship now. Get it by [date]"
+   .crp-backorder-text = "Estimated availability date: [date]"
+   preorder-show is toggled by product-info.js (regional availability)
+   and by Liquid for contact-to-purchase products.
+   ---------------------------------------------------------- */
+.crp-backorder-text {
+  display: none;
+}
+
+html:has(.product-form__buttons.preorder-show) .crp-backorder-text {
+  display: inline;
+}
+
+html:has(.product-form__buttons.preorder-show) .crp-instock-text {
+  display: none;
+}
+
+/* ----------------------------------------------------------
+   Compare section — mirror .product-template scope to .product-crp
+   product-page.css scopes overflow:hidden to .product-template,
+   without it the 195%-wide compare table overflows the page on
+   mobile instead of scrolling within the section.
+   ---------------------------------------------------------- */
+.product-crp .section-product-compare {
+  order: 1;
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------
+   Compare section — table-head column z-index + mobile layout.
+   product-page.css scopes z-index:2 and mobile column styles to
+   .product-template only. Without it, columns sit behind the
+   white ::after overlay (z-index:1) and images are hidden on CRP.
+   ---------------------------------------------------------- */
+.product-crp .compare-main-table .table-head .table-col {
+  z-index: 2;
+  position: relative;
+  border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+  .product-crp .compare-main-table .table-head .table-col {
+    justify-content: left;
+    background-color: #fff;
+    z-index: 2;
+    padding-bottom: 36px;
+    border-radius: 0px;
+  }
+}
+
+/* ----------------------------------------------------------
+   Compare section — active product column order.
+   product-page.css sets order:1 on .activeproduct globally,
+   pushing it to the last column on mobile. Override to order:0
+   on CRP so the active product appears in its correct position.
+   ---------------------------------------------------------- */
+@media (max-width: 767px) {
+  .product-crp .compare-holder .div-table-wrapper .table-row .table-col.activeproduct,
+  .product-crp .compare-holder .div-table-wrapper .table-row .table-col.compare-active-value {
+    order: 0;
+  }
+}
+
+/* ----------------------------------------------------------
+   Breadcrumb holder wrapper — mirror .product-template rules.
+   main-product_crp.liquid uses breadcrumb-holder breadcrumb-holder--sm
+   breadcrumb-visible-all hide-sm. product-page.css scopes all
+   holder rules to .product-template; mirror them here.
+   ---------------------------------------------------------- */
+.product-crp .breadcrumb-holder--sm {
+  margin-top: 17px;
+  margin-bottom: 0;
+}
+
+.product-crp .breadcrumb-holder--sm.breadcrumb-visible-all {
+  line-height: 15px;
+}
+
+@media (max-width: 767px) {
+  .product-crp .breadcrumb-holder {
+    display: inline-block;
+  }
+
+  .product-crp .breadcrumb-holder--sm.hide-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .product-crp .breadcrumb-holder--sm {
+    display: none;
+    margin-bottom: 28px;
+  }
+
+  .product-crp .breadcrumb-holder--sm.breadcrumb-visible-all {
+    display: block;
+  }
+}
+
+/* ----------------------------------------------------------
+   Cross-sell section — mirror .product-template display:block.
+   Without this, .section-cross-sell may not render as block on CRP.
+   ---------------------------------------------------------- */
+.product-crp .section-cross-sell {
+  display: block;
+}

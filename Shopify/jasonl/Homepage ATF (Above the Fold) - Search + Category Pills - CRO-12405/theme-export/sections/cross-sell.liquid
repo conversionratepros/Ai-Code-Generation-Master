@@ -1,0 +1,302 @@
+{%- unless skip_styles -%}
+    {%- unless settings.cart_type == 'drawer' -%}
+        {{ 'component-card.css' | asset_url | stylesheet_tag }}
+        {{ 'component-price.css' | asset_url | stylesheet_tag }}
+    {% endunless %}
+{%- endunless -%}
+
+{% comment %} <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'"> {% endcomment %}
+{% comment %} <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'"> {% endcomment %}
+<link rel="stylesheet" href="{{ 'component-product-grid.css' | asset_url }}" media="print" onload="this.media='all'">
+{{ 'cross-sell.css' | asset_url | stylesheet_tag }} 
+
+
+{%- comment -%} get enviro image {%- endcomment -%}
+{%- assign env_img = false -%}
+{%- assign is_product_env_img = false -%}
+{%- for product_img in product.images -%}
+    {%- if forloop.index == 2 -%}
+        {%- assign env_img = product_img -%}
+        {%- assign is_product_env_img = true -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{%- unless env_img -%}
+    {%- assign env_img = 'combines-with-bg.jpg'  -%}
+{%- endunless -%}
+
+
+<style>
+.section-cross-sell{
+    background: #f2f5f8;
+    position: relative;
+}
+.section-cross-sell .cross-sell-products{
+    /* background: url('{{env_img}}') no-repeat 100% 0;
+    background-size: auto 100%; */
+    position: relative;
+}
+.addtocart-crossell-wrapper{
+    position: relative;
+    z-index: 2;
+}
+@media(max-width:1024px){
+    /* .section-cross-sell .cross-sell-products{
+        background: url('{{env_img}}') no-repeat 100% 0;
+        background-position: 50vw 0;
+        background-size: auto 100%;
+    }  */
+}
+@media(max-width:991px){
+    .section-cross-sell .cross-sell-products{
+        background-position: 40vw 0;
+    }
+}
+
+.cross-sell-img-holder{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: calc(50% + 140px);
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    mix-blend-mode: multiply;
+}
+@media(max-width:991px){
+    .cross-sell-img-holder{
+        width: calc(50% + 50px);
+    }
+}
+
+@media(max-width:767px){
+    .cross-sell-img-holder{
+        display: none;
+    }
+}
+.cross-sell-img-holder img{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+</style>
+{%- assign crossellList = '' -%}
+{%- assign allhandllist = '' -%}
+{%- assign remaininghandles = '' -%}
+  
+{% for tagz in product.tags %}
+  	{% assign tag_data= tagz | downcase %}
+	{% assign tag_data= tag_data | replace: " ","" %}
+	{% assign tag_data= tag_data | slice: 0, 24 %}
+
+	{% assign crossselltagz = tag_data | append: "_c" %}
+
+
+  	{% if shop.metafields.tagproducts[crossselltagz]  %}
+
+         
+
+		{% assign crosssellproducts= shop.metafields.tagproducts[crossselltagz] %}
+       
+  		{% assign crossList = crosssellproducts | split: "," %}
+  		{%- for individuallist in crossList -%}
+  			{% assign cross_tag_filter= individuallist | downcase | strip %}
+            {% assign cross_tag_filter= cross_tag_filter | replace: " ","" %}
+            {% assign cross_tag_filter= cross_tag_filter | slice: 0, 24 %}
+            {% assign cross_tag_filter= cross_tag_filter | append: "_x" %}
+  			
+  				{% if shop.metafields.tagproducts[cross_tag_filter] %} 
+  					{% unless crossellList contains cross_tag_filter %}
+  						{% assign crossconcatvalue = cross_tag_filter | split: "," %}
+						{% if crossellList != '' %}
+  							{% assign crossellList = crossellList | concat: crossconcatvalue %}
+						{% else %}
+							{% assign crossellList = crossconcatvalue %}
+						{% endif %}
+  					{% endunless %}
+  				{% endif %}
+  		{%- endfor -%}
+	{% endif %}
+{% endfor %}
+
+{%- if crossellList == '' -%}
+	{% assign mainfrom_sizehandle= product.handle %}
+	{% if product.description contains "[redirect]" %}
+        {%- assign productDescription = product.description | split:"[redirect]" -%}
+        {%- assign handlevalue = productDescription[1] | split:"[/redirect]" -%}
+        {% assign mainProductHandle = handlevalue[0] %}
+		{% if mainProductHandle %}
+			{% assign mainProductHandle = mainProductHandle | strip %}
+			{% unless mainProductHandle == mainproduct_handle %}
+				{% assign mainfrom_sizehandle= mainProductHandle%}
+                {% for mainproduct_tags in all_products[mainProductHandle].tags %}
+
+                      {% assign tag_data= mainproduct_tags | downcase %}
+                      {% assign tag_data= tag_data | replace: " ","" %}
+                      {% assign tag_data= tag_data | slice: 0, 24 %}
+
+                      {% assign crossselltagz = tag_data | append: "_c" %}
+                      {% if shop.metafields.tagproducts[crossselltagz] %}
+                          {% assign crosssellproducts= shop.metafields.tagproducts[crossselltagz] %}
+                          {% assign crossList = crosssellproducts | split: "," %}
+                          {%- for individuallist in crossList -%}
+                              {% assign cross_tag_filter= individuallist | downcase | strip %}
+                              {% assign cross_tag_filter= cross_tag_filter | replace: " ","" %}
+                              {% assign cross_tag_filter= cross_tag_filter | slice: 0, 24 %}
+                              {% assign cross_tag_filter= cross_tag_filter | append: "_x" %}
+
+                                  {% if shop.metafields.tagproducts[cross_tag_filter] %} 
+                                      {% unless crossellList contains cross_tag_filter %}
+                                          {% assign crossconcatvalue = cross_tag_filter | split: "," %}
+                                          {% if crossellList != '' %}
+                                              {% assign crossellList = crossellList | concat: crossconcatvalue %}
+                                          {% else %}
+                                              {% assign crossellList = crossconcatvalue %}
+                                          {% endif %}
+                                      {% endunless %}
+                                  {% endif %}
+                          {%- endfor -%}
+                      {% endif %}
+                {% endfor %}
+			{% endunless %}
+		{% endif %}
+	{% endif %}
+{%- endif -%}
+
+{%- if crossellList != '' -%}
+  	{%- assign requiredTags = 5 -%}
+    {%- assign totalNoofTags = crossellList | size -%}
+  
+  	{%- assign totalTagtoFloat = totalNoofTags | times: 1.0 -%}
+    {%- assign dividedNumber = requiredTags | divided_by: totalTagtoFloat -%}
+  	{%- assign dividedNumberInt= dividedNumber | ceil -%}
+  	{%- for productlevel in crossellList -%}
+  		{% assign producthandlelist = shop.metafields.tagproducts[productlevel] %}
+  		{% assign products_handle_array = producthandlelist | split:"," %}
+  		{% assign counterval = 1 %}
+{% assign rem_count = 1 %}
+  		{%- for individualhandles in products_handle_array -%}
+			{% unless allhandllist contains individualhandles %}
+                {% if counterval > dividedNumberInt %}
+                    {% assign individualconcat = individualhandles | split: "," %}
+
+                    {% if remaininghandles != '' %}
+                        {% assign remaininghandles = remaininghandles | concat: individualconcat %}
+                    {% else %}
+                        {% assign remaininghandles = individualconcat %}
+                    {% endif %}
+					
+{% break %}
+
+					{% if rem_count >= 2 %}
+						{% assign rem_count =1 %}
+						{% break %}
+					{% endif %} 
+					{%- assign rem_count = rem_count | plus: 1 -%}
+                   
+                {% endif %}
+                {% assign individualconcat = individualhandles | split: "," %}
+                {% if allhandllist != '' %}
+                        {% assign allhandllist = allhandllist | concat: individualconcat %}
+                {% else %}
+                        {% assign allhandllist = individualconcat %}
+                {% endif %}
+
+                {%- assign counterval = counterval | plus: 1 -%}
+  			{% endunless %}
+  		{%- endfor -%}
+  	{%- endfor -%}
+	{% if remaininghandles != '' %}
+  		{% assign allhandllist = allhandllist | concat: remaininghandles %}
+	{% endif %}
+	{%- assign producthandles = allhandllist -%}
+  
+{%- endif -%}
+
+
+{% if allhandllist !=''  %}
+    <div class="page-width expand-right">
+<div class="cross-sell-products" id="cross-sell-products">
+        <h2>Combines well with</h2>
+        <ul class="addtocart-crossell-wrapper">
+                {%- assign gaEventProdPozCounter = 0-%}
+                {% assign totalproducttoshow = 0 %}
+  
+                {%- for cross_sell in producthandles limit:4-%}
+	
+                    {% if totalproducttoshow >= 3 %}
+                        {% break %}
+                    {% endif %}
+                    {% if all_products[cross_sell].title != '' %}
+  
+                            {% assign product_qty = 0 %}
+                            {% for variantz in  all_products[cross_sell].variants %}
+                            {% if variantz.inventory_quantity > 0 %}
+                                {% assign product_qty = product_qty | plus: variantz.inventory_quantity %}
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if product_qty > 0 %}
+                                {%- assign totalproducttoshow = totalproducttoshow | plus: 1 -%}
+                            {% else %}
+                                {% continue; %}
+                            {% endif %}
+  
+
+                <li class="crossell__item" data-product = "{{ all_products[cross_sell].title | truncatewords:8}}" data-position="{{gaEventProdPozCounter | plus: 1}}">
+                      {% render 'card-product-cross-sell',
+                        card_product: all_products[cross_sell],
+                        media_size: "adapt",
+                        show_secondary_image: false,
+                        add_image_padding: false,
+                        show_vendor: false,
+                        show_image_outline: false,
+                      %}
+
+                      
+                  </li>
+
+    {% endif %}
+    {%- assign gaEventProdPozCounter = gaEventProdPozCounter | plus:1 -%}
+     
+    {% endfor %}
+  </ul>
+ 
+    <picture class="cross-sell-img-holder">
+        {%- if is_product_env_img == true -%}
+            <source srcset="{{ env_img | image_url: width:'1820' }} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+            <img src="{{ env_img | image_url: width: '910x' }}" alt="Environmental image of {{product.title}}" width="910" height="530" loading="lazy" class="motion-reduce">
+        {%- else -%}
+            <img src="{{env_img |  file_img_url:'master' }}" alt="Environmental image of {{product.title}}" loading="lazy" width="910" height="530"/>
+        {%- endif -%}
+    </picture>
+  
+</div>
+  </div>
+{% endif %}
+
+{% schema %} 
+{ "name": "Cross sell",
+"tag": "section",
+"class":"section-cross-sell"
+} 
+{% endschema %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

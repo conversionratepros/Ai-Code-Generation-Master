@@ -1,0 +1,72 @@
+{% render 'location-with-matterport' %}
+{%- schema -%}
+{
+"name": "Location Map 1",
+"class": "location-map-1",
+"settings": [],
+"blocks": [
+    {
+      "type": "address_block",
+      "name": "Address Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "address_name",
+          "label": "Address Name"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Address"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone Number"
+        },
+        {
+          "type": "text",
+          "id": "location_link",
+          "label": "Location Link",
+        },
+        {
+          "type": "image_picker",
+          "id": "LocationBannerImage",
+          "label": "Location Banner Image if no Matterport Video",
+        },
+        {
+          "type": "url",
+          "id": "matterport_url",
+          "label": "Matterport Video URL",
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_1",
+          "label": "Thumbnail 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_2",
+          "label": "Thumbnail 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_3",
+          "label": "Thumbnail 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_4",
+          "label": "Thumbnail 4"
+        },
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Location Map 1"
+    }
+  ]
+}
+{%- endschema -%}

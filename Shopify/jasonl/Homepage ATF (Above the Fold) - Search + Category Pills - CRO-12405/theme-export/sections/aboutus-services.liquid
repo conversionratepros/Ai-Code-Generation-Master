@@ -1,0 +1,77 @@
+{{ 'aboutus-services.css' | asset_url | stylesheet_tag }}
+<!-- Services -->
+<section id="section-services" class="services">
+  {% comment %} <link rel="stylesheet" href="css/services.css"> {% endcomment %}
+  <div class="page-width">
+    <div class="services-wrapper">
+      <div class="services__info">
+        <h3>Our services</h3>
+        <div class="services__info-grid description">
+          <div>
+            <div class="services__step-icon">01</div>
+            <p>
+              <strong>Delivery? Done!</strong>
+              We offer next day dispatch on 90% of all orders. Whether you need your items urgently or are planning
+              ahead, you can rely on us to ensure prompt delivery of your order.
+            </p>
+          </div>
+          <div>
+            <div class="services__step-icon">02</div>
+            <p>
+              <strong>Assembly? Amazing!</strong>
+              No order is too big or too small. We have JasonL trained and certified installers Australia wide. Need
+              help with installation? Our expert team is here to ensure your furniture is assembled perfectly, every
+              time.
+            </p>
+          </div>
+          <div>
+            <div class="services__step-icon">03</div>
+            <p><strong>Pick up? Easy!</strong> Drop by our showroom:</p>
+            <ul class="services_custom-list">
+              <li>East Coast DC: Unit 2a / 149 McCreadie Street Smithfield, NSW, 2164.</li>
+              <li>West Coast DC: 11 King Edwards Road Osborne Park, WA.</li>
+            </ul>
+            <p>Our friendly team will be ready to assist you.</p>
+          </div>
+          <div>
+            <div class="services__step-icon">04</div>
+            <p>
+              <strong>Floor plan? Just ask!</strong>
+              Need assistance with project management and intelligent space planning? Onsite consultation, floor plans,
+              installations, power and data management, and building works. We’re here to make your workspace dreams a
+              reality.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="services__img bg-img-holder-right">
+        <picture>
+          <source media="(max-width: 767px)" srcset="{{ 'aboutus-services-small.png' | file_img_url:'master' }}">
+          {%- comment -%}
+            <source
+              media="(min-width: 768px) and (max-width: 1199px)"
+              srcset="{{ 'aboutus-services.png' | file_img_url:'master' }}"
+            >
+          {%- endcomment -%}
+          <source
+            media="(min-width: 768px)"
+            srcset="{{ 'aboutus-services-1540.png' | file_img_url:'master' }}"
+          >
+          <img
+            src="{{ 'aboutus-services-1540.png' | file_img_url:'master' }}"
+            width=""
+            height=""
+            alt="Services"
+            loading="lazy"
+          >
+        </picture>
+      </div>
+    </div>
+  </div>
+</section> 
+{% schema %}
+{
+  "name": "Aboutus Services",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,830 @@
+{{ 'location-map-1.css' | asset_url | stylesheet_tag }}
+<div class="page-width ab-test-group-A" id="showroom-section">
+  <div class="location-map-1-holder" id="location-map-1">
+    <div class="location-left">
+      <h2>See all of this at one of <br>our showrooms near you<span>.</span></h2>
+      <div class="location-left-cnt">
+        <div class="location-list">
+          <ul>
+            <li class="location-list-item-all active" data-showroom="all">
+              <div class="location-label">
+                <strong>All locations</strong>
+                <span>Showrooms</span>
+              </div>
+            </li>
+            <li class="location-list-item" data-showroom="sydney">
+              <div class="location-label">
+                <strong>Sydney</strong>
+                <span>Showroom</span>
+              </div>
+            </li>
+            <li class="location-list-item" data-showroom="melbourne">
+              <div class="location-label">
+                <strong>Melbourne</strong>
+                <span>Showroom</span>
+              </div>
+            </li>
+            <li class="location-list-item" data-showroom="brisbane">
+              <div class="location-label">
+                <strong>Brisbane</strong>
+                <span>Showroom</span>
+              </div>
+            </li>
+
+            <li class="location-list-item" data-showroom="western-sydney">
+              <div class="location-label">
+                <strong>Western Sydney</strong>
+                <span>Showroom</span>
+              </div>
+            </li>
+            <li class="location-list-item" data-showroom="adelaide">
+              <div class="location-label">
+                <strong>Adelaide</strong>
+                <span>Showroom</span>
+              </div>
+            </li>
+            <li class="location-list-item" data-showroom="perth">
+              <div class="location-label">
+                <strong>Perth</strong>
+                <span>Showroom</span>
+              </div>
+            </li>
+            <li class="location-list-item" data-showroom="western-sydney">
+              <div class="location-label">
+                <strong>East Coast</strong>
+                <span>Distribution Centre</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="location-address-holder">
+          <ul>
+            <li data-showroom="sydney" class="address-holder-item">
+              <address>
+                <a class="location-map-url" href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" target="_blank" rel="noopener noreferrer">
+                  <strong>Sydney City Showroom </strong>
+                  <span>Shop 3, 29-31 O’Riordan Street,</span>
+                  <span>Alexandria, NSW 2015 </span>
+                </a>
+                <a class="location-call" href="tel:1300350618">Call: 1300 350 618</a>
+                <a href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              </address>
+            </li>
+            <li data-showroom="brisbane" class="address-holder-item">
+              <address>
+                <a class="location-map-url" href="https://goo.gl/maps/zPdA8zH1PjU38Co89" target="_blank" rel="noopener noreferrer">
+                  <strong>Brisbane Showroom </strong>
+                  <span>728 Ann Street,</span>
+                  <span>Fortitude Valley, QLD 4006 </span>
+                </a>
+                <a class="location-call" href="tel:1300350629">Call: 1300 350 629</a>
+                <a href="https://goo.gl/maps/zPdA8zH1PjU38Co89" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              </address>
+            </li>
+            <li data-showroom="western-sydney" class="address-holder-item">
+              <address>
+                <a class="location-map-url" href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" target="_blank" rel="noopener noreferrer">
+                  <strong>Western Sydney Showroom </strong>
+                  <span>2A/149 McCredie Road </span>
+                  <span>Smithfield, NSW 2164 </span>
+                </a>
+                <a class="location-call" href="tel:1300350624">Call: 1300 350 624 </a>
+                <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank">Get Directions</a>
+              </address>
+            </li>
+            <li data-showroom="adelaide" class="address-holder-item">
+              <address>
+                <a class="location-map-url" href="https://goo.gl/maps/DdAtriu4aJzTWpMK7" target="_blank" rel="noopener noreferrer">
+                  <strong>Adelaide Showroom </strong>
+                  <span>176 Grote Street,</span>
+                  <span>Adelaide, SA 5000 </span>
+                </a>
+                <a class="location-call" href="tel:1300395731">Call: 1300 395 731</a>
+                <a href="https://goo.gl/maps/DdAtriu4aJzTWpMK7" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              </address>
+            </li>
+            <li data-showroom="melbourne" class="address-holder-item">
+              <address>
+                <a class="location-map-url" href="https://goo.gl/maps/DwHYi3deQ9sk3PxAA" target="_blank" rel="noopener noreferrer">
+                  <strong>Melbourne Showroom</strong>
+                  <span>100 Park Street,</span>
+                  <span>South Melbourne, VIC 3205 </span>
+                </a>
+                <a class="location-call" href="tel:1300350627">Call: 1300 350 627</a>
+                <a href="https://goo.gl/maps/DwHYi3deQ9sk3PxAA" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              </address>
+            </li>
+            <li data-showroom="perth" class="address-holder-item">
+              <address>
+                <a class="location-map-url" href="https://maps.app.goo.gl/fiR7X5EX4tRwyDPF8" target="_blank" rel="noopener noreferrer">
+                  <strong>Perth Showroom </strong>
+                  <span>11 King Edward Road,</span>
+                  <span>Osborne Park, WA 6017</span>
+                </a>
+                <a class="location-call" href="tel:1300249035">Call: 1300 249 035</a>
+                <a href="https://maps.app.goo.gl/fiR7X5EX4tRwyDPF8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              </address>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="location-right">
+      <div class="au-map-holder">
+        <div class="au-map-cnt">
+          {%- render 'icon-australia-map-with-showrooms' -%}
+
+          <div class="au-map-selected">
+            <div class="au-map au-map-perth">
+              <iframe id="lm-iframe-map-perth" class="iframe-map"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3387.138962950801!2d115.8058287!3d-31.9028215!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32af19dc13a85f%3A0xd024173b02e99b26!2sJasonL%20Office%20Furniture%20-%20Perth!5e0!3m2!1sen!2snp!4v1721648002603!5m2!1sen!2snp"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="au-map au-map-adelaide">
+              <iframe id="lm-iframe-map-adelaide" class="iframe-map"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d408.8885342367751!2d138.5923423!3d-34.9288214!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ab0ced1df5f054d%3A0x682c3f50f299b4a!2sJasonL%20Office%20Furniture%20-%20Adelaide!5e0!3m2!1sen!2snp!4v1684399444165!5m2!1sen!2snp"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="au-map au-map-sydney">
+              <iframe id="lm-iframe-map-sydney" class="iframe-map"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d827.7971514098278!2d151.196469!3d-33.9105451!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaa6e7599b0f01361%3A0xc964514638636dde!2sJasonL%20Office%20Furniture%20-%20Alexandria!5e0!3m2!1sen!2snp!4v1684399248699!5m2!1sen!2snp"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="au-map au-map-melbourne">
+              <iframe id="lm-iframe-map-melbourne" class="iframe-map"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d787.7362503458139!2d144.9570841!3d-37.8381734!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad667e32a54a789%3A0xc3581e16af7b4fa9!2sJasonL%20Office%20Furniture%20-%20Melbourne!5e0!3m2!1sen!2snp!4v1684399310940!5m2!1sen!2snp"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="au-map au-map-western-sydney">
+              <iframe id="lm-iframe-map-westernsydney" class="iframe-map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.6425564915367!2d150.95655299999999!3d-33.8473276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12b13deb1ff61d%3A0xdb13cfa2fb1abaff!2sJasonL%20Office%20Furniture%20-%20Sydney!5e0!3m2!1sen!2snp!4v1684399398053!5m2!1sen!2snp"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="au-map au-map-brisbane">
+              <iframe id="lm-iframe-map-brisbane" class="iframe-map"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d442.54815188840473!2d153.0357295!3d-27.4572643!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9159f1d1055555%3A0xe64197ed8241eb2b!2sJasonL%20Office%20Furniture%20-%20Brisbane!5e0!3m2!1sen!2snp!4v1684399361215!5m2!1sen!2snp"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} 
+<div class="page-width groupb-showroom-section ab-test-group-B">
+  <div class="accordion-wrapper">
+    <h2>Want the full JasonL experience? <br /> Stop by a showroom and say hello.</h2>
+
+
+    {%  for block in section.blocks %}
+      <div class="accordion-list">
+        <button class="accordion {% if forloop.index == 1 %}active{% endif %}">
+          <div class="toggle-title">
+            <div class="toggle-title-text">{{ block.settings.address_name }} </div>
+            <address>
+              <div>
+                <strong>{{ block.settings.address_name }} </strong>
+              </div>
+              <div>
+                {{ block.settings.address }}
+              </div>
+              <a class="location-call" href="tel:{{ block.settings.phone }}">Call: {{ block.settings.phone }}</a> <br />
+              <a href="{{ block.settings.location_link }}" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </address>
+          </div>
+        </button>
+        <div class="panel {% if forloop.index != 1 %}hidden{% endif %}">
+          <address>
+            <div class="address-title">
+              <strong>{{ block.settings.address_name }} </strong>
+            </div>
+            <div>{{ block.settings.address }}</div>
+            <a class="location-call" href="tel: {{ block.settings.phone }}">Call: {{ block.settings.phone }}</a> <br />
+            <a href="{{ block.settings.location_link }}" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              {% for i in (1..4) %}
+                {% assign thumbnailnumber = 'thumbnail_' | append: i %}
+                {% assign thumbimg = block.settings[thumbnailnumber] %}
+                {% if thumbimg %}
+                  <li>
+                    <picture>
+                      {{
+                        thumbimg
+                        | image_url: width: 258
+                        | image_tag:
+                          sizes: sizes,
+                          widths: '258'
+                      }}
+                    </picture>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <div class="iframe-container" style="background-image: url('{% if block.settings.LocationBannerImage and block.settings.matterport_url == nil %} {{ block.settings.LocationBannerImage | image_url }} {% endif %} ');">
+              {% if block.settings.matterport_url %}
+                <iframe src="{{ block.settings.matterport_url }}" allowfullscreen></iframe>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    {% comment %} 
+      <div class="accordion-list">
+        <button class="accordion">
+          <div class="toggle-title">
+            <div class="toggle-title-text">Perth Showroom</div>
+            <address>
+              <div>
+                <strong>Sydney City Showroom </strong>
+              </div>
+              <div>
+                <span>Shop 3, 29-31 O’Riordan Street,</span>
+              </div>
+              <div>
+                <span>Alexandria, NSW 2015 </span>
+              </div>
+              <a class="location-call" href="tel:1300 350 618">Call: 1300 350 618</a> <br>
+              <a href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </address>
+          </div>
+        </button>
+        <div class="panel hidden">
+          <address>
+            <div class="address-title">
+              <strong>Sydney City Showroom </strong>
+            </div>
+            <div>
+              <span>Shop 3, 29-31 O’Riordan Street,</span>
+            </div>
+            <div>
+              <span>Alexandria, NSW 2015 </span>
+            </div>
+            <a class="location-call" href="tel:1300 350 618">Call: 1300 350 618</a> <br>
+            <a href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+            </ul>
+            <div class="iframe-container">
+                <iframe src="https://my.matterport.com/show/?m=QjKmwoBrWGW" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-list">
+        <button class="accordion">
+          <div class="toggle-title">
+            <div class="toggle-title-text">Melbourne Showroom</div>
+            <address>
+              <div>
+                <strong>Melbourne Showroom</strong>
+              </div>
+              <div>
+                <span>100 Park Street,</span>
+              </div>
+              <div>
+                <span>South Melbourne, VIC 3205</span>
+              </div>
+              <a class="location-call" href="tel:1300 350 627">Call: 1300 350 627</a> <br>
+              <a href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          </address>
+          </div>
+        </button>
+        <div class="panel hidden">
+          <address>
+              <div class="address-title">
+                <strong>Melbourne Showroom</strong>
+              </div>
+              <div>
+                <span>100 Park Street,</span>
+              </div>
+              <div>
+                <span>South Melbourne, VIC 3205</span>
+              </div>
+              <a class="location-call" href="tel:1300 350 627">Call: 1300 350 627</a> <br>
+              <a href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+            </ul>
+            <div class="iframe-container">
+                <iframe src="https://my.matterport.com/show/?m=QjKmwoBrWGW" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-list">
+        <button class="accordion">
+          <div class="toggle-title">
+            <div class="toggle-title-text">Brisbane Showroom</div>
+            <address>
+              <div>
+                <strong>Brisbane Showroom </strong>
+              </div>
+              <div>
+                <span>728 Ann Street,</span>
+              </div>
+              <div>
+                <span>Fortitude Valley, QLD 4006 </span>
+              </div>
+              <a class="location-call" href="tel:1300 350 629">Call: 1300 350 629</a> <br>
+              <a href="https://goo.gl/maps/zPdA8zH1PjU38Co89" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </address>
+          </div>
+        </button>
+        <div class="panel hidden">
+          <address>
+              <div class="address-title">
+                <strong>Brisbane Showroom </strong>
+              </div>
+              <div>
+                <span>728 Ann Street,</span>
+              </div>
+              <div>
+                <span>Fortitude Valley, QLD 4006 </span>
+              </div>
+              <a class="location-call" href="tel:1300 350 629">Call: 1300 350 629</a> <br>
+              <a href="https://goo.gl/maps/zPdA8zH1PjU38Co89" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+            </ul>
+            <div class="iframe-container">
+                <iframe src="https://my.matterport.com/show/?m=QjKmwoBrWGW" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-list">
+        <button class="accordion">
+          <div class="toggle-title">
+            <div class="toggle-title-text">Western Sydney Showroom</div>
+            <address>
+              <div>
+                <strong>Western Sydney Showroom </strong>
+              </div>
+              <div>
+                <span>2A/149 McCredie Road </span>
+              </div>
+              <div>
+                <span>Smithfield, NSW 2164 </span>
+              </div>
+              <a class="location-call" href="tel:1300 350 624">Call: 1300 350 624 </a> <br />
+              <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank">Get Directions</a>
+            </address>
+          </div>
+        </button>
+        <div class="panel hidden">
+          <address>
+              <div class="address-title">
+                <strong>Western Sydney Showroom </strong>
+              </div>
+              <div>
+                <span>2A/149 McCredie Road </span>
+              </div>
+              <div>
+                <span>Smithfield, NSW 2164 </span>
+              </div>
+              <a class="location-call" href="tel:1300 350 624">Call: 1300 350 624 </a> <br />
+              <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank">Get Directions</a>
+            </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+            </ul>
+            <div class="iframe-container">
+                <iframe src="https://my.matterport.com/show/?m=QjKmwoBrWGW" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-list">
+        <button class="accordion">
+          <div class="toggle-title">
+            <div class="toggle-title-text">Adelaide Showroom </div>
+            <address>
+              <div><strong>Adelaide Showroom </strong></div>
+              <div><span>176 Grote Street,</span></div>
+              <div><span>Adelaide, SA 5000 </span></div>
+              <a class="location-call" href="tel:1300 395 731">Call: 1300 395 731</a> <br />
+              <a href="https://goo.gl/maps/DdAtriu4aJzTWpMK7" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </address>
+          </div>
+        </button>
+        <div class="panel hidden">
+          <address>
+              <div class="address-title"><strong>Adelaide Showroom </strong></div>
+              <div><span>176 Grote Street,</span></div>
+              <div><span>Adelaide, SA 5000 </span></div>
+              <a class="location-call" href="tel:1300 395 731">Call: 1300 395 731</a> <br />
+              <a href="https://goo.gl/maps/DdAtriu4aJzTWpMK7" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+            </ul>
+            <div class="iframe-container">
+                <iframe src="https://my.matterport.com/show/?m=QjKmwoBrWGW" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-list">
+        <button class="accordion">
+          <div class="toggle-title">
+            <div class="toggle-title-text">Perth Showroom </div>
+            <address>
+              <div class="address-title">
+                <strong>Perth Showroom </strong>
+              </div>
+              <div><span>11 King Edward Road,</span></div>
+              <div><span>Osborne Park, WA 6017</span></div>
+              
+              <a class="location-call" href="tel:1300 249 035">Call: 1300 249 035</a> <br />
+              <a href="https://maps.app.goo.gl/fiR7X5EX4tRwyDPF8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </address>
+          </div>
+        </button>
+        <div class="panel hidden">
+          <address>
+              <div class="address-title"><strong>Adelaide Showroom </strong></div>
+              <div><span>176 Grote Street,</span></div>
+              <div><span>Adelaide, SA 5000 </span></div>
+              <a class="location-call" href="tel:1300 395 731">Call: 1300 395 731</a> <br />
+              <a href="https://goo.gl/maps/DdAtriu4aJzTWpMK7" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+            </ul>
+            <div class="iframe-container">
+                <iframe src="https://my.matterport.com/show/?m=QjKmwoBrWGW" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-list">
+        <button class="accordion">
+          <div class="toggle-title">
+            <div class="toggle-title-text">Western Sydney Showroom </div>
+            <address>
+              <div><strong>Western Sydney Showroom </strong></div>
+              <div><span>2A/149 McCredie Road </span></div>
+              <div><span>Smithfield, NSW 2164 </span></div>
+              <a class="location-call" href="tel:1300 350 624">Call: 1300 350 624 </a> <br />
+              <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank">Get Directions</a>
+            </address>
+          </div>
+        </button>
+        <div class="panel hidden">
+          <address>
+            <div class="address-title"><strong>Western Sydney Showroom </strong></div>
+            <div><span>2A/149 McCredie Road </span></div>
+            <div><span>Smithfield, NSW 2164 </span></div>
+            <a class="location-call" href="tel:1300 350 624">Call: 1300 350 624 </a> <br />
+            <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank">Get Directions</a>
+          </address>
+          <div class="matterport-with-thumbnail">
+            <ul>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+              <li>
+                <picture>
+                  <img src="{{ 'location-thumbnail-img1.jpg' | file_img_url: '258x' }}" alt="" width="258" height="auto">
+                </picture>
+              </li>
+            </ul>
+            <div class="iframe-container">
+                <iframe src="https://my.matterport.com/show/?m=QjKmwoBrWGW" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div> 
+    {% endcomment %}
+  </div>
+</div> 
+{% endcomment %}
+
+<script>
+  {% comment %} 
+    {% comment %} this is for toogle  accordion functionality if you want to hide the current selection accordion {% endcomment %}
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const accordion = document.querySelectorAll(".accordion");
+      const panel = document.querySelectorAll(".panel");
+
+      accordion.forEach((tab, i) => {
+        tab.addEventListener("click", function () {
+          const isActive = this.classList.contains("active");
+
+          // Remove active from all tabs and hide all panels
+          accordion.forEach((tab) => tab.classList.remove("active"));
+          panel.forEach((content) => content.classList.add("hidden"));
+
+          // Toggle current tab/panel if not already active
+          if (!isActive) {
+            this.classList.add("active");
+            panel[i].classList.remove("hidden");
+          }
+        });
+      });
+    }); 
+  {% endcomment %}
+
+
+
+
+  document.addEventListener("DOMContentLoaded",(event) => {
+    const accordion = document.querySelectorAll(".accordion");
+    const panel = document.querySelectorAll(".panel");
+
+    accordion.forEach((tab, i) => {
+      tab.addEventListener("click", function () {
+        accordion.forEach((tab) => tab.classList.remove("active"));
+        this.classList.add("active");
+        panel.forEach((content) => content.classList.add("hidden"));
+        panel[i].classList.remove("hidden");
+      });
+    });
+
+  });
+
+</script>
+<script>
+  let location_list_item = document.querySelectorAll('.location-map-1-holder .location-list .location-list-item');
+  let location_list_item_all = document.querySelector('.location-map-1-holder .location-list .location-list-item-all');
+  let au_map_all = document.querySelector('.au-map-holder .au-map-all');
+
+  let addresses = document.querySelectorAll('.address-holder-item');
+
+  for (let i = 0; i < location_list_item.length; i++) {
+    let showroom_name = location_list_item[i].getAttribute('data-showroom');
+
+    // Mouse Enter 
+    location_list_item[i].addEventListener('mouseenter', () => {
+      // let activeItem = document.querySelector('.location-map-1-holder .location-list .location-list-item-all.active');
+      // let activeShowroom = document.querySelector('.location-map-1-holder .location-list .location-list-item.active');
+      // let activeAddressHolder = document.querySelector('.location-map-1-holder .location-address-holder .address-holder-item.active');
+      // let activeMap = document.querySelector('.location-map-1-holder .au-map-selected .au-map.active');
+
+      // activeItem && activeItem.classList.remove('active');
+      // activeShowroom && activeShowroom.classList.remove('active');
+      // activeAddressHolder && activeAddressHolder.classList.remove('active');
+      // activeMap && activeMap.classList.remove('active');
+
+      //     addresses.forEach(address => {                  
+      //       if (!address.classList.contains('active')) {
+      //           address.classList.add('disabled');
+      //       }else{
+      //         address.classList.remove('disabled');
+      //       }           
+      // });
+
+      document.querySelectorAll('.location-map-1-holder .location-list .location-list-item-all.active, .location-map-1-holder .location-list .location-list-item.active, .location-map-1-holder .location-address-holder .address-holder-item.active, .location-map-1-holder .au-map-selected .au-map.active,.au-map-holder .au-map-all.active')
+        .forEach(activeElement => activeElement.classList.remove('active'));
+
+      //Location List
+      let location_list = document.querySelectorAll(`.location-map-1-holder .location-list-item[data-showroom="${showroom_name}"]`);
+
+      location_list.forEach(item => {
+        item.classList.add('active');
+      });
+
+      //Address Holder
+      document.querySelector(`.location-map-1-holder .location-address-holder .address-holder-item[data-showroom="${showroom_name}"]`).classList.add('active');
+
+      //Map   
+      document.querySelector(`.location-map-1-holder .au-map-selected .au-map-${showroom_name}`).classList.add('active');
+
+      addresses.forEach(address => {
+        address.classList.toggle('disabled', !address.classList.contains('active'));
+      });
+    })
+  }
+
+  location_list_item_all.addEventListener("mouseenter", () => {
+    location_list_item_all.classList.add("active");
+    au_map_all.classList.add("active");
+    document
+      .querySelectorAll(
+        ".location-map-1-holder .location-list .location-list-item.active, .location-map-1-holder .location-address-holder .address-holder-item.active, .location-map-1-holder .au-map-selected .au-map.active"
+      )
+      .forEach((activeElement) => activeElement.classList.remove("active"));
+    addresses.forEach((address) => address.classList.remove("disabled"));
+  });
+</script>
+
+
+{%- schema -%}
+{
+"name": "Location Map 1",
+"class": "location-map-1",
+"settings": [],
+"blocks": [
+    {
+      "type": "address_block",
+      "name": "Address Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "address_name",
+          "label": "Address Name"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Address"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone Number"
+        },
+        {
+          "type": "text",
+          "id": "location_link",
+          "label": "Location Link",
+        },
+        {
+          "type": "image_picker",
+          "id": "LocationBannerImage",
+          "label": "Location Banner Image if no Matterport Video",
+        },
+        {
+          "type": "url",
+          "id": "matterport_url",
+          "label": "Matterport Video URL",
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_1",
+          "label": "Thumbnail 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_2",
+          "label": "Thumbnail 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_3",
+          "label": "Thumbnail 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "thumbnail_4",
+          "label": "Thumbnail 4"
+        },
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Location Map 1"
+    }
+  ]
+}
+{%- endschema -%}

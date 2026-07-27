@@ -1,0 +1,281 @@
+{% comment %}
+  CRO-12425 | Category icon row (audience shortcuts)
+  Single centred row of circular icon links below the hero.
+  Items are addable/removable blocks. The heading is a net-new addition
+  (the design shows no heading here) — it only renders when set.
+
+  Icon precedence per block: uploaded image > inline default icon.
+  Default icons render inline from snippets/cro-12425-icon.liquid
+  (no theme asset uploads needed).
+{% endcomment %}
+
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="cro-12425-icon-row"
+></script>
+
+{% style %}
+  .cro-12425-icon-row {
+    padding: {{ section.settings.padding_top }}px 20px {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .cro-12425-icon-row__heading {
+    margin: 0 0 24px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 28px;
+    color: #1d1d1d;
+  }
+
+  .cro-12425-icon-row__list {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 48px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cro-12425-icon-row__item {
+    width: 130px;
+    flex: 0 0 auto;
+  }
+
+  .cro-12425-icon-row__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .cro-12425-icon-row__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 106px;
+    height: 106px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(29, 29, 29, 0.07);
+    transition: opacity 0.15s ease;
+  }
+
+  .cro-12425-icon-row__circle img,
+  .cro-12425-icon-row__circle svg {
+    width: 53px;
+    height: 53px;
+    object-fit: contain;
+  }
+
+  .cro-12425-icon-row__link:hover .cro-12425-icon-row__circle {
+    opacity: 0.8;
+  }
+
+  .cro-12425-icon-row__label {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #1d1d1d;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 859px) {
+    .cro-12425-icon-row {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    .cro-12425-icon-row__list {
+      gap: 8px;
+    }
+
+    .cro-12425-icon-row__item {
+      width: auto;
+      flex: 0 1 84px;
+      min-width: 0;
+    }
+
+    .cro-12425-icon-row__circle {
+      width: 68px;
+      height: 68px;
+    }
+
+    .cro-12425-icon-row__circle img,
+    .cro-12425-icon-row__circle svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .cro-12425-icon-row__label {
+      font-size: 14px;
+    }
+
+    .cro-12425-icon-row__heading {
+      font-size: 22px;
+    }
+  }
+{% endstyle %}
+
+<div class="cro-12425-icon-row">
+  {% if section.settings.heading != blank %}
+    <h2 class="cro-12425-icon-row__heading">{{ section.settings.heading | escape }}</h2>
+  {% endif %}
+
+  <ul class="cro-12425-icon-row__list">
+    {% for block in section.blocks %}
+      <li class="cro-12425-icon-row__item" {{ block.shopify_attributes }}>
+        <a
+          class="cro-12425-icon-row__link"
+          {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+        >
+          <span
+            class="cro-12425-icon-row__circle"
+            style="border-color: {{ block.settings.circle_border_color }};"
+          >
+            {% if block.settings.icon_image %}
+              {%
+                render 'rimg',
+                img: block.settings.icon_image,
+                size: '106x106',
+                lazy: true,
+              %}
+            {% elsif block.settings.default_icon != 'none' %}
+              {% render 'cro-12425-icon', icon: block.settings.default_icon %}
+            {% endif %}
+          </span>
+          <span class="cro-12425-icon-row__label">{{ block.settings.label | escape }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12425 Icon Row",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Optional. The design has no heading on this row."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon image",
+          "info": "Overrides the default icon below."
+        },
+        {
+          "type": "select",
+          "id": "default_icon",
+          "label": "Default icon",
+          "options": [
+            { "value": "vir-mans", "label": "Vir mans (t-shirt)" },
+            { "value": "vir-vroue", "label": "Vir vroue (dress)" },
+            { "value": "babas-kinders", "label": "Babas & kinders (teddy)" },
+            { "value": "uitverkoping", "label": "Uitverkoping (sale tag)" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "circle_border_color",
+          "label": "Circle border colour",
+          "default": "#e0e0e0"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO-12425 Icon Row",
+      "category": "CRO",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "default_icon": "vir-mans",
+            "label": "Vir mans",
+            "link": "shopify://collections/vir-mans"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "default_icon": "vir-vroue",
+            "label": "Vir vroue",
+            "link": "shopify://collections/vir-vroue"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "default_icon": "babas-kinders",
+            "label": "Vir babas & kinders",
+            "link": "shopify://collections/vir-babas-kinders"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "default_icon": "uitverkoping",
+            "label": "Uitverkoping",
+            "link": "shopify://collections/uitverkoping",
+            "circle_border_color": "#e99114"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

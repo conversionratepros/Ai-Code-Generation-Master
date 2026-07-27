@@ -1,0 +1,16 @@
+{% assign product =  all_products[productHandle] %}
+
+<div class="prod-list-cnt">
+    {% if product.featured_image != blank %}
+    <picture><img src="{{ product.featured_image |  image_url: width:150}}"  alt="{{product.title }}" /> </picture>
+    {% endif %}
+    <div class="prod-info">
+        <a href="{{product.url}}" title="{{product.title}}">
+        <h5>{{ product.title | truncate:24,''}}</h5>
+        <p>{{product.price | money_without_trailing_zeros}}</p>
+        </a>
+    </div>
+     <a href="{{product.url}}" class="button button-primary">View product</a>
+</div>
+
+

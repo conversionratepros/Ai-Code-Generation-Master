@@ -1,0 +1,245 @@
+<!-- Content Management: Shop Metafield -->
+{{ 'featured-services.css' | asset_url | stylesheet_tag }} 
+{%- capture featured_services -%}
+{%- assign text_count = shop.metafields.custom_fields.text.size -%}
+{%- assign loop_limit = text_count | minus: 1 -%}
+{% comment %} 
+<div class="ab-test-group-A featured-services-section-wrapper {{ section.settings.bg-color }}">
+    <div class="page-width featured-service-has-title">
+    <h2 class="section-title">Get your fitout booked today</h2>
+    <div class="featured-sevices">
+    {%- for i in (0..loop_limit) -%}
+    <div class="service">
+        <picture> 
+            <source srcset="{{ shop.metafields.custom_fields.image[i] | file_img_url : '740x600_crop_center' }} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+            <img src="{{ shop.metafields.custom_fields.image[i] | file_img_url : '370x300_crop_center' }}" alt="{{ shop.metafields.custom_fields.text[i] | strip_html }}" width="370" height="auto" loading="lazy">
+        </picture>
+
+        {% comment %} <img src="{{ shop.metafields.custom_fields.image[i] | file_img_url:'1200x450_crop_center' }}" alt="Featured Services [i]" loading="lazy" width="" height=""> {% endcomment %}
+
+    <div class="service-card-body">
+        <div class="icon">{{ shop.metafields.custom_fields.icon[i] }}</div>
+        <p>{{ shop.metafields.custom_fields.text[i] }}</p>
+    </div>
+    </div>
+    {%- endfor -%}
+    </div>
+    </div>
+</div> 
+{% endcomment %}
+<div class="ab-test-group-B featured-services-wrap-grp-B featured-services-section-wrapper dark">
+    <div class="page-width">
+        <div class="usp-section-container">
+            <div class="text-slider-container">
+              <div class="slider-center-wrap">
+                <div class="slider custom-slider" data-pos="0">
+                  <div class="slider__slides">
+                    <div class="slider__slide">
+                      <div class="slider-inner-wrap">
+                        <h2>Fitouts done <br />
+                        in under 10 days. <br />
+                        <span class="thin">Yep, really.</span></h2>
+                        <p>We've built a system that moves fast — from planning to install. Most fitouts are done in 10 days or less, without cutting corners. Just ask our happy customers.</p>
+                      </div>
+                    </div>
+                    <div class="slider__slide">
+                      <div class="slider-inner-wrap">
+                          <h2>Your own <br /> fitout pro.<br />
+                          <span class="thin">Start to finish.</span></h2>
+                          <p>From day one, you get a real person who knows the ropes and has your back. They'll guide you through every step, make smart calls and keep things moving - no chasing, no guesswork.</p>
+                      </div>
+                    </div>
+                    <div class="slider__slide">
+                      <div class="slider-inner-wrap">
+                          <h2>We plan it,<br /> bring it, build it.<br />
+                          <span class="thin">You just show up.</span></h2>
+                          <p>We're not here to handball tasks back to you. From free floor plans to delivery and assembly, we take care of the lot. You walk in when it's ready, no tools or to-do lists required.</p>
+                      </div>
+                    </div>
+                    <div class="slider__slide">
+                      <div class="slider-inner-wrap">
+                        <h2>Showrooms across <br /> Australia.<br />
+                        <span class="thin">Swing by anytime.</span></h2>
+                        <p>Want to see it before you buy it? No dramas. Pop into one of our showrooms to test, touch and talk through your fitout - with real people who know their stuff and are happy to help.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slider__dots">
+                    <a href="#" class="slider__indicator"></a>
+                    <a href="#" class="slider__dot" data-pos="0"></a>
+                    <a href="#" class="slider__dot" data-pos="1"></a>
+                    <a href="#" class="slider__dot" data-pos="2"></a>
+                    <a href="#" class="slider__dot" data-pos="3"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="usp-video-container">
+                <div class="usp-video-wrap">
+                    <video
+                    id="lazy-video" 
+                    autoplay 
+                    muted 
+                    loop 
+                    autoplay
+                    playsinline
+                    preload="none"
+                    style="width: 100%; height: auto;"
+                    poster="{{ 'fitout-video-thumbnail.jpg' | file_img_url: '770x' }}"
+                    >
+                    {% comment %} <source data-src="{{ 'Video-Homepage-LowQ.webm' | file_url }}" type="video/webm" /> {% endcomment %}
+                    <source src="{{ 'Video-Homepage-MedQ.mp4' | file_url }}" type="video/mp4" />
+                    Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%- endcapture -%}
+{{ featured_services | strip_newlines }}
+{% comment %} 
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("lazy-video");
+
+    if (!video) return;
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sources = video.querySelectorAll("source");
+            sources.forEach(source => {
+              source.src = source.dataset.src;
+            });
+
+            video.load();
+            video.play();
+
+            observer.unobserve(video);
+          }
+        });
+      }, {
+        threshold: 0.5
+      });
+
+      observer.observe(video);
+    } else {
+      // Fallback
+      const sources = video.querySelectorAll("source");
+      sources.forEach(source => {
+        source.src = source.dataset.src;
+      });
+      video.load();
+      video.play();
+    }
+  });
+</script> 
+{% endcomment %}
+
+
+
+{% comment %} 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const swiperEl = document.querySelector(".mySwiper");
+    if (!swiperEl) return;
+
+    new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  });
+</script>
+{% endcomment %}
+
+{% comment %} <script>
+  let dots          = 4;
+  let sliderElem    = document.querySelector('.slider');
+  let dotElems      = sliderElem.querySelectorAll('.slider__dot');
+  let indicatorElem = sliderElem.querySelector('.slider__indicator');
+  let autoSlideInterval;
+  let autoSlideDelay = 7000; // 7 seconds
+
+  function goToSlide(newPos) {
+    let currentPos       = parseInt(sliderElem.getAttribute('data-pos'));
+    let newDirection     = (newPos > currentPos ? 'right' : 'left');
+    let currentDirection = (newPos < currentPos ? 'right' : 'left');
+
+    indicatorElem.classList.remove(`slider__indicator--${ currentDirection }`);
+    indicatorElem.classList.add(`slider__indicator--${ newDirection }`);
+    sliderElem.setAttribute('data-pos', newPos);
+  }
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      let currentPos = parseInt(sliderElem.getAttribute('data-pos'));
+      let nextPos = (currentPos + 1) % dots;
+      goToSlide(nextPos);
+    }, autoSlideDelay);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  }
+
+  // Manual click
+  Array.prototype.forEach.call(dotElems, (dotElem) => {
+    dotElem.addEventListener('click', (e) => {
+      e.preventDefault();
+      let newPos = parseInt(dotElem.getAttribute('data-pos'));
+      goToSlide(newPos);
+      resetAutoSlide(); // restart auto slide
+    });
+  });
+
+  // Prevent indicator from jumping page
+  indicatorElem.addEventListener('click', (e) => {
+    e.preventDefault();
+  });
+
+  // Start auto slide on load
+  startAutoSlide();
+
+</script> {% endcomment %}
+
+ 
+{% schema %}
+{
+"name": "Featured Services",
+"class": "featured-services-section",
+"settings": [
+{
+"type":"header",
+"content":"Instruction",
+"info":"Data source is Shop Metafield",
+},
+{
+    "type": "select",
+    "id": "bg-color",
+    "label": "Section backgound color",
+    "options": [
+        {
+        "value": "light",
+        "label": "light"
+        },
+        {
+        "value": "dark",
+        "label": "dark"
+        }
+    ],
+    "default": "light"
+}
+]
+}
+{% endschema %}

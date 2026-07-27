@@ -1,0 +1,81 @@
+<!-- Video Section -->
+{{ 'fitouts-videos.css' | asset_url | stylesheet_tag }}
+<section class="fitouts-videos">
+  <div class="page-width fitout-videos-page-width">
+    <div class="fitouts-videos__content col-three-fourth">
+      
+      {{article.metafields.fitout_blog.fitout_video_1_thumbnail.src}}
+      
+
+      {% if article.metafields.fitout_blog.fitout_video_1_thumbnail %}
+        {% for image in  article.metafields.fitout_blog.fitout_video_1_thumbnail %}
+          {%- assign thumbUrl = image.src -%}
+          {%- assign thumb_ratio = image.aspect_ratio -%}
+          <div class="fitouts-videos__item" >
+            {% render "fitout-video", 
+                      video_thumb: thumbUrl, 
+                      thumb_ratio: thumb_ratio, 
+                      video_url: article.metafields.fitout_blog.fitout_video_1_url,
+                            youtube_title: article.metafields.fitout_blog.fitout_video_1__youtube_title, 
+                            youtube_description: article.metafields.fitout_blog.fitout_video_1_youtube_description, 
+                            youtube_uploaded_date: article.metafields.fitout_blog.fitout_video_1_youtube_uploaded_date,
+            %}
+            {% comment %}
+            <div class="image-wrapper">
+              <img src="{{ image.src }}" alt="{{ image.alt }}"/>
+              <span data-video-url="{{ article.metafields.fitout_blog.fitout_video_1_url }}" class="play-btn"></span>
+            </div>
+            {% endcomment %}
+          </div>        
+        {% endfor %}
+        {% else %}
+          {% if article.metafields.fitout_blog.fitout_slider_images1[0] %}
+            <div class="no-video-img-wrap">
+              <img 
+              src="{{ article.metafields.fitout_blog.fitout_slider_images1[0] | file_img_url: '600x' }}" 
+              alt="fitout" 
+              width="600" 
+              height="auto" 
+              class="no-video-img" 
+              >
+            </div>
+          {% endif %}
+      {% endif %}
+      
+      {% if article.metafields.fitout_blog.fitout_video_2_thumbnail %}
+        {% for image in  article.metafields.fitout_blog.fitout_video_2_thumbnail %}
+        <div class="fitouts-videos__item">
+          {% render "fitout-video", 
+                      video_thumb: image.src, 
+                      thumb_ratio: image.aspect_ratio, 
+                      video_url: article.metafields.fitout_blog.fitout_video_2_url,
+                      youtube_title: article.metafields.fitout_blog.fitout_video_2_youtube_title, 
+                          youtube_description: article.metafields.fitout_blog.fitout_video_2_youtube_description, 
+                          youtube_uploaded_date: article.metafields.fitout_blog.fitout_video_2_youtube_uploaded_date,
+                          imageonly: imageonly: article.metafields.fitout_blog.fitout_slider_images1[1]
+          %}
+          {% comment %}
+          <div class="image-wrapper">
+          <img src="{{ image.src }}" alt="{{ image.alt }}"/>
+            <span data-video-url="{{ article.metafields.fitout_blog.fitout_video_2_url }}" class="play-btn"></span>
+          </div>
+          {% endcomment %}
+        </div>    
+        {% endfor %}
+      {% else %}
+        {% if article.metafields.fitout_blog.fitout_slider_images1[1] %}
+          <div class="no-video-img-wrap">
+            <img 
+            src="{{ article.metafields.fitout_blog.fitout_slider_images1[1] | file_img_url: '600x' }}" 
+            alt="fitout" 
+            width="600" 
+            height="auto" 
+            class="no-video-img" 
+            >
+          </div>
+        {% endif %}
+      {% endif %}
+
+  	</div>
+  </div>
+</section>

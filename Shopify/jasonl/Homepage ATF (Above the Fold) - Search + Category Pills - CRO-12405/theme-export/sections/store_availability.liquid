@@ -1,0 +1,240 @@
+<style>
+
+    #page-load-info{
+    position: fixed;
+      width:410px;
+        right: -500px;
+        /* right: -600px; */
+        top: 0px;
+        background: #fff;
+        background: #ececec;
+        padding: 0px;
+        z-index: 9999;
+        /* z-index: -9999; */
+      transition:all 0.3s ease;
+      /* opacity: 0.5; */
+      /* height:0px;
+      overflow:hidden; */
+    }
+      #page-load-info *{
+        opacity:0;
+      }
+      #page-load-info:hover{
+        right:0px;
+      }
+      #page-load-info:hover *{
+        opacity:1;
+      }
+    
+        
+        .product-form__buttons.loading .button,
+        .product-form__buttons.loading button,
+        .product-form__buttons.loading .button-icon-holder {
+          display: none;
+        }
+        
+        .product-form__buttons.loading {
+          position: relative;
+        }
+      
+        .product-form__buttons.loading:after {
+          content: "";
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 1);
+          z-index: 9;
+      
+        }
+    
+        .product-form__buttons .loader{
+          height:24px; width:24px;
+          position: absolute;
+          left: 0px;
+          top: 4px;
+          z-index: 20;
+          display: none;
+        }
+          .product-form__buttons.loading .loader{
+            display: block;
+          }
+      
+        .product-form__buttons.preorder-show * {
+          display: none;
+        }
+      
+        .product-form__buttons.preorder-show .button.backorder-btn {
+            display: block;
+            border-radius: 6px;
+            padding: 0px 18px;
+        }
+        .product-form__buttons.buynow-show .button, .product-form__buttons.buynow-show button, 
+        .product-form__buttons.buynow-show .button-icon-holder{
+          display: block;
+        }
+        .product-form__buttons.buynow-show .button.backorder-btn{
+          display:none;
+        }
+        
+      </style>
+    
+    
+    
+    
+    {% comment %} {%- for l in product.selected_variant.store_availabilities -%}
+    <p>{{l.location.id}}</p>
+    {%- endfor -%} {% endcomment %}
+    
+    {% assign tagsContainsWA = false %}
+    {% for tag in product.tags %}
+    {% if tag == 'WA' %}
+    {% assign tagsContainsWA = true %}
+    {% break %}
+    {% endif %}
+    {% endfor %}
+    
+    <!-- TODO: 
+    Change location id while moving to live.
+    NSW and WA does not require to update in moving to live.
+    -->
+                <!-- dev location = 31412236 -->
+    
+    <script type="application/json">
+      {
+      "store_availability":{
+      "variant": "{{ product.selected_variant.title }}",
+      "location_info":[
+            {%- for l in product.selected_variant.store_availabilities -%}
+                    {%- if l.location.id == 27868748 -%}
+                      {%- assign locationCode = 'NSW' -%}
+                    {%- else -%}
+                      {%- assign locationCode = 'WA' -%}
+                    {%- endif -%}
+                    {
+                      "locationCode":"{{ locationCode }}",
+                      "locationName" : "{{l.location.name}}",
+                      "locationMetafields" : "{{l.location.metafields}}",
+                      "locationId" : "{{ l.location.id }}",
+                      "available" : "{{ l.available}}"
+                    } {% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+            ]
+      }
+    }
+    </script>
+    
+    {% comment %}
+          <script type="application/json">
+          {
+          "store_availability":{
+          "variant": "black PU black frame",
+          "location_info":[{
+                          "locationCode":"WA",
+                          "locationName" : "2. Pick-up at 11 King Edward Road, Osbourne Park, WA 6017",
+                          "locationMetafields" : "",
+                          "locationId" : "98769961248",
+                          "available" : "false"
+                        } ,
+        {
+                          "locationCode":"NSW",
+                          "locationName" : "Pick-up at 2A/149 McCredie Road Smithfield, NSW 2164.",
+                          "locationMetafields" : "",
+                          "locationId" : "27868748",
+                          "available" : "false"
+                        } 
+        ]
+          }
+        }
+        </script>
+        {% endcomment %}
+    <div class="page-width">
+      {% comment %}<p>{{product.tags}}</p>{% endcomment %}
+     
+        <div id="page-load-info">
+        {%- for l in product.selected_or_first_available_variant.store_availabilities -%}
+          {{  l.location.id   }}
+            <!-- dev location id = 31412236 -->
+        {%- if l.location.id == 27868748 -%}
+        {%- assign locationCode = 'NSW' -%}
+        {%- else -%}
+        {%- assign locationCode = 'WA' -%}
+        {%- endif -%}
+    
+        <div class="item" style="border-bottom: 1px solid #ccc;">
+          <p class="onloadLocationCode">{{locationCode}}</p>
+          <p class="onloadlocationName">{{l.location.name}}</p>
+          <p class="onloadlocationId">{{ l.location.id }}</p>
+          <div class="av">
+            <span>Availabilty:</span>
+            <strong class="onloadavailable">{{ l.available }}</strong>
+          </div>
+        </div>
+       
+        {%- endfor -%}
+      </div>
+    
+    {% comment %}
+    <div id="page-load-info">
+        
+    <!-- dev location id = 31412236 --><div class="item" style="border-bottom: 1px solid #ccc;">
+          <p class="onloadLocationCode">WA</p>
+          <p class="onloadlocationName">2. Pick-up at 11 King Edward Road, Osbourne Park, WA 6017</p>
+          <p class="onloadlocationId">98769961248</p>
+          <div class="av">
+            <span>Availabilty:</span>
+            <strong class="onloadavailable">false</strong>
+          </div>
+        </div><!-- dev location id = 31412236 --><div class="item" style="border-bottom: 1px solid #ccc;">
+          <p class="onloadLocationCode">NSW</p>
+          <p class="onloadlocationName">Pick-up at 2A/149 McCredie Road Smithfield, NSW 2164.</p>
+          <p class="onloadlocationId">27868748</p>
+          <div class="av">
+            <span>Availabilty:</span>
+            <strong class="onloadavailable">false</strong>
+          </div>
+        </div></div>
+      {% endcomment %}
+    
+    
+    
+    
+    
+    </div>
+    {%- comment -%}
+        {% unless locationCode == 'WA' and tagsContainsWA == false %}
+           {% endunless %}
+     {%- unless locationCode == 'WA' and tagsContainsWA == false -%} {%- endunless -%}
+           
+    {%- if l.location.id == 31412236 -%}
+    {%- assign locationName = 'New South Wales' -%}
+    {%- assign locationNameAlias = 'NSW' -%}
+    {%- else -%}
+    {%- assign locationName = 'Bagmati' -%}
+    {%- assign locationNameAlias = 'WA' -%}
+    {%- endif -%}
+    {
+    "location":"{{ locationName }}",
+    "locationAlias":"{{ locationNameAlias }}",
+    {%- endcomment -%}
+    
+    {% schema %}
+    {
+    "name": "Store Availabilty",
+    "class": "perth-location_store-availability",
+    "settings": []
+    }
+    {% endschema %}
+    
+    
+    {% comment %} <div id="store_availability-holder" data-variant="product.selected_variant.title">
+      {% for l in product.selected_variant.store_availabilities %}
+      {% if l.location.id == 31412236%}
+      {% assign locationName = 'NSW' %}
+      {% else %}
+      {% assign locationName = 'WA' %}
+      {% endif %}
+      <div data-location="{{ locationName }}" data-locationid="{{ l.location.id}}">{{ l.available}} </div>
+      {% endfor %}
+    </div> {% endcomment %}

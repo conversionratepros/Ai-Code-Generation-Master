@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+{{ 'featured-universities.css' | asset_url | stylesheet_tag }}
+<div class="featured-universities">
+    <div class="page-width">
+        <h2>Featured scholarships</h2>
+        {%- assign featured_total= shop.metafields['scholarship']['featured'] | size -%}
+        {%- assign total_loop= featured_total | divided_by:4.0 | ceil -%}
+        {%- assign featured_university = shop.metafields['scholarship']['featured'] -%}
+        {%- assign offsetdata = 0 -%}
+
+        <div class="universities-list--slider splide">
+            <div class="universities-list splide__track">
+                <div class="splide__list">
+                    {% for i in (1..total_loop) %}
+                    <ul class="universities-list--slider-pack splide__slide">
+                        {% for featured_data in featured_university limit:4 offset:offsetdata %}
+                        <li>
+                            <a href="{{ featured_data.scholarship_url }}" target="_blank" rel="noopener noreferrer" class="universities__item">
+                                <div class="universities__text">
+                                    <h3>{{ featured_data.scholarship_name }}</h3>
+                                    <p>{{ featured_data.university_name }}</p>
+                                </div>
+                                <div class="universities__logo">
+                                    <img src="{{ featured_data.university_logo }}"
+                                        alt="{{ featured_data.university_name }}" />
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% assign offsetdata = offsetdata | plus:4%}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var universities_splide = new Splide('.universities-list--slider', {
+            pagination: false,
+            breakpoints: {
+                767: {
+                    destroy: true,
+                },
+            }
+        });
+        universities_splide.mount();
+    });
+</script>
+{% schema %}
+{
+"name": "Featured Universities",
+"class": "featured-universities-section"
+}
+{% endschema %}

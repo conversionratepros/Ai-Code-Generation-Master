@@ -1,0 +1,89 @@
+{% comment %}
+  Review data are called from meta object Customer Reviews
+{% endcomment %}
+{{ 'landingpage-customerreviews-1.css' | asset_url | stylesheet_tag }}
+{%- assign numberOfReviews = 4 -%}
+{% assign googleratingdatalist = shop.metaobjects.customer_reviews.values %}
+{% assign max = googleratingdatalist.size %}
+
+{% if max > 4 %}
+  {%- assign min = 1 -%}
+  {%- assign diff = max | minus: min -%}
+  {%- assign randomstring = '' -%}
+
+  {% for i in (1..15) %}
+    {%- assign random_number = 'now' | date: '%N' | modulo: diff | plus: min -%}
+    {%- assign random_number_clean = random_number | strip -%}
+    {% if randomstring == '' %}
+      {% assign randomstring = random_number_clean %}
+    {% else %}
+      {% assign randomarray = randomstring | split: ',' %}
+      {% if randomarray.size >= 3 %}
+        {% break %}
+      {% endif %}
+      {% if randomarray contains random_number_clean %}
+        {% continue %}
+      {% endif %}
+      {% assign randomstring = randomstring | append: ',' | append: random_number_clean %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign review_indexarray = randomstring | split: ',' %}
+
+  {% if review_indexarray.size < 4 %}
+    {% assign review_indexarray = '1,2,3,4' | split: ',' %}
+  {% endif %}
+{% else %}
+  {% assign review_indexarray = '1,2,3,4' | split: ',' %}
+{% endif %}
+{% assign review_indexarray = review_indexarray | sort %}
+
+{% assign increase_index = 1 | strip %}
+{% assign reviewno_counter_index = 0 %}
+<div class="customerreviews-container">
+  <div class="page-width">
+    <div class="googlereviews">
+      {% for reviewdata in googleratingdatalist %}
+        {% if review_indexarray contains increase_index %}
+          <div class="googlereviews-item">
+            <div class="starholder">
+              {% assign rating = reviewdata.star_rating | floor %}
+              {% for i in (1..5) %}
+                {% if i <= rating %}
+                  <div class="clip-star filled"></div>
+                {% else %}
+                  <div class="clip-star"></div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="reviewer-top">
+              <div class="reviewer-info">
+                <p class="reviewer-name">{{ reviewdata.customer_name }}</p>
+              </div>
+            </div>
+            {%- if reviewdata.customer_designation -%}
+              <p>
+                <span class="reviewer-tag"
+                  >- {{ reviewdata.customer_designation }} at <strong>{{ reviewdata.customer_company }}</strong>
+                </span>
+              </p>
+            {%- endif -%}
+            {%- if reviewno_counter_index == 1 -%}
+              <p class="reviewer-review">{{ reviewdata.review_message | truncatewords: 23, '...' }}</p>
+            {%- else -%}
+              <p class="reviewer-review">{{ reviewdata.review_message | truncatewords: 23, '...' }}</p>
+            {%- endif -%}
+          </div>
+          {% assign reviewno_counter_index = reviewno_counter_index | plus: 1 %}
+          {% if reviewno_counter_index >= numberOfReviews %}
+            {% break %}
+          {% endif %}
+        {% endif %}
+        {% assign increase_index = increase_index | plus: 1 | strip %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{ "name": "Customer Reviews", "tag": "section", "class": "section--customer-reviews left-shadow" }
+{% endschema %}

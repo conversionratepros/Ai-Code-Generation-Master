@@ -1,0 +1,29 @@
+{%- assign parentCollection_titleSuffix = collection.metafields.collectionmeta.title_suffix -%}
+{%- if current_tags -%}
+        {%- assign childCollection_titleSuffix = '' -%}
+       {%- for ctag in current_tags -%}
+            {% assign datavalue= ctag | downcase %}
+            {% assign datavalue= datavalue | replace: " ","" %}
+            {% assign datavalue= datavalue | slice: 0, 24 %}
+            {% assign childColTitleSuffix = datavalue | append: "_sf" %}
+            {%- assign tagprod = 'tagproducts' -%}
+            {%- if shop.metafields[tagprod][childColTitleSuffix] -%}
+                {% assign childCollection_titleSuffix= shop.metafields[tagprod][childColTitleSuffix] %}
+                <span class="subheading">{{childCollection_titleSuffix}}</span>
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- if childCollection_titleSuffix == empty -%}
+            {%- if parentCollection_titleSuffix -%}
+                <span class="subheading">{{parentCollection_titleSuffix}}</span>
+            {%- else -%}
+                <span class="subheading">Done!</span>
+            {%- endif -%}
+        {%endif%}
+{%- else -%}
+    {%- if parentCollection_titleSuffix -%}
+        <span class="subheading">{{parentCollection_titleSuffix}}</span>
+    {%- else -%}
+        <span class="subheading">Done!</span>
+    {%- endif -%}
+{%- endif -%}

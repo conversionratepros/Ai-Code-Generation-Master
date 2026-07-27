@@ -1,0 +1,100 @@
+{%- comment -%} ICONS {%- endcomment-%}
+{%- capture eyeIcon -%}
+    <svg id="Layer_1" x="0" y="0" version="1.1" viewBox="0 0 22.2 15.6" xml:space="preserve"><style>.eyeicon{fill:#121212}</style><path d="M22.1 7.2C21.4 6 17.5-.2 10.8 0 4.7.2 1.1 5.6.1 7.2c0 .2-.1.4-.1.6 0 .2.1.4.1.5.7 1.2 4.4 7.2 11 7.2h.3c6.1-.2 9.7-5.6 10.7-7.2.1-.2.1-.4.1-.6 0-.1 0-.3-.1-.5zm-10.7 6.1c-4.8.1-7.9-4-8.9-5.6 1.1-1.8 4-5.4 8.5-5.6 4.8-.1 7.9 4 8.9 5.6-1.2 1.9-4.1 5.5-8.5 5.6z" class="eyeicon"/><path d="M11.1 3.9c-.8 0-1.5.2-2.2.7-.6.4-1.1 1-1.4 1.7-.3.7-.3 1.5-.2 2.2.1.8.5 1.4 1.1 2 .5.5 1.2.9 2 1.1.8.1 1.5.1 2.2-.2.7-.3 1.3-.8 1.7-1.4.5-.7.7-1.4.7-2.2 0-1-.4-2-1.1-2.7-.8-.8-1.8-1.2-2.8-1.2zm0 5.5c-.3 0-.7-.1-.9-.3-.3-.1-.5-.4-.6-.7-.1-.3-.2-.6-.1-1 .1-.3.2-.6.5-.9s.5-.4.9-.5c.3-.1.7 0 1 .1.3.1.6.3.7.6.2.3.3.6.3.9 0 .4-.2.9-.5 1.2-.4.5-.8.6-1.3.6z" class="eyeicon"/></svg>
+    {%- endcapture -%}
+    {%- capture arrow-right -%}
+    <svg viewBox="0 0 10 7"><path fill="#fff" fill-rule="evenodd" d="M6.2.2c0-.1.1-.1.1-.2h.4c.1 0 .1.1.2.1L10 3.2l.1.1v.2s0 .1-.1.1L6.8 6.9c-.1.1-.2.1-.3.1s-.2 0-.2-.1c-.1-.1-.1-.2-.1-.3 0-.1 0-.2.1-.3l2.4-2.4H.4c-.1 0-.2 0-.3-.1-.1-.1-.1-.2-.1-.3 0-.1 0-.2.1-.3.1-.1.2-.1.3-.1h8.3L6.3.7C6.2.6 6.2.5 6.2.5c-.1-.1 0-.2 0-.3z" clip-rule="evenodd"/></svg>
+    {%- endcapture -%}
+    
+    {%- assign ins_counter = 0 -%}
+    {% comment %} {%- for article in fitout_articles limit:7-%} {% endcomment %}
+    {%- for article in fitout_articles -%}
+            {% comment %} <!-- TODO: remove after testing completed --> {% endcomment %}
+            {%- assign fitoutsIndex = forloop.index -%}
+            {%- assign size1 = forloop.index | modulo : 5 -%}
+            {%- assign size2 = forloop.index | modulo : 3 -%}
+            {% if forloop.index  == 1 or size2  == 0 %}
+                {% comment %} {% assign imgWtHt = '385x445' %}
+                {% assign imgHt = '445' %} {% endcomment %}
+                {% assign imgWtHt = '385x440' %}
+                {% assign imgHt = '440' %}
+            {% elsif forloop.index  == 2 or size1  == 0%}
+                {% comment %} {% assign imgWtHt = '385x600' %}
+                {% assign imgHt = '600' %} {% endcomment %}
+                {% assign imgWtHt = '385x440' %}
+                {% assign imgHt = '440' %}
+            {% else %}
+                {% comment %} {% assign imgWtHt = '385x290' %}
+                {% assign imgHt = '290' %} {% endcomment %}
+                {% assign imgWtHt = '385x440' %}
+                {% assign imgHt = '440' %}
+            {% endif %}
+
+            
+    
+            {% if article.metafields.fitout_blog.inspired_image %}
+                {%- for inspiredImg in article.metafields.fitout_blog.inspired_image -%} 
+                    {%- assign tags = article.metafields.fitout_blog.inspired_image_tags -%}
+                    {% comment %} <!-- Check items with 'All' class/tag --> {% endcomment %}
+                    {%- assign isTag_all = false -%}
+                    {%- assign allTags = tags[forloop.index0] | split:'|' -%}
+                    {% for tagName in  allTags  %}
+                        {% if tagName == 'all' %}
+                            {%- assign isTag_all = true -%}
+                            {% break %}
+                        {% endif  %}
+                    {% endfor  %}
+                    {% comment %} <!-- END --> {% endcomment %}
+    {% comment %} 
+    <!-- TODO: remove below static classes -->  {% endcomment %}
+    
+                    <div class="grid-item list-item {{ tags[forloop.index0] | replace:'|',' '}}" {% unless isTag_all == true %}style="display:none"{% endunless %} data-fitoutIndex="{{fitoutsIndex}}" data-fitout="{{article.title}}">
+                        <div class="list-item-cnt">
+                            <picture class="grid-img">
+                                {%- assign imgSrc = article.metafields.fitout_blog.inspired_image[forloop.index0]  -%}
+                                <img src="{{imgSrc |  file_img_url:imgWtHt, crop:'center' }}" alt="{{article.title}}" />
+                            </picture>
+                            {%- if article.metafields.fitout_blog.inspired_image.size > 0 -%}
+                                    <modal-opener  class="simple-popup-modal__opener no-js-hidden svg-icon-holder size-{{article.metafields.fitout_blog.inspired_image.size}}" 
+                                    data-modal="#PopupModal-{{article.title | handleize | truncate: 15,''}}-{{forloop.index0}}"
+                                    data-slider="#slider-{{article.title | handleize | truncate: 15,''}}-{{forloop.index0}}"
+                                    data-sliderSlideIndex="{{forloop.index0}}"
+                                    >
+                                        <button class="modal-hovered-text">
+                                            VIEW PRODUCTS
+                                            <span class="arrow-icon"><img src="{{ 'arrow-right.svg' | asset_url }}" width="19px" height="6px" alt="view product"></span>
+                                            {% comment %} <span class="svg-eyeicon">{{eyeIcon}}</span> {% endcomment %}
+                                        </button>
+                                    </modal-opener >
+    
+                                    {%- assign modalId = article.title | handleize | truncate : 15,''| append : '-'| append : forloop.index0 -%}
+                                    {%- capture modal_content -%}
+                                        {%- assign inspire_tags = tags[forloop.index0] -%}
+                                        {%- render 'inspired-slider', loadSliderScripts:false , id:modalId, article:article, metaTags:tags[forloop.index0], imageIndex:forloop.index0 -%}
+                                    {%- endcapture -%}
+                                        {%- render 'simple-popup-modal', 
+                                        modal_id: modalId , 
+                                        modal_class: 'inspire-prods-modal',
+                                        modal_label:'',
+                                        modal_size:'small', 
+                                        modal_content: modal_content -%}
+                                {%- endif -%}
+    
+                            {% comment %} <h4>
+                                <a title="{{article.title}}" href="{{article.url}}">{{article.title |  truncate: 40,'..'}} {{arrow-right}}</a>
+                            </h4> {% endcomment %}
+                        </div>
+                                
+                    </div>
+                     {%- assign ins_counter = ins_counter | plus:1 -%}
+                    {%- if ins_counter == counter -%}
+                        {%- break -%}
+                    {%- endif -%}
+                {%- endfor -%}
+            {% endif  %}
+    {%- endfor -%}
+    
+    
+    
+    
+    {% comment %} <img src="{{header.image.src | image_url: width:385,height:imgHt, crop:'center'}}"  alt="{{article.title}}" /> {% endcomment %}

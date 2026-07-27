@@ -1,0 +1,178 @@
+{{ 'video-contentsplit.css' | asset_url | stylesheet_tag }}
+
+<section class="video-content-split">
+  <div class="page-width">
+    <div class="split-wrapper">
+      <div class="split-left">
+        <div class="video-wrapper">
+          {%- if section.settings.video != blank -%}
+              <video 
+                id="video-main-{{ section.id }}" 
+                class="video video-main"
+                preload="metadata"
+                autoplay
+                muted
+                loop
+                playsinline
+              >
+                <source src="{{ section.settings.video }}" type="video/mp4">
+              </video>
+            {%- endif -%}
+
+            {%- if section.settings.video_next != blank -%}
+              <video 
+                id="video-interview-{{ section.id }}" 
+                class="video video-interview hidden"
+                preload="metadata"
+                controls
+              >
+                <source src="{{ section.settings.video_next }}" type="video/mp4">
+              </video>
+            {%- endif -%}
+            <div class="overlay"></div>
+            <button class="play-btn" onclick="toggleVideo('{{ section.id }}', this)"></button>
+            
+          <div class="content-wrapper">
+            {%- if section.settings.title != blank -%}
+            <h2 class="content-title">{{ section.settings.title }}</h2>
+            {%- endif -%}
+            {%- if section.settings.subtitle != blank -%}
+            <p class="content-subtitle">{{ section.settings.subtitle }}</p>
+            {%- endif -%}
+        </div>
+        </div>
+      </div>
+      <div class="split-right">
+        {%- if section.settings.title_right != blank -%}
+            <h4>{{ section.settings.title_right }}</h4>
+        {%- endif -%}
+        {%- if section.settings.desc != blank -%}
+          <div class="content-text">
+            {{ section.settings.desc }}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.btm_text != blank -%}
+            <p class="sign-text">{{ section.settings.btm_text }}</p>
+        {%- endif -%}
+
+        <div class="content-list">
+          {%- for block in section.blocks -%}
+            <dl class="list-item">
+              <dt>{{ block.settings.title }}</dt>
+              <dd>{{ block.settings.subtitle }}</dd>
+            </dl>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleVideo(id, btn) {
+  const mainVideo = document.getElementById('video-main-' + id);
+  const interviewVideo = document.getElementById('video-interview-' + id);
+  const overlay = document.querySelector('.overlay');
+  const content = document.querySelector('#video-main-' + id).closest('.video-wrapper').querySelector('.content-wrapper');
+
+  if (interviewVideo.classList.contains('hidden')) {
+    mainVideo.pause();
+    mainVideo.classList.add('hidden');
+
+    content.classList.add('hidden');
+    overlay.classList.add('hidden');
+
+    interviewVideo.classList.remove('hidden');
+    interviewVideo.play();
+
+    btn.classList.add('is-playing');
+  } else {
+    interviewVideo.pause();
+    interviewVideo.classList.add('hidden');
+
+    mainVideo.classList.remove('hidden');
+    mainVideo.play();
+
+    content.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+
+    btn.classList.remove('is-playing');
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Video Content Split",
+  "settings": [
+    {
+      "type": "text",
+      "id": "video",
+      "label": "Video URL (MP4)"
+    },
+    {
+      "type": "text",
+      "id": "video_next",
+      "label": "Interview Video URL (MP4)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Your Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Short subtitle"
+    },
+    {
+      "type": "header",
+      "content": "Right Column Content"
+    },
+    {
+      "type": "text",
+      "id": "title_right",
+      "label": "Main Title",
+      "default": "Your Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "desc",
+      "label": "Content Description"
+    },
+    {
+      "type": "textarea",
+      "id": "btm_text",
+      "label": "Bottom Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "List Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Point Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Short description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Content Split",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

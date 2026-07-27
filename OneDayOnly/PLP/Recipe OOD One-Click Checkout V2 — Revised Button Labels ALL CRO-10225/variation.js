@@ -133,7 +133,7 @@
 					var badgeEl = document.querySelector(badgeSelector);
 					var newValue = (badgeEl || targetNode).textContent.trim();
 					if (newValue !== lastValue) {
-						redirectToCheckout();
+						// redirectToCheckout();
 					}
 				});
 
@@ -142,7 +142,7 @@
 				// FIX: Timeout fallback for signed-out users — clicking ATC while signed
 				// out shows a login modal instead of updating the cart badge. Without this
 				// the observer would sit forever and the user would be stuck.
-				observerTimeout = setTimeout(redirectToCheckout, 10000);
+				// observerTimeout = setTimeout(redirectToCheckout, 10000);
 			}
 
 			var cartBtn = document.querySelector(buttonSelector);
@@ -206,11 +206,25 @@
 				});
 			});
 
+			// A real user click on ATC is "trusted"; our own atcBtn.click() call below
+			// is not. Use that to clear a stale 'triggered' class defensively — keeps
+			// the two spinners mutually exclusive even if a previous BUY IT NOW flow
+			// never redirected (e.g. modal stayed open after a failure).
+			live('.modal .unbxd-addToCart', 'click', function (e) {
+				if (e.isTrusted) {
+					var wrap = document.querySelector('.cro-10225-buy-now-wrap');
+					if (wrap) wrap.classList.remove('cro-10225-triggered');
+				}
+			});
+
 			// BUY IT NOW click → start cart observer → trigger add to cart
-			// Spinner is handled purely by CSS: ATC:disabled + .wrap .btn::before (no JS class needed)
+			// Class goes on our own injected wrapper (not React-managed) so CSS can
+			// tell ATC's spinner apart from a BUY IT NOW-triggered click via :has().
 			live('.cro-10225-buy-now-btn', 'click', function () {
 				var atcBtn = document.querySelector('.modal .unbxd-addToCart');
+				var wrap = document.querySelector('.cro-10225-buy-now-wrap');
 				if (atcBtn) {
+					if (wrap) wrap.classList.add('cro-10225-triggered');
 					checkCartAndRedirect();
 					setTimeout(function () { atcBtn.click(); }, 400);
 				}

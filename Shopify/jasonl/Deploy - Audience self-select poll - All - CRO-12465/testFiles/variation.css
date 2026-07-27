@@ -1,0 +1,126 @@
+    /* CRO-12465 | Deploy | Audience self-select poll | ALL */
+
+    /* ── Hide existing "Want to elevate your space?" strip — poll takes its slot ── */
+    body.cro-12465 .pdp-header-banner {
+        display: none !important;
+    }
+
+    /* ── Poll strip wrapper ── */
+    .cro-12465-poll {
+        background: #f8fafb;
+        border-bottom: 1px solid #ececec;
+        font-family: inherit;
+    }
+
+    .cro-12465-poll__inner {
+        max-width: 1540px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .cro-12465-poll__q {
+        font-weight: 700;
+        font-size: 16px;
+        color: #1a1a1a;
+        margin: 0;
+    }
+
+    .cro-12465-poll__opts {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .cro-12465-poll__btn {
+        border: 1.5px solid #1a1a1a;
+        background: #fff;
+        color: #1a1a1a;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all .15s ease;
+        font-family: inherit;
+    }
+
+    .cro-12465-poll__btn:hover {
+        background: #c6d644;
+        border-color: #c6d644;
+        color: #1a1a1a;
+    }
+
+    .cro-12465-poll__btn[disabled] {
+        opacity: .6;
+        cursor: default;
+    }
+
+    .cro-12465-poll__close {
+        background: none;
+        border: none;
+        font-size: 22px;
+        line-height: 1;
+        color: #9aa1ad;
+        cursor: pointer;
+        padding: 4px 8px;
+    }
+
+    .cro-12465-poll__close:hover {
+        color: #1a1a1a;
+    }
+
+    /* ── Thanks / failure message ── */
+    .cro-12465-poll__msg {
+        font-weight: 600;
+        font-size: 16px;
+        color: #1a1a1a;
+        padding: 4px 0;
+        margin: 0;
+    }
+
+    /* ── Match content container: gutter becomes pure centering margin ── */
+    @media (min-width: 1540px) {
+        .cro-12465-poll__inner {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    /* ── Mobile overrides ── */
+    @media (max-width: 768px) {
+        .cro-12465-poll__inner {
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            position: relative;
+        }
+
+        .cro-12465-poll__q {
+            flex-basis: 100%;
+            font-size: 15px;
+            padding-right: 30px;
+        }
+
+        .cro-12465-poll__opts {
+            width: 100%;
+            gap: 10px;
+        }
+
+        .cro-12465-poll__btn {
+            flex: 1 1 calc(50% - 5px);
+            text-align: center;
+        }
+
+        .cro-12465-poll__close {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            padding: 4px 8px;
+        }
+    }

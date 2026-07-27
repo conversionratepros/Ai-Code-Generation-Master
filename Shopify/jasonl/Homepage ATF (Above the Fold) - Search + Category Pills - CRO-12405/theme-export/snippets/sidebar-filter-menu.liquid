@@ -1,0 +1,323 @@
+{{ 'sidebar.css' | asset_url | stylesheet_tag }}
+{%- assign navigation_handle = 'main-menu-image-without-more-testing' -%}
+{%- if collection.handle == 'office-furniture' -%}
+  {%- assign navigation_handle = 'shop-by-workspaces' -%}
+{%- endif -%}
+{%- assign subtypes = false -%}
+{%- for link in linklists[navigation_handle].links -%}
+  {% if link.url == collection.url and link.links != blank %}
+    {%- assign subtypes = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split: ',' -%}
+{% for tagname in current_tags %}
+  {%- assign tag_name = tagname | downcase | escape -%}
+  {%- if cities contains tag_name -%}
+    {%- assign city = tagname -%}
+
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{% for collectionmeta_location in collection.metafields.collectionmeta.location_collection_select_city %}
+  {% assign location_showroom = collectionmeta_location | downcase | escape %}
+  {% assign city = city | escape | downcase %}
+  {% if city == location_showroom %}
+    {% assign collectionmeta_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+
+{%- assign showroom_locations_except_perth = cities | remove: 'perth' -%}
+{% assign has_city_tag = false %}
+
+{% for tag in current_tags %}
+  {% assign tag_downcase = tag | downcase %}
+  {% if showroom_locations_except_perth contains tag_downcase %}
+    {% assign has_city_tag = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{%- if collection.metafields.collectionmeta.location_collection_description[collectionmeta_index] -%}
+  {%- assign location_description = collection.metafields.collectionmeta.location_collection_description
+[collectionmeta_index] -%}
+{%- endif -%}
+{% assign decription_location_clean = location_description | strip_html | escape %}
+
+
+{%- for tagname in current_tags -%}
+    {%- assign tag_names = tagname | downcase | escape -%}   
+    {%- unless cities contains tag_names -%}
+        {%-assign ctag = tagname -%}
+        {%-break-%}
+    {%- endunless -%}
+{%- endfor -%} 
+
+{%- if has_city_tag -%}
+    {%- assign tagprod = 'tagproducts' -%}
+    {%- assign datavalue= ctag | downcase -%}
+    {%- assign datavalue= datavalue | replace: " ","" -%}
+    {%- assign datavalue= datavalue | slice: 0, 24 -%}
+    {%- assign city_description_metakey = datavalue | append: "_sd" -%}
+    {% comment %} {%- assign metadesc = city | append: '_metadesc' -%} {% endcomment %}
+     {%- assign metadesc = city  -%}
+
+    {%- if shop.metafields[tagprod][city_description_metakey][metadesc] != blank -%}
+        {%- assign city_description =  shop.metafields[tagprod][city_description_metakey][metadesc] -%}
+        {%- assign decription_location_clean = city_description -%}
+    {%- endif -%}
+{%- endif -%}
+
+
+
+
+
+
+<div
+  class="sidebar-location-collection-description"
+  id="location-collection-description"
+  {% if template == 'collection' %}
+    {%- unless has_city_tag %}
+      style="display: none;"
+    {% endunless %}
+  {% endif %}
+>
+  <p id="location-description-text">
+    {{ decription_location_clean | strip_html }}
+  </p>
+  {% assign location_des = decription_location_clean | split: ' ' | size %}
+  {% if location_des > 25 %}
+    <span class="show-more-description" id="show-more-btn-location-des">More </span>
+  {% endif %}
+</div>
+
+{% if subtypes %}
+  <details
+    class="filtermenu-static-holder facets__disclosure js-filter sidebar-width filterbytype-sidebar small-hide"
+    data-index="60"
+    open
+  >
+    <summary class="facets__summary caption-large focus-offset filter-heading">
+      <span>
+        <span>Filter by <strong>Type</strong></span>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="icon icon-caret"
+          viewBox="0 0 10 6"
+        >
+          <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"
+              fill="currentColor">
+          </path>
+        </svg>
+      </span>
+    </summary>
+
+    {%- for link in linklists[navigation_handle].links -%}
+      {% comment %} {%- assign child_list_handle = link.object.handle -%} {% endcomment %}
+      {%- if link.active -%}
+        {% if link.links != blank %}
+          {% comment %} filtermenu filtermenu-static facets__display {% endcomment %}
+          <div class=" parent-display facets__display-vertical">
+            <div class="filtermenu-item-holder">
+              <ul id="filtermenu-list" class="list-type-1 remove-bottom-spacing">
+                {%- assign count_filtermenu_items = link.links.size -%}
+                {% assign child_link_counter = 1 %}
+                {%- for childlink in link.links -%}
+                  {%- assign parent_url = childlink.url -%}
+                  {%- assign string_split = parent_url | split: '/' -%}
+                  {%- assign url_index = string_split | size | minus: 1 -%}
+                  {% comment %} {%- assign childCollection = string_split[url_index] -%} {% endcomment %}
+                  {%- if childlink.title -%}
+                    <li class="{% if childlink.active %}filtermenu-nav--active{% endif %} {% if child_link_counter > 5 and count_filtermenu_items > 15%}hide{% endif %}">
+                      {%- comment -%}Get product url{%- endcomment -%}
+                      {%- if collections[string_split[url_index]].products_count == 1 -%}
+                        {%- for productss in collections[string_split[url_index]].products -%}
+                          {% comment %} {%- assign prod_url = productss.url -%} {% endcomment %}
+                        {%- endfor -%}
+                      {%- else -%}
+                        {% comment %} {%- assign prod_url = filtermenu_url -%} {% endcomment %}
+                      {% endif %}
+                      {%- assign col_handle = childlink.handle -%}
+                    
+
+
+
+{%- comment -%} child URL update when location are clicked {%- endcomment -%}
+{%- assign child_link_url = childlink.url -%}
+{%- assign locations_name = 'sydney,melbourne,brisbane,adelaide,canberra,perth' | split:',' -%}
+{%- assign current_pageurl =  request.host | append: request.path -%}
+{%- for location_name in locations_name -%}
+    {%- if current_pageurl contains location_name -%}
+        {%- assign child_link_url = child_link_url | append:'+' | append: location_name -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+{% comment %} END:: child URL update ..... {% endcomment %}
+
+{%- capture perth_url -%}
+  {%- assign is_child = false -%}
+  {%- assign perth = '/' | append: 'perth'  -%}
+  {%- assign link_url = childlink.url | split: '/'-%}
+  {%- if link_url.size >= 4 -%}
+    {%- assign is_child = true -%}
+  {%- endif -%}
+
+  {%- if is_child == true -%}
+    {%- assign has_location = false -%}
+    {%- for location_name in locations_name -%}
+      {%- if child_link_url contains location_name -%}
+        {%- assign has_location = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- unless has_location -%}
+      {%- assign perth = '+' | append: 'perth' -%}
+    {%- else -%}
+      {%- assign perth = '' -%}
+    {%- endunless -%}
+  {%- endif -%}
+  {{perth}}
+{%- endcapture -%}
+
+
+                                            <a href="{{child_link_url}}" data-collectiontag="{{childlink.title}}" data-test="{{ request.host }}{{ request.path }}" data-test-newurl="{{child_link_url}}"
+                                                data-colHandle="{{col_handle}}" data-nsw="{{child_link_url}}" data-wa="{{child_link_url | append:perth_url}}" data-js_updatemenuurl="true">
+                                                {% capture menuTitle_withoutIcon %}
+                                                    {%- if childlink.title contains '|'-%}
+                                                    {%- assign linktitle = childlink.title | split:'|'-%}
+                                                    {{-linktitle[0]-}}
+                                                    {%-else-%}
+                                                    {{- childlink.title | escape -}}
+                                                    {%- endif-%}
+                                                    {%- endcapture -%}
+                        {{- menuTitle_withoutIcon -}}
+                        <span class="custom-checkbox-holder">
+                          <svg
+                            class="icon icon-checkmark"
+                            width="11"
+                            height="7"
+                            viewBox="0 0 11 7"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
+                            stroke="currentColor"
+                            stroke-width="1.75"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                          </svg>
+                        </span>
+                      </a>
+                    </li>
+                    {% assign child_link_counter = child_link_counter | plus: 1 %}
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+
+            {%- if child_link_counter > 15 -%}
+              <span id="filter_view_all_categories" class="view-all-categories display-as-list"
+                >More
+
+                <span class="custom-checkbox-holder" style="opacity: 0;">
+                  <svg
+                    class="icon icon-checkmark"
+                    width="11"
+                    height="7"
+                    viewBox="0 0 11 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <script>
+                  // same function on collection-filters-form.js
+                  // TODO: remove from here
+                  function toggleCatFilterItem() {
+                    let ulElement = document.getElementById('filtermenu-list');
+                    let items = ulElement.querySelectorAll('li.hide');
+                    if (document.getElementById('filter_view_all_categories')) {
+                      const btnViewAll = document.getElementById('filter_view_all_categories');
+                      btnViewAll.addEventListener('click', function () {
+                        this.classList.toggle('active');
+                        for (let i = 0; i < items.length; i++) {
+                          if (this.classList.contains('active')) {
+                            items[i].classList.remove('hide');
+                          } else {
+                            items[i].classList.add('hide');
+                          }
+                        }
+                        if (this.classList.contains('active')) {
+                          btnViewAll;
+                          this.firstChild.textContent = 'Less '; // Change "More" to "Less"
+                        } else {
+                          this.firstChild.textContent = 'More '; // Change "Less" to "More"
+                        }
+                      });
+                    }
+                  }
+                  toggleCatFilterItem();
+                </script>
+              </span>
+            {%- endif -%}
+
+            <style></style>
+          </div>
+        {%- endif -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </details>
+  <style></style>
+{% endif %}
+
+{% if template == 'collection' %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const url = new URL(window.location.href);
+      const hasLocationParam = url.searchParams.has('location');
+      const hasPerth = url.pathname.includes('perth');
+      const descriptionSections = document.getElementById('location-collection-description');
+      const description = document.getElementById('location-description-text');
+      const showMoreButton = document.getElementById('show-more-btn-location-des');
+
+      // Handle description visibility
+      if (descriptionSections) {
+        if (hasLocationParam && hasPerth) {
+          descriptionSections.style.display = 'block';
+        } else if ({% if has_city_tag %}true{% else %}false{% endif %}) {
+          descriptionSections.style.display = 'block';
+        }
+      }
+
+      // Handle More/Less functionality for both Perth and non-Perth locations
+      if (description && showMoreButton && ((hasLocationParam && hasPerth) || {% if has_city_tag %}true{% else %}false{% endif %})) {
+        const words = description.innerText.split(' ');
+
+        if (words.length > 26) {
+          const visibleWords = words.slice(0, 26).join(' ') + '...';
+          description.innerText = visibleWords;
+          showMoreButton.style.display = 'inline-block';
+        }
+
+        showMoreButton.addEventListener('click', function () {
+          if (description.innerText !== words.join(' ')) {
+            description.innerText = words.join(' ');
+            showMoreButton.innerText = 'Less ';
+            showMoreButton.classList.add('active');
+          } else {
+            const visibleWords = words.slice(0, 26).join(' ') + '...';
+            description.innerText = visibleWords;
+            showMoreButton.innerText = 'More ';
+            showMoreButton.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+{% endif %}

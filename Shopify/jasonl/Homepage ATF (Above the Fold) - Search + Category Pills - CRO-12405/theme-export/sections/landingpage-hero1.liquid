@@ -1,0 +1,63 @@
+{{ "landingpage-hero.css" | asset_url | stylesheet_tag }}
+<style>
+    .hero-container{
+        background: url({{'landingpage1-hero-image2.png' | file_img_url: '1400x'}}) no-repeat 100% 0;
+        background-size: cover;
+    }
+     @media(max-width:1439px){
+        .hero-container{
+            background-size: cover;
+        }
+    }
+@media (-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+     .hero-container{
+        background: url({{'landingpage1-hero-image4-x2.jpg' | file_img_url: '2800x'}}) no-repeat 100% 0;
+        background-size: cover;
+    }
+}
+    @media(min-width:768px) and (max-width:1450px){
+        .new-header .hero-container{
+            background-size: cover;
+         }
+    }
+    
+    
+
+    @media(max-width:767px){
+       .hero-container{
+        background-image: none;
+       }
+       .hero-text{
+         /* background: url({{'home-banner-mobile.png' | file_img_url: '767x'}}) no-repeat 100% 0; */
+        background-size: contain;
+        }
+    }
+    
+</style>
+<div class="hero-container">
+       
+            <picture class="hero-picture">
+                <img src="{{'landingpage1-hero-image1-mob.png' |  file_img_url:'750x'}}" alt="We make your office fitout easy Fast!" />
+            </picture>
+         
+    <div class="page-width">
+        <div class="hero-text">
+        <h1 class="h1-style">We make your <br>office fitout easy<span>.</span><br>Fast!</h1>
+        <p>Go from an empty office to a quality fitout without the fuss. We'll help you pick your product, supply your free floor plan and quote, deliver, and assemble it all. Done by Australia's top commercial office fitout company.</p>
+            {%- render 'landingpage-typeform' -%}
+         <ul class="disc-number-bullets disc-number-bullets-1 disc-number-bullets-desktop">
+            <li>No-obligation floor plan & quote</li>
+            <li>± 5000 tailored products to choose from</li>
+            <li>Dedicated assistance every step of the way</li>
+        </ul>
+        </div>
+        <ul class="disc-number-bullets disc-number-bullets-1 disc-number-bullets-mobile">
+            <li>No-obligation floor plan & quote</li>
+            <li>± 5000 tailored products to choose from</li>
+            <li>Dedicated assistance every step of the way</li>
+        </ul>
+
+    </div>
+</div>
+

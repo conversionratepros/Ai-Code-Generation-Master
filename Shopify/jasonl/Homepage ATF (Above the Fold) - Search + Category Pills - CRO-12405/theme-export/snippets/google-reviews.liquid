@@ -1,0 +1,104 @@
+
+{%- if reviewsLimit -%}
+    {%- assign numberOfReviews = reviewsLimit -%}
+{%- else -%}
+    {%- assign numberOfReviews = 4 -%}
+{%- endif -%}
+
+{%-comment -%}  Landing page {%- endcomment  -%}
+{% assign googleratingdatalist = shop.metafields.googlerating.topgooglereview.value %}
+                {% assign max = googleratingdatalist.size %}
+               
+                {% if max > 5 %}
+                        {%- assign min = 1 -%}
+                        {%- assign diff = max | minus: min -%}
+                        {%- assign randomstring ='' -%}
+
+                        {% for i in (1..15) %}
+                            {%- assign random_number = "now" | date: "%N" | modulo: diff | plus: min -%}
+                            {%- assign random_number_clean = random_number | strip -%}
+                            {% if randomstring =='' %}
+                                {% assign randomstring =random_number_clean %}
+                            {% else %}
+                                {% assign randomarray =randomstring | split:"," %}
+                                {% if randomarray.size >= numberOfReviews %}
+                                    {% break %}
+                                {% endif %}
+                                {% if randomarray contains random_number_clean %}
+                                    {% continue %}
+                                {% endif %}
+                                {% assign randomstring = randomstring | append:"," | append:random_number_clean %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% assign review_indexarray = randomstring | split: "," %}
+
+                        {% if review_indexarray.size < 4 %}
+                            {% assign review_indexarray = '1,2,3' | split: "," %}
+                        {% endif %}
+                {% else %}
+                        {% assign review_indexarray = '1,2,3' | split: "," %}
+                {% endif %}
+                {% assign review_indexarray = review_indexarray | sort %}
+                
+                {% assign increase_index = 1 |strip %}
+                {% assign reviewno_counter_index = 0 %}
+                <div class="googlereviews">
+                    
+                    {% for reviewdata in googleratingdatalist  %}
+                            {% if review_indexarray contains increase_index %}
+                                <div class="googlereviews-item">
+                                    <div class="reviewer-top">
+                                        {% comment %} <div class="reviewer-image">
+                                            <img loading="lazy" src="{{ reviewdata.image }}" alt="{{ reviewdata.name }}"/>
+                                        </div> {% endcomment %}
+                                        <div class="reviewer-info">
+                                                <div class="starholder">
+                                                    <div class="clip-star"></div>
+                                                    <div class="clip-star"></div>
+                                                    <div class="clip-star"></div>
+                                                    <div class="clip-star"></div>
+                                                    <div class="clip-star"></div>
+                                                </div>
+                                                <p class="reviewer-name">{{ reviewdata.name }}</p>
+                                                {%comment%} timeago {%endcomment%}
+                                                {% assign dateStart = reviewdata.createdon | date: '%s' %}
+                                                {% assign nowTimestamp = 'now' | date: '%s' %}
+                                                {% comment %} difference in seconds {% endcomment %}
+                                                {% assign diffSeconds = nowTimestamp | minus: dateStart %}
+                                                {% comment %} difference in days {% endcomment %}
+                                                {% assign diffDays = diffSeconds | divided_by: 3600 | divided_by: 24 %}
+                                                {% if diffDays > 30 %}
+                                                    {%- assign diffmonth = diffDays | divided_by: 30 -%} 
+                                                    {% assign timeago = diffmonth | append: 'month(s) ago'%}               
+                                                {% else %}
+                                                    {% assign timeago = diffDays | append:'day(s) ago'%}  
+                                                {% endif %}
+                                                <p>
+                                                    <span class="reviewer-tag">@{{ reviewdata.name | append : ' - '}}</span>
+                                                    <span class="reviewer-time">{{ timeago }} </span>
+                                                </p>
+                                                {%comment%} END::timeago {%endcomment%}
+                                        </div>
+                                        {% comment %} <div class="g-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 640 640"><path d="M326.331 274.255v109.761h181.49c-7.37 47.115-54.886 138.002-181.49 138.002-109.242 0-198.369-90.485-198.369-202.006 0-111.509 89.127-201.995 198.369-201.995 62.127 0 103.761 26.516 127.525 49.359l86.883-83.635C484.99 31.512 412.741-.012 326.378-.012 149.494-.012 6.366 143.116 6.366 320c0 176.884 143.128 320.012 320.012 320.012 184.644 0 307.256-129.876 307.256-312.653 0-21-2.244-36.993-5.008-52.997l-302.248-.13-.047.024z"/></svg>
+                                        </div> {% endcomment %}
+                                        
+                                    </div>
+                                    
+                                    {%- if reviewno_counter_index == 1 -%}
+                                        <p class="reviewer-review">{{ reviewdata.review | truncatewords: 23, "..." }}</p>
+                                {%-else-%}
+                                        <p class="reviewer-review">{{ reviewdata.review | truncatewords: 23, "..." }}</p>
+                                {%-endif-%}
+                                
+                                </div>
+                                {% assign reviewno_counter_index = reviewno_counter_index | plus:1 %}
+                                {%- comment -%} reviewno_counter_index >= 3 {%- endcomment-%}
+                                {% if reviewno_counter_index >= numberOfReviews %}
+                                    {% break %}
+                                {% endif %}
+                            {% endif %}
+                            {% assign increase_index = increase_index | plus:1 | strip %}
+                    {% endfor %}
+                </div>

@@ -1,0 +1,57 @@
+{% if prioritised_colors contains colorName %}
+    <li class="color-prioritised" title="{{ colorName }}" id="option-color-{{ variant_id }}" style="order:0" data-order="0" data-counter="{{ counter }}">
+      <a href="{{ variant_url }}" 
+        data-visited="false" 
+        data-variant_img="{{ variant_img | image_url: width: 283 }}" 
+        class="option-color" 
+        style="background-color:{{ colorCode }}" 
+        data="{{ variantColors }}">
+      </a>
+    </li>
+  {% else %}
+    <div class="color-normal" title="{{ colorName }}" id="option-color-{{ variant_id }}" style="order:1" data-order="1">
+      <a href="{{ variant_url }}" 
+        data-visited="false" 
+        data-variant_img="{{ variant_img | image_url: width: 283 }}" 
+        class="option-color" 
+        style="background-color:{{ colorCode }}" 
+        data="{{ variantColors }}">
+      </a>
+    </div>
+  {% endif %}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  {% comment %}
+  =========================================
+  {% if prioritised_colors contains colorName %} 
+    <li title="{{ colorName }}" id="option-color-{{ variant_id }}" style="order:0" data-order="0" data-counter="{{ counter }}">
+      <a href="{{ variant_url }}" 
+        data-visited="false" 
+        data-variant_img="{{ variant_img | image_url: width: 283 }}" 
+        class="option-color" 
+        style="background-color:{{ colorCode }}" 
+        data="{{ variantColors }}">
+      </a>
+    </li>
+  {% else %}
+    <li title="{{ colorName }}" id="option-color-{{ variant_id }}" style="order:1" data-order="1">
+      <a href="{{ variant_url }}" 
+        data-visited="false" 
+        data-variant_img="{{ variant_img | image_url: width: 283 }}" 
+        class="option-color" 
+        style="background-color:{{ colorCode }}" 
+        data="{{ variantColors }}">
+      </a>
+    </li>
+  {% endif %}
+  {% endcomment %}

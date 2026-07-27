@@ -1,0 +1,138 @@
+{% comment %}
+  CRO-12425 | Trust / USP strip
+  Inline centred row of icon + text items between horizontal rules.
+  Non-interactive; items wrap when horizontal space runs out.
+
+  Icon precedence per block: uploaded image > inline default icon.
+  Default icons render inline from snippets/cro-12425-icon.liquid
+  (no theme asset uploads needed).
+{% endcomment %}
+
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="cro-12425-trust-strip"
+></script>
+
+{% style %}
+  .cro-12425-trust {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .cro-12425-trust__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px 48px;
+    padding: 18px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .cro-12425-trust__item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .cro-12425-trust__icon,
+  .cro-12425-trust__icon img,
+  .cro-12425-trust__icon svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .cro-12425-trust__text {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.15;
+    color: #1d1d1d;
+  }
+
+  @media screen and (max-width: 859px) {
+    .cro-12425-trust {
+      padding: 0 16px;
+    }
+
+    .cro-12425-trust__inner {
+      gap: 12px 24px;
+    }
+  }
+{% endstyle %}
+
+<div class="cro-12425-trust">
+  <div class="cro-12425-trust__inner">
+    {% for block in section.blocks %}
+      <div class="cro-12425-trust__item" {{ block.shopify_attributes }}>
+        <span class="cro-12425-trust__icon">
+          {% if block.settings.icon_image %}
+            {%
+              render 'rimg',
+              img: block.settings.icon_image,
+              size: '52x52',
+              lazy: true,
+            %}
+          {% elsif block.settings.default_icon != 'none' %}
+            {% render 'cro-12425-icon', icon: block.settings.default_icon %}
+          {% endif %}
+        </span>
+        <span class="cro-12425-trust__text">{{ block.settings.text | escape }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12425 Trust Strip",
+  "max_blocks": 6,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon image",
+          "info": "Overrides the default icon below."
+        },
+        {
+          "type": "select",
+          "id": "default_icon",
+          "label": "Default icon",
+          "options": [
+            { "value": "aflewering", "label": "Aflewering (truck)" },
+            { "value": "terugstuur", "label": "Terugstuur (arrows)" },
+            { "value": "veilige-betaling", "label": "Veilige betaling (card)" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO-12425 Trust Strip",
+      "category": "CRO",
+      "blocks": [
+        { "type": "usp", "settings": { "default_icon": "aflewering", "text": "Landwye aflewering" } },
+        { "type": "usp", "settings": { "default_icon": "terugstuur", "text": "7-dae terugstuur" } },
+        { "type": "usp", "settings": { "default_icon": "veilige-betaling", "text": "Veilige betaling" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

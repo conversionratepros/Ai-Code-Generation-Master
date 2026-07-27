@@ -1,0 +1,107 @@
+    {{"collection-hero-banner.css" | asset_url | stylesheet_tag }}
+    {{"collection-rewards-hero-banner.css" | asset_url | stylesheet_tag }}
+
+    {%- assign heroImage = collection.metafields.collectionmeta.rewards_collections_main_image -%}
+   
+
+
+
+
+    {%- comment -%}
+----------------------------------------------------
+Created on thu 28 jul 2022
+Used on : section/collection-hero-banner.liquid,
+----------------------------------------------------
+{%- endcomment-%}
+{% if collection.metafields.collectionmeta.rewards_collections_logo_bg_color %}
+<style>
+   .hero-banner--rewards .logo-holder{
+        background-color: {{collection.metafields.collectionmeta.rewards_collections_logo_bg_color}} ;
+    }
+</style>
+{% endif %}
+<div class="page-width">
+    <div class="hero-banner {% unless heroImage %}hero-banner--noimage{% endunless %} hero-banner--rewards hero-banner--{{collection.handle}}">
+        <div class="hero-banner__cnt-wrapper">
+            <div class="hero-banner__cnt">
+                
+
+
+
+                     <div class="title-wrapper collection-title">
+                            {%- assign collection_hero_title = collection.title -%}
+                            <span class="rewards-sub-title">{{collection.metafields.collectionmeta.rewards_collections_sub_title}}</span>
+                            <div class="h1"> {{collection.metafields.collectionmeta.rewards_collections_main_title}}</div>
+                            {% if collection.metafields.collectionmeta.rewards_collections_description %}
+                            <p class="coll-excerpt-desp">{{ collection.metafields.collectionmeta.rewards_collections_description }}</p>
+                            {% endif %}
+                        </div>
+
+
+
+                
+                       
+                   
+
+
+
+
+
+            </div>
+        </div>
+        {%- if heroImage -%}
+            <div class="picture-holder">
+                <picture>
+                    <source media="(min-width: 900px)" srcset="{{heroImage |  file_img_url: '1000x' }} 1x, {{heroImage |  file_img_url: '1560x' }} 2x">
+                    {% if collection.metafields.collectionmeta.rewards_collections_img_mobile %}
+                        <source media="(max-width: 500px)" srcset="{{collection.metafields.collectionmeta.rewards_collections_img_mobile | file_img_url:'500x'}}">
+                    {% endif %}
+                    <img src="{{heroImage |  file_img_url: '500x'}}" alt="{{collection_hero_title}}">
+                </picture>
+                {% if collection.metafields.collectionmeta.rewards_collections_logo %}
+                <div class="logo-holder">
+                    {{collection.metafields.collectionmeta.rewards_collections_logo}}
+                </div>
+                {% endif %}
+                <div class="discount-cnt-holder">
+                    <div class="dicount-cnt-note">
+                        {% if collection.metafields.collectionmeta.rewards_collections_note %}
+                        <p>{{collection.metafields.collectionmeta.rewards_collections_note}}</p>
+                        {% endif %}
+                    </div>
+                    <div class="discount-cnt-cnt  {% unless collection.metafields.collectionmeta.rewards_collections_promo_code %} discount-cnt-cnt--col2 {% endunless %}">
+                        <div class="discount-cnt-discount">
+                            {% if collection.metafields.collectionmeta.rewards_collections_discount_percentage %}
+                            <span>
+                                {{collection.metafields.collectionmeta.rewards_collections_discount_percentage}}
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class="discount-cnt-txt">
+                            <p><strong>discount</strong> on over 5000+ office furniture items</p>
+                        </div>
+                        {% if collection.metafields.collectionmeta.rewards_collections_promo_code %}
+                        <div class="discount-cnt-code">
+                            <p>use promo code <br>
+                            <img src="{{collection.metafields.collectionmeta.rewards_collections_promo_code | file_url}}" alt="Dicount Promo Code" />
+                            at checkout
+                            </p>  
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {%-endif-%}
+    </div>
+</div>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Rewards Hero banner",
+  "class": "shopify-section--rewards-hero-banner"
+}
+{% endschema %}

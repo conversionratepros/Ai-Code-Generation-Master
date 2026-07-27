@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "main": {
+            "type": "trade-con",
+            "settings": {}
+        },
+        "meet_people": {
+            "type": "new-meet-people",
+            "settings": {}
+        },
+        "getCatalogue": {
+            "type": "landingpage-columnBlock1",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main",
+        "meet_people",
+        "getCatalogue"
+    ]
+}

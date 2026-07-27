@@ -1,0 +1,128 @@
+{{ 'product-range.css' | asset_url | stylesheet_tag }}
+
+{%- assign range_collection_handle = '' -%}
+{%- assign range_collection_title = '' -%}
+{%- for range_collection in product.collections -%}
+  {%- assign range_title = range_collection.template_suffix | downcase -%}
+  {%- if range_title contains 'range' -%}
+    {%- assign range_collection_handle = range_collection.handle -%}
+    {%- assign range_collection_title = range_collection.title -%}
+    {%- if collections[range_collection_handle].products.size > 3 -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+
+
+{% comment %} {%- assign range_collection_handle = "package-carton-factory-spec" -%} {% endcomment %}
+{%- assign max_products = 5 -%}
+{%- assign products_displayed = 0 -%}
+{%- if range_collection_handle != '' -%}
+  {%- assign filtered_products = collections[range_collection_handle].products -%}
+  {%- assign range_url = collections[range_collection_handle].url -%}
+
+  {%- capture product_range -%}
+    {{ 'shop-by-room.css' | asset_url | stylesheet_tag }}
+
+    <div class="shop-by-room-holder product-page-range product-range-title-section">
+      <div class="page-width">
+        <h2>This product is part of a range</h2>
+      </div>
+    </div>
+
+    <div class="shop-by-room-holder product-page-range product-range-slider-section border-bottom-mobile">
+      <div class="page-width">
+        <div class="item-holder">
+          <div class="shop-by-room-slider swiper">
+            <ul class="swiper-wrapper">
+              {%- assign shown_titles = '' -%}
+                {%- for range_product in filtered_products -%}
+                  {%- assign base_title = range_product.title | split: '[' | first | strip | downcase -%}
+                  {%- unless range_product.tags contains 'bulk' or range_product.id == product.id or shown_titles contains base_title -%}
+                    {%- if products_displayed < max_products -%}
+                      <li class="swiper-slide">
+                        <div>
+                          <a href="{{ range_product.url }}" title="{{ range_product.title }}"> 
+                            <picture>
+                              <source srcset="{{ range_product.featured_image | image_url: width:964 }} 2x" media="(min-resolution: 2dppx)">
+                              <img src="{{ range_product.featured_image | image_url: width: 482 }}" alt="{{ range_product.featured_image.alt | escape }}" width="485" height="auto" {% if forloop.index > 3 %}loading="lazy"{% endif %}>
+                            </picture>
+                          </a>
+                          <h4 class="title">
+                            <a class="link link--range" href="{{range_url}}">
+                              {{ range_collection_title | remove:' - ' | remove: '[' | remove: ']' }}
+                            </a> <span class="sym">/</span> 
+                            <a class="link link--product" href="{{ range_product.url }}">
+                              {{ range_product.title }}
+                            </a>
+                          </h4>
+                        </div>
+                      </li>
+                      {%- assign products_displayed = products_displayed | plus: 1 -%}
+                      {%- assign shown_titles = shown_titles | append: base_title | append: '|' -%}
+                    {%- endif -%}
+                  {%- endunless -%}
+                {%- endfor -%}
+            </ul>
+          </div>
+          <button class="swiper-button-next swiper-button-next-range" id="swiper-btn-next"></button>
+          <button class="swiper-button-prev swiper-button-prev-range" id="swiper-btn-previous"></button>
+
+        </div>
+        <div class="swiper-pagination-range"></div>
+      </div>
+    </div>
+  {%- endcapture -%}
+  {{ product_range | strip_newlines }}
+  <script>
+    window.addEventListener("DOMContentLoaded", (event) => {
+      const swiper = new Swiper('.shop-by-room-slider', {
+        slidesPerView: 1.2, // Number of slides visible
+        spaceBetween: 15, // Space between slides
+        autoplay: false,
+        pagination: {
+          el: ".swiper-pagination-range",
+          type: "fraction"
+        },
+
+// centeredSlides: true,
+        breakpoints: {
+          640: {
+            slidesPerView: 3, // Two slides visible on screens >= 640px
+            spaceBetween: 20,
+            grid: {
+              rows: 1
+            }
+          },
+          1024: {
+            slidesPerView: 3, // Three slides visible on screens >= 1024px
+            spaceBetween: 20,
+            centeredSlides: false
+          }
+        },
+        navigation: {
+          nextEl: '.swiper-button-next-range',
+          prevEl: '.swiper-button-prev-range'
+        }
+      });
+    });
+  </script>
+{% else %}
+  <div class="spacer"></div>
+{%- endif -%}
+
+
+
+{% schema %}
+  {
+    "name": "Product Range",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Instruction",
+        "info": "Data source static"
+      }
+    ]
+  }
+{% endschema %}

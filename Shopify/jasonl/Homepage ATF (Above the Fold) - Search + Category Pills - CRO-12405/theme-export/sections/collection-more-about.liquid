@@ -1,0 +1,255 @@
+{%- assign tagName = '' %}
+
+{% if current_tags %}
+
+        
+            {% for tagname in current_tags %}
+                {%-assign ctag = tagname -%}
+                {%- assign tagName = tagname -%}
+                {%-break-%}
+            {%- endfor -%}
+
+            {% assign datavalue = ctag | downcase %}
+            {% assign datavalue = datavalue | replace: " ","" %}
+            {% assign datavalue = datavalue | slice: 0, 24 %}
+            {% assign gridcustom1_metadata = datavalue | append: "_g3" %} 
+            {%-assign tagproducts = 'tagproducts' -%}  
+            {% assign metadata_gridcustom1 = shop.metafields.tagproducts[gridcustom1_metadata]  %} 
+            
+
+
+            {%- assign  heading1 = metadata_gridcustom1.grid_heading -%}
+            {%- assign  button_label = metadata_gridcustom1.grid_button_label -%}
+            {%- assign  button_url = metadata_gridcustom1.grid_button_url -%}
+            {%- assign  heading2 = metadata_gridcustom1.grid_heading2 -%}
+            {%- assign  item1_image = metadata_gridcustom1.grid_item1_image -%}
+            {%- assign  item1_label = metadata_gridcustom1.grid_item1_label -%}
+            {%- assign  item1_url = metadata_gridcustom1.grid_item1_url -%}
+            {%- assign  item2_image = metadata_gridcustom1.grid_item2_image -%}
+            {%- assign  item2_video = metadata_gridcustom1.grid_item2_video -%}
+            {%- assign  item2_youtube_title = metadata_gridcustom1.grid_item2_video_title -%}
+            {%- assign  item2_youtube_description = metadata_gridcustom1.grid_item2_video_description -%}
+            {%- assign  item2_youtube_date = metadata_gridcustom1.grid_item2_video_date -%}
+            {%- assign  item2_label = metadata_gridcustom1.grid_item2_label -%}
+            {%- assign  item2_url = metadata_gridcustom1.grid_item2_url -%}
+            {%- assign  item3_image = metadata_gridcustom1.grid_item3_image -%}
+            {%- assign  item3_video = metadata_gridcustom1.grid_item3_video -%}
+            {%- assign  item3_youtube_title = metadata_gridcustom1.grid_item3_video_title -%}
+            {%- assign  item3_youtube_description = metadata_gridcustom1.grid_item3_video_description -%}
+            {%- assign  item3_youtube_date = metadata_gridcustom1.grid_item3_video_date -%}
+            {%- assign  item3_label = metadata_gridcustom1.grid_item3_label -%}
+            {%- assign  item3_url = metadata_gridcustom1.grid_item3_url -%}
+            {% comment %}
+            --------
+                {%- assign  heading1 = 'Our best selling height adjustable desks' -%}
+                {%- assign  button_label = 'View all products' -%}
+                {%- assign  button_url = '#' -%}
+                {%- assign  heading2 = 'Jason on our workstation range' -%}
+                {%- assign  item1_image = 'grid-item1.png' -%}
+                {%- assign  item1_label = 'Flexi height adjustable desk' -%}
+                {%- assign  item1_url = 'https://www.jasonl.com.au/products/flexi-premium-height-adjustable-single-workstation?variant=39640498143313' -%}
+                {%- assign  item2_image = 'grid-item2.png' -%}
+                {%- assign  item2_label = 'Just Right height adjustable desk' -%}
+                {%- assign  item2_url = 'https://www.jasonl.com.au/products/just-right-height-adjustable-desk?variant=40089545867345' -%}
+                {%- assign  item3_image = 'grid-video-img.png' -%}
+                {%- assign  item3_video = 't7O865eRzf8' -%}
+                {%- assign  item3_label = '' -%}
+            --------------
+            {% endcomment %}
+            
+            
+ 
+{% else %}
+   
+   
+            {%- assign  heading1 = collection.metafields.coln_grid_3col.grid_heading_1 -%}
+            {%- assign  button_label = collection.metafields.coln_grid_3col.grid_button_label -%}
+            {%- assign  button_url = collection.metafields.coln_grid_3col.grid_button_url -%}
+            {%- assign  heading2 = collection.metafields.coln_grid_3col.grid_heading_2 -%}
+            {%- assign  item1_image = collection.metafields.coln_grid_3col.grid_item1_image -%}
+            {%- assign  item1_label = collection.metafields.coln_grid_3col.grid_item_1__label -%}
+            {%- assign  item1_url = collection.metafields.coln_grid_3col.grid_item1_url -%}
+            {%- assign  item2_image = collection.metafields.coln_grid_3col.grid_item2_image -%}
+            {%- assign  item2_video = collection.metafields.coln_grid_3col.grid_item2_video -%}
+            {%- assign  item2_label = collection.metafields.coln_grid_3col.grid_item2_label -%}
+            {%- assign  item2_url = collection.metafields.coln_grid_3col.grid_item2_url -%}
+            {%- assign  item3_image = collection.metafields.coln_grid_3col.grid_item3_image -%}
+            {%- assign  item3_video = collection.metafields.coln_grid_3col.grid_item3_video -%}
+            {%- assign  item3_label = collection.metafields.coln_grid_3col.grid_item3_label -%}
+            {%- assign item3_url = collection.metafields.coln_grid_3col.grid_item3_url -%}
+            {%- assign  item3_youtube_title = collection.metafields.coln_video.youtube_title -%}
+            {%- assign  item3_youtube_description = collection.metafields.coln_video.youtube_description -%}
+            {%- assign  item3_youtube_date = collection.metafields.coln_video.youtube_uploaded_date -%}
+            
+                    
+   
+{% endif %}
+
+{%- comment -%} check to enable new design or old design {%- endcomment -%}
+{% assign is_enable = false %} 
+{%- if item1_image -%}
+    {%- assign is_enable = true -%}
+{%- endif -%}
+
+{%- if is_enable == true  -%}
+{{ 'grid-custom1.css' | asset_url | stylesheet_tag }}
+{% comment %} new more-about-collection-section {% endcomment %}
+{% comment %} this section has slider {% endcomment %}
+{{ 'more-about-collection-section.css' | asset_url | stylesheet_tag }}
+<div class="grid-custom1 grid-custom1--{{tagName}} more-about-collection-section">
+    <div class="page-width slider-page-width">
+        <span class="more-about-collection-heading">
+            <h2>More about our <br class="visible-lg"> {%- render 'collection-title' -%}</h2>
+        </span>
+        <div class="more-about-collection-slider">
+            <div class="swiper-contianer">
+                {{ 'more-about-collection-slider.css' | asset_url | stylesheet_tag }}
+                {% comment %} <!-- Swiper --> {% endcomment %}
+                <div class="swiper more-about-collection-swiper">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="thumbnail-card">
+                            {% if item1_url != '' %}
+                                {% assign item_url_first = item1_url %}
+                            {% else %}
+                                {% assign item_url_first = "#" %}
+                            {% endif %}
+                            <a href="{{ item_url_first }}" class="card-link-on-panel">
+                                <picture class="card-image-wrapper">
+                                    <img src="{{item1_image | file_img_url : '375x'}}" loading="lazy" alt="{{item1_label}}" width="370" height="209" />
+                                </picture>
+                                <div class="thumbnail-card-body">
+                                    <div class="card-title">
+                                        {{item1_label}}
+                                    </div>
+                                    <div class="card-link-icon">
+                                        <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                                            </path>
+                                        </svg>  
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="thumbnail-card">
+                            {% if item2_url != '' %}
+                                {% assign item_url_2 = item2_url %}
+                            {% else %}
+                                {% assign item_url_2 = "#" %}
+                            {% endif %}
+                            <a href="{{ item_url_2 }}" class="card-link-on-panel">
+                                <picture class="card-image-wrapper">
+                                    <img src="{{item2_image | file_img_url : '375x'}}" loading="lazy" alt="{{item2_label}}"  width="370" height="209" />
+                                </picture>
+                                <div class="thumbnail-card-body">
+                                    <div class="card-title">
+                                        {{item2_label}}
+                                    </div>
+                                    <div class="card-link-icon">
+                                        <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                                            </path>
+                                        </svg>  
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="thumbnail-card">
+                            {% comment %} {%- assign videoImg = item3_image | file_img_url: '330x240', crop:'center' -%} {% endcomment %}
+                            {%- if item3_video -%}
+                                <div class="card-image-wrapper">
+                                    {% render 'custom-modal-video-more-about', cover_image: item3_image, youtube_id: item3_video, item3_label:item3_label,
+                                        youtube_title: item3_youtube_title, 
+                                        youtube_description: item3_youtube_description, 
+                                        youtube_uploaded_date: item3_youtube_date %}
+                                </div>
+                                <modal-opener class="no-js-hidden" data-modal="#PopupModal-{{ item3_video }}">
+                                    <button  type="button" aria-haspopup="dialog" data-media-id="{{item3_video}}" style="background-color: transparent; border:0px; width:100%; padding: 0;">
+                                        <div class="thumbnail-card-body hover_pointer video-caption">
+                                            <div class="card-title">
+                                                {{item3_label}}
+                                            </div>
+                                            <div class="card-link-icon">
+                                                <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                                                    </path>
+                                                </svg>  
+                                            </div>
+                                        </div>
+                                    </button>
+                                </modal-opener>
+                            {%- else -%}
+                                {% if item3_url != '' %}
+                                    {% assign item_url_3 = item3_url %}
+                                {% else %}
+                                    {% assign item_url_3 = "#" %}
+                                {% endif %}
+                                <a href="{{ item_url_3 }}" class="card-link-on-panel">
+                                    <div class="card-image-wrapper">
+                                        <img src="{{item3_image | file_img_url : '375x'}}" alt="{{item3_label}}" width='775px' height="" loading="lazy" />
+                                    </div>
+                                    <div class="thumbnail-card-body">
+                                        <div class="card-title">
+                                            {{item3_label}}
+                                        </div>
+                                        <div class="card-link-icon">
+                                            <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                                                </path>
+                                            </svg>  
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <!-- Initialize Swiper -->
+                <script>
+                    
+                    window.addEventListener("load", (event) => {
+                        
+                        var swiper = new Swiper(".more-about-collection-swiper", {
+                            slidesPerView: 1.2,
+                            spaceBetween: 10,
+                            pagination: {
+                                el: ".swiper-pagination",
+                                type: "fraction"
+                            },
+                            breakpoints: {
+                                800: {
+                                    spaceBetween: 30,
+                                    slidesPerView: 3
+                                }
+                            }
+
+                        });
+
+                        if (window.innerWidth > 768) {
+                            swiper.destroy(true, true);
+                        } 
+                    });
+                    
+                </script>
+            </div>
+        </div>
+    </div>
+</div> {% comment %} end more-about-collection-section {% endcomment %}
+{% comment %} this section has slider end {% endcomment %}
+
+{%- endif -%}
+
+{%- schema -%}
+{
+    "name": "t:sections.main-collection-product-grid.name",
+    "class": "section",
+    "settings": []
+}
+{%- endschema -%}

@@ -1,0 +1,55 @@
+{{ 'search-review.css' | asset_url | stylesheet_tag }}
+<div class="search-review">
+    <div class="serach-review-intro">
+        <img src="{{ 'icon-quote.svg' | asset_url }}" alt="quote icon" width="auto" height="auto" class="quote-icon"/>
+        <p>From the moment we received our shipment of this product, we were impressed by the exceptional quality. We highly recommend this product to anyone seeking top-notch quality and reliability for their workspace.</p>
+        <div class="review-rating">
+            <img src="{{ 'star-shape.svg' | asset_url }}" alt="star" width="auto" height="auto">
+            <img src="{{ 'star-shape.svg' | asset_url }}" alt="star" width="auto" height="auto">
+            <img src="{{ 'star-shape.svg' | asset_url }}" alt="star" width="auto" height="auto">
+            <img src="{{ 'star-shape.svg' | asset_url }}" alt="star" width="auto" height="auto">
+            <img src="{{ 'star-shape.svg' | asset_url }}" alt="star" width="auto" height="auto">
+        </div>
+    </div>
+</div>
+<div class="search-review-banner-container">
+    <div class="search-review-banner-card">
+        <div class="chat-box dynamicphone">
+            <div class="chat-box-link">
+                <div class="avatar-section">
+                    <img src="{{ 'avtar-photo.jpg' | asset_url }}" alt="avatar" width="58px" height="58px" class="avatar-img">
+                    <div class="badge"><img src="{{ 'icon-reciver.svg' | asset_url }}" alt="badge" width="10px" height="13px"></div>
+                </div>
+                <div class="chat-box-description-section">
+                    <div class="user-name">jason.l</div>
+                    <div class="user-description">How can we help?</div>
+                </div>
+            </div>
+            <a href="tel:1300-527-665" class="phone-number">1300-527-665</a>
+        </div>
+        <div class="card-thumbnail">
+            <img src="{{ 'search-result-review-banner-img-transparent.png' | file_img_url: 'original' }}" alt="search result" width="auto" height="auto">
+        </div>
+        <div class="card-body text-center">
+            <div class="card-title">Have any questions?</div>
+            <div class="card-body-detail">Want to learn more about our products? We're here to help.</div>
+            <div class="link-underline dynamicphone">CALL US<a href="tel:1300-527-665" class="phone-number">1300-527-665</a></div>
+        </div>
+    </div>
+    <div class="search-review-banner-card">
+        <div class="card-thumbnail">
+            <img src="{{ 'search-result-review-banner-img2.png' | file_img_url: 'original' }}" alt="search result" width="auto" height="auto">
+        </div>
+        <div class="card-body text-center">
+            <div class="card-title">Space feeling a bit meh?</div>
+            <div class="card-body-detail">Get expert help from our new interior design division!</div>
+            <a href="/pages/interior-design" class="button button-primary">Find out more</a>
+            {% comment %} <a 
+                {{settings.typeformurls_url_1}}
+               href="javascript:void(0)" 
+                class="button button-primary typeform-share typeform_custom_parameter ga_fitouts_typeform ">GET A QUOTE</a> {% endcomment %}
+             {% comment %} {% render 'typeform-btn', extra_classes: 'button button-primary typeform-share typeform_custom_parameter ga_fitouts_typeform', button_text:"GET A QUOTE" %} {% endcomment %}
+             
+        </div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+{%- capture widget_contact_location-%}
+<div class="widget contact-location contact--1">
+<ul>
+<li class="footer-email">
+<span class="icon-holder">{%- render 'i-email' -%}</span>
+<div>
+<strong>Email</strong>
+{% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'footer-sales-email ga4-sales-email' %}
+</div>
+
+{% comment %} <style>
+
+.hiddenemail.footer-sales-email {
+color: #fff !important;
+font-size: 20px;
+}
+
+.hiddenemail.footer-sales-email .edot {
+background-color: #fff;
+width: 3px;
+height: 3px;
+}
+
+.hiddenemail.footer-sales-email .svgemail path {
+fill: #fff;
+}
+</style> {% endcomment %}
+</li>
+
+{%- for block in section.blocks-%}
+{% if block.type == 'showroom-contact' %}
+<li>
+{{block.settings.showroom-contact-svg}}
+{{block.settings.showroom-contact-info}}
+</li>
+{% endif %}
+{%- endfor -%}
+
+<li class="location">
+<span class="icon-holder">{%- render 'i-mappointer' -%}</span>
+<a href="https://www.google.com/maps/place/JasonL+Office+Furniture+%26+Fitouts+Alexandria/@-33.9107433,151.1979173,19z/data=!4m9!1m2!2m1!1s3%2F29-31+O'Riordan+StShop+3,+29-31+O'Riordan+Street,+Alexandria+NSW+2015,+Alexandria+NSW+2015,+Australia!3m5!1s0x0:0xc964514638636dde!8m2!3d-33.9107544!4d151.1979159!15sCmgzLzI5LTMxIE8nUmlvcmRhbiBTdCBTaG9wIDMsIDI5LTMxIE8nUmlvcmRhbiBTdHJlZXQsIEFsZXhhbmRyaWEgTlNXIDIwMTUsIEFsZXhhbmRyaWEgTlNXIDIwMTUsIEF1c3RyYWxpYVppCgEzImQzIDI5IDMxIG8gcmlvcmRhbiBzdCBzaG9wIDMgMjkgMzEgbyByaW9yZGFuIHN0cmVldCBhbGV4YW5kcmlhIG5zdyAyMDE1IGFsZXhhbmRyaWEgbnN3IDIwMTUgYXVzdHJhbGlhkgEWb2ZmaWNlX2Z1cm5pdHVyZV9zdG9yZQ" target="_blank" data-ga4="location_engagement" direction_location="Sydney City showroom">
+<address>
+<strong>Sydney City</strong>
+<span>Shop 3, 29-31 O'Riordan Street</span>
+<span>Alexandria, NSW 2015</span>
+</address>
+</a>
+</li>
+<li class="location">
+<span class="icon-holder">{%- render 'i-mappointer' -%}</span>
+<a target="_blank" href="https://www.google.com.au/maps/place/JasonL/@-37.8381734,144.9570841,19.42z/data=!4m13!1m7!3m6!1s0x6ad667e32a54a789:0x9ca7403c9030aa82!2s329-331+Ferrars+St,+South+Melbourne+VIC+3205,+Australia!3b1!8m2!3d-37.8391296!4d144.9582613!3m4!1s0x6ad667e32a54a789:0xc3581e16af7b4fa9!8m2!3d-37.8379798!4d144.9574812" data-ga4="location_engagement" direction_location="Melbourne showroom">
+<address>
+<strong>Melbourne</strong>
+<span>100 Park Street, South</span>
+<span>Melbourne VIC 3205</span>
+</address>
+</a>
+</li>
+<li class="location">
+<span class="icon-holder">{%- render 'i-mappointer' -%}</span>
+<a target="_blank" 
+href="https://www.google.com/maps/place/JasonL+Office+Furniture/@-27.4572643,153.0357295,20z/data=!4m12!1m6!3m5!1s0x0:0xe64197ed8241eb2b!2sJasonL+Office+Furniture!8m2!3d-27.4572494!4d153.03593!3m4!1s0x0:0xe64197ed8241eb2b!8m2!3d-27.4572494!4d153.03593?hl=en" data-ga4="location_engagement" direction_location="Brisbane showroom">
+<address>
+<strong>Brisbane</strong>
+<span>728 Ann Street, Fortitude Valley,</span>
+<span>Brisbane, Qld 4006</span>
+</address>
+</a>
+</li>
+<li class="location">
+<span class="icon-holder">{%- render 'i-mappointer' -%}</span>
+<a target="_blank" 
+href="https://maps.app.goo.gl/24kes8yqHdZF1GvN8" data-ga4="location_engagement" direction_location="Gold Coast showroom">
+<address>
+<strong>Gold Coast</strong>
+<span>50 Ferry Rd, Southport </span>
+<span>QLD 4215</span>
+</address>
+</a>
+</li>
+</ul> 
+</div>
+
+
+<div class="widget contact-location contact--2">
+<ul>
+<li class="footer-phone">
+
+<span class="icon-holder">{%- render 'i-phone', type: 4-%}</span>
+<div>
+<strong>Call</strong>
+<a href="tel:1300-527-665">1300-527-665</a>
+</div>
+
+</li>
+<li class="location">
+
+<span class="icon-holder">{%- render 'i-mappointer' -%}</span>
+
+<a target="_blank" href="https://maps.app.goo.gl/e8geCkGATEEqCT3UA" data-ga4="location_engagement" direction_location="Western showroom">
+<address>
+<strong>Western Sydney</strong>
+<span>2A/149 McCredie Road</span>
+<span>Smithfield, NSW 2164</span>
+</address>
+</a>
+</li>
+<li class="location">
+
+<span class="icon-holder">
+{%- render 'i-mappointer' -%}
+</span>
+<a target="_blank" href="https://goo.gl/maps/rtYHqHkxroRRdSPU6" data-ga4="location_engagement" direction_location="Adelaide showroom">
+<address>
+<strong>Adelaide</strong>
+<span>176 Grote St,</span>
+<span>Adelaide SA 5000</span>
+</address>
+</a>
+</li>
+<li class="location">
+<span class="icon-holder">{%- render 'i-mappointer' -%}</span>
+<a target="_blank" href="https://maps.app.goo.gl/ed7JSUxd57DopP8k6" data-ga4="location_engagement" direction_location="Perth showroom">
+<address>
+<strong>Perth</strong>
+<span>11 King Edward Rd,</span>
+<span>Osborne Park, WA 6017</span>
+</address>
+</a>
+</li>
+</ul>
+</div>
+    {%- endcapture -%}
+{{widget_contact_location |  strip_newlines}}

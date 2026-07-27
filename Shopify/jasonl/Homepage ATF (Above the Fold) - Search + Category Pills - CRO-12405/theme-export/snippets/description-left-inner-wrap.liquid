@@ -1,0 +1,28 @@
+{% assign show_warning = false %}
+
+{% comment %} check for collection if warning is enabled {% endcomment %}
+{% for collection in product.collections %}
+    {% if collection.metafields.custom.product_warning_message == true or collection.title contains "Warning - tip over" %}
+        {% assign show_warning = true %}
+        {% break %}
+    {% endif %}
+{% endfor %}
+
+{% comment %} check for product if warning is enabled {% endcomment %}
+{% if product.metafields.custom.enable_warning_message == true %}
+    {% assign show_warning = true %}
+{%  elsif product.metafields.custom.enable_warning_message == false %}
+    {% assign show_warning = false %}
+{% endif %}
+
+
+<div class="description-left-inner-wrap">
+    <div class="description-text-wrapper-outer {% if show_warning == true %}has_warning_card{% endif %}">
+        <div class="description-text-wrapper collapsed" id="description-wrapper">
+            {{ description_content }}
+        </div>
+    </div>
+    {% if show_warning == true %}
+    {%- render 'warning-product-block'-%}
+    {% endif %}
+</div>

@@ -1,0 +1,85 @@
+{{ "education-landingpage-hero.css" | asset_url | stylesheet_tag }}
+
+<div class="hero-container hero-container-2">
+        <div class="hero-main-wrapper">
+                <picture class="hero-picture">
+                    {% comment %} 
+                    <source media="(max-width:465px)" srcset="{{'landingpage2-hero-img-mob.png' | file_img_url:'master'}}">
+                    <img src="{{'landingpage2-hero-img.png' | file_img_url:'master'}}" alt="Blank canvas to beautiful fitout. Fast!" width="" height="" /> 
+                    {% endcomment %}
+                    <source media="(min-width:768px)" srcset="{{ 'education-hero-banner-lg.jpg' | file_img_url:'1920x' }}">
+                    <img src="{{ 'education-hero-banner-sm.jpg' | file_img_url:'375x' }}" alt="Blank canvas to beautiful fitout. Fast!" width="375px" height="226px" />
+                </picture>
+            <div class="page-width">
+                <div class="hero-main-innner-container">
+                    <div class="hero-text">
+                        <h1 class="h1-style">Furnish your <br class="large-hide"> campus <br class="small-hide"> in under 10 days - <br class="small-hide">guaranteed.</h1>
+                        
+                        <a class="typeform-share getaquoteclick link" {{ settings.typeformurls_url_1 }} href="javascript:void(0)">
+                            GET A QUOTE TODAY
+                            </a>
+                       {% comment %} {%- render 'landingpage-typeform' -%} {% endcomment %}
+                    </div>
+                    {% comment %} <div class="typeform-snippet-wrap">
+                        <div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-embed" data-tf-on-submit="submit" data-tf-widget="rvv9MINp" data-tf-iframe-props="title=JasonL - Get A Quote - Inbound" data-tf-medium="snippet" data-tf-hidden="" style="width:390px;height:550px;"></div>
+                    </div> {% endcomment %}
+                    </div>
+                </div>
+        </div>
+
+        <div class="hero-column-wrapper">
+            <div class="page-width">
+                <div class="hero-column">
+                    <div class="hero-column-left">
+                        <p>TAFEs need durable, functional furniture for classrooms, labs, and breakout zones-fast. JasonL delivers fit-for-purpose solutions with lead times shorter than local manufacturers. <strong>Real results show the difference a smart fitout can make.</strong></p>
+                    </div>
+                    <div class="hero-column-right">
+                        {% comment %} <div class="img-holder">
+                            <img src="{{'landingpage2-chair.png' | file_img_url : 'master'}}" alt="" width="Go from an empty office to a quality fitout" height="" >
+                        </div> {% endcomment %}
+
+                        <div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-embed" data-tf-on-submit="submit" data-tf-widget="rvv9MINp" data-tf-iframe-props="title=JasonL - Get A Quote - Inbound" data-tf-medium="snippet" data-tf-hidden="" style="width:390px;height:550px;"></div>
+                    
+
+                        {%- comment -%}
+                        ================================
+<div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-embed" data-tf-on-submit="submit" data-tf-widget="rvv9MINp" data-tf-iframe-props="title=JasonL - Get A Quote - Inbound" data-tf-medium="snippet" data-tf-hidden="" style="width:390px;height:470px;"></div>
+
+                            <div data-tf-on-ready="ready" class="typeform-snippet typeform-share typeform-embed" data-tf-widget="bd7huXC5" data-tf-opacity="100" data-tf-on-submit="submit" data-tf-iframe-props="title=Test" data-tf-transitive-search-params data-tf-medium="snippet" style="width:100%;height:500px;"></div>
+                            <div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-widget" data-url="https://jsnl.typeform.com/to/rvv9MINp" style="width: 390px; height: 500px;"></div>
+                            <script> (function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) } })()</script>
+                        ====================================
+                        {%- endcomment -%}
+                    </div>
+                </div>
+            </div>
+       </div>
+</div>
+
+<style>
+    /* .shopify-section{
+        display: none;
+    }
+    .shopify-section#shopify-section-template--17460601061664__hero,#shopify-section-header-light,
+    #shopify-section-template--17460601061664__client,
+    #shopify-section-template--17460601061664__thumbnailBanner,
+    #shopify-section-template--17460601061664__departments,
+    #shopify-section-template--17460601061664__howFitoutsDone,
+    #shopify-section-template--17460601061664__customerReviews,
+    #shopify-section-template--17460601061664__fitoutsFast,
+    #shopify-section-template--17460601061664__meetPeople,
+    #shopify-section-template--17460601061664__columnBlock,
+    #shopify-section-template--17460601061664__header{
+        display: block;
+    } */
+</style>
+
+{% schema %}
+{
+  "name": "Hero 2",
+  "tag": "section",
+  "class": "section-hero2",
+  "settings": [
+  ]
+}
+{% endschema %}

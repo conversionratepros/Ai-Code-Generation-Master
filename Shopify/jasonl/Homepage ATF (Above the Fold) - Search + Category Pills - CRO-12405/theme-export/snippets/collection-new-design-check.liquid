@@ -1,0 +1,51 @@
+{%- assign tagName = '' %}
+{% if current_tags %}
+    {% for tag in current_tags %}
+            {%- include 'collage1_data', tag: tag -%}
+            {%- assign tagName = tag -%}
+    {% endfor %}
+
+        
+        
+    
+        {% for tagname_designcheck in current_tags %}
+            {%-assign ctag_designcheck = tagname_designcheck -%}
+             {%- assign tagname_designcheck = ctag_designcheck -%}
+            {%-break-%}
+        {%- endfor -%}
+
+        {% assign datavalue_designcheck = ctag | downcase %}
+        {% assign datavalue_designcheck = datavalue_designcheck | replace: " ","" %}
+        {% assign datavalue_designcheck = datavalue_designcheck | slice: 0, 24 %}
+        {% assign collage1_metadata_designcheck = datavalue_designcheck | append: "_c1" %} 
+        {%-assign tagproducts_designcheck = 'tagproducts' -%}  
+        {% assign metadata_collage1_designcheck = shop.metafields.tagproducts[collage1_metadata_designcheck]  %} 
+
+        {% assign collage_heading_designcheck = metadata_collage1_designcheck.col_heading %}
+        {%- assign collage_heroimg_designcheck = metadata_collage1_designcheck.col_imagename -%}
+
+
+
+
+
+
+
+
+
+{% else %}
+        {%- assign collage_heading_designcheck = collection.metafields.coln-collage1.collage1-heading -%}
+        {%- assign collage_heroimg_designcheck = collection.metafields.coln_collage1.collage1_image -%}
+{% endif %}
+
+
+{%- comment -%} check to enable new design or old design {%- endcomment -%}
+{% assign is_enable = false %} 
+
+{%- if template == "collection" -%}
+    {%- if collage_heading and collage_heroimg -%}
+        {%- assign is_enable = true -%}
+    {%- endif -%}
+{%-  else -%}
+    {% assign is_enable = true %} 
+{%- endif -%}
+

@@ -1,0 +1,64 @@
+{%- comment -%}
+example usage : render 'hidden-emails' email:'sales@jasonl.com.au' classname:'ga4-sales-email'
+{%- endcomment -%}
+{{ 'hidden-email.css' | asset_url | stylesheet_tag }}
+{% comment %}
+ this style is moved to hidden-email.css for fixing html validation error 
+{%  style  %} 
+   /* START of hidden email */
+   .hiddenemail {
+  color: #000 !important;
+  display: inline-flex !important;
+  align-items: baseline !important;
+  white-space: nowrap !important;
+}
+
+.hiddenemail .edot {
+  width: 2px;
+  height: 2px;
+  background: #000;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.rte .edot {
+  background-color: var(--color-base-color);
+}
+.collection-description-section p a .edot {
+  background-color: var(--color-secondary-color);
+}
+.hiddenemail .svgemail {
+  height: 10px;
+  position: relative;
+  top: 1px;
+  padding: 0 1px;
+}
+{% endstyle %} {% endcomment %}
+{%- assign hidden_email = email | split:'@' -%}
+{%- assign hidden_email_user = hidden_email[0] -%}
+{%- assign hidden_email_domain = hidden_email[1] -%}
+
+{%- assign hidden_email_domain_split = hidden_email[1] | split:'.' -%}
+{%- assign hidden_email_domain_name = hidden_email_domain_split[0] -%}
+{%- assign hidden_email_domain_type = hidden_email_domain_split[1] -%}
+{%- assign hidden_email_domain_countrycode = hidden_email_domain_split[2] -%}
+
+<a  class="hiddenemail {{classname}}" data-user="{{hidden_email_user}}" data-domain="{{hidden_email_domain}}" href="mailto:{{hidden_email_user}}.{{hidden_email_domain}}">
+  <span class="header-label-email"><strong>Email Us</strong></span>
+  <span class="header-emailaddress">
+    <strong>
+    {{hidden_email_user}}{%- render 'svgemail-at' -%}{{hidden_email_domain_name}}<span class="edot"></span>{{hidden_email_domain_type}}<span class="edot"></span>{{hidden_email_domain_countrycode}}
+    </strong>
+  </span>
+</a>
+{% comment %}
+    Wed 27 Mar 2024
+
+    GA4 event added in  Tagmanager
+
+    There are two triggers in TagManager
+    1. Trigger on clicking the class 'ga4-sales-email' (NOTE: this is for hidden email)
+    2. Triggers on clicking the link with text 'sales@jasonl.com.au' (NOTE: this is for normal email)
+
+    TODO: convert all email to hidden email and remove 2nd trigger from TagManager
+{% endcomment %}

@@ -1,0 +1,14 @@
+{% comment %} 
+Check if template is collection
+Check if it is location collection page except perth
+
+{% endcomment %}
+{{ 'call-out-text-only.css' | asset_url | stylesheet_tag }}
+ <div class="call-out-text-only-section">
+    <div class="page-width">
+      <h2 class="section-heading">Ready to bring Gregory <br>comfort to your workspace?</h2>
+      <a class="button button--primary" {{ settings.typeformurls_url_1 }} href="javascript:void(0)" data-tf-on-ready="ready" id="bottom-cta-button-gregory">
+        TALK TO OUR TEAM
+      </a>
+    </div>
+  </div>

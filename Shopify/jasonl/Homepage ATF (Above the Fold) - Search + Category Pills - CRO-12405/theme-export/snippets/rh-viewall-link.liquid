@@ -1,0 +1,9 @@
+{%- assign resource_hubs = 'featured,business,trade,home,education' | split:','-%}
+{%- assign view_all_link = "/blogs/main/tagged/resource-hub+featured" -%}
+{%- for blog_tag in current_tags -%}
+  {%- if resource_hubs contains blog_tag -%}
+      {%- assign view_all_link = "/blogs/main/tagged/resource-hub+" | append: blog_tag -%}
+      {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+<a class="link viewall" href="{{view_all_link}}">View all</a>

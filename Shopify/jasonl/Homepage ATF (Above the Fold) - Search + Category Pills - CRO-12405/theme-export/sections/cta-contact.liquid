@@ -1,0 +1,68 @@
+{{'cta-contact.css' | asset_url | stylesheet_tag}}
+
+<section class="cta-contact">
+  <div class="page-width">
+    <div class="cta-wrap">
+        {%- if section.settings.title != blank -%}
+            <h2 class="cta-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+        <p class="cta-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+        <div class="cta-actions">
+        {% comment %} {% if section.settings.button_label != blank %}
+            <a href="{{ section.settings.button_link }}" class="btn primary">
+            {{ section.settings.button_label }}
+            </a>
+        {% endif %} {% endcomment %}
+        <a class="typeform-share getaquoteclick btn typeform-embed" {{ settings.typeformurls_url_1 }}
+        href="javascript:void(0)" data-tf-on-ready="ready" {% if button_id %} id="{{ button_id }}" {% endif %}>
+            Request a Quote
+        </a>
+        {%- if section.settings.phone != blank -%}
+            <p class="call-number">
+              {% comment %} <span class="label">Call</span> {% endcomment %}
+              <a href="tel:{{ section.settings.phone }}" class="phone value">
+             {{ section.settings.phone }}
+            </a></p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Contact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Get Started"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "+977-9800000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Contact",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

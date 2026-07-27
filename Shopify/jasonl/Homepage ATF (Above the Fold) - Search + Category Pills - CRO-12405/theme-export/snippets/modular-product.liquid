@@ -1,0 +1,54 @@
+
+{%- capture modular_block -%}
+    {%- assign is_modular_product = false -%}
+
+    {% comment %} product tags {% endcomment %}
+     {%- assign modular_tag_name = '' -%}
+    {%- assign tags_modular_product = 'modular-product,office-workstations,office-desks' | split:','-%}
+    {%- for modular_tag in tags_modular_product -%}
+    {%- if product.tags contains modular_tag -%}
+        {%- assign modular_tag_name = modular_tag -%}
+        {%- assign is_modular_product = true -%}
+        {%- break -%}
+    {%- endif -%}
+    {%- endfor -%}
+
+
+    {% comment %} product collections {% endcomment %} 
+    {%- assign modular_collection_name = '' -%}
+    {%- assign collections_modular_product = 'Cozy,Uniform Storage' | downcase | split:','-%}
+    {%- for c in product.collections -%}
+       {%- assign collection_title = c.title |  downcase -%}
+       {%- if collections_modular_product contains collection_title -%}
+        {%- assign modular_collection_name = collection_title -%}
+        {%- assign is_modular_product = true -%}
+       {%- endif -%}
+    {%- endfor -%}
+
+  {% comment %} Product title {% endcomment %}
+  {%- assign modular_product_name = '' -%}
+  {%- assign producttitle_modular_product = 'Uniform Activity Module,Mondo' | downcase | split:','-%}
+  {%- assign product_title = product.title |  downcase-%}
+  {%- for modular_producttitle in producttitle_modular_product -%}
+    {%- if product_title contains modular_producttitle -%}
+        {%- assign modular_product_name = modular_producttitle -%}
+        {%- assign is_modular_product = true -%} 
+    {%- endif -%}
+  {%- endfor -%}
+
+    
+
+    
+    {%- if is_modular_product -%}
+        <div class="card-with-icon" data-modular-tag="{{modular_tag_name}}" data-modular-collection="{{modular_collection_name}}" data-modular-product="{{modular_product_name}}">
+        <div class="icon"><svg data-name="Lalego-icon-yer 2" viewBox="0 0 774.94 847.01"><defs><style>.lego-icon-cls-2{fill:none;stroke:#a9b2bb;stroke-linejoin:round;stroke-width:20px}</style></defs><g id="modular-productCapa_1" data-name="Capa 1"><ellipse cx="182.38" cy="177.48" class="lego-icon-cls-2" rx="99.74" ry="61.4"/><ellipse cx="386.46" cy="71.4" class="lego-icon-cls-2" rx="99.74" ry="61.4"/><ellipse cx="386.46" cy="293.36" class="lego-icon-cls-2" rx="105.82" ry="65.15"/><ellipse cx="588.24" cy="177.48" class="lego-icon-cls-2" rx="99.74" ry="61.4"/><path d="M10 252.42l373.58 221.39v363.2L13.17 576.71 10 252.42zM383.58 473.81l381.36-228.02-4.32 335.54-377.04 255.68M684.02 195.38l80.92 50.41M486.5 72.32l74.21 46.24M216.11 119.7l70.88-45.65M10 252.42l79.83-51.4" class="lego-icon-cls-2"/></g></svg></div>
+        <div class="icon-card-body">
+            <div class="icon-card-body-title"><h3>MODULAR PRODUCT</h3></div>
+            <div class="icon-card-body-content">
+                This range offers products that can be seamlessly combined with others in the series, allowing you to create customised configurations for any workspace.
+            </div>
+        </div>
+        </div>
+    {%- endif -%}
+    {%- endcapture -%}
+    {{modular_block |  strip_newlines |  remove: '   ' }}

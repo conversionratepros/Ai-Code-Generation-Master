@@ -1,0 +1,16 @@
+{
+  "name": "arc-sw-brand-banner-below-cro-12345",
+  "version": "1.0.0",
+  "description": "ARC | Brand banner | Move below products | ALL | CRO-12345",
+  "main": "playwright.config.js",
+  "scripts": {
+    "test": "playwright test variation.test.js --reporter=line",
+    "host": "npx fecli host config.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

@@ -1,0 +1,103 @@
+{%- comment -%}
+<style type="text/css">
+  .template-404 .title + * {
+    margin-top: 1rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .template-404 .title + * {
+      margin-top: 2rem;
+    }
+  }
+</style>
+
+<div class="template-404 page-width page-margin center">
+  <p>
+    {{ 'templates.404.subtext' | t }}
+  </p>
+  <h1 class="title">
+    {{ 'templates.404.title' | t }}
+  </h1>
+  <a href="{{ routes.all_products_collection_url }}" class="button">
+    {{ 'general.continue_shopping' | t }}
+  </a>
+</div>
+{%- endcomment -%}
+
+{{ 'page404.css' | asset_url | stylesheet_tag }}
+
+{{ 'product-listing.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+  	jQuery('.top-banner-wrapper').parent().addClass('fullwidthcontainer');
+  });
+</script>
+<div class="top-banner-wrapper">
+  <div class="banner404">
+    <div class="col-md-6 logo404-left">
+       <div id="title404"><h1 class="errortext">Error<span>404</span></h1></div>
+      	<img src="{{ 'jasnol-404.png' | asset_url }}" alt="404 image" />
+    </div>
+    <div class="col-md-6 text404-right">
+        <p class="missing-info"><br>This page took a day off.</p>
+        <p class="token-info">Let's get you back to business. <br />Sorry about that - if there's something specific you're after, get in touch below. We're here to help.</p>
+      	<div class="tokenbuttonwrap">
+          <a class="typeform-share typeform-embed" {{ settings.cotactus_typeformurls_url_1 }} href="javascript:void(0)"><span class="token-code">Contact our team</span></a>
+        </div>
+    </div>
+    
+  </div>
+</div>
+<div class="curve-bg">
+	<img src="{{ 'bg-404.jpeg' | asset_url }}"/>
+  	<a class="jumptopro" href="#jumptoproducts"><img src="{{ 'down-arrow-404.png' | asset_url }}"/></a>
+</div>
+<a name="jumptoproducts"></a>
+<div class="products-listing-404" id="jumptoproducts">
+  	<h2 class="listtitle">Here are our most popular products</h2>
+  {% if collections.top-selling-products.products.size > 0 %}
+
+  <div class="category-listing listings listing404">
+  <div class="list">
+	<div class="collection-matrix">
+  <ul class="grid product-grid">
+    {% for product in collections.top-selling-products.products limit:8 %}
+                <li class="grid__item moreinfo-poz-abs">
+                    {% render 'card-product',
+                        card_product: product,
+                        media_size:'adapt',
+                        show_secondary_image: false,
+                        add_image_padding: true,
+                        show_vendor: false,
+                        show_image_outline: false,
+                        show_rating: true
+                    %}
+                  </li>
+    {% endfor %}
+  </ul>
+  </div>
+  </div>
+</div>
+  {% endif %}
+  
+</div>
+
+{% comment %}
+<h1>{{ 'general.404.title' | t }}</h1>
+<p>{{ 'general.404.subtext_html' | t }}</p>
+
+
+<!-- Begin Transportr -->
+{% render 'transportr' %}
+<!-- End Transportr -->
+
+
+{% endcomment %}
+<style>
+  .tokenbuttonwrap:after {
+        {% comment %} background:url('{{"scissor-404.png" | file_img_url:"master"}}') no-repeat; {% endcomment %}
+        background-size: 90px;
+}
+</style>

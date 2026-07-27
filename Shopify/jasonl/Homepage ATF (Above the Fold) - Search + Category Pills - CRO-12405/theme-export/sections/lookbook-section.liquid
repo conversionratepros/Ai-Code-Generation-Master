@@ -1,0 +1,39 @@
+{%- unless page.handle == 'trade' -%}
+{{ "trade.css" | asset_url | stylesheet_tag }}
+{%- endunless -%}
+<div class="trade-page-wrapper">
+    <div class="lookbook-holder">
+        <div class="page-width">
+            <div class="lookbook cols">
+            <div class="col-item">
+                <img class="mob-img" src="{{'lookbook-img-top.png' |  file_img_url:'master' }}" alt="lookbook" />
+                <h3>Get inspired with our new</h3>
+                <h2>Lookbook</h2>
+                <a class="button" href="https://builder.jasonl.com.au/lookbook/" target="_blank" rel="noopener noreferrer">Download lookbook
+                <span class="icon-holder">
+                    {%- render 'icon-download' -%}
+                </span>
+                </a>
+            </div>
+            <div class="col-item">
+                <img src="{{'download-lookbook-bg.png' |  file_img_url:'master'}}" alt="download lookbook" />
+            </div>
+            <div class="col-item">
+                <div class="contact-info">
+                        <span class="label">Contact us on</span>
+                        {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'sales-email ga4-sales-email' %}
+                        <span class="call">Call <a href="tel:1300865294">1300 865 294</a></span>
+                </div>
+                <img class="mob-img" src="{{'lookbook-img-btm.png' |  file_img_url:'master' }}" alt="lookbook" />
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Lookbook",
+    "settings": []
+  }
+{% endschema %}

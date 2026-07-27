@@ -1,0 +1,148 @@
+{%- assign metaUrls_automated = product.metafields.custom_fields.productassemblyurl -%}
+{%- assign metaLabels_automated = product.metafields.custom_fields.product_assembly_label -%}
+{%- assign metaUrls_manual = product.metafields.productmeta.product_assembly_url_manual -%}
+{%- assign metaLabels_manual = product.metafields.productmeta.product_assembly_label_1 -%}
+
+
+{%  comment  %} below is final. 2 Jul 2024.  {% endcomment %} 
+{%- assign assemblyinstruction = product.metafields.productdata.assemblyinstruction -%}
+
+
+{%- capture svg_download_arrow -%}
+    <svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.73 17.73">
+        <defs><style>.svg-download-arrow {fill: #c6d644;}</style></defs>
+        <path class="svg-download-arrow" d="M8.87,0a8.87,8.87,0,1,0,8.86,8.87A8.87,8.87,0,0,0,8.87,0ZM6.6,8.8V4.28h4.52V8.79h3L8.86,14,3.64,8.8Z" />
+    </svg>
+{%- endcapture -%}
+
+
+
+{%- if assemblyinstruction != blank -%}
+  <div class="product__assembly custom-accordion custom-accordion--normal">
+        <h4 class="custom-accordion__title" onclick="customAccordion(this)">Assembly instructions</h4>
+        <div class="custom-accordion__content">
+     {%- if assemblyinstruction contains ',' -%}
+        {% assign all_inst_url = assemblyinstruction | split:',' %}
+       
+          {%- for each_url in all_inst_url -%}
+
+          {%- if each_url contains '::' -%}
+            {% assign instruction_array = each_url | split:'::' %}
+            {% assign instruction_url=instruction_array[1] %}
+            {% assign instruction_title=instruction_array[0] %}
+          {% else %}
+               {% assign instruction_url=each_url %}
+               {% assign instruction_title=themeOption_label %}
+          {%- endif -%}
+          <div class="instruction-item instruction-item--first {% if forloop.last %}instruction-item--last{% endif %}">
+              <a href="{{ instruction_url }}?v={{"now" | date:"%d_%Y"}}" target="_blank" rel="noopener noreferrer"> {{svg_download_arrow}}
+                  <span>Download</span>
+                  <p>{{ instruction_title }}</p>
+              </a>
+          </div>
+
+          {%- endfor -%}
+     {%- else -%}
+          {%- if assemblyinstruction contains '::' -%}
+            {% assign instruction_array = assemblyinstruction | split:'::' %}
+            {% assign instruction_url=instruction_array[1] %}
+            {% else %}
+               {% assign instruction_url=assemblyinstruction %}
+          {%- endif -%}
+          <div class="instruction-item instruction-item--first instruction-item--last">
+              <a href="{{ instruction_url }}?v={{"now" | date:"%d_%Y"}}" target="_blank" rel="noopener noreferrer"> {{svg_download_arrow}}
+                  <span>Download</span>
+                  <p>{{themeOption_label}}</p>
+              </a>
+          </div>
+     {%- endif -%}
+        </div>
+  </div>
+{%- endif -%} 
+
+
+
+
+{% comment %} 
+{%- if metaUrls_automated != blank or metaUrls_manual != blank-%}
+    <div class="product__assembly custom-accordion custom-accordion--normal">
+        <h4 class="custom-accordion__title" onclick="customAccordion(this)">Assembly instructions</h4>
+        <div class="custom-accordion__content">
+
+            {%- if metaUrls_automated -%}
+                <div class="instruction-item instruction-item--first {% if metaUrls_manual == blank %}instruction-item--last{%- endif -%}">
+                    <a href="{{ product.metafields.custom_fields.productassemblyurl }}" target="_blank" rel="noopener noreferrer"> {{svg_download_arrow}}
+                        <span>Download</span>
+                        <p>
+                            {%- if metaLabels_automated %}
+                                {%- if metaLabels_automated contains ','%}
+                                    {%- assign metalabel_split = metaLabels_automated | split:','-%}
+                                    {{metalabel_split[0]}} 
+                                {%- else -%}
+                                    {{metaLabels_automated}} 
+                                {%- endif -%}
+                            {%- else -%}
+                                {{themeOption_label}}
+                            {%-endif -%}
+                        </p>
+                    </a>
+                </div>
+            {%- endif -%}
+
+
+        {%- if metaUrls_manual != blank -%}
+            
+        
+            {%- if metaUrls_manual contains ',' %} 
+                        {%- assign metaUrls_split = metaUrls_manual  | split:','-%}
+                        {%- if metaLabels_manual != blank -%}
+                            {%- if metaLabels_manual contains ','-%}
+                                    {%- assign metaLabels_split = metaLabels_manual | split:',' -%}
+                            {%- else -%}
+                                {%- assign metaLabel = metaLabels_manual -%} 
+                            {%- endif -%}
+                        {%- else -%}
+                            {%- assign metaLabel = themeOption_label -%} 
+                        {%- endif -%}
+               
+                        {%- for metaUrl in metaUrls_split-%}
+                            <div class="instruction-item {% if metaUrls_automated == blank %}instruction-item--first{% endif %} {% if forloop.last %}instruction-item--last{% endif %}">
+                                {%- if metaLabels_split -%}
+                                    {%- assign metaLabel = metaLabels_split[forloop.index0] -%}
+                                {%- endif -%}
+                                <a href="{{metaUrl}}" target="_blank" rel="noopener noreferrer"> 
+                                    {{svg_download_arrow}}
+                                    <span>Download</span>
+                                    <p>{{metaLabel}}</p>
+                                </a>
+                            </div>
+                        {%- endfor -%}
+
+            {%- else -%}
+
+                        <div class="instruction-item {% if metaUrls_automated == blank %}instruction-item--first{%- endif -%} instruction-item--last">
+                            <a  href="{{ metaUrls_manual }}" target="_blank" rel="noopener noreferrer"> {{svg_download_arrow}}
+                                <span>Download</span>
+                                <p>
+                                    {%- if metaLabels_manual %}  
+                                        {%- if metaLabels contains ','%}
+                                            {%- assign metalabel_split = metaLabels_manual | split:','-%}
+                                            {{metalabel_split[0]}}
+                                        {%- else -%}
+                                            {{metaLabels_manual}}
+                                        {%- endif -%}
+                                    {%- else -%}
+                                        {{themeOption_label}}
+                                    {%-endif -%}
+                                </p>
+                            </a>
+                        </div>
+
+            {%- endif -%}
+
+
+        {%- endif -%}
+
+        </div>
+    </div>
+{%- endif -%} {% endcomment %}

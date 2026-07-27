@@ -88,8 +88,109 @@ function waitForElement(selector, callback) {
 "product_recommendation_limit": null
 ```
 
+## Judge.me Review Stars on Product Cards
+
+- Judge.me syncs ratings into the **standard Shopify review metafields**:
+  `product.metafields.reviews.rating` (value + scale_max) and
+  `product.metafields.reviews.rating_count`
+- The theme's `product-grid-item.liquid` already renders stars from these
+  (gated on `settings.product_ratings_star_display`, which is ON)
+- For custom card layouts: read the metafields directly and reuse
+  `snippets/rating-stars.liquid` — **no Judge.me widget JS needed**, no flicker
+- `rating-stars` relies on global `#icon-star` SVG defs (in layout), safe anywhere
+
+## Product Card Reuse (grid/carousel contexts)
+
+- `render 'product-grid-item', product: p` is fully self-contained: image,
+  badges, price, vendor, stars, quick-buy
+- Theme settings: `product_grid_show_atc: always` → button always visible on
+  mobile, hover-overlay on desktop (matches most CRO specs natively)
+- Single-variant products: button has `data-quick-buy` → AJAX ATC delegated
+  globally by empire.js — works in any section without extra wiring
+- Multi-variant products: button has `data-quickshop-slim` → quickshop modal.
+  To send users to the PDP instead, intercept with a **capture-phase** click
+  listener and navigate to `[data-product-item]`'s `data-product-quickshop-url`
+- Afrikaans button labels come free from `locales/af.json`
+  ("Gooi in mandjie" / "Kies opsies" / "Uitverkoop")
+
+## Homepage Template Test Pattern (Intelligems)
+
+- Variant homepage = new `templates/index.cro-XXXXX.json` + new prefixed
+  sections; Intelligems splits traffic between templates — live `index.json`
+  untouched
+- Live homepage hero is `dynamic-slideshow` (slide blocks); its image handles
+  can be reused as defaults in the variant template JSON
+  (`shopify://shop_images/Cover_Maroela-mark.jpg`)
+- Theme container max-width: 1400px (`--layout-container-max-width`);
+  design content width 1280px; section heading convention `home-section--title`
+- `rimg` snippet takes an Image Drop (`img:` param) — works directly with
+  `section.settings.image_picker` values
+- Mobile breakpoint used across CRO sections: 860px (matches header collapse)
+
+## Inline SVG Icons from Figma Exports (CRO-12425)
+
+- Prefer one `snippets/cro-XXXXX-icon.liquid` with a `{% case icon %}` of
+  inline SVGs over uploading icon assets — one file, no asset step
+- Figma `download_assets` SVG exports of nested nodes carry junk that MUST be
+  sanitized before inlining (verify by rendering on a non-white background):
+  - a grey `#E5E5E5` viewBox-sized backdrop rect + page-sized white rects
+  - neighbouring-element artifacts drawn via `path-N-inside` masks (e.g. the
+    trust strip's border hairlines, a parent circle's border) — remove the
+    `<mask>` defs, then any path still referencing a removed mask id
+  - do NOT remove white viewBox-sized rects inside `<clipPath>` — an empty
+    clipPath clips the whole icon away (blank icon)
+- Namespace all internal `id`s per icon (`cro12425-{slug}-…`) — several inline
+  SVGs on one page share the document id space; duplicate clip-path ids
+  resolve to the first match and break rendering
+
+## Gotcha: New Shopify "code space" editor does NOT autosave
+
+- Files created/edited in the new VS Code-style admin code editor stay as
+  **browser-local drafts** until each file is explicitly saved (Cmd+S / Save
+  button per file). Symptom: file visible in the editor's file tree, but the
+  customizer template list, storefront `?view=` URL, and Themes "Last saved"
+  don't reflect it. Timeline panel shows "File Saved" as hollow/pending.
+- Alternate `index.*.json` templates only appear in the customizer's
+  "Home page" dropdown (chevron + submenu) once ≥2 saved index templates
+  exist; the customizer fetches the template list on page load only.
+- Fast diagnostic chain: storefront `/?view={suffix}` (bypasses editor) →
+  theme ID match between code editor and customizer URLs → per-file save state.
+
+## Gotcha: Customizer cannot open alternate index (home) templates
+
+- Confirmed on this store (2026-07): the Home page dropdown never lists
+  alternate `index.*.json` templates, search finds them but clicking
+  redirects to the control home page, and `editor?template=index.{suffix}`
+  gets stripped from the URL. Products/collections/pages route fine because
+  they are resources with template assignment; home is not.
+- **Workaround — duplicate-theme edit flow**: duplicate the live theme →
+  on the duplicate, replace `index.json` contents with the variant template
+  JSON → customize the duplicate (variant is now its default home page) →
+  copy the edited `index.json` back into the live theme's
+  `index.{suffix}.json` → verify via `/?view={suffix}` → delete duplicate.
+- Safe because template JSON is store-level: images are
+  `shopify://shop_images/<filename>` refs and products are handles — the
+  JSON ports between themes verbatim.
+
+## Restyling an existing section per-template (CSS-only section pattern)
+
+- To reuse a live/control section in a CRO template with different styling,
+  ship a **CSS-only section** (`{% style %}` + empty-ish schema) and add it
+  once to the CRO template JSON — overrides then exist only on that
+  template; the shared section file is never edited
+- Beat the original's single-class selectors with two-class descendant
+  selectors — no `!important` needed
+- Theme font hooks: `var(--heading-font-family)`, `var(--body-font-family)`,
+  `var(--button-font-family)` (Empire 12/13 exposes these on :root)
+- The newer live theme (in `Meta Social Pre-Lander CRO-12245/Theme/`) has
+  `sections/custom-product-rows.liquid`: collection-driven peek carousel,
+  **randomises products per pageview** (Fisher-Yates), direct first-variant
+  ATC via form POST, hard-coded English "Sold Out", stars from
+  `reviews.rating_count` only (always 5 gold stars)
+
 ## Tests Built
 
 | Test | Task | Template | Description |
 |------|------|----------|-------------|
 | CRO-12303 | Buy Box Trust Strip | `product.cro-12303` | In-stock indicator + payment strip + USP trust list |
+| CRO-12425 | Homepage Routing (Intelligems template test) | `index.cro-12425` | Full homepage rebuild: sticky mobile search, hero, icon row, category grid, trust strip, 2× product-row peek carousels, brand story. Figma file labelled CRO-12377 |

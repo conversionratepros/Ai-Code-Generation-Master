@@ -1,0 +1,26 @@
+{% assign pdf_links = description_with_brochures | split: '<a href="' %}
+
+<ul class="brochures-list">
+    {% for item in pdf_links %}
+        {% if item contains '.pdf' %}
+        {% assign pdf_url = item | split: '"' | first %}
+        {% assign file_name = pdf_url | split: '/' | last %}
+        {% assign file_name = file_name | remove : '.pdf' | replace: '_', ' ' %}
+        <li>
+            <div class="listing-title">
+                <a href="{{ pdf_url }}">{{ file_name }}</a>
+            </div>
+            <div class="link-list">
+                <a href="{{ pdf_url }}" class="link" target="_blank">View</a>
+                <a href="{{ pdf_url }}" class="downloadicon">
+                    <svg id="downloadlgLayer_2" data-name="downloadlgLayer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 9.77">
+                        <g id="downloadlgLayer_1-2" data-name="downloadlgLayer 1">
+                        <polygon fill="#FFF" points="7 4.77 7 0 3 0 3 4.77 0 4.77 5 9.77 10 4.77 7 4.77"/>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,283 @@
+{% comment %}
+  CRO-12425 | Category image-card grid ("Koop volgens kategorie")
+  Grid of category cards: image cards (image + label below + link) and
+  solid-colour cards (colour block + label inside + link), mixable in any
+  order. 2 per row on mobile, 4 per row on desktop, filling from top left.
+{% endcomment %}
+
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="cro-12425-category-grid"
+></script>
+
+{% style %}
+  .cro-12425-catgrid {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_top }}px 40px {{ section.settings.padding_bottom }}px;
+  }
+
+  .cro-12425-catgrid__heading {
+    margin: 0 0 14px;
+    font-weight: 800;
+    font-size: 28px;
+    color: #1d1d1d;
+  }
+
+  .cro-12425-catgrid__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cro-12425-catgrid__card {
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .cro-12425-catgrid__card:hover {
+    opacity: 0.8;
+  }
+
+  .cro-12425-catgrid__media {
+    /* block, not inline: an inline span ignores overflow clipping, so the
+       border radius never showed on the image inside */
+    display: block;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .cro-12425-catgrid__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+  }
+
+  .cro-12425-catgrid__media .placeholder--image {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+  }
+
+  .cro-12425-catgrid__media--colour {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .cro-12425-catgrid__colour-label {
+    font-weight: 800;
+    font-size: 19px;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .cro-12425-catgrid__label {
+    display: block;
+    padding-top: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.35;
+    text-align: center;
+    color: #1d1d1d;
+  }
+
+  @media screen and (max-width: 859px) {
+    .cro-12425-catgrid {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .cro-12425-catgrid__heading {
+      font-size: 22px;
+    }
+
+    .cro-12425-catgrid__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .cro-12425-catgrid__label {
+      font-size: 15px;
+    }
+  }
+{% endstyle %}
+
+<div class="cro-12425-catgrid">
+  {% if section.settings.heading != blank %}
+    <h2 class="cro-12425-catgrid__heading">{{ section.settings.heading | escape }}</h2>
+  {% endif %}
+
+  <ul class="cro-12425-catgrid__grid">
+    {% for block in section.blocks %}
+      <li {{ block.shopify_attributes }}>
+        <a
+          class="cro-12425-catgrid__card"
+          {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+        >
+          {% if block.type == 'colour_card' %}
+            <span
+              class="cro-12425-catgrid__media cro-12425-catgrid__media--colour"
+              style="background-color: {{ block.settings.background_color }};"
+            >
+              <span
+                class="cro-12425-catgrid__colour-label"
+                style="color: {{ block.settings.text_color }};"
+              >
+                {{- block.settings.label | escape -}}
+              </span>
+            </span>
+          {% else %}
+            <span class="cro-12425-catgrid__media">
+              {% if block.settings.image %}
+                {%
+                  render 'rimg',
+                  img: block.settings.image,
+                  size: '600x600',
+                  lazy: true,
+                %}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder--image' }}
+              {% endif %}
+            </span>
+            {% if block.settings.label != blank %}
+              <span class="cro-12425-catgrid__label">{{ block.settings.label | escape }}</span>
+            {% endif %}
+          {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "CRO-12425 Category Grid",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Koop volgens kategorie"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Image card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "colour_card",
+      "name": "Solid-colour card",
+      "settings": [
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Block colour",
+          "default": "#e99114"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text colour",
+          "default": "#ffffff"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO-12425 Category Grid",
+      "category": "CRO",
+      "blocks": [
+        { "type": "image_card", "settings": { "label": "Vir mans", "link": "shopify://collections/vir-mans" } },
+        { "type": "image_card", "settings": { "label": "Vir vroue", "link": "shopify://collections/vir-vroue" } },
+        { "type": "image_card", "settings": { "label": "Vir babas & kinders", "link": "shopify://collections/vir-babas-kinders" } },
+        { "type": "image_card", "settings": { "label": "Tuin en swembad", "link": "shopify://collections/tuin-en-swembad" } },
+        { "type": "image_card", "settings": { "label": "Eet- en drinkgoed", "link": "shopify://collections/eet-en-drinkgoed" } },
+        { "type": "image_card", "settings": { "label": "Speelgoed en speletjies", "link": "shopify://collections/speelgoed-en-speletjies" } },
+        { "type": "image_card", "settings": { "label": "Boeke", "link": "shopify://collections/boeke" } },
+        { "type": "image_card", "settings": { "label": "Braai", "link": "shopify://collections/braai" } },
+        { "type": "image_card", "settings": { "label": "Skoonheidsprodukte", "link": "shopify://collections/skoonheidsprodukte" } },
+        { "type": "image_card", "settings": { "label": "Bêreplek en sakke", "link": "shopify://collections/bereplek-en-sakke" } },
+        {
+          "type": "colour_card",
+          "settings": {
+            "background_color": "#e99114",
+            "label": "Uitverkoping",
+            "text_color": "#ffffff",
+            "link": "shopify://collections/uitverkoping"
+          }
+        },
+        {
+          "type": "colour_card",
+          "settings": {
+            "background_color": "#007a80",
+            "label": "Al die produkte",
+            "text_color": "#ffffff",
+            "link": "shopify://collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

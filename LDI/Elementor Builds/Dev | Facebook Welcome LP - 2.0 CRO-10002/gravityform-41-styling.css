@@ -1,0 +1,112 @@
+/* Append to your Custom CSS to style Gravity Form 41 inside the register modal */
+/* ── Gravity Form 41 styling (scoped to the register modal only) ── */
+    #register-modal .gform_wrapper form {
+        margin: 0;
+    }
+
+    #register-modal .gform_wrapper .gform_fields {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 0;
+    }
+
+    #register-modal .gform_wrapper .gfield {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #register-modal .gform_wrapper .gfield_label {
+        font-family: var(--font-body);
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text);
+        margin: 0;
+    }
+
+    #register-modal .gform_wrapper .gfield_required {
+        color: #ec5555;
+    }
+
+    #register-modal .gform_wrapper .ginput_container {
+        margin: 0;
+    }
+
+    #register-modal .gform_wrapper input[type="text"],
+    #register-modal .gform_wrapper input[type="email"] {
+        width: 100%;
+        height: 48px;
+        padding: 0 16px;
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.2;
+        color: var(--text);
+        background: var(--input-bg);
+        border: 1px solid var(--input-border);
+        border-radius: 0;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    #register-modal .gform_wrapper input[type="text"]:focus,
+    #register-modal .gform_wrapper input[type="email"]:focus {
+        border-color: var(--primary);
+    }
+
+    #register-modal .gform_wrapper .gfield_checkbox .gchoice,
+    #register-modal .gform_wrapper .gchoice {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0;
+    }
+
+    #register-modal .gform_wrapper .gfield-choice-input,
+    #register-modal .gform_wrapper .gfield_checkbox input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        accent-color: var(--primary);
+        flex-shrink: 0;
+    }
+
+    #register-modal .gform_wrapper .gfield_checkbox label,
+    #register-modal .gform_wrapper .gchoice label {
+        font-size: 16px;
+        color: var(--text);
+        margin: 0;
+    }
+
+    #register-modal .gform_wrapper .gform_footer {
+        margin: 24px 0 0;
+        padding: 0;
+    }
+
+    #register-modal .gform_wrapper .gform_button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background: var(--primary);
+        color: #fff;
+        border: 1px solid var(--primary);
+        border-radius: 0;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 1px;
+        padding: 16px 24px;
+        cursor: pointer;
+        transition: background-color .2s ease;
+    }
+
+    #register-modal .gform_wrapper .gform_button:hover {
+        background: var(--primary-dark);
+    }
+
+    #register-modal .gform_wrapper .gform_validation_errors,
+    #register-modal .gform_wrapper .gfield_description.validation_message {
+        font-size: 13px;
+        color: #ec5555;
+    }

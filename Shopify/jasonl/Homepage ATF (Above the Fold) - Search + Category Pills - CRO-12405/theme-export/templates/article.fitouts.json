@@ -1,0 +1,108 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main-fitouts": {
+      "type": "main-article-fitouts",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image",
+          "settings": {
+            "image_height": "adapt"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "blog_show_date": true,
+            "blog_show_author": false
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        },
+        "fitouts_videos_BEgDEr": {
+          "type": "fitouts-videos",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "featured_image",
+        "title",
+        "content",
+        "fitouts_videos_BEgDEr",
+        "share"
+      ],
+      "settings": {}
+    },
+     "fitouts_2-hero": {
+      "type": "fitouts_2-hero",
+      "settings": {}
+    },
+     "fitouts_client-perspective": {
+      "type": "fitouts_client-perspective",
+      "settings": {}
+    },
+    "fitouts_1-fitouts-slider": {
+      "type": "fitouts_slider-v2",
+      "settings": {}
+    },
+    // "image_slider": {
+    //   "type": "image_slider",
+    //   "settings": {}
+    // },
+    // "fitouts_products": {
+    //   "type": "fitouts_products",
+    //   "settings": {}
+    // },
+    // "recent_fitouts": {
+    //   "type": "fitouts-companies-with-img4",
+    //   "settings": {}
+    // },
+    "fitouts_team": {
+      "type": "fitouts_team",
+      "settings": {}
+    },
+    // "featured_services": {
+    //   "type": "featured-services",
+    //   "settings": {
+    //     "bg-color": "dark"
+    //   }
+    // },
+    "cta": {
+      "type":"cta",
+      "settings": {}
+    },
+    "other-case-studies": {
+      "type": "other-case-studies",
+      "settings" : {}
+    }
+  },
+  "order": [
+    "main-fitouts",
+    "fitouts_2-hero",
+    "fitouts_1-fitouts-slider",
+    "fitouts_client-perspective",
+    "fitouts_team",
+    "cta",
+    "other-case-studies",
+    // "recent_fitouts",
+    // "image_slider",
+    // "fitouts_products",
+    // "featured_services"
+  ]
+}

@@ -1,0 +1,68 @@
+
+{% assign video_id = 'x0AZYzDT63A' %}
+{% assign videoUrl_idOnly = 'XkxZCJ2pYqs' %}
+{% assign video_img = 'aboutus-video-thumbnail.png' | file_img_url:'master' %}
+   {{ 'video-section.css' | asset_url | stylesheet_tag }}
+   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+<div class="video-section">
+ <deferred-media class="video-section__media deferred-media no-js-hidden" data-media-id="{{ video_id }}"
+   {% if video_img != blank %} style="padding-bottom: {{ 1 | divided_by: section.settings.cover_image.aspect_ratio | times: 100 }}%;"{% endif %}
+ >
+   <button
+     id="Deferred-Poster-Modal-{{ videoUrl_idOnly}}"
+     class="video-section__poster poster-type3 media deferred-media__poster media--landscape"
+     type="button"
+   >
+     {%- if video_img != blank -%}
+       <img
+         src="{{ video_img }}"
+         loading="lazy"
+         width="350"
+         height="208"
+         style="opacity:1"
+         alt="{{youtube_title }}"
+       >
+       <span class="video-ovelay"></span>
+     {%- endif -%}
+     <span class="deferred-media__poster-button motion-reduce">
+       {%- render 'icon-play' -%}
+     </span>
+   </button>
+   <template>
+       <iframe src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1&rel=0" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+   </template>
+   <iframe loading="lazy" class="youtube_iframe"  src="https://www.youtube.com/embed/{{ video_id }}"></iframe> 
+ </deferred-media>
+             {%- render 'video-schema', 
+                       youtube_id: video_id,
+                       youtube_title: youtube_title, 
+                       youtube_description: youtube_description, 
+                       youtube_uploaded_date: youtube_uploaded_date
+             -%}
+</div>
+<style>
+ .deferred-media__poster-button{
+   background-color:var(--color-base-color)
+ }
+ /* .video-section__media{
+   position:relative;
+ } */
+ .video-ovelay{
+   display:inline-block;
+   position:absolute;
+   left:0px;
+   top:0px;
+   width:100%;
+   height:100%;
+   border-radius:4px;
+   background:rgb(74 74 74 / 85%);
+   mix-blend-mode:unset !important;
+ }
+ .deferred-media__poster-button{
+   height:60px;
+   width:60px;
+ }
+ .deferred-media__poster-button svg path{
+  fill: #FFF !important;
+}
+</style>

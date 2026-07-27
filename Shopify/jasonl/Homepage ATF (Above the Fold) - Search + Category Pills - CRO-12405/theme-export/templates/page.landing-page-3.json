@@ -1,0 +1,51 @@
+{
+    "sections": {
+        "header": {
+            "type": "landingpage-header1",
+            "settings": {}
+        },
+        "mobileheader": {
+            "type": "landingpage-header1-mobile",
+            "settings": {}
+        },
+        "hero": {
+            "type": "landingpage-hero3",
+            "settings": {}
+        },
+        "departments": {
+            "type": "landingpage-departments1",
+            "settings": {}
+        },
+        "circleIcons": {
+            "type": "landingpage-circleicons1",
+            "settings": {}
+        },
+        "fitoutsFast": {
+            "type": "landingpage-fitoutsFast1",
+            "settings": {}
+        },
+        "circleIcons2": {
+            "type": "landingpage-circleicons1-2",
+            "settings": {}
+        },
+        "customerReviews": {
+            "type": "landingpage-customerReviews1",
+            "settings": {}
+        },
+        "columnBlock": {
+            "type": "landingpage-columnBlock1",
+            "settings": {}
+        }
+    },
+    "order": [
+        "header",
+        "mobileheader",
+        "hero",
+        "departments",
+        "circleIcons",
+        "fitoutsFast",
+        "circleIcons2",
+        "customerReviews",
+        "columnBlock"
+    ]
+}

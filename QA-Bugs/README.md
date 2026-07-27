@@ -206,6 +206,7 @@ REQUIRED: Red box around the exact element that is wrong — one red box per bug
 | Test ID | Folder Name |
 |---------|-------------|
 | CRO-7740 | `Minimizing installation products on cart (V2) \| CRO-7740` |
+| CRO-12425 | `Shopify/MaroelaMark/Homepage Routing ALL CRO-12425` (Shopify sections, not variation.js/css — fixes go in `sections/*.liquid`, user re-uploads to theme) |
 
 Add new tests to this table as they are worked on.
 

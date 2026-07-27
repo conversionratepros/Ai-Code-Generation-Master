@@ -1,0 +1,39 @@
+{% if article.metafields.fitout_blog.fitouts_1_hero_title %}
+    {% comment %} static content for test {% endcomment %}
+    {{ 'fitouts_1-hero.css' | asset_url | stylesheet_tag }}
+    <div class="fitouts_1-hero-wrapper fitouts_1-hero-wrapper-v2">
+        <div class="page-width">
+            <div class="hero-cnt">
+                <div class="hero-left">
+                    <div class="hero-left-cnt">
+                        {% if article.metafields.fitout_blog.fitouts_1_hero_title %}
+                            <h2>{{ article.metafields.fitout_blog.fitouts_1_hero_title }}</h2>
+                        {% endif %}
+                        {% if article.metafields.fitout_blog.fitouts_1_hero_description %}
+                            <p>{{ article.metafields.fitout_blog.fitouts_1_hero_description }}</p>
+                        {% endif %}
+                        {% comment %} 
+                        <a class="btn typeform-share getaquoteclick"
+                            {{settings.typeformurls_url_1}} 
+                            href="javascript:void(0)">
+                            <strong>START YOUR FITOUT!</strong>
+                        </a> 
+                        {% endcomment %}
+                        {% render 'typeform-btn', extra_classes: 'btn typeform-share getaquoteclick', button_text: "<strong>START YOUR FITOUT!</strong>" %}
+                    </div>
+                </div>
+                {%- assign heroImg =  article.metafields.fitout_blog.fitouts_1_hero_image -%}
+                {%- if article.metafields.fitout_blog.fitouts_1_hero_image -%}
+                <div class="hero-right">
+                    <img src="{{ heroImg |  file_img_url: '630x' }}" alt="{{ article.title }}" width="630" height="400">
+                </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+{% endif %}
+<style>
+    .fitouts_1-hero-wrapper{
+        padding: 0px;
+    }
+</style>

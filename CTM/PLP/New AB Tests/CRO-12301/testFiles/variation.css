@@ -4,6 +4,7 @@
 html body.cro12301 .product-item-details-action {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     /* margin-bottom: 8.5px; */
 }
 
@@ -62,10 +63,6 @@ html body.cro12301.catalog-category-view .column.main .products.product-items li
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
-    /* html body.cro12301 .cro12301-tile-icon {
-        width: 32px;
-        height: 32px;
-    } */
 
     html body.cro12301 .cro12301-size-badge {
         gap: 6px;
@@ -73,15 +70,5 @@ html body.cro12301.catalog-category-view .column.main .products.product-items li
 
     html body.cro12301 .cro12301-size-text {
         gap: 6px;
-    }
-
-    html body.cro12301 .cro12301-size-label {
-        /* font-size: 11px;
-        line-height: 1; */
-    }
-
-    html body.cro12301 .cro12301-size-dims {
-        /* font-size: 10px;
-        line-height: 1; */
     }
 }

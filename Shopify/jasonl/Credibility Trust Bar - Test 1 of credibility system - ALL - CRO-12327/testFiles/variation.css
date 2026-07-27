@@ -41,7 +41,6 @@
         padding: 0 20px;
         box-sizing: border-box;
         flex-shrink: 0;
-        gap: 10px;
         pointer-events: none;
         user-select: none;
         line-height: var(--line-height-21_43, 21.43px);
@@ -49,7 +48,7 @@
     }
 
     .cro-12327-bar__msg strong {
-        font-weight: 500;
+        font-weight: 600;
         color: #0B0B0B;
     }
 
@@ -59,11 +58,19 @@
         align-items: center;
         gap: 2px;
         flex-shrink: 0;
+        vertical-align: middle;
+        margin-right: 10px;
     }
 
     .cro-12327-stars svg {
         display: block;
         flex-shrink: 0;
+    }
+
+    /* ── Icon sitting directly inside the text span (e.g. the fitouts lightning icon) ── */
+    .cro-12327-bar__text > svg {
+        vertical-align: middle;
+        margin-right: 10px;
     }
 
     /* ── Mobile overrides ── */
@@ -84,7 +91,6 @@
             padding: 20px 16px;
             /* font-size: 13px; */
             display: none;
-            gap: 8px;
         }
 
         .cro-12327-bar__msg--mobile-active {
@@ -95,6 +101,11 @@
 
         .cro-12327-bar__msg--clone {
             display: none !important;
+        }
+
+        .cro-12327-stars,
+        .cro-12327-bar__text > svg {
+            margin-right: 8px;
         }
 
     }

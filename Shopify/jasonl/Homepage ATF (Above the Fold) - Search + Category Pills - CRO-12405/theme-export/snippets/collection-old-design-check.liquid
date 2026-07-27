@@ -1,0 +1,18 @@
+{%- assign tagName = '' %}
+{% if current_tags %}
+    {% for tag in current_tags %}
+            {%- include 'collage1_data', tag: tag -%}
+            {%- assign tagName = tag -%}
+    {% endfor %}
+{% else %}
+        {%- assign collage_heading = collection.metafields.coln-collage1.collage1-heading -%}
+        {%- assign collage_heroimg = collection.metafields.coln_collage1.collage1_image -%}
+{% endif %}
+
+
+{%- comment -%} check to enable new design or old design {%- endcomment -%}
+{% assign is_enable = true %} 
+
+{%- if collage_heading and collage_heroimg -%}
+    {%- assign is_enable = false -%}
+{%- endif -%}

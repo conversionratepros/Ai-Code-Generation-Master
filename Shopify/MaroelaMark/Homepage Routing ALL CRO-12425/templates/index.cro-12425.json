@@ -1,0 +1,290 @@
+{
+  "sections": {
+    "cro_mobile_search": {
+      "type": "cro-12425-mobile-search",
+      "settings": {
+        "placeholder": "Soek iets spesifiek?",
+        "hide_header_search_icon": true,
+        "bar_background": "#ffffff",
+        "button_background": "#007a80",
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
+    "cro_hero": {
+      "type": "cro-12425-hero",
+      "settings": {
+        "image": "shopify://shop_images/Cover_Maroela-mark.jpg",
+        "image_mobile": "shopify://shop_images/AdobeStock_909136228_f23bf52e-b746-4d70-9863-66bff36c88c9.jpg",
+        "heading": "Maroela-mark is jou aanlyn markplein",
+        "heading_color": "#ffffff",
+        "button_label": "Koop nou",
+        "button_link": "shopify://collections/all",
+        "button_color": "#e99114",
+        "button_text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 45,
+        "height_desktop": 420,
+        "height_mobile": 250
+      }
+    },
+    "cro_icon_row": {
+      "type": "cro-12425-icon-row",
+      "blocks": {
+        "icon_mans": {
+          "type": "category",
+          "settings": {
+            "default_icon": "vir-mans",
+            "label": "Vir mans",
+            "link": "shopify://collections/vir-mans",
+            "circle_border_color": "#e0e0e0"
+          }
+        },
+        "icon_vroue": {
+          "type": "category",
+          "settings": {
+            "default_icon": "vir-vroue",
+            "label": "Vir vroue",
+            "link": "shopify://collections/vir-vroue",
+            "circle_border_color": "#e0e0e0"
+          }
+        },
+        "icon_babas": {
+          "type": "category",
+          "settings": {
+            "default_icon": "babas-kinders",
+            "label": "Vir babas & kinders",
+            "link": "shopify://collections/vir-babas-kinders",
+            "circle_border_color": "#e0e0e0"
+          }
+        },
+        "icon_uitverkoping": {
+          "type": "category",
+          "settings": {
+            "default_icon": "uitverkoping",
+            "label": "Uitverkoping",
+            "link": "shopify://collections/uitverkoping-1",
+            "circle_border_color": "#e99114"
+          }
+        }
+      },
+      "block_order": [
+        "icon_mans",
+        "icon_vroue",
+        "icon_babas",
+        "icon_uitverkoping"
+      ],
+      "settings": {
+        "heading": "",
+        "background_color": "#ffffff",
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
+    "cro_category_grid": {
+      "type": "cro-12425-category-grid",
+      "blocks": {
+        "card_mans": {
+          "type": "image_card",
+          "settings": {
+            "label": "Vir mans",
+            "link": "shopify://collections/vir-mans"
+          }
+        },
+        "card_vroue": {
+          "type": "image_card",
+          "settings": {
+            "label": "Vir vroue",
+            "link": "shopify://collections/vir-vroue"
+          }
+        },
+        "card_babas": {
+          "type": "image_card",
+          "settings": {
+            "label": "Vir babas & kinders",
+            "link": "shopify://collections/vir-babas-kinders"
+          }
+        },
+        "card_tuin": {
+          "type": "image_card",
+          "settings": {
+            "label": "Tuin en swembad",
+            "link": "shopify://collections/tuin-en-swembad"
+          }
+        },
+        "card_eet": {
+          "type": "image_card",
+          "settings": {
+            "label": "Eet- en drinkgoed",
+            "link": "shopify://collections/eet-en-drinkgoed"
+          }
+        },
+        "card_speelgoed": {
+          "type": "image_card",
+          "settings": {
+            "label": "Speelgoed en speletjies",
+            "link": "shopify://collections/speelgoed-en-speletjies"
+          }
+        },
+        "card_boeke": {
+          "type": "image_card",
+          "settings": {
+            "label": "Boeke",
+            "link": "shopify://collections/boeke"
+          }
+        },
+        "card_braai": {
+          "type": "image_card",
+          "settings": {
+            "label": "Braai",
+            "link": "shopify://collections/braai"
+          }
+        },
+        "card_skoonheid": {
+          "type": "image_card",
+          "settings": {
+            "label": "Skoonheidsprodukte",
+            "link": "shopify://collections/gesondheidsprodukte"
+          }
+        },
+        "card_bereplek": {
+          "type": "image_card",
+          "settings": {
+            "label": "Bêreplek en sakke",
+            "link": "shopify://collections/bereplek-en-sakke"
+          }
+        },
+        "card_uitverkoping": {
+          "type": "colour_card",
+          "settings": {
+            "background_color": "#e99114",
+            "label": "Uitverkoping",
+            "text_color": "#ffffff",
+            "link": "shopify://collections/uitverkoping-1"
+          }
+        },
+        "card_alles": {
+          "type": "colour_card",
+          "settings": {
+            "background_color": "#007a80",
+            "label": "Al die produkte",
+            "text_color": "#ffffff",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "card_mans",
+        "card_vroue",
+        "card_babas",
+        "card_tuin",
+        "card_eet",
+        "card_speelgoed",
+        "card_boeke",
+        "card_braai",
+        "card_skoonheid",
+        "card_bereplek",
+        "card_uitverkoping",
+        "card_alles"
+      ],
+      "settings": {
+        "heading": "Koop volgens kategorie",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "cro_trust_strip": {
+      "type": "cro-12425-trust-strip",
+      "blocks": {
+        "usp_aflewering": {
+          "type": "usp",
+          "settings": {
+            "default_icon": "aflewering",
+            "text": "Landwye aflewering"
+          }
+        },
+        "usp_terugstuur": {
+          "type": "usp",
+          "settings": {
+            "default_icon": "terugstuur",
+            "text": "7-dae terugstuur"
+          }
+        },
+        "usp_betaling": {
+          "type": "usp",
+          "settings": {
+            "default_icon": "veilige-betaling",
+            "text": "Veilige betaling"
+          }
+        }
+      },
+      "block_order": [
+        "usp_aflewering",
+        "usp_terugstuur",
+        "usp_betaling"
+      ],
+      "settings": {}
+    },
+    "cro_row_winskopies": {
+      "type": "custom-product-rows",
+      "settings": {
+        "collection": "uitverkoping-1",
+        "heading_text": "Winskopies",
+        "show_heading": true,
+        "enable_cta": true,
+        "cta_text": "Sien alles",
+        "max_products": 12,
+        "top_padding": 36,
+        "bottom_padding": 20
+      }
+    },
+    "cro_row_topverkopers": {
+      "type": "custom-product-rows",
+      "settings": {
+        "collection": "all",
+        "heading_text": "Topverkopers",
+        "show_heading": true,
+        "enable_cta": true,
+        "cta_text": "Sien alles",
+        "max_products": 12,
+        "top_padding": 20,
+        "bottom_padding": 36
+      }
+    },
+    "cro_rows_figma_css": {
+      "type": "cro-12425-rows-figma-css",
+      "settings": {
+        "link_top_offset": 42
+      }
+    },
+    "cro_brand_story": {
+      "type": "cro-12425-brand-story",
+      "settings": {
+        "heading": "Die Afrikaanse aanlyn mark",
+        "body": "<p>Maroela-mark is die aanlyn markplein waar Afrikaanse skeppers en klein besighede hul handgemaakte en plaaslike produkte verkoop. As jy 'n stadsboer of plaasboer is, of selfs net Afrikaans in jou hart ronddra, is dit die plek waar jy wil aanklop.</p>",
+        "link_label": "Lees meer",
+        "link": "shopify://pages/word-n-verskaffer",
+        "footer_text": "Maak jy self iets moois?",
+        "footer_link_label": "Word 'n verskaffer",
+        "footer_link": "shopify://pages/word-n-verskaffer",
+        "text_color": "#1d1d1d",
+        "body_color": "#4d4d4d",
+        "link_color": "#007a80",
+        "background_color": "#ffffff",
+        "padding_top": 30,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "cro_mobile_search",
+    "cro_hero",
+    "cro_icon_row",
+    "cro_category_grid",
+    "cro_trust_strip",
+    "cro_row_winskopies",
+    "cro_row_topverkopers",
+    "cro_rows_figma_css",
+    "cro_brand_story"
+  ]
+}

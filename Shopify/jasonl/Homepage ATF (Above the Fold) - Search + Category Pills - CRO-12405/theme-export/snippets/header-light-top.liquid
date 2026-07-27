@@ -1,0 +1,145 @@
+<div class="header-row header-row--1 small-hide">
+  <div class="page-width">
+    <div class="header-row--left">
+      {%- render 'menu-furniture-for' -%}
+    </div>
+    <div class="header-row--right small-hide">
+      <ul
+        class="header-short-menu {% unless template == 'page.home' %} nav-top-right-2  {% endunless %} small-hide">
+        {% if template != 'page.home' %}
+        {%- for link in linklists['top-right-2'].links -%}
+        {%- unless link.title == 'Showrooms' -%}
+          {%- unless link.title == "sales@jasonl.com.au" -%}
+            <li {% if link.title=='Clearance' %} class="li-clearance" {% endif %}>
+              {% if link.title=="sales@jasonl.com.au" %}
+                {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'ga4-sales-email' %}
+              {% else %}
+                <a href="{{link.url}}" class="{% if link.current %} active {% endif %}">
+                  {% if link.title == "Recent fitouts" %}
+                    Recent projects
+                  {% else %}
+                    {{ link.title }}
+                  {% endif %}
+                </a>
+              {% endif %}
+            </li>
+          {%- endunless -%}
+        {%- else -%}
+          
+        <li class="hsm-has-child store-locator">
+          <a href="{{link.url}}">{{ link.title }}</a>
+          <div class="hsm-child small-nav-child custom_scrollbar" id="header-store-locator-holder">
+            <div style="width: 100%; height:100px; background:#fff; display:flex; align-items:center; justify-content:center">
+              <div class="loader" style="display:block; margin-right:10px"></div> Loading....
+            </div>
+           {%- comment -%} Ajax showroom list will load here. {%- endcomment -%}
+            <script>
+            function handleResponse() {
+              let response  = JSON.parse(this.responseText);
+              document.getElementById('header-store-locator-holder').innerHTML = response.showroom_header_dropdown;
+                onLoadhandleHiddenEmail();
+              }
+              
+              function getStores() {
+                  const request = new XMLHttpRequest();
+                  request.addEventListener('load', handleResponse); 
+                  request.open('GET', `/pages/contact-us/?sections=showroom_header_dropdown`, true);
+                  request.send();
+              }
+              function initDropDownStoreLocator(){
+                document.querySelector('.shopify-section-group-header-group').addEventListener('mouseenter', function(){
+                  if(!document.getElementById('header-store-locator-holder').classList.contains('store-rendered')){
+                    getStores();
+                    document.getElementById('header-store-locator-holder').classList.add('store-rendered');
+                  }
+                })
+              }
+              initDropDownStoreLocator();
+              
+              
+              function onLoadhandleHiddenEmail() {
+                  const holders = document.querySelectorAll('.hiddenemail');
+                  holders.forEach((holder) => {
+                    const user = holder.dataset.user;
+                    const domain = holder.dataset.domain;
+
+                    if (user && domain) {
+                      holder.setAttribute('href', `mailto:${user}@${domain}`);
+                    }
+                  });
+                }
+              // window.addEventListener('DOMContentLoaded', () => {
+              //   initDropDownStoreLocator();
+              // });
+              
+            </script>
+          </div>
+        </li>
+        <li class="hsm-overlay store-locator-overlay"></li>
+        {%- endunless -%}
+        {%- endfor -%}
+        {% else %}
+        {%- for link in linklists['header-top-right'].links -%}
+        <li class="{%- if link.active-%}active{%-endif-%}">
+          {% if link.url contains '/account' %}
+          <a href="https://www.jasonl.com.au/account/" class="header__icon--account small-hide">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px" y="0px" viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+              <g>
+                <path class="st0" d="M20,0C9,0,0,9,0,20s9,20,20,20s20-9,20-20S31,0,20,0z M11.2,34.8c0.5-4.9,4.8-8.5,9.7-8c4.2,0.4,7.6,3.8,8,8
+                              C23.4,38.1,16.6,38.1,11.2,34.8z M31.3,33c-1.4-6.2-7.6-10.1-13.9-8.7c-4.3,1-7.7,4.4-8.7,8.7c-7.2-6.2-8-17.1-1.8-24.4
+                              s17.1-8,24.4-1.8s8,17.1,1.8,24.4C32.5,31.9,31.9,32.5,31.3,33z" />
+                <path class="st0"
+                  d="M20,8c-3.5,0-6.3,2.8-6.3,6.3c0,3.5,2.7,8.6,6.3,8.6s6.3-5.1,6.3-8.6C26.3,10.8,23.5,8,20,8z M20,20.2
+                              c-1.7,0-3.6-3.5-3.6-5.9c0-2,1.6-3.6,3.6-3.6s3.6,1.6,3.6,3.6c0,0,0,0,0,0C23.6,16.6,21.7,20.2,20,20.2L20,20.2z" />
+              </g>
+            </svg>
+          </a>
+          {% elsif link.url contains 'contact' %}
+          <a class="typeform-share  gclid-contact-typeform" data-tf-popup="ctUucWe4" data-tf-opacity="100"
+            data-tf-size="100" data-tf-transitive-search-params
+            data-tf-iframe-props="title=Hi, how can we help you today?" data-tf-hidden="" data-tf-share-ga-instance=""
+            href="javascript:void(0)" data-tf-on-submit="submit">
+            Contact us
+          </a>
+          {% else %}
+          <a href="{{link.url}}">{{ link.title }}</a>
+          {% endif %}
+        </li>
+        {%- endfor -%}
+        {% endif %}
+        
+        <li class="hsm-has-child header-top-menu-dropdown">
+          <a href="#">Resources</a>
+          <ul>
+            {%- for link in linklists['resources'].links -%}
+            <li class="{% if link.links != blank %} has-child-dropdownmenu {% endif %}">
+              <a href="{{ link.url }}">
+                {% if forloop.index == 1 %}
+                  {{ link.title }}
+                {% else %} 
+                  {{ link.title }} 
+                {% endif %}
+              </a>
+                {% if link.links != blank %}
+                  <ul>
+                    {% for child_link in link.links %}
+                      <li>
+                        <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+
+        <li>
+          {%- render 'perth-location-header-dropdown' -%}
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>

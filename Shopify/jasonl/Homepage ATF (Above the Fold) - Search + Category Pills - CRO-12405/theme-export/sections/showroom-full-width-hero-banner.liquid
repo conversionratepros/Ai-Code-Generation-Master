@@ -1,0 +1,61 @@
+{% comment %} this template was created for adelaide home page  {% endcomment %}
+ {{ 'showroom-full-width-hero-banner.css' | asset_url | stylesheet_tag }}
+ {% assign video_poster = 'adelaide-hero-video-poster.jpg' | file_img_url:'1900x' %}
+ {% unless video_poster contains "http" %}
+    {% assign video_poster = 'adelaide-hero-video-poster.jpg' | file_img_url:'1900x' | prepend: "https:"%}
+ {% endunless %}
+<div class="showroom-full-width-hero-banner">
+    <video id="heroVideo" 
+       poster="{{ video_poster }}" 
+       preload="none" 
+       playsinline 
+       muted 
+       autoplay 
+       loop>
+        <!-- video src will be injected later -->
+         <source src="{{ 'adelaide-header-video.mp4' | file_url }}" type="video/mp4">
+    </video>
+</div>
+{%- comment -%}
+Video source must be visible in html for ld+json and seo if is is not needed delete it 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+
+        const video = document.getElementById("heroVideo");
+
+        // Create video source
+        const source = document.createElement("source");
+        source.src = "{{ 'adelaide-header-video.mp4' | file_url }}";   // your video file
+        source.type = "video/mp4";
+
+        // Inject and load
+        video.appendChild(source);
+        video.load();
+
+    }, 2000); // Delay: 2000ms = 2 seconds
+});
+</script>  
+{%- endcomment -%}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Adelaide Showroom Hero Video",
+        "description": "Need a fitout or office furniture in Adelaide? We're right here, local and ready to help.",
+        "thumbnailUrl": "{{ video_poster }}",
+        "uploadDate": "2025-11-19T00:00:00Z",
+        "contentUrl": "{{ 'adelaide-header-video.mp4' | file_url }}",
+        "embedUrl": "{{ 'adelaide-header-video.mp4' | file_url }}",
+        "publisher": {
+            "@type": "Organization",
+            "name": "JasonL"
+        }
+    }
+</script>
+{% schema %}
+{
+"name": "Hero banner",
+"class": "shopify-section--hero-banner"
+}
+{% endschema %}

@@ -1,0 +1,117 @@
+{%- unless section.settings.sectionStatus == true -%}
+{{ 'fitouts-call-to-action.css' | asset_url | stylesheet_tag }}
+<!-- TODO::
+  remove section settings.
+  Reason:: grey section should be controlled from CSS
+  <div class="help-section {{section.settings.sectionType}}"> 
+  -->
+  <div class="help-section">
+    <div class="page-width">
+<!--         <h3>Still Unsure? We’re Here to Help!</h3> -->
+      {%- if section.settings.sectionHeading != empty -%}
+      <h3 class="section-heading">{{section.settings.sectionHeading}}</h3>
+      {%-else-%}
+      <h3>Still Unsure? <br>We’re here to help!</h3>
+      {%- endif -%}
+
+      {%- if section.settings.sectionContent != empty -%}
+      <div class="section-content">
+        {{ section.settings.sectionContent }}
+      </div>
+      {%- endif -%}
+      
+      
+        <div class="buttons-holder">
+            <a href="tel:1300-527-665" class="button button--primary btn-phone">1300-527-665 <span>Call Us</span></a>
+            {%-comment-%}
+            <a href="{{settings.cotactus_typeformurls_url}}" 
+            data-mode="popup" data-submit-close-delay="0" target="_blank" 
+            class="button button--border typeform-share gclid-contact-typeform">Contact Us
+            </a>
+            <a href="javascript:void(0)" 
+            {{settings.cotactus_typeformurls_url}}
+            class="button button--border typeform-share gclid-contact-typeform">Contact Us
+          </a>
+            {%-endcomment-%}
+            <a {{settings.cotactus_typeformurls_url_1}} 
+            href="javascript:void(0)" 
+            class="button button--border typeform-share gclid-contact-typeform">Contact Us
+          </a>
+            <a href="https://www.jasonl.com.au/#showroom-section" class="button button--border ga_showroom_btn">Visit a Showroom</a>
+        </div>
+    </div>
+</div>
+{%-endunless-%}
+
+
+
+
+
+{% schema %} 
+{ "name": "Contact Buttons",
+"tag": "section",
+"class":"section-contact-buttons contactbutton-wrapper",
+  "settings": [
+    {
+    "type":"checkbox",
+    "id": "sectionStatus",
+    "label": "Hide section",
+    "default": false
+    },
+    {
+      "type": "text",
+      "id": "sectionHeading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "sectionContent",
+      "label": "Heading content"
+    },
+    {
+    "type":"select",
+    "id": "sectionType",
+    "label": "Section type",
+    "options":[
+    {
+    "value":"section-white",
+    "label":"White background"
+    },
+    {
+    "value":"section-gray",
+    "label":"Gray background"
+    }
+    ],
+    "default":"section-white"
+    }
+  ]
+} 
+{% endschema %}
+
+
+<style>
+  .help-section .section-content{
+    padding-bottom:30px;
+  }
+  .article-template .help-section{
+    margin-top:0px;
+  }
+  .article-template .help-section .page-width{
+    max-width:710px;
+  }
+  .help-section.section-white{
+    background:#fff;
+  }
+  .help-section.section-gray{
+    background:#f7f7f7;
+  }
+  .buttons-holder a.btn-phone{
+    color:var(--color-base-color);
+      font-size: 0px;
+      }
+  .buttons-holder a.btn-phone span{
+    font-size: 13px;
+    color:#fff;
+  }
+
+</style>

@@ -1,0 +1,134 @@
+<div class="thankyou">
+  <div class="page-width" id="thankyou_container"></div>
+</div>
+
+<script>
+  function getTypeformData(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const formId = urlParams.get('formid');
+    const email = urlParams.get('email');
+    const name = urlParams.get('name');
+    const page = urlParams.get('page');
+    const phone = urlParams.get('phone');
+    const interiorDesign = urlParams.get('interiordesign');
+    const landingPages = [
+      'https://www.jasonl.com.au/pages/blank-canvas-to-beautiful-fitout-fast',
+      'https://www.jasonl.com.au/pages/office-furniture-matters',
+      'https://www.jasonl.com.au/pages/we-make-your-office-fitout-easy-fast'
+   ];
+     const container = document.getElementById('thankyou_container');
+     let thankyou_html;
+      // form_name according to formId
+      const formMap = {
+        ctUucWe4: 'Contact Us',
+        MX2yOaMA: 'Get Quote (Header + Hero)',
+        rvv9MINp: 'Get Quote (Fitouts)',
+        SPqugn2G: 'Get Quote (Header + Hero)',
+        l8LdiA6t: 'Book a Consultation',
+        YFNQ6soF: 'Send me my FREE gift pack'
+      };
+      const form_name = formMap[formId] || '';
+
+     // if formIds  MX2yOaMA and rvv9MINp are from landingpage. so header must be landing page header
+     //if(formId == 'MX2yOaMA' || formId == 'rvv9MINp'){
+      if (landingPages.includes(page)) {
+        const htmlTag = document.querySelector('.page-typeform-thankyou');
+        htmlTag.classList.add('page-landing-page-1');
+        htmlTag.classList.add('landingpage-thankyou'); 
+        document.querySelectorAll('.shopify-section-group-header-group').forEach(element => {
+          element.remove();
+        });
+        document.querySelectorAll('.shopify-section.section-header .header1-container').forEach(element => {
+          element.style.display = 'block';
+        });
+        //document.querySelector('.header-row--1').remove();
+      }
+    // Google ads conversion, Enhanced conversion
+    if(email){
+        console.log(`Email: ${email}`);
+        console.log(`formid: ${formId}`);
+       
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': `EHC-successful-typeform-submit-${formId}`,
+            'enhanced_conversion_data': {
+                "email": email
+            },
+            'GA4_eventAction': page,
+            'interiorDesign': interiorDesign
+        });
+
+        // send data for ga4 on 2/12/2026
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'typeform_submit',
+            'GA4_eventAction': page,
+            page_location: window.location.href,
+            page_type: 'content',
+            form_id: formId,
+            form_name: form_name,
+            lead_type: 'form_enquiry',
+            interiorDesign: interiorDesign,
+            user_data: {
+              email: email,              // raw email, GTM hashes automatically
+              phone_number: phone       // raw phone number
+            }
+        });
+        if(formId == 'YFNQ6soF'){
+         thankyou_html = `<div>
+          <h1><span>Thank you for filling out the form!</span></h1>
+          <h3><span>Your gift pack should be out for delivery soon. Please keep an eye on your inbox for more information.</span></h3>
+          <p><strong>Burning questions?</strong><br><span>Have any burning questions you need answers to quickly, </span><br><span>please call us at </span><strong><a href="tel:1300-527-665">1300-527-665</a></strong><span> for assistance.</span></p>
+          <div>
+          <button class="button button--primary" onclick="history.go(-1)">
+          Back to the page  
+          </button>
+          </div>
+          </div>`; 
+        }else{
+          thankyou_html = `<div>
+         <h2><span>Thank you ${name} for your enquiry!</span><br><span>One of our friendly staff will be in touch today to assist.</span></h2>
+         <p><strong>Burning questions?</strong><br><span>Have any burning questions you need answers to quickly, </span><br><span>please call us at </span><strong><a href="tel:1300-527-665">1300-527-665</a></strong><span> for assistance.</span></p>
+         <div>
+         <button class="button button--primary" onclick="history.go(-1)">
+         Back to the page  
+         </button>
+         </div>
+         </div>`;
+        }
+       
+
+    }else{
+        console.log(`ERROR: No email found`);
+        thankyou_html = `<div><p>Loading...</p></div>`;
+    }
+     container.innerHTML = thankyou_html;
+           
+  }
+  getTypeformData()
+</script>
+
+{% schema %}
+  {
+    "name": "Typeform thankyou page",
+    "tag": "section",
+    "class": "typeform-thankyou",
+    "settings": []
+  }
+{% endschema %}
+<style>
+  .thankyou{
+    padding:50px 0;
+  }
+  .shopify-section.section-header .header1-container{
+    display: none;
+  }
+  body.landingpage-thankyou .section-header-light,
+  body.landingpage-thankyou #shopify-section-footer-custom{
+    display: none;
+  }
+  body.landingpage-thankyou .shopify-section.section-header{
+display: block;
+  }
+</style>

@@ -1,0 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "custom-pages-image-banner",
+      "settings": {}
+    },
+    "client": {
+      "type": "furniture-for-clients-logo",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections-products",
+      "settings": {
+        "products_to_show": 3
+      }
+    },
+    "recent_fitouts": {
+      "type": "featured-recent-fitouts-b",
+      "settings": {
+        "needafitout_fitout": "fitouts/pet-circle"
+      }
+    },
+    "featured_services": {
+      "type": "featured-services",
+      "settings": {
+        "bg-color": "dark"
+      }
+    },
+    "shop_by_room": {
+      "type": "shop-by-room",
+      "settings": {
+        "section_title": "Shop by room"
+      }
+    },
+    "client_experiences": {
+      "type": "client-experiences",
+      "settings": {
+        "section_title": "Our Client's Experience"
+      }
+    },
+    "locationMap": {
+      "type": "location-map-1-b_placeholder",
+      "settings": {}
+    },
+    "meetPeople": {
+      "type": "new-meet-people",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "client",
+    "featured_collections",
+    "recent_fitouts",
+    "featured_services",
+    "shop_by_room",
+    "client_experiences",
+    "locationMap",
+    "meetPeople"
+  ]
+}

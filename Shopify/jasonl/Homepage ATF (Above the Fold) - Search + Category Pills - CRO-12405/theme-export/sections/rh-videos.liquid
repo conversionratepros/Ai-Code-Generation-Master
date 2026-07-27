@@ -1,0 +1,94 @@
+{%- unless current_tags contains 'resource-hub' -%}
+{% assign video_tag = section.settings.video_tag %}
+{% assign exclude_tags = section.settings.exclude_tag | split: "," %}
+
+<div class="page-width" id="section-videos">
+  <div class="row">
+    <h2 class="list-heading">Videos</h2>
+    <ul class="listing listing--grid">
+
+      {% assign articles_shown = 0 %}
+
+      <!-- Determine the tags to include -->
+      {% if current_tags %}
+        {% assign tags_to_include = current_tags %}
+      {% else %}
+        <!-- Fallback if current_tags is not present -->
+        {% assign tags_to_include = video_tag %}
+        {% if tags_to_include == blank %}
+          {% assign tags_to_include = "business" %}
+        {% endif %}
+      {% endif %}
+
+      {% comment %} {% assign tags_to_include = tags_to_include | split: "," %} {% endcomment %}
+
+      <!-- Loop through articles and apply filtering -->
+      {% for article in blog.articles %}
+        {% if articles_shown >= 4 %}
+          {% break %}
+        {% endif %}
+
+        {% assign exclude = false %}
+
+        <!-- Check if the article contains any of the excluded tags -->
+        {% for tag in exclude_tags %}
+          {% if article.tags contains tag %}
+            {% assign exclude = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        <!-- Check if the article should be included based on tags_to_include -->
+        {% assign include_article = false %}
+        {% for tag in tags_to_include %}
+          {% if article.tags contains tag %}
+            {% assign include_article = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        <!-- If the article should not be excluded and matches the inclusion tags -->
+        {% if exclude == false and include_article %}
+          <li class="{% if forloop.last %}last{% endif %}">
+            <a href="{{ article.url }}">
+            <div class="video-holder" style="background-image:url({{ article.image | img_url: 'large' }})">
+              <span class="play-icon">{% render 'icon-play' %}</span>
+            </div>
+            </a>
+            <a class="spacing" href="{{ article.url }}">
+              <h3>{{ article.title }}</h3>
+              {% comment %} <p>{{ article.content | strip_html | truncate: 50 }}</p> {% endcomment %}
+              <p class="date">{{ article.published_at | date: "%B %d, %Y" }} 
+                {% comment %} {% render 'rh-blog-tag', tags: article.tags %} {% endcomment %}
+              </p>
+            </a>
+          </li>
+          {% assign articles_shown = articles_shown | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% if articles_shown < 4 %}  
+       {% render 'rh-blog-limit-ajax',  section_id:section.id, section_name:'rh-videos', section_tag:'video' %}
+      {% endif %}
+    </ul>
+  </div>
+</div>
+    {%- endunless -%}
+{% schema %}
+{
+  "name": "Videos",
+  "class": "rh-videos",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "video_tag",
+      "label": "Enter a tag"
+    },
+    {
+      "type": "text",
+      "id": "exclude_tag",
+      "label": "Enter tags to exclude (comma-separated)"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+<style>
+    .title-with-link{
+        padding-top: 55px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    .title-with-link a.link-underline{
+        letter-spacing: -0.1px;
+        font-size: 13px;
+        text-underline-offset: 11px;
+        margin-bottom: 30px;
+    }
+    @media(min-width: 992px){
+        .title-with-link a.link-underline{
+            margin-right: 100px;
+            margin-top: 12px;
+            margin-bottom: 0px;
+        }
+        .title-with-link{
+            flex-direction: row;
+        }
+    }
+    .inspired-banner img, .inspired-banner a{
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    @media(min-width: 768px){
+        .inspired-banner img, .inspired-banner a{
+            border-radius: 7px;
+        }
+    }
+</style>
+<div class="page-width">
+{%- if blog.handle == "shop-by-rooms" -%}
+    {%- assign banner_image = article.metafields.custom.inspired_banner-%}
+{%- endif -%}
+
+    <div class="title-with-link">
+        <h2 class="section-title">Get inspired for your {{ article.title }}</h2>
+        <a href="{{ shop.url }}/pages/inspired" class="link-underline">View inspiration page</a>
+    </div>
+</div>
+<div class="page-width small-padding-x-0">
+    <div class="inspired-banner">
+        {% if banner_image %}
+                <img src="{{ banner_image | image_url: width: 1540, height: 400 }}" alt="Get Inspired" width="1540" height="400">
+        {% endif %}
+    </div>
+    {% comment %} <img src="{{ banner.banner_file | image_url  }}" alt="{{ banner.title }}" width="" height=""> {% endcomment %}
+</div>
+
+{% schema %}
+{
+"name": "Get Inspired For",
+"settings": []
+}
+{% endschema %}

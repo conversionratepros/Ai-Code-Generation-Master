@@ -1,0 +1,130 @@
+{{ 'nps-hero-slider.css' | asset_url | stylesheet_tag }}
+<div class="nps-hero-slider">
+   <div class="nps-page-width">
+      <!-- Swiper -->
+      <div class="swiper nps-hero-swiper">
+         <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+            <div class="swiper-slide">
+               <div class="gallery-card">
+                  <div class="card-media">
+                     {% if block.settings.image %}
+                        {% comment %} {% assign static_cover_image = 'gallery-img1.jpg' | file_img_url: '329x' %} {% endcomment %}
+                        {% assign static_cover_image = '' %}
+                        {% assign cover_image = block.settings.image | image_url %}
+                        {% assign videourl = block.settings.video %}
+                        {%- render 'custom-modal-video-nps', 
+                           static_cover_image: static_cover_image, 
+                           cover_image: cover_image, video_url: videourl, 
+                              youtube_title: block.settings.videoname, 
+                              youtube_description: block.settings.videodescription, 
+                              youtube_uploaded_date: block.settings.uploaddate,
+                              render_card_css: false,
+                              render_price_css: false
+                        -%}
+                     {% endif %}
+                  </div> 
+                  <div class="card-content">
+                     <h3 class="card-title">{{ block.settings.title }}</h3>
+                     <p>{{ block.settings.designation }}</p>
+                     <p>at <strong>{{ block.settings.location }}</strong></p>
+                  </div>
+               </div>
+            </div>
+            {% endfor %}
+         </div>
+         <div class="swiper-pagination"></div>
+      </div>
+   </div>
+</div>
+
+   <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".nps-hero-swiper", {
+      effect: "coverflow",
+      slidesPerView: 1.6,
+      spaceBetween: 0,
+      centeredSlides: true,
+      loop: true,
+      grabCursor: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2.7,
+          spaceBetween: 0,
+        },
+        768: {
+          slidesPerView: 2.7,
+          spaceBetween: 0,
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 0,
+        },
+      },
+    });
+  </script>
+
+
+  {% schema %}
+{
+  "name": "NPS Hero Slider",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video URL"
+        },
+        {
+          "type": "text",
+          "id": "uploaddate",
+          "label": "Uploade Date"
+        },
+        {
+          "type": "text",
+          "id": "videoname",
+          "label": "Video Name"
+        },
+        {
+          "type": "text",
+          "id": "videodescription",
+          "label": "Video Description"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "label": "Designation"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "NPS Hero Slider"
+    }
+  ]
+}
+{% endschema %}

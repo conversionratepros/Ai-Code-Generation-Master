@@ -1,0 +1,119 @@
+/* Variation B - AB Test | PDP Shipping - Geo-Personalised Delivery | ALL | CRO-12280 */
+
+/* ─── SPA gating: badge stays hidden until body.cro-12280 lands ─────────── */
+.cro-12280-badge {
+    display: none;
+}
+
+/* ─── Hide original "Excludes shipping" + "ETA: [range] working days" ──────
+   Their info now lives in the badge, so it must not show twice. Tagged by
+   JS once the badge has been injected.
+──────────────────────────────────────────────────────────────────────────── */
+body.cro-12280 [data-cro-12280-original-shipping] {
+    display: none !important;
+}
+
+/* ─── Geo-Personalised Delivery badge ───────────────────────────────────── */
+body.cro-12280 .cro-12280-badge {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 12px;
+    padding: 14px 12px 14px 15px;
+    background: rgba(10, 102, 194, 0.04);
+    border-left: 3px solid #0093d0;
+}
+
+body.cro-12280 .cro-12280-parent {
+    padding-bottom: 12px;
+}
+
+body.cro-12280 .cro-12280-badge-icon {
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+    line-height: 0;
+}
+
+body.cro-12280 .cro-12280-badge-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Line 1 — location-aware heading */
+body.cro-12280 .cro-12280-badge-heading {
+    color: #0f172a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+}
+
+/* Line 2 — delivery message ("Arrives in X-Y working days" bold, "." not) */
+body.cro-12280 .cro-12280-badge-delivery {
+    color: #334155;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+body.cro-12280 .cro-12280-badge-delivery strong {
+    font-weight: 700;
+}
+
+/* Line 3 — shipping qualifier */
+body.cro-12280 .cro-12280-badge-qualifier {
+    padding-top: 3px;
+    color: #64748b;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 14px;
+}
+
+body.cro-12280.cro-12280-no-payflex .cro-12280-badge-parent {
+    border-top: none;
+    border-bottom: 1px solid #99abb9;
+    padding-bottom: 12px;
+}
+
+/* ─── Mobile (≤1023px) — slightly tighter vertical padding per design ───── */
+@media (max-width: 1023px) {
+    body.cro-12280 .cro-12280-badge {
+        padding: 10px 12px 10px 15px;
+    }
+
+    .cro-12280-shipping-parent {
+        padding: 0;
+        border: none;
+    }
+
+    body.cro-12280.cro-12280-no-payflex .cro-12280-badge-parent {
+        border-top: 1px solid #99abb9;
+    }
+}
+
+.cro-12280-parent>div:nth-child(1) {
+    order: 1;
+}
+
+.cro-12280-parent>div.cro-12280-badge-parent {
+    order: 3;
+}
+
+.cro-12280-parent>div[color="darkGrey"] {
+    order: 2;
+}
+
+.cro-12280-badge-parent {
+    border-top: 1px solid #99abb9;
+}

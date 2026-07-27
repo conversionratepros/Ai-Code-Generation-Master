@@ -1,0 +1,67 @@
+{%- capture mobile_collection_slider -%}
+{{ 'mobile-collection-slider.css' | asset_url | stylesheet_tag }}
+<div class="collection-slider-holder large-hide">
+<div class="page-width">
+<div class="collection-slider-wrapper swiper">
+<ul class="swiper-wrapper">
+{%- for link in linklists.main-menu-image-without-more-testing.links -%}
+<li class="item swiper-slide">
+<a href="{{link.url}}">
+{%- assign url_split = link.url | split:'/' -%}
+{%- assign collection_handle = url_split | last -%}
+
+{% assign meta_img = collections[collection_handle].metafields.custom.collection_image %}
+{% if meta_img %}
+    {%- comment -%} 
+    First priority: collection metafield image first
+    {%- endcomment -%}
+    <picture>
+    {% comment %} {{ meta_img| image_url: width: 190 | image_tag : loading: 'lazy'}} {% endcomment %}
+        <img 
+        src="{{ meta_img | image_url: width: 90 }}" 
+        srcset="{{ meta_img | image_url: width: 90 }} 1x, {{ meta_img | image_url: width: 180 }} 2x" 
+        loading="lazy" 
+        alt="{{ collection_handle | replace: '-', ' ' |  capitalize }}" width="90" height="90">
+    </picture>
+{%- else -%}
+    {%- comment -%} 
+    if collection metafield is blank 
+    {%- endcomment -%}
+{%- for prod in collections[collection_handle].products limit:1 -%}
+    {%- assign prod_img = prod.featured_image -%}
+    <picture>
+        {% comment %} {{ prod_img | image_url: width: 190 | image_tag: loading: 'lazy' }} {% endcomment %}
+        <img 
+        src="{{ prod_img | image_url: width: 90 }}" 
+        srcset="{{ prod_img | image_url: width: 90 }} 1x, {{ prod_img | image_url: width: 180 }} 2x" 
+        loading="lazy" 
+        alt="{{  prod_img.alt | default: collections.title }}"  width="90" height="90">
+    </picture>
+{%- endfor -%}
+{%- endif -%}
+
+{%- assign link_title_split = link.title | split:'|' -%}
+{%- assign link_title = link_title_split[0]-%}
+<h2 class="title">{{link_title | remove:'Office ' |  replace: 'Sofas & Collaborative Lounges','Sofas' |  replace: 'Whiteboards & Presentation Boards','Whiteboards' |  replace: 'Decor, Pots & Plants','Decor' |  replace: 'Cafe & Hospitality Furniture','Hospitality' |  replace: 'Safety & Crowd Control','Safety' | replace:'Education Furniture','Education' |  replace:' Ergonomic Accessories','Accessories' |  replace: 'Power & Data Management','Cabling' |  replace: 'Acoustic Partitions','Partitions'  }}</h2>
+</a>
+</li>
+{%- endfor -%}
+</ul>
+</div>
+<button class="mcs-button-prev" ></button>
+<button class="mcs-button-next" ></button>    
+</div>
+</div>
+{%- endcapture -%}
+{{ mobile_collection_slider |  strip_newlines }}
+<script>
+    const swiper = new Swiper('.collection-slider-wrapper', {
+      slidesPerView: 4,
+      spaceBetween: 5, 
+      autoplay: false,
+      navigation: {
+        nextEl: '.mcs-button-next',
+        prevEl: '.mcs-button-prev',
+      },
+    });
+</script>

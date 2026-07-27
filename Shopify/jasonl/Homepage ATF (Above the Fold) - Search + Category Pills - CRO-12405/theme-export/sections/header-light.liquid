@@ -1,0 +1,558 @@
+{% comment %} <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="all">
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="all">
+<script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+ <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script> 
+<noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
+{{ 'header.css' | asset_url | stylesheet_tag }}
+{{ 'header-light.css' | asset_url | stylesheet_tag }}
+<style>
+  header-drawer {
+    justify-self: start;
+    margin-left: -1.2rem;
+  }
+/*
+  @media screen and (min-width: 990px) {
+    header-drawer {
+      display: none;
+    }
+  }
+*/
+  .menu-drawer-container {
+    display: flex;
+  }
+
+  .list-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .list-menu--inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  summary.list-menu__item {
+    padding-right: 2.7rem;
+  }
+
+  .list-menu__item {
+    display: flex;
+    align-items: center;
+    line-height: 1.3;
+  }
+
+  .list-menu__item--link {
+    text-decoration: none;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    line-height: 1.8;
+  }
+
+  @media screen and (min-width: 750px) {
+    .list-menu__item--link {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+    }
+  }
+  </style>
+
+
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+                            <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor"/>
+                            </symbol>
+
+                            <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+                              <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+                            </symbol>
+                          </svg>
+<header class="header header-wrapper header--has-menu">
+    <header-drawer data-breakpoint="tablet" class="medium-hide-lg large-up-hide">
+        <details class="menu-drawer-container">
+          <summary class="header__icon header__icon--menu header__icon--summary link link--text focus-inset" aria-label="{{ 'sections.header.menu' | t }}">
+            <span>
+              <i class="burger-icon"><div class="burger-icon__bar1"></div> <div class="burger-icon__bar2"></div><div class="burger-icon__bar3"></div></i>
+            </span>
+          </summary>
+          <div id="menu-drawer" class="menu-drawer motion-reduce" tabindex="-1">
+             <div class="nav-logo-holder">
+                        <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+                            <span class="svg-logo">{%- render 'i-logo',  logotype:'logo_with_icon'-%}</span>
+                        </a>
+                        <span class="menudrawer-nav-close" onclick="triggerClick_burguricon()"></span>
+                  </div>
+              
+              <span id="side-menu-arrow" class="side-menu-arrow"><i></i></span>
+
+
+            
+            <div class="menu-drawer__inner-container" >
+              <div class="menu-drawer__navigation-container">
+                  
+                <nav class="menu-drawer__navigation">
+                  <ul class="menu-drawer__menu list-menu" role="list">
+                    <li class="menu-item-cols">
+                        <span>Your location</span>
+                        <span id="mobile-header-current-location">NSW</span>
+                        <div class="mobile-header-change-location change-location">
+                          <modal-opener class="simple-popup-modal__opener no-js-hidden" data-modal="#PopupModal-modal_change_location" >
+                                <button>Change</button>
+                          </modal-opener>
+                        </div>
+                    </li>
+                    <li >
+                      
+                          <a href="/blogs/fitouts"
+                            class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if template == "blog.fitouts" %} menu-drawer__menu-item--active{% endif %}"
+                            aria-current="page">
+                            Fitouts
+                          </a>
+                          
+                      
+                      </li>
+                    {%- for link in linklists.shop-by-products.links -%}
+                        {%- assign titleWithIcon = link.title | split:'|'-%}
+                        {%- assign title = titleWithIcon[0]-%}
+
+                      <li>
+                        {%- if link.links != blank -%}
+                          <details>
+                            <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
+                              {%- render 'menu-titles-test', forloopindex: forloop.index, menutitle: title -%}
+                              {% render 'icon-arrow' %}
+                              {% render 'icon-caret' %}
+                            </summary>
+                            <div id="link-{{ title | escape }}" class="menu-drawer__submenu motion-reduce" tabindex="-1">
+                              <div class="menu-drawer__inner-submenu">
+                                <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                  {% render 'icon-arrow' %}
+                                   Back to Main Menu
+                                </button>
+                                <div class="nav-see-all-holder">
+                                    <a href="{{link.url}}" data-nsw="{{link.url}}" data-wa="{{link.url | append:'/perth'}}" data-js_updatemenuurl="true"><span>{{ title | escape }}</span><span class="seeall">See all</span></a>
+                                </div>
+
+                                <ul class="menu-drawer__menu list-menu nav-child-links" role="list" tabindex="-1">
+                                  {%- for childlink in link.links -%}
+                                    <li>
+                                      {%- if childlink.links == blank -%}
+                                        {% capture perthURL %}
+                                            {%- assign isChild = false -%}
+                                            {%- assign perth = '/perth' -%}
+                                            {%- assign linkUrl = childlink.url | split: '/'-%}
+                                            {%- if linkUrl.size >= 4 -%}
+                                              {%- assign isChild = true -%}
+                                            {%- endif -%}
+
+                                            {%- if isChild == true -%}
+                                                {%- assign perth = '+perth' -%}
+                                            {%- endif -%}
+                                            {{perth}}
+                                        {% endcapture %}
+
+                                        <a href="{{ childlink.url }}" test="123" data-nsw="{{childlink.url}}" data-wa="{{childlink.url | append:perthURL}}" data-js_updatemenuurl="true" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                                          {{ childlink.title | escape }}
+                                           {% render 'icon-arrow' %}
+                                        </a>
+                                      {%- else -%}
+                                        <details>
+                                          <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                                            {{ childlink.title | escape }}
+                                            {% render 'icon-arrow' %}
+                                            {% render 'icon-caret' %}
+                                          </summary>
+                                          <div id="childlink-{{ childlink.title | escape }}" class="menu-drawer__submenu motion-reduce">
+                                            <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                              {% render 'icon-arrow' %}
+                                              {{ childlink.title | escape }}
+                                            </button>
+                                            <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                              {%- for grandchildlink in childlink.links -%}
+                                                {% capture perthURL %}
+                                                  {%- assign isChild = false -%}
+                                                  {%- assign perth = '/perth' -%}
+                                                  {%- assign linkUrl = grandchildlink.url | split: '/'-%}
+                                                  {%- if linkUrl.size >= 3 -%}
+                                                    {%- assign isChild = true -%}
+                                                  {%- endif -%}
+      
+                                                  {%- if isChild == true -%}
+                                                      {%- assign perth = '+perth' -%}
+                                                  {%- endif -%}
+                                                  {{perth}}
+                                              {% endcapture %}
+                                                <li>
+                                                  <a href="{{ grandchildlink.url }}" data-nsw="{{grandchildlink.url}}" data-wa="{{grandchildlink.url | append:perthURL}}" data-js_updatemenuurl="true" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
+                                                    {{ grandchildlink.title | escape }}
+                                                     {% render 'icon-arrow' %}
+                                                  </a>
+                                                </li>
+                                              {%- endfor -%}
+                                            </ul>
+                                          </div>
+                                        </details>
+                                      {%- endif -%}
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                                    
+                              </div>
+                            </div>
+                          </details>
+                        {%- else -%}
+                          <a href="{{ link.url }}" data-nsw="{{ link.url }}" data-wa="{{ link.url | append:'/perth'}}" data-js_updatemenuurl="true" class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
+                            {{ link.title | escape }}
+                            
+                          </a>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                    <li class="menu-header-message">
+                      <a href="https://builder.jasonl.com.au/catalogue/" target="_blank">
+                        <span>
+                          <span>CATALOGUE </span>View our brand new 2023 catalogue</span>
+                        <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation"
+                          class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" style="
+                                                          width: 22px;
+                                                          fill: #fff;
+                                                      ">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z"
+                            fill="currentColor">
+                          </path>
+                        </svg>
+                      </a></li>
+                  </ul>
+                    <div class="menudrawer-bottom-menu">
+                      {%- for link in linklists.menudrawer-bottom-menu.links-%}
+                        <a {% if link.title contains 'Showrooms' %}onclick="triggerClick_burguricon()" {% endif %}  href="{{link.url}}">{{link.title}}</a>
+                        {%- unless forloop.last -%}
+                        <span class="sep"></span>
+                        {%- endunless-%}
+                      {%- endfor-%}
+                  </div>
+                </nav>
+                
+              </div>
+            </div>
+          </div>
+          <span id="sidemenu-overlay" class="overlay" onclick="triggerClick_burguricon()"></span>
+          </details>
+      </header-drawer>
+    <div class="header-row header-row--2">
+        <div class="page-width">
+            <div class="header-row--left">
+                {%- render 'logo' -%}
+                <div class="shopbycategory header-dropdown small-hide medium-hide-sm">
+                    <div class="header-dropdown-title sticky-show">Shop by category</div>
+                        <nav class="header-nav">
+                            <div class="page-width">
+                              {%- render 'menu-shop-by-room' -%}
+                              {%- assign locationAvailability_filterTag = 'perth'-%}
+                                <ul class="header-main-menu" id="header-main-menu" role="list">
+                                    {%- for link in linklists.shop-by-products.links -%}
+                                    {% capture menuTitle_withoutIcon %}
+                                        {%- if link.title contains '|'-%}
+                                                {%- assign linktitle = link.title | split:'|'-%}
+                                                {{-linktitle[0]-}}
+                                            {%-else-%}
+                                                {{- link.title | escape -}}
+                                            {%- endif-%}
+                                    {%- endcapture -%}
+                                    <li class="{% if link.active %}menu-item--active {% endif %}{% if forloop.index > 12 %}large-up-hide medium-hide{% endif %}" >
+                                        <a title="{{menuTitle_withoutIcon  | strip }}" href="{{ link.url }}" data-nsw="{{ link.url }}" data-wa="{{ link.url }}/{{locationAvailability_filterTag}}" data-js_updatemenuurl="true" {% if link.current %}class="menu-item--active"{% endif %} {% if link.current %} aria-current="page"{% endif %}>
+                                            <span>{%- render 'menu-titles-test', forloopindex: forloop.index, menutitle: menuTitle_withoutIcon -%}</span>
+                                        </a>
+
+                                        <div class="header-child-menu">
+                                            <div class="child-menu-left">
+                                                <h4>
+                                                  <a href="{{link.url}}" data-nsw="{{ link.url }}" data-wa="{{ link.url }}/{{locationAvailability_filterTag}}" data-js_updatemenuurl="true">{{- menuTitle_withoutIcon -}} {%- render 'icon-arrow'-%}</a>
+                                                </h4>
+                                                <ul class="child-menu" id="child-menu-{{link.url | remove:'/collections/'}}">
+                                                    {%- render 'header-submenu', parentMenu: link, locationAvailability_filterTag:locationAvailability_filterTag  -%}
+                                                </ul>
+                                            </div>
+                                            <div class="child-menu-right">
+                                                <h4>{{menuTitle_withoutIcon}}?
+                                                    <br><span>{%- render 'collection-title-tagline', forloopindex: forloop.index-%}</span>
+                                                </h4>
+                                                {% render 'main-nav-icons', item:link.title %}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {%- endfor -%}
+                                    {% if linklists.shop-by-products.links.size > 12 %}
+                                    <li class="nav-more">
+                                        <a href="#"><span>More</span></a>
+                                        <div class="header-child-menu">
+                                            <div class="child-menu-left">
+
+                                          {%- for link1 in linklists.shop-by-products.links offset: 12 limit:3 -%}
+                                                {% capture menuTitle_withoutIcon1 %}
+                                                    {%- if link1.title contains '|'-%}
+                                                        {%- assign linktitle1 = link1.title | split:'|'-%}
+                                                        {{-linktitle1[0]-}}
+                                                    {%-else-%}
+                                                        {{- link1.title | escape -}}
+                                                    {%- endif-%}
+                                                {%- endcapture -%}
+                                                <div class="more-col {% if forloop.last %}last{% endif %}">
+                                                    <h4>
+                                                      <a href="{{link1.url}}" data-nsw="{{ link1.url }}" data-wa="{{ link1.url }}/{{locationAvailability_filterTag}}" data-js_updatemenuurl="true">{{- menuTitle_withoutIcon1 -}} {%- render 'icon-arrow'-%}</a>
+                                                    </h4>
+                                                    <ul class="child-menu">
+                                                        {%- render 'header-submenu', parentMenu: link1,locationAvailability_filterTag:locationAvailability_filterTag -%}
+                                                    </ul>
+                                                </div>
+                                          {%- endfor -%}
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                                <div class="nav-overlay"></div>
+                            </div>
+                        </nav>
+
+                </div>
+                    <div class="header-search-holder small-hide medium-hide-sm medium-hide-lg">
+                        <form action="/pages/search-results-page" method="get" class="header-bar__search-form" role="search">
+                            <div class="top-search-wrapper">
+                                <input type="search" name="q" value="" aria-label="Search for any product ..." class="search snize-input-style" placeholder="Search for any product ..." autocomplete="off">
+                                <span class="input-group-btn">
+                                    <!-- <button type="submit" class="btn icon-fallback-text"> -->
+                                    <button type="submit" class="icon-fallback-text">
+                                        <span class="icon icon-search" aria-hidden="true">
+                                           {%-render 'icon-arrow'-%}
+                                        </span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+            <div class="header-row--right">
+                          <ul class="header-top-right hide-show-sticky-scroll">
+                    <li>
+                        <strong class="label">Call </strong>
+                        <a class="value" href="tel:{{shop.phone}}">{{shop.phone}}</a>
+                    </li>
+
+                    <li class="header-top-right-getaquote">
+                           <a class="typeform-share getaquoteclick button header-getaquote"
+                           {{settings.typeformurls_url_1}} 
+                           href="javascript:void(0)">
+                       Get a quote
+                          </a>
+                    </li>
+                    <li class="header-top-right-contactus newdesign-desktop-hide newdesign-tablet-lg-hide">
+                            <button class="link typeform-share  gclid-contact-typeform"
+                            {{settings.cotactus_typeformurls_url_1}}
+                            >
+                            Contact us
+                          </button>
+                      </li>
+                </ul>
+
+                <ul class="header-short-menu header-short-menu--sticky large-up-hide">
+                  <li class="header__phone medium-hide-sm medium-hide-lg large-up-hide">
+                    <a href="tel:{{shop.phone}}">
+                      {%- render 'i-phone', type:2-%}
+                      {{shop.phone}}
+                    </a>
+                  </li>
+                    <li>
+                         <details-modal class="header__search">
+                          <details>
+                            <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
+                              <span>
+                                <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                                  <use href="#icon-search">
+                                </svg>
+                                <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                                  <use href="#icon-close">
+                                </svg>
+                              </span>
+                            </summary>
+                          
+                            
+                             
+                            <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
+                              <div class="modal-overlay"></div>
+                              <div class="search-modal__content" tabindex="-1">
+                                {%- if settings.predictive_search_enabled -%}
+                                  <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+                                {%- endif -%}
+                                  <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+                                    <div class="field">
+                                      <input class="search__input field__input" 
+                                        id="Search-In-Modal"
+                                        type="search"
+                                        name="q"
+                                        value=""
+                                        placeholder="{{ 'general.search.search' | t }}"
+                                        {%- if settings.predictive_search_enabled -%}
+                                          role="combobox"
+                                          aria-expanded="false"
+                                          aria-owns="predictive-search-results-list"
+                                          aria-controls="predictive-search-results-list"
+                                          aria-haspopup="listbox"
+                                          aria-autocomplete="list"
+                                          autocorrect="off"
+                                          autocomplete="off"
+                                          autocapitalize="off"
+                                          spellcheck="false" 
+                                        {%- endif -%}
+                                      >
+                                      <label class="field__label" for="Search-In-Modal">{{ 'general.search.search' | t }}</label>
+                                      <input type="hidden" name="options[prefix]" value="last">
+                                      <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+                                        <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                                          <use href="#icon-search">
+                                        </svg>
+                                      </button> 
+                                    </div>
+                                    
+                                    {%- if settings.predictive_search_enabled -%}
+                                      <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+                                        <div class="predictive-search__loading-state">
+                                          <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                          </svg>
+                                        </div>
+                                      </div>
+
+                                      <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                                    {%- endif -%}
+                                  </form>
+                                {%- if settings.predictive_search_enabled -%}
+                                  </predictive-search>
+                                {%- endif -%} 
+                                <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="{{ 'accessibility.close' | t }}">
+                                  <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                                    <use href="#icon-close">
+                                  </svg>
+                                </button>
+                              </div>
+                            </div>
+                          </details>
+                        </details-modal>
+                    </li>
+                </ul>
+
+            
+                <a href="https://www.jasonl.com.au/account/" class="header__icon header__icon--account small-hide newdesign-desktop-hide newdesign-tablet-lg-hide ">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+                      <g>
+                        <path d="M20,0C9,0,0,9,0,20s9,20,20,20s20-9,20-20S31,0,20,0z M11.2,34.8c0.5-4.9,4.8-8.5,9.7-8c4.2,0.4,7.6,3.8,8,8
+                          C23.4,38.1,16.6,38.1,11.2,34.8z M31.3,33c-1.4-6.2-7.6-10.1-13.9-8.7c-4.3,1-7.7,4.4-8.7,8.7c-7.2-6.2-8-17.1-1.8-24.4
+                          s17.1-8,24.4-1.8s8,17.1,1.8,24.4C32.5,31.9,31.9,32.5,31.3,33z"/>
+                        <path d="M20,8c-3.5,0-6.3,2.8-6.3,6.3c0,3.5,2.7,8.6,6.3,8.6s6.3-5.1,6.3-8.6C26.3,10.8,23.5,8,20,8z M20,20.2
+                          c-1.7,0-3.6-3.5-3.6-5.9c0-2,1.6-3.6,3.6-3.6s3.6,1.6,3.6,3.6c0,0,0,0,0,0C23.6,16.6,21.7,20.2,20,20.2L20,20.2z"/>
+                      </g>
+                      </svg>
+                </a>
+                <span  class="header__icon header__icon--cart" id="cart-icon-bubble">
+                    {%- render 'i-cart' , classname:'newdesign-desktop-hide' -%}
+                   
+                    {%- if cart.item_count < 100  -%}
+                        <div class="cart-count-bubble {% if cart.item_count < 1  %}noitem{% endif %} newdesign-desktop-hide">
+                            <span aria-hidden="true">{{ cart.item_count }}</span>
+                            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                        </div>
+                        {%- endif -%}
+                  </span>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+  if(window.innerWidth > 992){
+    window.onscroll = function() {
+      let snizeWidgetClass = document.querySelector(".snize-instant-widget-is-open");
+      let snizeWidget = document.querySelector(".snize-ac-results");
+      if (typeof(snizeWidgetClass) != 'undefined' && snizeWidgetClass != null){
+          // search dropdown widget opened
+          if(window.scrollY > 75 && window.scrollY < 200){
+           snizeWidget.setAttribute('style','display:none');
+          }
+        }
+        toggleSticky();
+    };
+  }
+});
+
+function toggleSticky() {
+  if (document.querySelector("body").getBoundingClientRect().top < -160 ) {
+    //console.log('ready:' + document.querySelector("body").getBoundingClientRect().top);
+    //document.body.classList.add("sticky-ready");
+  } else {
+    //document.body.classList.remove("sticky-ready");
+  }
+
+  //if (document.querySelector("body").getBoundingClientRect().top < -300 ) {
+    if (document.querySelector("body").getBoundingClientRect().top < -200 ) {
+    //console.log('sticky:' + document.querySelector("body").getBoundingClientRect().top);
+    document.body.classList.add("sticky-ready");
+    document.body.classList.add("sticky");
+  } else {
+    document.body.classList.remove("sticky");
+    document.body.classList.remove("sticky-ready");
+  }
+}
+
+function triggerClick_burguricon(){
+  var element = document.body.querySelector('.header__icon[aria-controls="menu-drawer"]');
+  element.click();
+}
+
+// sticky header
+/*
+function sticky_header_hideShow(){
+let body = document.body;
+const scrollUp = "scroll-up";
+const scrollDown = "scroll-down";
+let lastScroll = 300;
+window.addEventListener("scroll", () => {
+   let html = document.getElementsByTagName('html');
+  if(!html[0].classList.contains('optimize_sticky_mobile')){
+      const currentScroll = window.pageYOffset;
+      if (currentScroll <= 300) {
+        body.classList.remove(scrollUp);
+        return;
+      }
+
+      if (currentScroll > lastScroll && !body.classList.contains(scrollDown)) {
+        body.classList.remove(scrollUp);
+        body.classList.add(scrollDown);
+      } else if (
+        currentScroll < lastScroll &&
+        body.classList.contains(scrollDown)
+      ) {
+        body.classList.remove(scrollDown);
+        body.classList.add(scrollUp);
+      }
+      lastScroll = currentScroll;
+  }
+});
+}
+ if(window.innerWidth < 768){
+   sticky_header_hideShow();
+ }
+*/
+</script>
+{% schema %}
+  {
+    "name": "Header Light",
+    "class": "section-header-light",
+    "settings": []
+  }
+{% endschema %}
+ {% endcomment %}

@@ -1,0 +1,172 @@
+{{ 'assembly-menu.css' | asset_url | stylesheet_tag }}
+<div class="assembly-page spaced-section">
+  <div class="page-width" >
+    <h1 class="page-title_h1">Assembly Instructions </h1>
+    {% render "assemblyicon", data: section.blocks   %}
+  <div id="category-holder" class="assembly-menu">
+<ul> 
+  {%- comment -%}
+  <!-- ---------------------------------------- -->
+    {%- for block in section.blocks -%}
+     <li>  
+        <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{block.settings.assembly-cat-title}}{%- if block.settings.assembly-cat-subtitle != '' and block.settings.assembly-cat-subtitle != 'null' -%}&desc={{block.settings.assembly-cat-subtitle}}{%- endif -%}{%- if block.settings.assembly-icon-id != '' and block.settings.assembly-icon-id != 'null' -%}&icon={{block.settings.assembly-icon-id}}{%- endif -%}">
+            <img class="svg" src="{{ block.settings.assembly-icon-id | asset_url }}" alt="" />      
+            <h4>{{block.settings.assembly-cat-title}}?
+                {%- if block.settings.assembly-cat-subtitle != '' and block.settings.assembly-cat-subtitle != 'null' -%}
+                    <span>{{block.settings.assembly-cat-subtitle}}</span>
+                {%- endif -%}
+            </h4>
+        </a>
+      </li>
+    {% endfor %}
+    {%- render "assemblylist" -%}
+  <!-- ------------------------------------   -->
+  {%- endcomment -%}
+  
+  {%- capture assembly -%}
+      {%- render "assemblydata" -%}
+  {%- endcapture -%}
+  {%- assign themedata_split = assembly | strip_html | split:'|' -%}
+
+{%- for x in themedata_split -%}
+  {%- assign themedata_split2 = x|split:'=' -%}
+{%- assign theme_icon = themedata_split2[2] -%}
+  <li>  
+    <a class="animate" href="{{ shop.url }}/pages/assembly-detail?category={{themedata_split2[0] | downcase}}">
+    {%- include theme_icon | prepend: '' | downcase -%} 
+         
+    <h4>{{ themedata_split2[0] }}?
+    {%- if themedata_split2[1] != '' and themedata_split2[1] != 'null' -%}
+    <span>{{ themedata_split2[1] }}</span>
+    {%- endif -%}
+    </h4>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>   
+</div>
+    </div>
+</div>
+
+<script>
+  var slides = document.getElementsByClassName("animate");
+var index = 0;
+if(slides.length > 0){
+var interval = setInterval(function() { 
+  slides[index++].classList.add("animate--show");
+  if (index === slides.length) { 
+    clearInterval(interval); 
+  }
+}, 150);
+};
+  
+const convertImages = (query, callback) => {
+  const images = document.querySelectorAll(query);
+
+  images.forEach(image => {
+    fetch(image.src)
+    .then(res => res.text())
+    .then(data => {
+      const parser = new DOMParser();
+      const svg = parser.parseFromString(data, 'image/svg+xml').querySelector('svg');
+
+      if (image.id) svg.id = image.id;
+      if (image.className) svg.classList = image.classList;
+
+      image.parentNode.replaceChild(svg, image);
+    })
+    .then(callback)
+    .catch(error => console.error(error))
+  });
+}
+
+convertImages('img');
+  
+</script>
+{% schema %}
+  {
+    "name": "Assembly Icon",
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Icon",
+        "settings": [
+          {
+            "id": "assembly-cat-title",
+            "type": "text",
+            "label": "Category Title"
+          },
+{
+            "id": "assembly-cat-subtitle",
+            "type": "text",
+            "label": "Sub Text"
+          },
+	{
+   "type":      "select",
+   "id":        "assembly-icon-id",
+   "label":     "Icons",
+   "options": [
+     {
+       "group": "icon",
+       "value": "icon1.svg",
+       "label": "Office Chair"
+     },
+     {
+       "group": "icon",
+       "value": "icon2.svg",
+       "label": "Desk"
+     },
+	{
+       "group": "icon",
+       "value": "icon3.svg",
+       "label": "Workstation"
+     },
+	{
+       "group": "icon",
+       "value": "icon4.svg",
+       "label": "Standup Desk"
+     },
+	{
+       "group": "icon",
+       "value": "icon5.svg",
+       "label": "Office Storage"
+     },
+	{
+       "group": "icon",
+       "value": "icon6.svg",
+       "label": "Table"
+     },
+	{
+       "group": "icon",
+       "value": "icon7.svg",
+       "label": "Sofa and Lounges"
+     },
+	{
+       "group": "icon",
+       "value": "icon8.svg",
+       "label": "Whiteboard"
+     },
+    {
+       "group": "icon",
+       "value": "icon9.svg",
+       "label": "Cafe Furniture"
+     },
+	{
+       "group": "icon",
+       "value": "icon10.svg",
+       "label": "Electrical Accessories"
+     },
+	{
+       "group": "icon",
+       "value": "icon11.svg",
+       "label": "Office Partition"
+     }
+
+   ],
+   "default":   "icon1.svg"
+}
+        ]
+      }
+    ]
+  }
+{% endschema %}

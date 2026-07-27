@@ -1,0 +1,60 @@
+{% comment %} 
+Fri 13 sep 2024 , Rick asked to remove on new design/changes shipping and assembly task
+============================================================================================
+
+{{'banner-payment-options.css' |  asset_url |  stylesheet_tag }}
+<style>
+    .banner-payment-options .options-cols{
+         background: #f2f5f8 url({{'payment-options-banner3.png' | file_img_url:'master'}} )  no-repeat 132% -28px;
+         /* background-size: contain; */
+    }
+</style>
+<div class="banner-payment-options quick-add-hidden">
+    <div class="options-cols">
+        <div class="col col-title">
+            <h4>Transact <br>your way</h4>
+        </div>
+        <div class="col col-cards">
+            <ul>
+                <li>Visa / Mastercard</li>
+                <li>American Express</li>
+                <li>Google pay</li>
+                <li>Apple pay</li>
+            </ul>
+        </div>
+        <div class="col col-types">
+            <ul>
+                <li>
+                    <div class="payment-type">Purchase order
+                        <div class="info-holder">
+                            ?
+                            <div class="info">For larger organisations with specific financial processes</div>
+                        </div>
+                    </div>
+                </li>
+                 <!-- 
+                <li>
+                    <div class="payment-type" >EFT/Bank Transfer
+                        <div class="info-holder">
+                            ?
+                            <div class="info">If you're handling a payment through your organisation's finance department</div>
+                        </div>
+                    </div>
+                </li> 
+                --!>
+
+                <li>
+                    <div class="payment-type" >Direct Debit (Payto)
+                        <div class="info-holder">
+                            ?
+                            <div class="info">We've partnered with PayTo as our secure Direct Debit service provider</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+============================================================================================
+{% endcomment  %}

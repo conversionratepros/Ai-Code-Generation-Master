@@ -1,0 +1,77 @@
+
+ {% if product.metafields.productmeta.showcase_video %}
+ {{ 'tabvideo.css' | asset_url | stylesheet_tag }}
+ <!-- Tab content -->
+ <div id="tab1" class="tabcontent" {% if numberOfVideos == 1 %}style="display:block"{% endif %}>
+ 	<div class="tablinks large-up-hide medium-hide-lg" onclick="openVideoTab(event, 'tab1')">
+ 		<div class="vid-thumb-holder">
+ 			<!-- <img src="https://img.youtube.com/vi/{{videoUrl1_idOnly}}/sddefault.jpg" alt="" /> -->
+ 			{%- if product.metafields.productmeta.showcase_video_image -%}
+ 			<img src="{{ product.metafields.productmeta.showcase_video_image | file_img_url: '100x' }}" alt="general video cover" />
+ 			{%-else-%}
+ 			<img src="{{'general-video-cover.jpg' | file_img_url: '100x' }}" alt="general video cover" />
+ 			{%- endif -%}
+ 		</div>
+ 		{%- if product.metafields.productmeta.showcase_video_title -%}
+ 		<p>{{product.metafields.productmeta.showcase_video_title | replace:'[productName]', prodName[0] }}</p>
+ 		{%- else -%}
+ 		<p>Jason talks about this best-selling {{cat}}</p>
+ 		{%- endif -%}
+ 	</div>
+ 	<div class="tabcontent-holder {% if product.metafields.productmeta.tab_content_title or product.metafields.productmeta.tab_content_description %}tabcontent--col2{%endif%}">
+ 		<div class="tabcontent--left">
+ 			{%- assign videoUrl1 = product.metafields.productmeta.showcase_video -%}
+
+
+ 			{%- if videoUrl1 contains '/watch' -%}
+ 			{%- assign videoUrl1_all = videoUrl1 | split: "/watch?v=" -%}
+ 			{%- if videoUrl1_all[1] contains '&' -%}
+ 			{%- assign videoUrl1_withParameters = videoUrl1_all[1] | split: "&"-%}
+ 			{%- assign videoUrl1_idOnly = videoUrl1_withParameters[0] -%}
+ 			{%- else -%}
+ 			{%- assign videoUrl1_idOnly = videoUrl1_all[1] -%}
+ 			{%- endif -%}
+
+ 			{%- else -%}
+ 			{%- assign videoUrl1_all = videoUrl1 | split: "/embed/" -%}
+ 			{%- if videoUrl1_all[1] contains '?'-%}
+ 			{%- assign videoUrl1_withParameters = videoUrl1_all[1] | split: "?"-%}
+ 			{%- assign videoUrl1_idOnly = videoUrl1_withParameters[0] -%}
+ 			{%- else -%}
+ 			{%- assign videoUrl1_idOnly = videoUrl1_all[1] -%}
+ 			{%- endif-%}
+ 			{%- endif -%}
+
+ 			{%- assign videoCoverImgFromSection1 =  "" -%}
+
+
+
+
+
+ 			{%- if product.metafields.productmeta.showcase_video_image -%}
+ 			{% assign videoCoverImgFromMeta1 =  product.metafields.productmeta.showcase_video_image | file_img_url: '640x' %}
+ 			{%- else -%}
+
+
+
+
+
+ 			{%- assign videoCoverImgFromMeta1 = "https://cdn.shopify.com/s/files/1/1249/7859/files/general-video-cover.jpg?v=1643733739"-%}
+ 			{%- assign videoCoverImgFromMeta1 = "https://img.youtube.com/vi/" | append:videoUrl1_idOnly | append: "/maxresdefault.jpg"-%}
+ 			{%- endif -%}
+
+
+ 			{%- render "video-product", 
+ 			video_url: videoUrl1, 
+ 			video_id: videoUrl1_idOnly,
+ 			video_img: videoCoverImgFromMeta1,
+ 			youtube_id: videoUrl1_idOnly,
+ 			youtube_title: product.metafields.productmeta.showcase_video_seo_title, 
+ 			youtube_description: product.metafields.productmeta.showcase_video_seo_description, 
+ 			youtube_uploaded_date: product.metafields.productmeta.showcase_video_seo_uploaded_date 
+ 			-%}
+ 		</div>
+ 	</div>
+
+ </div>
+ {% endif %}

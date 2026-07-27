@@ -1,0 +1,39 @@
+{%- comment -%}Do not load any HTML CSS JS if no content present {%- endcomment -%}
+{%- if  article.metafields.fitout_blog.fitouts_1_hero_title or article.metafields.fitout_blog.fitouts_1_hero_description or article.metafields.fitout_blog.fitouts_1_hero_image -%}
+            {{ 'fitouts_1-hero.css' | asset_url | stylesheet_tag }}
+            <div class="fitouts_1-hero-wrapper">
+                <div class="page-width">
+                    <div class="hero-cnt">
+                        <div class="hero-left">
+                            <div class="hero-left-cnt">
+                                {% if article.metafields.fitout_blog.fitouts_1_hero_title %}
+                                    <h1>{{ article.metafields.fitout_blog.fitouts_1_hero_title }}</h1>
+                                {%- else -%}
+                                    <h1>{{ article.title }}</h1>
+                                {% endif %}
+                            {% if article.metafields.fitout_blog.fitouts_1_hero_description %}
+                                <p>
+                                    {{ article.metafields.fitout_blog.fitouts_1_hero_description }}
+                                </p>
+                            {% endif %}
+                            {% if  article.metafields.fitout_blog.fitouts_1_hero_see_source  %}
+                                <a href="{{ article.metafields.fitout_blog.fitouts_1_hero_see_source }}" class="source">See Source</a>
+                            {%- endif -%}
+                            </div>
+                        </div>
+                        <div class="hero-right">
+                            {%- assign heroImg =  article.metafields.fitout_blog.fitouts_1_hero_image  -%}
+                            {%- if article.metafields.fitout_blog.fitouts_1_hero_image-%}
+                                <img src="{{heroImg |  file_img_url: '630x' }}" alt="{{ article.title }}" />
+                            {%- endif -%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% else %}
+            <style>
+                .fitouts_1-hero-wrapper{
+                    padding: 0px;
+                }
+            </style>
+{% endif  %}

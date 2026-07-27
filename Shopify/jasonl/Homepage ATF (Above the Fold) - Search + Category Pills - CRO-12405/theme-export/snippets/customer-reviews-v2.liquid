@@ -1,0 +1,63 @@
+
+<div class="googlereviews">
+    <div class="googlereviews-item">
+        <div class="reviewer-top">
+            <div class="reviewer-info">
+                    <div class="starholder">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <h3 class="review-title">So grateful for real <br>ergonomic support</h3>
+                    <div class="review-body">
+                        <p>I am a trained ergonomist and have recommended these chairs to clients when I was a rehab consultant for many years. I have an acute episode of backpain and it is such a relief to have a chair which is fully ergonomic.</p>
+                    </div>
+                    <p class="reviewer-name">- Simonie</p>
+                    {%comment%} END::timeago {%endcomment%}
+            </div>
+        </div>
+        {%- if reviewno_counter_index == 1 -%}
+            <p class="reviewer-review">{{ reviewdata.review | truncatewords: 23, "..." }}</p>
+        {%-else-%}
+            <p class="reviewer-review">{{ reviewdata.review | truncatewords: 23, "..." }}</p>
+        {%-endif-%}
+    </div>
+    <div class="googlereviews-item">
+        <div class="reviewer-top">
+            <div class="reviewer-info">
+                    <div class="starholder">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <h3 class="review-title">Still the best chair <br>option after 15 years</h3>
+                    <div class="review-body">
+                        <p>I've had a Gregory chair at work for the last 15 years and found it the most comfortable for my body shape. During the Covid lockdown I needed to find a work chair for home and was so happy to be able to find it at Gregory.</p>
+                    </div>
+                    <p class="reviewer-name">- Christina Cassidy</p>
+            </div>
+        </div>
+    </div>
+    <div class="googlereviews-item">
+        <div class="reviewer-top">
+            <div class="reviewer-info">
+                    <div class="starholder">
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                        <div class="clip-star"></div>
+                    </div>
+                    <h3 class="review-title">Creative solutions <br>for creative minds</h3>
+                    <div class="review-body">
+                        <p>We have worked with jason.l across our office fitout, their ability to turn an empty room into a functioning and creative office space is second to none. Our creative team has now their ideal place to share and empower thereself together.</p>
+                    </div>
+                    <p class="reviewer-name">- Alyssa Kriis, Salt Strong</p>
+            </div>
+        </div>
+    </div>
+</div>

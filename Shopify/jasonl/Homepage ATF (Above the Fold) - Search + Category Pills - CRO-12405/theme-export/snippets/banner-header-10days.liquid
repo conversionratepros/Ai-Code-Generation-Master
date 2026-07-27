@@ -1,0 +1,30 @@
+<style>
+.banner-payment-options-header.header-banner-10days{
+background-color: #fde8ab;
+}
+.header-banner-10days .options-cols a.link{
+text-decoration-color: #c1c433;
+}
+</style>
+{{'banner-header-10days.css' |  asset_url |  stylesheet_tag }}
+<div class="banner-payment-options-header header-banner-10days">
+    <div class="page-width">
+        <div class="options-cols">
+            <div class="col">
+                <div class="col-cnt">
+                    <h4>Fitouts in under 10 days!</h4>
+                    <p>Your fitout done from design to install in under 10 days, nationwide!</p>
+                    <a class="typeform-share getaquoteclick link mob-show" {{settings.typeformurls_url_1}}  href="javascript:void(0)">Get a quote</a>
+                </div>
+            </div>
+            <div class="col payment-icons icon-10days">
+                <img class="mob-hide" src="{{'banner-header-10days.jpg' |  file_img_url:'master'}}" alt="banner" />
+                <img class="mob-show" src="{{'banner-header-10days-mob.jpg' |  file_img_url:'master'}}" alt="banner" />
+            </div>
+            <div class="col mob-hide">
+                <a class="typeform-share getaquoteclick link" {{settings.typeformurls_url_1}}  href="javascript:void(0)">Get a quote</a>
+            </div>
+            
+        </div>
+    </div>
+</div>

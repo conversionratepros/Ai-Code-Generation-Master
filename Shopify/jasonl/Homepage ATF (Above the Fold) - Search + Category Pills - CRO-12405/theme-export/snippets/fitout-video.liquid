@@ -1,0 +1,73 @@
+ <!-- START Video -->
+ {{ 'collage.css' | asset_url | stylesheet_tag }}
+ {{ 'component-card.css' | asset_url | stylesheet_tag }}
+ {{ 'component-price.css' | asset_url | stylesheet_tag }}
+ {{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+ <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
+ 
+ {%- assign videoUrl = video_url -%}
+ {%- assign videoUrl_all = videoUrl | split: "?v=" -%}
+ {%- assign videoUrl_idOnly = videoUrl_all[1] -%}
+ {%- assign videoCoverImgFromSection = video_thumb -%}
+ {% assign videoCoverImg = "" %}
+ {% comment %} style="padding-bottom: {{ 1 | divided_by: thumb_ratio | times: 100 }}%; {% endcomment %}
+ <div class="collage-card collage-video fitout-video-modal">
+ {% render 'custom-modal-video', cover_image: video_thumb, video_url: video_url , youtube_title : youtube_title,
+  youtube_description: youtube_description, 
+  youtube_uploaded_date: youtube_uploaded_date
+%}
+
+
+  {% comment %}{% render 'custom-modal-video', cover_image: cover_image, video_url: video_url , youtube_title : fitout.title, youtube_description :fitout.metafields.fitout_blog.description %} {% endcomment %}
+
+{% comment %} 
+ <modal-opener class="no-js-hidden" data-modal="#PopupModal-{{ videoUrl_idOnly }}">
+   <div class="deferred-media deferred-media--placeholder">
+     <button class="collage-content collage-card__image-wrapper media deferred-media__poster full-unstyled-link" type="button" aria-haspopup="dialog" data-media-id="{{ videoUrl_idOnly }}">
+       <span class="deferred-media__poster-button motion-reduce">
+         <span class="play-btn"></span>
+       </span>
+ 
+       {%- if videoCoverImgFromSection != blank -%}
+       <img
+            src="{{ videoCoverImgFromSection }}"
+            
+            alt=""
+            loading="lazy"
+            width="{{ videoCoverImgFromSection.width }}"
+            height="{{ videoCoverImgFromSection.height }}"
+            class="collage-card__image"
+            >
+       {%- else -%}
+       {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder collage-card__image' }}
+       {%- endif -%}
+     </button>
+   </div>
+ </modal-opener>
+ 
+ <modal-dialog id="PopupModal-{{ videoUrl_idOnly }}" class="collage-video__modal media-modal">
+   <div class="collage-video__modal-content" role="dialog" aria-label="video-modal" aria-modal="true" tabindex="-1">
+     <button id="ModalClose-{{ videoUrl_idOnly }}" type="button" class="collage-video__modal-toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
+     <div class="collage-video__modal-content-info">
+       <deferred-media class="collage-video__modal-video template-popup">
+         <template>
+           <iframe src="https://www.youtube.com/embed/{{ videoUrl_idOnly }}?enablejsapi=1&autoplay=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title=""></iframe>
+         </template>
+        
+         {%- render 'video-schema', 
+                         youtube_id: videoUrl_idOnly,
+                         youtube_title: youtube_title, 
+                         youtube_description: youtube_description, 
+                         youtube_uploaded_date: youtube_uploaded_date
+               -%}
+       </deferred-media>
+     </div>
+   </div>
+ </modal-dialog> {% endcomment %}
+
+
+
+
+
+
+   </div>

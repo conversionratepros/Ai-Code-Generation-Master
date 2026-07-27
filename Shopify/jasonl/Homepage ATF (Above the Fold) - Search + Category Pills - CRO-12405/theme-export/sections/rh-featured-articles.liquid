@@ -1,0 +1,148 @@
+
+{{ 'rh-featured-articles.css' | asset_url | stylesheet_tag }}
+{%- assign resource_hubs = 'business,trade,home,education' | split:','-%}
+
+{% unless current_tags contains 'resource-hub' %}
+<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+{% assign featured_tag = section.settings.featured_tag %}
+{% assign exclude_tags = section.settings.exclude_tag | split: "," %}
+{% assign first_blog = null %}
+
+{%- comment -%}
+NOTE:
+- 'business' tag is considered as default tag. so /blogs/main (landing page) should be filtered by tag 'business'
+- We appended 'business' tag to featured_tag variable. Now post will be filtered by 'featured' and 'business'
+{%- endcomment -%}
+  {% unless current_tags %}
+      {% if featured_tag == blank %}
+        {% assign featured_tag = "business" %}
+      {% else %}
+        {% assign featured_tag = featured_tag | append: ",business" %}
+      {% endif %}
+  {% endunless %}
+
+
+{% assign featured_tag = featured_tag | split: "," %}
+{% for article in blog.articles %}
+  {% assign exclude = false %}
+  {% for tag in exclude_tags %}
+    {% if article.tags contains tag %}
+      {% assign exclude = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign all_tags_present = true %}
+  {% for tag in featured_tag %}
+    {% unless article.tags contains tag %}
+      {% assign all_tags_present = false %}
+      {% break %}
+    {% endunless %}
+  {% endfor %}
+
+  {% assign is_first_blog = false %}
+  {% if exclude == false and all_tags_present %}
+    {% assign first_blog = article %}
+    {% assign is_first_blog = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<div class="page-width" id="section-featured-articles">
+  <h2 class="list-heading mob ">Featured Articles</h2>
+  <div class="row">
+    <div class="left-side">  
+      {% if first_blog %}
+        <a href="{{first_blog.url}}">
+          <img src="{{ first_blog.image | img_url: '760x304', crop: 'center' }}" alt="{{ first_blog.title }}">
+        </a>
+        <div class="featured-cnt">
+          <a href="{{first_blog.url}}">
+            <h3>{{ first_blog.title }}</h3>
+            <p>{{ first_blog.excerpt | strip_html | truncate: 150 }}</p>
+            <p class="date">{{ first_blog.published_at | date: "%B %d, %Y" }} {% render 'rh-blog-tag', tags: first_blog.tags %}</p>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="right-side">
+      <div class="title-with-list">
+        <h2 class="list-heading">Featured Articles</h2>
+        <ul class="listing listing--list top-list">
+          {%- assign articles_shown = 0 -%}
+          {%- for article in blog.articles -%}
+            {%- if articles_shown >= 5 -%}
+              {%- break -%}
+            {%- endif -%}
+  
+            {%- assign exclude = false -%}
+            
+            {% comment %} <!-- Check if the article contains any of the exclude tags --> {% endcomment %}
+            {% for tag in exclude_tags %}
+              {% if article.tags contains tag %}
+                {% assign exclude = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+  
+            {% comment %} <!-- Check if the article contains all the featured tags --> {% endcomment %}
+            {% assign all_tags_present = true %}
+            {% for tag in featured_tag %}
+              {% unless article.tags contains tag %}
+                {% assign all_tags_present = false %}
+                {% break %}
+              {% endunless %}
+            {% endfor %}
+  
+            {% comment %} <!-- If the article should not be excluded and matches all the featured tags --> {% endcomment %}
+            {% if exclude == false and all_tags_present %}
+              {% unless article == first_blog %}
+                <li class="{% if forloop.last %}last{% endif %}">
+                  <a class="spacing" href="{{ article.url }}">
+                    <h3>{{ article.title }}</h3>
+                    <p class="date">{{ article.published_at | date: "%B %d, %Y" }} 
+                      {% comment %} {% render 'rh-blog-tag', tags: article.tags %} {% endcomment %}
+                    </p>
+                  </a>
+                </li>
+                {% assign articles_shown = articles_shown | plus: 1 %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+  
+  
+          {% if articles_shown < 4 or is_first_blog == false %}
+            {% render 'rh-blog-limit-ajax', section_id:section.id, section_name:'rh-featured-articles', section_tag:'featured' %}
+          {% endif %} 
+        </ul>
+      </div>
+      
+    
+      {%- if articles_shown >= 5 -%}
+        {%- render 'rh-viewall-link' -%}
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+      {% endunless %}
+{% schema %}
+{
+  "name": "featured-articles",
+  "class": "rh-featured-articles",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "featured_tag",
+      "label": "Enter tags to include (comma-separated)"
+    },
+    {
+      "type": "text",
+      "id": "exclude_tag",
+      "label": "Enter tags to exclude (comma-separated)"
+    }
+  ]
+}
+{% endschema %}

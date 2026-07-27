@@ -1,0 +1,45 @@
+{
+    "sections":{
+       "main":{
+          "type":"trade",
+          "settings":{
+             
+          }
+       },
+        "customerReviews": {
+        "type": "fitouts-trade_testimonial",
+        "settings": {}
+      },
+      "lookbook": {
+        "type": "lookbook-section",
+        "settings": {}
+      },
+       "client_experiences": {
+        "type": "client-experiences",
+        "settings": {
+          "section_title": "Our Client's Experience"
+        }
+      },
+      "locationMap": {
+        "type": "location-map-1-b_placeholder",
+        "settings": {}
+      },
+      "meetPeople": {
+        "type": "new-meet-people",
+        "settings": {}
+      },
+      "getCatalogue": {
+          "type": "landingpage-columnBlock1",
+          "settings": {}
+      }
+    },
+    "order":[
+       "main",
+       "customerReviews",
+       "lookbook",
+       "meetPeople",
+       "getCatalogue",
+       "client_experiences",
+       "locationMap"
+    ]
+ }

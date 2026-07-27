@@ -1,0 +1,242 @@
+{% comment %}
+  CRO-12425 | Mobile sticky search bar
+  Mobile only. Renders a standard Shopify search form directly below the
+  header, full width, and sticks to the top of the viewport on scroll.
+  Desktop keeps the existing header search (this section is hidden >= 860px).
+{% endcomment %}
+
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-type="cro-12425-mobile-search"
+></script>
+
+{% style %}
+  .cro-12425-search {
+    display: none;
+  }
+
+  @media screen and (max-width: 859px) {
+    .cro-12425-search {
+      display: block;
+      background-color: {{ section.settings.bar_background }};
+      padding: {{ section.settings.padding_top }}px 16px {{ section.settings.padding_bottom }}px;
+    }
+
+    .cro-12425-search.cro-12425-search--stuck {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      box-shadow: 0 2px 6px rgba(29, 29, 29, 0.12);
+    }
+
+    .cro-12425-search__spacer {
+      display: none;
+    }
+
+    .cro-12425-search--stuck + .cro-12425-search__spacer {
+      display: block;
+    }
+
+    {% if section.settings.hide_header_search_icon %}
+      {% comment %}
+        Only the search trigger BUTTON. Never target
+        [data-site-header-mobile-search-button] — the theme puts that
+        attribute on .site-header-main (the whole hamburger/logo/cart row)
+        when its "show mobile search bar" setting is off.
+      {% endcomment %}
+      button.site-header-mobile-search-button {
+        display: none !important;
+      }
+    {% endif %}
+  }
+
+  .cro-12425-search__form {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    margin: 0;
+  }
+
+  .cro-12425-search__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 46px;
+    padding: 1px 14px 1px 15px;
+    background-color: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    border-right: 0;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+    color: #1d1d1d;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .cro-12425-search__input::placeholder {
+    color: #737373;
+    opacity: 1;
+  }
+
+  .cro-12425-search__input:focus {
+    outline: none;
+    border-color: {{ section.settings.button_background }};
+  }
+
+  .cro-12425-search__submit {
+    flex: 0 0 52px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ section.settings.button_background }};
+    border: 0;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .cro-12425-search__submit svg {
+    width: 20px;
+    height: 20px;
+    stroke: #ffffff;
+  }
+{% endstyle %}
+
+<div class="cro-12425-search" data-cro-12425-search>
+  <form
+    class="cro-12425-search__form"
+    action="{{ routes.search_url }}"
+    method="get"
+    role="search"
+  >
+    <input type="hidden" name="type" value="product">
+    <input
+      class="cro-12425-search__input"
+      type="search"
+      name="q"
+      placeholder="{{ section.settings.placeholder | escape }}"
+      aria-label="{{ 'search.form.label' | t }}"
+      autocomplete="off"
+      autocorrect="off"
+    >
+    <button
+      class="cro-12425-search__submit"
+      type="submit"
+      aria-label="{{ 'general.accessibility.search' | t }}"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.2" y2="16.2"></line>
+      </svg>
+    </button>
+  </form>
+</div>
+<div class="cro-12425-search__spacer" data-cro-12425-search-spacer></div>
+
+<script>
+  (function () {
+    if (window.__cro12425Search) return;
+    window.__cro12425Search = true;
+
+    function init() {
+      var bar = document.querySelector('[data-cro-12425-search]');
+      var spacer = document.querySelector('[data-cro-12425-search-spacer]');
+      if (!bar || !spacer) return;
+
+      var stuck = false;
+
+      function onScroll() {
+        // While stuck the bar is fixed, so measure from the spacer instead
+        var anchor = stuck ? spacer : bar;
+        var shouldStick = anchor.getBoundingClientRect().top <= 0;
+
+        if (shouldStick === stuck) return;
+        stuck = shouldStick;
+
+        if (stuck) {
+          spacer.style.height = bar.offsetHeight + 'px';
+          bar.classList.add('cro-12425-search--stuck');
+        } else {
+          bar.classList.remove('cro-12425-search--stuck');
+          spacer.style.height = '0px';
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "CRO-12425 Mobile Search",
+  "class": "cro-12425-search-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Mobile only. Shows a full-width search bar below the header that sticks to the top of the screen on scroll."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder text",
+      "default": "Soek iets spesifiek?"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_header_search_icon",
+      "label": "Hide the search icon in the mobile header",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bar_background",
+      "label": "Bar background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Search button colour",
+      "default": "#007a80"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO-12425 Mobile Search",
+      "category": "CRO"
+    }
+  ]
+}
+{% endschema %}
