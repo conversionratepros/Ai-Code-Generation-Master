@@ -2217,7 +2217,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 .section-cro12526v2-compare .div-table-wrapper .compare-icon-block {
   flex-direction: column;
   align-items: flex-start !important;
-  justify-content: center !important;
+  /* justify-content: center !important; */
   text-align: left;
 }
 
@@ -2272,12 +2272,23 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
   display: none !important;
 }
 
+/* Desktop: pill at the TOP-RIGHT of the section, in line with the top
+   of the product cards (Figma). A stray trailing display:none in this
+   rule had been hiding it on desktop entirely. */
+.section-cro12526v2-compare .compareproduct-container {
+  position: relative;
+}
+
 .cro12526v2-compare__recommend-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 1rem 0 0 3rem;
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  z-index: 3;
+  background: #fff;
   padding: 1.2rem 2.8rem;
   border: 1px solid rgba(119, 119, 119, 0.4);
   border-radius: 50px;
@@ -2286,7 +2297,6 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  display: none;
 }
 
 .compare-holder .div-table-wrapper .table-row.table-head {
@@ -2445,7 +2455,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
   }
 
   .section-cro12526v2-compare .compare-main-table {
-    overflow-x: auto;
+    /* overflow-x: auto; */
     -webkit-overflow-scrolling: touch;
   }
 
@@ -2453,7 +2463,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
   .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row {
     grid-template-columns: repeat(4, minmax(20rem, 1fr));
     width: max-content;
-    min-width: 100%;
+    /* min-width: 100%; */
   }
 
   .section-cro12526v2-compare .table-row .table-col:empty {
@@ -2469,6 +2479,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   .cro12526v2-compare__recommend-pill {
     display: flex;
+    position: static;
     width: calc(100% - 3.2rem);
     margin: 1.5rem 1.6rem 0;
     /* Bug 44 */
@@ -2983,4 +2994,184 @@ button.cro12526v2-select.cro12526v2-dropdown__toggle {
 .cro12526v2-dropdown__option.is-selected {
   color: var(--cro12526v2-ink);
   font-weight: 600;
+}
+
+/* ============================================================
+   QA round 13 (2026-07-28) — compare: current-product Add to Cart
+   + current product FIRST on mobile. Additive only; no existing
+   compare rules touched.
+   ============================================================ */
+
+/* Desktop: mirror the control's 4-track row grid so the button sits
+   exactly under the active (current product) column. */
+.cro12526v2-compare__atc-row {
+  padding: 10px 20px;
+}
+
+.cro12526v2-compare__atc-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.cro12526v2-compare__atc {
+  grid-column: 2;
+  background: var(--cro12526v2-lime);
+  color: var(--cro12526v2-ink);
+  border-radius: 5px;
+  font-size: 1.5rem;
+  min-height: 5.2rem;
+  width: 100%;
+}
+
+/* must out-rank the control's .div-table-wrapper .table-row{display:grid}
+   — a bare class selector loses and the mobile row leaked onto desktop
+   (visible once See more removed the 600px crop). */
+.section-cro12526v2-compare .div-table-wrapper .table-row.cro12526v2-compare__atc-tr {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .section-cro12526v2-compare .div-table-wrapper .table-row.cro12526v2-compare__atc-tr {
+    display: grid;
+  }
+}
+
+.cro12526v2-compare__atc[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* same back-order gating as the buy box */
+html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+
+/* Mobile: the CONTROL's own CSS pushes the active column last
+   (.table-col.activeproduct / .compare-active-value { order: 1 } —
+   verified live: active cell at x=650 behind both alternatives).
+   Client wants the current product FIRST: label column, then the
+   current product, then alternatives. Higher-specificity counter,
+   scoped to our fork only. */
+@media screen and (max-width: 749px) {
+
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row .table-col.compare-table-title-col,
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row .table-col.compare-label {
+    order: -2;
+  }
+
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row .table-col.activeproduct,
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row .table-col.compare-active-value {
+    order: -1;
+  }
+
+  /* Mobile ATC = a real row INSIDE the scrolling table (scrolls natively
+     with the current product's column). The desktop below-table row hides. */
+  .cro12526v2-compare__atc-row {
+    display: none;
+  }
+
+  /* The button sits inside a real cell pinned to track 2 (the current
+     product's visual track). Explicit placement — the empty spacer cells
+     get display:none'd by an :empty rule, so auto-flow can't be trusted.
+     The cell carries the highlight background so the column's tint
+     continues down to the button, like the Figma card. */
+  .cro12526v2-compare__atc-cell {
+    grid-column: 2;
+    background: #f6fafb;
+    padding: 1rem 1.2rem;
+  }
+
+  .cro12526v2-compare__atc--mobilecell {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    min-height: 5.2rem;
+    font-size: 1.4rem;
+  }
+
+  /* Only the CURRENT product's column is highlighted — the control tints
+     every head cell the same rgba(61,113,175,.05), which made active and
+     alternatives look identical (client bug report). */
+  .section-cro12526v2-compare .table-row .table-col.activeproduct,
+  .section-cro12526v2-compare .table-row .table-col.compare-active-value {
+    background: #f6fafb !important;
+  }
+
+  .section-cro12526v2-compare .table-row .table-col.compare-product-item {
+    background: #fff !important;
+  }
+
+  /* NOTE: no padding override here — the control's .table-row
+     padding (10px 20px) must apply so this row's grid tracks start at
+     the same x as every other row (a padding:0 override shifted the
+     button 30px left of the active column — verified live). */
+
+  /* Row-count collapse (client-confirmed): no pixel crop on mobile —
+     JS clears the inline max-height; while collapsed, hide attribute
+     rows after the first five (head row is nth-child(1)). The white
+     fade overlay is pointless without a crop. */
+  .section-cro12526v2-compare .comparesection__seemore {
+    height: auto !important;
+    padding-bottom: 0 !important;
+    overflow: visible !important;
+  }
+
+  .section-cro12526v2-compare .seemore_active .table-desp:nth-child(n + 7) {
+    display: none;
+  }
+
+  .section-cro12526v2-compare .seemore_active .comparesection__seemore::after {
+    display: none !important;
+  }
+
+  .cro12526v2-title--mobile {
+    margin-top: 0.5rem;
+    display: block;
+    font-size: 2rem;
+    line-height: 3rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .compare-holder a.prod-img-holder.img-holder-bg-enable {
+    background-color: transparent !important;
+    padding-top: 40px;
+  }
+
+  .section-cro12526v2-compare .div-table-wrapper .compare-icon-block {
+    justify-content: flex-start;
+  }
+
+  #compareproduct .compare-btn-seemore {
+    position: relative;
+    top: -55px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+  .table-desp.table-row .table-col:nth-child(2),
+  .table-row.table-head .table-col:nth-child(2),
+  .table-desp.table-row .table-col:nth-child(3),
+  .table-row.table-head .table-col:nth-child(3) {
+    /* background: transparent !important; */
+  }
+
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row:nth-child(2n):not(:last-child) {
+    background: var(--CatSkill, #E5ECF0);
+  }
+
+  .section-cro12526v2-compare .compare-holder .div-table-wrapper .table-row:nth-child(even) .compare-active-value.table-col {
+    background: var(--CatSkill, #E5ECF0) !important;
+  }
+
+  #compareproduct .compare-btn-seemore {
+    position: relative;
+    top: -10px;
+  }
 }

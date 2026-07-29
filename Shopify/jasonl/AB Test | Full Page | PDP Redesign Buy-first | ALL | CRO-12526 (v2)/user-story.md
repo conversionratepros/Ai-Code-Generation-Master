@@ -276,6 +276,20 @@ hover (bug 34) and the untrackable picker-dismiss state (stale caret).
 Files: cro-12526-v2-options.liquid, cro-12526-v2-pdp.js, cro-12526-v2-pdp.css.
 Also: gallery badge text is split "BEST SELLER" via JS (guarded, our tag only).
 
+## Round 13 (2026-07-28) — compare: current-product ATC + mobile order
+
+- Current product's compare column gets an Add to Cart (client request):
+  new row after the collapsible table mirrors the control's 4-track grid so
+  the lime button aligns under the active column on desktop; full-width on
+  mobile. Forwards to the buy box's real hidden submit (same MOQ/drawer/
+  pay-online path) with the preorder-show back-order gating.
+- Mobile column order: the CONTROL's own CSS pushes the active column last
+  (`.table-col.activeproduct{order:1}` — verified live at x=650). Countered
+  with scoped higher-specificity order rules: labels → current product →
+  alternatives. Verified live by injection.
+- Also this round: showrooms accordion toggle-off on tap + touch mouseenter
+  gating; custom size dropdown (round 12); BEST SELLER text split.
+
 ## QA notes for this round
 
 - Verify breadcrumb crumbs on a sample of products per top-level category (simplified logic).

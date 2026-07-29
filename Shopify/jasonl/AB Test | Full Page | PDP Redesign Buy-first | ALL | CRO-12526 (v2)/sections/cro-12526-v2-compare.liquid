@@ -224,7 +224,6 @@
                                         section_id: section.id,
                                         skip_styles: true,
                                         -%}
-
                                 </div>
                             </div>
 
@@ -402,12 +401,65 @@
                               <div class="table-col">{{ thirdproductattribute_array[forloop.index0] | replace : "office-chairs-seating","office-chairs" }}</div>
                           </div>
                       {% endfor%}
+
+                      {%- comment -%}
+                        MOBILE Add to Cart (client-confirmed 2026-07-28): a real
+                        row INSIDE the scrolling table, so it moves natively with
+                        the current product's column, below the value rows —
+                        Figma 276-387. Not .table-desp, so the mobile row-count
+                        collapse never hides it. Hidden on desktop (which uses
+                        the aligned row below the table instead).
+                      {%- endcomment -%}
+                      <div class="table-row cro12526v2-compare__atc-tr">
+                        <div class="cro12526v2-compare__atc-cell">
+                          <button
+                          type="button"
+                          class="cro12526v2-btn cro12526v2-compare__atc cro12526v2-compare__atc--mobilecell"
+                          data-cro12526v2-compare-atc
+                          {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant == null %}disabled{% endif %}
+                        >
+                          <span>Add to Cart</span>
+                          <svg class="cro12526v2-btn__icon" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M1 1.5H4L6.68 13.89C6.77144 14.3504 7.02191 14.764 7.38755 15.0583C7.75318 15.3526 8.2107 15.509 8.68 15.5H16.4C16.8693 15.509 17.3268 15.3526 17.6925 15.0583C18.0581 14.764 18.3086 14.3504 18.4 13.89L20 5.5H5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="scale(0.92)"/>
+                            <circle cx="8.5" cy="19" r="1.3" fill="currentColor"/>
+                            <circle cx="16" cy="19" r="1.3" fill="currentColor"/>
+                          </svg>
+                        </button>
+                        </div>
+                      </div>
                     </div>
               </div>
               </div>
               
           </div>
           </div>
+          </div>
+          {%- comment -%}
+            Client request 2026-07-28: Add to Cart for the CURRENT product on
+            its compare column. Forwards to the buy box's real hidden submit
+            (cro-12526-v2-pdp.js) — same MOQ/drawer/pre-select behaviour. The
+            row mirrors the control's 4-track grid so the button aligns under
+            the active column on desktop; full-width on mobile.
+          {%- endcomment -%}
+          <div class="cro12526v2-compare__atc-row">
+            <div class="cro12526v2-compare__atc-track">
+              <div aria-hidden="true"></div>
+              <button
+                type="button"
+                class="cro12526v2-btn cro12526v2-compare__atc"
+                data-cro12526v2-compare-atc
+                {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant == null %}disabled{% endif %}
+              >
+                <span>Add to Cart</span>
+                <svg class="cro12526v2-btn__icon" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M1 1.5H4L6.68 13.89C6.77144 14.3504 7.02191 14.764 7.38755 15.0583C7.75318 15.3526 8.2107 15.509 8.68 15.5H16.4C16.8693 15.509 17.3268 15.3526 17.6925 15.0583C18.0581 14.764 18.3086 14.3504 18.4 13.89L20 5.5H5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="scale(0.92)"/>
+                  <circle cx="8.5" cy="19" r="1.3" fill="currentColor"/>
+                  <circle cx="16" cy="19" r="1.3" fill="currentColor"/>
+                </svg>
+              </button>
+              <div aria-hidden="true"></div>
+              <div aria-hidden="true"></div>
+            </div>
           </div>
           <span class="btn-seemore compare-btn-seemore" data-height="90000" data-elementid="compareproduct">See more </span>
           {%- comment -%} Mobile design (276:387): full-width recommend pill below the table; the in-header link hides on mobile via CSS. {%- endcomment -%}

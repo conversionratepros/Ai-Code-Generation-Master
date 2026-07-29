@@ -1,0 +1,162 @@
+[
+  {
+    "name": "desktop: body class added",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: tab strip visible",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: guest panel visible (default tab)",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: native heading hidden",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: login form hidden on guest tab",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: native bottom guest button hidden",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: disclaimer clone visible in guest panel",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: tab labels",
+    "pass": true,
+    "detail": "Checkout as guest|Log in"
+  },
+  {
+    "name": "desktop: 3 inline errors on empty submit",
+    "pass": true,
+    "detail": "Enter your email | Enter your first name | Enter your last name"
+  },
+  {
+    "name": "desktop: no navigation on invalid submit",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/checkout"
+  },
+  {
+    "name": "desktop: email format error",
+    "pass": true,
+    "detail": "Enter a valid email address"
+  },
+  {
+    "name": "desktop login tab: email+password visible",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop login tab: create account visible",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop login tab: guest panel hidden",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop login tab: bottom guest button hidden",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop login tab: native disclaimer hidden",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop continue: navigated to guest step",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/checkout?isGuest=true&step=cart"
+  },
+  {
+    "name": "desktop continue: body class stripped off-entry",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop continue: variation UI hidden off-entry",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop prefill: guestEmail",
+    "pass": true,
+    "detail": "qa.test@example.com"
+  },
+  {
+    "name": "desktop prefill: guestFirstName",
+    "pass": true,
+    "detail": "Qa"
+  },
+  {
+    "name": "desktop prefill: guestLastName",
+    "pass": true,
+    "detail": "Tester"
+  },
+  {
+    "name": "desktop prefill: fields stay editable",
+    "pass": true,
+    "detail": "Edited"
+  },
+  {
+    "name": "desktop SPA back: variation restored on entry",
+    "pass": false,
+    "detail": "https://www.onedayonly.co.za/checkout?isGuest=true&step=cart"
+  },
+  {
+    "name": "desktop SPA back: guest tab default again",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile: variation active",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile: CONTINUE TO DELIVERY above the fold",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile continue: navigated to guest step",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/checkout?isGuest=true&step=cart"
+  },
+  {
+    "name": "mobile continue: variation off on wizard",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile delivery: guest fields found",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/checkout?isGuest=true&step=delivery"
+  },
+  {
+    "name": "mobile prefill: guestEmail",
+    "pass": true,
+    "detail": "qa.test@example.com"
+  },
+  {
+    "name": "mobile prefill: names",
+    "pass": true,
+    "detail": "Qa Tester"
+  }
+]

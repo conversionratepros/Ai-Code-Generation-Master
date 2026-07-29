@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/23070306/hero-high.jpg"
+                    <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/28145006/hero-hi-rez.jpg"
                         alt="Dentist reviewing a patient's dental X-ray" />
                 </div>
             </section>
@@ -170,7 +170,7 @@
             <section class="section section-gray section-about">
                 <div class="container about-grid">
                     <div class="about-image">
-                        <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020006/about.jpg"
+                        <img src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/28131617/v2_about.jpg"
                             alt="London Dental Institute clinicians" />
                     </div>
                     <div class="about-text">
@@ -533,7 +533,7 @@
                                 fill="#C4B7DB" />
                         </svg>
                         <img class="study-image-right"
-                            src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/16020031/studyclubs.jpg"
+                            src="https://media.londondentalinstitute.com/wp-content/uploads/2026/07/28131635/v2_screenshot.jpg"
                             alt="LDI faculty presenting a live webinar">
                     </div>
                 </div>
@@ -852,18 +852,45 @@
                         }
                     });
 
-                    // replace the testimonial lightbox videos with the new Vimeo URLs (mapped by name)
-                    var TESTIMONIAL_VIDEOS = {
-                        'Dr. Mark Travis': 'https://player.vimeo.com/video/1205803699?autoplay=1&rel=0&controls=0#t=',
-                        'Dr. Thabo Twala': 'https://player.vimeo.com/video/1205803701?autoplay=1&rel=0&controls=0#t=',
-                        'Dr. Madhunandan Vijayakumar': 'https://player.vimeo.com/video/1205803700?autoplay=1&rel=0&controls=0#t='
+                    // replace testimonial videos + thumbnails (thumbnails are set via CSS background-image), mapped by name
+                    var TESTIMONIAL_MEDIA = {
+                        'Dr. Mark Travis': {
+                            video: 'https://player.vimeo.com/video/1205803699?autoplay=1&rel=0&controls=0#t=',
+                            thumb: 'https://media.londondentalinstitute.com/wp-content/uploads/2026/07/28131624/v2_img1.jpg'
+                        },
+                        'Dr. Thabo Twala': {
+                            video: 'https://player.vimeo.com/video/1205803701?autoplay=1&rel=0&controls=0#t=',
+                            thumb: 'https://media.londondentalinstitute.com/wp-content/uploads/2026/07/28131628/v2_img2.jpg'
+                        },
+                        'Dr. Madhunandan Vijayakumar': {
+                            video: 'https://player.vimeo.com/video/1205803700?autoplay=1&rel=0&controls=0#t=',
+                            thumb: 'https://media.londondentalinstitute.com/wp-content/uploads/2026/07/28131632/v2_img3.jpg'
+                        }
                     };
                     controlSection.querySelectorAll('a[data-elementor-lightbox-video]').forEach(function (a) {
                         var card = a.closest('.waf-testimonial-card-item') || a.closest('[data-element_type="container"]');
                         var nameEl = card && card.querySelector('h3');
                         var name = nameEl ? nameEl.textContent.trim() : '';
-                        if (TESTIMONIAL_VIDEOS[name]) {
-                            a.setAttribute('data-elementor-lightbox-video', TESTIMONIAL_VIDEOS[name]);
+                        var m = TESTIMONIAL_MEDIA[name];
+                        if (!m) return;
+                        a.setAttribute('data-elementor-lightbox-video', m.video);
+                        a.setAttribute('href', m.thumb); // lightbox poster / image href
+                        var thumb = a.querySelector('.elementor-carousel-image') || (card && card.querySelector('.elementor-carousel-image'));
+                        if (thumb) {
+                            thumb.setAttribute('data-bg', m.thumb);                  // rocket-lazyload source
+                            thumb.style.backgroundImage = "url('" + m.thumb + "')";  // the visible CSS thumbnail
+                            // add a self-contained SVG play badge (replaces Elementor's icon-font play button)
+                            var oldPlay = thumb.querySelector('.elementor-custom-embed-play');
+                            if (oldPlay) oldPlay.style.display = 'none';
+                            if (getComputedStyle(thumb).position === 'static') thumb.style.position = 'relative';
+                            if (!thumb.querySelector('.ldi-play-badge')) {
+                                var badge = document.createElement('span');
+                                badge.className = 'ldi-play-badge';
+                                badge.setAttribute('aria-hidden', 'true');
+                                badge.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;z-index:2;pointer-events:none;';
+                                badge.innerHTML = "<svg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='32' fill='rgba(255,255,255,0.88)'/><path d='M26 21l18 11-18 11z' fill='#4c2889'/></svg>";
+                                thumb.appendChild(badge);
+                            }
                         }
                     });
 

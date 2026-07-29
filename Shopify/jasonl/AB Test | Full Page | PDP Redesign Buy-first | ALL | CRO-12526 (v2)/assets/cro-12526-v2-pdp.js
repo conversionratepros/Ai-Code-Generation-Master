@@ -207,6 +207,35 @@
       });
     }
 
+    // Compare section's current-product Add to Cart (client request):
+    // identical forwarding path as the buy-box ATC.
+    // Mobile: the control collapses compare with a 600px pixel-crop, which
+    // would swallow the in-table Add to Cart row — clear the inline cap on
+    // mobile; the collapse is row-count driven there (CSS hides attribute
+    // rows past the first five while .seemore_active is on).
+    if (window.matchMedia('(max-width: 749px)').matches) {
+      document.querySelectorAll('.section-cro12526v2-compare .seemore_holder').forEach(function (h) {
+        h.style.maxHeight = 'none';
+      });
+    }
+
+    document.querySelectorAll('[data-cro12526v2-compare-atc]').forEach(function (compareAtc) {
+      if (!realSubmitBtn) return;
+      compareAtc.addEventListener('click', function () {
+        if (compareAtc.hasAttribute('disabled')) return;
+        if (realButtonsGroup && realButtonsGroup.classList.contains('preorder-show')) return;
+        try {
+          localStorage.setItem('clickedCartBtn', 'Add to cart');
+          localStorage.setItem('minicart-payement-option', 'pay-online');
+        } catch (e) {}
+        compareAtc.classList.add('cro12526v2-btn--loading');
+        realSubmitBtn.click();
+        setTimeout(function () {
+          compareAtc.classList.remove('cro12526v2-btn--loading');
+        }, 900);
+      });
+    });
+
     if (addToQuoteBtn && realQuoteBtn) {
       addToQuoteBtn.addEventListener('click', function () {
         // realQuoteBtn's own onclick sets localStorage ('request-quote') and

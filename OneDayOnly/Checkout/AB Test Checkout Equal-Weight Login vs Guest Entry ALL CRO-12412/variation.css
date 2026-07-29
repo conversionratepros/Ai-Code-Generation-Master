@@ -1,0 +1,177 @@
+/* Variation B - AB Test | Checkout | Equal-Weight Login vs Guest Entry | ALL | CRO-12412 */
+
+/* ─── SPA gating ─────────────────────────────────────────────────────────
+   Injected HTML carries inline display:none; only body.cro-12412 (added on
+   the checkout entry step, removed everywhere else) reveals it. Native
+   elements are tagged by JS and shown/hidden off the same body class — the
+   control DOM is never removed. */
+
+/* tab strip (replaces the native "Log in" heading) */
+body.cro-12412 .cro-12412-tabs {
+    display: flex !important;
+    border-bottom: 1px solid #dfe5eb;
+    margin-bottom: 24px;
+}
+
+body.cro-12412 .cro-12412-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    padding: 0 0 13px;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #6b7a86;
+    text-align: center;
+    cursor: pointer;
+}
+
+body.cro-12412:not(.cro-12412-login-tab) .cro-12412-tab-guest,
+body.cro-12412.cro-12412-login-tab .cro-12412-tab-login {
+    color: #0095ce;
+    border-bottom-color: #0095ce;
+}
+
+/* native "Log in" heading + underline bar never show in the variation */
+body.cro-12412 [data-cro-12412-heading] {
+    display: none !important;
+}
+
+/* below-Create-Account block (2nd "Or" divider, native guest button,
+   disclaimer) falls away — guest checkout now has its own tab */
+body.cro-12412 [data-cro-12412-gone] {
+    display: none !important;
+}
+
+/* login content only shows on the Log in tab */
+body.cro-12412:not(.cro-12412-login-tab) [data-cro-12412-login-el] {
+    display: none !important;
+}
+
+/* ─── guest tab panel ──────────────────────────────────────────────────── */
+body.cro-12412:not(.cro-12412-login-tab) .cro-12412-guest-panel {
+    display: block !important;
+}
+
+body.cro-12412 .cro-12412-field {
+    margin-bottom: 16px;
+}
+
+body.cro-12412 .cro-12412-label {
+    display: block;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #444444;
+    margin-bottom: 8px;
+}
+
+body.cro-12412 .cro-12412-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    height: 39px;
+    padding: 8px 12px;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #444444;
+    background: #ffffff;
+    outline: none;
+}
+
+body.cro-12412 .cro-12412-input::placeholder {
+    color: #9aa5ad;
+}
+
+body.cro-12412 .cro-12412-input:focus {
+    border: 2px solid #0095ce;
+    padding: 7px 11px;
+}
+
+body.cro-12412 .cro-12412-input.cro-12412-invalid {
+    border: 2px solid #e50e62;
+    padding: 7px 11px;
+}
+
+/* invalid field: label turns error-red like the native login fields */
+body.cro-12412 .cro-12412-field.cro-12412-invalid .cro-12412-label {
+    color: #e50e62;
+}
+
+/* focusing a field restores the focus colour on its label + border
+   (error message below stays visible, exactly like control) */
+body.cro-12412 .cro-12412-field:focus-within .cro-12412-label {
+    color: #0095ce;
+}
+
+body.cro-12412 .cro-12412-input.cro-12412-invalid:focus {
+    border-color: #0095ce;
+}
+
+body.cro-12412 .cro-12412-disclaimer {
+    color: #6b7a86;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+body.cro-12412 .cro-12412-disclaimer a {
+    color: #0095ce;
+}
+
+/* inline validation — mirrors the native error style under login fields */
+body.cro-12412 .cro-12412-error {
+    display: none;
+    font-family: "Open Sans", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #e50e62;
+    margin-top: 4px;
+}
+
+body.cro-12412 .cro-12412-error.cro-12412-show {
+    display: block;
+}
+
+/* CONTINUE TO DELIVERY — mirrors the native LOG IN pill button */
+body.cro-12412 .cro-12412-continue {
+    display: block;
+    width: 100%;
+    height: 45px;
+    margin: 8px 0 16px;
+    border: none;
+    border-radius: 50px;
+    background: #0093d0;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+body.cro-12412 .cro-12412-continue:hover {
+    background: #007fb4;
+}
+
+/* supporting copy below the button */
+body.cro-12412 .cro-12412-prefer {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6b7a86;
+    text-align: center;
+    margin: 0 0 16px;
+}
+
+/* cloned native disclaimer inside the guest panel keeps native styling;
+   just ensure it displays (clone carries no inline none) */
+body.cro-12412 .cro-12412-guest-panel .cro-12412-disclaimer {
+    display: block !important;
+}

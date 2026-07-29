@@ -1,0 +1,92 @@
+[
+  {
+    "name": "A entry: variation body class + tabs visible",
+    "pass": true,
+    "detail": "{\"url\":\"https://www.onedayonly.co.za/checkout?utm_medium=qa\",\"bodyClass\":true,\"tabsInDom\":true,\"tabsVisible\":true,\"panelVisible\":true,\"fireFlag\":1,\"loaderFlag\":true}"
+  },
+  {
+    "name": "A entry: activation flag / variation JS ran",
+    "pass": true,
+    "detail": "fireFlag=1 loaderFlag=true"
+  },
+  {
+    "name": "A entry: Log in tab shows native login",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "A deployed JS: startSync interval ACTIVE (class re-added)",
+    "pass": false,
+    "detail": "DEPLOYED VERSION HAS startSync COMMENTED OUT"
+  },
+  {
+    "name": "A SPA nav to deals: variation not visible",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/"
+  },
+  {
+    "name": "A SPA nav to deals: control page renders (product links)",
+    "pass": true,
+    "detail": "371 links"
+  },
+  {
+    "name": "B PDP: no variation artifacts on product page",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/products/frosty-ice-cream-and-frozen-treat-maker-with-3-pint-cups-20260728"
+  },
+  {
+    "name": "B entry with cart: variation visible",
+    "pass": true,
+    "detail": "{\"url\":\"https://www.onedayonly.co.za/checkout?utm_medium=qa\",\"bodyClass\":true,\"tabsInDom\":true,\"tabsVisible\":true,\"panelVisible\":true,\"fireFlag\":1,\"loaderFlag\":"
+  },
+  {
+    "name": "B continue: reached guest step",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/checkout?utm_medium=qa&isGuest=true&step=cart"
+  },
+  {
+    "name": "B continue: variation UI not visible on guest step",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "B prefill: all three fields",
+    "pass": true,
+    "detail": "qa.test@example.com | Qa | Tester"
+  },
+  {
+    "name": "C home: no variation class/UI",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/?utm_medium=qa"
+  },
+  {
+    "name": "C home: page renders normally",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "C category: no variation class/UI",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/everyday-essentials?utm_medium=qa"
+  },
+  {
+    "name": "C category: page renders normally",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "C pdp: no variation class/UI",
+    "pass": true,
+    "detail": "https://www.onedayonly.co.za/products/frosty-ice-cream-and-frozen-treat-maker-with-3-pint-cups-20260728?utm_medium=qa"
+  },
+  {
+    "name": "C pdp: page renders normally",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "D mobile entry: variation visible",
+    "pass": true,
+    "detail": "{\"url\":\"https://www.onedayonly.co.za/checkout?utm_medium=qa\",\"bodyClass\":true,\"tabsInDom\":true,\"tabsVisible\":true,\"panelVisible\":true,\"fireFlag\":1,\"loaderFlag\":"
+  }
+]
