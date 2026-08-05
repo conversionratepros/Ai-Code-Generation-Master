@@ -33,14 +33,15 @@
 
     /* ---- CRO-12412: Checkout — Equal-Weight Login vs Guest Entry ---- */
 
-    /* The variation only lives on the checkout entry step: /checkout with no
-       step= / isGuest= params. Everywhere else the body class comes off and
-       the injected HTML stays display:none via its inline style. */
-    function isEntryStep() {
-      return (
-        window.location.pathname.indexOf("/checkout") === 0 &&
-        !/[?&](step|isGuest)=/i.test(window.location.search)
-      );
+    /* Page STRUCTURE decides everything — the URL cannot be trusted: the
+       login page sometimes renders under /checkout?isGuest=true&step=cart
+       and the guest flow swaps content without changing the URL. Login page
+       = form with a password input. Guest checkout page = a type="button"
+       immediately followed by a div holding a link — native structure the
+       login page doesn't have. Our own injected buttons are excluded so the
+       variation can never satisfy its own marker. */
+    function isGuestCheckoutPage() {
+      return !!document.querySelector('button[type="button"]:not([class*="cro-12412"]) + div a');
     }
 
     function findButtonByText(re, root) {
@@ -124,19 +125,19 @@
       panel.style.display = "none";
       panel.innerHTML =
         '<div class="cro-12412-field">' +
-          '<label class="cro-12412-label" for="cro-12412-email">Email Address</label>' +
-          '<input id="cro-12412-email" class="cro-12412-input" type="email" placeholder="Email" autocomplete="email">' +
-          '<div class="cro-12412-error" data-cro-12412-error="email"></div>' +
+        '<label class="cro-12412-label" for="cro-12412-email">Email Address</label>' +
+        '<input id="cro-12412-email" class="cro-12412-input" type="email" placeholder="Email" autocomplete="email">' +
+        '<div class="cro-12412-error" data-cro-12412-error="email"></div>' +
         "</div>" +
         '<div class="cro-12412-field">' +
-          '<label class="cro-12412-label" for="cro-12412-firstname">First Name</label>' +
-          '<input id="cro-12412-firstname" class="cro-12412-input" type="text" placeholder="First Name" autocomplete="given-name">' +
-          '<div class="cro-12412-error" data-cro-12412-error="firstname"></div>' +
+        '<label class="cro-12412-label" for="cro-12412-firstname">First Name</label>' +
+        '<input id="cro-12412-firstname" class="cro-12412-input" type="text" placeholder="First Name" autocomplete="given-name">' +
+        '<div class="cro-12412-error" data-cro-12412-error="firstname"></div>' +
         "</div>" +
         '<div class="cro-12412-field">' +
-          '<label class="cro-12412-label" for="cro-12412-lastname">Last Name</label>' +
-          '<input id="cro-12412-lastname" class="cro-12412-input" type="text" placeholder="Last Name" autocomplete="family-name">' +
-          '<div class="cro-12412-error" data-cro-12412-error="lastname"></div>' +
+        '<label class="cro-12412-label" for="cro-12412-lastname">Last Name</label>' +
+        '<input id="cro-12412-lastname" class="cro-12412-input" type="text" placeholder="Last Name" autocomplete="family-name">' +
+        '<div class="cro-12412-error" data-cro-12412-error="lastname"></div>' +
         "</div>" +
         '<button type="button" class="cro-12412-continue">Continue to delivery</button>' +
         '<div class="cro-12412-prefer">Prefer to save your details? Tap Log in above.</div>';
@@ -207,8 +208,12 @@
      * hooks) once they render on the next step. React controlled inputs need
      * the native value setter + input/change events or the value is ignored.
      * Desktop renders them immediately on the guest page; mobile only on the
-     * delivery step, so keep polling for up to 3 minutes. Fields are filled
-     * once and never overwritten, so they stay editable.
+     * delivery step, so keep polling for up to 3 minutes. React wipes filled
+     * values whenever it re-renders an input it doesn't own yet (hydration
+     * lands 5–12s in; sections can re-mount later still), so any field that
+     * turns up empty is refilled, and it only counts as done once the value
+     * has survived ~5s of ticks. A focused field is never touched, and a
+     * field holding the visitor's own text is released for good.
      */
     function setReactValue(input, value) {
       var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
@@ -217,32 +222,49 @@
       input.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
-    var prefillArmed = false;
+    /* Pre-hydration SSR nodes have no React expando keys (__reactFiber$…) */
+    function isHydrated(el) {
+      var keys = Object.keys(el);
+      for (var i = 0; i < keys.length; i++) {
+        if (keys[i].indexOf("__react") === 0) return true;
+      }
+      return false;
+    }
+
+    var prefillRunning = false;
     function armPrefill() {
-      if (prefillArmed) return;
-      prefillArmed = true;
+      if (prefillRunning) return;
       var raw = null;
       try {
         raw = sessionStorage.getItem(STORE_KEY);
       } catch (e) { }
       if (!raw) return;
+      prefillRunning = true;
       var data = JSON.parse(raw);
       var map = { guestEmail: data.email, guestFirstName: data.firstName, guestLastName: data.lastName };
       var done = {};
+      var stable = {};
       var tries = 0;
       var iv = setInterval(function () {
         tries++;
-        if (/[?&]isGuest=true/i.test(window.location.search)) {
-          for (var name in map) {
-            if (done[name]) continue;
-            var el = document.querySelector('input[name="' + name + '"]');
-            if (!el) continue;
-            if (!el.value) setReactValue(el, map[name]);
-            done[name] = true;
+        for (var name in map) {
+          if (done[name]) continue;
+          var el = document.querySelector('input[name="' + name + '"]');
+          if (!el) continue; /* guest inputs existing IS the guest-page proof */
+          if (el === document.activeElement) continue; /* visitor is in the field — never fight them */
+          if (el.value && el.value !== map[name]) {
+            done[name] = true; /* visitor's own value — hands off for good */
+          } else if (el.value === map[name]) {
+            stable[name] = (stable[name] || 0) + 1;
+            if (stable[name] >= 16) done[name] = true; /* survived ~5s of ticks */
+          } else {
+            stable[name] = 0;
+            if (isHydrated(el) || tries > 10) setReactValue(el, map[name]);
           }
         }
         if ((done.guestEmail && done.guestFirstName && done.guestLastName) || tries > 600) {
           clearInterval(iv);
+          prefillRunning = false; /* re-armable: sync re-arms if guest page shows again */
         }
       }, 300);
     }
@@ -297,40 +319,58 @@
     }
 
     /*
-     * Keep variation in sync with the SPA. Covers: initial load, React
-     * late-hydration wiping the injection, login-error re-renders dropping
-     * the tag attributes, and client-side navigation on/off the entry step.
+     * Keep variation in sync with the SPA off page STRUCTURE, never the URL:
+     *  rule 1 — guest checkout structure on screen -> variation UI off,
+     *           pull saved session values into the native guest inputs;
+     *  rule 2 — login form on screen -> show the variation UI, whatever the
+     *           URL says (login page renders under ?isGuest URLs too).
+     * Password check runs first: if the guest marker ever false-matches on
+     * the login page (widgets/banners), the variation must still show.
+     * Runs once immediately, then every 4s. Covers late hydration wiping
+     * the injection, login-error re-renders, and client-side navigation.
      */
     function startSync() {
-      setInterval(function () {
+      function tick() {
         /* QA kill switch: window.cro_12412_off = true shows control again */
         if (window.cro_12412_off) {
           document.body.classList.remove(variation_name, LOGIN_TAB_CLASS);
           return;
         }
-        if (isEntryStep()) {
-          if (document.querySelector('form input[name="password"]')) {
-            var wasInjected = !!document.querySelector(".cro-12412-tabs");
-            decorate();
-            if (!wasInjected) setTabState(false);
-            addClass("body", variation_name);
-          }
+        if (document.querySelector('form input[name="password"]')) {
+          var wasInjected = !!document.querySelector(".cro-12412-tabs");
+          decorate();
+          if (!wasInjected) setTabState(false);
+          addClass("body", variation_name);
         } else {
           document.body.classList.remove(variation_name, LOGIN_TAB_CLASS);
+          if (isGuestCheckoutPage() || document.querySelector('input[name="guestEmail"]')) {
+            armPrefill(); /* self-gates on saved session values; re-armable */
+          }
         }
-      }, 400);
+      }
+      tick();
+      setInterval(tick, 4000);
     }
 
     function init() {
-      if (decorate()) {
+      /* fast path for the first paint of the login structure — the sync
+         tick owns all ongoing state changes after this */
+      if (decorate() && !isGuestCheckoutPage()) {
         addClass("body", variation_name);
       }
-      startSync();
       if (debug) console.log("AB Test | Checkout | Equal-Weight Login vs Guest Entry | ALL | CRO-12412 initialised");
     }
 
+    /*
+     * startSync runs from load, NOT from init: the guest checkout page has
+     * no login form, so init would never fire there — but the structure
+     * checks and session prefill must run everywhere. waitForElement(init)
+     * is only the fast path so the login page decorates without waiting for
+     * the first 4s tick.
+     */
     if (!window.cro_12412_loaded) {
       window.cro_12412_loaded = true;
+      startSync();
       waitForElement('form input[name="password"]', init);
     }
   } catch (e) {

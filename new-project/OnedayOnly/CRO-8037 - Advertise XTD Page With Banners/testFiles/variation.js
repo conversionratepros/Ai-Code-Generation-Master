@@ -35,6 +35,7 @@
       bannerAttr: "data-cro-xtd-banner",
       shopMoreAttr: "data-cro-sm",
       cardSel: ".unbxdanalyticsProduct",
+      rowTolerance: 8,
       // S3 filenames are swapped — mobile.svg is the wide desktop banner, desktop.svg is the square mobile banner
       imgDesktop:
         "https://crp-clients-images.s3.af-south-1.amazonaws.com/OneDayOnly/i3+%7C+Advertise+XTD+page+with+banners+%7C+ALL+%7C+CRO-8037/i3_Advertise_banners_ALL_CRO8037_mobile.svg",
@@ -42,6 +43,10 @@
         "https://crp-clients-images.s3.af-south-1.amazonaws.com/OneDayOnly/i3+%7C+Advertise+XTD+page+with+banners+%7C+ALL+%7C+CRO-8037/i3_Advertise_banners_ALL_CRO8037_desktop.svg",
       link: "https://www.onedayonly.co.za/shops/extra-time-deals"
     };
+
+    // Set once page data is parsed — lets the retry loop stop as soon as every
+    // product has a card in the DOM and the banner sits in the right place.
+    var expectedCardCount = 0;
 
     function createBannerNode(isFlexItem) {
       var wrap = document.createElement("div");
@@ -75,7 +80,39 @@
       return null;
     }
 
-    var lastCardCount = -1;
+    function absTop(el) {
+      return el.getBoundingClientRect().top + window.scrollY;
+    }
+
+    // Return the last element of the visual row containing cardEl.
+    // Measures the card's flex-item wrapper and its siblings, not the cards
+    // themselves: a wrapper occupies layout even while its card content is
+    // still mounting (height 0), so half-painted rows are grouped correctly.
+    function findRowEndEl(cardEl) {
+      var item = getFlexItemAncestor(cardEl) || cardEl;
+      var parent = item.parentElement;
+      if (!parent) return item;
+      var top = absTop(item);
+      var rowEls = [];
+      for (var i = 0; i < parent.children.length; i++) {
+        var sib = parent.children[i];
+        if (sib.hasAttribute(CRO.bannerAttr)) continue;
+        if (Math.abs(absTop(sib) - top) < CRO.rowTolerance) rowEls.push(sib);
+      }
+      if (rowEls.length === 0) return item;
+      rowEls.sort(function (a, b) {
+        return a.getBoundingClientRect().left - b.getBoundingClientRect().left;
+      });
+      return rowEls[rowEls.length - 1];
+    }
+
+    function findCardById(productId) {
+      var allCards = document.querySelectorAll(CRO.cardSel);
+      for (var i = 0; i < allCards.length; i++) {
+        if (allCards[i].querySelector('a[href*="/' + productId + '"]')) return allCards[i];
+      }
+      return null;
+    }
 
     // Build the ordered list of top-level group sections (sections with > 1 product card).
     // Returns the array and leaves the data-cro-sm attribute set — caller must clean up.
@@ -97,37 +134,6 @@
       for (var i = 0; i < shopMoreEls.length; i++) shopMoreEls[i].removeAttribute(CRO.shopMoreAttr);
     }
 
-    // Given a free product's id from __NEXT_DATA__, find its .unbxdanalyticsProduct in
-    // the DOM and return the afterEl for the last card in the same visual row.
-    function findFreeCardRowEl(productId) {
-      var allCards = document.querySelectorAll(CRO.cardSel);
-      var targetCard = null;
-      for (var i = 0; i < allCards.length; i++) {
-        if (allCards[i].querySelector('a[href*="/' + productId + '"]')) {
-          targetCard = allCards[i];
-          break;
-        }
-      }
-      if (!targetCard) {
-        // if (debug) // console.log("[CRO-8037] Product '" + productId + "' not in DOM — falling back to visual sort");
-        return null;
-      }
-      var r = targetCard.getBoundingClientRect();
-      var rowTop = Math.round((r.top + window.scrollY) / 10) * 10;
-      // if (debug) // console.log("[CRO-8037] Found '" + productId + "' in DOM at rowTop=" + rowTop);
-      var rowCards = [];
-      for (var i = 0; i < allCards.length; i++) {
-        var cr = allCards[i].getBoundingClientRect();
-        if (cr.height > 0 && Math.round((cr.top + window.scrollY) / 10) * 10 === rowTop) {
-          rowCards.push({ el: allCards[i], left: cr.left });
-        }
-      }
-      if (rowCards.length === 0) return getFlexItemAncestor(targetCard) || targetCard;
-      rowCards.sort(function (a, b) { return a.left - b.left; });
-      var lastInRow = rowCards[rowCards.length - 1].el;
-      return getFlexItemAncestor(lastInRow) || lastInRow;
-    }
-
     // Fallback: derive insertion point purely from visible DOM positions.
     function find16thVisualSort(shopMoreEls) {
       var allCards = Array.prototype.slice.call(document.querySelectorAll(CRO.cardSel));
@@ -139,7 +145,7 @@
         for (var ci = 0; ci < smCards.length; ci++) {
           var r2 = smCards[ci].getBoundingClientRect();
           if (r2.height > 0) {
-            var t = Math.round((r2.top + window.scrollY) / 10) * 10;
+            var t = r2.top + window.scrollY;
             if (t > max) max = t;
           }
         }
@@ -149,7 +155,7 @@
       var cardData = allCards.map(function (c) {
         var r = c.getBoundingClientRect();
         if (r.height > 0) {
-          return { el: c, top: Math.round((r.top + window.scrollY) / 10) * 10, left: r.left };
+          return { el: c, top: r.top + window.scrollY, left: r.left };
         }
         var groupEl = c.closest("[" + CRO.shopMoreAttr + "]");
         if (!groupEl) return null;
@@ -159,163 +165,169 @@
 
       cardData.sort(function (a, b) { return a.top !== b.top ? a.top - b.top : a.left - b.left; });
 
-      if (debug) {
-        // console.log("[CRO-8037] Visual sort — total cards (incl. hidden group):", cardData.length);
-        cardData.forEach(function (d, i) {
-          var name = d.el.textContent.trim().slice(0, 35);
-          // console.log("[CRO-8037] #" + (i + 1) + (i === 15 ? " ← 16th" : "") + ": \"" + name + "\" top=" + d.top + " left=" + (d.left === Infinity ? "hidden" : Math.round(d.left)) + " inGroup=" + !!d.el.closest("[" + CRO.shopMoreAttr + "]"));
-        });
-      }
-
       var targetData = cardData.length >= 16 ? cardData[15] : cardData[cardData.length - 1];
       var targetCard = targetData.el;
       var shopMoreParent = targetCard.closest("[" + CRO.shopMoreAttr + "]");
 
       if (shopMoreParent) return shopMoreParent;
 
-      var rowTop = targetData.top;
-      var rowCards = cardData.filter(function (d) {
-        return d.top === rowTop && !d.el.closest("[" + CRO.shopMoreAttr + "]");
-      });
-      var lastInRow = rowCards[rowCards.length - 1].el;
-      return getFlexItemAncestor(lastInRow) || lastInRow;
+      return findRowEndEl(targetCard);
     }
 
-    function insertBannerAfter16Products(allowVisualFallback) {
-      var currentCount = document.querySelectorAll(CRO.cardSel).length;
-      var bannerExists = !!document.querySelector("[" + CRO.bannerAttr + "]");
-      if (currentCount === lastCardCount && bannerExists) return;
+    // window.__NEXT_DATA__ is the initial SSR payload and goes stale after a
+    // client-side navigation — prefer the router's live pageProps for the
+    // current route, falling back to __NEXT_DATA__ on first load.
+    function getPageProps() {
+      try {
+        var r = window.next && window.next.router;
+        if (r && r.components && r.components[r.route] && r.components[r.route].props && r.components[r.route].props.pageProps) {
+          return r.components[r.route].props.pageProps;
+        }
+      } catch (err) { }
+      return window.__NEXT_DATA__ && window.__NEXT_DATA__.props && window.__NEXT_DATA__.props.pageProps;
+    }
 
-      // Resolve __NEXT_DATA__ BEFORE committing to run.
-      // If it's not ready yet and visual fallback isn't allowed, return without updating
-      // lastCardCount so the next retry re-checks rather than skipping.
-      var nextProps = window.__NEXT_DATA__ && window.__NEXT_DATA__.props && window.__NEXT_DATA__.props.pageProps;
+    // Compute where the banner belongs right now. Returns null while it can't
+    // be resolved yet (caller retries).
+    function computeAfterEl(allowVisualFallback) {
+      var nextProps = getPageProps();
       var page = nextProps && (nextProps.categoryPage || nextProps.shopPage || nextProps.clearanceSale);
       var dataItems = page && Array.isArray(page.items) ? page.items : null;
 
-      if (!dataItems && !allowVisualFallback) {
-        if (debug) console.log("[CRO-8037] __NEXT_DATA__ not ready — will retry");
-        return;
-      }
-
-      lastCardCount = currentCount;
-      removeExistingBanners();
-
-      var shopMoreEls = buildShopMoreEls();
       var afterEl = null;
+      var shopMoreEls = buildShopMoreEls();
 
       if (dataItems) {
-        var totalProducts = 0;
-        for (var si = 0; si < dataItems.length; si++) {
-          totalProducts += ((dataItems[si] && dataItems[si].props && dataItems[si].props.items) || []).length;
-        }
-        var targetN = Math.min(16, totalProducts);
-        var count = 0;
+        // Flatten to real products only — shop feeds contain null/dead slots
+        // (e.g. expired deals) that never render a card but would shift the
+        // count, parking the banner mid-row.
+        var flat = [];
         var groupsSeen = 0;
-        var found = false;
-
-        if (debug) console.log("[CRO-8037] __NEXT_DATA__ total products:", totalProducts, "| targeting #" + targetN);
-
-        for (var si = 0; si < dataItems.length && !found; si++) {
-          var sectionProds = (dataItems[si] && dataItems[si].props && dataItems[si].props.items) || [];
+        for (var si = 0; si < dataItems.length; si++) {
+          var sectionProds = ((dataItems[si] && dataItems[si].props && dataItems[si].props.items) || [])
+            .filter(function (p) { return p && p.id; });
           var isGroup = sectionProds.length > 1;
-
-          for (var pi = 0; pi < sectionProds.length && !found; pi++) {
-            count++;
-            if (count === targetN) {
-              var prod = sectionProds[pi];
-              if (debug) console.log("[CRO-8037] #" + targetN + " (via __NEXT_DATA__): \"" + (prod.shortName || prod.id) + "\" | inGroup=" + isGroup + " | groupIdx=" + (isGroup ? groupsSeen : "n/a"));
-
-              if (isGroup) {
-                // Find product in DOM by URL match
-                var allDomCards = document.querySelectorAll(CRO.cardSel);
-                var matchedCard = null;
-                for (var k = 0; k < allDomCards.length; k++) {
-                  if (allDomCards[k].querySelector('a[href*="/' + prod.id + '"]')) {
-                    matchedCard = allDomCards[k];
-                    break;
-                  }
-                }
-                if (matchedCard) {
-                  // 1. Check if the card is inside one of the already-identified section groups
-                  for (var gi = 0; gi < shopMoreEls.length; gi++) {
-                    if (shopMoreEls[gi].contains(matchedCard)) {
-                      afterEl = shopMoreEls[gi];
-                      break;
-                    }
-                  }
-                  // 2. Only walk up for a div-based group wrapper when section groups exist on this page.
-                  // If shopMoreEls is empty the page has no DOM grouping — treat as free card instead.
-                  if (!afterEl && shopMoreEls.length > 0) {
-                    var totalDomCards = document.querySelectorAll(CRO.cardSel).length;
-                    var cur = matchedCard.parentElement;
-                    while (cur && cur !== document.body) {
-                      var cnt = cur.querySelectorAll(CRO.cardSel).length;
-                      if (cnt > 1 && cnt < totalDomCards) { afterEl = cur; break; }
-                      cur = cur.parentElement;
-                    }
-                  }
-                  // 3. No DOM group found — insert after the 16th product's visual row
-                  if (!afterEl) afterEl = findFreeCardRowEl(prod.id);
-                }
-                // Product not yet in DOM (collapsed/hidden) → fall back to positional index
-                if (!afterEl) afterEl = shopMoreEls[groupsSeen] || null;
-                // if (debug && afterEl)  console.log("[CRO-8037] → Banner after:", afterEl.querySelector && afterEl.querySelector("h2") ? afterEl.querySelector("h2").textContent.trim() : afterEl);
-              } else {
-                afterEl = findFreeCardRowEl(prod.id);
-              }
-              found = true;
-            }
+          for (var pi = 0; pi < sectionProds.length; pi++) {
+            flat.push({ prod: sectionProds[pi], isGroup: isGroup, groupIdx: isGroup ? groupsSeen : -1 });
           }
-          if (!found && isGroup) groupsSeen++;
+          if (isGroup) groupsSeen++;
+        }
+        expectedCardCount = flat.length;
+
+        if (flat.length > 0) {
+          var targetN = Math.min(16, flat.length);
+          var target = flat[targetN - 1];
+          var prod = target.prod;
+          var matchedCard = findCardById(prod.id);
+
+          if (target.isGroup) {
+            if (matchedCard) {
+              // 1. Check if the card is inside one of the already-identified section groups
+              for (var gi = 0; gi < shopMoreEls.length; gi++) {
+                if (shopMoreEls[gi].contains(matchedCard)) {
+                  afterEl = shopMoreEls[gi];
+                  break;
+                }
+              }
+              // 2. Only walk up for a div-based group wrapper when section groups exist on this page.
+              // If shopMoreEls is empty the page has no DOM grouping — treat as free card instead.
+              if (!afterEl && shopMoreEls.length > 0) {
+                var totalDomCards = document.querySelectorAll(CRO.cardSel).length;
+                var cur = matchedCard.parentElement;
+                while (cur && cur !== document.body) {
+                  var cnt = cur.querySelectorAll(CRO.cardSel).length;
+                  if (cnt > 1 && cnt < totalDomCards) { afterEl = cur; break; }
+                  cur = cur.parentElement;
+                }
+              }
+              // 3. No DOM group found — insert after the target product's visual row
+              if (!afterEl) afterEl = findRowEndEl(matchedCard);
+            }
+            // Product not yet in DOM (collapsed/hidden) → fall back to positional index
+            if (!afterEl) afterEl = shopMoreEls[target.groupIdx] || null;
+          } else {
+            if (matchedCard) afterEl = findRowEndEl(matchedCard);
+          }
         }
       }
 
       cleanupShopMoreEls(shopMoreEls);
 
       // FALLBACK: visual sort (if __NEXT_DATA__ unavailable or product not found in DOM)
-      if (!afterEl) {
-        // if (debug)  console.log("[CRO-8037] Falling back to visual sort");
+      if (!afterEl && allowVisualFallback) {
         shopMoreEls = buildShopMoreEls();
         afterEl = find16thVisualSort(shopMoreEls);
         cleanupShopMoreEls(shopMoreEls);
       }
 
-      if (!afterEl) return;
+      return afterEl;
+    }
 
+    // Idempotent: computes the desired position and only touches the DOM when
+    // the banner is missing or in the wrong place. An existing banner is taken
+    // out of flow during measurement so it can't distort the very rows it is
+    // being validated against (a mid-row banner reshapes every row after it).
+    function placeBanner(allowVisualFallback) {
+      var existing = document.querySelector("[" + CRO.bannerAttr + "]");
+      var prevDisplay = "";
+      if (existing) {
+        prevDisplay = existing.style.display;
+        existing.style.display = "none";
+      }
+
+      var afterEl = computeAfterEl(allowVisualFallback);
+
+      if (!afterEl) {
+        if (existing) existing.style.display = prevDisplay;
+        return false;
+      }
+
+      if (existing && existing.previousElementSibling === afterEl) {
+        existing.style.display = prevDisplay;
+        return true;
+      }
+
+      removeExistingBanners();
       var parentDisplay = afterEl.parentElement ? window.getComputedStyle(afterEl.parentElement).display : "";
       var isFlexItem = parentDisplay.indexOf("flex") !== -1;
-
-      // if (debug)  console.log("[CRO-8037] Inserting after:", afterEl, "| isFlexItem:", isFlexItem);
       afterEl.insertAdjacentElement("afterend", createBannerNode(isFlexItem));
+      if (debug) console.log("[CRO-8037] banner placed after:", afterEl);
+      return true;
     }
 
     function init() {
-      addClass('body', variation_name);
+      // Never advertise the XTD page on itself (Convert re-runs init on SPA
+      // navigation, so this must be checked per run, not once per load).
+      if (window.location.pathname.indexOf("/extra-time-deals") !== -1) return;
+
+      addClass("body", variation_name);
 
       waitForElement(CRO.cardSel, function () {
-        insertBannerAfter16Products(false);
+        placeBanner(false);
 
-        // Retry every 400ms for up to 5 seconds, stopping as soon as the banner is placed.
-        // Passes allowVisualFallback=true only on the last attempts (after 4.5s) so that
-        // the visual sort is a true last resort — not an early-fire on hidden/unrendered cards.
+        // Cards mount progressively, so the row the banner belongs after can
+        // gain members well after first paint — keep re-validating every 400ms
+        // and self-heal if the computed position changes. Stops early once all
+        // products from the page data have cards in the DOM and the banner is
+        // in the right spot; hard stop at 12s. The visual-sort fallback
+        // unlocks only after 4.5s as a true last resort.
         var start = Date.now();
         var intervalCallAgain = setInterval(function () {
-          if (document.querySelector("[" + CRO.bannerAttr + "]")) {
-            clearInterval(intervalCallAgain);
-            return;
-          }
           var elapsed = Date.now() - start;
-          insertBannerAfter16Products(elapsed >= 4500);
-          if (elapsed >= 5000) clearInterval(intervalCallAgain);
+          var placed = placeBanner(elapsed >= 4500);
+          var domCount = document.querySelectorAll(CRO.cardSel).length;
+          if ((placed && expectedCardCount > 0 && domCount >= expectedCardCount) || elapsed >= 12000) {
+            clearInterval(intervalCallAgain);
+          }
         }, 400);
       });
     }
 
     if (!window[CRO.flag]) {
       window[CRO.flag] = true;
-
     }
+    // Outside the run-once guard: Convert re-executes the experiment on SPA
+    // navigation and init must re-run to place the banner on the new page.
     waitForElement("body", init);
 
   } catch (e) {

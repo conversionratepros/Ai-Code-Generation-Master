@@ -51,6 +51,9 @@
         "description"
       ],
       "settings": {
+        "cro12526v2_reviews_enable": true,
+        "cro12526v2_reviews_rating": "4.6",
+        "cro12526v2_reviews_count": "128 reviews",
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "large",
@@ -72,7 +75,11 @@
     },
     "cross-sell": {
       "type": "cro-12526-v2-complete-setup",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Complete the setup",
+        "default_heading": "A desk on its own isn't a workstation.",
+        "subline": "Add the pieces that finish it — or take the lot as a bundle and save."
+      }
     },
     "product-compare": {
       "type": "cro-12526-v2-compare",
@@ -116,7 +123,16 @@
         "stat3",
         "stat4"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "New here? A bit of us",
+        "heading": "Here's who's behind it.",
+        "copy": "JasonL is an Australian commercial furniture company. Since 2008, we've supplied everything from home office desks to complete office fit-outs, delivered and installed by our own team.",
+        "panel_heading": "A few of the teams we've delivered to.",
+        "panel_copy": "These organisations have bought from JasonL. We're not claiming endorsement — just that they trusted us with the order.",
+        "panel_image": "shopify://shop_images/d4b97a25740adc66adb92aef516bcc9b1c701f97.png",
+        "projects_label": "See Recent Projects",
+        "projects_url": ""
+      }
     },
     "planning": {
       "type": "cro-12526-v2-planning",
@@ -160,14 +176,42 @@
         "step3",
         "step4"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "Planning a whole office?",
+        "heading": "Don't pick it part by part. Let's plan it.",
+        "copy": "Tell us the headcount and the space. We'll come back with a layout, a single quote and an install date — desks, chairs, storage, pods, the lot. One conversation instead of forty product pages.",
+        "bar_strong": "How is 10 days possible?",
+        "bar_copy": "Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing.",
+        "consult_label": "Start step 1 — book a free consult",
+        "consult_url": ""
+      }
     },
     "showrooms": {
       "type": "cro-12526-v2-showrooms",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Come see it",
+        "heading": "Showrooms? Seven of them",
+        "mobile_subtext": "Tell us the headcount and the space. We'll come back with a layout, a single quote and an install date — desks, chairs, storage, pods, the lot. One conversation instead of forty product pages."
+      }
     },
     "final_cta": {
       "type": "cro-12526-v2-final-cta",
+      "settings": {
+        "eyebrow": "No obligation, no runaround",
+        "heading": "Tell us what you're planning.",
+        "button_label": "Plan my fitout",
+        "note": "Takes 60 seconds.",
+        "note_bold": "No spam, no obligation",
+        "brand_copy": "JasonL® is Australian owned and operated. We design, deliver and install office fitouts and furniture Australia-wide — Sydney, Melbourne, Brisbane, Perth, Adelaide and Canberra.",
+        "brand_rating": "4.8 on Google  •  1,900+ reviews",
+        "copy": "JasonL team will come back within 2 business hours on weekdays — no obligation, no runaround. And if we're not the right fit, we'll tell you.",
+        "phone": "1300 864 264",
+        "email": "sales@jasonl.com.au",
+        "showroom_url": ""
+      }
+    },
+    "cro12526v2_footer": {
+      "type": "cro-12526-v2-footer",
       "settings": {}
     }
   },
@@ -179,6 +223,7 @@
     "about_us",
     "planning",
     "showrooms",
-    "final_cta"
+    "final_cta",
+    "cro12526v2_footer"
   ]
 }

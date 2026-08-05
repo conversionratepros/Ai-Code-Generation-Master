@@ -3175,3 +3175,218 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
     top: -10px;
   }
 }
+
+/* ==========================================================================
+   ROUND 14 — New footer (Figma 38-983 desktop / 276-1171 mobile), client
+   update 2026-08-04. Hides the native footer-custom section — this CSS only
+   loads on the cro-12526-v2 template, so other pages keep the original.
+   ========================================================================== */
+#shopify-section-footer-custom {
+  display: none !important;
+}
+
+.cro12526v2-footer {
+  background: #161616;
+  border-top: 1px solid #777;
+}
+
+.cro12526v2-footer__grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 100px 0 65px;
+}
+
+.cro12526v2-footer__brand {
+  width: 400px;
+  max-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.cro12526v2-footer__logo {
+  width: 140px;
+  height: 43px;
+  display: block;
+}
+
+.cro12526v2-footer__blurb {
+  margin: 0;
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 27px;
+  color: #fff;
+}
+
+.cro12526v2-footer__rating {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Poppins;
+  font-size: 14px;
+  line-height: 27px;
+  color: #fff;
+}
+
+.cro12526v2-footer__star {
+  color: #c6d644;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.cro12526v2-footer__menus {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex: 1;
+  max-width: 900px;
+  margin-left: 40px;
+}
+
+.cro12526v2-footer__col {
+  flex: 1;
+}
+
+.cro12526v2-footer__col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: default;
+}
+
+.cro12526v2-footer__chevron {
+  display: none;
+}
+
+.cro12526v2-footer__list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.cro12526v2-footer__list li {
+  margin: 0;
+}
+
+.cro12526v2-footer__link {
+  display: inline-block;
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 46px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.cro12526v2-footer__link:hover {
+  color: #c6d644;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 749px) {
+  .cro12526v2-footer {
+    border-top-color: #3d3d3d;
+  }
+
+  .cro12526v2-footer__grid {
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px 0;
+  }
+
+  .cro12526v2-footer__brand {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .cro12526v2-footer__logo {
+    width: 125px;
+    height: 39px;
+  }
+
+  .cro12526v2-footer__blurb {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .cro12526v2-footer__rating {
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .cro12526v2-footer__menus {
+    display: block;
+    flex: none;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  nav.cro12526v2-footer__menus {
+    border-top: 0.5px solid var(--Light-Dividers, #E9E9E9);
+  }
+
+  .cro12526v2-footer__col {
+    /* border-top: 0.5px solid rgba(233, 233, 233, 0.6); */
+  }
+
+  .cro12526v2-footer__col-head {
+    padding: 16px 0;
+    cursor: pointer;
+  }
+
+  .cro12526v2-footer__chevron {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+    margin-right: 4px;
+  }
+
+  .cro12526v2-footer__col.is-open .cro12526v2-footer__chevron {
+    transform: rotate(225deg);
+    margin-top: 6px;
+  }
+
+  .cro12526v2-footer__list {
+    display: none;
+    margin: 0;
+    padding: 0 0 14px;
+  }
+
+  .cro12526v2-footer__col.is-open .cro12526v2-footer__list {
+    display: block;
+  }
+
+  .cro12526v2-footer__link {
+    font-size: 14px;
+    line-height: 40px;
+  }
+}
+
+/* ROUND 15 — the footer now carries the jason.l brand block, so the
+   final-cta mobile-only brand block (QA bug 58, pre-footer) would show
+   the exact same content twice in a row — hidden. */
+.cro12526v2-finalcta__brand {
+  display: none !important;
+}

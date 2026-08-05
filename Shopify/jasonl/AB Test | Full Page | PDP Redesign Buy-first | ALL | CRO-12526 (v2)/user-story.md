@@ -297,3 +297,48 @@ Also: gallery badge text is split "BEST SELLER" via JS (guarded, our tag only).
 - Verify ATC → drawer opens with "Buy online" pre-selected; ATQ → "Add to quote" pre-selected; back-order products swap the button and open the back-order pop-up.
 - Verify gallery: tag top-left, no arrows inline, swipe works, thumb active border, main image + "View all images" both open the existing viewer (unchanged inside).
 - Mobile: breadcrumb hidden, range/SKU under the gallery, mobile title above gallery.
+
+---
+
+## Round 15 — Client updates (2026-08-04)
+
+1. **Complete-the-setup heading → static.** Client copy: heading "Great on its own.
+   Better as a set.", sub-line unchanged ("Add the pieces that finish it — or take the
+   lot as a bundle and save."). Replaced the (briefly dynamic) heading logic with a new
+   setting id `heading_static` — a NEW id on purpose: the theme editor had persisted the
+   old heading into the template JSON, and stored values beat schema defaults, so
+   changing the default under the old id would never show. Per-collection heading blocks
+   kept as a manual override only.
+2. **Planning consult CTA → Get a Quote Typeform.** "Start step 1 — book a free consult"
+   now renders with `{{ settings.typeformurls_url_1 }}` + `typeform-share get-a-quote-btn-ab
+   getaquoteclick` classes — the identical trigger as the header menu and this template's
+   Contact us / fitout CTAs (supersedes QA bug 32's inert state). `consult_url` setting
+   kept as an optional override.
+3. **New footer (Figma 38-983 desktop / 276-1171 mobile).** New
+   `sections/cro-12526-v2-footer.liquid`: #161616 bg, inline sanitized lime logo SVG
+   (8 paths #C6D644, Figma export was clean), brand blurb + ★ rating line, three link
+   columns as editable link blocks (column select + label + URL), mobile accordion
+   (closed by default, chevron flips, toggles closed — verified in DOM simulation).
+   Native footer is `{% section 'footer-custom' %}` in theme.liquid (footer-group.json is
+   legacy/unused) → hidden with `#shopify-section-footer-custom{display:none!important}`
+   in cro-12526-v2-pdp.css (round 14), which only loads on this template.
+   Link defaults verified against the live site (sitemap + homepage nav): 13/15 real;
+   "How it works" and "Pricing guide" default to /pages/we-make-your-office-fitout-easy-fast
+   — no dedicated pages exist, CLIENT TO CONFIRM. "Book a showroom visit" → /#showroom-section.
+   Deploy note: add the footer via theme editor (Add section → "CRO-12526 V2 Footer",
+   drag to last) — do NOT paste the local template JSON over the theme's copy (it would
+   reset all customizer-stored settings).
+
+### Round 15 follow-up (2026-08-05) — client footer links + 2 fixes
+- **Final link set from client** (all 15 URLs probed 200, note the live page is the
+  singular `/pages/terms-and-condition` — the plural 404s): Fitouts = How it works
+  (/blogs/fitouts), Interior design, Case studies (/blogs/fitouts), Blog (/blogs/main),
+  FAQs (/apps/help-center). Shop = Chairs, Desks, Workstations, Storage, Tables
+  (/collections/tables). Company = About us, Privacy Policy, Terms of Use,
+  Shipping & returns, Assembly Instructions (/pages/assembly).
+  Preset updated — since presets only apply on insert, the already-added footer section
+  must be REMOVED and RE-ADDED in the theme editor to pick up the new links.
+- **"Double section" on mobile**: not the footer twice — the final-cta section's
+  mobile-only brand block (QA bug 58, added before a footer existed) sat directly above
+  the footer's identical brand block. Hidden via CSS (`.cro12526v2-finalcta__brand`).
+- Mobile footer accordion links reduced 15px → 14px per client.

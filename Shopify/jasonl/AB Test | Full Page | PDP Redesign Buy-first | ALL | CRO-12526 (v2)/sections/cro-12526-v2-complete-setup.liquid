@@ -135,44 +135,16 @@
 {%- comment -%} ============ End control logic ============ {%- endcomment -%}
 
 {%- if allhandllist != '' -%}
-  {%- capture cs_category_raw -%}{% render 'get_product_category', product: product %}{%- endcapture -%}
   {%- liquid
     comment
-      Heading resolution (client request 2026-07-28):
-      1. A per-collection heading block matching this product wins
-         (client still to supply these — pending action point).
-      2. Otherwise the default heading TEMPLATE is used, with the
-         "[category]" placeholder swapped for the product's category
-         word — same get_product_category mapping the compare section
-         uses for "This chair's column is highlighted."
+      Client update 2026-08-04: heading + sub-line are STATIC copy — the
+      dynamic [category] heading was scrapped. heading_static is a NEW
+      setting id on purpose: the theme editor persisted the old heading
+      into the template JSON and stored values beat schema defaults, so a
+      fresh id starts clean. Per-collection blocks kept as a manual
+      override only (none configured).
     endcomment
-    assign cs_cat_h = cs_category_raw | handleize
-    assign cs_word = 'product'
-    if cs_cat_h contains 'chair' or cs_cat_h contains 'seating'
-      assign cs_word = 'chair'
-    elsif cs_cat_h contains 'desk' or cs_cat_h contains 'workstation'
-      assign cs_word = 'desk'
-    elsif cs_cat_h contains 'table'
-      assign cs_word = 'table'
-    elsif cs_cat_h contains 'storage'
-      assign cs_word = 'storage'
-    elsif cs_cat_h contains 'screen' or cs_cat_h contains 'partition'
-      assign cs_word = 'screen'
-    endif
-
-    assign cs_heading_tpl = section.settings.default_heading
-    comment
-      The theme editor persisted the OLD literal default ("A desk on its
-      own isn't a workstation.") into the template JSON before the
-      [category] placeholder existed, and stored values beat schema
-      defaults. Treat that exact stale value (and an empty setting) as
-      "use the dynamic template" so no customizer re-save is needed.
-      Any OTHER custom value the client types is respected as-is.
-    endcomment
-    if cs_heading_tpl == blank or cs_heading_tpl == "A desk on its own isn't a workstation."
-      assign cs_heading_tpl = "A [category] on its own isn't a workstation."
-    endif
-    assign cs_heading = cs_heading_tpl | replace: '[category]', cs_word
+    assign cs_heading = section.settings.heading_static | default: 'Great on its own. Better as a set.'
     for block in section.blocks
       if block.type == 'collection_heading' and block.settings.collection != blank
         for coll in product.collections
@@ -305,10 +277,9 @@
     },
     {
       "type": "text",
-      "id": "default_heading",
-      "label": "Default heading",
-      "info": "[category] is replaced by the product's category word (desk, chair, table, storage, screen). Per-collection heading blocks override this.",
-      "default": "A [category] on its own isn't a workstation."
+      "id": "heading_static",
+      "label": "Heading",
+      "default": "Great on its own. Better as a set."
     },
     {
       "type": "text",

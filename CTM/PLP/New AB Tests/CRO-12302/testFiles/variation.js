@@ -3,6 +3,21 @@
         var debug = 0;
         var variation_name = 'cro12302';
 
+        // Convert "Slider Interaction (CRO-12302)" — a JavaScript-triggered goal.
+        // A selector-based click goal can't be used here: the arrow handlers call
+        // stopPropagation() to stop the click bubbling into card-level navigation,
+        // and a touch swipe produces no click on an arrow at all.
+        var GOAL_SLIDER_INTERACTION = '1004123547';
+        var goalFired = false;
+
+        function fireSliderGoal() {
+            if (goalFired) return;
+            goalFired = true;
+            window._conv_q = window._conv_q || [];
+            window._conv_q.push(["triggerConversion", GOAL_SLIDER_INTERACTION]);
+            if (debug) console.log('[CRO12302] slider interaction goal fired');
+        }
+
         // Tile PLPs share a template with accessory PLPs (adhesive, grout, spacers,
         // tools, underfloor heating) which all live under an "essentials" subcategory —
         // this test must not fire on those, only genuine tile listing pages.
@@ -141,7 +156,10 @@
         function initInteractions(wrapper, indicator, nextBtn, prevBtn) {
             var current = 0;
 
+            // Every interaction path — arrows, indicator segments and swipe — funnels
+            // through here, so it's the single place the goal needs to fire from.
             function goTo(idx) {
+                fireSliderGoal();
                 current = idx;
                 wrapper.classList.toggle('cro12302-at-2', idx === 1);
                 indicator.querySelectorAll('.cro12302-seg').forEach(function (seg, i) {

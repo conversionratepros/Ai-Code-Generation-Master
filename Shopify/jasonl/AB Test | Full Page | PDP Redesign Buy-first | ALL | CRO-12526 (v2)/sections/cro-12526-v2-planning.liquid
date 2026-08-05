@@ -1,10 +1,9 @@
 {%- comment -%}
   CRO-12526 (v2) — "Planning a whole office?" (Figma 38:649).
   Static section; all copy from the spec (design's "hole" typo corrected to
-  "whole" per spec). Four steps as editable blocks. The consult button's
-  destination is a pending client action point — until the URL setting is
-  filled, the button falls back to opening the sitewide Typeform (same
-  trigger as Plan my fitout), so the CTA is never dead.
+  "whole" per spec). Four steps as editable blocks. The consult button opens
+  the sitewide "Get a Quote" Typeform (same trigger as the header menu) —
+  client confirmed 2026-08-04; the URL setting is an optional override.
 {%- endcomment -%}
 
 {{ 'cro-12526-v2-pdp.css' | asset_url | stylesheet_tag }}
@@ -41,11 +40,13 @@
         <a class="cro12526v2-planning__cta" href="{{ section.settings.consult_url }}">{{ section.settings.consult_label }}</a>
       {%- else -%}
         {%- comment -%}
-          QA bug 32: the destination is a pending client action point and the
-          Typeform fallback was rejected — until the URL setting is filled the
-          button renders visible but INERT (no popup, no navigation).
+          Client update 2026-08-04 (supersedes QA bug 32's inert state): opens
+          the sitewide "Get a Quote" Typeform — settings.typeformurls_url_1
+          carries the data-tf-popup attributes, identical to the header menu
+          trigger and this template's Contact us / fitout CTAs. The URL
+          setting above stays as an optional override.
         {%- endcomment -%}
-        <span class="cro12526v2-planning__cta cro12526v2-planning__cta--pending" role="button" aria-disabled="true">{{ section.settings.consult_label }}</span>
+        <a class="cro12526v2-planning__cta typeform-share get-a-quote-btn-ab getaquoteclick" href="javascript:void(0)" {{ settings.typeformurls_url_1 }} data-tf-on-ready="ready">{{ section.settings.consult_label }}</a>
       {%- endif -%}
     </div>
   </div>
@@ -73,7 +74,7 @@
       "default": "Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing."
     },
     { "type": "text", "id": "consult_label", "label": "Button label", "default": "Start step 1 — book a free consult" },
-    { "type": "url", "id": "consult_url", "label": "Button URL (client to supply — Typeform fallback until set)" }
+    { "type": "url", "id": "consult_url", "label": "Button URL (optional — opens Get a Quote Typeform if empty)" }
   ],
   "blocks": [
     {

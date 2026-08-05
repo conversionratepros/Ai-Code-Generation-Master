@@ -107,6 +107,16 @@ ODO specs now come as HTML previews at `design.conversionratepros.co.za/onedayon
 
 ---
 
+## PLP / Shop Pages (from CRO-8037)
+
+- **Card selector:** `.unbxdanalyticsProduct` (tag also carries `data-unbxd-identifier`). Card `id` = product slug + date suffix; `data-pid` = numeric id.
+- **DOM structure:** every card sits alone in its own `<section>` inside a flex-item wrapper (emotion class; `flex: 0 1 33.333%/25%/50%` desktop, `100%/50%` mobile — widths vary per section pattern) inside a wrapping flex container (one per data section), all stacked in a `display: grid` parent. Gutters = `padding-left` on wrappers (32px desktop / 16px mobile) + negative `margin-left` on the container.
+- **Page data:** `pageProps.(categoryPage|shopPage|clearanceSale).items[].props.items` — the arrays contain **null/dead slots** (expired deals) that never render a card. Always filter `p && p.id` before counting products. `prod.id` is the slug and appears in card hrefs (`/products/<id>`).
+- **`window.__NEXT_DATA__` goes stale after SPA navigation** — read live props via `window.next.router.components[router.route].props.pageProps` with a `__NEXT_DATA__` fallback.
+- **Cards mount progressively after first paint.** Anything computing visual rows must keep re-validating for several seconds and must measure the flex-item **wrappers**, not the cards — wrappers occupy layout before card content paints (cards report height 0 while mounting).
+
+---
+
 ## General Patterns
 
 - **Init flow:** `waitForElement('#product-quantity-select')` → `init()` → add body class → `waitForElement('[data-action="add-to-cart"]')` → build/inject UI.

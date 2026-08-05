@@ -522,23 +522,48 @@
                 }
             }, test_Checkout_Equal_Weight_Login_vs_Guest_Entry_CRO12412() {
                 var path = window.location.pathname;
-                var search = window.location.search;
-                var isEntryStep = path.indexOf("/checkout") === 0 && !/[?&](step|isGuest)=/i.test(search);
+                var searchParams = new URLSearchParams(window.location.search);
+
+                var isMainCheckout =
+                    path === "/checkout" &&
+                    !searchParams.has("step") &&
+                    !searchParams.has("isGuest");
+
+                var isGuestCartCheckout =
+                    path === "/checkout" &&
+                    searchParams.get("isGuest") === "true" &&
+                    searchParams.get("step") === "cart";
+
+                var isEntryStep = isMainCheckout || isGuestCartCheckout;
 
                 if (isEntryStep) {
                     cro_waitForUserStatus(function (status) {
                         if (status === "signedOut") {
-                            lib.waitForElement('form input[name="password"]', function () {
-                                window.crotest_Checkout_Equal_Weight_Login_vs_Guest_CRO12412 = 1;
-                                window._conv_q = window._conv_q || [];
-                                window._conv_q.push(["executeExperiment", "1004206164"]);
-                                console.log("Experiment AB Test Checkout Equal-Weight Login vs Guest Entry ALL CRO-12412 Activated");
-                            }, 25, 15000);
+                            // lib.waitForElement('form input[name="password"]', function () {
+                            if (window.crotest_Checkout_Equal_Weight_Login_vs_Guest_CRO12412) {
+                                return;
+                            }
+
+                            window.crotest_Checkout_Equal_Weight_Login_vs_Guest_CRO12412 = 1;
+
+                            window._conv_q = window._conv_q || [];
+                            window._conv_q.push([
+                                "executeExperiment",
+                                "1004206164"
+                            ]);
+
+                            console.log(
+                                "Experiment AB Test Checkout Equal-Weight Login vs Guest Entry ALL CRO-12412 Activated"
+                            );
+                            // }, 25, 15000);
                         }
                     });
                 } else {
                     setTimeout(function () {
-                        document.body.classList.remove("cro-12412", "cro-12412-login-tab");
+                        document.body.classList.remove(
+                            "cro-12412",
+                            "cro-12412-login-tab"
+                        );
                     }, 400);
                 }
             }

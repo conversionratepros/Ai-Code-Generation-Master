@@ -1,0 +1,738 @@
+/* ============================================================
+   CRO-12516 — AB Test | Homepage | Product-forward | ALL
+   Section 1 — Hero: Gifting & Hampers (decorates native hero)
+   ============================================================ */
+
+/* injected hero video hidden until body class lands */
+.cro12516-hero-video {
+    display: none;
+}
+
+/* hide native hero media (x-media-thumbnail picture, x-cloudinary-player, or any
+   future CMS media type) — replaced by the hero video */
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-with-image:first-of-type .left-col.media x-content-media > *:not(.cro12516-hero-video) {
+    display: none;
+}
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-with-image:first-of-type .cro12516-hero-video {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 992px) {
+    html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-with-image:first-of-type .cro12516-hero-video {
+        height: 100%;
+        aspect-ratio: 1600 / 780; /* matches native hero media ratio */
+    }
+}
+
+@media (max-width: 991px) {
+    html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-with-image:first-of-type .g-0 > div {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    /* native .visible-lg-up hides the whole media container on mobile — our video lives inside it */
+    html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-with-image:first-of-type .left-col.media x-content-media {
+        display: block !important;
+    }
+
+    html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-with-image:first-of-type .cro12516-hero-video {
+        height: 250px;
+    }
+}
+
+/* ============================================================
+   Section ordering — design sequence via flex order.
+   Catch-all pushes remaining native/editorial sections below the
+   shopping path (order 20, DOM order preserved among themselves);
+   each built section slots in with its design position.
+   ============================================================ */
+
+html body.cro12516 x-channel-home x-page-layout .channel-content {
+    display: flex;
+    flex-direction: column;
+}
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > * {
+    order: 20;
+}
+
+/* 1 — Hero */
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-with-image:first-of-type {
+    order: 1;
+}
+
+/* 2 — Farm Fresh (injected) */
+html body.cro12516 x-channel-home x-page-layout .channel-content > .cro12516-farm-fresh {
+    order: 2;
+}
+
+/* 3 — Most Popular (native Our Favourites) */
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-content-product-listing {
+    order: 3;
+}
+
+/* 4 — Shop by Categories (injected) */
+html body.cro12516 x-channel-home x-page-layout .channel-content > .cro12516-categories {
+    order: 4;
+}
+
+/* 6 — New Arrival (injected) */
+html body.cro12516 x-channel-home x-page-layout .channel-content > .cro12516-new-arrival {
+    order: 6;
+}
+
+/* 7 — Benefits (cloned from native footer) */
+html body.cro12516 x-channel-home x-page-layout .channel-content > .cro12516-benefits {
+    order: 7;
+    background: #f0f5fa;
+}
+
+/* footer original hidden while the variation is active (SPA listener removes
+   the body class off-homepage, restoring the footer section elsewhere) */
+html body.cro12516 x-shop-footer x-footer-content x-section-three {
+    display: none;
+}
+
+/* 5 — Review quote (native second x-section-one, decorated) */
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:nth-of-type(2) {
+    order: 5;
+}
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:nth-of-type(2) .section {
+    background: #f0f5fa;
+    padding: 48px 0 !important; /* native py utilities are !important */
+}
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:nth-of-type(2) .text-view {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 14px;
+}
+
+/* author renders as a bare text node after <br> — style the view so it inherits */
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:nth-of-type(2) x-markdown-view {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.64px;
+    color: #4a4a4a;
+}
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:nth-of-type(2) x-markdown-view h3 {
+    margin: 0 0 20px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0.56px;
+    text-align: center;
+    color: #222;
+}
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:nth-of-type(2) x-markdown-view p {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.64px;
+    text-align: center;
+    color: #4a4a4a;
+}
+
+/* hidden editorial (replaced by the new shopping path): WELCOME block +
+   editorial category carousel, incl. their adjacent spacers */
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:first-of-type,
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-section-one:first-of-type + x-spacer,
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-carousel,
+html body.cro12516 x-channel-home x-page-layout .channel-content > x-carousel + x-spacer {
+    display: none;
+}
+
+/* ============================================================
+   Shared listing shell — centered inner container, swiper
+   track with infinite loop, prev/next arrows (desktop)
+   ============================================================ */
+
+.cro12516-listing {
+    display: none;
+}
+
+html body.cro12516 .cro12516-listing {
+    display: block;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html body.cro12516 .cro12516-listing-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+html body.cro12516 .cro12516-listing-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+html body.cro12516 .cro12516-listing-title {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+    color: #222;
+    text-transform: capitalize;
+    line-height: normal;
+}
+
+html body.cro12516 .cro12516-view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 48px;
+    border: 1px solid #09223f;
+    border-radius: 4px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 1.68px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #09223f;
+}
+
+html body.cro12516 .cro12516-listing-slider {
+    position: relative;
+}
+
+html body.cro12516 .cro12516-swiper {
+    display: block;
+    width: 100%;
+}
+
+html body.cro12516 .cro12516-slide {
+    box-sizing: border-box;
+}
+
+html body.cro12516 .cro12516-listing-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background: #d2dfec;
+    cursor: pointer;
+    z-index: 2;
+}
+
+html body.cro12516 .cro12516-listing-prev {
+    left: 0;
+}
+
+html body.cro12516 .cro12516-listing-prev svg {
+    transform: rotate(90deg);
+}
+
+html body.cro12516 .cro12516-listing-next {
+    right: 0;
+}
+
+html body.cro12516 .cro12516-listing-next svg {
+    transform: rotate(-90deg);
+}
+
+html body.cro12516 .cro12516-listing-arrow.cro12516-hide {
+    display: none !important;
+}
+
+/* mobile categories fallback grid track */
+html body.cro12516 .cro12516-listing-track {
+    display: flex;
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    html body.cro12516 .cro12516-listing {
+        padding: 49px 0;
+    }
+
+    html body.cro12516 .cro12516-listing-inner {
+        padding: 0 24px;
+    }
+
+    html body.cro12516 .cro12516-listing-title {
+        font-size: 32px;
+        letter-spacing: 1.28px;
+    }
+
+    html body.cro12516 .cro12516-slide {
+        width: 341px;
+    }
+
+    html body.cro12516 .cro12516-listing-arrow {
+        display: flex;
+    }
+
+    html body.cro12516 .cro12516-label-mobile {
+        display: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+    html body.cro12516 .cro12516-listing {
+        padding: 48px 0;
+    }
+
+    html body.cro12516 .cro12516-listing-inner {
+        padding-left: 21px;
+    }
+
+    html body.cro12516 .cro12516-listing-title {
+        font-size: 28px;
+        letter-spacing: 1.12px;
+    }
+
+    html body.cro12516 .cro12516-slide {
+        width: 175px;
+    }
+
+    html body.cro12516 .cro12516-listing-header {
+        padding-right: 21px;
+    }
+
+    html body.cro12516 .cro12516-label-desktop {
+        display: none;
+    }
+
+    html body.cro12516 .cro12516-card-wish {
+        flex: 0 0 40px;
+    }
+}
+
+/* ============================================================
+   Product cards (Farm Fresh + future product carousels)
+   ============================================================ */
+
+html body.cro12516 .cro12516-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 10px;
+}
+
+html body.cro12516 .cro12516-card-media {
+    display: block;
+}
+
+html body.cro12516 .cro12516-card-media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+html body.cro12516 .cro12516-card-actions {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+html body.cro12516 .cro12516-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: #09223f;
+    border-radius: 4px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 2.1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.87);
+    cursor: pointer;
+}
+
+html body.cro12516 .cro12516-card-add.cro12516-busy {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+html body.cro12516 .cro12516-card-add.cro12516-added .cro12516-label-desktop,
+html body.cro12516 .cro12516-card-add.cro12516-added .cro12516-label-mobile {
+    display: none !important;
+}
+
+html body.cro12516 .cro12516-card-add.cro12516-added::after {
+    content: "Added";
+}
+
+html body.cro12516 .cro12516-card-wish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 48px;
+    height: 40px;
+}
+
+html body.cro12516 .cro12516-card-wish svg {
+    width: 25px;
+    height: 25px;
+}
+
+html body.cro12516 .cro12516-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-decoration: none;
+}
+
+html body.cro12516 .cro12516-card-name {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.64px;
+    color: #4a4a4a;
+}
+
+html body.cro12516 .cro12516-card-desc {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.28px;
+    color: #4a4a4a;
+}
+
+html body.cro12516 .cro12516-card-pills {
+    display: flex;
+    gap: 5px;
+    margin-top: 4px;
+}
+
+html body.cro12516 .cro12516-card-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 8px;
+    background: #dbe7f3;
+    border-radius: 16px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 11px;
+    letter-spacing: 0.55px;
+    text-transform: capitalize;
+    color: #222;
+}
+
+html body.cro12516 .cro12516-card-price {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.64px;
+    color: #4a4a4a;
+}
+
+html body.cro12516 .cro12516-card-btn.cro12516-card-add,
+html body.cro12516 a.cro12516-card-btn {
+    height: 48px;
+}
+
+@media (max-width: 991px) {
+    html body.cro12516 .cro12516-card-btn.cro12516-card-add,
+    html body.cro12516 a.cro12516-card-btn {
+        height: 38px;
+    }
+}
+
+/* ============================================================
+   Section 3 — Most Popular (decorates native "Our Favourites")
+   ============================================================ */
+
+html body.cro12516 x-channel-home .channel-content x-content-product-listing {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html body.cro12516 x-channel-home .channel-content x-content-product-listing .content-product-listing {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+html body.cro12516 .cro12516-mp-viewall {
+    position: absolute;
+}
+
+@media (min-width: 992px) {
+    html body.cro12516 x-channel-home .channel-content x-content-product-listing .content-product-listing {
+        padding: 49px 0 49px 24px !important; /* native p-3 utility is !important */
+    }
+
+    html body.cro12516 .cro12516-mp-viewall {
+        top: 49px;
+        right: 24px;
+    }
+}
+
+@media (max-width: 991px) {
+    html body.cro12516 x-channel-home .channel-content x-content-product-listing .content-product-listing {
+        padding: 48px 0 48px 21px !important; /* native p-3 utility is !important */
+    }
+
+    html body.cro12516 .cro12516-mp-viewall {
+        top: 48px;
+        right: 21px;
+    }
+
+    /* design: actions row sits under the image on mobile (native pins it to card bottom) */
+    html body.cro12516 x-channel-home .channel-content x-content-product-listing x-product-card .body-content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    html body.cro12516 x-channel-home .channel-content x-content-product-listing x-product-card .body-content .actions {
+        order: -1 !important;
+        margin-top: 0 !important;
+        margin-bottom: 8px !important;
+    }
+}
+
+/* ============================================================
+   Section 4 — Shop by Categories
+   ============================================================ */
+
+html body.cro12516 .cro12516-categories {
+    border-bottom: 0;
+}
+
+html body.cro12516 .cro12516-cat-tile {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+html body.cro12516 .cro12516-cat-tile img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+html body.cro12516 .cro12516-cat-label {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 2.1px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+/* Desktop — swiper carousel */
+@media (min-width: 992px) {
+    html body.cro12516 .cro12516-categories .cro12516-slide {
+        width: 276px;
+    }
+
+    html body.cro12516 .cro12516-cat-tile {
+        padding-right: 10px;
+    }
+
+    html body.cro12516 .cro12516-cat-tile img {
+        aspect-ratio: 2 / 3;
+    }
+
+    html body.cro12516 .cro12516-cat-label {
+        padding-left: 8px;
+    }
+}
+
+/* Mobile — 3×2 grid, centered heading, no View All */
+@media (max-width: 991px) {
+    html body.cro12516 .cro12516-categories .cro12516-listing-inner {
+        padding-left: 0;
+    }
+
+    html body.cro12516 .cro12516-categories .cro12516-listing-header {
+        justify-content: center;
+        padding: 0 21px;
+    }
+
+    html body.cro12516 .cro12516-categories .cro12516-listing-title {
+        text-transform: none;
+    }
+
+    html body.cro12516 .cro12516-categories .cro12516-view-all {
+        display: none;
+    }
+
+    html body.cro12516 .cro12516-categories .cro12516-listing-track {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px 14px;
+        padding: 0 1px;
+    }
+
+    html body.cro12516 .cro12516-cat-tile img {
+        aspect-ratio: 120 / 131;
+    }
+
+    html body.cro12516 .cro12516-cat-label {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* ============================================================
+   Section 8 — Most Loved Recipes
+   ============================================================ */
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > .cro12516-recipes {
+    order: 8;
+}
+
+html body.cro12516 .cro12516-recipes {
+    border-top: 0;
+    border-bottom: 0;
+}
+
+html body.cro12516 .cro12516-recipe-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 12px;
+}
+
+html body.cro12516 .cro12516-recipe-media {
+    display: block;
+}
+
+html body.cro12516 .cro12516-recipe-media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+html body.cro12516 .cro12516-recipe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+}
+
+html body.cro12516 .cro12516-recipe-title {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.64px;
+    color: #4a4a4a;
+}
+
+html body.cro12516 .cro12516-recipe-desc {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.28px;
+    color: #4a4a4a;
+}
+
+html body.cro12516 .cro12516-recipe-link {
+    margin-top: 20px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 1.68px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #09223f;
+}
+
+/* ============================================================
+   Section 9 — Market Live (decorated native section)
+   ============================================================ */
+
+html body.cro12516 x-channel-home x-page-layout .channel-content > .cro12516-market-live {
+    order: 9;
+}
+
+html body.cro12516 .cro12516-market-live .left-col.media {
+    position: relative;
+}
+
+html body.cro12516 .cro12516-ml-quote {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+html body.cro12516 .cro12516-ml-quote-text {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0.28px;
+    color: #09223f;
+}
+
+html body.cro12516 .cro12516-ml-quote-author {
+    margin: 0;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 1.12px;
+    color: #4a4a4a;
+}
+
+@media (min-width: 992px) {
+    html body.cro12516 .cro12516-market-live .cro12516-ml-quote-desktop {
+        display: flex;
+        position: absolute;
+        right: 32px;
+        bottom: 32px;
+        width: 280px;
+        z-index: 1;
+    }
+}
+
+@media (max-width: 991px) {
+    html body.cro12516 .cro12516-market-live .cro12516-ml-quote-mobile {
+        display: flex;
+        margin-top: 20px;
+    }
+}

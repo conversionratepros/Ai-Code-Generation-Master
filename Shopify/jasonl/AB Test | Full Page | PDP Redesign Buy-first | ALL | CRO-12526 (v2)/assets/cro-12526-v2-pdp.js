@@ -198,7 +198,7 @@
           // Same keys the control's drawer reads to pre-select "Buy online".
           localStorage.setItem('clickedCartBtn', 'Add to cart');
           localStorage.setItem('minicart-payement-option', 'pay-online');
-        } catch (e) {}
+        } catch (e) { }
         addToCartBtn.classList.add('cro12526v2-btn--loading');
         realSubmitBtn.click();
         setTimeout(function () {
@@ -227,7 +227,7 @@
         try {
           localStorage.setItem('clickedCartBtn', 'Add to cart');
           localStorage.setItem('minicart-payement-option', 'pay-online');
-        } catch (e) {}
+        } catch (e) { }
         compareAtc.classList.add('cro12526v2-btn--loading');
         realSubmitBtn.click();
         setTimeout(function () {
@@ -389,7 +389,7 @@
       try {
         var region = JSON.parse(localStorage.getItem('region'));
         if (region && region.name) locationEl.textContent = region.name;
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 
@@ -419,7 +419,7 @@
           try {
             localStorage.setItem('clickedCartBtn', 'Add to cart');
             localStorage.setItem('minicart-payement-option', 'pay-online');
-          } catch (err) {}
+          } catch (err) { }
           return;
         }
         var atq = e.target.closest('[data-cro12526v2-setup-atq]');
@@ -429,7 +429,7 @@
           try {
             localStorage.setItem('clickedCartBtn', 'Add to quote');
             localStorage.setItem('minicart-payement-option', 'request-quote');
-          } catch (err) {}
+          } catch (err) { }
           if (form.requestSubmit) {
             form.requestSubmit();
           } else {
