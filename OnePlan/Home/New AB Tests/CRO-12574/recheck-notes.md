@@ -1,7 +1,92 @@
 # CRO-12574 — AB Homepage Redesign | All — Recheck notes (2026-07-29)
 
+## v3 RESKIN 2026-08-09 — client's updated Figma design applied
+
+Client changes came as an updated Figma ("Oneplan — Homepage Relook (CRO-12173)",
+desktop node 44-5710, mobile 56-101). The old design page (variant-b-v2) is now
+superseded. variant.js + variant.css in this folder are fully rebuilt to match;
+section structure, IDs and all v2 behaviours (router, loop carousel, smooth
+scroll, hide+inject climb) are unchanged. **Not yet pasted into Convert
+experiment 1004206057 — the experiment still runs the v2 skin.**
+
+What the updated design changed (all now built):
+
+1. Palette swap: indigo/green → Vivid Blue `#0000D9`, Bright Teal `#5BF1FD`
+   (ALL buttons were green, now teal), Light Azura `#AEEEFD` icon badges,
+   yellow `#FFD15A` "Most chosen" chip, Soft Teal "vs" badge.
+2. Typography: Catamaran/Helvetica → **Anek Devanagari** (Google Fonts link is
+   injected by variant.js); pre-headers specced as **Aptos Bold** — not
+   web-loadable, falls back to Anek (flag to client if they care).
+   Site css declares Catamaran + uppercase `!important`, countered with
+   `!important` font/text-transform overrides.
+3. Hero: highlight pill moved to "claims" (was "upfront"); lead copy now
+   "…Oneplan Claim Card, never weeks out of pocket."; router chips are white
+   cards with navy line-icons (were webp photo chips) — vertical desktop,
+   2×2 horizontal mobile, teal tick badge; new family-on-couch photo as hero
+   background (desktop mirrors the source photo via scaleX(-1); mobile shows
+   it un-mirrored as an in-flow block below the router).
+4. Trust ribbon → floating white card straddling the hero edge; mobile layout
+   restructured (logo + "10/10 Trust Index" badge row, 4.59 + stars,
+   "Based on 23,019 reviews").
+5. Plan cards: azura icon circles with line icons, UPPERCASE titles,
+   "Car & Home" → **"Car & Household"** (chips, card, final-CTA eyebrow; hero
+   eyebrow stays "Car & Home" per design), copy dashes → commas.
+6. Reviews: deep-blue gradient bg; "customers smile" highlight pill;
+   cards restructured **name-first** + 5 gold SVG stars + scrollable quote
+   with styled slim scrollbar (replaces the 7-line clamp); nav arrows now
+   filled cyan circles, hidden on mobile (swipe only).
+7. USP: real claim-card photograph replaces the CSS-drawn card; compare block
+   is one joined panel (grey left / blue right with Oneplan-pattern bg and
+   white check circles), soft-teal "vs" badge pinned to the seam; mobile
+   stacks blue-panel-first; sub copy split into two sentences.
+8. Answers: card borders, `#282972` dots, "See your price" teal pill.
+9. Final CTA: pattern edges + two tilted card photos (left) + hand-holding-
+   card photo (right); copy "…a few minutes, or chat to us if you need us.";
+   link "Prefer a call? **We'll phone you.**" — still opens the site's
+   #homePageCallMePopUp modal (deliberate, design links it to #router).
+10. Self-serve: bare links → white cards with icon circles + underlined
+    arrow links.
+
+Also fixed in this pass: **bug 2** (init() now bails if hideLiveHomepageBody()
+fails — no double homepage) and **bug 4** (un-prefixed `.finalcta .row` kill
+rule is gone; every selector is prefixed).
+
+Verified 2026-08-09 via Playwright against the live homepage (S3 URLs routed to
+the local copies): native content hidden, fonts load, router updates CTA
+label/href, carousel loops both directions, smooth scroll + modal attrs intact,
+desktop + mobile renders match the Figma frames.
+
+### NEW launch gates (v3)
+
+- ~~Upload 4 assets to S3~~ — DONE 2026-08-09, uploaded under
+  `Oneplan/Dev | AB Homepage Redesign | All | CRO-12574/` as
+  `CRO-12574-1.jpg` (hero family), `CRO-12574-2.webp` (claim card),
+  `CRO-12574-3.webp` (card in hand), `CRO-12574-4.svg` (pattern).
+  Each visually verified against the intended asset before the URLs were
+  wired in; code + this folder's `assets/` copies use these names. All four
+  return 200 and render (Playwright, desktop + mobile, real URLs).
+  (The old `CRO-12574-Homepage_Redesign-1.png` mum+baby hero is obsolete.)
+- Paste variant.js (as-is, into the `function(convertContext){}` wrapper) and
+  variant.css into Convert experiment 1004206057.
+- Link destinations below remain placeholders — unchanged from v2.
+
+---
+
 Source of the code in this folder: extracted from Convert.com Dev experiment `1004206057`
 ("Dev | AB Homepage Redesign | All | CRO-12574", status: paused, 100% to Variation 1 for QA).
+
+## Convert re-check 2026-08-09
+
+- Experiment now **active** (version 12), still 100% to Variation 1 / Original stopped —
+  Dev/QA weighting unchanged.
+- Convert's Variation 1 CSS + JS are byte-identical to this folder's variant.css/variant.js
+  (only diff: a leading blank line in the local JS) — the 2026-07-29 fixes (carousel loop,
+  auto-advance removal, smooth-scroll anchors) ARE now in the experiment.
+- Experiment data is NOT in the public prod bundle (`experiences:[]`); the global-JS
+  `executeExperiment("1004206057")` call is a no-op for regular visitors — not publicly visible.
+- Still open in the live code: bug 2 (unguarded `injectRedesign()`) and bug 4
+  (unprefixed `.finalcta .row::before/::after` at CSS lines 1184–1185), the 5 spec-vs-design
+  decisions, and all "Before launch" items below.
 `variant.js` has Convert's `function(convertContext){}` wrapper stripped — paste the file
 contents into the variation's Custom JS as-is.
 
