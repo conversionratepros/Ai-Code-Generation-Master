@@ -1,0 +1,192 @@
+{% comment %}
+  CRO-HP — S1 Hero: the claim, substantiated.
+  Board node 2:377. Copy per spec; layout/type/colour per board.
+  "Plan my fitout" reuses the sitewide Typeform popup trigger
+  (settings.typeformurls_url_1 — same pattern as header-contacts.liquid).
+{% endcomment %}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<section class="crohp-section crohp-hero">
+  <div class="crohp-container">
+    <p class="crohp-eyebrow crohp-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+
+    <h1 class="crohp-hero__headline">
+      {{ section.settings.headline_pre }}
+      {%- if section.settings.headline_em != blank %}
+        <span class="crohp-hero__em">{{ section.settings.headline_em }}</span>
+      {%- endif %}
+    </h1>
+
+    <div class="crohp-hero__row">
+      <div class="crohp-hero__sub">{{ section.settings.subhead }}</div>
+
+      <div class="crohp-hero__ctas">
+        <div class="crohp-hero__buttons">
+          {%- if section.settings.shop_label != blank -%}
+            <a class="crohp-btn crohp-btn--lime" href="{{ section.settings.shop_url | default: '#cro-hp-furniture' }}">
+              {{- section.settings.shop_label -}}
+            </a>
+          {%- endif -%}
+          <a class="crohp-btn crohp-btn--lime typeform-share getaquoteclick typeform-embed"
+            {{ settings.typeformurls_url_1 }}
+            href="javascript:void(0)"
+            data-tf-on-ready="ready"
+            data-crohp-typeform>
+            {{- section.settings.plan_label -}}
+            <span class="crohp-btn__arrow">
+              <svg width="20" height="8" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
+            </span>
+          </a>
+        </div>
+        <p class="crohp-hero__microline">{{ section.settings.microline }}</p>
+      </div>
+    </div>
+
+    <div class="crohp-hero__media">
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 1540 }}"
+          srcset="{{ section.settings.image | image_url: width: 770 }} 770w, {{ section.settings.image | image_url: width: 1540 }} 1540w, {{ section.settings.image | image_url: width: 3080 }} 3080w"
+          sizes="(max-width: 1620px) 100vw, 1540px"
+          alt="{{ section.settings.image.alt | default: section.settings.eyebrow | escape }}"
+          width="1540" height="620" fetchpriority="high">
+      {%- endif -%}
+
+      {%- if section.settings.show_badge -%}
+        <div class="crohp-live" aria-live="off">
+          <span class="crohp-live__dot" aria-hidden="true"></span>
+          <span><strong>{{ section.settings.badge_number }} {{ section.settings.badge_bold }}</strong> {{ section.settings.badge_rest }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="crohp-hero__trust">
+        {%- for block in section.blocks -%}
+          {%- if forloop.first == false -%}<span class="crohp-hero__trust-sep" aria-hidden="true">&bull;</span>{%- endif -%}
+          <span class="crohp-hero__trust-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.show_star -%}
+              <svg width="15" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .9l3.05 7.33 7.9.63-6.02 5.16 1.84 7.72L12 17.6l-6.77 4.14 1.84-7.72L1.05 8.86l7.9-.63L12 .9z" fill="#0A0A0A"/></svg>
+            {%- endif -%}
+            {%- if block.settings.value != blank -%}<strong>{{ block.settings.value }}</strong>{%- endif -%}
+            {{ block.settings.label }}
+          </span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CRO HP Hero",
+  "tag": "section",
+  "class": "cro-hp-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Office fitouts, Australia-wide"
+    },
+    {
+      "type": "text",
+      "id": "headline_pre",
+      "label": "Headline",
+      "default": "Beautiful fitouts in under 10 days."
+    },
+    {
+      "type": "text",
+      "id": "headline_em",
+      "label": "Headline emphasis (bold + lime underline)",
+      "default": "Easy. Fast!"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subhead",
+      "label": "Subhead",
+      "default": "Design, furniture, delivery and install — handled end to end by <strong>our own team</strong>. Stocked Australian warehouses, our own installers, and <strong>2,400+ workplaces</strong> already done."
+    },
+    {
+      "type": "text",
+      "id": "shop_label",
+      "label": "Secondary button label",
+      "default": "Shop furniture"
+    },
+    {
+      "type": "url",
+      "id": "shop_url",
+      "label": "Secondary button link",
+      "info": "Blank = jump to the furniture section on this page"
+    },
+    {
+      "type": "text",
+      "id": "plan_label",
+      "label": "Primary button label (opens Typeform)",
+      "default": "Plan my fitout"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "microline",
+      "label": "Microline under buttons",
+      "default": "Takes 60 seconds. <strong>A real person replies within 2 business hours.</strong>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image",
+      "info": "Blank shows the grey placeholder (board look) until photography lands"
+    },
+    { "type": "header", "content": "Live badge" },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show live badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_number",
+      "label": "Badge number",
+      "default": "3",
+      "info": "QA rule: every number real and owned — update or hide if not fed"
+    },
+    {
+      "type": "text",
+      "id": "badge_bold",
+      "label": "Badge bold text",
+      "default": "installs"
+    },
+    {
+      "type": "text",
+      "id": "badge_rest",
+      "label": "Badge regular text",
+      "default": "happening today"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "settings": [
+        { "type": "checkbox", "id": "show_star", "label": "Show star icon", "default": false },
+        { "type": "text", "id": "value", "label": "Bold value (optional)" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Australian owned" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO HP Hero",
+      "blocks": [
+        { "type": "trust_item", "settings": { "show_star": true, "value": "4.8", "label": " Google reviews" } },
+        { "type": "trust_item", "settings": { "value": "7", "label": " showrooms nationally" } },
+        { "type": "trust_item", "settings": { "label": "Australian owned" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

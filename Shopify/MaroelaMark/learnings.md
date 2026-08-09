@@ -188,9 +188,87 @@ function waitForElement(selector, callback) {
   ATC via form POST, hard-coded English "Sold Out", stars from
   `reviews.rating_count` only (always 5 gold stars)
 
+## Position-marker blocks: fill, don't hide (CRO-12473)
+
+Extension of the empty-wrapper pattern for elements that sit BETWEEN existing
+blocks (not inside the form): give the new block type a place in the
+template's `block_order` — `product.liquid` renders its empty wrapper at that
+exact position — then JS moves the mount content INTO the wrapper instead of
+hiding it:
+
+- CSS: wrapper `display:none` by default (a whitespace-only wrapper still
+  takes block margin — `:empty` does NOT match it), JS adds `.cro-XXXXX-filled`
+  which flips it to block
+- Placement is then controlled entirely from the template JSON, and the shared
+  `product.liquid` is never forked (no drift to reconcile)
+- Data-only blocks (e.g. companion product pickers) also land in `block_order`
+  — hide their wrappers permanently like `usp_item`
+
+## Product description authored shape (this store)
+
+Merchant descriptions follow one shape, split server-side with string filters:
+
+```
+Short description: <div class="entry-content">…short…</div> Description: …long…
+```
+
+- Short = `split: '<div class="entry-content">'` → `[1]` → `split: '</div>' | first`
+- Long = everything after the standalone `Description:` label — use
+  `remove_first: prefix | remove_first: 'Description:'` (split-prefix trick),
+  NOT `split | last` (breaks if the label recurs)
+- `'Description:'` is case-sensitive so it does not match inside
+  `"Short description:"`
+- Always fall back to the full description for products without the shape
+
+## Judge.me zero-review suppression (CRO-12473)
+
+- Gate server-side on `product.metafields.reviews.rating_count < 1`, then emit
+  `<style>.shopify-section:has(.jdgm-review-widget){display:none!important}</style>`
+  — no flicker, no JS (tiny JS fallback for non-`:has` browsers)
+- **TRAP**: scope to `.jdgm-review-widget`, never `.jdgm-widget` — the footer
+  contains a hidden Judge.me preview badge; the wider selector hides the
+  entire footer (this bug shipped in the CRO-12473 design mock)
+- The rating block renders empty for zero-review products (product.liquid
+  gates on `reviews.rating.value`) — safe slot for an injected trust line;
+  products with reviews keep their stars untouched
+
+## Gotcha: alternate templates break the H1 title (CRO-12473)
+
+`product.liquid`'s title block uses `{% case template %}{% when 'product' %}`
+to pick `<h1>` — but on an alternate template `template` stringifies WITH the
+suffix (`product.cro-12473`), so the case falls through and the title renders
+as bare `<h2 class="product-title">`. The theme's brand CSS then styles it as
+a product-CARD title (15px teal Proxima, centred) because the big dark PDP
+heading is only restored for `h1.product-title` selectors. Every alternate
+product template on this store hits this. Fix without touching product.liquid:
+mirror the theme's `h1.product-title` rules onto
+`.product-details h2.product-title` in the test CSS (kills the teal paint) and
+swap the tag back to `<h1>` in the test JS for markup parity.
+
+## Gotcha: preview drafts go stale — labels live in three places
+
+The trust strip's strings come from three different sources: the in-stock
+label is HARDCODED in `snippets/cro-12303-in-stock.liquid` (live theme says
+"In voorraad"; old May 29 draft still says "In stock"), the USP labels are
+usp_item BLOCK SETTINGS in the template JSON, and the payment label is a
+SECTION SETTING (`cro_payment_label`, live value "Veilige betalings via").
+When copying a template JSON from a test folder, its block settings may be
+older than live — pull current strings from the live page/mirror, and always
+duplicate the CURRENT live theme for previews, not an old draft.
+
+## Per-product content for template tests (CRO-12473)
+
+One template serves every product, so per-product test content can't live in
+template JSON alone. Pattern: product metafield wins, template block defaults
+fall back — `custom.value_prop` (single line) for copy, `custom.companions`
+(product list) over `companion_product` picker blocks for the bundle. Collect
+blocks product-agnostically with
+`section.blocks | where: 'type', 'companion_product' | map: 'settings' | map: 'product'`.
+
 ## Tests Built
 
 | Test | Task | Template | Description |
 |------|------|----------|-------------|
 | CRO-12303 | Buy Box Trust Strip | `product.cro-12303` | In-stock indicator + payment strip + USP trust list |
 | CRO-12425 | Homepage Routing (Intelligems template test) | `index.cro-12425` | Full homepage rebuild: sticky mobile search, hero, icon row, category grid, trust strip, 2× product-row peek carousels, brand story. Figma file labelled CRO-12377 |
+| CRO-12473 | PDP Value-prop + Brand-proof + Bundle (Sprint 2, Intelligems template test) | `product.cro-12473` | Value-prop line under title, short desc under price, long desc relocated to "Oor hierdie produk" section, zero-review trust line + review suppression, "Gaan goed saam met" AJAX bundle. Stacks on CRO-12303 trust strip |

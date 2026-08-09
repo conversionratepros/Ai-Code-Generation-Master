@@ -1,0 +1,105 @@
+{% comment %}
+  CRO-12473 — C "Gaan goed saam met" curated bundle (server-rendered in
+  the Sprint 2 mount). cro-12473-pdp.js moves this into
+  .product-block--bundle (directly below the ATC form block) and wires
+  the live total + "add all" AJAX cart action.
+
+  Companion sources (first match wins):
+    1. product.metafields.custom.companions (list of products) — per-product picks
+    2. companion_product blocks on the section — template-wide defaults
+  Sold-out companions and the product itself are skipped. The whole card
+  is skipped when no companion survives filtering.
+
+  @param product {Object} the main product
+  (section is a Liquid global — settings/blocks are read directly)
+{% endcomment %}
+
+{% liquid
+  assign cro_main_variant = product.selected_variant
+  if product.variants.size == 1 or settings.select_first_available_variant or cro_main_variant == blank
+    assign cro_main_variant = product.selected_or_first_available_variant
+  endif
+  assign cro_main_price = cro_main_variant.price | default: product.price
+
+  assign cro_companions = product.metafields.custom.companions.value
+  assign cro_companions_size = cro_companions | size
+  if cro_companions_size == 0
+    assign cro_companions = section.blocks | where: 'type', 'companion_product' | map: 'settings' | map: 'product'
+  endif
+
+  assign cro_bundle_total = cro_main_price
+  assign cro_companion_count = 0
+%}
+
+{% capture cro_companion_rows %}
+  {% for cro_cp in cro_companions limit: 3 %}
+    {% if cro_cp != blank and cro_cp.id != product.id and cro_cp.available %}
+      {% assign cro_cpv = cro_cp.selected_or_first_available_variant %}
+      {% if cro_cpv != blank and cro_cpv.available %}
+        {% assign cro_companion_count = cro_companion_count | plus: 1 %}
+        {% assign cro_bundle_total = cro_bundle_total | plus: cro_cpv.price %}
+        <label class="cro-12473-b-row">
+          <input
+            type="checkbox"
+            class="cro-12473-b-cb"
+            data-cro-bundle-cb
+            data-variant-id="{{ cro_cpv.id }}"
+            data-price="{{ cro_cpv.price }}"
+            checked
+          >
+          <img
+            class="cro-12473-b-img"
+            src="{{ cro_cp.featured_image | img_url: '92x92', crop: 'center' }}"
+            alt="{{ cro_cp.title | escape }}"
+            loading="lazy"
+            width="46"
+            height="46"
+          >
+          <span class="cro-12473-b-name">{{ cro_cp.title | escape }}</span>
+          <span class="cro-12473-b-price">{{ cro_cpv.price | money }}</span>
+        </label>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if cro_companion_count > 0 %}
+  <div
+    class="cro-12473-bundle"
+    data-cro-12473-bundle
+    data-main-variant="{{ cro_main_variant.id }}"
+    data-main-price="{{ cro_main_price }}"
+    style="display: none;"
+  >
+    <div class="cro-12473-b-head">{{ section.settings.cro_bundle_heading | default: 'Gaan goed saam met' | escape }}</div>
+
+    <label class="cro-12473-b-row cro-12473-b-this">
+      <input type="checkbox" checked disabled>
+      <img
+        class="cro-12473-b-img"
+        src="{{ product.featured_image | img_url: '92x92', crop: 'center' }}"
+        alt="{{ product.title | escape }}"
+        width="46"
+        height="46"
+      >
+      <span class="cro-12473-b-name">
+        <span data-cro-bundle-main-title>{{ product.title | escape }}</span>
+        <em>(hierdie item)</em>
+      </span>
+      <span class="cro-12473-b-price" data-cro-bundle-main-price>{{ cro_main_price | money }}</span>
+    </label>
+
+    {{ cro_companion_rows }}
+
+    <div class="cro-12473-b-foot">
+      <span class="cro-12473-b-total">Saam: <strong data-cro-bundle-total>{{ cro_bundle_total | money }}</strong></span>
+      <button type="button" class="cro-12473-b-add" data-cro-bundle-add>
+        {{ section.settings.cro_bundle_button | default: 'Voeg almal by die mandjie' | escape }}
+      </button>
+    </div>
+
+    {% if section.settings.cro_bundle_note != blank %}
+      <div class="cro-12473-b-note">{{ section.settings.cro_bundle_note | escape }}</div>
+    {% endif %}
+  </div>
+{% endif %}

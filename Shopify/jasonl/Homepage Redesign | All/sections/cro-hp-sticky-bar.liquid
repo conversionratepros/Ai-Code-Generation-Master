@@ -1,0 +1,54 @@
+{% comment %}
+  CRO-HP — Sticky mobile bottom bar: Call / Plan my fitout.
+  Spec: mobile carries a sticky bottom bar that hides while the final
+  ask section is in view (IntersectionObserver in cro-hp.js watches
+  [data-crohp-final-ask] and toggles .crohp-sticky--hidden).
+  Desktop: display none (CSS). No board mobile frames — built to spec.
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<div class="crohp-sticky" data-crohp-sticky>
+  <div class="crohp-sticky__inner">
+    <a class="crohp-btn crohp-btn--outline crohp-sticky__call" href="tel:{{ section.settings.phone | remove: ' ' }}">
+      {{- section.settings.call_label -}}
+    </a>
+    <a class="crohp-btn crohp-btn--lime crohp-sticky__plan typeform-share getaquoteclick typeform-embed"
+      {{ settings.typeformurls_url_1 }}
+      href="javascript:void(0)"
+      data-tf-on-ready="ready"
+      data-crohp-typeform>
+      {{- section.settings.plan_label -}}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CRO HP Sticky Bar",
+  "tag": "div",
+  "class": "cro-hp-sticky-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "call_label",
+      "label": "Call button label",
+      "default": "Call"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number",
+      "default": "1300 864 264"
+    },
+    {
+      "type": "text",
+      "id": "plan_label",
+      "label": "Primary button label (opens Typeform)",
+      "default": "Plan my fitout"
+    }
+  ],
+  "presets": [{ "name": "CRO HP Sticky Bar" }]
+}
+{% endschema %}

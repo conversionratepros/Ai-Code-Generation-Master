@@ -1,4 +1,4 @@
-html div#__next [width="1"] section a[href*="/products"]+div button::after {
+html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button::after {
     content: 'add';
     margin-left: 2px;
     /* color: var(--White, #FFF); */
@@ -12,7 +12,7 @@ html div#__next [width="1"] section a[href*="/products"]+div button::after {
     color: #4B6221;
 }
 
-html div#__next [width="1"] section a[href*="/products"]+div button {
+html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button {
     width: fit-content;
     border-radius: 100px;
     padding: 6px 8px;
@@ -22,25 +22,25 @@ html div#__next [width="1"] section a[href*="/products"]+div button {
     
 }
 
-/* html div#__next [width="1"] section a[href*="/products"]+div button:hover {
+/* html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button:hover {
     background: #5f6971;
 } */
 
-html div#__next [width="1"] section a[href*="/products"]+div button:hover {
+html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button:hover {
     background: #8ECC2D;
 }
 
-html div#__next [width="1"] section a[href*="/products"]+div button:hover svg {
+html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button:hover svg {
      fill: #fff;
     stroke: #fff;
 }
 
-html div#__next [width="1"] section a[href*="/products"]+div button:hover::after {
+html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button:hover::after {
     color: #FFF;
 }
 
 
-html div#__next [width="1"] section a[href*="/products"]+div button svg {
+html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button svg {
     /* fill: #fff;
     stroke: #fff; */
     width: 18px;
@@ -51,17 +51,17 @@ html div#__next [width="1"] section a[href*="/products"]+div button svg {
 
 /* Styles for screens with a minimum width of 769px and a maximum width of 1024px */
 @media (min-width: 768px) and (max-width: 1024px) {
-    html div#__next [width="1"] section a[href*="/products"]+div button::after{
+    html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button::after{
         font-size: 14px;
     }
 
 
-    html div#__next [width="1"] section a[href*="/products"]+div button svg{
+    html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button svg{
         width: 18px;
         height: 18px;
     }
 
-    html div#__next [width="1"] section a[href*="/products"]+div button{
+    html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button{
         padding: 8px;
     }
 
@@ -72,30 +72,30 @@ html div#__next [width="1"] section a[href*="/products"]+div button svg {
 }
 
 @media (min-width: 880px) {
-    html div#__next [width="1"] section a[href*="/products"]+div {
+    html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div {
         margin-top: 10px;
         align-items: flex-end;
     }
 }
 
 @media (min-width: 768px) and (max-width: 879px) {
-    html div#__next [width="1"] section a[href*="/products"]+div {
+    html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div {
         margin-top: 10px;
         /* align-items: flex-start; */
     }
 
-    html div#__next [width="1"] section a[href*="/products"]+div [role="group"]+div{
+    html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div [role="group"]+div{
         height: 100%;
     }
 }
 
 @media (max-width: 767px) {
-    html div#__next [width="1"] section a[href*="/products"]+div {
+    html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div {
         grid-template-columns: 1fr;
         row-gap: 12px;
     }
 }
 
-html div#__next [width="1"] section a[href*="/products"]+div button::before {
+html:not([pagepath="homepage"]) div#__next [width="1"] section a[href*="/products"]+div button::before {
     display: none !important;
 }

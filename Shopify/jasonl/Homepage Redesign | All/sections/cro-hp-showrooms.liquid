@@ -1,0 +1,113 @@
+{% comment %}
+  CRO-HP — S9 Showrooms: "Showrooms? Seven of them." Board node 2:37.
+  Compact scannable list — every location visible at once.
+  Data comes from the SAME global theme settings the control uses
+  (settings.store{N}_showroom_*, N = 1..8, managed in Theme Settings) —
+  no re-platforming. Granville (distribution centre) excluded like the
+  control's store-locator. 360° walk-through reuses the theme's
+  custom-modal-virtual-tour snippet: lightweight per-city trigger,
+  deferred iframe — opens on demand, no heavy embedded 3D player.
+  QA 4.1: the count here must stay consistent with the hero trust strip.
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<section class="crohp-section crohp-rooms" id="cro-hp-showrooms">
+  <div class="crohp-container">
+    <div class="crohp-rooms__head">
+      <div class="crohp-head">
+        <p class="crohp-head__eyebrow crohp-eyebrow"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</p>
+        <h2 class="crohp-head__title">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.cta_label != blank -%}
+        <a class="crohp-btn crohp-btn--lime typeform-share getaquoteclick typeform-embed"
+          {{ settings.typeformurls_url_1 }}
+          href="javascript:void(0)"
+          data-tf-on-ready="ready"
+          data-crohp-typeform>
+          {{- section.settings.cta_label -}}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="crohp-rooms__layout">
+      <ul class="crohp-rooms__list">
+        {%- for i in (1..8) -%}
+          {%- liquid
+            assign id_name = 'store' | append: i | append: '_showroom_name'
+            assign id_address = 'store' | append: i | append: '_showroom_address'
+            assign id_phone = 'store' | append: i | append: '_showroom_phone'
+            assign id_gmaplink = 'store' | append: i | append: '_showroom_link'
+            assign id_matterport = 'store' | append: i | append: '_matterport_id'
+            assign id_page = 'store' | append: i | append: '_showroom_page'
+            assign id_order = 'store' | append: i | append: '_showroom_order'
+          -%}
+          {%- if settings[id_name] != blank -%}
+            {%- unless settings[id_address] contains 'Granville' -%}
+              <li class="crohp-rooms__row" style="order:{{ settings[id_order] }}">
+                <a class="crohp-rooms__city" href="/pages/{{ settings[id_page] }}">
+                  {{- settings[id_name] | remove: 'Showroom' | remove: 'showroom' | strip -}}
+                </a>
+                <a class="crohp-rooms__address" href="{{ settings[id_gmaplink] }}" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="{{ settings[id_name] | remove: 'showroom' | remove: 'Showroom' }} showroom">
+                  {{- settings[id_address] -}}
+                </a>
+                <span>
+                  {%- if settings[id_matterport] != blank -%}
+                    {%- render 'custom-modal-virtual-tour', location_name: settings[id_name], matterportlink: settings[id_matterport] -%}
+                  {%- endif -%}
+                </span>
+                <a class="crohp-rooms__phone" href="tel:{{ settings[id_phone] }}">{{ settings[id_phone] }}</a>
+                <a class="crohp-rooms__dir" href="{{ settings[id_gmaplink] }}" target="_blank" rel="noopener noreferrer" aria-label="Get directions to {{ settings[id_name] | escape }}" data-ga4="location_engagement" direction_location="{{ settings[id_name] | remove: 'showroom' | remove: 'Showroom' }} showroom">
+                  <svg width="20" height="8" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
+                </a>
+              </li>
+            {%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      <div class="crohp-rooms__photo">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 852 }}" alt="{{ section.settings.image.alt | default: 'JasonL showroom' | escape }}" loading="lazy" width="426" height="673">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CRO HP Showrooms",
+  "tag": "section",
+  "class": "cro-hp-rooms-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Come see it"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Showrooms? Seven of them.",
+      "info": "QA 4.1: keep the count consistent with the hero trust strip"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label (opens Typeform)",
+      "default": "Book a showroom walk-through"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Side photo",
+      "info": "Blank shows the grey placeholder. Showroom data itself is edited in Theme Settings → Store locations (store1–store8)"
+    }
+  ],
+  "presets": [{ "name": "CRO HP Showrooms" }]
+}
+{% endschema %}

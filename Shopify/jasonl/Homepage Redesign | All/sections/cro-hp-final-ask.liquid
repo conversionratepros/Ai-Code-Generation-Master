@@ -1,0 +1,131 @@
+{% comment %}
+  CRO-HP — S10 The ask: "Tell us what you're planning." Board node 2:19.
+  Second black band. A single lime button opens the site's standard
+  Typeform modal — NO embedded native form fields (one unified capture
+  system sitewide). The button passes estimator answers as hidden fields
+  (cro-hp.js). data-crohp-final-ask makes the sticky mobile bar hide
+  while this section is in viewport so the two asks never compete.
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<section class="crohp-section crohp-ask" data-crohp-final-ask>
+  <div class="crohp-container">
+    <div class="crohp-ask__grid">
+      <div>
+        <div class="crohp-head">
+          <p class="crohp-head__eyebrow crohp-eyebrow"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</p>
+          <h2 class="crohp-ask__title">{{ section.settings.heading }}</h2>
+        </div>
+        <div class="crohp-ask__cta">
+          <a class="crohp-btn crohp-btn--lime crohp-ask__btn typeform-share getaquoteclick typeform-embed"
+            {{ settings.typeformurls_url_1 }}
+            href="javascript:void(0)"
+            data-tf-on-ready="ready"
+            data-crohp-typeform>
+            {{- section.settings.cta_label -}}
+            <span class="crohp-btn__arrow">
+              <svg width="24" height="9" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
+            </span>
+          </a>
+          <p class="crohp-ask__micro">{{ section.settings.microline }}</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="crohp-ask__promise">{{ section.settings.promise }}</p>
+        <p class="crohp-ask__phone">
+          {{ section.settings.phone_label }}&nbsp;&nbsp;
+          <a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone }}</a>
+        </p>
+        <p class="crohp-ask__channels">
+          <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+          <span class="crohp-ask__sep" aria-hidden="true">&bull;</span>
+          {{ section.settings.alt_lead }}
+          <a class="crohp-ask__showroom-link" href="{{ section.settings.alt_url | default: '#cro-hp-showrooms' }}">
+            {{- section.settings.alt_label -}}
+            <svg width="17" height="7" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CRO HP Final Ask",
+  "tag": "section",
+  "class": "cro-hp-ask-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "No obligation, no runaround"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tell us what you're planning."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label (opens Typeform)",
+      "default": "Plan my fitout"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "microline",
+      "label": "Microline",
+      "default": "Takes 60 seconds. <strong>No spam, no obligation</strong>"
+    },
+    {
+      "type": "textarea",
+      "id": "promise",
+      "label": "Promise copy",
+      "default": "JasonL team will come back within 2 business hours on weekdays — no obligation, no runaround. And if we're not the right fit, we'll tell you."
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone label",
+      "default": "Call"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number",
+      "default": "1300 864 264"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "sales@jasonl.com.au"
+    },
+    {
+      "type": "text",
+      "id": "alt_lead",
+      "label": "Alternative path lead-in",
+      "default": "Prefer to see it first?"
+    },
+    {
+      "type": "text",
+      "id": "alt_label",
+      "label": "Alternative path link label",
+      "default": "Book a showroom visit"
+    },
+    {
+      "type": "url",
+      "id": "alt_url",
+      "label": "Alternative path link",
+      "info": "Blank = jump to the showrooms section"
+    }
+  ],
+  "presets": [{ "name": "CRO HP Final Ask" }]
+}
+{% endschema %}

@@ -342,7 +342,23 @@
             });
         }
 
+        var TEST_PATHS = ['/category', '/everyday-essentials', '/clearance-sale', '/extra-time-deals'];
+
+        function onTestPage() {
+            var p = window.location.pathname;
+            for (var i = 0; i < TEST_PATHS.length; i++) {
+                if (p.indexOf(TEST_PATHS[i]) !== -1) return true;
+            }
+            return false;
+        }
+
         function applyToAll() {
+            // scroll/observer re-apply persists across SPA navigations — the homepage
+            // shares this card DOM, so bail (and undo) anywhere off the test pages
+            if (!onTestPage()) {
+                document.body.classList.remove(VARIATION);
+                return;
+            }
             document.body.classList.add(VARIATION);
             document.querySelectorAll('.measure-this').forEach(processCard);
             tagH2Parents();

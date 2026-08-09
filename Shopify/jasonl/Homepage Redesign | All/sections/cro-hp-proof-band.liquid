@@ -1,0 +1,134 @@
+{% comment %}
+  CRO-HP — S2 Live proof band (first black band). Board node 2:350.
+  Pure evidence — deliberately no CTA (header CTA stays in view).
+  Numbers tick once on scroll-in (cro-hp.js counters).
+  QA rules 4.2/4.3/4.4: every number real, fed automatically, flattering;
+  logos must be distinct; keep stats from contradicting the hero claim.
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<section class="crohp-section crohp-proof">
+  <div class="crohp-container">
+    <div class="crohp-proof__top">
+      <div class="crohp-proof__intro">
+        <h2 class="crohp-proof__headline">
+          <span class="crohp-proof__lime">{{ section.settings.headline_lime }}</span>
+          {{ section.settings.headline_rest }} <em>{{ section.settings.headline_italic }}</em>
+        </h2>
+        <p class="crohp-proof__sub">{{ section.settings.sub }}</p>
+      </div>
+
+      <div class="crohp-proof__stats">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stat' -%}
+            <div class="crohp-proof__stat" {{ block.shopify_attributes }}>
+              <div class="crohp-proof__stat-num"
+                data-crohp-count="{{ block.settings.value | escape }}"
+                data-crohp-prefix="{{ block.settings.prefix | escape }}"
+                data-crohp-suffix="{{ block.settings.suffix | escape }}">
+                {{- block.settings.prefix -}}{{- block.settings.value -}}{{- block.settings.suffix -}}
+              </div>
+              <div class="crohp-proof__stat-label">{{ block.settings.label }}</div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <hr class="crohp-proof__rule">
+
+    <div class="crohp-proof__logos">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'logo' -%}
+          <div class="crohp-proof__logo" {{ block.shopify_attributes }}>
+            <div class="crohp-proof__logo-img">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 360 }}" alt="{{ block.settings.name | default: 'Client logo' | escape }}" loading="lazy" height="42">
+              {%- else -%}
+                <span style="color:#fff;font-weight:600;font-size:18px;">{{ block.settings.name }}</span>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.recency != blank or block.settings.city != blank -%}
+              <p class="crohp-proof__logo-cap">{{ block.settings.recency }}<span>&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ block.settings.city }}</span></p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CRO HP Proof Band",
+  "tag": "section",
+  "class": "cro-hp-proof-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline_lime",
+      "label": "Headline lime line",
+      "default": "38 fitouts",
+      "info": "QA rule: number must be real and updated — it claims to be live"
+    },
+    {
+      "type": "text",
+      "id": "headline_rest",
+      "label": "Headline white text",
+      "default": "completed"
+    },
+    {
+      "type": "text",
+      "id": "headline_italic",
+      "label": "Headline italic text",
+      "default": "this week"
+    },
+    {
+      "type": "textarea",
+      "id": "sub",
+      "label": "Subcopy",
+      "default": "Live from our project board. Every one designed, delivered and installed by JasonL crews."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "prefix", "label": "Prefix (e.g. <)" },
+        { "type": "text", "id": "value", "label": "Number", "default": "981" },
+        { "type": "text", "id": "suffix", "label": "Suffix (e.g. + or %)" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Fitouts delivered since 2009" }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Client logo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo (white version)" },
+        { "type": "text", "id": "name", "label": "Client name (alt / fallback)" },
+        { "type": "text", "id": "recency", "label": "Recency stamp", "default": "2 days ago" },
+        { "type": "text", "id": "city", "label": "City", "default": "Sydney" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO HP Proof Band",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "981", "suffix": "+", "label": "Fitouts delivered since 2009" } },
+        { "type": "stat", "settings": { "value": "82", "suffix": "%", "label": "Projects installed on time" } },
+        { "type": "stat", "settings": { "value": "7", "label": "Showrooms across Australia" } },
+        { "type": "stat", "settings": { "prefix": "<", "value": "4", "label": "Days from consult to installed" } },
+        { "type": "logo", "settings": { "name": "Woods Bagot", "recency": "1 day ago", "city": "Sydney" } },
+        { "type": "logo", "settings": { "name": "Hutchinson", "recency": "3 days ago", "city": "Melbourne" } },
+        { "type": "logo", "settings": { "name": "Flight Centre", "recency": "3 days ago", "city": "Brisbane" } },
+        { "type": "logo", "settings": { "name": "BMD", "recency": "4 days ago", "city": "Sydney" } },
+        { "type": "logo", "settings": { "name": "Creditor Watch", "recency": "Last week", "city": "Sydney" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

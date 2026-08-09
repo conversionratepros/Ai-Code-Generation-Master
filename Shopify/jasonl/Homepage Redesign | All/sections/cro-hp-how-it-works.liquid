@@ -1,0 +1,117 @@
+{% comment %}
+  CRO-HP — S3 How it works: "Fitouts? Handled." Board node 2:320.
+  Four day-stamped steps on a timeline that draws itself once on
+  scroll-in (cro-hp.js), then the mechanism strip + consult CTA.
+  The CTA opens the sitewide Typeform popup (booking a consult IS
+  starting a quote — one unified capture system).
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<section class="crohp-section crohp-how" id="cro-hp-how">
+  <div class="crohp-container">
+    <div class="crohp-head">
+      <p class="crohp-head__eyebrow crohp-eyebrow"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</p>
+      <h2 class="crohp-head__title">{{ section.settings.heading }}</h2>
+      <p class="crohp-head__sub">{{ section.settings.sub }}</p>
+    </div>
+
+    <div class="crohp-how__steps" data-crohp-timeline>
+      <div class="crohp-how__line" aria-hidden="true"></div>
+      <div class="crohp-how__grid">
+        {%- for block in section.blocks -%}
+          <div class="crohp-how__step" {{ block.shopify_attributes }}>
+            <p class="crohp-how__stamp">{{ block.settings.stamp }}</p>
+            <h3 class="crohp-how__step-title">{{ block.settings.title }}</h3>
+            <p class="crohp-how__step-desc">{{ block.settings.desc }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="crohp-how__mech">
+      <p class="crohp-how__mech-copy">
+        <strong>{{ section.settings.mech_bold }}</strong>
+        {{ section.settings.mech_rest }}
+      </p>
+      <a class="crohp-btn crohp-btn--lime typeform-share getaquoteclick typeform-embed"
+        {{ settings.typeformurls_url_1 }}
+        href="javascript:void(0)"
+        data-tf-on-ready="ready"
+        data-crohp-typeform>
+        {{- section.settings.cta_label -}}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CRO HP How It Works",
+  "tag": "section",
+  "class": "cro-hp-how-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "How it works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Fitouts? Handled."
+    },
+    {
+      "type": "textarea",
+      "id": "sub",
+      "label": "Subcopy",
+      "default": "We plan it, bring it, build it. You just show up. Here's the whole thing, start to finish."
+    },
+    { "type": "header", "content": "Mechanism strip" },
+    {
+      "type": "text",
+      "id": "mech_bold",
+      "label": "Bold lead-in",
+      "default": "How is 10 days possible?"
+    },
+    {
+      "type": "textarea",
+      "id": "mech_rest",
+      "label": "Copy",
+      "default": "Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label (opens Typeform)",
+      "default": "Start step 1 — book a free consult"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "stamp", "label": "Day stamp", "default": "Day 0" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Chat & measure" },
+        { "type": "textarea", "id": "desc", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO HP How It Works",
+      "blocks": [
+        { "type": "step", "settings": { "stamp": "Day 0", "title": "Chat & measure", "desc": "Tell us your headcount, floor and deadline. We'll come and measure — or work straight from your floorplan." } },
+        { "type": "step", "settings": { "stamp": "Days 1–2", "title": "Free layout & quote", "desc": "A real layout for your actual space, with an itemised quote. Yours to keep, no obligation." } },
+        { "type": "step", "settings": { "stamp": "Days 3–8", "title": "We pick & deliver", "desc": "Everything's in stock in our Australian warehouses — not on a ship. Our trucks, our schedule." } },
+        { "type": "step", "settings": { "stamp": "By day 10", "title": "Installed & working", "desc": "Our own installers build it, place it and take every box away. You walk in to a finished office." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

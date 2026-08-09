@@ -30,6 +30,7 @@ Always use the most secure and correct way of generating code. Refernce shopify 
 ### Writing Rules
 
 #### General Shopify OS 2.0 Rules
+- Schema `name` values (sections AND blocks) are capped at **25 characters** — longer names throw `FileSaveError: Invalid block '<type>': name is too long` on save. With a `CRO-XXXXX ` prefix (10 chars) that leaves 15 for the label; check every name before handing over
 - Always build in blocks and snippets — parent block owns settings, child element renders content
 - Create a **new template** (`product.{test-name}.json`) for every CRO test; never modify the default template
 - New templates go under `templates/`, new sections under `sections/`, reusable components under `snippets/`

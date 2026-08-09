@@ -69,7 +69,27 @@
 			document.body.classList.add(variation_name);
 		}
 
+		var testPaths = ['/category', '/extra-time-deals', '/everyday-essentials', '/clearance-sale'];
+
+		function onTestPage() {
+			var p = window.location.pathname;
+			for (var i = 0; i < testPaths.length; i++) {
+				if (p.indexOf(testPaths[i]) !== -1) return true;
+			}
+			return false;
+		}
+
 		function init() {
+			// FIX: init re-fires on every locationchange/popstate — the restore poll
+			// must not re-add the class off the test pages (homepage shares this DOM)
+			if (!onTestPage()) {
+				if (restoreInterval) {
+					clearInterval(restoreInterval);
+					restoreInterval = null;
+				}
+				document.body.classList.remove(variation_name);
+				return;
+			}
 			applyBodyClass();
 
 			// FIX: Late hydration restore — React/Next.js wipes body classes ~2s after

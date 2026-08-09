@@ -1,0 +1,22 @@
+{% comment %}
+  CRO-12473 — B1 brand-trust line (server-rendered in the Sprint 2 mount).
+  Only rendered for zero-review products (the section gates on
+  product.metafields.reviews.rating_count < 1). cro-12473-pdp.js appends
+  this into .product-block--rating — the slot the (absent) star rating
+  would occupy, so products WITH reviews keep their real stars untouched.
+
+  @param trust_text {String} the trust line copy (section setting)
+{% endcomment %}
+<div class="cro-12473-trust" data-cro-12473-trust-line style="display: none;">
+  <svg
+    class="cro-12473-trust__icon"
+    width="15"
+    height="15"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#008080"
+    stroke-width="2"
+    aria-hidden="true"
+  ><path d="M12 2 4 6v6c0 5 3.5 7.5 8 10 4.5-2.5 8-5 8-10V6l-8-4z"/></svg>
+  <span>{{ trust_text | default: 'Verkoop & versend deur Maroela-mark — jou bestelling is veilig.' }}</span>
+</div>

@@ -1,0 +1,12 @@
+{% comment %}
+  CRO-12473 — A3 short description (server-rendered in the Sprint 2 mount).
+  cro-12473-pdp.js moves this into .product-block--short_desc (beneath the
+  price). The content is the entry-content part of the product description;
+  the long remainder renders in the cro-12473-description section below the
+  buy box, so nothing is duplicated.
+
+  @param short_html {String} inner HTML of the description's entry-content div
+{% endcomment %}
+<div class="cro-12473-shortdesc rte" data-cro-12473-short-desc style="display: none;">
+  {{ short_html }}
+</div>

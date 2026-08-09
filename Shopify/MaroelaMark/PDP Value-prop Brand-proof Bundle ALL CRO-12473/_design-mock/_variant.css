@@ -1,0 +1,87 @@
+/* CRO-12378 PDP Sprint 2 — variant styles (namespaced ig-pdp2-*) */
+.ig-pdp2-hide { display: none !important; }
+
+/* A1 — value-prop line */
+.ig-pdp2-vp {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px; line-height: 1.45; font-weight: 600;
+  color: #2f6f6f; margin: 2px 0 10px; max-width: 36em;
+}
+
+/* B — brand-trust line in the (empty) rating slot */
+.ig-pdp2-trust {
+  display: flex; align-items: center; gap: 7px;
+  font-family: "Nunito Sans", sans-serif; font-size: 13.5px; color: #737373;
+  margin-bottom: 4px;
+}
+.ig-pdp2-trust svg { flex: 0 0 auto; }
+
+/* A2 — description relocated to its own full-width section below the buy box */
+.ig-pdp2-desc-section { background: #fff; padding: 8px 0 4px; }
+.ig-pdp2-desc-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+.ig-pdp2-desc-title {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 22px; font-weight: 700; color: #1d1d1d; margin: 0 0 14px;
+}
+.ig-pdp2-desc-section .product-block--description { margin: 0; }
+/* clear hierarchy: section title (22px) > product name (17px) > body (15px) */
+.ig-pdp2-desc-section .product-description h3 {
+  font-size: 17px; font-weight: 700; color: #1d1d1d; margin: 4px 0 8px;
+}
+.ig-pdp2-desc-section .product-description p,
+.ig-pdp2-desc-section .product-description li {
+  font-size: 15px; line-height: 1.55; color: #3d3d3d;
+}
+.ig-pdp2-desc-section .product-description strong { color: #1d1d1d; }
+
+/* A3 — short description surfaced beneath the price */
+.ig-pdp2-shortdesc {
+  font-family: "Nunito Sans", sans-serif; font-size: 15px; line-height: 1.5;
+  color: #4a4a4a; margin: 8px 0 14px; max-width: 40em;
+}
+.ig-pdp2-shortdesc p { margin: 0; }
+
+/* C — bundle module */
+.ig-pdp2-bundle {
+  border: 1px solid #e5e4e4; border-radius: 6px; padding: 16px;
+  margin: 18px 0 4px; font-family: "Nunito Sans", sans-serif;
+}
+.ig-pdp2-b-head { font-size: 16px; font-weight: 700; color: #484848; margin-bottom: 12px; }
+.ig-pdp2-b-row {
+  display: flex; align-items: center; gap: 12px; padding: 8px 0;
+  border-top: 1px solid #f0efef; cursor: pointer;
+}
+.ig-pdp2-b-row:first-of-type { border-top: none; }
+.ig-pdp2-b-this { cursor: default; }
+.ig-pdp2-b-cb { width: 17px; height: 17px; accent-color: #008080; flex: 0 0 auto; }
+.ig-pdp2-b-this input { width: 17px; height: 17px; accent-color: #008080; flex: 0 0 auto; }
+.ig-pdp2-b-img { width: 46px; height: 46px; object-fit: cover; border-radius: 4px; flex: 0 0 auto; background:#f6f6f6; }
+.ig-pdp2-b-name { flex: 1 1 auto; font-size: 14.5px; color: #1d1d1d; line-height: 1.3; }
+.ig-pdp2-b-name em { color: #999; font-style: normal; font-size: 12.5px; }
+.ig-pdp2-b-price { font-size: 14.5px; font-weight: 700; color: #1d1d1d; white-space: nowrap; }
+.ig-pdp2-b-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 14px; flex-wrap: wrap;
+}
+.ig-pdp2-b-total { font-size: 15px; color: #484848; }
+.ig-pdp2-b-total strong { font-size: 18px; color: #1d1d1d; }
+.ig-pdp2-b-add {
+  background: #E99114; color: #fff; border: none; border-radius: 3px;
+  padding: 13px 20px; font-family: "Nunito Sans", sans-serif; font-size: 15px;
+  font-weight: 700; cursor: pointer; flex: 1 1 auto; min-width: 200px;
+}
+.ig-pdp2-b-add:hover { background: #d2820f; }
+.ig-pdp2-b-note { font-size: 13px; color: #737373; margin-top: 10px; }
+
+/* corner label (mock only) */
+.ig-pdp2-label {
+  position: fixed; right: 12px; bottom: 12px; z-index: 99999;
+  background: #1d1d1d; color: #fff; font: 600 12px/1 "Nunito Sans", sans-serif;
+  padding: 7px 11px; border-radius: 4px; opacity: .82;
+}
+
+@media (max-width: 768px) {
+  .ig-pdp2-b-add { width: 100%; }
+  .ig-pdp2-desc-inner { padding: 0 16px; }
+  .ig-pdp2-desc-title { font-size: 19px; }
+}

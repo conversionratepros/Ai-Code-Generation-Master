@@ -1,0 +1,207 @@
+{% comment %}
+  CRO-HP — S6 Pricing guide + estimator. Board node 2:187.
+  QA 4.8 (must-fix): ALL tier figures are placeholders. Bands go live
+  ONLY with sales-owned numbers quoting can honour. Fallback = static
+  bands only: untick "Show estimator".
+  Estimator behaviour: the three answers save to sessionStorage and
+  pass into the sitewide Typeform popup as hidden fields
+  (headcount / city / timeframe — create them in the Typeform too).
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<section class="crohp-section crohp-cost" id="cro-hp-pricing">
+  <div class="crohp-container">
+    <div class="crohp-head">
+      <p class="crohp-head__eyebrow crohp-eyebrow"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</p>
+      <h2 class="crohp-head__title" style="max-width:730px;">{{ section.settings.heading }}</h2>
+      <p class="crohp-head__sub" style="max-width:775px;">{{ section.settings.sub }}</p>
+    </div>
+
+    <div class="crohp-cost__tiers">
+      {%- for block in section.blocks -%}
+        <div class="crohp-cost__tier" {{ block.shopify_attributes }}>
+          {%- if block.settings.tag != blank -%}
+            <span class="crohp-cost__tag">{{ block.settings.tag }}</span>
+          {%- endif -%}
+          <p class="crohp-cost__tier-eyebrow">{{ block.settings.band }}</p>
+          <p class="crohp-cost__price">{{ block.settings.price }}</p>
+          <p class="crohp-cost__summary">{{ block.settings.summary }}</p>
+          {%- assign items = block.settings.bullets | newline_to_br | split: '<br />' -%}
+          <ul class="crohp-cost__bullets">
+            {%- for item in items -%}
+              {%- assign line = item | strip -%}
+              {%- if line != blank -%}
+                <li class="crohp-cost__bullet">{{ line }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.show_estimator -%}
+      <div class="crohp-cost__estimator" data-crohp-estimator>
+        <p class="crohp-cost__est-copy">
+          <strong>{{ section.settings.est_lead }}</strong>
+          {{ section.settings.est_copy }}
+        </p>
+        <form class="crohp-cost__est-form" novalidate>
+          <select class="crohp-cost__select" name="crohp-headcount" aria-label="Headcount">
+            <option value="" disabled selected>Headcount</option>
+            {%- assign opts = section.settings.headcount_options | split: ',' -%}
+            {%- for opt in opts -%}
+              <option value="{{ opt | strip | escape }}">{{ opt | strip }}</option>
+            {%- endfor -%}
+          </select>
+          <select class="crohp-cost__select" name="crohp-city" aria-label="City">
+            <option value="" disabled selected>City</option>
+            {%- assign opts = section.settings.city_options | split: ',' -%}
+            {%- for opt in opts -%}
+              <option value="{{ opt | strip | escape }}">{{ opt | strip }}</option>
+            {%- endfor -%}
+          </select>
+          <select class="crohp-cost__select" name="crohp-timeframe" aria-label="Timeframe">
+            <option value="" disabled selected>Timeframe</option>
+            {%- assign opts = section.settings.timeframe_options | split: ',' -%}
+            {%- for opt in opts -%}
+              <option value="{{ opt | strip | escape }}">{{ opt | strip }}</option>
+            {%- endfor -%}
+          </select>
+          <button type="submit" class="crohp-btn crohp-btn--lime" style="font-size:18px;">
+            {{- section.settings.est_button -}}
+            <span class="crohp-btn__arrow">
+              <svg width="20" height="8" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
+            </span>
+          </button>
+          {%- comment -%} Hidden Typeform trigger the JS clicks after saving answers {%- endcomment -%}
+          <a class="typeform-share getaquoteclick typeform-embed"
+            {{ settings.typeformurls_url_1 }}
+            href="javascript:void(0)"
+            data-tf-on-ready="ready"
+            data-crohp-typeform
+            hidden
+            aria-hidden="true"
+            tabindex="-1"></a>
+        </form>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CRO HP Pricing",
+  "tag": "section",
+  "class": "cro-hp-pricing-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Pricing guide"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What does a fitout cost? Roughly this."
+    },
+    {
+      "type": "textarea",
+      "id": "sub",
+      "label": "Framing line",
+      "default": "Every office is different — but here's where most projects land, so there are no surprises. All figures include delivery and install.",
+      "info": "Board draft alternative: \"Whether it's four desks or four floors, here's where most setups land — so there are no surprises. Every figure includes delivery and install.\""
+    },
+    { "type": "header", "content": "Estimator (lime panel)" },
+    {
+      "type": "checkbox",
+      "id": "show_estimator",
+      "label": "Show estimator",
+      "default": true,
+      "info": "QA 4.8 fallback: untick for static bands only"
+    },
+    {
+      "type": "text",
+      "id": "est_lead",
+      "label": "Bold lead",
+      "default": "Want a sharper number?"
+    },
+    {
+      "type": "textarea",
+      "id": "est_copy",
+      "label": "Copy",
+      "default": "Answer three quick questions and we'll pre-fill your enquiry — a real person comes back with an indicative range, not a sales pitch."
+    },
+    {
+      "type": "text",
+      "id": "est_button",
+      "label": "Button label",
+      "default": "Get my estimate"
+    },
+    {
+      "type": "text",
+      "id": "headcount_options",
+      "label": "Headcount options (comma-separated)",
+      "default": "1–10, 11–30, 30+"
+    },
+    {
+      "type": "text",
+      "id": "city_options",
+      "label": "City options (comma-separated)",
+      "default": "Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Other"
+    },
+    {
+      "type": "text",
+      "id": "timeframe_options",
+      "label": "Timeframe options (comma-separated)",
+      "default": "ASAP, Within a month, 1–3 months, Just planning"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Pricing tier",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Highlight tag (mustard pill)", "info": "e.g. Most common — leave blank for none" },
+        { "type": "text", "id": "band", "label": "Band label", "default": "Just starting · 1–10 people" },
+        { "type": "text", "id": "price", "label": "Price", "default": "from ~$5k", "info": "QA 4.8: placeholder — go live only with sales-owned numbers" },
+        { "type": "text", "id": "summary", "label": "One-line summary", "default": "A few desks, done properly." },
+        { "type": "textarea", "id": "bullets", "label": "Inclusions (one per line)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO HP Pricing",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "band": "Just starting · 1–10 people", "price": "from ~$5k", "summary": "A few desks, done properly.",
+            "bullets": "Workstations & task seating\nStorage & a meeting setting\nFree layout plan\nDelivered & installed"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "tag": "Most common",
+            "band": "Growing team · 10–30 people", "price": "from ~$12k", "summary": "Room to grow into.",
+            "bullets": "Full layout design\nWorkstations, meeting & breakout\nAcoustics & privacy pods\nDedicated project manager\nDelivered & installed"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "band": "Big move · 30+", "price": "Let's talk", "summary": "Tailored to the project.",
+            "bullets": "Senior project management\nStaged, after-hours installs\nProcurement & compliance support\nMake-good coordination"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

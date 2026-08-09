@@ -195,6 +195,7 @@
       var dataItems = page && Array.isArray(page.items) ? page.items : null;
 
       var afterEl = null;
+      var confident = false;
       var shopMoreEls = buildShopMoreEls();
 
       if (dataItems) {
@@ -248,6 +249,9 @@
           } else {
             if (matchedCard) afterEl = findRowEndEl(matchedCard);
           }
+          // Only a position derived from the target product's actual card is
+          // authoritative; the positional group fallback below is not.
+          confident = !!(matchedCard && afterEl);
         }
       }
 
@@ -260,13 +264,19 @@
         cleanupShopMoreEls(shopMoreEls);
       }
 
-      return afterEl;
+      return { el: afterEl, confident: confident };
     }
 
     // Idempotent: computes the desired position and only touches the DOM when
     // the banner is missing or in the wrong place. An existing banner is taken
     // out of flow during measurement so it can't distort the very rows it is
     // being validated against (a mid-row banner reshapes every row after it).
+    //
+    // Sticky rules for virtualised lists (clearance unmounts/remounts card
+    // wrappers on scroll): fallback positions may CREATE the banner but never
+    // MOVE it, and when the target card is temporarily out of the DOM the
+    // banner stays exactly where it is. Only a confident position — derived
+    // from the target product's actual card — may relocate an existing banner.
     function placeBanner(allowVisualFallback) {
       var existing = document.querySelector("[" + CRO.bannerAttr + "]");
       var prevDisplay = "";
@@ -275,24 +285,46 @@
         existing.style.display = "none";
       }
 
-      var afterEl = computeAfterEl(allowVisualFallback);
+      var result = computeAfterEl(allowVisualFallback && !existing);
+      var afterEl = result.el;
 
-      if (!afterEl) {
-        if (existing) existing.style.display = prevDisplay;
+      if (existing) {
+        if (!afterEl || !result.confident || existing.previousElementSibling === afterEl) {
+          existing.style.display = prevDisplay;
+          return true;
+        }
+      } else if (!afterEl) {
         return false;
-      }
-
-      if (existing && existing.previousElementSibling === afterEl) {
-        existing.style.display = prevDisplay;
-        return true;
       }
 
       removeExistingBanners();
       var parentDisplay = afterEl.parentElement ? window.getComputedStyle(afterEl.parentElement).display : "";
       var isFlexItem = parentDisplay.indexOf("flex") !== -1;
       afterEl.insertAdjacentElement("afterend", createBannerNode(isFlexItem));
+      watchBannerContainer();
       if (debug) console.log("[CRO-8037] banner placed after:", afterEl);
       return true;
+    }
+
+    // Re-validate placement whenever the banner's container gains or loses
+    // children — this is exactly when a virtualised list mounts/unmounts card
+    // wrappers, and it also restores the banner if the site removes it. Runs
+    // indefinitely (unlike the settle interval); the sticky rules above stop
+    // it from ever chasing the scroll position.
+    var observedContainer = null;
+    function watchBannerContainer() {
+      var banner = document.querySelector("[" + CRO.bannerAttr + "]");
+      var container = banner && banner.parentElement;
+      if (!container || container === observedContainer) return;
+      if (window.__cro8037Observer) window.__cro8037Observer.disconnect();
+      var debounceTimer = null;
+      var observer = new MutationObserver(function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () { placeBanner(false); }, 200);
+      });
+      observer.observe(container, { childList: true });
+      window.__cro8037Observer = observer;
+      observedContainer = container;
     }
 
     function init() {

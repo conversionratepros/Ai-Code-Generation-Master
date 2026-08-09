@@ -47,6 +47,32 @@ When a CRO spec calls for a merchant-editable repeating tile list (image + text 
 | CRO-12359 | PDP V2 — USPs, keep shipping table | `templates/product.crp.json` → `sections/main-product_crp.liquid` | V2 of the PDP buy-box test: in-place edit of the existing crp variant template (shipping `<details>` now `open` by default; USP row-1 word now category-mapped via `get_product_category`, office-chairs → "Ergonomic", fallback "Modular"; over-$10k quote link switched to settings-driven Typeform attrs) |
 | CRO-12526 | Full Page — PDP Redesign Buy-first | `templates/product.cro-12526.json` → `sections/cro-12526-main-product.liquid` | Full PDP redesign, buy-first buy box (Add to Cart primary, Add to Quote demoted to secondary — opposite emphasis from CRO-12170/12359's quote-first crp lineage). New sections for Complete the setup, About us, Planning a whole office, Showrooms; `product-compare.liquid` forked (same pattern as CRO-12359: template-gate line + light copy edits) rather than a from-scratch compare section |
 | CRO-12526 (v2) | Full Page — PDP Redesign Buy-first, fresh rebuild | `templates/product.cro-12526-v2.json` → `sections/cro-12526-v2-main-product.liquid` | Section-by-section rebuild (2026-07-26, top section done: breadcrumb/meta, gallery, buy box; tabs verbatim). Fixes two v1 data-model mistakes (see "JasonL PDP option model" below); price/freight updates now via the theme's own `PUB_SUB_EVENTS.variantChange` pub/sub instead of price-text regex. Remaining page sections pending design hand-offs. |
+| CRO-HP (ticket TBC) | Homepage Redesign \| All | `templates/index.cro-hp.json` → 12 `cro-hp-*` sections | Full ten-beat homepage rebuild (hero → proof band → how-it-works → interior design → case studies → pricing+estimator → furniture door → people → showrooms → final ask → own footer + mobile sticky bar). Shared `cro-hp.css/js` design system |
+
+## Full-template homepage builds (CRO-HP findings)
+
+- **Template JSON must instantiate blocks explicitly.** Section-schema `presets` only
+  apply when a merchant adds the section in the theme editor — a `templates/index.*.json`
+  entry gets NO preset blocks. Every repeatable block (trust items, stats, logos, steps,
+  tiers, chips, cards) must be written into the template JSON with ids + `block_order`.
+- **Replacing the theme footer per-template:** theme.liquid renders `{% section 'footer-custom' %}`
+  on every page; an alternate template can't remove it. Hide it with CSS scoped to the
+  template body class (`body.index-cro-hp .footer-wrapper { display:none !important }` —
+  body-classes.liquid emits `{{template.name}}-{{template.suffix}}` for free) and render a
+  custom footer section as the last template section.
+- **Typeform popup with dynamic hidden fields:** embed.js binds `data-tf-popup` elements at
+  load and captures config then — editing `data-tf-hidden` later is unreliable. Deterministic
+  path: capture-phase document click listener on the trigger → `e.preventDefault()/stopPropagation()`
+  → `window.tf.createPopup(formId, { hidden: {...} }).open()` (formId read off the element's
+  `data-tf-popup`, which `{{ settings.typeformurls_url_1 }}` renders). Keep the stock
+  `typeform-share getaquoteclick` classes so existing GA bindings keep firing, and fall back
+  to the native binding when no dynamic values exist.
+- **Scroll-in animations must be no-JS safe:** apply the hidden start-state class from JS
+  (`el.classList.add('crohp-anim-ready')`) rather than in base CSS, so a script failure never
+  leaves content invisible. `prefers-reduced-motion` renders final state immediately.
+- **Board SVG exports are the colour source of truth** — this board's mustard (#EDBC3A) and
+  band black (#1B1C15) don't match the spec text's colour assignments; curl the asset SVGs and
+  read the fills before writing tokens (same lesson as the SVG-inspection rule).
 
 ## The `cro-12526` PDP Buy-first Template
 

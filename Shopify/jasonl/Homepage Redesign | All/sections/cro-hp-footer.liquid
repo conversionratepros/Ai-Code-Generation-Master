@@ -1,0 +1,124 @@
+{% comment %}
+  CRO-HP — S11 Footer. Board node 2:7. Black; fitout journey leads the
+  link columns ahead of the shop taxonomy, then company links + contact.
+  The theme's own footer (footer-custom / .footer-wrapper) is hidden on
+  this template via cro-hp.css (body.index-cro-hp scope) and this
+  section renders as the last template section instead.
+  Fitout-journey links with no URL set fall back to on-page anchors.
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+
+<footer class="crohp-section crohp-footer">
+  <div class="crohp-container">
+    <div class="crohp-footer__grid">
+      <div>
+        {%- if section.settings.logo != blank -%}
+          <img class="crohp-footer__logo" src="{{ section.settings.logo | image_url: width: 270 }}" alt="{{ shop.name | escape }}" loading="lazy" width="135" height="42">
+        {%- else -%}
+          <img class="crohp-footer__logo" src="{{ 'cro-hp-logo.svg' | asset_url }}" alt="{{ shop.name | escape }}" loading="lazy" width="135" height="42">
+        {%- endif -%}
+        <p class="crohp-footer__about">{{ section.settings.about }}</p>
+        {%- if section.settings.rating_line != blank -%}
+          <p class="crohp-footer__rating">
+            <svg width="15" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .9l3.05 7.33 7.9.63-6.02 5.16 1.84 7.72L12 17.6l-6.77 4.14 1.84-7.72L1.05 8.86l7.9-.63L12 .9z" fill="#C6D644"/></svg>
+            {{ section.settings.rating_line }}
+          </p>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          <p class="crohp-footer__col-title">{{ block.settings.title }}</p>
+          <ul class="crohp-footer__links">
+            {%- for n in (1..6) -%}
+              {%- liquid
+                assign label_key = 'label' | append: n
+                assign url_key = 'url' | append: n
+                assign label = block.settings[label_key]
+                assign url = block.settings[url_key]
+              -%}
+              {%- if label != blank -%}
+                {%- if url == blank -%}
+                  {%- comment -%} Fitout-journey anchors as self-healing fallbacks {%- endcomment -%}
+                  {%- assign label_handle = label | handleize -%}
+                  {%- case label_handle -%}
+                    {%- when 'how-it-works' -%}{%- assign url = '#cro-hp-how' -%}
+                    {%- when 'interior-design' -%}{%- assign url = '#cro-hp-interior' -%}
+                    {%- when 'case-studies' -%}{%- assign url = '#cro-hp-cases' -%}
+                    {%- when 'pricing-guide' -%}{%- assign url = '#cro-hp-pricing' -%}
+                    {%- when 'book-a-showroom-visit' -%}{%- assign url = '#cro-hp-showrooms' -%}
+                    {%- when 'all-furniture' -%}{%- assign url = routes.all_products_collection_url -%}
+                    {%- else -%}{%- assign url = '#' -%}
+                  {%- endcase -%}
+                {%- endif -%}
+                <li><a href="{{ url }}">{{ label }}</a></li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "CRO HP Footer",
+  "tag": "section",
+  "class": "cro-hp-footer-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Blank = bundled board export"
+    },
+    {
+      "type": "textarea",
+      "id": "about",
+      "label": "About text",
+      "default": "JasonL® is Australian owned and operated. We design, deliver and install office fitouts and furniture Australia-wide — Sydney, Melbourne, Brisbane, Perth, Adelaide and Canberra."
+    },
+    {
+      "type": "text",
+      "id": "rating_line",
+      "label": "Rating line",
+      "default": "4.8 on Google  •  1,900+ reviews",
+      "info": "QA rule: numbers must be real — keep in sync with the hero trust strip"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Link column",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Column title", "default": "Fitouts" },
+        { "type": "text", "id": "label1", "label": "Link 1 label" },
+        { "type": "url", "id": "url1", "label": "Link 1 URL" },
+        { "type": "text", "id": "label2", "label": "Link 2 label" },
+        { "type": "url", "id": "url2", "label": "Link 2 URL" },
+        { "type": "text", "id": "label3", "label": "Link 3 label" },
+        { "type": "url", "id": "url3", "label": "Link 3 URL" },
+        { "type": "text", "id": "label4", "label": "Link 4 label" },
+        { "type": "url", "id": "url4", "label": "Link 4 URL" },
+        { "type": "text", "id": "label5", "label": "Link 5 label" },
+        { "type": "url", "id": "url5", "label": "Link 5 URL" },
+        { "type": "text", "id": "label6", "label": "Link 6 label" },
+        { "type": "url", "id": "url6", "label": "Link 6 URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO HP Footer",
+      "blocks": [
+        { "type": "column", "settings": { "title": "Fitouts", "label1": "How it works", "label2": "Interior design", "label3": "Case studies", "label4": "Pricing guide", "label5": "Book a showroom visit" } },
+        { "type": "column", "settings": { "title": "Shop", "label1": "Chairs", "label2": "Desks", "label3": "Workstations", "label4": "Storage", "label5": "All furniture" } },
+        { "type": "column", "settings": { "title": "Company", "label1": "About us", "label2": "Reviews", "label3": "Careers", "label4": "Shipping & returns", "label5": "Contact" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

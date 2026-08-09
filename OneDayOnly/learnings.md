@@ -114,6 +114,7 @@ ODO specs now come as HTML previews at `design.conversionratepros.co.za/onedayon
 - **Page data:** `pageProps.(categoryPage|shopPage|clearanceSale).items[].props.items` — the arrays contain **null/dead slots** (expired deals) that never render a card. Always filter `p && p.id` before counting products. `prod.id` is the slug and appears in card hrefs (`/products/<id>`).
 - **`window.__NEXT_DATA__` goes stale after SPA navigation** — read live props via `window.next.router.components[router.route].props.pageProps` with a `__NEXT_DATA__` fallback.
 - **Cards mount progressively after first paint.** Anything computing visual rows must keep re-validating for several seconds and must measure the flex-item **wrappers**, not the cards — wrappers occupy layout before card content paints (cards report height 0 while mounting).
+- **Clearance-sale virtualises the list on scroll**: card wrappers are unmounted as they leave the viewport region and replaced with spacer `<div>`s (DOM card count hovers ~24–60 out of ~500); scrolled-past cards *remount* when you scroll back. Foreign injected nodes are left alone by React and keep their absolute position next to the spacers. Consequence for injected content: never let a position fallback that counts *rendered* cards relocate an already-placed element (it will chase the scroll position); pin placement and only move it when the anchor product's card is actually in the DOM. A `MutationObserver({childList:true})` on the injected node's container fires exactly on virtualisation mount/unmount cycles.
 
 ---
 

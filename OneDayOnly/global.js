@@ -184,6 +184,67 @@
                 document.querySelector('html').setAttribute('pagePath', location);
             }, 25, 15000)
         }
+        /* Login / logout check — "signedIn" | "signedOut" | null while unknown.
+           ODO pushes a user object ({ userStatus, userID, ... }) with the page_load
+           event on every page; scan the dataLayer backwards for the latest one. */
+        function cro_getUserStatus() {
+            try {
+                var dl = window.dataLayer || [];
+                for (var i = dl.length - 1; i >= 0; i--) {
+                    if (dl[i] && dl[i].user && dl[i].user.userStatus) {
+                        return dl[i].user.userStatus;
+                    }
+                }
+            } catch (e) { }
+            return null;
+        }
+
+        /* Poll until the dataLayer user object lands (it arrives with page_load,
+           which can lag hydration), then hand the status to the trigger. */
+        function cro_waitForUserStatus(trigger, delayInterval, delayTimeout) {
+            var interval = setInterval(function () {
+                var status = cro_getUserStatus();
+                if (status) {
+                    clearInterval(interval);
+                    trigger(status);
+                }
+            }, delayInterval || 50);
+            setTimeout(function () {
+                clearInterval(interval);
+            }, delayTimeout || 15000);
+        }
+
+        /* Homepage guard — the Convert snippet now loads on '/', which shares the
+           product-card DOM with the category tabs. Any PLP/PDP test body class that
+           rides along on an SPA navigation gets stripped here; experiment CSS is
+           gated on these classes. Runs every 500ms for 10s to outlast experiment
+           scripts that re-apply their own class after navigation. */
+        function cro_homepageSweep() {
+            if (window.location.pathname !== '/') return;
+            var sweeps = 0;
+            var interval = setInterval(function () {
+                if (window.location.pathname !== '/') {
+                    clearInterval(interval);
+                    return;
+                }
+                document.body.classList.remove(
+                    'CRO-8037_Banner_After_Every_4th_Row',
+                    'cro-ki69',
+                    'cro-t-odo-10225',
+                    'cro-t-odo-12114',
+                    'cro-t-odo-10185',
+                    'cro-t-odo-12212',
+                    'cro-12280',
+                    'cro-12412',
+                    'cro-12412-login-tab',
+                    'cro_3_5_Working_Days',
+                    'cro_delivery_3_5',
+                    'cro_delivery_5_10',
+                    'cro_delivery_10_20'
+                );
+                if (++sweeps >= 20) clearInterval(interval);
+            }, 500);
+        }
 
         var experiments = {
             test_AddingDataPath() {
@@ -201,7 +262,9 @@
                 }
 
                 if (pathName == '/') {
-                    addingAttribute('home')
+                    /* 'homepage' is deliberately distinct from the category tabs'
+                       'home' — homepage tests must not match /category and vice versa */
+                    addingAttribute('homepage')
                 } else if (pathName.includes('/category')) {
                     addingAttribute('home')
                 } else if (pathName.includes('/extra-time-deals')) {
@@ -333,6 +396,12 @@
                     window._conv_q = window._conv_q || [];
                     window._conv_q.push(["executeExperiment", "1004196432"]);
                     console.log("Experiment Recipe | OOD | Product Card — Save % Tag Enhancement | ALL | CRO-12114 Activated");
+                } else {
+                    setTimeout(function () {
+                        if (document.querySelector('.cro-t-odo-12114')) {
+                            document.querySelector('body').classList.remove('cro-t-odo-12114');
+                        }
+                    }, 400)
                 }
             },
             test_PDP_FastShip_Highlight_ALL_CRO12089() {
@@ -441,6 +510,12 @@
                     window._conv_q = window._conv_q || [];
                     window._conv_q.push(["executeExperiment", "1004201385"]);
                     console.log("Experiment Product Card — Absolute Savings Line | CRO-10185 Activated");
+                } else {
+                    setTimeout(function () {
+                        if (document.querySelector('.cro-t-odo-10185')) {
+                            document.querySelector('body').classList.remove('cro-t-odo-10185');
+                        }
+                    }, 400)
                 }
             },
             test_OneClick_Checkout_V2_Revised_Button_Labels_CRO_10225() {
@@ -469,8 +544,73 @@
                     setTimeout(function () {
                         if (document.querySelector('.cro-t-odo-12212')) {
                             document.querySelector('body').classList.remove('cro-t-odo-12212');
+                            window.cro_12212 = false;
+
                         }
                     }, 400)
+                }
+            },
+            test_PDP_Shipping_GeoPersonalised_Delivery_ALL_CRO_12280() {
+                var pathName = window.location.href;
+                if (pathName.includes('/products')) {
+                    window.crotest_PDP_Shipping_GeoPersonalised_Delivery_ALL_CRO_12280 = 1;
+                    window._conv_q = window._conv_q || [];
+                    window._conv_q.push(["executeExperiment", "1004204444"]);
+                    console.log("Experiment PDP Shipping | Geo-Personalised Delivery | ALL | CRO-12280 Activated");
+                } else {
+                    setTimeout(function () {
+                        if (document.querySelector('.cro-12280')) {
+                            document.querySelector('body').classList.remove('cro-12280');
+                            window.cro_12280 = false;
+
+                        }
+                    }, 400)
+                }
+            }, test_Checkout_Equal_Weight_Login_vs_Guest_Entry_CRO12412() {
+                var path = window.location.pathname;
+                var searchParams = new URLSearchParams(window.location.search);
+
+                var isMainCheckout =
+                    path === "/checkout" &&
+                    !searchParams.has("step") &&
+                    !searchParams.has("isGuest");
+
+                var isGuestCartCheckout =
+                    path === "/checkout" &&
+                    searchParams.get("isGuest") === "true" &&
+                    searchParams.get("step") === "cart";
+
+                var isEntryStep = isMainCheckout || isGuestCartCheckout;
+
+                if (isEntryStep) {
+                    cro_waitForUserStatus(function (status) {
+                        if (status === "signedOut") {
+                            // lib.waitForElement('form input[name="password"]', function () {
+                            if (window.crotest_Checkout_Equal_Weight_Login_vs_Guest_CRO12412) {
+                                return;
+                            }
+
+                            window.crotest_Checkout_Equal_Weight_Login_vs_Guest_CRO12412 = 1;
+
+                            window._conv_q = window._conv_q || [];
+                            window._conv_q.push([
+                                "executeExperiment",
+                                "1004206164"
+                            ]);
+
+                            console.log(
+                                "Experiment AB Test Checkout Equal-Weight Login vs Guest Entry ALL CRO-12412 Activated"
+                            );
+                            // }, 25, 15000);
+                        }
+                    });
+                } else {
+                    setTimeout(function () {
+                        document.body.classList.remove(
+                            "cro-12412",
+                            "cro-12412-login-tab"
+                        );
+                    }, 400);
                 }
             }
         };
@@ -510,7 +650,9 @@
         experiments.test_OneClick_Checkout_V2_Revised_Button_Labels_CRO_10225();
         experiments.test_Product_Card_Absolute_Savings_Line_CRO10185();
         experiments.test_AB_Test_PDP_Buy_Box_Strikethrough_price_ALL();
-
+        experiments.test_PDP_Shipping_GeoPersonalised_Delivery_ALL_CRO_12280();
+        experiments.test_Checkout_Equal_Weight_Login_vs_Guest_Entry_CRO12412();
+        cro_homepageSweep();
 
         function activateListner() {
             experiments.test_AddingDataPath();
@@ -521,14 +663,16 @@
             experiments.test_Recipe_KI69_Improving_User_Experience_with_Category_Carousels();
             experiments.test_Recipe_KI55_Prominent_Add_To_Cart_Buttons_Green_ODO_Request_ALL_CRO6458();
             experiments.test_Recipe_OOD_Product_Card_Save_Tag_Enhancement_ALL_CRO_12114_Activated();
-            experiments.test_PDP_FastShip_Highlight_ALL_CRO12089();
+            /* Retired singles CRO-12089 / CRO-12281 must stay out of this list —
+               both are superseded by the combined 1004201173 experiment */
             experiments.test_i3_Advertise_XTD_page_with_banners_ALL_CRO8037();
-            experiments.test_PDP_Shipping_Fast_Ship_Dated_CRO12281()
             experiments.test_PDP_FastShip_Highlight_CRO12089_CRO12281();
             experiments.test_Product_Card_Absolute_Savings_Line_CRO10185();
             experiments.test_OneClick_Checkout_V2_Revised_Button_Labels_CRO_10225();
             experiments.test_AB_Test_PDP_Buy_Box_Strikethrough_price_ALL();
-
+            experiments.test_PDP_Shipping_GeoPersonalised_Delivery_ALL_CRO_12280();
+            experiments.test_Checkout_Equal_Weight_Login_vs_Guest_Entry_CRO12412();
+            cro_homepageSweep();
         }
 
         if (!window.cro_oneDayOnly_globalJS) {

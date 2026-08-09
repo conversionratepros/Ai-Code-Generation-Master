@@ -5,11 +5,21 @@
         var variation_name = "cro-12482";
 
         /*
-         * Old form ID (currently on the site): SPqugn2G
-         * New form ID (v2 — select list with open-text field): Xcco8a2p
+         * The theme (snippets/typeform-embed-manual.liquid) renders BOTH quote
+         * buttons server-side in each placement:
+         *   A (control): [data-tf-popup="SPqugn2G"] .get-a-quote-btn-a — old form
+         *   B (variant): [data-tf-popup="Xcco8a2p"] .get-a-quote-btn-b — new v2 form
+         * Both are initialised natively by the Typeform embed script, so the
+         * submit/ready tracking callbacks stay intact on B. The variant only
+         * toggles visibility via the theme's show-ab-a / show-ab-b classes —
+         * no cloning, no listener manipulation. Hiding A lives in variation.css
+         * with !important because site JS sets inline display on these buttons
+         * after the Typeform embed initialises.
+         * Selectors are keyed on data-tf-popup (not show-ab-*) so they keep
+         * matching after the site mutates the buttons' classes at runtime.
          */
-        var NEW_FORM_ID      = "Xcco8a2p";
-        var NEW_TYPEFORM_URL = "https://jsnl.typeform.com/to/" + NEW_FORM_ID;
+        var OLD_BTN = '.get-a-quote-btn-ab[data-tf-popup="SPqugn2G"]';
+        var NEW_BTN = '.get-a-quote-btn-ab[data-tf-popup="Xcco8a2p"]';
 
         /* ── Pure helper functions ── */
 
@@ -115,42 +125,41 @@
             setTimeout(function () { clearInterval(interval); }, 15000);
         }
 
-        /* ── Core: swap the Typeform popup form ID ── */
+        /* ── Core: toggle the server-rendered A/B quote buttons ── */
 
-        function updateQuoteButtons() {
-            var buttons = document.querySelectorAll('[data-tf-popup]');
-
-            buttons.forEach(function (oldBtn) {
-                if (oldBtn.getAttribute('data-cro12482')) return; /* double-inject guard */
-
-                /*
-                 * Clone the element to detach Typeform's registered click listeners,
-                 * then set the new form ID before re-inserting so Typeform re-initialises
-                 * with the correct form. The addEventListener acts as a fallback in case
-                 * Typeform does not re-initialise the cloned element.
-                 */
-                var newBtn = oldBtn.cloneNode(true);
-                newBtn.setAttribute('data-cro12482', '1');
-                newBtn.setAttribute('data-tf-popup', NEW_FORM_ID);
-
-                newBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    if (window.tf && typeof window.tf.createPopup === 'function') {
-                        window.tf.createPopup(NEW_FORM_ID).open();
-                    } else {
-                        window.open(NEW_TYPEFORM_URL, '_blank');
-                    }
-                });
-
-                oldBtn.parentNode.replaceChild(newBtn, oldBtn);
+        function swapQuoteButtons() {
+            document.querySelectorAll(OLD_BTN).forEach(function (btn) {
+                btn.classList.remove('show-ab-a');
             });
+
+            document.querySelectorAll(NEW_BTN).forEach(function (btn) {
+                btn.classList.remove('show-ab-a');
+                btn.classList.add('show-ab-b');
+                /* last resort if a placement ships no .show-ab-b display rule */
+                if (window.getComputedStyle(btn).display === 'none') {
+                    btn.style.setProperty('display', 'block', 'important');
+                }
+            });
+        }
+
+        function watchLateButtons() {
+            var observer = new MutationObserver(function () {
+                if (document.querySelector(NEW_BTN + ':not(.show-ab-b)')) {
+                    swapQuoteButtons();
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
         }
 
         /* ── Init ── */
 
         function init() {
-            addClass("body", variation_name);
-            waitForElement('[data-tf-popup]', updateQuoteButtons);
+            waitForElement(NEW_BTN, function () {
+                swapQuoteButtons();
+                /* body class after the swap so A hides and B shows in one paint */
+                addClass("body", variation_name);
+                watchLateButtons();
+            });
         }
 
         function croEventHandler() {

@@ -1,0 +1,11 @@
+{% comment %}
+  CRO-12473 — A1 value-prop line (server-rendered in the Sprint 2 mount).
+  cro-12473-pdp.js moves this into .product-block--value_prop (under the title).
+
+  @param value_prop {String} resolved copy (metafield custom.value_prop,
+    fallback: first sentence of the short description) — never blank here,
+    the section skips this render when there is no copy.
+{% endcomment %}
+<div class="cro-12473-vp" data-cro-12473-value-prop style="display: none;">
+  {{ value_prop | escape }}
+</div>

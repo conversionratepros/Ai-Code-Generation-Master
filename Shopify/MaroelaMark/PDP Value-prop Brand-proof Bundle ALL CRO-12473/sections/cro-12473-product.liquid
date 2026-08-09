@@ -1,0 +1,579 @@
+{% comment %}
+  CRO-12473 | PDP — Value-prop + Brand-proof + Bundle (Sprint 2)
+  ─────────────────────────────────────────────────────────────────────
+  New product template section for CRO testing. Stacks on top of the
+  Sprint 1 trust strip (CRO-12303) — that mount + assets are kept as-is.
+
+  Sprint 2 adds:
+    A1. Value-prop line under the title (metafield custom.value_prop,
+        fallback: first sentence of the short description)
+    A3. Short description surfaced beneath the price
+    A2. Long description REMOVED from the buy box (description block is
+        not in this template's block_order) and rendered by the new
+        cro-12473-description section directly below this one
+    B1. Brand-trust line in the empty rating slot (zero-review products)
+    B2. Zero-review Judge.me review section suppressed (server-gated CSS)
+    C.  "Gaan goed saam met" curated bundle below the ATC form
+
+  Architecture (same as CRO-12303):
+    1. Renders the product exactly as static-product does (no changes).
+    2. Server-renders the new elements in a hidden mount div.
+    3. cro-12473-pdp.js moves each into its positioned block wrapper
+       (value_prop / short_desc / bundle blocks render empty wrappers
+       via product.liquid at the exact block_order position).
+    4. section.blocks + settings drive content (theme editor editable).
+{% endcomment %}
+
+{% liquid
+  comment
+    Short-description source, in priority order (catalog audit 2026-08-06:
+    only 10 of 2 567 products have the authored entry-content shape; 2 458
+    are plain <p>-led HTML — those get the first-paragraph fallback so the
+    buy box does not lose its blurb on most of the catalogue):
+      1. custom.short_description product metafield (same convention as the
+         CRO-12257 Glutathione PDP build — per-product, content-managed)
+      2. entry-content div (authored "Short description:" shape)
+      3. first <p> paragraph, when the description starts with one and the
+         paragraph is short enough to read as a blurb (<= 350 chars text)
+      4. nothing (pre-blocks / heading-led / empty descriptions)
+    cro-12473-description.liquid applies the SAME split so the surfaced
+    part never duplicates below — keep the two files in sync.
+  endcomment
+  assign cro_desc = product.description | split: '<!-- more -->' | first
+  capture cro_short_mf
+    echo product.metafields.custom.short_description | metafield_tag
+  endcapture
+  assign cro_short_mf = cro_short_mf | strip
+  assign cro_short_html = ''
+  if cro_short_mf != blank
+    assign cro_short_html = cro_short_mf
+  elsif cro_desc contains '<div class="entry-content">'
+    assign cro_sd_parts = cro_desc | split: '<div class="entry-content">'
+    assign cro_short_html = cro_sd_parts[1] | split: '</div>' | first
+  else
+    assign cro_lead = cro_desc | strip | slice: 0, 3
+    if cro_lead == '<p>' or cro_lead == '<p '
+      assign cro_first_p = cro_desc | strip | split: '</p>' | first | append: '</p>'
+      assign cro_first_p_text = cro_first_p | strip_html | strip
+      if cro_first_p_text != blank and cro_first_p_text.size <= 350
+        assign cro_short_html = cro_first_p
+      endif
+    endif
+  endif
+
+  assign cro_value_prop = product.metafields.custom.value_prop.value | strip
+  if cro_value_prop == blank
+    assign cro_short_text = cro_short_html | strip_html | strip
+    assign cro_first_sentence = cro_short_text | split: '.' | first | strip
+    if cro_first_sentence.size >= 10 and cro_first_sentence.size <= 120
+      assign cro_value_prop = cro_first_sentence | append: '.'
+    endif
+  endif
+
+  assign cro_review_count = product.metafields.reviews.rating_count | default: 0
+%}
+
+<script
+  type="application/json"
+  data-section-type="static-product"
+  data-section-id="{{ section.id }}"
+  data-section-data
+>
+  {
+    "settings": {
+      "cart_redirection": {{ settings.enable_cart_redirection | json }},
+      "money_format": {{ shop.money_format | strip_html | json }},
+      "swatches_enable": {{ settings.swatches_enable | json }},
+      "sold_out_options": {{ settings.sold_out_options | json }},
+      "select_first_available_variant": {{ settings.select_first_available_variant | json }}
+    },
+    "context": {
+      "select_variant": {{ 'product.general.select_variant' | t | json }},
+      "product_available": {{ 'product.buttons.add_to_cart' | t | json }},
+      "product_sold_out": {{ 'product.buttons.sold_out' | t | json }},
+      "product_unavailable": {{ 'product.buttons.unavailable' | t | json }},
+      "product_preorder": {{ 'product.buttons.pre_order' | t | json }},
+      "request_message_empty": {{ 'product.blocks.request_quote.request_message_empty' | t | json }}
+    },
+    "product": {{ product | json }},
+    "product_recommendation_limit": null
+  }
+</script>
+
+{% render 'breadcrumbs' %}
+
+<section
+  class="product__container product__container--two-columns"
+  data-product-wrapper
+>
+  {%
+    render 'product',
+    is_product_modal: false,
+    show_dynamic_checkout_button: settings.show_dynamic_checkout_button,
+    select_first_available_variant: settings.select_first_available_variant,
+    gallery_aspect_ratio: section.settings.gallery_aspect_ratio,
+    gallery_thumbnail_position: section.settings.gallery_thumbnail_position,
+    gallery_thumbnail_layout: section.settings.gallery_thumbnail_layout,
+    gallery_image_crop: section.settings.gallery_image_crop,
+    gallery_click_to_zoom: section.settings.gallery_click_to_zoom,
+    gallery_hover_zoom: section.settings.gallery_hover_zoom,
+    gallery_video_autoplay: section.settings.gallery_video_autoplay,
+    gallery_video_looping: section.settings.gallery_video_looping
+  %}
+</section>
+
+{% comment %} ── Sprint 1 (CRO-12303) Trust Mount — unchanged ────────
+  The Sprint 1 snippets + assets already live in the theme; reuse
+  them verbatim so the trust strip appears in this variant too.
+{% endcomment %}
+<div data-cro-trust-mount aria-hidden="true">
+  {% render 'cro-12303-in-stock' %}
+  {% render 'cro-12303-payment-strip' %}
+  {% render 'cro-12303-usp-list' %}
+</div>
+
+{% comment %} ── CRO-12473 Sprint 2 Mount ─────────────────────────────
+  Elements are server-rendered here, then cro-12473-pdp.js moves each
+  into its empty positioned block wrapper (.product-block--value_prop,
+  .product-block--short_desc, .product-block--rating,
+  .product-block--bundle). Hidden until injection completes.
+{% endcomment %}
+<div
+  data-cro-12473-mount
+  aria-hidden="true"
+  {% if cro_review_count < 1 %}data-cro-no-reviews="true"{% endif %}
+>
+  {% if cro_value_prop != blank %}
+    {% render 'cro-12473-value-prop', value_prop: cro_value_prop %}
+  {% endif %}
+
+  {% if cro_short_html != blank %}
+    {% render 'cro-12473-short-desc', short_html: cro_short_html %}
+  {% endif %}
+
+  {% if cro_review_count < 1 %}
+    {% render 'cro-12473-trust-line', trust_text: section.settings.cro_trust_line %}
+  {% endif %}
+
+  {% render 'cro-12473-bundle', product: product %}
+</div>
+
+{% comment %} ── B2: suppress the empty review section (server-gated) ──
+  Only zero-review products get this rule. The apps section holding the
+  Judge.me review widget is the only .shopify-section containing
+  .jdgm-review-widget (the footer only carries a preview badge — do NOT
+  widen this selector to .jdgm-widget or the footer gets hidden).
+  cro-12473-pdp.js provides a fallback where :has() is unsupported.
+{% endcomment %}
+{% if cro_review_count < 1 %}
+  <style>
+    .shopify-section:has(.jdgm-review-widget) {
+      display: none !important;
+    }
+  </style>
+{% endif %}
+
+{{ 'cro-12303-buy-box.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-12303-buy-box.js' | asset_url }}" defer></script>
+
+{{ 'cro-12473-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-12473-pdp.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "CRO-12473 Product",
+  "class": "product--section section--canonical",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Gallery"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.product.paragraph_1.content"
+    },
+    {
+      "type": "select",
+      "id": "gallery_aspect_ratio",
+      "label": "t:sections.product.gallery_aspect_ratio.label",
+      "options": [
+        { "value": "natural", "label": "t:sections.product.gallery_aspect_ratio.option_1" },
+        { "value": "short",   "label": "t:sections.product.gallery_aspect_ratio.option_2" },
+        { "value": "square",  "label": "t:sections.product.gallery_aspect_ratio.option_3" },
+        { "value": "tall",    "label": "t:sections.product.gallery_aspect_ratio.option_4" }
+      ],
+      "default": "natural"
+    },
+    {
+      "type": "checkbox",
+      "id": "gallery_image_crop",
+      "label": "t:sections.product.gallery_image_crop.label",
+      "info": "t:sections.product.gallery_image_crop.info",
+      "default": false
+    },
+    {
+      "id": "gallery_thumbnail_position",
+      "type": "select",
+      "label": "t:sections.product.gallery_thumbnail_position.label",
+      "info": "t:sections.product.gallery_thumbnail_position.info",
+      "options": [
+        { "value": "below", "label": "t:sections.product.gallery_thumbnail_position.option_1" },
+        { "value": "left",  "label": "t:sections.product.gallery_thumbnail_position.option_2" }
+      ],
+      "default": "below"
+    },
+    {
+      "id": "gallery_thumbnail_layout",
+      "type": "select",
+      "label": "t:sections.product.gallery_thumbnail_layout.label",
+      "info": "t:sections.product.gallery_thumbnail_layout.info",
+      "options": [
+        { "value": "grid",     "label": "t:sections.product.gallery_thumbnail_layout.option_1" },
+        { "value": "carousel", "label": "t:sections.product.gallery_thumbnail_layout.option_2" }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "gallery_video_autoplay",
+      "label": "t:sections.product.gallery_video_autoplay.label",
+      "default": true,
+      "info": "t:sections.product.gallery_video_autoplay.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "gallery_video_looping",
+      "label": "t:sections.product.gallery_video_looping.label",
+      "default": true
+    },
+    {
+      "id": "gallery_hover_zoom",
+      "type": "select",
+      "label": "t:sections.product.gallery_hover_zoom.label",
+      "options": [
+        { "value": "disabled", "label": "t:sections.product.gallery_hover_zoom.option_1" },
+        { "value": "separate", "label": "t:sections.product.gallery_hover_zoom.option_2" },
+        { "value": "replace",  "label": "t:sections.product.gallery_hover_zoom.option_3" }
+      ],
+      "info": "t:sections.product.gallery_hover_zoom.info",
+      "default": "disabled"
+    },
+    {
+      "id": "gallery_click_to_zoom",
+      "type": "select",
+      "label": "t:sections.product.gallery_click_to_zoom.label",
+      "options": [
+        { "value": "disabled", "label": "t:sections.product.gallery_click_to_zoom.option_1" },
+        { "value": "always",   "label": "t:sections.product.gallery_click_to_zoom.option_2" },
+        { "value": "desktop",  "label": "t:sections.product.gallery_click_to_zoom.option_3" },
+        { "value": "mobile",   "label": "t:sections.product.gallery_click_to_zoom.option_4" }
+      ],
+      "default": "always",
+      "info": "t:sections.product.gallery_click_to_zoom.info"
+    },
+    {
+      "type": "header",
+      "content": "Secure Payment Strip"
+    },
+    {
+      "type": "text",
+      "id": "cro_payment_label",
+      "label": "Payment strip label",
+      "default": "Secure payments via",
+      "info": "Displayed to the left of the payment icons."
+    },
+    {
+      "type": "header",
+      "content": "CRO-12473 — Brand-trust line"
+    },
+    {
+      "type": "text",
+      "id": "cro_trust_line",
+      "label": "Trust line (zero-review products)",
+      "default": "Verkoop & versend deur Maroela-mark — jou bestelling is veilig.",
+      "info": "Shown in the empty rating slot only when the product has no reviews."
+    },
+    {
+      "type": "header",
+      "content": "CRO-12473 — Bundle"
+    },
+    {
+      "type": "paragraph",
+      "content": "Companions come from the product metafield custom.companions (product list) when set, otherwise from the Companion product blocks below."
+    },
+    {
+      "type": "text",
+      "id": "cro_bundle_heading",
+      "label": "Bundle heading",
+      "default": "Gaan goed saam met"
+    },
+    {
+      "type": "text",
+      "id": "cro_bundle_button",
+      "label": "Bundle button label",
+      "default": "Voeg almal by die mandjie"
+    },
+    {
+      "type": "text",
+      "id": "cro_bundle_note",
+      "label": "Bundle footnote",
+      "default": "Bou jou kalmte-roetine in een bestelling."
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.product.paragraph_2.content"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "collapsible-tab",
+      "name": "t:sections.product.blocks.collapsible_tab.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "collapsible_tab_heading",
+          "label": "t:sections.product.blocks.collapsible_tab.collapsible_tab_heading.label",
+          "default": "Collapsible tab"
+        },
+        {
+          "type": "richtext",
+          "id": "collapsible_tab_text",
+          "label": "t:sections.product.blocks.collapsible_tab.collapsible_tab_text.label",
+          "default": "<p>Use this text to share information about your product.</p>"
+        }
+      ]
+    },
+    {
+      "type": "companion_product",
+      "name": "CRO-12473 Companion",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Bundle companion shown in the \"Gaan goed saam met\" card. Sold-out companions are hidden automatically. Overridden by the custom.companions product metafield when that is set on the product."
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Companion product"
+        }
+      ]
+    },
+    {
+      "type": "custom-liquid",
+      "name": "t:sections.product.blocks.custom_liquid.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "t:sections.product.blocks.custom_liquid.custom_liquid.label",
+          "info": "t:sections.product.blocks.custom_liquid.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "t:sections.product.blocks.description.name",
+      "limit": 1
+    },
+    {
+      "type": "form",
+      "name": "t:sections.product.blocks.form.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.product.blocks.form.paragraph_1.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_local_pickup",
+          "label": "t:sections.product.blocks.form.enable_local_pickup.label",
+          "info": "t:sections.product.blocks.form.enable_local_pickup.info",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_gift_card_recipient_form",
+          "label": "t:sections.product.blocks.form.show_gift_card_recipient_form.label",
+          "info": "t:sections.product.blocks.form.show_gift_card_recipient_form.info",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "inventory_status",
+      "name": "t:sections.product.blocks.inventory_status.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "radio",
+          "id": "inventory_display",
+          "label": "t:sections.product.blocks.inventory_status.inventory_display.label",
+          "info": "t:sections.product.blocks.inventory_status.inventory_display.info",
+          "options": [
+            { "value": "all_products",        "label": "t:sections.product.blocks.inventory_status.inventory_display.option_1" },
+            { "value": "low_stock_threshold", "label": "t:sections.product.blocks.inventory_status.inventory_display.option_2" },
+            { "value": "low_stock_only",      "label": "t:sections.product.blocks.inventory_status.inventory_display.option_3" },
+            { "value": "hidden",              "label": "t:sections.product.blocks.inventory_status.inventory_display.option_4" }
+          ],
+          "default": "hidden"
+        },
+        {
+          "type": "checkbox",
+          "id": "inventory_transfer_notice",
+          "label": "t:sections.product.blocks.inventory_status.inventory_transfer_notice.label",
+          "info": "t:sections.product.blocks.inventory_status.inventory_transfer_notice.info",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "payment_icon",
+      "name": "Payment Icon",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Upload a payment provider logo. If no icons are added, the strip defaults to your shop's enabled payment types."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Payment provider icon"
+        },
+        {
+          "type": "text",
+          "id": "icon_alt",
+          "label": "Alt text",
+          "default": "Payment method",
+          "info": "Screen-reader label for this icon."
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "t:sections.product.blocks.price.name",
+      "limit": 1
+    },
+    {
+      "type": "rating",
+      "name": "t:sections.product.blocks.product_rating.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.product.blocks.product_rating.paragraph_1.content"
+        }
+      ]
+    },
+    {
+      "type": "share",
+      "name": "t:sections.product.blocks.share.name",
+      "limit": 1
+    },
+    {
+      "type": "sku",
+      "name": "t:sections.product.blocks.sku.name",
+      "limit": 1
+    },
+    {
+      "type": "short_desc",
+      "name": "CRO-12473 Short desc",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Position marker: the short description (the entry-content part of the product description) is injected here, beneath the price."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.product.blocks.text.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.product.blocks.text.text.label",
+          "default": "<p>Text block</p>"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.product.blocks.title.name",
+      "limit": 1
+    },
+    {
+      "type": "bundle",
+      "name": "CRO-12473 Bundle",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Position marker: the \"Gaan goed saam met\" bundle card is injected here, below the Add-to-cart form."
+        }
+      ]
+    },
+    {
+      "type": "usp_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none",                  "label": "None" },
+            { "value": "icon-delivery",         "label": "Delivery" },
+            { "value": "icon-delivery-package", "label": "Delivery package" },
+            { "value": "icon-delivery-cart",    "label": "Delivery cart" },
+            { "value": "icon-car",              "label": "Delivery truck" },
+            { "value": "icon-transfer",         "label": "Returns / Transfer" },
+            { "value": "icon-lock",             "label": "Lock / Security" },
+            { "value": "icon-credit-card",      "label": "Credit card" },
+            { "value": "icon-award-trophy",     "label": "Award / Trophy" },
+            { "value": "icon-heart",            "label": "Heart" },
+            { "value": "icon-thumbs-up",        "label": "Thumbs up" },
+            { "value": "icon-store",            "label": "Store" },
+            { "value": "icon-people",           "label": "People" },
+            { "value": "icon-chat",             "label": "Chat" }
+          ],
+          "default": "icon-delivery"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Custom icon image",
+          "info": "Optional — overrides the icon above when set."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label text",
+          "default": "Trust item"
+        }
+      ]
+    },
+    {
+      "type": "value_prop",
+      "name": "CRO-12473 Value-prop line",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Position marker: the value-prop line is injected here, under the title. Copy comes from the product metafield custom.value_prop, falling back to the first sentence of the short description."
+        }
+      ]
+    },
+    {
+      "type": "vendor",
+      "name": "t:sections.product.blocks.vendor.name",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}

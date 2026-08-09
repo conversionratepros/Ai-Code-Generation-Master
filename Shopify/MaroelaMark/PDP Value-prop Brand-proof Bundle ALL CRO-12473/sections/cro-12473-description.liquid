@@ -1,0 +1,86 @@
+{% comment %}
+  CRO-12473 — A2 "Oor hierdie produk" long-description section.
+  ─────────────────────────────────────────────────────────────────────
+  The buy box's description block is NOT in the cro-12473 template's
+  block_order — the long description renders here instead, full-width,
+  directly after the main product section (this section sits second in
+  the template's section order). This is the lever that lifts
+  Add-to-cart onto the first screen on mobile. No clamp, no toggle.
+
+  Content split (the store's descriptions follow one authored shape):
+    "Short description:" <div class="entry-content">…</div> "Description:" …long…
+  - The long part = everything after the standalone "Description:" label.
+  - The entry-content short blurb renders in the buy box (short_desc
+    block, cro-12473-product section) — never duplicated here.
+  - Products without that shape fall back to the full description
+    (minus the entry-content div when present, since it is surfaced
+    in the buy box).
+{% endcomment %}
+
+{% liquid
+  comment
+    Must mirror the split in cro-12473-product.liquid exactly — whatever
+    that section surfaces under the price is removed here so nothing
+    duplicates. The 'Description:' label split is gated on the
+    entry-content shape (only the 10 authored supplement products have
+    it); a bare "Description:" inside a generic product's text must NOT
+    trigger it. When the custom.short_description metafield supplies the
+    buy-box blurb, the first paragraph was NOT surfaced — leave it here
+    (the entry-content shape is still stripped: its authored blurb is
+    superseded by the metafield and would read as a second blurb).
+  endcomment
+  assign cro_desc = product.description | split: '<!-- more -->' | first
+  assign cro_long_html = cro_desc
+  capture cro_short_mf
+    echo product.metafields.custom.short_description | metafield_tag
+  endcapture
+  assign cro_short_mf = cro_short_mf | strip
+
+  if cro_desc contains '<div class="entry-content">'
+    if cro_desc contains 'Description:'
+      assign cro_parts = cro_desc | split: 'Description:'
+      assign cro_prefix = cro_parts | first
+      assign cro_long_html = cro_desc | remove_first: cro_prefix | remove_first: 'Description:'
+    else
+      assign cro_sd_parts = cro_desc | split: '<div class="entry-content">'
+      assign cro_short_html = cro_sd_parts[1] | split: '</div>' | first
+      assign cro_entry_div = '<div class="entry-content">' | append: cro_short_html | append: '</div>'
+      assign cro_long_html = cro_desc | remove_first: cro_entry_div | remove_first: 'Short description:'
+    endif
+  elsif cro_short_mf == blank
+    assign cro_lead = cro_desc | strip | slice: 0, 3
+    if cro_lead == '<p>' or cro_lead == '<p '
+      assign cro_first_p = cro_desc | strip | split: '</p>' | first | append: '</p>'
+      assign cro_first_p_text = cro_first_p | strip_html | strip
+      if cro_first_p_text != blank and cro_first_p_text.size <= 350
+        assign cro_long_html = cro_desc | remove_first: cro_first_p
+      endif
+    endif
+  endif
+
+  assign cro_long_check = cro_long_html | strip_html | strip
+%}
+
+{% if cro_long_check != blank %}
+  <div class="cro-12473-desc-inner">
+    <h2 class="cro-12473-desc-title">{{ section.settings.heading | escape }}</h2>
+    <div class="product-description rte cro-12473-desc-body" data-cro-12473-description>
+      {{ cro_long_html }}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "CRO-12473 Description",
+  "class": "cro-12473-desc-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Oor hierdie produk"
+    }
+  ]
+}
+{% endschema %}

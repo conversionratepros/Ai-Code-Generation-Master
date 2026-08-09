@@ -1,0 +1,144 @@
+{% comment %}
+  CRO-HP — S4 Interior design offer. Board node 2:297.
+  Placement rule (spec): after the process, before the case studies.
+  Do not move without post-launch data.
+  "Add a designer to my fitout" opens the sitewide Typeform popup;
+  "Find out more" links to the interior design page.
+{% endcomment %}
+
+{{ 'cro-hp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
+
+<section class="crohp-section crohp-id" id="cro-hp-interior">
+  <div class="crohp-container">
+    <div class="crohp-id__grid">
+      <div>
+        <div class="crohp-id__eyebrow-row">
+          <span class="crohp-eyebrow" style="display:inline-flex;align-items:center;gap:12px;"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</span>
+          {%- if section.settings.tag_label != blank -%}
+            <span class="crohp-id__tag">{{ section.settings.tag_label }}</span>
+          {%- endif -%}
+        </div>
+
+        <h2 class="crohp-id__title">{{ section.settings.heading }}</h2>
+        <p class="crohp-id__sub">{{ section.settings.sub }}</p>
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="crohp-id__bullets">
+            {%- for block in section.blocks -%}
+              <li class="crohp-id__bullet" {{ block.shopify_attributes }}>
+                <strong>{{ block.settings.lead }}</strong> {{ block.settings.rest }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="crohp-id__ctas">
+          <a class="crohp-btn crohp-btn--lime typeform-share getaquoteclick typeform-embed"
+            {{ settings.typeformurls_url_1 }}
+            href="javascript:void(0)"
+            data-tf-on-ready="ready"
+            data-crohp-typeform>
+            {{- section.settings.cta_label -}}
+            <span class="crohp-btn__arrow">
+              <svg width="20" height="8" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
+            </span>
+          </a>
+          {%- if section.settings.more_label != blank -%}
+            <a class="crohp-btn crohp-btn--lime" href="{{ section.settings.more_url }}">{{ section.settings.more_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="crohp-id__media">
+        {%- if section.settings.image != blank -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 1530 }}"
+            srcset="{{ section.settings.image | image_url: width: 765 }} 765w, {{ section.settings.image | image_url: width: 1530 }} 1530w"
+            sizes="(max-width: 989px) 100vw, 765px"
+            alt="{{ section.settings.image.alt | default: section.settings.eyebrow | escape }}"
+            loading="lazy" width="765" height="770">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CRO HP Interior Design",
+  "tag": "section",
+  "class": "cro-hp-interior-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Interior design"
+    },
+    {
+      "type": "text",
+      "id": "tag_label",
+      "label": "Tag label (mustard pill)",
+      "default": "New",
+      "info": "The page's single mustard accent — clear to hide"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Want to elevate your space? A dedicated designer makes all the difference.",
+      "info": "Spec refinement candidate: \"Want it designed, not just delivered?\""
+    },
+    {
+      "type": "textarea",
+      "id": "sub",
+      "label": "Subcopy",
+      "default": "Add a JasonL interior designer to your fitout. They shape the look and feel — palette, finishes, lighting, flow — so your office feels like your brand, not a furniture catalogue."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Primary CTA label (opens Typeform)",
+      "default": "Add a designer to my fitout"
+    },
+    {
+      "type": "text",
+      "id": "more_label",
+      "label": "Secondary CTA label",
+      "default": "Find out more"
+    },
+    {
+      "type": "url",
+      "id": "more_url",
+      "label": "Secondary CTA link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Blank shows the grey placeholder until photography lands"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Proof bullet",
+      "settings": [
+        { "type": "text", "id": "lead", "label": "Bold lead", "default": "One designer, start to finish" },
+        { "type": "text", "id": "rest", "label": "Rest of line", "default": "— across layout, furniture and finishes." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CRO HP Interior Design",
+      "blocks": [
+        { "type": "bullet", "settings": { "lead": "One designer, start to finish", "rest": "— across layout, furniture and finishes." } },
+        { "type": "bullet", "settings": { "lead": "Built into your fitout", "rest": "— same team, same timeline." } },
+        { "type": "bullet", "settings": { "lead": "Showroom sessions", "rest": "— see and touch materials before you commit." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
