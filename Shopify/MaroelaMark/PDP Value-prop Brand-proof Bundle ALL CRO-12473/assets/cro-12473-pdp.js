@@ -196,7 +196,60 @@
     /* A1 — value-prop line into its positioned wrapper (under the title) */
     fillWrapper('.product-block--value_prop', valueProp);
 
-    /* A3 — short description into its positioned wrapper (under the price) */
+    /* A3 — short description into its positioned wrapper (under the price).
+       "Lees meer" scrolls to the description section ourselves: the default
+       fragment jump lands the heading underneath the sticky header (the
+       cropping bug) — measure the live header height and offset past it. */
+    if (shortDesc) {
+      var readmore = shortDesc.querySelector('.cro-12473-readmore');
+      if (readmore) {
+        /* Height of everything pinned over the top of the viewport RIGHT
+           NOW. The overlay is a STACK (30px teal strip + the smart-sticky
+           logo/search row below it + possibly the nav), so probe a column
+           of points down the viewport and count every fixed/sticky layer
+           covering each point — a single top-edge check misses the lower
+           layers of the stack. */
+        var stickyOverlayHeight = function () {
+          var h = 0;
+          var x = Math.floor(window.innerWidth / 2);
+          [6, 40, 80, 120, 160].forEach(function (y) {
+            var el = document.elementFromPoint(x, y);
+            while (el && el !== document.body && el !== document.documentElement) {
+              var cs = getComputedStyle(el);
+              if (cs.position === 'fixed' || cs.position === 'sticky') {
+                var r = el.getBoundingClientRect();
+                if (r.top <= y && r.bottom > y) h = Math.max(h, r.bottom);
+              }
+              el = el.parentElement;
+            }
+          });
+          return h;
+        };
+
+        readmore.addEventListener('click', function (e) {
+          var target = document.getElementById('cro-12473-description');
+          if (!target) return; // fall back to the default anchor jump
+          e.preventDefault();
+          var offset = Math.max(stickyOverlayHeight(), 66) + 20;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', '#cro-12473-description');
+          }
+          /* The sticky nav can attach/slide in AFTER the scroll settles and
+             cover the heading — re-measure and nudge until it is clear. */
+          var correct = function () {
+            var overlay = stickyOverlayHeight();
+            var rt = target.getBoundingClientRect().top;
+            if (rt < overlay + 8) {
+              window.scrollBy({ top: rt - overlay - 20, behavior: 'smooth' });
+            }
+          };
+          setTimeout(correct, 650);
+          setTimeout(correct, 1300);
+        });
+      }
+    }
     fillWrapper('.product-block--short_desc', shortDesc);
 
     /* B1 — trust line into the (empty) rating block. Server only renders

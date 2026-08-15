@@ -1,0 +1,267 @@
+/* CRO875C — Custom condensed mega nav (Products / Activities / Journal / Sale)
+   Visuals mirror the real ?hdr=b mega panel 1:1 (captured 2026-08-10):
+   pill tabs, Explore All column, 16px sub-links with drill-down chevrons,
+   295x236 highlight tiles with gradient captions, full-width px-4 py-8 panel.
+   Injected elements are hidden by default (bare selectors) and only shown once
+   the body class lands, so SPA navigations never leak half-applied UI. */
+
+.cro-875c-nav,
+.cro-875c-panel {
+    display: none;
+}
+
+/* ── Hide the native 11-link strip (desktop only — below md it is already
+      display:none natively and the hamburger stays untouched) ── */
+@media (min-width: 768px) {
+    body.CRO875C nav[aria-label="Primary navigation"] .scrollbar-hidden {
+        display: none !important;
+    }
+}
+
+/* ── Condensed bar (mirrors the ?hdr=b bar: 13px uppercase, no chevrons) ── */
+body.CRO875C .cro-875c-nav {
+    display: flex;
+    align-items: center;
+    height: 44px;
+}
+
+body.CRO875C .cro-875c-item {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 12px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #141414;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+body.CRO875C .cro-875c-item:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+body.CRO875C .cro-875c-sale {
+    color: #ef4444;
+}
+
+body.CRO875C .cro-875c-trigger.cro-875c-open-trigger {
+    border-bottom-color: #141414;
+    color: #6b6b6b;
+}
+
+/* ── Mega panels: white, gray-200 top border, shadow-lg, full width ── */
+body.CRO875C .cro-875c-panel.cro-875c-open {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+body.CRO875C .cro-875c-panel-inner {
+    width: 100%;
+    padding: 32px 16px; /* py-8 px-4 */
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* gap-6 */
+}
+
+/* Pill tab row (flex-wrap gap-2) */
+body.CRO875C .cro-875c-tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+body.CRO875C .cro-875c-pill {
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #d4d3ce;
+    background: #ffffff;
+    padding: 8px 16px; /* px-4 py-2 */
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #141414;
+}
+
+body.CRO875C .cro-875c-pill:hover {
+    border-color: #6b6b6b;
+}
+
+body.CRO875C .cro-875c-pill.cro-875c-active {
+    border-color: #6b6b6b;
+    background: #f6f6f3;
+}
+
+/* Tab pane: Explore All col + sub-link list + highlight tiles (flex gap-12) */
+body.CRO875C .cro-875c-pane {
+    display: none;
+}
+
+body.CRO875C .cro-875c-pane.cro-875c-active {
+    display: flex;
+    gap: 48px;
+}
+
+body.CRO875C .cro-875c-explore {
+    min-width: 180px;
+}
+
+body.CRO875C .cro-875c-explore a {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #141414;
+    text-decoration: none;
+}
+
+body.CRO875C .cro-875c-explore a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+body.CRO875C .cro-875c-pane ul {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.CRO875C .cro-875c-pane li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    align-self: stretch;
+    padding: 8px 0; /* py-2 */
+    margin: 0;
+}
+
+body.CRO875C .cro-875c-pane li a {
+    font-size: 16px;
+    color: #141414;
+    text-decoration: none;
+}
+
+body.CRO875C .cro-875c-pane li a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+body.CRO875C .cro-875c-chevron {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: #9ca3af; /* gray-400 */
+}
+
+/* Highlight tiles, pinned right (ml-auto, gap-4, 236x295, rounded-lg) */
+body.CRO875C .cro-875c-tiles {
+    margin-left: auto;
+    display: flex;
+    gap: 16px;
+}
+
+body.CRO875C .cro-875c-tile {
+    position: relative;
+    display: block;
+    height: 295px;
+    width: 236px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #edeae3; /* bg-sand */
+    text-decoration: none;
+}
+
+body.CRO875C .cro-875c-tile img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-out;
+}
+
+body.CRO875C .cro-875c-tile:hover img {
+    transform: scale(1.05);
+}
+
+body.CRO875C .cro-875c-tile-shade {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2), transparent);
+}
+
+body.CRO875C .cro-875c-tile-caption {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    font-size: 15px;
+    line-height: 1.25;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Activities panel: plain columns of 16px links (flex gap-12, no heading) */
+body.CRO875C .cro-875c-activities {
+    flex-direction: row;
+    gap: 48px;
+}
+
+body.CRO875C .cro-875c-activities ul {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.CRO875C .cro-875c-activities li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    margin: 0;
+}
+
+body.CRO875C .cro-875c-activities li a {
+    font-size: 16px;
+    color: #141414;
+    text-decoration: none;
+}
+
+body.CRO875C .cro-875c-activities li a:hover {
+    color: #000000;
+}
+
+/* ── Desktop only: below md the native header collapses to the hamburger,
+      which this test leaves untouched ── */
+@media (max-width: 767px) {
+    body.CRO875C .cro-875c-nav,
+    body.CRO875C .cro-875c-panel {
+        display: none !important;
+    }
+}

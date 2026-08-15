@@ -1,13 +1,23 @@
 /* CRO-12482 | Typeform General Quote v2 | Select list with open-text field | All */
 
 /*
- * Hide the control (A) quote button — but only where its variant twin (B)
- * is rendered right after it, so placements without a B button keep their
- * working control button. !important is required: site JS applies inline
- * display to these buttons after the Typeform embed initialises, and a
- * stylesheet !important rule is the only thing that reliably beats it.
- * Showing B is handled in variation.js via the theme's show-ab-b class.
+ * The theme renders BOTH quote buttons server-side in each placement:
+ *   A (control): .get-a-quote-btn-a — current control form
+ *   B (variant): .get-a-quote-btn-b — v2 select-list form Xcco8a2p
+ * The variant only flips visibility via CSS; both buttons keep their native
+ * Typeform init so submit/ready tracking stays intact on B.
+ *
+ * 2026-08-13: client replaced the control form ID site-wide
+ * (SPqugn2G -> oq7mO0d2), which killed the old SPqugn2G-keyed hide rule —
+ * variant visitors saw both buttons. Selectors now key on the stable
+ * structural a/b classes + form IDs, never on show-ab-* state classes,
+ * because site JS mutates those at runtime. !important is required to beat
+ * the inline display styles the site applies after Typeform init.
  */
-body.cro-12482 .get-a-quote-btn-ab[data-tf-popup="SPqugn2G"]:has(+ .get-a-quote-btn-ab[data-tf-popup="Xcco8a2p"]) {
+html body.cro-12482 .get-a-quote-btn-ab.get-a-quote-btn-a[data-tf-popup="oq7mO0d2"] {
     display: none !important;
+}
+
+html body.cro-12482 .get-a-quote-btn-ab.get-a-quote-btn-b[data-tf-popup="Xcco8a2p"] {
+    display: inline !important;
 }

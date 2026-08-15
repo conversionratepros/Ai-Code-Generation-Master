@@ -56,6 +56,21 @@ the local copies): native content hidden, fonts load, router updates CTA
 label/href, carousel loops both directions, smooth scroll + modal attrs intact,
 desktop + mobile renders match the Figma frames.
 
+### QA bug fix 2026-08-10 — chip click didn't update the CTA label
+
+A `cro-height` line-height fix (spans wrapped around ~30 text runs, added
+directly in the Convert copy + local files) wrapped the hero CTA's label in
+`<span class='cro-height'>`, so `initHeroRouter`'s
+`cta.firstChild.nodeValue = …` wrote to a span ELEMENT (silent no-op) instead
+of the text node — chips selected and the href updated, but the button text
+never changed. Fixed in variant.js: `setCtaLabel()` writes into the
+`.cro-height` span when present, falls back to the text node otherwise. Also
+synced the 3 `cro-height` wraps ("usual way" steps) that existed only in the
+Convert copy, so local variant.js again matches Convert's HTML exactly.
+**Re-paste variant.js into Convert** (CSS unchanged). Playwright-verified:
+all 4 chips update label + URL clicking chip body, text, price or icon,
+desktop + mobile.
+
 ### NEW launch gates (v3)
 
 - ~~Upload 4 assets to S3~~ — DONE 2026-08-09, uploaded under
@@ -142,3 +157,17 @@ placeholders tagged `data-cro-placeholder="verify-destination"`).
 - Dev experiment is 100% weighted to the variation; the live clone needs the real split.
 - Dead CSS to strip: `.btn-blue`, `.btn-outline`, `.btn-ghost`, `.tlink`, `.center`,
   `.muted`, and the `.foot` block (no matching markup in the injected fragment).
+
+## Client-requested updates (2026-08-12)
+
+- USP section ("Most cover pays you back. We pay upfront.") "Get a free online quote"
+  CTA: `#router` → `#products` (anchors to "What each plan covers").
+- Final CTA ("Ready when you are") "Get a free online quote": `#router` → `#products`.
+- Answers section ("Everything you want to know before you decide"): all three card
+  links/buttons removed (Compare plans, See your price, Read about waiting periods) —
+  client has no URLs for these. Cards are now heading + copy only; `.ans>a` /
+  `.ans .btn-teal` CSS rules are dead but left in place so variant.css stays
+  byte-identical with Convert (only variant.js needs re-pasting).
+- Playwright-verified on live (1440 + 390): both CTAs smooth-scroll to #products at
+  77px below viewport top (61px sticky header + 16px offset), zero `#router` hrefs
+  left, zero links inside `.ans` cards, card spacing intact via flex gap.

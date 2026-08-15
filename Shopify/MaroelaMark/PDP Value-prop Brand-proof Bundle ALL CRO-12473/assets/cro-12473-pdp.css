@@ -77,7 +77,7 @@
   flex: 0 0 auto;
 }
 
-/* ─── A3 — short description surfaced beneath the price ─────────── */
+/* ─── A3 — 150-char plain-text teaser beneath the price ─────────── */
 .cro-12473-shortdesc {
   font-family: "Nunito Sans", sans-serif;
   font-size: 15px;
@@ -89,6 +89,29 @@
 
 .cro-12473-shortdesc p {
   margin: 0;
+}
+
+.cro-12473-readmore {
+  color: #008080;
+  font-weight: 600;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.cro-12473-readmore:hover {
+  color: #006666;
+}
+
+/* "Lees meer" anchor scroll: smooth, and clear the sticky header.
+   This CSS only loads on the cro-12473 template, so control is untouched. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* no-JS fallback — the primary scroll is handled in cro-12473-pdp.js,
+   which measures the live sticky-header height at click time */
+#cro-12473-description {
+  scroll-margin-top: 130px;
 }
 
 /* ─── A2 — "Oor hierdie produk" description section ─────────────── */
@@ -111,23 +134,56 @@
   margin: 0 0 14px;
 }
 
-/* clear hierarchy: section title (22px) > product sub-headings (17px) > body (15px) */
-.cro-12473-desc-body h3 {
-  font-size: 17px;
+/* ── Description normalisation ─────────────────────────────────────
+   Merchants author descriptions inconsistently (body lines inside h4s,
+   sometimes p tags, empty <p><br></p> spacers). Force one consistent
+   rhythm: every heading level renders as the same bold lead-line, body
+   text as regular paragraphs, spacer paragraphs removed. */
+.cro-12473-desc-body h1,
+.cro-12473-desc-body h2,
+.cro-12473-desc-body h3,
+.cro-12473-desc-body h4,
+.cro-12473-desc-body h5,
+.cro-12473-desc-body h6 {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 15.5px;
   font-weight: 700;
+  line-height: 1.5;
   color: #1d1d1d;
-  margin: 4px 0 8px;
+  margin: 0 0 10px;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .cro-12473-desc-body p,
 .cro-12473-desc-body li {
   font-size: 15px;
-  line-height: 1.55;
+  font-weight: 400;
+  line-height: 1.6;
   color: #3d3d3d;
+  margin: 0 0 10px;
+}
+
+.cro-12473-desc-body ul,
+.cro-12473-desc-body ol {
+  margin: 0 0 10px;
+  padding-left: 22px;
 }
 
 .cro-12473-desc-body strong {
   color: #1d1d1d;
+}
+
+/* collapse the empty spacer elements merchants leave behind */
+.cro-12473-desc-body p:empty,
+.cro-12473-desc-body h4:empty,
+.cro-12473-desc-body p:has(> br:only-child),
+.cro-12473-desc-body h4:has(> br:only-child) {
+  display: none;
+}
+
+.cro-12473-desc-body > :last-child {
+  margin-bottom: 0;
 }
 
 /* ─── C — bundle card ────────────────────────────────────────────── */

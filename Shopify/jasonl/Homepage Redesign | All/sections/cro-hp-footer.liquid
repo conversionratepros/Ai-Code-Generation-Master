@@ -1,66 +1,85 @@
-{% comment %}
-  CRO-HP — S11 Footer. Board node 2:7. Black; fitout journey leads the
-  link columns ahead of the shop taxonomy, then company links + contact.
-  The theme's own footer (footer-custom / .footer-wrapper) is hidden on
-  this template via cro-hp.css (body.index-cro-hp scope) and this
-  section renders as the last template section instead.
-  Fitout-journey links with no URL set fall back to on-page anchors.
-{% endcomment %}
+{%- comment -%}
+  CRO-HP — S11 Footer. PORTED from CRO-12526 v2's QA-hardened section
+  (cro-12526-v2-footer.liquid) — same 2026 design system: inline jason.l
+  SVG wordmark (no asset dependency), 3 link columns as per-link blocks,
+  mobile accordion (inline script, closed by default). Class names kept
+  verbatim; styles in cro-hp.css (ported block).
+
+  Homepage adaptations: crohp-container instead of page-width; the theme
+  footer stays hidden via body.index-cro-hp .footer-wrapper in cro-hp.css;
+  link set follows the homepage Figma footer (Pricing guide / Book a
+  showroom visit anchor into this page), reusing the client-verified URLs
+  from the 12526 build where labels overlap.
+{%- endcomment -%}
 
 {{ 'cro-hp.css' | asset_url | stylesheet_tag }}
 
-<footer class="crohp-section crohp-footer">
+<div class="cro12526v2-footer" id="cro12526v2-footer">
   <div class="crohp-container">
-    <div class="crohp-footer__grid">
-      <div>
-        {%- if section.settings.logo != blank -%}
-          <img class="crohp-footer__logo" src="{{ section.settings.logo | image_url: width: 270 }}" alt="{{ shop.name | escape }}" loading="lazy" width="135" height="42">
-        {%- else -%}
-          <img class="crohp-footer__logo" src="{{ 'cro-hp-logo.svg' | asset_url }}" alt="{{ shop.name | escape }}" loading="lazy" width="135" height="42">
-        {%- endif -%}
-        <p class="crohp-footer__about">{{ section.settings.about }}</p>
-        {%- if section.settings.rating_line != blank -%}
-          <p class="crohp-footer__rating">
-            <svg width="15" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .9l3.05 7.33 7.9.63-6.02 5.16 1.84 7.72L12 17.6l-6.77 4.14 1.84-7.72L1.05 8.86l7.9-.63L12 .9z" fill="#C6D644"/></svg>
-            {{ section.settings.rating_line }}
-          </p>
-        {%- endif -%}
+    <div class="cro12526v2-footer__grid">
+      <div class="cro12526v2-footer__brand">
+        <svg class="cro12526v2-footer__logo" role="img" aria-label="jason.l" viewBox="0 0 140 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="cro12526v2-footer-logo">
+<path d="M39.8751 10.0666C37.7764 10.0666 35.6777 10.0666 33.579 10.0666C33.2292 10.0666 33.2292 10.2402 33.2292 10.4137C33.2292 11.108 33.2292 11.8022 33.2292 12.4965C33.2292 12.4965 33.2292 12.3229 33.0543 12.3229C32.3548 11.4551 31.6552 10.7608 30.6059 10.2402C28.3323 9.19879 26.0587 9.02523 23.6102 9.54591C19.4129 10.5873 16.6146 13.0172 15.2155 17.0091C14.1661 20.1332 14.1661 23.2573 15.2155 26.3814C15.9151 28.2906 16.9644 30.0262 18.5384 31.4147C20.4622 32.9768 22.5609 33.8446 25.0094 34.0182C26.7583 34.1917 28.5072 34.0182 30.0812 33.3239C31.3054 32.8032 32.3548 31.9354 33.2292 30.894C33.2292 31.5883 33.2292 32.2825 33.2292 32.9768C33.2292 33.3239 33.2292 33.3239 33.579 33.3239C35.6777 33.3239 37.7764 33.3239 39.8751 33.3239C40.2249 33.3239 40.2249 33.1504 40.2249 32.9768C40.2249 25.5136 40.2249 18.0505 40.2249 10.4137C40.3998 10.2402 40.2249 10.0666 39.8751 10.0666ZM29.9063 27.0757C26.5834 28.4642 22.5609 27.0757 21.6864 22.7366C21.1618 20.3068 22.386 17.7033 24.4847 16.4884C27.2829 14.9263 32.1799 15.6206 33.2292 20.4803C33.2292 20.8274 33.4041 21.3481 33.4041 21.6953C33.2292 24.1251 32.3548 26.2079 29.9063 27.0757Z" fill="#C6D644"/>
+<path d="M82.3735 10.2402C79.7502 9.19879 77.1268 9.02523 74.5034 9.54591C70.8307 10.2402 68.2074 12.1493 66.2836 15.2735C64.3598 18.5711 64.01 22.2159 65.2342 25.8607C65.9338 27.9435 66.9831 29.6791 68.732 31.0676C71.1805 33.1504 73.9788 34.0182 77.1268 34.0182C79.2255 34.0182 81.1493 33.671 82.7233 32.8032C87.0956 30.7205 89.3692 27.0757 89.7189 22.3895C89.8938 19.9596 89.3692 17.5298 88.1449 15.447C86.9207 13.0172 84.9969 11.2815 82.3735 10.2402ZM78.8757 27.4228C76.0775 28.2906 73.1043 26.7286 72.055 23.9516C71.1805 21.3481 72.055 18.224 74.3286 16.8355C77.6515 14.7528 81.8489 16.4884 82.7233 20.3068C82.8982 20.8274 82.8982 21.3481 82.8982 21.6953C82.8982 24.2987 81.3242 26.7286 78.8757 27.4228Z" fill="#C6D644"/>
+<path d="M114.204 18.7447C114.204 17.5298 114.029 16.4884 113.854 15.2735C113.329 13.1907 112.28 11.4551 110.356 10.4137C108.432 9.37235 106.334 8.85166 104.06 9.19879C102.136 9.37235 100.562 10.2402 99.3379 11.8022C99.163 11.9758 99.163 12.1493 98.9881 12.3229C98.9881 11.6287 98.9881 10.9344 98.9881 10.2402C98.9881 9.89304 98.9881 9.89304 98.6384 9.89304C96.7146 9.89304 94.7908 9.89304 92.867 9.89304C92.5172 9.89304 92.3423 10.0666 92.3423 10.2402C92.3423 17.7033 92.3423 25.1665 92.3423 32.8032C92.3423 33.1504 92.3423 33.1504 92.6921 33.1504C94.7908 33.1504 96.7146 33.1504 98.8132 33.1504C99.163 33.1504 99.3379 33.1504 99.3379 32.6297C99.3379 28.6377 99.3379 24.4722 99.3379 20.4803C99.3379 19.9596 99.3379 19.2654 99.3379 18.7447C99.5128 17.1826 100.212 16.1413 101.786 15.6206C102.486 15.447 103.36 15.447 104.235 15.447C105.459 15.6206 106.334 16.4884 106.683 17.7033C106.858 18.3976 107.033 19.0918 107.033 19.7861C107.033 23.9516 107.033 28.2906 107.033 32.4561C107.033 32.8032 107.033 32.8032 107.383 32.8032C109.482 32.8032 111.58 32.8032 113.504 32.8032C113.854 32.8032 114.029 32.6297 114.029 32.2825C114.204 28.2906 114.204 23.6044 114.204 18.7447Z" fill="#C6D644"/>
+<path d="M58.9382 20.6539C57.539 19.9596 55.965 19.439 54.5659 19.0918C53.5166 18.7447 52.4672 18.3976 51.4179 17.7033C50.8932 17.3562 50.5434 16.8355 50.7183 16.1413C50.8932 15.0999 51.7676 14.5792 52.817 14.5792C53.8663 14.5792 54.7408 15.0999 54.9157 16.1413C54.9157 16.4884 55.0906 16.662 55.4404 16.662C57.3642 16.662 59.288 16.662 61.0369 16.662C61.7364 16.662 61.7364 16.662 61.7364 15.9677C61.2117 13.5378 60.1624 11.8022 58.0637 10.5873C56.1399 9.54591 54.2161 9.19879 52.1174 9.37235C49.8438 9.54591 47.7452 10.2402 46.1711 11.8022C44.4222 13.5378 43.5478 15.6206 44.0725 17.8769C44.4222 19.9596 45.8214 21.3481 47.7452 22.2159C49.3192 23.0838 51.243 23.6044 52.817 24.1251C53.5166 24.4723 54.391 24.6458 54.9157 25.1665C55.7901 25.8607 55.965 27.0757 55.2655 27.9435C54.5659 28.8113 53.6914 28.9849 52.6421 28.8113C51.5928 28.6377 50.7183 27.9435 50.5434 26.9021C50.5434 26.555 50.3685 26.3814 50.0187 26.555C48.9694 26.555 48.0949 26.555 47.0456 26.555C45.9963 26.555 44.9469 26.555 43.8976 26.555C43.7227 26.555 43.5478 26.555 43.5478 26.9021C43.8976 29.5055 45.1218 31.5883 47.3954 32.8032C50.7183 34.7124 54.2161 34.7124 57.7139 33.3239C60.3373 32.2825 62.0862 30.3734 62.6109 27.5964C62.9607 24.4723 61.9113 22.0424 58.9382 20.6539Z" fill="#C6D644"/>
+<path d="M11.5428 10.0666C9.61899 10.0666 7.5203 10.0666 5.5965 10.0666C5.24672 10.0666 5.24672 10.0666 5.24672 10.4137C5.24672 13.7114 5.24672 17.0091 5.24672 20.3068C5.24672 24.9929 5.24672 29.5055 5.24672 34.1917C5.24672 35.7538 4.37227 36.7952 2.79825 37.1423C1.9238 37.3158 1.22423 37.1423 0.349781 37.1423C0.174891 37.1423 0 37.1423 0 37.3158C0 39.0515 0 40.6135 0 42.3491C0 42.5227 0.174891 42.6963 0.349781 42.6963C2.44847 43.0434 4.54716 43.217 6.47096 42.5227C8.91943 41.8285 10.6683 40.2664 11.5428 37.8365C11.8926 36.6216 12.0675 35.4067 12.0675 34.1917C12.0675 30.3734 12.0675 26.7286 12.0675 23.0838C12.0675 18.9183 12.0675 14.7528 12.0675 10.5873C12.0675 10.0666 11.8926 10.0666 11.5428 10.0666Z" fill="#C6D644"/>
+<path d="M139.738 28.2906C139.038 28.4642 138.339 28.4642 137.639 28.2906C136.59 28.1171 135.715 27.7699 135.191 26.9021C134.841 26.3814 134.841 25.6872 134.841 24.9929C134.841 21.1746 134.841 17.3562 134.841 13.5378C134.841 9.54591 134.841 5.55399 134.841 1.56206C134.841 1.21493 134.666 1.04137 134.316 1.04137C132.392 1.04137 130.294 1.04137 128.37 1.04137C128.02 1.04137 127.845 1.21493 127.845 1.56206C127.845 9.37235 127.845 17.1826 127.845 24.9929C127.845 25.8607 127.845 26.7286 128.02 27.5964C128.545 30.0262 129.769 31.7619 131.868 32.9768C134.316 34.1917 136.939 34.1917 139.563 33.671C139.738 33.671 139.738 33.4975 139.738 33.3239C139.738 31.5883 139.738 30.0262 139.738 28.2906C140.087 28.2906 140.087 28.2906 139.738 28.2906Z" fill="#C6D644"/>
+<path d="M121.724 25.8607C119.45 25.8607 117.701 27.5964 117.701 29.8527C117.701 32.109 119.45 33.8446 121.724 33.8446C123.997 33.8446 125.746 31.9354 125.746 29.8527C125.746 27.5964 123.823 25.8607 121.724 25.8607Z" fill="#C6D644"/>
+<path d="M8.56964 0C6.29607 0 4.54716 1.56206 4.54716 3.99193C4.54716 6.4218 6.12117 7.81029 8.56964 7.81029C10.8432 7.81029 12.5921 6.24823 12.5921 3.99193C12.5921 1.56206 10.8432 0 8.56964 0Z" fill="#C6D644"/>
+</g>
+</svg>
+        <p class="cro12526v2-footer__blurb">{{ section.settings.blurb }}</p>
+        <p class="cro12526v2-footer__rating">
+          <span class="cro12526v2-footer__star" aria-hidden="true">&#9733;</span>
+          {{ section.settings.rating_line }}
+        </p>
       </div>
 
-      {%- for block in section.blocks -%}
-        <div {{ block.shopify_attributes }}>
-          <p class="crohp-footer__col-title">{{ block.settings.title }}</p>
-          <ul class="crohp-footer__links">
-            {%- for n in (1..6) -%}
-              {%- liquid
-                assign label_key = 'label' | append: n
-                assign url_key = 'url' | append: n
-                assign label = block.settings[label_key]
-                assign url = block.settings[url_key]
-              -%}
-              {%- if label != blank -%}
-                {%- if url == blank -%}
-                  {%- comment -%} Fitout-journey anchors as self-healing fallbacks {%- endcomment -%}
-                  {%- assign label_handle = label | handleize -%}
-                  {%- case label_handle -%}
-                    {%- when 'how-it-works' -%}{%- assign url = '#cro-hp-how' -%}
-                    {%- when 'interior-design' -%}{%- assign url = '#cro-hp-interior' -%}
-                    {%- when 'case-studies' -%}{%- assign url = '#cro-hp-cases' -%}
-                    {%- when 'pricing-guide' -%}{%- assign url = '#cro-hp-pricing' -%}
-                    {%- when 'book-a-showroom-visit' -%}{%- assign url = '#cro-hp-showrooms' -%}
-                    {%- when 'all-furniture' -%}{%- assign url = routes.all_products_collection_url -%}
-                    {%- else -%}{%- assign url = '#' -%}
-                  {%- endcase -%}
+      <nav class="cro12526v2-footer__menus" aria-label="Footer">
+        {%- for i in (1..3) -%}
+          {%- liquid
+            assign heading_key = 'heading_' | append: i
+            assign col_heading = section.settings[heading_key]
+            assign col_key = i | append: ''
+          -%}
+          <div class="cro12526v2-footer__col" data-cro12526v2-footer-col>
+            <button type="button" class="cro12526v2-footer__col-head" data-cro12526v2-footer-toggle aria-expanded="false">
+              <span class="cro12526v2-footer__col-title">{{ col_heading }}</span>
+              <span class="cro12526v2-footer__chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="cro12526v2-footer__list" role="list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'link' and block.settings.column == col_key and block.settings.label != blank -%}
+                  <li {{ block.shopify_attributes }}>
+                    <a class="cro12526v2-footer__link" href="{{ block.settings.url | default: '#' }}">{{ block.settings.label }}</a>
+                  </li>
                 {%- endif -%}
-                <li><a href="{{ url }}">{{ label }}</a></li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        </div>
-      {%- endfor -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endfor -%}
+      </nav>
     </div>
   </div>
-</footer>
+</div>
+
+<script>
+  (function () {
+    var root = document.getElementById('cro12526v2-footer');
+    if (!root) return;
+    root.querySelectorAll('[data-cro12526v2-footer-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        // Accordion is a mobile-only behaviour; desktop lists are always open.
+        if (!window.matchMedia('(max-width: 749px)').matches) return;
+        var col = btn.closest('[data-cro12526v2-footer-col]');
+        var open = col.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -69,15 +88,9 @@
   "class": "cro-hp-footer-section",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo",
-      "info": "Blank = bundled board export"
-    },
-    {
       "type": "textarea",
-      "id": "about",
-      "label": "About text",
+      "id": "blurb",
+      "label": "Brand description",
       "default": "JasonL® is Australian owned and operated. We design, deliver and install office fitouts and furniture Australia-wide — Sydney, Melbourne, Brisbane, Perth, Adelaide and Canberra."
     },
     {
@@ -86,39 +99,32 @@
       "label": "Rating line",
       "default": "4.8 on Google  •  1,900+ reviews",
       "info": "QA rule: numbers must be real — keep in sync with the hero trust strip"
-    }
+    },
+    { "type": "text", "id": "heading_1", "label": "Column 1 heading", "default": "Fitouts" },
+    { "type": "text", "id": "heading_2", "label": "Column 2 heading", "default": "Shop" },
+    { "type": "text", "id": "heading_3", "label": "Column 3 heading", "default": "Company" }
   ],
   "blocks": [
     {
-      "type": "column",
-      "name": "Link column",
-      "limit": 3,
+      "type": "link",
+      "name": "Link",
       "settings": [
-        { "type": "text", "id": "title", "label": "Column title", "default": "Fitouts" },
-        { "type": "text", "id": "label1", "label": "Link 1 label" },
-        { "type": "url", "id": "url1", "label": "Link 1 URL" },
-        { "type": "text", "id": "label2", "label": "Link 2 label" },
-        { "type": "url", "id": "url2", "label": "Link 2 URL" },
-        { "type": "text", "id": "label3", "label": "Link 3 label" },
-        { "type": "url", "id": "url3", "label": "Link 3 URL" },
-        { "type": "text", "id": "label4", "label": "Link 4 label" },
-        { "type": "url", "id": "url4", "label": "Link 4 URL" },
-        { "type": "text", "id": "label5", "label": "Link 5 label" },
-        { "type": "url", "id": "url5", "label": "Link 5 URL" },
-        { "type": "text", "id": "label6", "label": "Link 6 label" },
-        { "type": "url", "id": "url6", "label": "Link 6 URL" }
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "default": "1",
+          "options": [
+            { "value": "1", "label": "Column 1 (Fitouts)" },
+            { "value": "2", "label": "Column 2 (Shop)" },
+            { "value": "3", "label": "Column 3 (Company)" }
+          ]
+        },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "text", "id": "url", "label": "Link URL (path)" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "CRO HP Footer",
-      "blocks": [
-        { "type": "column", "settings": { "title": "Fitouts", "label1": "How it works", "label2": "Interior design", "label3": "Case studies", "label4": "Pricing guide", "label5": "Book a showroom visit" } },
-        { "type": "column", "settings": { "title": "Shop", "label1": "Chairs", "label2": "Desks", "label3": "Workstations", "label4": "Storage", "label5": "All furniture" } },
-        { "type": "column", "settings": { "title": "Company", "label1": "About us", "label2": "Reviews", "label3": "Careers", "label4": "Shipping & returns", "label5": "Contact" } }
-      ]
-    }
-  ]
+  "presets": [{ "name": "CRO HP Footer" }]
 }
 {% endschema %}

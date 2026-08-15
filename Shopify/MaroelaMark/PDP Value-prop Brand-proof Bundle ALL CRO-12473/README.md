@@ -52,41 +52,38 @@ theme (all additive), then open the theme editor on the new template.
    directly after the main section. No clamp, no toggle (per the injection
    script — it supersedes the older spec's clamp wording).
 
-### Content sources
+### Content sources (client decisions — Donavan, Slack 2026-08-06)
 
-- **A1 copy**: product metafield `custom.value_prop` (single-line text) →
-  fallback: first sentence of the short description. The reference product's
-  design line ("Diep kalmte wat jou liggaam opneem…") should be set in the
-  metafield.
-- **A3/A2 split** (catalog audit 2026-08-06: 2 567 products — only 10 have the
-  authored shape, 990 are short-`<p>`-led, rest heading-led/long/empty):
-  0. **`custom.short_description` product metafield** — top priority, same
-     convention as the CRO-12257 Glutathione PDP build (`metafield_tag`, so
-     rich text works). When it supplies the blurb, the description below is
-     left whole (nothing was surfaced from it).
-  1. Authored shape (`Short description:` + `<div class="entry-content">` +
-     `Description:` — the 10 supplement PDPs): short = entry-content inner
-     HTML; long = everything after the `Description:` label (label split is
-     gated on the entry-content shape so a bare "Description:" in a generic
-     product's text can't mis-split).
-  2. `<p>`-led descriptions (990 products): short = the first paragraph when
-     its text is ≤ 350 chars; long = the remainder (removed, so nothing
-     duplicates). One-paragraph products keep their whole text in the buy box
-     and the below section is skipped.
-  3. Everything else (heading-led markup, `<pre>` plain text, first paragraph
-     too long, empty): no short block; full description below. ~6 products
-     author the same intro paragraph twice — those show it in both places
-     (source-content quirk, not a split bug).
+- **A1 value-prop**: product metafield `custom.value_prop` wins (Donavan
+  created the definition; **confirm the exact namespace/key matches**);
+  otherwise the static design line from the section setting
+  `cro_value_prop_default` ("Diep kalmte wat jou liggaam opneem. Geen
+  dofheid, geen lakseer-drama." — per the design preview, editable in the
+  customizer). Client/vendors to populate metafields per product (Nick
+  deciding workflow).
+- **A3 short desc**: the first **150 characters of the plain description
+  text** (`strip_html | truncate: 150` — headings and all styling force-
+  flattened to paragraph text, per Donavan's 1a) + a **"Lees meer"** link that
+  anchors to `#cro-12473-description` ("Oor hierdie produk") with smooth
+  scroll and sticky-header clearance. The `Short description:` /
+  `Description:` labels some supplement PDPs author into their text are
+  removed before truncation so they can't leak into the blurb.
+- **A2 full description**: rendered **completely unmodified** in "Oor hierdie
+  produk" below — nothing removed, nothing split (supersedes all earlier
+  split/fallback logic).
 - **B1/B2 gate**: `product.metafields.reviews.rating_count` (Judge.me syncs
   into standard review metafields — see learnings.md). Zero reviews → trust
   line renders into the empty rating block, and a server-gated
   `:has(.jdgm-review-widget)` style hides the review section (JS fallback for
   non-`:has` browsers). Products with reviews: real stars, review section
   visible, nothing injected.
-- **C companions**: product metafield `custom.companions` (product list) wins;
-  else the template's `companion_product` blocks (defaulted to
-  `d3-zinc-selenium-k2-tablets` + `african-cranberry-100g`). Sold-out
-  companions and the product itself are dropped server-side.
+- **C companions** (per Donavan): the **first collection the product belongs
+  to → its first three eligible products** (the product itself and sold-out
+  items are skipped, scanning past them until three rows fill). Optional
+  per-product override via the `custom.companions` metafield;
+  `companion_product` blocks remain as a fallback for products in no
+  collection. Note: Liquid orders `product.collections` alphabetically by
+  collection title — flag to Donavan if "first" was meant differently.
 - **C add-all**: POST `/cart/add.js` with the live main variant (current
   `[data-variants]` value, form quantity) + each checked companion ×1, then
   header cart-count refresh. Total follows checkbox toggles AND
@@ -96,12 +93,8 @@ theme (all additive), then open the theme editor on the new template.
 
 | Metafield | Type | Used for |
 |-----------|------|----------|
-| `custom.value_prop` | Single line text | A1 per-product Afrikaans line |
-| `custom.short_description` | Multi-line / rich text | A3 per-product blurb under the price (same convention as CRO-12257 Glutathione) |
-| `custom.companions` | List of products | C per-product bundle picks |
-
-All optional — the build falls back (first sentence / description split /
-template blocks).
+| `custom.value_prop` | Single line text | A1 line — the ONLY source (no fallback). Donavan created the definition; confirm the key matches |
+| `custom.companions` | List of products | C bundle picks — optional override of the first-collection rule |
 
 ## Design-mock bug fixed in this build
 
@@ -171,6 +164,64 @@ a blurb, no duplication introduced. Value-prop fallback also tightened to
 **Re-upload: `sections/cro-12473-product.liquid` +
 `sections/cro-12473-description.liquid`.**
 
+## Preview QA round 3 (2026-08-06) — teaser/anchor/description fixes
+
+1. **"Lees meer" cropped the heading** under the sticky header — the fragment
+   jump ignored the overlay. Fixed: `cro-12473-pdp.js` now handles the click,
+   measuring the live header height (`.smart-sticky-wrapper` /
+   `.site-header`) at click time and smooth-scrolling past it;
+   `scroll-margin-top: 130px` kept as a no-JS fallback. Verified on the
+   spice-grinder page: heading lands fully visible.
+2. **Teaser words glued** ("vinegarNo artificial…") — `strip_html` leaves no
+   space where adjacent tags met. Fixed: `replace: '<', ' <'` before
+   stripping (every removed tag leaves a space), newlines converted to
+   spaces, double spaces collapsed before the 150-char truncate. Verified on
+   the real description.
+3. **Description restyle** — merchants author lines in h4s/p tags with
+   `<p><br></p>` spacers inconsistently. All heading levels inside
+   `.cro-12473-desc-body` now render as the same 15.5px bold lead-line, body
+   text 15px regular, spacer paragraphs hidden (`:empty` / `:has(> br)`),
+   uniform 10px rhythm.
+
+**Re-upload: both `sections/` files + both `assets/` files** (the deployed
+description section also predates the `#cro-12473-description` anchor id).
+
+## Preview QA round 4 (2026-08-06) — anchor v2 + static value-prop
+
+1. **"Lees meer" still cropped** — the sticky element is the theme's nav row
+   (`#site-header-nav`, ~66 px), not the full header, and it can attach after
+   the scroll settles. The handler now measures what is actually pinned over
+   the viewport top (candidate list + `elementFromPoint` walk), scrolls with
+   that offset (never less than 66 + 20), and re-checks at 650 ms/1300 ms,
+   nudging until the heading clears the nav.
+2. **Value-prop static default** — new section setting
+   `cro_value_prop_default`, defaulted to the design line; metafield still
+   wins when set. Every product now shows the brand-voice line.
+
+Re-upload: `sections/cro-12473-product.liquid`, `assets/cro-12473-pdp.js`,
+`templates/product.cro-12473.json`.
+
+## Preview QA round 6 (2026-08-06) — teaser sentence separators
+
+Merged blocks in the teaser now read as sentences: closing block tags
+(`</p>`, `</h1>`–`</h6>`, `</li>`, `</div>`) become `. ` before stripping
+("…Balsamic vinegar. No artificial…"), with cleanup passes so text already
+ending in `.`/`!`/`?`/`:` never doubles up, no leading orphan dot, and no
+`....` when truncation lands after a period. Emulated across the four
+description shapes. **Re-upload: `sections/cro-12473-product.liquid` only.**
+
+## Preview QA round 5 (2026-08-06) — anchor v3 (the real fix)
+
+The sticky overlay is a STACK: the 30 px teal strip plus the smart-sticky
+logo/search row pinned BELOW it (~106 px total). The v2 measurement only
+counted elements whose top edge sat at the viewport top, so it measured
+30 px and believed the heading was clear while the logo row covered it.
+v3 probes a column of points down the viewport (y = 6/40/80/120/160) and
+takes the deepest bottom edge of any fixed/sticky layer covering a probe —
+verified with a real scroll on theme 155670839482: heading lands at 186 px
+(desktop) / 126 px (mobile) against a 106 px overlay, fully visible on both.
+**Re-upload: `assets/cro-12473-pdp.js` only.**
+
 ## QA handover
 
 **Setup**: duplicate the CURRENT live theme (not the May 29 draft), upload all
@@ -180,10 +231,12 @@ https://pippen.conversionratepros.co.za/hq/qa/170
 
 **Test matrix** (desktop + mobile):
 
-- [ ] **Reference product** (`magnesium-glycinate-tablets-600mg`): value-prop line under title, short description under price, no description in buy box, "Oor hierdie produk" section below, trust line above title, review section hidden, bundle with D3 + Cranberry and correct "Saam:" total
+- [ ] **Any product with a description**: 150-char plain-text teaser under the price (no headings/bold leaking through), "Lees meer" smooth-scrolls to "Oor hierdie produk", which shows the FULL unmodified description; no description in the buy box
+- [ ] **Supplement PDP** (e.g. `magnesium-glycinate-tablets-600mg`): the authored "Short description:"/"Description:" labels do NOT appear in the teaser
+- [ ] **Value-prop line**: shows ONLY where the metafield is populated; absent elsewhere
+- [ ] **Bundle sourcing**: rows = first 3 in-stock products (excluding itself) of the product's first collection; product in no collection falls back to the template's companion blocks
 - [ ] **Product WITH reviews**: real stars show, NO trust line, review section visible, nothing else changed
-- [ ] **`<p>`-led product** (most of the catalog, e.g. `medium-uncented-cement-candle`): first paragraph shows under the price, remainder below in the new section, no text appears twice
-- [ ] **No-shape product** (e.g. `blush-basiese-bundel`, `<pre>` plain text): no value-prop/short-desc blocks (graceful fallback), full description below in the new section
+- [ ] **Empty-description product**: no teaser block, no "Oor hierdie produk" section, page otherwise intact
 - [ ] **Multi-variant product**: change options — buy box intact, bundle main price + total follow the variant price, no duplicate injections
 - [ ] **Bundle**: untick companions → total updates; "Voeg almal by die mandjie" → main product (at chosen qty) + checked companions land in cart, header count updates, button shows "Bygevoeg ✓"
 - [ ] **Title**: big dark h1 look identical to control (not small teal)
@@ -198,14 +251,18 @@ control): English "In stock", empty mobile "Voorgestelde produkte",
 
 ## Still to confirm before launch
 
-- [ ] Populate `custom.value_prop` per product (Afrikaans lines — reference product gets the design copy)
-- [ ] Real bought-together companion picks (Andries) — via `custom.companions` or template blocks
+- [ ] Confirm the value-prop metafield Donavan created is `custom.value_prop` (code reads that key; one-line change if his differs)
+- [ ] Value-prop population workflow: client or vendors fill it per product (Nick deciding) — line simply stays absent until populated
 - [ ] B1 trust-line copy sign-off with the client (editable: section setting)
-- [ ] A2 relocated-not-clamped approach confirmed as final
+- [ ] Confirm "first collection" intent — Liquid sorts `product.collections` alphabetically by title
 - [ ] Exclude sold-out hero / gift-card products from template assignment (Andries)
 - [ ] Live QA on a multi-variant product (variant repaint, price sync)
 - [ ] CRO-12303 trust-strip test concluded (or baked in) before launch — no overlap
-- [ ] Description-shape audit: spot-check a few PDPs whose descriptions may not follow the entry-content shape
+
+Resolved by the 2026-08-06 client decisions: companion picks (first-collection
+rule), A2 approach (full description relocated, nothing removed), and the
+description-shape concerns (the 150-char plain-text teaser works on every
+description shape).
 
 ## Pre-launch resets
 

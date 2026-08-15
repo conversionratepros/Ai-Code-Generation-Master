@@ -36,7 +36,7 @@ Lime `#C6D644` · band black `#1B1C15` · grey text `#6F7268` · muted-on-dark `
 ## Behaviour wiring
 
 - **Every "Plan my fitout"-family CTA** reuses the sitewide Typeform popup trigger verbatim (`typeform-share getaquoteclick typeform-embed` + `{{ settings.typeformurls_url_1 }}` + `data-tf-on-ready` — same as header-contacts.liquid), so existing GA tracking on `getaquoteclick` keeps working. All also carry `data-crohp-typeform`.
-- **Estimator → Typeform hidden fields:** answers stored in `sessionStorage.croHpEstimator`; a capture-phase click handler intercepts any `data-crohp-typeform` trigger when answers exist and opens `window.tf.createPopup(formId, {hidden:{headcount,city,timeframe}})`. Fallback: attributes are also mirrored to `data-tf-hidden`; with no answers or no `window.tf`, the native embed binding runs untouched. ⚠️ **The `headcount`, `city`, `timeframe` hidden fields must be created in the Typeform itself**, and the Typeform welcome screen should repeat the face + two-hour promise (Typeform-side config).
+- **Estimator → Typeform hidden fields** (reworked 2026-08-12 per Don/client): answers stored in `sessionStorage.croHpEstimator`; a capture-phase click handler intercepts any `data-crohp-typeform` trigger once the estimator has been submitted and opens `window.tf.createPopup(formId, {hidden})`. The hidden payload contains **only the dropdowns actually answered** (empty ones omitted — client requirement) plus constant `entry_point=homepage-estimator`; values are slugified from the display labels (`11–30`→`11-30`, `Within a month`→`within-a-month`, `30+`→`30-plus`). Submit always proceeds, 0–3 answers. The estimator's own trigger no longer uses `settings.typeformurls_url_1` — it renders explicit attrs from section setting `est_typeform_id` (default **`oq7mO0d2`**, the live general-quote form) plus `data-tf-on-submit`/`data-tf-on-ready` (attributes are a full replacement because duplicate HTML attributes resolve to the first occurrence). Fallback: same non-empty set mirrored to `data-tf-hidden`; with no submit yet or no `window.tf`, the native embed binding runs untouched (hero/other CTAs unaffected). The embed SDK delivers hidden fields in the iframe URL **hash fragment**, not the query string — equivalent to the client's `?headcount=…` URL test. Verified via Playwright harness vs the real embed.js 2026-08-12 (partial answers, zero answers, slug edge cases, native path, fallback attr — 14/14). ⚠️ **The `headcount`, `city`, `timeframe`, `entry_point` hidden fields must exist in the `oq7mO0d2` Typeform itself** (client's URL test suggests the first three do; `entry_point` is new — confirm), and the Typeform welcome screen should repeat the face + two-hour promise (Typeform-side config).
 - **Sticky bar** hides while the final ask is in viewport (`data-crohp-final-ask` observer) so the two asks never compete. Mobile only (<750px), safe-area padded.
 - **Motion:** counters and timeline run once on scroll-in; `prefers-reduced-motion` renders final state; hidden start-states apply only after JS confirms running (no-JS safe).
 - **Theme footer** is hidden only on this template (`body.index-cro-hp .footer-wrapper`) — body class comes free from body-classes.liquid (`{{template.name}}-{{template.suffix}}`).
@@ -69,7 +69,8 @@ Lime `#C6D644` · band black `#1B1C15` · grey text `#6F7268` · muted-on-dark `
 ## Launch checklist
 
 - [ ] Upload assets + sections + template to a duplicate/dev theme; preview `/?view=cro-hp`
-- [ ] Create `headcount`/`city`/`timeframe` hidden fields in the quote Typeform; set welcome screen (face + 2-hour promise)
+- [ ] Confirm `headcount`/`city`/`timeframe` + new `entry_point` hidden fields exist in Typeform `oq7mO0d2`; set welcome screen (face + 2-hour promise)
+- [ ] Confirm slug vocabulary with client (Don's example `timeframe=1-2-months` ≠ configured options `asap`/`within-a-month`/`1-3-months`/`just-planning` — option labels or a value map must come from them if reporting expects specific strings)
 - [ ] Photography: hero, S4, case cards, S9 side photo (grey placeholders render until then)
 - [ ] White client logos uploaded (proof band blocks) — five distinct clients (4.3)
 - [ ] Three verified distinct quotes + city check (4.5/4.6)
@@ -79,3 +80,104 @@ Lime `#C6D644` · band black `#1B1C15` · grey text `#6F7268` · muted-on-dark `
 - [ ] Poppins 500 is loaded via a `<link>` in the hero section — if hero is ever removed from the template, move that link into another section
 - [ ] Confirm live badge / "38 fitouts this week" numbers have an owner + update cadence (spec: real, fed, flattering)
 - [ ] Convert experiment: Split URL or template-swap targeting `/?view=cro-hp` per CRP standard
+
+---
+
+# v2 respec — "Temp - JasonL — Website 2026" board (2026-08-10)
+
+Client supplied a new Figma (5JZZIzKcjO1Yzv2rCBszng) with desktop (478:940, 2000w/1540 content)
+AND real mobile frames (478:1991, 390w/358 content). Full type/spacing/margin re-verification done
+with Playwright against the live preview theme (188303442208).
+
+- **Extracted specs:** `recon/figma-desktop-spec.md` + `recon/figma-mobile-spec.md` (per-band text + layout tables).
+- **New tokens:** ink `#161616` (was #0A0A0A), grey `#777`, light band `#F6FAFB`, dividers `#E9E9E9`,
+  orange `#FF9F17` (replaces mustard), dark bands `#161616` (was #1B1C15), on-dark `#F6FAFB`/`#E5ECF0`.
+- **Type scale:** H1 74/84 (was 106), H2 42/50 (Showrooms 50), body 16/28, small 14/24; buttons h54 r50
+  label 14/600 (People + Final CTA 16; Final CTA px60); eyebrow 10/600/ls2.4 + 11px dot.
+- **CTA flips per board:** hero "Shop furniture" + interior "Find out more" → dark outline;
+  furniture "Shop all furniture" → light `#E9E9E9` outline (`--outline-light`).
+- **Mobile system (new):** 16px gutters, pt/pb 40 bands, full-width 54px buttons (15/600), H2 28/34,
+  body 13; stats 2×2 + logos 2×3 grids; how-steps 2×2; case-card RAIL (275w, snap, JS progress hint);
+  chip rail; estimator full-bleed band; people reordered (title→photo→signature→CTA via display:contents);
+  showrooms ACCORDION (closed 63px #F6FAFB rows, chevrons, "See on Google" link) + footer accordion.
+- **Structural adds:** `snippets/cro-hp-modal-virtual-tour.liquid` (fork; label now "360º Virtual walk-through"),
+  chevron + See-on-Google spans in showrooms, footer col classes, Poppins 300/300-italic loaded (proof-band
+  "this week" is Light Italic).
+- **Verification:** 59-point Playwright check (both viewports) — 59/59 within 0.01px after fixes
+  (`scratchpad/verify.py` pattern: disable old cro-hp.css links, inject new CSS at body end, compare
+  computed styles to spec tables).
+- **Deliberate deviations:** photo `opacity .2` washes in the comp treated as placeholder art direction —
+  NOT applied to merchant-uploaded images; sticky mobile bar kept (not drawn in new board, mandated by
+  conversion spec); showrooms section CTA kept (soft conversion; absent from new board); mobile
+  "Notification strip" (cream #FFF7D6 interior-design teaser, hidden layer in comp) NOT built pending
+  confirmation; comp inconsistencies normalized (Hanken Grotesk/Inter → Poppins, eyebrow tracking unified,
+  tier eyebrows standardized to 13/1.3).
+
+**Re-upload list for preview theme 188303442208:** assets/cro-hp.css, assets/cro-hp.js,
+assets/cro-hp-zac.png + cro-hp-zac-signature.png + cro-hp-logo.svg (binaries currently 404),
+sections/cro-hp-hero.liquid, cro-hp-proof-band.liquid, cro-hp-interior.liquid, cro-hp-furniture.liquid,
+cro-hp-showrooms.liquid, cro-hp-footer.liquid, snippets/cro-hp-modal-virtual-tour.liquid (NEW).
+
+## v2.1 — client QA round (2026-08-10, after first live review)
+
+1. **Cases mismatch root cause:** a hand-added `.crohp-section p { margin-top: 15px }` rule — `p`-element
+   specificity (0,1,1) beat every single-class margin rule on `<p>` elements (case meta lost its 30px
+   insets, subs/eyebrows gained phantom gaps; also why the hero-eyebrow `!important` hack existed).
+   Reset is now `.crohp-section :where(p) { margin: 0 }` — beats theme resets, ties (and loses by
+   order) to our per-element rules. All 10 affected margins re-verified live.
+   "See the fitout" also now renders on every card (falls back to section URL / #) per comp.
+2. Pricing H2 max-width 730→700 so "Roughly this." wraps to line 2 like the comp.
+3. Case-rail progress reworked: fixed-width thumb travels the 179px track (width + translateX,
+   recalculated on scroll AND resize). Verified: translateX 3→101px across full scroll.
+4. MOST COMMON tag centered over its tier (left 50% / translate(-50%,-50%)) — desktop + mobile, verified 0px delta.
+5. First showroom accordion row opens by default on mobile load (comp default state).
+6. `body.index-cro-hp .collection-slider-holder.large-hide { display:none !important }` — theme's
+   mobile category slider no longer renders above the variant hero.
+
+Re-upload: assets/cro-hp.css, assets/cro-hp.js, sections/cro-hp-case-studies.liquid, sections/cro-hp-pricing.liquid.
+
+## QA round 1 — 33 bugs from #qa-l1 (thread 1786418061.845479, fixed 2026-08-11)
+
+**Root cause of the font-size batch (bugs 1,7,8,11,14,16,25,27,30,33):** type was scaled with vw
+clamps against the 2000px design canvas — QA measures absolute px at ~1440, where clamp(28px,2.1vw,42px)
+renders ~30px. All type is now FIXED px (74/50/42/70 desktop, mobile block per mobile frame).
+Process change: verification now runs at 1440 + 390 (QA's real viewports), never the design canvas width.
+
+Other fixes: badge fully 600 (2) · trust seps 30px each (3) · removed the `!important` eyebrow hack that
+pinned the mobile gap at 20 (4) · microline + mech lead break via `strong{display:block}` mobile (5,13) ·
+trust rows are flex+gap so spacing survives Shopify's setting-trim (6) · proof headline 3 lines mobile (9) ·
+logo grid 15px centered cells (10) · How divider is static again — draw animation removed, steps still
+stagger (12) · cases copy/pills/button to Figma: heading "Big or small…", board sub, outline button,
+pills fully 600 with no flex gap before • (15,17,18) · Figma quote on all three cards (19) · margins
+30/20 per QA (16,20,21,22,24,26,30) + people 45 (33) · rail scroll-padding 16 (23) · select focus =
+hairline box-shadow, no browser ring (28 — native popup position itself is OS-rendered, not controllable) ·
+estimator button inline 18px removed → 14/15 (29,31) · product card text vertically centered (32).
+
+Open judgment calls flagged to QA: cases eyebrow kept "Recent fitouts" (Figma component shows placeholder
+"Complete the setup"); identical quotes ×3 now match Figma but contradict original spec QA 4.5 (verified
+distinct quotes) — content gate stands; cases sub now duplicates How's sub per Figma (spec QA 4.7 conflict).
+
+Re-upload: assets/cro-hp.css, sections/cro-hp-pricing.liquid, sections/cro-hp-case-studies.liquid,
+templates/index.cro-hp.json. Slack summary posts to the thread after live re-verification.
+
+## Port: showrooms / final CTA / footer reused from CRO-12526 v2 (2026-08-11)
+
+Per Rafee: the PDP Buy-first test (CRO-12526 v2) already built these three sections in the same
+2026 design system and they survived 15 QA rounds — reused instead of my rebuilds. Class names and
+CSS kept VERBATIM (cro12526v2-*; 100-rule extraction from cro-12526-v2-pdp.css, verified complete
+after fixing a comment-brace parser bug), so their QA fixes ride along: address note-line cleanup
+(their Bug 22), handleized modal names for "&" (Bug 23), hover/focus side-image swap, mobile
+accordion single-open+toggle-off (Bug 56), centered mobile final CTA (57), inline jason.l SVG
+wordmark, client-verified footer URLs.
+
+Homepage adaptations: page-width → crohp-container (band alignment); id="cro-hp-showrooms" kept for
+anchors; showrooms title row keeps the ten-beat soft-conversion CTA (Typeform); final CTA carries
+data-crohp-final-ask (sticky-bar hide) + data-crohp-typeform (estimator hidden fields) and DROPS the
+12526 mobile brand block (homepage footer owns the brand block); footer = link blocks ×15 in template
+JSON (Pricing guide → #cro-hp-pricing, Book a showroom visit → #cro-hp-showrooms anchors; Reviews /
+Careers / Contact URLs blank — need client destinations). Old .crohp-rooms/.crohp-ask/.crohp-footer
+CSS is inert, marked deprecated pending QA sign-off. snippets/cro-hp-modal-virtual-tour.liquid
+deleted (superseded — remove from theme too, optional). initShowrooms12526 ported into cro-hp.js.
+
+Re-upload: assets/cro-hp.css, assets/cro-hp.js, sections/cro-hp-showrooms.liquid,
+sections/cro-hp-final-ask.liquid, sections/cro-hp-footer.liquid, templates/index.cro-hp.json.

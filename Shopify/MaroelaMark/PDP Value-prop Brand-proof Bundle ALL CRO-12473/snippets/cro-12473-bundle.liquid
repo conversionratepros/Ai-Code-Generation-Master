@@ -4,11 +4,18 @@
   .product-block--bundle (directly below the ATC form block) and wires
   the live total + "add all" AJAX cart action.
 
-  Companion sources (first match wins):
-    1. product.metafields.custom.companions (list of products) — per-product picks
-    2. companion_product blocks on the section — template-wide defaults
-  Sold-out companions and the product itself are skipped. The whole card
-  is skipped when no companion survives filtering.
+  Companion sources (first non-empty wins — per client decision, Donavan
+  Slack 2026-08-06: "look at the first collection it is assigned to, take
+  the first three products"):
+    1. product.metafields.custom.companions (list of products) — explicit
+       per-product override, optional
+    2. the FIRST collection the product belongs to — its first three
+       eligible products (the standing rule)
+    3. companion_product blocks on the section — fallback for products
+       in no collection
+  Sold-out companions and the product itself are skipped; the loop scans
+  past them until three rows are filled. The whole card is skipped when
+  no companion survives filtering.
 
   @param product {Object} the main product
   (section is a Liquid global — settings/blocks are read directly)
@@ -24,6 +31,13 @@
   assign cro_companions = product.metafields.custom.companions.value
   assign cro_companions_size = cro_companions | size
   if cro_companions_size == 0
+    assign cro_first_collection = product.collections | first
+    if cro_first_collection != blank
+      assign cro_companions = cro_first_collection.products
+    endif
+  endif
+  assign cro_companions_size = cro_companions | size
+  if cro_companions_size == 0
     assign cro_companions = section.blocks | where: 'type', 'companion_product' | map: 'settings' | map: 'product'
   endif
 
@@ -32,7 +46,10 @@
 %}
 
 {% capture cro_companion_rows %}
-  {% for cro_cp in cro_companions limit: 3 %}
+  {% for cro_cp in cro_companions %}
+    {% if cro_companion_count >= 3 %}
+      {% break %}
+    {% endif %}
     {% if cro_cp != blank and cro_cp.id != product.id and cro_cp.available %}
       {% assign cro_cpv = cro_cp.selected_or_first_available_variant %}
       {% if cro_cpv != blank and cro_cpv.available %}

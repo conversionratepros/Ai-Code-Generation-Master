@@ -1,12 +1,20 @@
 {% comment %}
   CRO-12473 — A3 short description (server-rendered in the Sprint 2 mount).
   cro-12473-pdp.js moves this into .product-block--short_desc (beneath the
-  price). The content is the entry-content part of the product description;
-  the long remainder renders in the cro-12473-description section below the
-  buy box, so nothing is duplicated.
+  price).
 
-  @param short_html {String} inner HTML of the description's entry-content div
+  Per client decision (Donavan, Slack 2026-08-06): the blurb is the first
+  150 characters of the PLAIN description text — all styling/headings
+  stripped so it always reads as paragraph text — followed by a
+  "Lees meer" link that anchors down to the "Oor hierdie produk" section
+  (#cro-12473-description, rendered by cro-12473-description.liquid).
+
+  @param short_text {String} plain, pre-truncated blurb text (never blank
+    here — the section skips this render when there is no description)
 {% endcomment %}
-<div class="cro-12473-shortdesc rte" data-cro-12473-short-desc style="display: none;">
-  {{ short_html }}
+<div class="cro-12473-shortdesc" data-cro-12473-short-desc style="display: none;">
+  <p>
+    {{- short_text | escape }}
+    <a class="cro-12473-readmore" href="#cro-12473-description">Lees meer</a>
+  </p>
 </div>

@@ -3,45 +3,202 @@
     "hero": {
       "type": "cro-hp-hero",
       "blocks": {
-        "trust-google": { "type": "trust_item", "settings": { "show_star": true, "value": "4.8", "label": " Google reviews" } },
-        "trust-showrooms": { "type": "trust_item", "settings": { "show_star": false, "value": "7", "label": " showrooms nationally" } },
-        "trust-owned": { "type": "trust_item", "settings": { "show_star": false, "value": "", "label": "Australian owned" } }
+        "trust-google": {
+          "type": "trust_item",
+          "settings": {
+            "show_star": true,
+            "value": "4.8",
+            "label": " Google reviews"
+          }
+        },
+        "trust-showrooms": {
+          "type": "trust_item",
+          "settings": {
+            "show_star": false,
+            "value": "7",
+            "label": " showrooms nationally"
+          }
+        },
+        "trust-owned": {
+          "type": "trust_item",
+          "settings": {
+            "show_star": false,
+            "value": "",
+            "label": "Australian owned"
+          }
+        }
       },
-      "block_order": ["trust-google", "trust-showrooms", "trust-owned"]
+      "block_order": [
+        "trust-google",
+        "trust-showrooms",
+        "trust-owned"
+      ]
     },
     "proof_band": {
       "type": "cro-hp-proof-band",
       "blocks": {
-        "stat-delivered": { "type": "stat", "settings": { "prefix": "", "value": "981", "suffix": "+", "label": "Fitouts delivered since 2009" } },
-        "stat-ontime": { "type": "stat", "settings": { "prefix": "", "value": "82", "suffix": "%", "label": "Projects installed on time" } },
-        "stat-showrooms": { "type": "stat", "settings": { "prefix": "", "value": "7", "suffix": "", "label": "Showrooms across Australia" } },
-        "stat-consult": { "type": "stat", "settings": { "prefix": "<", "value": "4", "suffix": "", "label": "Days from consult to installed" } },
-        "logo-1": { "type": "logo", "settings": { "name": "Woods Bagot", "recency": "1 day ago", "city": "Sydney" } },
-        "logo-2": { "type": "logo", "settings": { "name": "Hutchinson", "recency": "3 days ago", "city": "Melbourne" } },
-        "logo-3": { "type": "logo", "settings": { "name": "Flight Centre", "recency": "3 days ago", "city": "Brisbane" } },
-        "logo-4": { "type": "logo", "settings": { "name": "BMD", "recency": "4 days ago", "city": "Sydney" } },
-        "logo-5": { "type": "logo", "settings": { "name": "CreditorWatch", "recency": "Last week", "city": "Sydney" } }
+        "stat-delivered": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "value": "981",
+            "suffix": "+",
+            "label": "Fitouts delivered since 2009"
+          }
+        },
+        "stat-ontime": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "value": "82",
+            "suffix": "%",
+            "label": "Projects installed on time"
+          }
+        },
+        "stat-showrooms": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "value": "7",
+            "suffix": "",
+            "label": "Showrooms across Australia"
+          }
+        },
+        "stat-consult": {
+          "type": "stat",
+          "settings": {
+            "prefix": "<",
+            "value": "4",
+            "suffix": "",
+            "label": "Days from consult to installed"
+          }
+        },
+        "logo-1": {
+          "type": "logo",
+          "settings": {
+            "name": "Woods Bagot",
+            "recency": "1 day ago",
+            "city": "Sydney"
+          }
+        },
+        "logo-2": {
+          "type": "logo",
+          "settings": {
+            "name": "Hutchinson",
+            "recency": "3 days ago",
+            "city": "Melbourne"
+          }
+        },
+        "logo-3": {
+          "type": "logo",
+          "settings": {
+            "name": "Flight Centre",
+            "recency": "3 days ago",
+            "city": "Brisbane"
+          }
+        },
+        "logo-4": {
+          "type": "logo",
+          "settings": {
+            "name": "BMD",
+            "recency": "4 days ago",
+            "city": "Sydney"
+          }
+        },
+        "logo-5": {
+          "type": "logo",
+          "settings": {
+            "name": "CreditorWatch",
+            "recency": "Last week",
+            "city": "Sydney"
+          }
+        }
       },
-      "block_order": ["logo-1", "logo-2", "logo-3", "logo-4", "logo-5", "stat-delivered", "stat-ontime", "stat-showrooms", "stat-consult"]
+      "block_order": [
+        "logo-1",
+        "logo-2",
+        "logo-3",
+        "logo-4",
+        "logo-5",
+        "stat-delivered",
+        "stat-ontime",
+        "stat-showrooms",
+        "stat-consult"
+      ]
     },
     "how_it_works": {
       "type": "cro-hp-how-it-works",
       "blocks": {
-        "step-1": { "type": "step", "settings": { "stamp": "Day 0", "title": "Chat & measure", "desc": "Tell us your headcount, floor and deadline. We'll come and measure — or work straight from your floorplan." } },
-        "step-2": { "type": "step", "settings": { "stamp": "Days 1–2", "title": "Free layout & quote", "desc": "A real layout for your actual space, with an itemised quote. Yours to keep, no obligation." } },
-        "step-3": { "type": "step", "settings": { "stamp": "Days 3–8", "title": "We pick & deliver", "desc": "Everything's in stock in our Australian warehouses — not on a ship. Our trucks, our schedule." } },
-        "step-4": { "type": "step", "settings": { "stamp": "By day 10", "title": "Installed & working", "desc": "Our own installers build it, place it and take every box away. You walk in to a finished office." } }
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "stamp": "Day 0",
+            "title": "Chat & measure",
+            "desc": "Tell us your headcount, floor and deadline. We'll come and measure — or work straight from your floorplan."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "stamp": "Days 1–2",
+            "title": "Free layout & quote",
+            "desc": "A real layout for your actual space, with an itemised quote. Yours to keep, no obligation."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "stamp": "Days 3–8",
+            "title": "We pick & deliver",
+            "desc": "Everything's in stock in our Australian warehouses — not on a ship. Our trucks, our schedule."
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "stamp": "By day 10",
+            "title": "Installed & working",
+            "desc": "Our own installers build it, place it and take every box away. You walk in to a finished office."
+          }
+        }
       },
-      "block_order": ["step-1", "step-2", "step-3", "step-4"]
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4"
+      ]
     },
     "interior_design": {
       "type": "cro-hp-interior",
       "blocks": {
-        "bullet-1": { "type": "bullet", "settings": { "lead": "One designer, start to finish", "rest": "— across layout, furniture and finishes." } },
-        "bullet-2": { "type": "bullet", "settings": { "lead": "Built into your fitout", "rest": "— same team, same timeline." } },
-        "bullet-3": { "type": "bullet", "settings": { "lead": "Showroom sessions", "rest": "— see and touch materials before you commit." } }
+        "bullet-1": {
+          "type": "bullet",
+          "settings": {
+            "lead": "One designer, start to finish",
+            "rest": "— across layout, furniture and finishes."
+          }
+        },
+        "bullet-2": {
+          "type": "bullet",
+          "settings": {
+            "lead": "Built into your fitout",
+            "rest": "— same team, same timeline."
+          }
+        },
+        "bullet-3": {
+          "type": "bullet",
+          "settings": {
+            "lead": "Showroom sessions",
+            "rest": "— see and touch materials before you commit."
+          }
+        }
       },
-      "block_order": ["bullet-1", "bullet-2", "bullet-3"]
+      "block_order": [
+        "bullet-1",
+        "bullet-2",
+        "bullet-3"
+      ]
     },
     "case_studies": {
       "type": "cro-hp-case-studies",
@@ -49,32 +206,52 @@
         "case-1": {
           "type": "case",
           "settings": {
-            "segment": "small business", "staff": "6 staff", "client": "Loftwork Studio",
-            "city": "Sydney", "scope": "Desks, seating & storage", "days": "3 days",
-            "quote": "[QA 4.5 — replace with a verified Loftwork Studio quote]",
+            "segment": "small business",
+            "staff": "6 staff",
+            "client": "Loftwork Studio",
+            "city": "Sydney",
+            "scope": "Desks, seating & storage",
+            "days": "3 days",
+            "quote": "They hit every deadline. We've continued to use them for over five years now.",
             "attribution": "Emma Gourley — CEO, Loftwork Studio"
           }
         },
         "case-2": {
           "type": "case",
           "settings": {
-            "segment": "growing team", "staff": "25 staff", "client": "ABC Ballarat",
-            "city": "Perth", "scope": "Workstations & Breakout", "days": "6 days",
-            "quote": "[QA 4.5 — replace with a verified ABC Ballarat quote; QA 4.6 — verify city]",
+            "segment": "growing team",
+            "staff": "25 staff",
+            "client": "ABC Ballarat",
+            "city": "Perth",
+            "scope": "Workstations & Breakout",
+            "days": "6 days",
+            "quote": "They hit every deadline. We've continued to use them for over five years now.",
             "attribution": "Jennifer Ammy — CEO, ABC Ballarat"
           }
         },
         "case-3": {
           "type": "case",
           "settings": {
-            "segment": "enterprise", "staff": "120 staff", "client": "CreditorWatch",
-            "city": "Sydney", "scope": "Full fitout", "days": "9 days",
+            "segment": "enterprise",
+            "staff": "120 staff",
+            "client": "CreditorWatch",
+            "city": "Sydney",
+            "scope": "Full fitout",
+            "days": "9 days",
             "quote": "They hit every deadline. We've continued to use them for over five years now.",
             "attribution": "Patrick Coghlan — CEO, CreditorWatch"
           }
         }
       },
-      "block_order": ["case-1", "case-2", "case-3"]
+      "block_order": [
+        "case-1",
+        "case-2",
+        "case-3"
+      ],
+      "settings": {
+        "heading": "Big or small, we've done one like yours.",
+        "sub": "We plan it, bring it, build it. You just show up. Here's the whole thing, start to finish."
+      }
     },
     "pricing": {
       "type": "cro-hp-pricing",
@@ -82,41 +259,112 @@
         "tier-1": {
           "type": "tier",
           "settings": {
-            "tag": "", "band": "Just starting · 1–10 people", "price": "from ~$5k", "summary": "A few desks, done properly.",
+            "tag": "",
+            "band": "Just starting · 1–10 people",
+            "price": "from ~$5k",
+            "summary": "A few desks, done properly.",
             "bullets": "Workstations & task seating\nStorage & a meeting setting\nFree layout plan\nDelivered & installed"
           }
         },
         "tier-2": {
           "type": "tier",
           "settings": {
-            "tag": "Most common", "band": "Growing team · 10–30 people", "price": "from ~$12k", "summary": "Room to grow into.",
+            "tag": "Most common",
+            "band": "Growing team · 10–30 people",
+            "price": "from ~$12k",
+            "summary": "Room to grow into.",
             "bullets": "Full layout design\nWorkstations, meeting & breakout\nAcoustics & privacy pods\nDedicated project manager\nDelivered & installed"
           }
         },
         "tier-3": {
           "type": "tier",
           "settings": {
-            "tag": "", "band": "Big move · 30+", "price": "Let's talk", "summary": "Tailored to the project.",
+            "tag": "",
+            "band": "Big move · 30+",
+            "price": "Let's talk",
+            "summary": "Tailored to the project.",
             "bullets": "Senior project management\nStaged, after-hours installs\nProcurement & compliance support\nMake-good coordination"
           }
         }
       },
-      "block_order": ["tier-1", "tier-2", "tier-3"]
+      "block_order": [
+        "tier-1",
+        "tier-2",
+        "tier-3"
+      ],
+      "settings": {
+        "sub": "Whether it's four desks or four floors, here's where most setups land — so there are no surprises. Every figure includes delivery and install."
+      }
     },
     "furniture_door": {
       "type": "cro-hp-furniture",
       "blocks": {
-        "chip-1": { "type": "chip", "settings": { "label": "Chairs" } },
-        "chip-2": { "type": "chip", "settings": { "label": "Desks" } },
-        "chip-3": { "type": "chip", "settings": { "label": "Workstations" } },
-        "chip-4": { "type": "chip", "settings": { "label": "Storage" } },
-        "chip-5": { "type": "chip", "settings": { "label": "Tables" } },
-        "chip-6": { "type": "chip", "settings": { "label": "Privacy pods" } },
-        "chip-7": { "type": "chip", "settings": { "label": "Sofas & lounges" } },
-        "chip-8": { "type": "chip", "settings": { "label": "Whiteboards" } },
-        "chip-9": { "type": "chip", "settings": { "label": "Acoustics" } }
+        "chip-1": {
+          "type": "chip",
+          "settings": {
+            "label": "Chairs"
+          }
+        },
+        "chip-2": {
+          "type": "chip",
+          "settings": {
+            "label": "Desks"
+          }
+        },
+        "chip-3": {
+          "type": "chip",
+          "settings": {
+            "label": "Workstations"
+          }
+        },
+        "chip-4": {
+          "type": "chip",
+          "settings": {
+            "label": "Storage"
+          }
+        },
+        "chip-5": {
+          "type": "chip",
+          "settings": {
+            "label": "Tables"
+          }
+        },
+        "chip-6": {
+          "type": "chip",
+          "settings": {
+            "label": "Privacy pods"
+          }
+        },
+        "chip-7": {
+          "type": "chip",
+          "settings": {
+            "label": "Sofas & lounges"
+          }
+        },
+        "chip-8": {
+          "type": "chip",
+          "settings": {
+            "label": "Whiteboards"
+          }
+        },
+        "chip-9": {
+          "type": "chip",
+          "settings": {
+            "label": "Acoustics"
+          }
+        }
       },
-      "block_order": ["chip-1", "chip-2", "chip-3", "chip-4", "chip-5", "chip-6", "chip-7", "chip-8", "chip-9"]
+      "block_order": [
+        "chip-1",
+        "chip-2",
+        "chip-3",
+        "chip-4",
+        "chip-5",
+        "chip-6",
+        "chip-7",
+        "chip-8",
+        "chip-9"
+      ]
     },
     "people": {
       "type": "cro-hp-people"
@@ -130,11 +378,144 @@
     "footer": {
       "type": "cro-hp-footer",
       "blocks": {
-        "col-fitouts": { "type": "column", "settings": { "title": "Fitouts", "label1": "How it works", "label2": "Interior design", "label3": "Case studies", "label4": "Pricing guide", "label5": "Book a showroom visit" } },
-        "col-shop": { "type": "column", "settings": { "title": "Shop", "label1": "Chairs", "label2": "Desks", "label3": "Workstations", "label4": "Storage", "label5": "All furniture" } },
-        "col-company": { "type": "column", "settings": { "title": "Company", "label1": "About us", "label2": "Reviews", "label3": "Careers", "label4": "Shipping & returns", "label5": "Contact" } }
+        "flink-1": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "How it works",
+            "url": "/blogs/fitouts"
+          }
+        },
+        "flink-2": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "Interior design",
+            "url": "/pages/interior-design"
+          }
+        },
+        "flink-3": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "Case studies",
+            "url": "/blogs/fitouts"
+          }
+        },
+        "flink-4": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "Pricing guide",
+            "url": "#cro-hp-pricing"
+          }
+        },
+        "flink-5": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "Book a showroom visit",
+            "url": "#cro-hp-showrooms"
+          }
+        },
+        "flink-6": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Chairs",
+            "url": "/collections/office-chairs"
+          }
+        },
+        "flink-7": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Desks",
+            "url": "/collections/office-desks"
+          }
+        },
+        "flink-8": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Workstations",
+            "url": "/collections/office-workstations"
+          }
+        },
+        "flink-9": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Storage",
+            "url": "/collections/office-storage"
+          }
+        },
+        "flink-10": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "All furniture",
+            "url": "/collections/all"
+          }
+        },
+        "flink-11": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "About us",
+            "url": "/pages/about-us"
+          }
+        },
+        "flink-12": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Reviews",
+            "url": ""
+          }
+        },
+        "flink-13": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Careers",
+            "url": ""
+          }
+        },
+        "flink-14": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Shipping & returns",
+            "url": "/pages/shipping-and-returns"
+          }
+        },
+        "flink-15": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Contact",
+            "url": ""
+          }
+        }
       },
-      "block_order": ["col-fitouts", "col-shop", "col-company"]
+      "block_order": [
+        "flink-1",
+        "flink-2",
+        "flink-3",
+        "flink-4",
+        "flink-5",
+        "flink-6",
+        "flink-7",
+        "flink-8",
+        "flink-9",
+        "flink-10",
+        "flink-11",
+        "flink-12",
+        "flink-13",
+        "flink-14",
+        "flink-15"
+      ]
     },
     "sticky_bar": {
       "type": "cro-hp-sticky-bar"

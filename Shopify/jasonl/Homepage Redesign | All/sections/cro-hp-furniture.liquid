@@ -21,7 +21,7 @@
         <p class="crohp-furn__intro">{{ section.settings.intro }}</p>
       </div>
       {%- if section.settings.shop_all_label != blank -%}
-        <a class="crohp-btn crohp-btn--lime" href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}">
+        <a class="crohp-btn crohp-btn--outline-light" href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}">
           {{- section.settings.shop_all_label -}}
           <span class="crohp-btn__arrow">
             <svg width="20" height="8" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
@@ -42,11 +42,22 @@
       </div>
     {%- endif -%}
 
-    {%- if section.settings.collection != blank -%}
+    {%- liquid
+      comment
+        Template JSON can't preset a collection picker, so fall back to the
+        automatic all-products collection — the grid is never empty on first
+        render. Pick a curated collection in the editor for the real test.
+      endcomment
+      assign grid_collection = section.settings.collection
+      if grid_collection == blank
+        assign grid_collection = collections.all
+      endif
+    -%}
+    {%- if grid_collection != blank -%}
       <div class="crohp-furn__grid">
         {%- assign shown = 0 -%}
         {%- assign seen_handles = '' -%}
-        {%- for product in section.settings.collection.products limit: 24 -%}
+        {%- for product in grid_collection.products limit: 24 -%}
           {%- if shown >= section.settings.product_limit -%}{%- break -%}{%- endif -%}
           {%- assign handle_token = product.handle | append: '|' -%}
           {%- unless seen_handles contains handle_token or product.available == false -%}

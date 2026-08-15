@@ -5,7 +5,7 @@
   (settings.typeformurls_url_1 — same pattern as header-contacts.liquid).
 {% endcomment %}
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
 {{ 'cro-hp.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
 
@@ -26,7 +26,7 @@
       <div class="crohp-hero__ctas">
         <div class="crohp-hero__buttons">
           {%- if section.settings.shop_label != blank -%}
-            <a class="crohp-btn crohp-btn--lime" href="{{ section.settings.shop_url | default: '#cro-hp-furniture' }}">
+            <a class="crohp-btn crohp-btn--outline" href="{{ section.settings.shop_url | default: '#cro-hp-furniture' }}">
               {{- section.settings.shop_label -}}
             </a>
           {%- endif -%}

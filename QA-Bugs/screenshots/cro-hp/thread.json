@@ -1,0 +1,3214 @@
+{
+ "ok": true,
+ "messages": [
+  {
+   "user": "U089SHSFGQZ",
+   "type": "message",
+   "ts": "1786418061.845479",
+   "client_msg_id": "ea11d631-75ce-4a25-b07c-5adf298bc0a2",
+   "text": "<@U089SHSFGQZ> please perform 1st level QA.\nDev: <@U04FTCE3G91>\nTest: *<https://pippen.conversionratepros.co.za/deliverables/?open=995|Homepage Redesign>*\nHave you checked any test or 100 % test on targeted URLs. : Yes\nIs website is Single page application : YES\nHave you faced any back and forth with this client : No\nAre you working first time for this client : No\nPlease provide name of the person who setup the in testing  <@U04FTCE3G91>\nConvert Summary:\n\nPreview:\n```<https://www.jasonl.com.au/?_cd=3d69a48529716ebd04fbfebec225aac3188a429c560925ed1a11bd80faf534d7&amp;_uid=127404179744&amp;preview_theme_id=188303442208&amp;preview_token=dazc3fqd1wnus8dgd484pfgkfi2tt64l>```\n",
+   "team": "T04CN8ESH7D",
+   "thread_ts": "1786418061.845479",
+   "reply_count": 33,
+   "reply_users_count": 1,
+   "latest_reply": "1786428233.016039",
+   "reply_users": [
+    "U089SHSFGQZ"
+   ],
+   "is_locked": false,
+   "subscribed": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "EBnk2",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "user",
+         "user_id": "U089SHSFGQZ"
+        },
+        {
+         "type": "text",
+         "text": " please perform 1st level QA.\nDev: "
+        },
+        {
+         "type": "user",
+         "user_id": "U04FTCE3G91"
+        },
+        {
+         "type": "text",
+         "text": "\nTest: "
+        },
+        {
+         "type": "link",
+         "url": "https://pippen.conversionratepros.co.za/deliverables/?open=995",
+         "text": "Homepage Redesign",
+         "style": {
+          "bold": true
+         }
+        },
+        {
+         "type": "text",
+         "text": "\nHave you checked any test or 100 % test on targeted URLs. : Yes\nIs website is Single page application : YES\nHave you faced any back and forth with this client : No\nAre you working first time for this client : No\nPlease provide name of the person who setup the in testing  "
+        },
+        {
+         "type": "user",
+         "user_id": "U04FTCE3G91"
+        },
+        {
+         "type": "text",
+         "text": "\nConvert Summary:\n\nPreview:\n"
+        }
+       ]
+      },
+      {
+       "type": "rich_text_preformatted",
+       "elements": [
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/?_cd=3d69a48529716ebd04fbfebec225aac3188a429c560925ed1a11bd80faf534d7&_uid=127404179744&preview_theme_id=188303442208&preview_token=dazc3fqd1wnus8dgd484pfgkfi2tt64l"
+        }
+       ],
+       "border": 0
+      },
+      {
+       "type": "rich_text_section",
+       "elements": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "text": "Bug #: 1\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Beautiful fitouts in under 10 days. Easy. Fast!\", as highlighted by the red box, is not currently set to the correct font size. Also the Easy.Fast! font weight not correct.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 74px. Font weight of Easy.Fast! will be 600",
+   "files": [
+    {
+     "id": "F0BQ6RFKJ80",
+     "created": 1786418216,
+     "timestamp": 1786418216,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 125424,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ6RFKJ80/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ6RFKJ80/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 215,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 286,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 430,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 477,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 573,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6RFKJ80-cd9bf72a61/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 611,
+     "original_w": 1441,
+     "original_h": 860,
+     "thumb_tiny": "AwAdADC6IEyQ0UeM8YQCjyIs/wCpT/vkVHcO0e8qQMEY3bjng56f0/Gl88xBTLJH5ZOFIByRj8e+OaAJBBEf+WKD6qKXyIsY8qPH+6Kia5ZUTO0OcZBDcknjtnsf0qZvN/h2dT1zx6H/AOt+tADfIj5/dR/98ikW2iXP7tD9VFTUUrAJmjNIetFMBc0ZpKKAAlscEA+pH/16YFfK/P8AXI6/rT6B1osB/9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BQ6RFKJ80/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BQ6RFKJ80-4d9cba6123",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "4GM4t",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 1\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Beautiful fitouts in under 10 days. Easy. Fast!\", as highlighted by the red box, is not currently set to the correct font size. Also the Easy.Fast! font weight not correct.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 74px. Font weight of Easy.Fast! will be 600"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786418342.938259",
+   "client_msg_id": "a5e4c93d-4b5f-4cb7-adab-95dd904aa73e",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 2\n Device / Breakpoint: ALL\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The \"3 installs happening today\" text, as highlighted by the red box, is not fully bold \u2014 only part of the text appears bold while the rest is regular weight.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The full text should be bold, font weight 600.",
+   "files": [
+    {
+     "id": "F0BPEE6RWHF",
+     "created": 1786418672,
+     "timestamp": 1786418672,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 68657,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEE6RWHF/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEE6RWHF/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 216,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 288,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 431,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 479,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 575,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEE6RWHF-70072a8903/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 613,
+     "original_w": 1434,
+     "original_h": 859,
+     "thumb_tiny": "AwAdADC+Younlpx7Ck8mH/nin/fIp560UAM8mHOfJT/vkUvlR8fu14ORgdKdRQAgVBjCKMDA4pohiA2+WuPQin0DrQAuKMVzx244Bz9aSgDosUYrnR1p8qhJnQdFYgZoA3mUkcMV9xQqEHJct9QKxUgVrOSYk7lIAHbt/jUFAH//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPEE6RWHF/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPEE6RWHF-c0a131a4b4",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "XahWm",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 2\n Device / Breakpoint: ALL\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The \"3 installs happening today\" text, as highlighted by the red box, is not fully bold \u2014 only part of the text appears bold while the rest is regular weight.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The full text should be bold, font weight 600."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786418677.851699",
+   "edited": {
+    "user": "U089SHSFGQZ",
+    "ts": "1786418917.000000"
+   },
+   "client_msg_id": "2f0c3969-4599-4936-988a-44fe6a373cd7",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 3\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The margins around the bullet separators (\"\u2022\") between \"4.8 Google reviews,\" \"7 showrooms nationally,\" and \"Australian owned,\" as highlighted by the red lines, are not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n These margins should be 30px each.",
+   "files": [
+    {
+     "id": "F0BPEEKFTUH",
+     "created": 1786418893,
+     "timestamp": 1786418893,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 68737,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEEKFTUH/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEEKFTUH/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 216,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 288,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 431,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 479,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 575,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEEKFTUH-9dd117eed2/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 613,
+     "original_w": 1434,
+     "original_h": 859,
+     "thumb_tiny": "AwAdADC+Younlpx7Ck8mH/nin/fIp560UAM8mHOfJT/vkUvlR8fu14ORgdKdRQAgVBjCKMDA4pohiA2+WuPQin0DrQApBwcdaMVzx244Bz9aSgDosUYrnR1p8qhJnQdFYgZoA38UuKw0gVrOSYk7lIAHbt/jUFAH/9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPEEKFTUH/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPEEKFTUH-5335d7e97d",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "SrGOI",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 3\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The margins around the bullet separators (\"\u2022\") between \"4.8 Google reviews,\" \"7 showrooms nationally,\" and \"Australian owned,\" as highlighted by the red lines, are not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n These margins should be 30px each."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786418897.118299",
+   "client_msg_id": "09634408-055a-4155-a7bf-9a7110e05de9",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 4\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The gap between \"OFFICE FITOUTS, AUSTRALIA-WIDE\" and the heading \"Beautiful fitouts in under 10 days. Easy. Fast!\", as highlighted by the red line, is currently set to 20px.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n This gap should be 15px, not 20px.",
+   "files": [
+    {
+     "id": "F0BP69XQXQB",
+     "created": 1786419211,
+     "timestamp": 1786419211,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 66618,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP69XQXQB/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP69XQXQB/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP69XQXQB-b76b7d22fa/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP69XQXQB-b76b7d22fa/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP69XQXQB-b76b7d22fa/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP69XQXQB-b76b7d22fa/image_480.png",
+     "thumb_480_w": 239,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP69XQXQB-b76b7d22fa/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP69XQXQB-b76b7d22fa/image_720.png",
+     "thumb_720_w": 359,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP69XQXQB-b76b7d22fa/image_800.png",
+     "thumb_800_w": 399,
+     "thumb_800_h": 800,
+     "original_w": 428,
+     "original_h": 859,
+     "thumb_tiny": "AwAwABiY2EGcCEn33HA/WnfYoCNvkjA75/yat01WYg5UAg+p/wAKAKv9n2//ADy/8eNH9n2//PP9TVsbsnIAHbBpaACimGMEknP50eUvqam77APopgjAOQTT6av1AaetFDcc8n6Ck3f7LflRdAKOtOpgPI4b8qfTvcD/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BP69XQXQB/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BP69XQXQB-b9e6ccf6e8",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "EvIiJ",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 4\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The gap between \"OFFICE FITOUTS, AUSTRALIA-WIDE\" and the heading \"Beautiful fitouts in under 10 days. Easy. Fast!\", as highlighted by the red line, is currently set to 20px.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n This gap should be 15px, not 20px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786419222.341129",
+   "client_msg_id": "18a618a5-d29c-4308-8dea-d0ce02fbc532",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 5\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The text \"Takes 60 seconds. A real person replies within 2 business hours.\", as highlighted by the red box, is not breaking into two lines as per the design.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Per design, this text should display in 2 lines, with \"Takes 60 seconds.\" as the first line.",
+   "files": [
+    {
+     "id": "F0BQ6T8MEG0",
+     "created": 1786419232,
+     "timestamp": 1786419232,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 66820,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ6T8MEG0/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ6T8MEG0/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6T8MEG0-01623fc229/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6T8MEG0-01623fc229/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6T8MEG0-01623fc229/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6T8MEG0-01623fc229/image_480.png",
+     "thumb_480_w": 239,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6T8MEG0-01623fc229/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6T8MEG0-01623fc229/image_720.png",
+     "thumb_720_w": 359,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ6T8MEG0-01623fc229/image_800.png",
+     "thumb_800_w": 399,
+     "thumb_800_h": 800,
+     "original_w": 428,
+     "original_h": 859,
+     "thumb_tiny": "AwAwABiY2EGcCEn33HA/WnfYoCNvkjA75/yat01WYg5UAg+p/wAKAKv9n2//ADy/8eNH9n2//PP9TVsbsnIAHbBpaACimGMEknP50eUvqam77APopgjAOQTT6av1AaetFDcc8n6Ck3f7LflRdAKOtOpgPI4b8qfTvcD/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BQ6T8MEG0/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BQ6T8MEG0-5821d8c45d",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "2Y642",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 5\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The text \"Takes 60 seconds. A real person replies within 2 business hours.\", as highlighted by the red box, is not breaking into two lines as per the design.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Per design, this text should display in 2 lines, with \"Takes 60 seconds.\" as the first line."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786419296.631209",
+   "client_msg_id": "971adb2d-afd0-4d69-b50e-60ce3110f990",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 6\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n There is no space after \"4.8\" (before \"Google reviews\") and no space after \"7\" (before \"showrooms nationally\"), as highlighted by the red boxes \u2014 the text runs together.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n There should be a space after \"4.8\" and after \"7\" so the text reads correctly with proper spacing.",
+   "files": [
+    {
+     "id": "F0BP91VJPS9",
+     "created": 1786419321,
+     "timestamp": 1786419321,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 71994,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP91VJPS9/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP91VJPS9/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP91VJPS9-5ec152fd95/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP91VJPS9-5ec152fd95/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP91VJPS9-5ec152fd95/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP91VJPS9-5ec152fd95/image_480.png",
+     "thumb_480_w": 239,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP91VJPS9-5ec152fd95/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP91VJPS9-5ec152fd95/image_720.png",
+     "thumb_720_w": 358,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP91VJPS9-5ec152fd95/image_800.png",
+     "thumb_800_w": 398,
+     "thumb_800_h": 800,
+     "original_w": 424,
+     "original_h": 853,
+     "thumb_tiny": "AwAwABix9gts48o/Xcf8aPsNsWIMJAHfccH9atd6bnjOD9KAK/2C2/55Ef8AAj/jR/Z1t/c/U/41Zp1ABSLkKATk+vrXP5BIyNo7kUgxg8ZJ6H0oA6KiucooAlUkJgS7Qe2T0/Cm5BbDsWHXr/8AWq+dPVQBu3Hudp/xpq6eASTI3TsuP60m0gKBAHRgfpSVof2cCAA+D67P/r07+yv+m3/jv/16E7gf/9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BP91VJPS9/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BP91VJPS9-dc0745212a",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "fZzlq",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 6\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n There is no space after \"4.8\" (before \"Google reviews\") and no space after \"7\" (before \"showrooms nationally\"), as highlighted by the red boxes \u2014 the text runs together.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n There should be a space after \"4.8\" and after \"7\" so the text reads correctly with proper spacing."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786419360.283099",
+   "client_msg_id": "fd7dd06a-30ca-4871-9612-ed4b4c09cc2d",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 7\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"38 fitouts completed this week\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 50px.",
+   "files": [
+    {
+     "id": "F0BPG8E98DS",
+     "created": 1786419523,
+     "timestamp": 1786419523,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 120686,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPG8E98DS/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPG8E98DS/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 286,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 429,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 477,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 572,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPG8E98DS-015638a2c8/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 610,
+     "original_w": 1437,
+     "original_h": 856,
+     "thumb_tiny": "AwAdADB322z/AOeB/wC+BR9tsz/ywP8A3wKpiVAoCqwxjPzd/UVEcZOOlA7Gj9ss858g59dgp39oW2c+W+c5+6Ky6Ukk5JyTQI0vt9rjHktgDH3RTVu7MAjyWI91FUBgIcMcngjtim0AKNu05B3djnihdufmBP0OK6KigDnfl3dDtz0zzij5dw4OO4zXRUUAc85Q42Kw+rZ/oKCV28A59c10NFAH/9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPG8E98DS/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPG8E98DS-f437acdbbc",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "XZkRq",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 7\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"38 fitouts completed this week\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 50px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786419527.641499",
+   "edited": {
+    "user": "U089SHSFGQZ",
+    "ts": "1786419761.000000"
+   },
+   "client_msg_id": "0d5e07a2-6f5d-42ce-9d9a-3be07b2d0d1d",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 8\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The stat numbers \"981+\", \"82%\", \"7\", and \"&lt;4\", as highlighted by the red boxes, are not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 70px.",
+   "files": [
+    {
+     "id": "F0BPAJU13TQ",
+     "created": 1786419768,
+     "timestamp": 1786419768,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 120919,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAJU13TQ/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAJU13TQ/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 286,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 429,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 477,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 572,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAJU13TQ-6dedc1db8b/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 610,
+     "original_w": 1437,
+     "original_h": 856,
+     "thumb_tiny": "AwAdADB322z/AOeB/wC+BR9tsz/ywP8A3wKpCVQAFQjHX5z19RUR5PTHtQBpC8s85EBz/uCnG/twc+W4Oc/dFZdKSSck5JoA0xe2xGBAxA4+4KYt3ZgEeSxHuoqgMBDhjk8EdsU2gBRt2nIO7sc8ULtz8wJ+hxXRUUAc78u7oduemecUfLuHBx3Ga6KigDnnKHGxWH1bP9BQSu3gHPrmuhooA//Z",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPAJU13TQ/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPAJU13TQ-8870417d13",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "8JA7v",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 8\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The stat numbers \"981+\", \"82%\", \"7\", and \"<4\", as highlighted by the red boxes, are not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 70px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786419772.033679",
+   "client_msg_id": "a691318f-f5bf-4399-af0e-eb8c9c6ffa14",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 9\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"38 fitouts completed this week\", as highlighted by the red box, displays across 2 lines (\"38 fitouts completed\" / \"this week\") instead of breaking correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Per design, this text should display in 3 lines:\n \"38 fitouts\"\n \"completed\"\n \"this week\"",
+   "files": [
+    {
+     "id": "F0BNX7A1Z9D",
+     "created": 1786420045,
+     "timestamp": 1786420045,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 97943,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNX7A1Z9D/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNX7A1Z9D/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNX7A1Z9D-0cdeb9b97c/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNX7A1Z9D-0cdeb9b97c/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNX7A1Z9D-0cdeb9b97c/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNX7A1Z9D-0cdeb9b97c/image_480.png",
+     "thumb_480_w": 239,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNX7A1Z9D-0cdeb9b97c/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNX7A1Z9D-0cdeb9b97c/image_720.png",
+     "thumb_720_w": 359,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNX7A1Z9D-0cdeb9b97c/image_800.png",
+     "thumb_800_w": 399,
+     "thumb_800_h": 800,
+     "original_w": 425,
+     "original_h": 853,
+     "thumb_tiny": "AwAwABix/Z9tuA8k49dxx/Ol+wWxbBhOAOu44/nWd9pfgeZID3Jc0guZNpzJJu7fOcUDsaP2C2/55Ef8CP8AjR/Z1t/c/U/41mG4m/56yD/gRpPtE3/PaT/vo0CEHyqG7nplRikGGPzHH0Ao+XaODuzzzxihSoY5yB9M0ANJJJJOSaKU7dowDnuc0lAE8LFVGBCTk8P17UsH/Hw/+oPX/Wfd69qupYRxjDMX65wCPT3qJrDLlhKwyc/c/wDr0m0gIZB+4PzWx/3fvdv8/n+FWtD+zy3HnN17p/8AXp39lf8ATb/x3/69CdwP/9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BNX7A1Z9D/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BNX7A1Z9D-53b9858368",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "e/QH1",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 9\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"38 fitouts completed this week\", as highlighted by the red box, displays across 2 lines (\"38 fitouts completed\" / \"this week\") instead of breaking correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Per design, this text should display in 3 lines:\n \"38 fitouts\"\n \"completed\"\n \"this week\""
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786420048.965879",
+   "client_msg_id": "a9da578d-4768-44a7-a540-bc590b8efa2a",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 10\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The client logos section (Woods Bagot, Hutchinson Builders), as highlighted by the red box, has an arrangement and spacing/gapping that does not match the Figma design.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Logo arrangement and gapping should match the Figma design.",
+   "files": [
+    {
+     "id": "F0BPAKRF4RL",
+     "created": 1786420308,
+     "timestamp": 1786420308,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 93630,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAKRF4RL/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAKRF4RL/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAKRF4RL-0ec831b0a5/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAKRF4RL-0ec831b0a5/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAKRF4RL-0ec831b0a5/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAKRF4RL-0ec831b0a5/image_480.png",
+     "thumb_480_w": 239,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAKRF4RL-0ec831b0a5/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAKRF4RL-0ec831b0a5/image_720.png",
+     "thumb_720_w": 358,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAKRF4RL-0ec831b0a5/image_800.png",
+     "thumb_800_w": 398,
+     "thumb_800_h": 800,
+     "original_w": 425,
+     "original_h": 855,
+     "thumb_tiny": "AwAwABgxpucYOPX5sUKunM5UI3Azn5uapCNiu7jH+8KEjLMwHJA7Y+lAF0f2bg4yM8H71G3TfX/0KqJQhckjHswNNoAmhSFhmV8c9B/+o0QrA0rCVmSPnB7063XchUyBVJ6fLz35yfYVGsrxSu0bnJyCxHJoAlmS2WImKRmfsD/+qq1SNNIybWYkYAA9B/kVHQBtG0tgTmIAAZzml+yWoYL5a5PbNTM204wTn0FJvP8Adb8qV0h3ZH9it/8AnkPzNH2K3/55D8zUobJHyt+VOoVmF2f/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPAKRF4RL/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPAKRF4RL-a88218af58",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "IZnub",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 10\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The client logos section (Woods Bagot, Hutchinson Builders), as highlighted by the red box, has an arrangement and spacing/gapping that does not match the Figma design.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Logo arrangement and gapping should match the Figma design."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786420311.173039",
+   "client_msg_id": "6cdbd492-47f9-4f2d-80ec-788e76855f58",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 11\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Fitouts? Handled.\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px.",
+   "files": [
+    {
+     "id": "F0BPAL35X2S",
+     "created": 1786420516,
+     "timestamp": 1786420516,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 150601,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAL35X2S/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAL35X2S/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 475,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 570,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAL35X2S-554942809d/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 608,
+     "original_w": 1437,
+     "original_h": 853,
+     "thumb_tiny": "AwAdADCJb0AEG3h9sLihb0D71tCfouK0Tc4Ygr0yOhqVXBXJ4+tA7MyReKXybeHB/wBnmg3w35FvEFHbHP51sUUCMhr8ZBjt4l+oz9PSk+2jZhbeLPfIyPyrYooAbvGSKC4Azz1x0p1JQABs4wDzQWAIHc0UUAJu5A5BNKGyBgHn2pksvl44znHf3qK1uvtJYbNuPfNK6A//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPAL35X2S/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPAL35X2S-85ff441227",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "ZdNqi",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 11\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Fitouts? Handled.\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786420529.299989",
+   "client_msg_id": "37745213-daf4-4fd9-acc2-7bbe368bcce5",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 12\n Device / Breakpoint: ALL\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n A horizontal divider line is missing below the \"We plan it, bring it, build it. You just show up. Here's the whole thing, start to finish.\" text, as highlighted by the red line, before the \"DAY 0 / Chat & measure\" step section begins.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n A horizontal divider line should display in that position.",
+   "files": [
+    {
+     "id": "F0BP9448BEH",
+     "created": 1786420635,
+     "timestamp": 1786420635,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 150512,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP9448BEH/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP9448BEH/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 475,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 570,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP9448BEH-78c3903e5c/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 608,
+     "original_w": 1437,
+     "original_h": 853,
+     "thumb_tiny": "AwAdADCJb0AEG3h9sLihb0D71tCfouK1fMGecd+4pxIHUigDIF4pfJt4cH/Z5oN8N+RbxBR2xz+dbFFAGQ1+Mgx28S/UZ+npSfbRswtvFnvkZH5VsUUAN3jJFBcAZ5646U6koAA2cYB5oLAEDuaKKAE3cgcgmlDZAwDz7UyWXy8cZzjv71Fa3X2ksNm3HvmldAf/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BP9448BEH/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BP9448BEH-fd956639d9",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "s97dT",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 12\n Device / Breakpoint: ALL\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n A horizontal divider line is missing below the \"We plan it, bring it, build it. You just show up. Here's the whole thing, start to finish.\" text, as highlighted by the red line, before the \"DAY 0 / Chat & measure\" step section begins.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n A horizontal divider line should display in that position."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786420639.283589",
+   "edited": {
+    "user": "U089SHSFGQZ",
+    "ts": "1786420827.000000"
+   },
+   "client_msg_id": "3919e614-aa13-437b-af60-5d54a1dd621a",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "BUG REPORT \u2014 CRO-88970\n Bug #: 13\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n In the section reading \"How is 10 days possible? Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays \u2014 it's logistics, not marketing,\" as highlighted by the red box, the text \"How is 10 days possible?\" is not displaying on its own line \u2014 it runs together with the following sentence instead of breaking as a separate first line.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Per Figma, \"How is 10 days possible?\" should display as the first line on its own, with the remaining text (\"Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays \u2014 it's logistics, not marketing.\") displaying as the second line/paragraph below it.",
+   "files": [
+    {
+     "id": "F0BPEK0SQ73",
+     "created": 1786421322,
+     "timestamp": 1786421322,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 84208,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEK0SQ73/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEK0SQ73/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEK0SQ73-aa745ebb37/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEK0SQ73-aa745ebb37/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEK0SQ73-aa745ebb37/image_360.png",
+     "thumb_360_w": 180,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEK0SQ73-aa745ebb37/image_480.png",
+     "thumb_480_w": 240,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEK0SQ73-aa745ebb37/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEK0SQ73-aa745ebb37/image_720.png",
+     "thumb_720_w": 360,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEK0SQ73-aa745ebb37/image_800.png",
+     "thumb_800_w": 400,
+     "thumb_800_h": 800,
+     "original_w": 425,
+     "original_h": 850,
+     "thumb_tiny": "AwAwABiydPtu8ef+BH/GlNhbsADHwOg3H/GrIz3A/Ck5yPSgCqLCAHiEjtnef8aP7Otv7n6n/GrfOfaigBuXwflXOePm/wDrUrbsfKAT7nFMeXYcbWPHZc0iTb2I2OPquKB2ZKKKYrljgqR9afQIYyMWyGIpvltn75pXYg4DD34zj070eYPf8qh8vUAVGDZLE+1SUwSAnAzT8VSt0A//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPEK0SQ73/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPEK0SQ73-f13abadb70",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "Efavp",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "BUG REPORT \u2014 CRO-88970\n Bug #: 13\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n In the section reading \"How is 10 days possible? Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays \u2014 it's logistics, not marketing,\" as highlighted by the red box, the text \"How is 10 days possible?\" is not displaying on its own line \u2014 it runs together with the following sentence instead of breaking as a separate first line.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Per Figma, \"How is 10 days possible?\" should display as the first line on its own, with the remaining text (\"Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays \u2014 it's logistics, not marketing.\") displaying as the second line/paragraph below it."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786421326.852369",
+   "client_msg_id": "39baf010-efe2-47e6-ac2f-b3cc8825075a",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 14\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Want to elevate your space? A dedicated designer makes all the difference.\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px.",
+   "files": [
+    {
+     "id": "F0BP95TAAQ5",
+     "created": 1786421473,
+     "timestamp": 1786421473,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 113238,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP95TAAQ5/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP95TAAQ5/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 213,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 284,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 426,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 473,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 567,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP95TAAQ5-55f2607c68/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 605,
+     "original_w": 1440,
+     "original_h": 851,
+     "thumb_tiny": "AwAdADC/5MR/5ZJ/3yKPJi/55J/3yKgktpGbcHwcnBJPGT29PShoJyAFlAwME5bk+vWgdkTiCEHIiQEd9oo8mLtGo5zwMVGsL4G5mJHXDkA1OBgAf1oBjfKi/wCeaf8AfIpBBCBjyk/EU+igQ0soPXmlByMinYoxS1ASilxRimAlFLijFAH/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BP95TAAQ5/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BP95TAAQ5-0576bec8ea",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "cm3Um",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 14\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Want to elevate your space? A dedicated designer makes all the difference.\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786421478.501229",
+   "client_msg_id": "46018d11-d139-470b-95d1-bd1926c8e986",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 15\n Device / Breakpoint: ALL\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n In the \"Recent Fitouts / See for yourself\" section, as highlighted by the red boxes, the following elements do not match the Figma design:\n\u2022 Eyebrow text (\"RECENT FITOUTS\")\n\u2022 Heading (\"See for yourself.\")\n\u2022 Sub-heading (\"Three recent projects \u2014 different sizes, different scopes, same deadline.\")\n\u2022 Button color and text (\"All case studies\")\n\u2022 Text overlaid on the images (e.g. \"small business \u2022 6 staff\", \"growing team \u2022 25 staff\", \"enterprise \u2022 120 staff\")\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Eyebrow text, heading, sub-heading, button color/text, and image overlay text should all match the Figma design exactly.",
+   "files": [
+    {
+     "id": "F0BPAPCAFTQ",
+     "created": 1786422218,
+     "timestamp": 1786422218,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 108031,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAPCAFTQ/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAPCAFTQ/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 428,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 476,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 571,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAPCAFTQ-5e51ca2854/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 609,
+     "original_w": 1438,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADDQMMR6xpx/sigQxDpGg/4CKR7iONtrNg/nQJ4j/wAtF/OgdmH2eEHPlJ/3yKUQxg5EaA+oFIbiINjePzoE8RAPmLz70BZi+TFjHlp0x90Ugt4gMeWpHoQKGuIgOZB+BzQjbycPuAOOAKQWY49aKXHPWl70xDT1oHWl29cHGTk4paAG0DrS7QGBAAxnt60tAH//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPAPCAFTQ/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPAPCAFTQ-04fd5cf7e0",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "cB70D",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 15\n Device / Breakpoint: ALL\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n In the \"Recent Fitouts / See for yourself\" section, as highlighted by the red boxes, the following elements do not match the Figma design:\n\u2022 Eyebrow text (\"RECENT FITOUTS\")\n\u2022 Heading (\"See for yourself.\")\n\u2022 Sub-heading (\"Three recent projects \u2014 different sizes, different scopes, same deadline.\")\n\u2022 Button color and text (\"All case studies\")\n\u2022 Text overlaid on the images (e.g. \"small business \u2022 6 staff\", \"growing team \u2022 25 staff\", \"enterprise \u2022 120 staff\")\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Eyebrow text, heading, sub-heading, button color/text, and image overlay text should all match the Figma design exactly."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786422222.237619",
+   "edited": {
+    "user": "U089SHSFGQZ",
+    "ts": "1786422458.000000"
+   },
+   "client_msg_id": "5e646613-373f-4dbc-b56e-7e3c73fa82d5",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 16\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"See for yourself.\", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px, and top margin should be 30px.",
+   "files": [
+    {
+     "id": "F0BPGDQQ1V2",
+     "created": 1786422417,
+     "timestamp": 1786422417,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 107534,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPGDQQ1V2/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPGDQQ1V2/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 428,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 476,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 571,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGDQQ1V2-e733176dca/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 609,
+     "original_w": 1438,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADDQMMR6xpx/sigQxDpGg/4CKVpApAIbn0UmlDA0AM+zwg58pP8AvkUohjByI0B9QKUuA2Oc/SlDAgHnmgBvkxYx5adMfdFILeIDHlqR6ECnMwA5z+AzQN2eWz+FIAPWilxz1pe9MBp60DrS7euDjJycUtADaB1pdoDAgAYz29aWgD//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPGDQQ1V2/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPGDQQ1V2-0cd9dbc6cc",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "TL4aB",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 16\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"See for yourself.\", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px, and top margin should be 30px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786422301.306969",
+   "edited": {
+    "user": "U089SHSFGQZ",
+    "ts": "1786422421.000000"
+   },
+   "client_msg_id": "3b8aeebb-98ff-4a07-9900-79bc84a97a7c",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 17\n Device / Breakpoint: ALL\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the three project badges (\"small business \u2022 6 staff\", \"growing team \u2022 25 staff\", \"enterprise \u2022 120 staff\"), as highlighted by the red boxes, the staff count text (\"6 staff\", \"25 staff\", \"120 staff\") is not bold, while the label text before it is bold.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The staff count text should also be bold, matching the weight of the label text before it.",
+   "files": [
+    {
+     "id": "F0BNXBX1YAK",
+     "created": 1786422507,
+     "timestamp": 1786422507,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 107902,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXBX1YAK/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXBX1YAK/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 428,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 476,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 571,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXBX1YAK-e743c092de/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 609,
+     "original_w": 1438,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADDQMMR6xpx/sigQxDpGg/4CKVpApAIbn0UmlDA568cdKAGfZ4Qc+Un/AHyKUQxg5EaA+oFKXAbHOfpShg3TP4jFADfJixjy06Y+6KQW8QGPLUj0IFOZwo5z+AzSDORljj6UgFPWilxz1pe9MBp60DrS7euDjJycUtADaB1pdoDAgAYz29aWgD//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BNXBX1YAK/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BNXBX1YAK-9e0c5c5227",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "BvZo7",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 17\n Device / Breakpoint: ALL\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the three project badges (\"small business \u2022 6 staff\", \"growing team \u2022 25 staff\", \"enterprise \u2022 120 staff\"), as highlighted by the red boxes, the staff count text (\"6 staff\", \"25 staff\", \"120 staff\") is not bold, while the label text before it is bold.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The staff count text should also be bold, matching the weight of the label text before it."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786422511.231059",
+   "client_msg_id": "d19b660f-b2c2-4d49-afab-39d96dc44815",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 18\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the three project badges (\"small business \u2022 6 staff\", \"growing team \u2022 25 staff\", \"enterprise \u2022 120 staff\"), as highlighted by the red lines, there is a 10px gap displaying before the \"\u2022\" separator.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n This gap should not be there.",
+   "files": [
+    {
+     "id": "F0BQ740QCD6",
+     "created": 1786422600,
+     "timestamp": 1786422600,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 107374,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ740QCD6/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ740QCD6/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 428,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 476,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 571,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ740QCD6-8ef20d439e/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 609,
+     "original_w": 1438,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADDQMMR6xpx/sigQxDpGg/4CKVpApAIbn0UmlDA0AM+zwg58pP8AvkUohjByI0B9QKUuA2Oc/SlDAgHnmgBvkxYx5adMfdFILeIDHlqR6ECnMwA5z+AzQN2eWz+FIAPWilxz1pe9MBp60DrS7euDjJycUtADaB1pdoDAgAYz29aWgD//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BQ740QCD6/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BQ740QCD6-09e7469ea2",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "lny3g",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 18\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the three project badges (\"small business \u2022 6 staff\", \"growing team \u2022 25 staff\", \"enterprise \u2022 120 staff\"), as highlighted by the red lines, there is a 10px gap displaying before the \"\u2022\" separator.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n This gap should not be there."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786422604.763119",
+   "client_msg_id": "b4da7c17-c181-4d7b-87ce-b6019518e3bc",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 19\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The quote/testimonial paragraph text under each project card (\"[QA 4.5 \u2014 replace with a verified Loftwork Studio quote]\", \"[QA 4.5 \u2014 replace with a verified ABC Ballarat quote; QA 4.6 \u2014 verify city]\", \"They hit every deadline. We've continued to use them for over five years now.\"), as highlighted by the red box, does not match the Figma design.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The paragraph text should match the Figma design.",
+   "files": [
+    {
+     "id": "F0BPAQL5A30",
+     "created": 1786422828,
+     "timestamp": 1786422828,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 105040,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAQL5A30/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPAQL5A30/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 213,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 474,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 569,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPAQL5A30-56d8d89f84/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 607,
+     "original_w": 1435,
+     "original_h": 851,
+     "thumb_tiny": "AwAdADC/5UXTyk/75FIYYv8Ankn/AHyKkxRigBnkwhs+Umc9dopDFET/AKteuenepMUYoAYIohjEaDH+yKQQQj/lkn/fNSYoxQA1o1Y5O78GIpPJTOfm/wC+z/jT6KB3ZH5SlsFXx6lzj+dOEKgYG4f8DP8AjTqKAuxgiXceHHvvPP60ojAYEM3B5yxOadRQF2f/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPAQL5A30/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPAQL5A30-fb0f1e3681",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "SoF/p",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 19\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The quote/testimonial paragraph text under each project card (\"[QA 4.5 \u2014 replace with a verified Loftwork Studio quote]\", \"[QA 4.5 \u2014 replace with a verified ABC Ballarat quote; QA 4.6 \u2014 verify city]\", \"They hit every deadline. We've continued to use them for over five years now.\"), as highlighted by the red box, does not match the Figma design.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The paragraph text should match the Figma design."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786422834.070669",
+   "client_msg_id": "f541b8d5-d878-4759-aaff-2d865ef9e60d",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 20\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The top margin above the project cards (\"Loftwork Studio\", \"ABC Ballarat\", \"CreditorWatch\"), as highlighted by the red line, is not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Top margin should be 30px.",
+   "files": [
+    {
+     "id": "F0BQ74PH2GG",
+     "created": 1786422924,
+     "timestamp": 1786422924,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 104793,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ74PH2GG/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ74PH2GG/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 213,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 474,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 569,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ74PH2GG-dc9290cad4/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 607,
+     "original_w": 1435,
+     "original_h": 851,
+     "thumb_tiny": "AwAdADC/5UXTyk/75FIYYv8Ankn/AHyKkxRigBnkwhs+Umc9dopDFET/AKteuenepMUYoAYIohjEaDH+yKQQQj/lkn/fNSYoxQAp+lGBnOKSigBOrYKcepxinAADAGKSigAH3j8uPf1paSigD//Z",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BQ74PH2GG/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BQ74PH2GG-03500e2dc8",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "bM2Ac",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 20\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The top margin above the project cards (\"Loftwork Studio\", \"ABC Ballarat\", \"CreditorWatch\"), as highlighted by the red line, is not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Top margin should be 30px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786422928.859229",
+   "client_msg_id": "62d4a474-b6f7-4423-aa46-dfc2c8325fc8",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 21\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n There is a 40px gap between the sub-heading \"Three recent projects \u2014 different sizes, different scopes, same deadline.\" and the \"All case studies\" button, as highlighted by the red line.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n This 40px gap should be removed.",
+   "files": [
+    {
+     "id": "F0BPASYTGS2",
+     "created": 1786424106,
+     "timestamp": 1786424106,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 52483,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPASYTGS2/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPASYTGS2/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPASYTGS2-52240891f6/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPASYTGS2-52240891f6/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPASYTGS2-52240891f6/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPASYTGS2-52240891f6/image_480.png",
+     "thumb_480_w": 238,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPASYTGS2-52240891f6/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPASYTGS2-52240891f6/image_720.png",
+     "thumb_720_w": 357,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPASYTGS2-52240891f6/image_800.png",
+     "thumb_800_w": 397,
+     "thumb_800_h": 800,
+     "original_w": 426,
+     "original_h": 858,
+     "thumb_tiny": "AwAwABiU2loG2mI/XJI/nSi2syADH+jCrlJtO7O449OMUtQKYtLRiAIj17k/40/+zrb+5+p/xq1RQrgJh/7y9+35d/8APtSqGH3iD9BilzRmmAUUUZoAbRmkO4Z4yO2Kbub+4aTaQEmaT/PWmhiTypFPx70Jpgf/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPASYTGS2/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPASYTGS2-f03ff8e803",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "1qQqS",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 21\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n There is a 40px gap between the sub-heading \"Three recent projects \u2014 different sizes, different scopes, same deadline.\" and the \"All case studies\" button, as highlighted by the red line.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n This 40px gap should be removed."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786424110.286719",
+   "client_msg_id": "e8dd02bc-51b1-4b68-9382-3f9a7bd2eccf",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 22\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The top margin above the project cards (\"Loftwork Studio\", \"ABC Ballarat\"), as highlighted by the red line, is not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Top margin should be 20px.",
+   "files": [
+    {
+     "id": "F0BPEQM3PA5",
+     "created": 1786424292,
+     "timestamp": 1786424292,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 70843,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEQM3PA5/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPEQM3PA5/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEQM3PA5-ebb42897f9/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEQM3PA5-ebb42897f9/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEQM3PA5-ebb42897f9/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEQM3PA5-ebb42897f9/image_480.png",
+     "thumb_480_w": 239,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEQM3PA5-ebb42897f9/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEQM3PA5-ebb42897f9/image_720.png",
+     "thumb_720_w": 358,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPEQM3PA5-ebb42897f9/image_800.png",
+     "thumb_800_w": 398,
+     "thumb_800_h": 800,
+     "original_w": 425,
+     "original_h": 854,
+     "thumb_tiny": "AwAwABif7Da7tphI9CW6/rS/YLbp5XHrk/41ZooAqmxtQDmLHrlj/jTfslj6p/33/wDXq53ooAQk/wAIB+px/SlXkcjFNIlYcOF+b+7ninYbcPmG3vkcn/P0oAGOMnH1zTPMH+Qf8KkIbIw3GeRS0AFFRuxAO1hkdeM4/Wm+YR1I/wC+f/r0m0gJqKjRyTgnJJ7DH9akxQmnsB//2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPEQM3PA5/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPEQM3PA5-1e81ac8c6e",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "TBfmv",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 22\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The top margin above the project cards (\"Loftwork Studio\", \"ABC Ballarat\"), as highlighted by the red line, is not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Top margin should be 20px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786424296.136909",
+   "client_msg_id": "e3574436-9cfb-4443-ad1f-7c0895015779",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 23\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the first project card (\"small business \u2022 6 staff\" / \"Loftwork Studio\"), as highlighted by the red box, there is no left gap/padding \u2014 the card sits flush against the left edge of the screen. Other cards in the row have visible spacing.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The first card should have consistent left gap/padding matching the rest of the layout, not sit flush against the screen edge.",
+   "files": [
+    {
+     "id": "F0BPGHG78EQ",
+     "created": 1786424376,
+     "timestamp": 1786424376,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 67839,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPGHG78EQ/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPGHG78EQ/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGHG78EQ-5b2ac9de54/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGHG78EQ-5b2ac9de54/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGHG78EQ-5b2ac9de54/image_360.png",
+     "thumb_360_w": 187,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGHG78EQ-5b2ac9de54/image_480.png",
+     "thumb_480_w": 250,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGHG78EQ-5b2ac9de54/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGHG78EQ-5b2ac9de54/image_720.png",
+     "thumb_720_w": 375,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGHG78EQ-5b2ac9de54/image_800.png",
+     "thumb_800_w": 416,
+     "thumb_800_h": 800,
+     "original_w": 446,
+     "original_h": 857,
+     "thumb_tiny": "AwAwABmw9nbM7M0eWJz97r+vvSfYbUvtEJOOp3Hj9askMGJG4j04pBG3y5kc4Oe3Pt0oAg/s+2/54n/vo/40f2dbf3P1P+NW+fQUUAGaQ/UikIByCAR70f0oAVWDAkZ6kUtRRfdP+838zR5Uf/PNP++RQD3HnOfunr7fnQMnqCPrTjwDUe9v7hpNpAChkBG0nknjHc0uT/cb9P8AGk3t/cNSUJpgf//Z",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPGHG78EQ/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPGHG78EQ-6a89c6987c",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "r4jZe",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 23\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the first project card (\"small business \u2022 6 staff\" / \"Loftwork Studio\"), as highlighted by the red box, there is no left gap/padding \u2014 the card sits flush against the left edge of the screen. Other cards in the row have visible spacing.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The first card should have consistent left gap/padding matching the rest of the layout, not sit flush against the screen edge."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786424379.685379",
+   "client_msg_id": "eac7dccc-6b76-4a25-a2f8-7a0f1ec64cf7",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 24\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The top margin above the heading \"What does a fitout cost? Roughly this.\" (below the \"PRICING GUIDE\" eyebrow text), as highlighted by the red line, is not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Top margin should be 30px.",
+   "files": [
+    {
+     "id": "F0BNXFZQ7B9",
+     "created": 1786424560,
+     "timestamp": 1786424560,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 138838,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXFZQ7B9/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXFZQ7B9/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 475,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 570,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXFZQ7B9-b4622cced9/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 608,
+     "original_w": 1441,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADC/5MXH7tOP9mjyIf8AnlH/AN8in0UAR+RD/wA8k/75FOEUYYMI1BHfFO+lH1oAZ5MWMeWnp90UggiAx5akehAqSigBpGDwg4OR9adSZo3GlzIBHAIwU3D0p1MMmJVTH3gTn6UqsWZx/dOPrwD/AFpgBznlc45Bp1MRy+7jG0kfrTs0rgf/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BNXFZQ7B9/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BNXFZQ7B9-06ea4c3e62",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "IoxCJ",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 24\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The top margin above the heading \"What does a fitout cost? Roughly this.\" (below the \"PRICING GUIDE\" eyebrow text), as highlighted by the red line, is not currently set correctly.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Top margin should be 30px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786424570.387019",
+   "client_msg_id": "18d1d73d-fb19-479e-9378-becb7f0528b6",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 25\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"What does a fitout cost? Roughly this.\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px.",
+   "files": [
+    {
+     "id": "F0BNXG66JVD",
+     "created": 1786424651,
+     "timestamp": 1786424651,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 139020,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXG66JVD/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXG66JVD/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 475,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 570,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXG66JVD-d2afe15bb5/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 608,
+     "original_w": 1441,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADC/5MXH7tOP9mjyIf8AnlH/AN8in0UAR+RD/wA8k/75FOEUYYMI1BHfFO+lH1oAZ5MWMeWnp90UggiAx5akehAqSigBpGDwg4OR9adSZo3GlzIBHAIwU3D0p1MMmJVTH3gTn6UqsWZx/dOPrwD/AFpgBznlc45Bp1MRy+7jG0kfrTs0rgf/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BNXG66JVD/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BNXG66JVD-5ad34380cc",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "LXIAA",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 25\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"What does a fitout cost? Roughly this.\", as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786424656.245009",
+   "client_msg_id": "73936ff5-1e82-43aa-b1e3-7b50a7915207",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "BUG REPORT \u2014 CRO-88970\n Bug #: 26\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The paragraph text \"Every office is different \u2014 but here's where most projects land, so there are no surprises. All figures include delivery and install.\", as highlighted by the red box, does not match the Figma design, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The paragraph text should match Figma, and its top margin should be 30px.",
+   "files": [
+    {
+     "id": "F0BNXGB37M5",
+     "created": 1786424717,
+     "timestamp": 1786424717,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 139010,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXGB37M5/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BNXGB37M5/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 475,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 570,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BNXGB37M5-476dfef589/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 608,
+     "original_w": 1441,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADC/5MXH7tOP9mjyIf8AnlH/AN8ilMak5y3/AH0aTyl9X/77P+NA9BPIh/55J/3yKcIowwYRqCO+KTyh2Lf99mnKMDH9c0CG+TFjHlp6fdFIIIgMeWpHoQKkooAaRg8IODkfWnUmaNxpcyARwCMFNw9KdTDJiVUx94E5+lKrFmcf3Tj68A/1pgBznlc45Bp1MRy+7jG0kfrTs0rgf//Z",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BNXGB37M5/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BNXGB37M5-622765d596",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "pKEgC",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "BUG REPORT \u2014 CRO-88970\n Bug #: 26\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The paragraph text \"Every office is different \u2014 but here's where most projects land, so there are no surprises. All figures include delivery and install.\", as highlighted by the red box, does not match the Figma design, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The paragraph text should match Figma, and its top margin should be 30px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786424721.795629",
+   "client_msg_id": "2ff758da-a8aa-49e8-832d-cc97c5cd82df",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 27\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The pricing tier headings (\"from ~$5k\", \"from ~$12k\", \"Let's talk\"), as highlighted by the red box, are not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px.",
+   "files": [
+    {
+     "id": "F0BPCULPWDQ",
+     "created": 1786425482,
+     "timestamp": 1786425482,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 138932,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPCULPWDQ/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPCULPWDQ/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 213,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 474,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 569,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPCULPWDQ-d0bc769320/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 607,
+     "original_w": 1442,
+     "original_h": 855,
+     "thumb_tiny": "AwAdADC+IYh0jT/vmk8iH/nlH/3yKkooAj8iLOfKTP8Auil8pM52LnOc4FP7cUUAN8uPAGxcDoMU1beIDHlqR7qKkooAQ57AfnS0maNxpcyAX+VFM3/vQmOozmnAkkj0OKYBznoPalpFYsCfQkUZpXA//9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPCULPWDQ/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPCULPWDQ-202f8f307b",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "/HfYT",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 27\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The pricing tier headings (\"from ~$5k\", \"from ~$12k\", \"Let's talk\"), as highlighted by the red box, are not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786425486.342839",
+   "client_msg_id": "92f02e50-204d-42dc-b3e1-f4c88354fc82",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 28\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the \"Headcount\" dropdown, as highlighted by the red box, clicking to open the dropdown causes the dropdown's border to show a background colour. Additionally, the open dropdown list does not display below the dropdown's bottom border edge \u2014 it overlaps/sits on top of the border instead of appearing cleanly beneath it.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The dropdown border should not show a background colour when opened, and the open dropdown list should display cleanly below the dropdown's bottom border edge, not overlapping it.",
+   "files": [
+    {
+     "id": "F0BP6NVSBCK",
+     "created": 1786425970,
+     "timestamp": 1786425970,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 120447,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP6NVSBCK/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BP6NVSBCK/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 204,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 273,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 409,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 454,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 545,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BP6NVSBCK-cd1988e1e2/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 581,
+     "original_w": 1439,
+     "original_h": 817,
+     "thumb_tiny": "AwAcADC/uO7nA5x09/r3p4zjnrSc7uoxS/jQAjHBHT6dzS0nfqMUufegBNx34wSPXjilAA6ACkOexFKPrQA0g5owaSKQvLKpAwhAFSVPKgGhec5INIARn3p9FOwDACBigA5p9FFgP//Z",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BP6NVSBCK/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BP6NVSBCK-592fb7f4d1",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "19Po0",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 28\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On the \"Headcount\" dropdown, as highlighted by the red box, clicking to open the dropdown causes the dropdown's border to show a background colour. Additionally, the open dropdown list does not display below the dropdown's bottom border edge \u2014 it overlaps/sits on top of the border instead of appearing cleanly beneath it.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n The dropdown border should not show a background colour when opened, and the open dropdown list should display cleanly below the dropdown's bottom border edge, not overlapping it."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786425975.463369",
+   "client_msg_id": "0f8541b8-1846-4834-aa85-0fc70ec723a7",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 29\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The \"Get my estimate\" button text, as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 14px.",
+   "files": [
+    {
+     "id": "F0BPGMPG5PE",
+     "created": 1786426367,
+     "timestamp": 1786426367,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 142737,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPGMPG5PE/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPGMPG5PE/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 215,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 286,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 429,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 477,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 572,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPGMPG5PE-44d362c687/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 610,
+     "original_w": 1436,
+     "original_h": 856,
+     "thumb_tiny": "AwAdADDQ8uP+6v5CkES8ZVPf5aGlRGCs2Ce1BlQdWA78nFFwDyk7In/fNKI1/upn/dpTuPQjH0pfwouA3y05+Rfb5aRYY1B+UHPqKf8AhSZpXARow2c55GOtAjUAADp0p9FFkBG0KscnP4EilWMKMDP50+iiyC43bS7aWiiyA//Z",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPGMPG5PE/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPGMPG5PE-19cd772cc3",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "O0Bin",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 29\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The \"Get my estimate\" button text, as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 14px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786426370.731339",
+   "client_msg_id": "f0264fd8-9028-4906-bb73-de73c7804aea",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 30\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Need furniture only? Sorted.\", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px, and top margin should be 30px.",
+   "files": [
+    {
+     "id": "F0BPD1HQE2W",
+     "created": 1786426567,
+     "timestamp": 1786426567,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 243460,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPD1HQE2W/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPD1HQE2W/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 286,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 428,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 476,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 571,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD1HQE2W-5314626c40/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 609,
+     "original_w": 1439,
+     "original_h": 856,
+     "thumb_tiny": "AwAdADDQMMZ6xpxx90UeTF/zzT/vkUhWHLErHkctkDj60GOEEgpHkDJ4FA9A+zwg58pP++RS+TGDkIoOc5AFPBBAIOQehFN8xNpbeuB1OaBCeVGBgRpj0xTVt4gMbFI9CBUuRnGeaAc+n4UAJn5qQkKpJyBnuaTpLjnkfy//AF0r/cPJH0oABzg80iglnyWxnpn27U8dKYi4dmycnFACkYAwTxSgDOefzpJAxXCttPrjNKBjuTQB/9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPD1HQE2W/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPD1HQE2W-0a4fc2d577",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "OFv1t",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 30\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Need furniture only? Sorted.\", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px, and top margin should be 30px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786426572.347219",
+   "client_msg_id": "63aca0f4-266e-4e18-8e71-3d95f35f530b",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 31\n Device / Breakpoint: Mobile\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The \"Get my estimate\" button text, as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 15px.",
+   "files": [
+    {
+     "id": "F0BQ7DLALGY",
+     "created": 1786427305,
+     "timestamp": 1786427305,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 72064,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ7DLALGY/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BQ7DLALGY/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ7DLALGY-6edab9389d/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ7DLALGY-6edab9389d/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ7DLALGY-6edab9389d/image_360.png",
+     "thumb_360_w": 179,
+     "thumb_360_h": 360,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ7DLALGY-6edab9389d/image_480.png",
+     "thumb_480_w": 239,
+     "thumb_480_h": 480,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ7DLALGY-6edab9389d/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ7DLALGY-6edab9389d/image_720.png",
+     "thumb_720_w": 359,
+     "thumb_720_h": 720,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BQ7DLALGY-6edab9389d/image_800.png",
+     "thumb_800_w": 399,
+     "thumb_800_h": 800,
+     "original_w": 426,
+     "original_h": 855,
+     "thumb_tiny": "AwAwABib7FbBsGBvrk/40osrRjtEfbOcn/GpmmjDYYHI/wBkml85A+3vjPTt9aV0BD9gtv8Ankef9o/40f2dbf3P1P8AjVjeM44/Ol3UXQAAPegqpGCM/hSb1HemieI9HB+lTdAPIGO9JR5injJopO3QA2rnGDz7UuxfSkYkdCDg84H/ANekL57HHfjmqfKgHbF9KXaKYrcgAYHstSUJJ7Af/9k=",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BQ7DLALGY/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BQ7DLALGY-e59bd99a79",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "XRYQy",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 31\n Device / Breakpoint: Mobile\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The \"Get my estimate\" button text, as highlighted by the red box, is not currently set to the correct font size.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 15px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786427309.200009",
+   "client_msg_id": "87adcb1a-93b7-4cb7-abbc-b71417b391ee",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 32\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On all products in the grid (\"Cable Management Basket Single Metal...\", \"Slim Mobile Pedestal\", \"Plover Ergonomic Office Chair - Mesh...\", and others), as highlighted by the red box, the product name and price are left-aligned to the image instead of being centered.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Product name and price should be center-aligned relative to the image, across all products in the grid.",
+   "files": [
+    {
+     "id": "F0BPD3VCNP4",
+     "created": 1786427718,
+     "timestamp": 1786427718,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 244815,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPD3VCNP4/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPD3VCNP4/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 428,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 475,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 570,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPD3VCNP4-2849d50821/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 608,
+     "original_w": 1436,
+     "original_h": 853,
+     "thumb_tiny": "AwAdADC/5MRHMS8cYKil8iLtEn/fIp2fTrQCf4gB9DmgBnkQg58pM/7opfIi/wCeaf8AfIp9NDguy85X2oATyIv+eSf98ikEEYXbsBX0IGKeTtGTS0ANz8x4PA/Omt8kRKh+PxNPpaAG88Dk+9NyGd0+bjB64/KpKSgBsjqibnJUfypQcn7rfWnUUAf/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPD3VCNP4/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPD3VCNP4-daa254c56c",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "pcFoG",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 32\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n On all products in the grid (\"Cable Management Basket Single Metal...\", \"Slim Mobile Pedestal\", \"Plover Ergonomic Office Chair - Mesh...\", and others), as highlighted by the red box, the product name and price are left-aligned to the image instead of being centered.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Product name and price should be center-aligned relative to the image, across all products in the grid."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786427722.903369",
+   "client_msg_id": "8be7a888-844c-4431-8ff3-ae24a09d8302",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  },
+  {
+   "text": "Bug #: 33\n Device / Breakpoint: Desktop\n URL: <https://www.jasonl.com.au/|jasonl.com.au>\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Delightful support from real people.\", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px, and top margin should be 45px.",
+   "files": [
+    {
+     "id": "F0BPB6F6JKG",
+     "created": 1786428228,
+     "timestamp": 1786428228,
+     "mimetype": "image/png",
+     "filetype": "png",
+     "pretty_type": "PNG",
+     "user": "U089SHSFGQZ",
+     "user_team": "T04CN8ESH7D",
+     "editable": false,
+     "size": 439200,
+     "mode": "hosted",
+     "is_external": false,
+     "external_type": "",
+     "is_public": true,
+     "public_url_shared": false,
+     "display_as_bot": false,
+     "username": "",
+     "name": "image.png",
+     "title": "image.png",
+     "is_modified_by_ai": false,
+     "url_private": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPB6F6JKG/image.png",
+     "url_private_download": "https://files.slack.com/files-pri/T04CN8ESH7D-F0BPB6F6JKG/download/image.png",
+     "media_display_type": "unknown",
+     "thumb_64": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_64.png",
+     "thumb_80": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_80.png",
+     "thumb_360": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_360.png",
+     "thumb_360_w": 360,
+     "thumb_360_h": 214,
+     "thumb_480": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_480.png",
+     "thumb_480_w": 480,
+     "thumb_480_h": 285,
+     "thumb_160": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_160.png",
+     "thumb_720": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_720.png",
+     "thumb_720_w": 720,
+     "thumb_720_h": 427,
+     "thumb_800": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_800.png",
+     "thumb_800_w": 800,
+     "thumb_800_h": 475,
+     "thumb_960": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_960.png",
+     "thumb_960_w": 960,
+     "thumb_960_h": 570,
+     "thumb_1024": "https://files.slack.com/files-tmb/T04CN8ESH7D-F0BPB6F6JKG-89a78d0438/image_1024.png",
+     "thumb_1024_w": 1024,
+     "thumb_1024_h": 608,
+     "original_w": 1437,
+     "original_h": 853,
+     "thumb_tiny": "AwAdADC+YozjMaHAx90U1kgXAZIhnpkDmpAwLFc8jtVebKyMepK8ClcaVyXyIc58pP8AvkUvlIDkIoOc5AFOTPlrnOcDOajMe4ENkgnkEA/0piHiKMAARpge1NWCMLt2KV64IGKj8pUxiPHIPCjr+AqcHPYj60AMKEycgkYIycetI8If7w4A4FPLbMnHWkEuRnHX3pAtNR2SDikJbP3f1qPcTKO2amo3AB05GKKKKYH/2Q==",
+     "permalink": "https://conversionratepros.slack.com/files/U0B9GF6GQN9/F0BPB6F6JKG/image.png",
+     "permalink_public": "https://slack-files.com/T04CN8ESH7D-F0BPB6F6JKG-43d45b5dd0",
+     "is_starred": false,
+     "skipped_shares": true,
+     "has_rich_preview": false,
+     "file_access": "visible"
+    }
+   ],
+   "upload": false,
+   "user": "U089SHSFGQZ",
+   "display_as_bot": false,
+   "blocks": [
+    {
+     "type": "rich_text",
+     "block_id": "5+hpE",
+     "elements": [
+      {
+       "type": "rich_text_section",
+       "elements": [
+        {
+         "type": "text",
+         "text": "Bug #: 33\n Device / Breakpoint: Desktop\n URL: "
+        },
+        {
+         "type": "link",
+         "url": "https://www.jasonl.com.au/",
+         "text": "jasonl.com.au",
+         "truncated": true,
+         "unsafe": true
+        },
+        {
+         "type": "text",
+         "text": "\n \u2500\u2500\u2500\u2500\u2500 WHAT IS WRONG \u2500\u2500\u2500\u2500\u2500\n The heading \"Delightful support from real people.\", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.\n \u2500\u2500\u2500\u2500\u2500 EXPECTED \u2500\u2500\u2500\u2500\u2500\n Font size should be 42px, and top margin should be 45px."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "type": "message",
+   "ts": "1786428233.016039",
+   "client_msg_id": "b3d3331c-c35d-4265-b4fc-3421c8317d28",
+   "thread_ts": "1786418061.845479",
+   "parent_user_id": "U089SHSFGQZ"
+  }
+ ],
+ "has_more": false
+}

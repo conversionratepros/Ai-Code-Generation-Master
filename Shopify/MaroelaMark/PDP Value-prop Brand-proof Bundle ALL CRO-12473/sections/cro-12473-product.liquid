@@ -26,48 +26,45 @@
 
 {% liquid
   comment
-    Short-description source, in priority order (catalog audit 2026-08-06:
-    only 10 of 2 567 products have the authored entry-content shape; 2 458
-    are plain <p>-led HTML — those get the first-paragraph fallback so the
-    buy box does not lose its blurb on most of the catalogue):
-      1. custom.short_description product metafield (same convention as the
-         CRO-12257 Glutathione PDP build — per-product, content-managed)
-      2. entry-content div (authored "Short description:" shape)
-      3. first <p> paragraph, when the description starts with one and the
-         paragraph is short enough to read as a blurb (<= 350 chars text)
-      4. nothing (pre-blocks / heading-led / empty descriptions)
-    cro-12473-description.liquid applies the SAME split so the surfaced
-    part never duplicates below — keep the two files in sync.
+    Client decisions (Donavan, Slack 2026-08-06):
+    - Short desc = first 150 chars of the PLAIN description text (all
+      styling/headings stripped) + a "Lees meer" link that anchors down to
+      the "Oor hierdie produk" section. The 'Short description:' /
+      'Description:' labels some supplement PDPs author into their
+      descriptions are removed so they cannot leak into the blurb.
+    - Value-prop = product metafield ONLY (Donavan created it; no
+      auto-fallback — unpopulated products simply show no line).
+    - The full description below is NOT modified in any way.
   endcomment
-  assign cro_desc = product.description | split: '<!-- more -->' | first
-  capture cro_short_mf
-    echo product.metafields.custom.short_description | metafield_tag
-  endcapture
-  assign cro_short_mf = cro_short_mf | strip
-  assign cro_short_html = ''
-  if cro_short_mf != blank
-    assign cro_short_html = cro_short_mf
-  elsif cro_desc contains '<div class="entry-content">'
-    assign cro_sd_parts = cro_desc | split: '<div class="entry-content">'
-    assign cro_short_html = cro_sd_parts[1] | split: '</div>' | first
-  else
-    assign cro_lead = cro_desc | strip | slice: 0, 3
-    if cro_lead == '<p>' or cro_lead == '<p '
-      assign cro_first_p = cro_desc | strip | split: '</p>' | first | append: '</p>'
-      assign cro_first_p_text = cro_first_p | strip_html | strip
-      if cro_first_p_text != blank and cro_first_p_text.size <= 350
-        assign cro_short_html = cro_first_p
-      endif
-    endif
+  comment
+    Teaser flattening: closing BLOCK tags become '. ' so merged blocks
+    read as sentences ("…Balsamic vinegar. No artificial…"), remaining
+    tags become spaces (never glue words), then punctuation doubles from
+    text that already ended in ./!/?/: are collapsed, whitespace tidied,
+    any leading orphan '.' stripped, and finally truncate: 150.
+  endcomment
+  assign cro_short_text = product.description | replace: '</p>', '. ' | replace: '</h1>', '. ' | replace: '</h2>', '. ' | replace: '</h3>', '. ' | replace: '</h4>', '. ' | replace: '</h5>', '. ' | replace: '</h6>', '. ' | replace: '</li>', '. ' | replace: '</div>', '. '
+  assign cro_short_text = cro_short_text | replace: '<', ' <' | strip_html | remove: 'Short description:' | remove: 'Description:' | strip
+  assign cro_short_text = cro_short_text | newline_to_br | replace: '<br />', ' ' | replace: '<br>', ' ' | strip_newlines
+  assign cro_short_text = cro_short_text | replace: '        ', ' ' | replace: '    ', ' ' | replace: '  ', ' ' | replace: '  ', ' '
+  assign cro_short_text = cro_short_text | replace: ' .', '.' | replace: '..', '.' | replace: '..', '.' | replace: '!.', '!' | replace: '?.', '?' | replace: ':.', ':' | replace: ',.', ','
+  assign cro_lead_char = cro_short_text | slice: 0, 1
+  if cro_lead_char == '.'
+    assign cro_short_text = cro_short_text | remove_first: '.' | strip
+  endif
+  if cro_short_text != blank
+    assign cro_short_text = cro_short_text | truncate: 150 | replace: '....', '...'
   endif
 
+  comment
+    Value-prop: per-product metafield wins; otherwise the static design
+    line from the section setting (design.conversionratepros.co.za mock)
+    so every product shows the brand-voice line until metafields are
+    populated.
+  endcomment
   assign cro_value_prop = product.metafields.custom.value_prop.value | strip
   if cro_value_prop == blank
-    assign cro_short_text = cro_short_html | strip_html | strip
-    assign cro_first_sentence = cro_short_text | split: '.' | first | strip
-    if cro_first_sentence.size >= 10 and cro_first_sentence.size <= 120
-      assign cro_value_prop = cro_first_sentence | append: '.'
-    endif
+    assign cro_value_prop = section.settings.cro_value_prop_default | strip
   endif
 
   assign cro_review_count = product.metafields.reviews.rating_count | default: 0
@@ -147,8 +144,8 @@
     {% render 'cro-12473-value-prop', value_prop: cro_value_prop %}
   {% endif %}
 
-  {% if cro_short_html != blank %}
-    {% render 'cro-12473-short-desc', short_html: cro_short_html %}
+  {% if cro_short_text != blank %}
+    {% render 'cro-12473-short-desc', short_text: cro_short_text %}
   {% endif %}
 
   {% if cro_review_count < 1 %}
@@ -281,6 +278,17 @@
       "label": "Payment strip label",
       "default": "Secure payments via",
       "info": "Displayed to the left of the payment icons."
+    },
+    {
+      "type": "header",
+      "content": "CRO-12473 — Value-prop line"
+    },
+    {
+      "type": "text",
+      "id": "cro_value_prop_default",
+      "label": "Default value-prop line",
+      "default": "Diep kalmte wat jou liggaam opneem. Geen dofheid, geen lakseer-drama.",
+      "info": "Shown under the title when the product has no custom.value_prop metafield. The metafield always wins when set."
     },
     {
       "type": "header",

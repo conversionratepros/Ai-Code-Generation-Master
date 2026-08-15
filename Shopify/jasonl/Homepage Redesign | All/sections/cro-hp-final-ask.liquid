@@ -1,57 +1,56 @@
-{% comment %}
-  CRO-HP — S10 The ask: "Tell us what you're planning." Board node 2:19.
-  Second black band. A single lime button opens the site's standard
-  Typeform modal — NO embedded native form fields (one unified capture
-  system sitewide). The button passes estimator answers as hidden fields
-  (cro-hp.js). data-crohp-final-ask makes the sticky mobile bar hide
-  while this section is in viewport so the two asks never compete.
-{% endcomment %}
+{%- comment -%}
+  CRO-HP — S10 Final ask. PORTED from CRO-12526 v2's QA-hardened section
+  (cro-12526-v2-final-cta.liquid) — same 2026 design system, class names
+  kept verbatim; styles in cro-hp.css (ported block).
+
+  Homepage adaptations:
+  - crohp-container instead of page-width
+  - data-crohp-final-ask on the wrapper (sticky mobile bar hides while
+    this band is in view — cro-hp.js observer)
+  - data-crohp-typeform on the CTA (estimator answers ride into the
+    Typeform as hidden fields)
+  - showroom link defaults to this page's #cro-hp-showrooms anchor
+  - the 12526 mobile-only brand block is omitted: the homepage renders
+    its own footer (cro-hp-footer) with the brand block on all viewports
+{%- endcomment -%}
 
 {{ 'cro-hp.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'cro-hp.js' | asset_url }}" defer="defer"></script>
 
-<section class="crohp-section crohp-ask" data-crohp-final-ask>
-  <div class="crohp-container">
-    <div class="crohp-ask__grid">
-      <div>
-        <div class="crohp-head">
-          <p class="crohp-head__eyebrow crohp-eyebrow"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</p>
-          <h2 class="crohp-ask__title">{{ section.settings.heading }}</h2>
-        </div>
-        <div class="crohp-ask__cta">
-          <a class="crohp-btn crohp-btn--lime crohp-ask__btn typeform-share getaquoteclick typeform-embed"
-            {{ settings.typeformurls_url_1 }}
-            href="javascript:void(0)"
-            data-tf-on-ready="ready"
-            data-crohp-typeform>
-            {{- section.settings.cta_label -}}
-            <span class="crohp-btn__arrow">
-              <svg width="24" height="9" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
-            </span>
-          </a>
-          <p class="crohp-ask__micro">{{ section.settings.microline }}</p>
-        </div>
+<div class="cro12526v2-finalcta" data-crohp-final-ask>
+  <div class="crohp-container cro12526v2-finalcta__inner">
+    <div class="cro12526v2-finalcta__left">
+      <div class="cro12526v2-eyebrow cro12526v2-eyebrow--ondark">
+        <span class="cro12526v2-eyebrow__dot" aria-hidden="true"></span>
+        <span class="cro12526v2-eyebrow__text">{{ section.settings.eyebrow }}</span>
       </div>
-
-      <div>
-        <p class="crohp-ask__promise">{{ section.settings.promise }}</p>
-        <p class="crohp-ask__phone">
-          {{ section.settings.phone_label }}&nbsp;&nbsp;
-          <a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone }}</a>
-        </p>
-        <p class="crohp-ask__channels">
-          <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-          <span class="crohp-ask__sep" aria-hidden="true">&bull;</span>
-          {{ section.settings.alt_lead }}
-          <a class="crohp-ask__showroom-link" href="{{ section.settings.alt_url | default: '#cro-hp-showrooms' }}">
-            {{- section.settings.alt_label -}}
-            <svg width="17" height="7" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
-          </a>
-        </p>
-      </div>
+      <h2 class="cro12526v2-finalcta__heading">{{ section.settings.heading }}</h2>
+      <a class="cro12526v2-finalcta__btn typeform-share get-a-quote-btn-ab getaquoteclick"
+        href="javascript:void(0)"
+        {{ settings.typeformurls_url_1 }}
+        data-tf-on-ready="ready"
+        data-crohp-typeform>
+        <span>{{ section.settings.button_label }}</span>
+        <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1 4H19M19 4L15.5 1M19 4L15.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <p class="cro12526v2-finalcta__note">{{ section.settings.note }} <strong>{{ section.settings.note_bold }}</strong></p>
+    </div>
+    <div class="cro12526v2-finalcta__right">
+      <p class="cro12526v2-finalcta__copy">{{ section.settings.copy }}</p>
+      <p class="cro12526v2-finalcta__call">
+        Call <a href="tel:{{ section.settings.phone | replace: ' ', '' }}">{{ section.settings.phone }}</a>
+      </p>
+      <p class="cro12526v2-finalcta__meta">
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        <span aria-hidden="true">&nbsp;&middot;&nbsp;</span>
+        Prefer to see it first?
+        <a class="cro12526v2-finalcta__showroom-link" href="{{ section.settings.showroom_url | default: '#cro-hp-showrooms' }}"><strong>Book a showroom visit</strong>&nbsp;&rarr;</a>
+      </p>
     </div>
   </div>
-</section>
+</div>
 
 {% schema %}
 {
@@ -59,72 +58,20 @@
   "tag": "section",
   "class": "cro-hp-ask-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "No obligation, no runaround"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Tell us what you're planning."
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "Button label (opens Typeform)",
-      "default": "Plan my fitout"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "microline",
-      "label": "Microline",
-      "default": "Takes 60 seconds. <strong>No spam, no obligation</strong>"
-    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "No obligation, no runaround" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tell us what you're planning." },
+    { "type": "text", "id": "button_label", "label": "Button label (opens Typeform)", "default": "Plan my fitout" },
+    { "type": "text", "id": "note", "label": "Note under button", "default": "Takes 60 seconds." },
+    { "type": "text", "id": "note_bold", "label": "Note bold tail", "default": "No spam, no obligation" },
     {
       "type": "textarea",
-      "id": "promise",
-      "label": "Promise copy",
+      "id": "copy",
+      "label": "Right column copy",
       "default": "JasonL team will come back within 2 business hours on weekdays — no obligation, no runaround. And if we're not the right fit, we'll tell you."
     },
-    {
-      "type": "text",
-      "id": "phone_label",
-      "label": "Phone label",
-      "default": "Call"
-    },
-    {
-      "type": "text",
-      "id": "phone",
-      "label": "Phone number",
-      "default": "1300 864 264"
-    },
-    {
-      "type": "text",
-      "id": "email",
-      "label": "Email",
-      "default": "sales@jasonl.com.au"
-    },
-    {
-      "type": "text",
-      "id": "alt_lead",
-      "label": "Alternative path lead-in",
-      "default": "Prefer to see it first?"
-    },
-    {
-      "type": "text",
-      "id": "alt_label",
-      "label": "Alternative path link label",
-      "default": "Book a showroom visit"
-    },
-    {
-      "type": "url",
-      "id": "alt_url",
-      "label": "Alternative path link",
-      "info": "Blank = jump to the showrooms section"
-    }
+    { "type": "text", "id": "phone", "label": "Phone", "default": "1300 864 264" },
+    { "type": "text", "id": "email", "label": "Email", "default": "sales@jasonl.com.au" },
+    { "type": "url", "id": "showroom_url", "label": "Showroom link", "info": "Blank = jump to the showrooms section" }
   ],
   "presets": [{ "name": "CRO HP Final Ask" }]
 }

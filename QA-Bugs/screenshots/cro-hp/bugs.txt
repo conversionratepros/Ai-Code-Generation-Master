@@ -1,0 +1,306 @@
+===== MESSAGE 1 (ts 1786418342.938259) =====
+Bug #: 1
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "Beautiful fitouts in under 10 days. Easy. Fast!", as highlighted by the red box, is not currently set to the correct font size. Also the Easy.Fast! font weight not correct.
+ ───── EXPECTED ─────
+ Font size should be 74px. Font weight of Easy.Fast! will be 600
+
+===== MESSAGE 2 (ts 1786418677.851699) =====
+Bug #: 2
+ Device / Breakpoint: ALL
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The "3 installs happening today" text, as highlighted by the red box, is not fully bold — only part of the text appears bold while the rest is regular weight.
+ ───── EXPECTED ─────
+ The full text should be bold, font weight 600.
+
+===== MESSAGE 3 (ts 1786418897.118299) =====
+Bug #: 3
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The margins around the bullet separators ("•") between "4.8 Google reviews," "7 showrooms nationally," and "Australian owned," as highlighted by the red lines, are not currently set correctly.
+ ───── EXPECTED ─────
+ These margins should be 30px each.
+
+===== MESSAGE 4 (ts 1786419222.341129) =====
+Bug #: 4
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The gap between "OFFICE FITOUTS, AUSTRALIA-WIDE" and the heading "Beautiful fitouts in under 10 days. Easy. Fast!", as highlighted by the red line, is currently set to 20px.
+ ───── EXPECTED ─────
+ This gap should be 15px, not 20px.
+
+===== MESSAGE 5 (ts 1786419296.631209) =====
+Bug #: 5
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The text "Takes 60 seconds. A real person replies within 2 business hours.", as highlighted by the red box, is not breaking into two lines as per the design.
+ ───── EXPECTED ─────
+ Per design, this text should display in 2 lines, with "Takes 60 seconds." as the first line.
+
+===== MESSAGE 6 (ts 1786419360.283099) =====
+Bug #: 6
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ There is no space after "4.8" (before "Google reviews") and no space after "7" (before "showrooms nationally"), as highlighted by the red boxes — the text runs together.
+ ───── EXPECTED ─────
+ There should be a space after "4.8" and after "7" so the text reads correctly with proper spacing.
+
+===== MESSAGE 7 (ts 1786419527.641499) =====
+Bug #: 7
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "38 fitouts completed this week", as highlighted by the red box, is not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 50px.
+
+===== MESSAGE 8 (ts 1786419772.033679) =====
+Bug #: 8
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The stat numbers "981+", "82%", "7", and "<4", as highlighted by the red boxes, are not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 70px.
+
+===== MESSAGE 9 (ts 1786420048.965879) =====
+Bug #: 9
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "38 fitouts completed this week", as highlighted by the red box, displays across 2 lines ("38 fitouts completed" / "this week") instead of breaking correctly.
+ ───── EXPECTED ─────
+ Per design, this text should display in 3 lines:
+ "38 fitouts"
+ "completed"
+ "this week"
+
+===== MESSAGE 10 (ts 1786420311.173039) =====
+Bug #: 10
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The client logos section (Woods Bagot, Hutchinson Builders), as highlighted by the red box, has an arrangement and spacing/gapping that does not match the Figma design.
+ ───── EXPECTED ─────
+ Logo arrangement and gapping should match the Figma design.
+
+===== MESSAGE 11 (ts 1786420529.299989) =====
+Bug #: 11
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "Fitouts? Handled.", as highlighted by the red box, is not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 42px.
+
+===== MESSAGE 12 (ts 1786420639.283589) =====
+Bug #: 12
+ Device / Breakpoint: ALL
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ A horizontal divider line is missing below the "We plan it, bring it, build it. You just show up. Here's the whole thing, start to finish." text, as highlighted by the red line, before the "DAY 0 / Chat & measure" step section begins.
+ ───── EXPECTED ─────
+ A horizontal divider line should display in that position.
+
+===== MESSAGE 13 (ts 1786421326.852369) =====
+BUG REPORT — CRO-88970
+ Bug #: 13
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ In the section reading "How is 10 days possible? Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing," as highlighted by the red box, the text "How is 10 days possible?" is not displaying on its own line — it runs together with the following sentence instead of breaking as a separate first line.
+ ───── EXPECTED ─────
+ Per Figma, "How is 10 days possible?" should display as the first line on its own, with the remaining text ("Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing.") displaying as the second line/paragraph below it.
+
+===== MESSAGE 14 (ts 1786421478.501229) =====
+Bug #: 14
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "Want to elevate your space? A dedicated designer makes all the difference.", as highlighted by the red box, is not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 42px.
+
+===== MESSAGE 15 (ts 1786422222.237619) =====
+Bug #: 15
+ Device / Breakpoint: ALL
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ In the "Recent Fitouts / See for yourself" section, as highlighted by the red boxes, the following elements do not match the Figma design:
+• Eyebrow text ("RECENT FITOUTS")
+• Heading ("See for yourself.")
+• Sub-heading ("Three recent projects — different sizes, different scopes, same deadline.")
+• Button color and text ("All case studies")
+• Text overlaid on the images (e.g. "small business • 6 staff", "growing team • 25 staff", "enterprise • 120 staff")
+ ───── EXPECTED ─────
+ Eyebrow text, heading, sub-heading, button color/text, and image overlay text should all match the Figma design exactly.
+
+===== MESSAGE 16 (ts 1786422301.306969) =====
+Bug #: 16
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "See for yourself.", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.
+ ───── EXPECTED ─────
+ Font size should be 42px, and top margin should be 30px.
+
+===== MESSAGE 17 (ts 1786422511.231059) =====
+Bug #: 17
+ Device / Breakpoint: ALL
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ On the three project badges ("small business • 6 staff", "growing team • 25 staff", "enterprise • 120 staff"), as highlighted by the red boxes, the staff count text ("6 staff", "25 staff", "120 staff") is not bold, while the label text before it is bold.
+ ───── EXPECTED ─────
+ The staff count text should also be bold, matching the weight of the label text before it.
+
+===== MESSAGE 18 (ts 1786422604.763119) =====
+Bug #: 18
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ On the three project badges ("small business • 6 staff", "growing team • 25 staff", "enterprise • 120 staff"), as highlighted by the red lines, there is a 10px gap displaying before the "•" separator.
+ ───── EXPECTED ─────
+ This gap should not be there.
+
+===== MESSAGE 19 (ts 1786422834.070669) =====
+Bug #: 19
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The quote/testimonial paragraph text under each project card ("[QA 4.5 — replace with a verified Loftwork Studio quote]", "[QA 4.5 — replace with a verified ABC Ballarat quote; QA 4.6 — verify city]", "They hit every deadline. We've continued to use them for over five years now."), as highlighted by the red box, does not match the Figma design.
+ ───── EXPECTED ─────
+ The paragraph text should match the Figma design.
+
+===== MESSAGE 20 (ts 1786422928.859229) =====
+Bug #: 20
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The top margin above the project cards ("Loftwork Studio", "ABC Ballarat", "CreditorWatch"), as highlighted by the red line, is not currently set correctly.
+ ───── EXPECTED ─────
+ Top margin should be 30px.
+
+===== MESSAGE 21 (ts 1786424110.286719) =====
+Bug #: 21
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ There is a 40px gap between the sub-heading "Three recent projects — different sizes, different scopes, same deadline." and the "All case studies" button, as highlighted by the red line.
+ ───── EXPECTED ─────
+ This 40px gap should be removed.
+
+===== MESSAGE 22 (ts 1786424296.136909) =====
+Bug #: 22
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The top margin above the project cards ("Loftwork Studio", "ABC Ballarat"), as highlighted by the red line, is not currently set correctly.
+ ───── EXPECTED ─────
+ Top margin should be 20px.
+
+===== MESSAGE 23 (ts 1786424379.685379) =====
+Bug #: 23
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ On the first project card ("small business • 6 staff" / "Loftwork Studio"), as highlighted by the red box, there is no left gap/padding — the card sits flush against the left edge of the screen. Other cards in the row have visible spacing.
+ ───── EXPECTED ─────
+ The first card should have consistent left gap/padding matching the rest of the layout, not sit flush against the screen edge.
+
+===== MESSAGE 24 (ts 1786424570.387019) =====
+Bug #: 24
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The top margin above the heading "What does a fitout cost? Roughly this." (below the "PRICING GUIDE" eyebrow text), as highlighted by the red line, is not currently set correctly.
+ ───── EXPECTED ─────
+ Top margin should be 30px.
+
+===== MESSAGE 25 (ts 1786424656.245009) =====
+Bug #: 25
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "What does a fitout cost? Roughly this.", as highlighted by the red box, is not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 42px.
+
+===== MESSAGE 26 (ts 1786424721.795629) =====
+BUG REPORT — CRO-88970
+ Bug #: 26
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The paragraph text "Every office is different — but here's where most projects land, so there are no surprises. All figures include delivery and install.", as highlighted by the red box, does not match the Figma design, and its top margin is also incorrect.
+ ───── EXPECTED ─────
+ The paragraph text should match Figma, and its top margin should be 30px.
+
+===== MESSAGE 27 (ts 1786425486.342839) =====
+Bug #: 27
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The pricing tier headings ("from ~$5k", "from ~$12k", "Let's talk"), as highlighted by the red box, are not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 42px.
+
+===== MESSAGE 28 (ts 1786425975.463369) =====
+Bug #: 28
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ On the "Headcount" dropdown, as highlighted by the red box, clicking to open the dropdown causes the dropdown's border to show a background colour. Additionally, the open dropdown list does not display below the dropdown's bottom border edge — it overlaps/sits on top of the border instead of appearing cleanly beneath it.
+ ───── EXPECTED ─────
+ The dropdown border should not show a background colour when opened, and the open dropdown list should display cleanly below the dropdown's bottom border edge, not overlapping it.
+
+===== MESSAGE 29 (ts 1786426370.731339) =====
+Bug #: 29
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The "Get my estimate" button text, as highlighted by the red box, is not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 14px.
+
+===== MESSAGE 30 (ts 1786426572.347219) =====
+Bug #: 30
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "Need furniture only? Sorted.", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.
+ ───── EXPECTED ─────
+ Font size should be 42px, and top margin should be 30px.
+
+===== MESSAGE 31 (ts 1786427309.200009) =====
+Bug #: 31
+ Device / Breakpoint: Mobile
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The "Get my estimate" button text, as highlighted by the red box, is not currently set to the correct font size.
+ ───── EXPECTED ─────
+ Font size should be 15px.
+
+===== MESSAGE 32 (ts 1786427722.903369) =====
+Bug #: 32
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ On all products in the grid ("Cable Management Basket Single Metal...", "Slim Mobile Pedestal", "Plover Ergonomic Office Chair - Mesh...", and others), as highlighted by the red box, the product name and price are left-aligned to the image instead of being centered.
+ ───── EXPECTED ─────
+ Product name and price should be center-aligned relative to the image, across all products in the grid.
+
+===== MESSAGE 33 (ts 1786428233.016039) =====
+Bug #: 33
+ Device / Breakpoint: Desktop
+ URL: <https://www.jasonl.com.au/|jasonl.com.au>
+ ───── WHAT IS WRONG ─────
+ The heading "Delightful support from real people.", as highlighted by the red box, is not currently set to the correct font size, and its top margin is also incorrect.
+ ───── EXPECTED ─────
+ Font size should be 42px, and top margin should be 45px.

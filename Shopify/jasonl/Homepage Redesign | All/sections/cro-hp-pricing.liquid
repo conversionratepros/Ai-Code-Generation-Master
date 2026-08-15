@@ -15,7 +15,7 @@
   <div class="crohp-container">
     <div class="crohp-head">
       <p class="crohp-head__eyebrow crohp-eyebrow"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</p>
-      <h2 class="crohp-head__title" style="max-width:730px;">{{ section.settings.heading }}</h2>
+      <h2 class="crohp-head__title" style="max-width:700px;">{{ section.settings.heading }}</h2>
       <p class="crohp-head__sub" style="max-width:775px;">{{ section.settings.sub }}</p>
     </div>
 
@@ -69,17 +69,25 @@
               <option value="{{ opt | strip | escape }}">{{ opt | strip }}</option>
             {%- endfor -%}
           </select>
-          <button type="submit" class="crohp-btn crohp-btn--lime" style="font-size:18px;">
+          <button type="submit" class="crohp-btn crohp-btn--lime">
             {{- section.settings.est_button -}}
             <span class="crohp-btn__arrow">
               <svg width="20" height="8" viewBox="0 0 19.263 7.194" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.5754 0L14.5041 1.0447L16.3749 2.86773H0V4.34578H16.3504L14.5 6.14932L15.5715 7.19402L19.263 3.59474L15.5754 0Z" fill="currentColor"/></svg>
             </span>
           </button>
-          {%- comment -%} Hidden Typeform trigger the JS clicks after saving answers {%- endcomment -%}
+          {%- comment -%}
+            Hidden Typeform trigger the JS clicks after saving answers.
+            Explicit attributes instead of settings.typeformurls_url_1: the
+            estimator must target its own form ID, and duplicate attributes
+            resolve to the FIRST occurrence so the theme blob can't be
+            overridden by appending. on-submit/on-ready keep the site's
+            native tracking callbacks wired.
+          {%- endcomment -%}
           <a class="typeform-share getaquoteclick typeform-embed"
-            {{ settings.typeformurls_url_1 }}
-            href="javascript:void(0)"
+            data-tf-popup="{{ section.settings.est_typeform_id | default: 'oq7mO0d2' }}"
+            data-tf-on-submit="submit"
             data-tf-on-ready="ready"
+            href="javascript:void(0)"
             data-crohp-typeform
             hidden
             aria-hidden="true"
@@ -112,7 +120,7 @@
       "type": "textarea",
       "id": "sub",
       "label": "Framing line",
-      "default": "Every office is different — but here's where most projects land, so there are no surprises. All figures include delivery and install.",
+      "default": "Whether it's four desks or four floors, here's where most setups land — so there are no surprises. Every figure includes delivery and install.",
       "info": "Board draft alternative: \"Whether it's four desks or four floors, here's where most setups land — so there are no surprises. Every figure includes delivery and install.\""
     },
     { "type": "header", "content": "Estimator (lime panel)" },
@@ -158,6 +166,13 @@
       "id": "timeframe_options",
       "label": "Timeframe options (comma-separated)",
       "default": "ASAP, Within a month, 1–3 months, Just planning"
+    },
+    {
+      "type": "text",
+      "id": "est_typeform_id",
+      "label": "Estimator Typeform ID",
+      "default": "oq7mO0d2",
+      "info": "Hidden fields headcount, city, timeframe and entry_point must exist in this Typeform for the estimator answers to appear in results."
     }
   ],
   "blocks": [
