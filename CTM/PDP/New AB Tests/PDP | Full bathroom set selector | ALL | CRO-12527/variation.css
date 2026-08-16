@@ -1,0 +1,188 @@
+/* ==========================================================================
+   CTM — CRO-12527 "Full bathroom set" — Convert VARIATION CSS
+
+   These rules are lifted VERBATIM from the approved design
+   (design/variant-a-full-bathroom-set.html, hosted at
+   https://design.conversionratepros.co.za/ctm/pdp/full-bathroom-set/).
+   Do not restyle. The only additions are the .cro-12527-wrap spacing rule and
+   the two guards at the bottom, both noted inline.
+   ========================================================================== */
+
+/* Spacing so the module sits comfortably above Add To Cart inside the buy box.
+   ADDED (not in the mock): in the mock the module sat outside the form, so it
+   inherited page spacing. Inside the buy box it needs its own bottom gap. */
+.cro-12527-wrap {
+   margin: 0 0 14px;
+}
+
+/* --- approved styles, verbatim from the design file --- */
+.crp-opth {
+   font-size: 13px;
+   font-weight: 700;
+   margin: 16px 0 8px;
+   font-family: inherit;
+}
+
+.crp-opts {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 8px;
+   margin: 0 0 6px;
+}
+
+.crp-opt {
+   border: 1px solid #d8d8d8;
+   border-radius: 8px;
+   padding: 9px 11px;
+   cursor: pointer;
+   display: flex;
+   gap: 9px;
+   align-items: center;
+   background: #fff;
+}
+
+.crp-opt.sel {
+   border-color: #1f9d2b;
+   background: #f3fbf4;
+   box-shadow: 0 0 0 2px #1f9d2b;
+}
+
+.crp-opt .rad {
+   flex: none;
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   border: 2px solid #bbb;
+   position: relative;
+}
+
+.crp-opt.sel .rad {
+   border-color: #1f9d2b;
+}
+
+.crp-opt.sel .rad:after {
+   content: "";
+   position: absolute;
+   inset: 3px;
+   border-radius: 50%;
+   background: #1f9d2b;
+}
+
+.crp-opt .oc {
+   min-width: 0;
+}
+
+.crp-opt .ot {
+   font-size: 13px;
+   font-weight: 700;
+   line-height: 1.2;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.crp-opt .op {
+   font-size: 12.5px;
+   font-weight: 400;
+   color: #333;
+   margin-top: 2px;
+   line-height: 1.2;
+}
+
+.crp-opt .sv {
+   display: inline-block;
+   font-size: 10px;
+   font-weight: 700;
+   color: #fff;
+   background: #e2231a;
+   border-radius: 9px;
+   padding: 0 6px;
+   margin-left: 5px;
+   vertical-align: middle;
+}
+
+/* Single column on small screens — approved breakpoint, unchanged. */
+@media (max-width: 600px) {
+   .crp-opts {
+      grid-template-columns: 1fr;
+   }
+}
+
+/* --- guards (added, not in the mock) --- */
+
+/* CTM's theme sets a global rule on .fieldset > div that adds top margin to
+   direct children of the buy-box fieldset. Our wrapper is now such a child, so
+   neutralise it and keep the module tight to the Add To Cart button. */
+.product-info-main .box-tocart .fieldset>.cro-12527-wrap {
+   margin-top: 0;
+}
+
+/* The heading's 16px top margin is right when the module has breathing room
+   above it; inside the buy box the quantity block already provides that. */
+.cro-12527-wrap .crp-opth {
+   margin-top: 4px;
+}
+
+/* --- the set's image over the main gallery (added 2026-08-12, Bug 2 fix) ---
+   variation.js places one hidden overlay of ours inside the main gallery
+   stage (.product.media .vaimo-gallery__stage, which is position:relative).
+   These rules show it ONLY while <html> carries .cro-12527-suite-selected —
+   the same marker class the promotional hiding uses — so choosing the set
+   shows the set's image and switching back is nothing more than the class
+   being removed. The gallery itself is never mutated.
+   Scoped to .product.media throughout: the related/similar product
+   carousels live outside it and can never be touched by any rule here. */
+.cro-12527-set-image {
+   display: none;
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 30;
+   /* above the keen-slider slides */
+   background: #fff;
+   /* matches CTM's product-shot background */
+}
+
+.cro-12527-set-image img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+   /* never crop the set image */
+}
+
+html.cro-12527-suite-selected .product.media .cro-12527-set-image {
+   display: block;
+}
+
+/* While the set is shown, the slider's own controls would appear to do
+   nothing (they drive the covered gallery), so: arrows and dots are hidden
+   (visibility keeps the layout), thumbnails are dimmed and inert. All of it
+   returns untouched the moment the shopper goes back to the single item.
+   The extra .cro-12527-has-set-image class (added by variation.js only when
+   an overlay was actually installed) keeps these rules OFF on the pages
+   where the image swap is off — there the gallery still shows the single
+   item while the set is selected, so its controls must keep working. */
+html.cro-12527-suite-selected.cro-12527-has-set-image .product.media .vaimo-gallery__arrow,
+html.cro-12527-suite-selected.cro-12527-has-set-image .product.media .vaimo-gallery__dots {
+   visibility: hidden !important;
+}
+
+html.cro-12527-suite-selected.cro-12527-has-set-image .product.media .vaimo-gallery__thumbs-wrap {
+   opacity: 0.35;
+   pointer-events: none;
+}
+
+/* --- where the promotional-wording rules live (added 2026-08-03) ---
+   On a page where the single item is on promotion, choosing the set hides
+   CTM's "was" figure, its "Special Price" label, the green "SALE" roundel and
+   the red saving flash over the image. Those rules are NOT in this file. They
+   have to name the page's own product id, which is different on each of the 32
+   pages, so they are built and injected by variation.js at run time (see
+   installPromoSuppression there) into a stylesheet with the id
+   "cro-12527-promo-suppression". They only apply while the <html> element
+   carries the class .cro-12527-suite-selected.
+   Nothing to change here — this note just saves the next reader from looking
+   for them in this file. */

@@ -1,0 +1,997 @@
+/* ============================================================
+   CRO-12173 — OnePlan Homepage Relook — Variant B (v2)
+   Injected over https://www.oneplan.co.za/ (native header/footer kept)
+   All numeric values from spec-desktop.md / spec-mobile.md (Figma REST)
+   ============================================================ */
+
+/* ---- flicker guard: hide native homepage content immediately ---- */
+#main-content-rb > .container-fluid-rb { display: none !important; }
+
+/* ---- injected page hidden until fully built (body class reveals) ---- */
+.cro12173-page { display: none; }
+body.cro12173-on .cro12173-page { display: block; }
+
+/* ---- scoped reset (site loads Bootstrap 3 + Divi css) ---- */
+.cro12173-page, .cro12173-page * { margin: 0; padding: 0; box-sizing: border-box; }
+.cro12173-page {
+  font-family: 'Anek Devanagari', sans-serif;
+  color: #09075C;
+  background: #fff;
+  line-height: normal;
+  --navy: #09075C;
+  --hero-blue: #0000FF;
+  --hero-blue-m: #001065;
+  --royal: #0000D9;
+  --cyan: #5BF1FD;
+  --ice: #AEEEFD;
+  --sky: #40AEE1;
+  --sub: #5A5F73;
+  --grey: #F3F3F3;
+  --track: #C4C9DD;
+  --footer-text: #C7CBE6;
+  --font: 'Anek Devanagari', sans-serif;
+  --font-label: Aptos, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.cro12173-page img { display: block; max-width: 100%; border: 0; }
+.cro12173-page a { text-decoration: none; color: inherit; }
+.cro12173-page a:hover, .cro12173-page a:focus { text-decoration: none; }
+.cro12173-page h1, .cro12173-page h2, .cro12173-page h3, .cro12173-page h4 { font-weight: 700; font-family: var(--font); }
+.cro12173-page ol, .cro12173-page ul { list-style: none; }
+
+/* ============================================================
+   Oneplan Homepage Relook (CRO-12173) — Variant B v2
+   All numeric values from spec-desktop.md / spec-mobile.md
+   (Figma REST API ground truth — nothing approximated)
+   ============================================================ */
+.cro12173-page h1, .cro12173-page h2, .cro12173-page h3, .cro12173-page h4 { font-weight: 700;
+}
+.cro12173-page .arrow { font-weight: 700;
+}
+/* ---------- shared ---------- */
+.cro12173-page .eyebrow {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ice);
+}
+.cro12173-page .eyebrow.navy { color: var(--navy);
+}
+.cro12173-page .section-head { text-align: center; max-width: 767px; margin: 0 auto;
+}
+.cro12173-page .section-head h2 { font-size: 40px; line-height: 40px; color: var(--navy);
+}
+.cro12173-page .section-sub { font-size: 18px; line-height: 27px; color: var(--sub); margin-top: 24px;
+}
+.cro12173-page .section-sub.left { margin-top: 0;
+}
+.cro12173-page .btn-cyan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--cyan);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 9999px;
+  padding: 13px 28px 10px; /* Anek has tall ascent — visual 16/28 pad from spec */
+  line-height: 1;
+  white-space: nowrap;
+}
+.cro12173-page .btn-lg { padding: 17px 28px 14px;
+}
+.cro12173-page .plan-link {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy);
+  text-decoration: underline;
+}
+/* ============================================================
+   Header — 74px, bg #09075C, pad 0/34
+   ============================================================ */
+/* ============================================================
+   Hero — bg #0000FF + photo, content 664, gap 36
+   ============================================================ */
+.cro12173-page .hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(115deg, #001561 0%, #001D82 45%, #00259B 100%);
+  padding: 60px 20px 36px;
+}
+/* photo fill is cropped right in Figma: zoomed ~125%, bottom-anchored */
+.cro12173-page .hero-photo {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 62%;
+  height: 100%;
+  background: no-repeat 0 bottom;
+  background-size: auto 102%;
+}
+.cro12173-page .hero-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #001D82 0%, rgba(0, 29, 130, 0) 32%);
+}
+.cro12173-page .hero-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 2;
+}
+.cro12173-page .hero-content { max-width: 664px; display: flex; flex-direction: column; gap: 36px; align-items: flex-start;
+}
+.cro12173-page .hero h1 { font-size: 53px; line-height: 53px; color: #fff;
+}
+.cro12173-page .hero h1 .hl {
+  background: var(--cyan);
+  color: var(--navy);
+  border-radius: 40px;
+  padding: 0 18px 4px;
+  display: inline-block;
+  line-height: 1;
+}
+.cro12173-page .hero-sub { font-size: 18px; line-height: 27px; color: #EAF1FF; max-width: 570px;
+}
+.cro12173-page .quote-card {
+  width: 566px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.cro12173-page .quote-card-title { font-weight: 600; font-size: 14px; line-height: 21px; color: #fff;
+}
+.cro12173-page .product-picker { display: flex; gap: 12px;
+}
+.cro12173-page .radio-tile {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 99px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #fff;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.cro12173-page .radio-tile.selected { border-color: var(--cyan);
+}
+.cro12173-page .radio-tile:last-child { flex-grow: 1.35;
+}
+.cro12173-page .radio-tile .check {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 20px; height: 20px;
+  border-radius: 10px;
+  background: var(--cyan);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cro12173-page .tile-icon { height: 29px; width: auto;
+}
+.cro12173-page .tile-text { display: flex; flex-direction: column; gap: 2px;
+}
+.cro12173-page .tile-text strong { font-weight: 600; font-size: 14px; line-height: 21px; color: var(--navy);
+}
+.cro12173-page .tile-text small { font-weight: 400; font-size: 12px; line-height: 18px; color: var(--sub);
+}
+.cro12173-page .quote-cta-row { display: flex; align-items: center; gap: 12px;
+}
+.cro12173-page .minutes { display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 18px; color: #DFEAFF;
+}
+.cro12173-page .clock {
+  width: 14px; height: 14px;
+  border: 1.5px solid #DFEAFF;
+  border-radius: 50%;
+  position: relative;
+}
+.cro12173-page .clock::after {
+  content: '';
+  position: absolute;
+  left: 5px; top: 2px;
+  width: 1.5px; height: 4px;
+  background: #DFEAFF;
+}
+.cro12173-page .tcs { font-size: 12px; line-height: 18px; color: #CFDCF9;
+}
+/* Hellopeter bar (desktop) — 681×73, pad 24/40, r12 */
+.cro12173-page .hp-bar {
+  width: 681px;
+  max-width: calc(100% - 40px);
+  margin: 56px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px 40px 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(10, 30, 90, 0.16), 0 -6px 18px rgba(10, 30, 90, 0.06);
+  position: relative;
+  z-index: 2;
+}
+.cro12173-page .hp-cluster { display: flex; align-items: center; gap: 8px;
+}
+.cro12173-page .hp-logo { width: 100px; height: 25px;
+}
+.cro12173-page .hp-score { font-weight: 700; font-size: 24px; line-height: 24px; color: var(--navy);
+}
+.cro12173-page .hp-stars { width: 145px; height: 25px;
+}
+.cro12173-page .hp-dot { width: 4px; height: 4px; border-radius: 2px; background: var(--navy);
+}
+.cro12173-page .hp-cluster strong { font-weight: 700; font-size: 16px; color: var(--navy);
+}
+.cro12173-page .hp-muted { font-weight: 400; font-size: 14px; line-height: 21px; color: var(--sub);
+}
+.cro12173-page .hp-card-mobile { display: none;
+}
+.cro12173-page .hero-photo-mobile { display: none;
+}
+/* ============================================================
+   Plans — pad 72/0, cards 290, gap 20
+   ============================================================ */
+.cro12173-page .plans { padding: 72px 28px;
+}
+.cro12173-page .plan-grid {
+  max-width: 1226px;
+  margin: 40px auto 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.cro12173-page .plan-card {
+  position: relative;
+  flex: 1;
+  max-width: 293px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding: 24px 20px 32px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(15, 23, 60, 0.04), 0 1px 2px rgba(15, 23, 60, 0.06);
+}
+.cro12173-page .plan-card.featured {
+  border: none;
+  box-shadow: 0 2px 6px rgba(15, 23, 60, 0.06), 0 8px 24px rgba(15, 23, 60, 0.18);
+}
+.cro12173-page .pill-chosen {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: #FFD15A;
+  color: var(--navy);
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 6px 14px 4px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.cro12173-page .plan-icon {
+  width: 64px; height: 64px;
+  border-radius: 32px;
+  background: var(--ice);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cro12173-page .plan-icon img { height: 29px; width: auto;
+}
+.cro12173-page .plan-title-block { display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.cro12173-page .plan-card h3 { font-size: 18px; text-transform: uppercase; color: var(--navy);
+}
+.cro12173-page .price-pill {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 4px 16px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--navy);
+}
+.cro12173-page .price-pill small { font-weight: 700; font-size: 12px; color: var(--sub);
+}
+.cro12173-page .price-pill.tailored { font-weight: 600; font-size: 14px;
+}
+.cro12173-page .plan-body { font-size: 14px; line-height: 21px; color: var(--sub);
+}
+.cro12173-page .plan-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: auto;
+}
+.cro12173-page .btn-plan { width: 250px; padding: 11px 11px 8px;
+}
+/* ============================================================
+   Reviews — gradient bg, pad 60/0, gap 40
+   ============================================================ */
+.cro12173-page .reviews {
+  background: linear-gradient(90deg, #001582, #001999, #001994, #001582, #001066);
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.cro12173-page .reviews-head {
+  max-width: 626px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.cro12173-page .reviews-head h2 { font-size: 40px; line-height: 40px; color: #fff;
+}
+.cro12173-page .reviews-head .hl {
+  background: var(--cyan);
+  color: var(--navy);
+  border-radius: 30px;
+  padding: 0 14px 4px;
+  display: inline-block;
+  line-height: 1;
+}
+.cro12173-page .hp-white { width: 120px; height: 30px;
+}
+.cro12173-page .carousel-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 40px;
+}
+.cro12173-page .car-btn { background: none; border: none; cursor: pointer; flex-shrink: 0;
+}
+.cro12173-page .car-btn img { width: 44px; height: 44px;
+}
+.cro12173-page .car-btn.next { padding-right: 16px;
+}
+.cro12173-page .review-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cro12173-page .review-track::-webkit-scrollbar { display: none;
+}
+.cro12173-page .review-card {
+  position: relative;
+  flex: 0 0 250px;
+  min-height: 284px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 30px 24px 20px;
+  border-radius: 16px;
+  background: #fff;
+}
+.cro12173-page .review-card header { display: flex; flex-direction: column; gap: 10px;
+}
+.cro12173-page .rev-name { font-weight: 500; font-size: 16px; color: var(--navy);
+}
+.cro12173-page .rev-stars { width: 77px; height: 14px;
+}
+.cro12173-page .rev-title { font-weight: 400; font-size: 14px; line-height: 21px; color: var(--navy);
+}
+.cro12173-page .rev-quote { font-weight: 700; font-size: 12px; line-height: 18px; color: var(--navy);
+}
+.cro12173-page .rev-scroll {
+  position: absolute;
+  top: 24px; right: 12px;
+  width: 3px; height: 138px;
+  border-radius: 2px;
+  background: var(--track);
+}
+.cro12173-page .rev-scroll span {
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 40px;
+  border-radius: 2px;
+  background: var(--sky);
+}
+.cro12173-page .reviews-all { text-align: center;
+}
+.cro12173-page .reviews-all a { font-weight: 600; font-size: 14px; color: var(--cyan); text-decoration: underline;
+}
+/* ============================================================
+   Claim card — pad 60/0, container 840
+   ============================================================ */
+.cro12173-page .claim {
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+.cro12173-page .claim .section-head { max-width: 720px;
+}
+.cro12173-page .claim-card-img { width: 412px; max-width: 100%; border-radius: 16px;
+}
+.cro12173-page .compare {
+  position: relative;
+  display: flex;
+  width: 840px;
+  max-width: 100%;
+}
+.cro12173-page .panel { width: 50%; min-height: 200px; display: flex; flex-direction: column; gap: 24px;
+}
+.cro12173-page .panel.usual {
+  padding: 32px 36px 32px 28px;
+  border-radius: 16px 0 0 16px;
+  background: var(--grey);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-right: none;
+}
+.cro12173-page .panel.oneplan-way {
+  position: relative;
+  overflow: hidden;
+  padding: 32px 36px 32px 40px;
+  border-radius: 0 16px 16px 0;
+  background: var(--royal) no-repeat right center;
+  background-size: cover;
+  border: 1px solid var(--sky);
+}
+.cro12173-page .panel-title {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--sub);
+  position: relative;
+}
+.cro12173-page .oneplan-way .panel-title { color: #fff;
+}
+.cro12173-page .steps { list-style: none; display: flex; flex-direction: column; gap: 12px; position: relative;
+}
+.cro12173-page .steps li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--sub);
+}
+.cro12173-page .oneplan-way .steps li { color: #fff;
+}
+.cro12173-page .num {
+  flex-shrink: 0;
+  width: 26px; height: 26px;
+  border-radius: 13px;
+  background: var(--ice);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cro12173-page .check-num { background: #fff; color: var(--royal); font-size: 13px;
+}
+.cro12173-page .vs {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px; height: 48px;
+  border-radius: 24px;
+  background: #A9F8FE;
+  border: 3px solid #F4F6FB;
+  box-shadow: 0 4px 12px rgba(40, 41, 114, 0.25);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.cro12173-page .claim-note { font-size: 14px; line-height: 21px; color: var(--sub); text-align: center;
+}
+/* ============================================================
+   FAQ — bg #F3F3F3, pad 80/0, cards 395×215
+   ============================================================ */
+.cro12173-page .faq { background: var(--grey); padding: 80px 28px;
+}
+.cro12173-page .faq-grid {
+  max-width: 1224px;
+  margin: 40px auto 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.cro12173-page .faq-card {
+  flex: 1;
+  max-width: 395px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.cro12173-page .faq-card h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: var(--navy);
+}
+.cro12173-page .dot { width: 8px; height: 8px; border-radius: 4px; background: #282972;
+}
+.cro12173-page .faq-card p { font-size: 14px; line-height: 21px; color: var(--sub);
+}
+.cro12173-page .btn-price {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 13px 18px 10px;
+  box-shadow: 0 6px 16px rgba(93, 179, 111, 0.32);
+}
+/* ============================================================
+   Ready — bg #0000D9, pad 80/20
+   ============================================================ */
+.cro12173-page .ready {
+  position: relative;
+  overflow: hidden;
+  background: var(--royal);
+  padding: 80px 20px;
+  min-height: 413px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+}
+.cro12173-page .ready::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: ;
+  background-size: 420px auto;
+  opacity: 0.4;
+}
+.cro12173-page .ready-content {
+  position: relative;
+  z-index: 2;
+  max-width: 506px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.cro12173-page .ready h2 { font-size: 40px; line-height: 40px; color: #fff;
+}
+.cro12173-page .ready-sub { font-size: 18px; line-height: 27px; color: #DBE6FF;
+}
+.cro12173-page .prefer-call { font-weight: 600; font-size: 14px; color: #fff; text-decoration: underline;
+}
+.cro12173-page .ready-cards { position: absolute; left: 40px; top: 50%; transform: translateY(-50%); width: 350px; z-index: 1;
+}
+.cro12173-page .rc { position: absolute; width: 274px; border-radius: 12px;
+}
+.cro12173-page .rc1 { transform: rotate(-14deg); top: -130px; left: 0;
+}
+.cro12173-page .rc2 { transform: rotate(-8deg); top: -90px; left: 40px;
+}
+.cro12173-page .ready-hand {
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  width: 395px;
+  z-index: 1;
+}
+/* ============================================================
+   Already — bg #F3F3F3, pad 60/0
+   ============================================================ */
+.cro12173-page .already {
+  background: var(--grey);
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.cro12173-page .already-title { font-weight: 600; font-size: 16px; line-height: 24px; color: var(--sub);
+}
+.cro12173-page .already-row { display: flex; gap: 16px;
+}
+.cro12173-page .already-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(15, 23, 60, 0.04), 0 1px 2px rgba(15, 23, 60, 0.06);
+}
+.cro12173-page .al-icon { width: 48px; height: 48px;
+}
+.cro12173-page .al-text { display: flex; flex-direction: column; gap: 2px;
+}
+.cro12173-page .al-text strong { font-weight: 600; font-size: 16px; line-height: 24px; color: var(--navy);
+}
+.cro12173-page .al-text small { font-weight: 400; font-size: 14px; line-height: 21px; color: #666666;
+}
+.cro12173-page .arrow-sm { color: var(--navy);
+}
+/* ============================================================
+   App — pattern bg, phone right
+   ============================================================ */
+.cro12173-page .app {
+  position: relative;
+  overflow: hidden;
+  min-height: 570px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+.cro12173-page .app::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: ;
+  background-size: 420px auto;
+  opacity: 0.10;
+  filter: grayscale(1) brightness(0.4);
+}
+.cro12173-page .app-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin-left: max(116px, calc((100% - 1280px) / 2));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 60px 20px;
+}
+.cro12173-page .app h2 { font-size: 40px; line-height: 40px; color: var(--navy);
+}
+.cro12173-page .badges { display: flex; gap: 12px;
+}
+.cro12173-page .badges img { height: 44px; width: auto;
+}
+.cro12173-page .app-phone {
+  position: absolute;
+  z-index: 2;
+  width: 424px;
+  right: 208px;
+  bottom: 0;
+}
+/* ============================================================
+   Footer — bg #09075C, pad 60/0
+   ============================================================ */
+.cro12173-page .site-footer {
+  background: var(--navy);
+  padding: 60px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.cro12173-page .foot-logos { display: flex; align-items: center; gap: 20px;
+}
+.cro12173-page .foot-logos img { height: 24px; width: auto;
+}
+.cro12173-page .site-footer p {
+  max-width: 920px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--footer-text);
+}
+/* ============================================================
+   MOBILE — spec-mobile.md (390 frame)
+   ============================================================ */
+@media (max-width: 900px) {
+  /* header 64, pad 12/20 */
+  /* hero: bg #001065, pad 52 0 80, H1 36/36, sub 16/24 */
+  .cro12173-page .hero {
+    background: var(--hero-blue-m);
+    background-image: none;
+    padding: 52px 20px 80px;
+  }
+  .cro12173-page .hero-content { gap: 24px;
+  }
+  .cro12173-page .hero h1 { font-size: 36px; line-height: 36px;
+  }
+  .cro12173-page .hero h1 .hl { padding: 0 12px 3px; border-radius: 30px;
+  }
+  .cro12173-page .hero-sub { font-size: 16px; line-height: 24px;
+  }
+  .cro12173-page .quote-card { width: 100%; padding: 20px; background: rgba(255, 255, 255, 0.15);
+  }
+  .cro12173-page .product-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .cro12173-page .radio-tile {
+    width: auto;
+    min-height: 49px;
+    flex-direction: row;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 12px;
+  }
+  .cro12173-page .radio-tile .check { top: 50%; transform: translateY(-50%); box-shadow: 0 2px 6px rgba(6, 16, 60, 0.30);
+  }
+  .cro12173-page .tile-icon { height: 23px;
+  }
+  .cro12173-page .tile-text { gap: 0;
+  }
+  .cro12173-page .tile-text strong { font-size: 14px; line-height: 1.2;
+  }
+  .cro12173-page .quote-cta-row { flex-direction: column; align-items: center; gap: 12px; width: 100%;
+  }
+  .cro12173-page .btn-hero { width: 100%;
+  }
+  .cro12173-page .hero-photo { display: none;
+  }
+  /* people photo below card */
+  .cro12173-page .hero-photo-mobile {
+    display: block;
+    height: 258px;
+    margin-top: 24px;
+    background: no-repeat -69px bottom;
+    background-size: auto 145%;
+    border-radius: 8px;
+  }
+  .cro12173-page .hp-bar { display: none;
+  }
+  .cro12173-page .hp-card-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 52px auto 0;
+    max-width: 350px;
+    padding: 20px 24px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 14px 34px rgba(10, 30, 90, 0.16), 0 -6px 18px rgba(10, 30, 90, 0.06);
+  }
+  .cro12173-page .hp-m-top { display: flex; align-items: center; justify-content: space-between;
+  }
+  .cro12173-page .hp-badge {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--sky);
+    background: rgba(64, 174, 225, 0.08);
+    border-radius: 100px;
+    padding: 6px 10px 4px;
+  }
+  .cro12173-page .hp-m-rating { display: flex; align-items: center; gap: 16px;
+  }
+  .cro12173-page .hp-m-score { font-weight: 700; font-size: 30px; line-height: 30px; color: var(--navy);
+  }
+  .cro12173-page .hp-m-stars { display: flex; flex-direction: column; gap: 4px;
+  }
+  .cro12173-page .hp-m-stars img { width: 116px; height: 20px;
+  }
+  .cro12173-page .hp-m-stars small { font-size: 12px; line-height: 18px; color: var(--sub);
+  }
+  .cro12173-page .hp-m-stars b { color: var(--navy);
+  }
+  /* plans: stacked, pad 52/20, H2 30/30, sub 16/24 */
+  .cro12173-page .plans { padding: 52px 20px;
+  }
+  .cro12173-page .section-head h2 { font-size: 30px; line-height: 30px;
+  }
+  .cro12173-page .section-sub { font-size: 16px; line-height: 24px; margin-top: 20px;
+  }
+  .cro12173-page .plan-grid { flex-direction: column; align-items: stretch; gap: 20px;
+  }
+  .cro12173-page .plan-card { max-width: none; align-items: flex-start; text-align: left;
+  }
+  .cro12173-page .plan-title-block { align-items: flex-start;
+  }
+  .cro12173-page .price-pill { padding: 4px 16px 4px 0;
+  }
+  .cro12173-page .plan-actions { align-items: flex-start; width: 100%;
+  }
+  .cro12173-page .pill-chosen { left: auto; right: 16px; transform: none; top: 16px;
+  }
+  /* reviews: flat #1F2261, H2 30/30, swipe cards 350 */
+  .cro12173-page .reviews { background: #1F2261; padding: 52px 20px; gap: 24px;
+  }
+  .cro12173-page .reviews-head h2 { font-size: 30px; line-height: 30px;
+  }
+  .cro12173-page .carousel-row { padding-left: 0;
+  }
+  .cro12173-page .car-btn { display: none;
+  }
+  .cro12173-page .review-track { gap: 8px;
+  }
+  .cro12173-page .review-card { flex: 0 0 350px;
+  }
+  .cro12173-page .rev-name, .cro12173-page .rev-title, .cro12173-page .rev-quote { color: #282B6E;
+  }
+  /* claim: H2 30/30, panels stacked (blue on top) */
+  .cro12173-page .claim { padding: 52px 20px; gap: 24px;
+  }
+  .cro12173-page .claim h2 { font-size: 30px; line-height: 30px;
+  }
+  .cro12173-page .claim-card-img { width: 100%;
+  }
+  .cro12173-page .compare { flex-direction: column; width: 100%;
+  }
+  .cro12173-page .panel { width: 100%;
+  }
+  .cro12173-page .panel.oneplan-way {
+    order: 1;
+    border-radius: 16px 16px 0 0;
+    padding: 24px 26px 36px;
+  }
+  .cro12173-page .panel.usual {
+    order: 2;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-top: none;
+    padding: 36px 26px 24px;
+  }
+  .cro12173-page .panel-title { font-family: var(--font); font-size: 16px; letter-spacing: 0; text-transform: none; font-weight: 700;
+  }
+  .cro12173-page .usual .num { background: #ECEEF4; color: var(--sub);
+  }
+  .cro12173-page .vs { top: 50%;
+  }
+  /* FAQ: pad 52/28, card titles 18/18 */
+  .cro12173-page .faq { padding: 52px 28px;
+  }
+  .cro12173-page .faq-grid { flex-direction: column; gap: 16px; margin-top: 32px;
+  }
+  .cro12173-page .faq-card { max-width: none; gap: 12px; padding: 20px 24px;
+  }
+  .cro12173-page .faq-card h4 { font-size: 18px; line-height: 18px;
+  }
+  .cro12173-page .dot { background: var(--navy);
+  }
+  .cro12173-page .faq h2 br, .cro12173-page .claim h2 br { display: none;
+  }
+  .cro12173-page .review-track { margin-right: -20px;
+  }
+  /* ready: pad 52 20 120 — hand bottom-left (mirrored), cards bottom-right */
+  .cro12173-page .ready { padding: 52px 20px 190px; min-height: 0; gap: 24px;
+  }
+  .cro12173-page .ready h2 { font-size: 30px; line-height: 30px;
+  }
+  .cro12173-page .ready-sub { font-size: 16px; line-height: 24px;
+  }
+  .cro12173-page .ready-cards { left: auto; right: 16px; top: auto; bottom: 40px; transform: none; width: 133px; height: 95px;
+  }
+  .cro12173-page .rc { width: 104px; border-radius: 6px;
+  }
+  .cro12173-page .rc1 { top: 0; left: 0; transform: rotate(-10deg);
+  }
+  .cro12173-page .rc2 { top: 14px; left: 24px; transform: rotate(-4deg);
+  }
+  .cro12173-page .ready-hand {
+    content: ;
+    width: 157px; bottom: -8px; right: auto; left: 0;
+  }
+  /* already: bg #E9EAEF, cards stacked */
+  .cro12173-page .already { background: #E9EAEF; padding: 52px 20px; align-items: flex-start;
+  }
+  .cro12173-page .already-title { font-size: 14px; line-height: 21px;
+  }
+  .cro12173-page .already-row { flex-direction: column; gap: 12px; width: 100%; max-width: 280px;
+  }
+  .cro12173-page .already-card { padding: 16px; gap: 12px;
+  }
+  .cro12173-page .al-text strong { font-size: 14px; line-height: 21px;
+  }
+  .cro12173-page .al-text small { font-size: 12px; line-height: 18px;
+  }
+  /* app: stacked, pad 80 0 0 */
+  .cro12173-page .app { flex-direction: column; padding: 80px 0 0; min-height: 0; gap: 32px;
+  }
+  .cro12173-page .app-content { margin: 0; padding: 0 16px; gap: 24px;
+  }
+  .cro12173-page .app h2 { font-size: 30px; line-height: 30px;
+  }
+  .cro12173-page .badges { gap: 8px; flex-wrap: wrap;
+  }
+  .cro12173-page .badges img { height: 32px;
+  }
+  .cro12173-page .app-phone { position: static; width: 350px; margin: 0 auto; align-self: center;
+  }
+  /* footer */
+  .cro12173-page .site-footer { padding: 60px 28px;
+  }
+}
+
+/* ============================================================
+   Injection-specific additions
+   ============================================================ */
+
+/* radio tiles are <button> elements in the variation */
+.cro12173-page .radio-tile {
+  font-family: var(--font);
+  text-align: left;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* pattern layers (inline background-image set from JS) */
+.cro12173-page .cro-pattern {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-size: 420px auto;
+  pointer-events: none;
+}
+.cro12173-page .ready .cro-pattern { opacity: 0.4; }
+.cro12173-page .app .cro-pattern { opacity: 0.10; filter: grayscale(1) brightness(0.4); }
+
+/* desktop vs mobile hand photo (different assets per Figma frame) */
+.cro12173-page .ready-hand-m { display: none; }
+@media (max-width: 900px) {
+  .cro12173-page .ready-hand-d { display: none; }
+  .cro12173-page .ready-hand-m {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 157px;
+    right: auto;
+  }
+}
+
+/* native hellopeter stars svg is 145x25; mobile card shows it at 116x20 */
+@media (max-width: 900px) {
+  .cro12173-page .hp-m-stars img { width: 116px; height: 20px; }
+}
+
+/* ============================================================
+   Hardening vs site CSS (Divi/site.css leaks into injected DOM)
+   ============================================================ */
+.cro12173-page h1, .cro12173-page h2, .cro12173-page h4 {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+.cro12173-page h3 { letter-spacing: normal !important; }
+.cro12173-page .plan-card h3 { text-transform: uppercase !important; }
+.cro12173-page h1, .cro12173-page h2, .cro12173-page h3,
+.cro12173-page h4, .cro12173-page p, .cro12173-page ol, .cro12173-page ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* picker check only on the selected tile */
+.cro12173-page .radio-tile .check { display: none; }
+.cro12173-page .radio-tile.selected .check { display: flex; }
+
+/* app pattern: fainter (Figma shows it barely-there grey) */
+.cro12173-page .app .cro-pattern { opacity: 0.06; filter: grayscale(1); }
+
+/* ============================================================
+   Post-comparison fixes (vs Figma ground truth)
+   ============================================================ */
+/* 1. hellopeter bar clusters never wrap ("Trust Index" stays one line) */
+.cro12173-page .hp-bar { white-space: nowrap; }
+.cro12173-page .hp-cluster, .cro12173-page .hp-muted { white-space: nowrap; }
+
+/* 2. exact Figma arrow icon inside cyan CTAs */
+.cro12173-page .arrow-ic { width: 16px; height: 16px; display: inline-block; }
+
+/* 3. mobile "Most chosen" pill: top-centre overlapping card edge (Figma 56:101) */
+@media (max-width: 900px) {
+  .cro12173-page .pill-chosen {
+    left: 50%;
+    right: auto;
+    top: -12px;
+    transform: translateX(-50%);
+  }
+}

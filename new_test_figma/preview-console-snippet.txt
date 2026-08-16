@@ -1,0 +1,4 @@
+Paste this in DevTools console on https://www.oneplan.co.za/ to see the test in your own browser
+(local server must be running: python3 -m http.server 8763 --directory new_test_figma):
+
+(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='http://localhost:8763/variation.css';document.head.appendChild(l);var s=document.createElement('script');s.src='http://localhost:8763/variation.preview.js';document.head.appendChild(s);})();

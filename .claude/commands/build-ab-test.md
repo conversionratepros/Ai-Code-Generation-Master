@@ -37,12 +37,35 @@ Also read the global JS file in `AB test code examples` — this contains shared
 
 ---
 
-## Step 4 — Get Figma designs
+## Step 4 — Get Figma designs (REST API pipeline — NOT get_design_context)
 
 Ask the user:
-> "Please supply the Figma Frame link(s) for this test."
+> "Please supply the Figma Frame link(s) for this test — desktop AND mobile frames, each with the `node-id` in the URL."
 
-For each link provided, call `get_design_context` using the Figma MCP server to extract the design details, layout, and any annotations.
+**Do NOT use the Figma MCP `get_design_context` for design values.** It generates code with a model, and font sizes/weights/spacing drift — this caused months of QA UI bugs. Pull ground truth from the Figma REST API instead, using the scripts in `tools/` at the repo root (token auto-read from `~/.figma_token`):
+
+For **each** frame link provided:
+
+1. **Spec sheet (all numeric values):**
+   ```
+   python3 tools/figma-spec.py "<figma url with node-id>" --out {test-folder}/spec-<desktop|mobile>.md
+   ```
+   Outputs a deduped type ramp (family/weight/size/line-height incl. PostScript names), colour palette, and the full node tree with per-text-node type + colour (including inline overrides) and per-container padding/gap/radius/bg/border/shadow. **Every numeric value in the build CSS comes from this sheet.**
+
+2. **Assets (images + icon SVGs, uncapped, named by layer):**
+   ```
+   python3 tools/figma-assets.py "<figma url with node-id>" --out {test-folder}/assets/
+   ```
+   Run it for BOTH desktop and mobile frames — breakpoints can use *different* photos of the same subject (never mirror a photo with `scaleX(-1)`; any text in it flips). `manifest.json` maps files to layers.
+
+3. **Visual reference:** MCP `get_screenshot` per frame (crop tall frames into strips for inspection).
+
+4. **Full copy text:** the spec sheet truncates long strings at 60 chars — pull complete copy from the raw nodes JSON (`GET /v1/files/{key}/nodes?ids={nodeId}`, `characters` of TEXT nodes) rather than retyping.
+
+Notes:
+- If the API returns `{"status":403,"err":"Token expired"}`, ask the user for a fresh personal access token (figma.com → Settings → Security → Personal access tokens, File content read-only scope) and save it to `~/.figma_token` (chmod 600).
+- Fonts named in the spec may not be loaded by the client site — check, and inject the webfont in the variation if missing.
+- MCP `get_design_context` may still be used for layout *hints* only — never for numbers.
 
 ---
 
@@ -123,7 +146,7 @@ Now build the test using everything gathered:
 
 - **Reference**: code examples from `AB test code examples` for structure and patterns
 - **Reference**: `Control.html` for the live DOM structure and selectors
-- **Reference**: Figma design context for visual requirements
+- **Reference**: the Figma spec sheets (`spec-*.md`) for ALL numeric values (type, spacing, colours) + `assets/` for images/icons + screenshots for composition
 - **Reference**: ClickUp spec for functional requirements and acceptance criteria
 - **Reference**: user's answers on injection approach, waitForElement, and technical notes
 
@@ -226,13 +249,9 @@ Always take `Math.max` / `Math.min` of the two captured values so the larger is 
 
 ---
 
-### Using Figma MCP / API for icon accuracy
+### Using the Figma REST API for icon accuracy
 
-Never hand-craft icon SVGs from memory. Always fetch the actual Figma SVG export:
-
-1. Get node IDs from Figma file data: `GET /v1/files/{key}/nodes?ids={nodeId}`
-2. Export as SVG: `GET /v1/images/{key}?ids={nodeId}&format=svg`
-3. Copy the paths/structure exactly — especially mask types, stroke colors, spacing
+Never hand-craft icon SVGs (or arrows/checks as text glyphs like `→` / `✓`) from memory. `tools/figma-assets.py` already exports every icon in the frame as the exact Figma SVG (`GET /v1/images/{key}?ids={nodeId}&format=svg` under the hood) — use those files. Even a "simple" arrow differs from the glyph version (stroke weight, rounded caps, exact colour).
 
 This avoids subtle visual differences (e.g. diagonal hatching vs grid lines, mask vs clipPath, exact stroke colors).
 
