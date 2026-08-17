@@ -14,6 +14,7 @@
   --cro12526v2-lime: #c6d644;
   --cro12526v2-orange: #ff9f17;
   --cro12526v2-divider: #e9e9e9;
+  --cro12526v2-price-font: 'Hanken Grotesk', 'Poppins', sans-serif;
 }
 
 /* ---------- Top bar: breadcrumb + range/SKU ---------- */
@@ -27,8 +28,8 @@
 }
 
 .cro12526v2-breadcrumb {
-  font-size: 1.5rem;
-  line-height: 1.4;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
   display: flex;
   flex-wrap: wrap;
@@ -53,7 +54,7 @@
 
 .cro12526v2-breadcrumb__current {
   color: var(--cro12526v2-ink);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .cro12526v2-meta {
@@ -65,7 +66,8 @@
 
 .cro12526v2-meta__range {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -214,15 +216,18 @@
 
 .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide {
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: 18px;
   overflow: hidden;
   opacity: 1;
   cursor: pointer;
 }
 
 .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide img {
-  border-radius: 11px;
+  border-radius: 17px;
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide.swiper-slide-thumb-active {
@@ -262,8 +267,8 @@
   margin: 0;
   color: var(--cro12526v2-ink);
   font-weight: 500;
-  font-size: 5rem;
-  line-height: 5.8rem;
+  font-size: 4rem;
+  line-height: 4.8rem;
   letter-spacing: 0;
 }
 
@@ -300,6 +305,7 @@
 
 .cro12526v2-rating__text {
   font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -316,7 +322,8 @@
 .cro12526v2-price__amount .price-item--sale {
   margin: 0;
   color: var(--cro12526v2-ink);
-  font-size: 4.8rem;
+  font-family: var(--cro12526v2-price-font);
+  font-size: 4rem;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0;
@@ -329,13 +336,14 @@
 
 .cro12526v2-price__gst {
   font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
 }
 
 .cro12526v2-price__note {
   margin: 0.8rem 0 0;
   font-size: 1.4rem;
-  line-height: 1.4;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -413,9 +421,9 @@ legend.cro12526v2-field__head+* {
 
 .cro12526v2-field__label {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.5;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 2.4rem;
   color: var(--cro12526v2-ink);
 }
 
@@ -425,9 +433,9 @@ legend.cro12526v2-field__head+* {
 
 .cro12526v2-field__value {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 2.4rem;
   color: var(--cro12526v2-ink);
   text-align: right;
   white-space: nowrap;
@@ -445,14 +453,15 @@ legend.cro12526v2-field__head+* {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 5.9rem;
-  padding: 0 4rem 0 1.2rem;
+  height: 5.4rem;
+  padding: 0 4rem 0 2rem;
   border: 1px solid var(--cro12526v2-divider);
   border-radius: 8px;
   background: #fff;
   color: var(--cro12526v2-gray);
-  font-size: 1.5rem;
-  line-height: 1.4;
+  font-family: inherit;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   cursor: pointer;
 }
 
@@ -501,10 +510,10 @@ legend.cro12526v2-field__head+* {
   height: 6rem !important;
   min-width: 6rem !important;
   min-height: 6rem !important;
-  padding: 0.4rem !important;
+  padding: 0 !important;
   margin: 0 !important;
   border: 1px solid transparent !important;
-  border-radius: 15px !important;
+  border-radius: 18px !important;
   overflow: hidden;
   cursor: pointer;
   background: #fff;
@@ -517,12 +526,12 @@ legend.cro12526v2-field__head+* {
 }
 
 .cro12526v2-options .cro12526v2-swatches label img {
-  width: 5rem;
-  height: 5rem;
+  width: 100%;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   display: block;
-  border-radius: 10px;
+  border-radius: 17px;
 }
 
 /* Active swatch: black border ring with 4px gap, per design.
@@ -530,6 +539,12 @@ legend.cro12526v2-field__head+* {
    "rgb(22,22,22) 0px" — verified live, QA round 4). */
 .cro12526v2-options .cro12526v2-swatches input[type='radio']:checked+label {
   border: 1px solid var(--cro12526v2-ink) !important;
+  padding: 0.4rem !important;
+  border-radius: 15px !important;
+}
+
+.cro12526v2-options .cro12526v2-swatches input[type='radio']:checked+label img {
+  border-radius: 10px;
 }
 
 .cro12526v2-swatches input[type='radio']:focus-visible+label {
@@ -590,7 +605,7 @@ legend.cro12526v2-field__head+* {
 .cro12526v2-details__line {
   margin: 0;
   font-size: 1.4rem;
-  line-height: 1.4;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -702,8 +717,9 @@ legend.cro12526v2-field__head+* {
   padding: 0 !important;
   margin: 0 !important;
   text-align: center !important;
-  font-size: 2rem !important;
-  font-weight: 600 !important;
+  font-family: inherit !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
   color: var(--cro12526v2-ink) !important;
   background: transparent !important;
   border: 0 !important;
@@ -763,7 +779,8 @@ legend.cro12526v2-field__head+* {
   background: var(--cro12526v2-lime);
   color: var(--cro12526v2-ink);
   border-radius: 5px;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
 .cro12526v2-btn--cart[disabled] {
@@ -781,7 +798,8 @@ legend.cro12526v2-field__head+* {
   background: #fff;
   border: 1.5px solid var(--cro12526v2-ink);
   color: var(--cro12526v2-ink);
-  font-size: 1.7rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
 /* Back-order state — parity verified live on the control's
@@ -826,7 +844,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   margin: 0;
   text-align: center;
   font-size: 1.4rem;
-  line-height: 1.4;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -852,7 +870,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 .cro12526v2-legals__line {
   margin: 0;
   font-size: 1.4rem;
-  line-height: 1.4;
+  line-height: 2.4rem;
   color: var(--cro12526v2-ink);
 }
 
@@ -889,8 +907,8 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-callout__text {
   margin: 0;
-  font-size: 1.3rem;
-  line-height: 1.4;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--cro12526v2-ink);
 }
 
@@ -918,19 +936,23 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 .cro12526v2-fitout__eyebrow {
   margin: 0;
   color: var(--cro12526v2-lime);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 2.8rem;
 }
 
 .cro12526v2-fitout__copy {
   margin: 0;
   color: #fff;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.8rem;
+}
+
+.cro12526v2-fitout__copy strong {
   font-weight: 600;
-  line-height: 1.53;
 }
 
 .cro12526v2-fitout__btn {
@@ -941,9 +963,9 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   color: var(--cro12526v2-ink);
   border-radius: 5px;
   padding: 1.5rem 3rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 2.4rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -998,7 +1020,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   }
 
   .cro12526v2-gallery .product-slider-holder:not(.zoomin) .main-slider .swiper-slide img {
-    border-radius: 8px;
+    border-radius: 8px !important;
   }
 
   .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container {
@@ -1096,8 +1118,8 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   }
 
   .cro12526v2-buybox .cro12526v2-qty .quantity {
-    height: 6rem !important;
-    min-height: 6rem !important;
+    height: 5.6rem !important;
+    min-height: 5.6rem !important;
     width: 100% !important;
     min-width: 0 !important;
     justify-content: space-between !important;
@@ -1105,7 +1127,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   }
 
   .cro12526v2-btn {
-    min-height: 6rem;
+    min-height: 5.6rem;
     padding: 1rem 1.6rem;
   }
 
@@ -1182,9 +1204,9 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 }
 
 .cro12526v2-eyebrow__text {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 3.12px;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
   color: var(--cro12526v2-ink);
   line-height: 1.3;
@@ -1200,7 +1222,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   align-items: center;
   gap: 1rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--cro12526v2-lime);
+  border-bottom: 2px solid var(--cro12526v2-lime);
   color: var(--cro12526v2-ink);
   font-size: 1.3rem;
   font-weight: 600;
@@ -1218,21 +1240,21 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-setup {
   background: #f6fafb;
-  padding: 10.5rem 0;
+  padding: 8rem 0;
 }
 
 .cro12526v2-setup__heading {
   margin: 0 0 1.5rem;
-  font-size: 5rem;
+  font-size: 4.2rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 5rem;
   color: var(--cro12526v2-ink);
 }
 
 .cro12526v2-setup__subline {
   margin: 0 0 4rem;
-  font-size: 2.2rem;
-  line-height: 1.5;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -1283,16 +1305,17 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-setup-card__category {
   margin: 0;
-  font-size: 1.4rem;
-  letter-spacing: 2px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
   color: var(--cro12526v2-gray);
   line-height: 1.4;
 }
 
 .cro12526v2-setup-card__title {
-  font-size: 1.8rem;
-  line-height: 1.5;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   color: var(--cro12526v2-ink);
   text-decoration: none;
 }
@@ -1303,6 +1326,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-setup-card__price {
   margin: 0.7rem 0 0;
+  font-family: var(--cro12526v2-price-font);
   font-size: 3.2rem;
   font-weight: 600;
   line-height: 1.2;
@@ -1320,14 +1344,15 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 5.6rem;
+  min-height: 4.8rem;
   background: var(--cro12526v2-lime);
   color: var(--cro12526v2-ink);
   border: 0;
   border-radius: 5px;
-  font-size: 1.8rem;
+  font-family: inherit;
+  font-size: 1.6rem;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 2.4rem;
   cursor: pointer;
   position: relative;
 }
@@ -1364,7 +1389,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-about {
   background: #f6fafb;
-  padding: 10rem 0 5rem;
+  padding: 8rem 0;
 }
 
 .cro12526v2-about__top {
@@ -1381,16 +1406,16 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-about__heading {
   margin: 0 0 2rem;
-  font-size: 5.8rem;
+  font-size: 4.2rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 5rem;
   color: var(--cro12526v2-ink);
 }
 
 .cro12526v2-about__copy {
   margin: 0;
-  font-size: 2.2rem;
-  line-height: 1.68;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -1410,15 +1435,16 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-about__stat-figure {
   margin: 0;
-  font-size: 4.4rem;
+  font-size: 3.6rem;
   font-weight: 500;
-  line-height: 1;
+  line-height: 3.8rem;
   color: var(--cro12526v2-ink);
 }
 
 .cro12526v2-about__stat-label {
   margin: 0.8rem 0 0;
   font-size: 1.6rem;
+  line-height: 2.8rem;
   color: var(--cro12526v2-ink);
 }
 
@@ -1443,8 +1469,8 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-about__panel-heading {
   margin: 0 0 0.5rem;
-  font-size: 2.4rem;
-  font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: 500;
   color: var(--cro12526v2-ink);
 }
 
@@ -1479,7 +1505,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 /* ---------- Planning ---------- */
 
 .cro12526v2-planning {
-  padding: 10rem 0 3rem;
+  padding: 8rem 0;
 }
 
 .cro12526v2-planning__title {
@@ -1488,16 +1514,16 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-planning__heading {
   margin: 0 0 2.4rem;
-  font-size: 5rem;
+  font-size: 4.2rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 5rem;
   color: var(--cro12526v2-ink);
 }
 
 .cro12526v2-planning__copy {
   margin: 0;
-  font-size: 2.2rem;
-  line-height: 1.5;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   color: var(--cro12526v2-gray);
   max-width: 93rem;
 }
@@ -1512,9 +1538,9 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-planning__step-day {
   margin: 0 0 2.4rem;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 5.6px;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
   color: var(--cro12526v2-lime);
 }
@@ -1522,14 +1548,14 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 .cro12526v2-planning__step-heading {
   margin: 0 0 1.5rem;
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--cro12526v2-ink);
 }
 
 .cro12526v2-planning__step-copy {
   margin: 0;
-  font-size: 1.8rem;
-  line-height: 1.5;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -1537,7 +1563,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   display: flex;
   align-items: center;
   gap: 3rem;
-  background: #e5ecf0;
+  background: #f6fafb;
   border-radius: 8px;
   padding: 4rem;
 }
@@ -1545,8 +1571,8 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 .cro12526v2-planning__bar-copy {
   margin: 0;
   flex: 1 1 auto;
-  font-size: 1.8rem;
-  line-height: 1.56;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   color: var(--cro12526v2-ink);
 }
 
@@ -1558,10 +1584,11 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   background: var(--cro12526v2-lime);
   color: var(--cro12526v2-ink);
   border-radius: 42px;
-  padding: 2rem 3rem;
-  font-size: 2rem;
+  padding: 2rem 4rem;
+  font-family: inherit;
+  font-size: 1.6rem;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 2.4rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -1573,7 +1600,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 /* ---------- Showrooms ---------- */
 
 .cro12526v2-showrooms {
-  padding: 10rem 0 5rem;
+  padding: 8rem 0;
 }
 
 .cro12526v2-showrooms__title {
@@ -1582,9 +1609,9 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-showrooms__heading {
   margin: 0;
-  font-size: 5rem;
+  font-size: 4.2rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 5rem;
   color: var(--cro12526v2-ink);
 }
 
@@ -1622,7 +1649,8 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 .cro12526v2-showrooms__name {
   margin: 0;
   flex: 0 0 16rem;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   font-weight: 600;
   color: var(--cro12526v2-ink);
 }
@@ -1631,7 +1659,8 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   margin: 0;
   flex: 1 1 26rem;
   min-width: 0;
-  font-size: 1.7rem;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
 }
 
@@ -1641,9 +1670,10 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   background: #fff;
   border: 1px solid var(--cro12526v2-ink);
   border-radius: 42px;
-  padding: 1.4rem 2.8rem;
-  font-size: 1.7rem;
-  line-height: 1.3;
+  padding: 1.6rem 2.8rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   color: var(--cro12526v2-gray);
   cursor: pointer;
 }
@@ -1708,9 +1738,9 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 
 .cro12526v2-finalcta__heading {
   margin: 0 0 3rem;
-  font-size: 50px;
+  font-size: 4.2rem;
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 5rem;
   color: #fff;
   max-width: 44rem;
 }
@@ -1722,10 +1752,11 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
   background: var(--cro12526v2-lime);
   color: var(--cro12526v2-ink);
   border-radius: 42px;
-  padding: 1.6rem 3rem;
-  font-size: 17px;
+  padding: 2rem 6rem;
+  font-family: inherit;
+  font-size: 1.6rem;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 2.8rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -1761,7 +1792,7 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
 .cro12526v2-finalcta__call {
   margin: 0 0 2rem;
   font-size: 2.8rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #fff;
 }
 
@@ -2084,14 +2115,12 @@ modal-dialog[id^="PopupModal3d-var-"] {
 }
 
 body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
-  font-size: 50px;
-  /* color: var(--Black, var(--color-surface-dark)); */
   color: rgba(22, 22, 22, 1);
   font-family: Poppins;
-  font-size: 50px;
+  font-size: 42px;
   font-style: normal;
   font-weight: 500;
-  line-height: 120%;
+  line-height: 50px;
   max-width: none;
   margin-bottom: 30px;
   margin-top: 30px;
@@ -2107,6 +2136,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
     font-size: 28px;
+    line-height: 35px;
   }
 
   .product-slider-holder .swiper-container.main-slider {
@@ -2151,23 +2181,27 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
    QA round 8 (2026-07-27) — bugs 28–32, 34
    ============================================================ */
 
-/* Bug 28 — Final CTA right paragraph: 22px, pure white */
+/* Figma sync 2026-08-17 (Website 2026 Copy): right paragraph 16/28, pure white */
 .cro12526v2-finalcta__copy {
-  font-size: 2.2rem;
+  font-size: 1.6rem;
+  line-height: 2.8rem;
   color: #ffffff;
 }
 
-/* Bug 29 — "Call 1300 864 264": 40px */
+/* Figma sync 2026-08-17: "Call 1300 864 264" 42/50, weight 500 */
 .cro12526v2-finalcta__call {
-  font-size: 4rem;
+  font-size: 4.2rem;
+  font-weight: 500;
+  line-height: 5rem;
 }
 
-/* Bugs 30 + 31 — email/meta line: 17px, #E5ECF0 (links included) */
+/* Figma sync 2026-08-17: email/meta line 14/24, #E5ECF0 (links included) */
 .cro12526v2-finalcta__meta,
 .cro12526v2-finalcta__meta a,
 .cro12526v2-finalcta__note strong,
 .cro12526v2-finalcta__right .cro12526v2-finalcta__meta a {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
   color: #e5ecf0;
 }
 
@@ -2222,8 +2256,8 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 }
 
 .section-cro12526v2-compare .compare-table-title-col .cro12526v2-eyebrow .cro12526v2-eyebrow__text {
-  font-size: 1.1rem;
-  letter-spacing: 2px;
+  font-size: 1rem;
+  letter-spacing: 2.4px;
   white-space: nowrap;
 }
 
@@ -2234,13 +2268,12 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 .cro12526v2-compare__copy {
   color: var(--Gray, #777);
   font-family: Poppins;
-  font-size: 22px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 36px;
+  line-height: 28px;
   margin-right: 20px;
   margin-top: 0;
-  /* 163.636% */
 }
 
 /* "This product" badge — additive, floats over the active column's
@@ -2258,10 +2291,11 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
   background: var(--cro12526v2-orange);
   color: #fff;
   border-radius: 24px;
-  padding: 0.3rem 0.9rem;
-  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  line-height: 1.3;
+  letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -2289,12 +2323,14 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
   right: 2rem;
   z-index: 3;
   background: #fff;
-  padding: 1.2rem 2.8rem;
+  padding: 1.5rem 4rem;
   border: 1px solid rgba(119, 119, 119, 0.4);
   border-radius: 50px;
   color: var(--cro12526v2-ink);
-  font-size: 1.5rem;
+  font-family: inherit;
+  font-size: 1.4rem;
   font-weight: 600;
+  line-height: 2.4rem;
   text-decoration: none;
   cursor: pointer;
 }
@@ -2420,6 +2456,9 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   .cro12526v2-setup-card__category {
     font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    line-height: 1.82rem;
   }
 
   .cro12526v2-setup-card__title {
@@ -2433,7 +2472,8 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   .cro12526v2-setup-card__atc {
     font-size: 1.5rem;
-    min-height: 6rem;
+    line-height: 1.95rem;
+    min-height: 5.6rem;
   }
 
   /* Bugs 41–44 — compare, mobile */
@@ -2482,8 +2522,9 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
     position: static;
     width: calc(100% - 3.2rem);
     margin: 1.5rem 1.6rem 0;
-    /* Bug 44 */
-    font-size: 1.8rem;
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+    line-height: 1.95rem;
   }
 
   /* Bugs 45–47 — About us, mobile Figma 276:1036 */
@@ -2542,10 +2583,12 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   .cro12526v2-about__panel-heading {
     font-size: 2rem;
+    font-weight: 600;
   }
 
   .cro12526v2-about__panel-copy {
     font-size: 1.3rem;
+    color: var(--cro12526v2-gray);
     margin-bottom: 3rem;
   }
 
@@ -2602,6 +2645,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   .cro12526v2-planning__step-heading {
     font-size: 1.6rem;
+    font-weight: 600;
     margin-bottom: 0.8rem;
   }
 
@@ -2614,6 +2658,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
     padding: 2rem;
     gap: 1.5rem;
     align-items: center;
+    background: #e5ecf0;
   }
 
   .cro12526v2-planning__bar-copy {
@@ -2629,7 +2674,8 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   .cro12526v2-planning__cta {
     font-size: 1.5rem;
-    min-height: 6rem;
+    line-height: 1.95rem;
+    min-height: 5.6rem;
     padding: 1rem 2rem;
   }
 
@@ -2734,7 +2780,7 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
     align-items: center;
     gap: 1rem;
     padding: 1rem 0;
-    border-bottom: 1px solid var(--cro12526v2-lime);
+    border-bottom: 2px solid var(--cro12526v2-lime);
     color: var(--cro12526v2-ink);
     font-size: 1.2rem;
     font-weight: 600;
@@ -2794,6 +2840,8 @@ body.product .div-table-wrapper .compare-table-title-col .compare-table-title {
 
   .cro12526v2-finalcta__call {
     font-size: 2rem;
+    font-weight: 600;
+    line-height: 3.6rem;
     margin-bottom: 1.6rem;
   }
 
@@ -2901,12 +2949,13 @@ modal-dialog[id^=PopupModal3d-var-],
 }
 
 .cro12526v2-finalcta__note {
-  font-size: 17px;
+  font-size: 14px;
+  line-height: 24px;
   color: #F6FAFB;
 }
 
 .cro12526v2-finalcta__note strong {
-  font-size: 17px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 1);
 }
 
@@ -3019,7 +3068,10 @@ button.cro12526v2-select.cro12526v2-dropdown__toggle {
   background: var(--cro12526v2-lime);
   color: var(--cro12526v2-ink);
   border-radius: 5px;
-  font-size: 1.5rem;
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.08rem;
   min-height: 5.2rem;
   width: 100%;
 }
@@ -3090,7 +3142,8 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
     min-width: 0;
     margin: 0;
     min-height: 5.2rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    line-height: 1.95rem;
   }
 
   /* Only the CURRENT product's column is highlighted — the control tints
@@ -3132,7 +3185,7 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
     margin-top: 0.5rem;
     display: block;
     font-size: 2rem;
-    line-height: 3rem;
+    line-height: 3.2rem;
     margin-bottom: 1.5rem;
   }
 }
@@ -3194,7 +3247,7 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
   display: flex;
   justify-content: space-between;
   gap: 60px;
-  padding: 100px 0 65px;
+  padding: 60px 0;
 }
 
 .cro12526v2-footer__brand {
@@ -3217,7 +3270,7 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
   margin: 0;
   font-family: Poppins;
   font-size: 16px;
-  line-height: 27px;
+  line-height: 28px;
   color: #fff;
 }
 
@@ -3389,4 +3442,228 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
    the exact same content twice in a row — hidden. */
 .cro12526v2-finalcta__brand {
   display: none !important;
+}
+/* ============================================================
+   FIGMA SYNC (2026-08-17) — full pass against the NEW canonical
+   Figma file "JasonL — Website 2026 (Copy)" Of0HOmZCY8do9VPmencu9z
+   (desktop 492-969 / mobile 492-1441), spec pulled via
+   tools/figma-spec.py → QA/figma-spec-{desktop,mobile}-*.md.
+   Supersedes the 7 hotfix rules that were pasted straight into the
+   THEME copy of this file (old-design values: 26px final-CTA button,
+   16px setup category, .52px desktop eyebrow tracking, 18px pill,
+   font-family:Poppins patches) — replacing the theme asset with this
+   file removes them on purpose.
+   ============================================================ */
+
+/* Buttons/inputs don't inherit the body font — every form control in
+   the build falls back to Arial without this (Figma QA 2026-08-09,
+   fail group 1). */
+.cro12526v2-btn,
+.cro12526v2-select,
+.cro12526v2-dropdown__option,
+.cro12526v2-setup-card__atc,
+.cro12526v2-setup-card__atq,
+.cro12526v2-compare__atc,
+.cro12526v2-showrooms__tour-btn,
+.cro12526v2-meta__sku-btn,
+.cro12526v2-meta .showsku .simple-popup-modal__opener button.link,
+.cro12526v2-details__change-btn,
+.cro12526v2-gallery__view-all,
+.cro12526v2-buybox .cro12526v2-qty .quantity__button,
+.cro12526v2-buybox .cro12526v2-qty .quantity__input {
+  font-family: inherit;
+}
+
+/* Product-info tab labels (control markup, template-scoped restyle):
+   Poppins 600 12/21 desktop, 14 mobile (Figma Product Tabs). Four of
+   the seven design tabs are drawn Bold 700 — design noise; 600 is the
+   dominant style and applies to all. */
+.product-detail-tab .tab .tab-link {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 21px;
+}
+
+/* Compare section type (Figma QA 2026-08-09 fail group 4 — post-dates
+   the round-9 "control UI untouched" decision, per Don's Figma QA):
+   table text 13/19.5, product name 14/24 (13 mobile), price = Hanken
+   Grotesk 600 20px like every other price, See-more chip 13/16.9 with
+   the 2px tracking it was missing. */
+.section-cro12526v2-compare .compare-label,
+.section-cro12526v2-compare .compare-active-value,
+.section-cro12526v2-compare .table-desp .table-col {
+  font-size: 13px;
+  line-height: 19.5px;
+}
+
+.section-cro12526v2-compare .compare_prodtitle {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.section-cro12526v2-compare .compare-product-item strong.price,
+.section-cro12526v2-compare .activeproduct strong.price {
+  font-family: var(--cro12526v2-price-font);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.section-cro12526v2-compare .btn-seemore,
+#compareproduct .compare-btn-seemore .btn-seemore {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16.9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 749px) {
+
+  /* Shared eyebrows: 12 / ls 2.88 on mobile (Figma "Upper titles") */
+  .cro12526v2-eyebrow__text {
+    font-size: 1.2rem;
+    letter-spacing: 2.88px;
+  }
+
+  .section-cro12526v2-compare .compare-table-title-col .cro12526v2-eyebrow .cro12526v2-eyebrow__text {
+    font-size: 1.2rem;
+    letter-spacing: 2.88px;
+  }
+
+  /* Final CTA is the mobile design's one exception: 13 / ls 0.52 */
+  .section-cro12526v2-finalcta .cro12526v2-eyebrow__text {
+    font-size: 1.3rem;
+    letter-spacing: 0.52px;
+  }
+
+  /* Buy box line-heights (mobile frame values; the desktop base rules
+     above now carry fixed 24px line-heights that must not leak down) */
+  .cro12526v2-meta__range,
+  .cro12526v2-rating__text,
+  .cro12526v2-price__gst,
+  .cro12526v2-price__note {
+    font-size: 1.3rem;
+    line-height: 1.82rem;
+  }
+
+  .cro12526v2-field__label {
+    font-weight: 500;
+    line-height: 2.1rem;
+  }
+
+  .cro12526v2-field__value {
+    font-weight: 500;
+    line-height: 1.96rem;
+  }
+
+  .cro12526v2-select {
+    font-size: 1.5rem;
+    line-height: 2.1rem;
+    padding-left: 1.2rem;
+  }
+
+  .cro12526v2-details__line,
+  .cro12526v2-details__change-btn {
+    line-height: 1.4rem;
+  }
+
+  .cro12526v2-buybox .cro12526v2-qty .quantity__input {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+  }
+
+  .cro12526v2-btn--cart,
+  .cro12526v2-btn--quote,
+  .cro12526v2-btn--backorder {
+    line-height: 1.95rem;
+  }
+
+  .cro12526v2-actions__note {
+    line-height: 1.96rem;
+  }
+
+  .cro12526v2-legals__line {
+    line-height: 1.68rem;
+  }
+
+  .cro12526v2-callout__text {
+    font-size: 1.3rem;
+    line-height: 1.82rem;
+  }
+
+  /* Fitout: mobile eyebrow goes back to the caps/tracked treatment
+     (desktop runs it as an inline 16/28 lead per the desktop frame) */
+  .cro12526v2-fitout__eyebrow {
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .cro12526v2-fitout__copy {
+    font-weight: 600;
+  }
+
+  /* Gallery tag: 12/15.6 on mobile (13/16.9 desktop) */
+  .cro12526v2-gallery__tag .tag-box span {
+    font-size: 1.2rem;
+  }
+
+  /* Tabs: 14px labels on mobile */
+  .product-detail-tab .tab .tab-link {
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  /* Compare mobile: 13px table + names, Hanken 20px price stays */
+  .section-cro12526v2-compare .compare-label,
+  .section-cro12526v2-compare .compare-active-value,
+  .section-cro12526v2-compare .table-desp .table-col {
+    font-size: 13px;
+    line-height: 19.5px;
+  }
+
+  .section-cro12526v2-compare .compare_prodtitle {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .section-cro12526v2-compare .cro12526v2-compare__badge {
+    font-size: 1.1rem;
+    line-height: 1.43rem;
+  }
+
+  .section-cro12526v2-compare .btn-seemore,
+  #compareproduct .compare-btn-seemore .btn-seemore {
+    font-size: 12px;
+    line-height: 15.6px;
+  }
+}
+
+/* Options container: gap 20 / pad 20 on desktop (Figma "Variables"
+   550x351); the mobile frame uses the 40% grey divider. */
+@media screen and (min-width: 750px) {
+  .cro12526v2-options {
+    padding: 2rem 0;
+    gap: 2rem;
+  }
+
+  .cro12526v2-variants,
+  variant-selects.cro12526v2-variants {
+    gap: 2rem;
+  }
+
+  /* 5-up thumbs hold the design's 3:2 crop whatever the source image */
+  .cro12526v2-gallery .product-slider-holder:not(.zoomin) .thumbs-container .swiper-slide {
+    aspect-ratio: 3 / 2;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .cro12526v2-options {
+    border-top-color: rgba(119, 119, 119, 0.4);
+    border-bottom-color: rgba(119, 119, 119, 0.4);
+  }
 }

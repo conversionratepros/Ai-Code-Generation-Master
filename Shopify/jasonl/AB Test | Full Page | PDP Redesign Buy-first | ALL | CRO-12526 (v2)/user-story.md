@@ -342,3 +342,59 @@ Also: gallery badge text is split "BEST SELLER" via JS (guarded, our tag only).
   mobile-only brand block (QA bug 58, added before a footer existed) sat directly above
   the footer's identical brand block. Hidden via CSS (`.cro12526v2-finalcta__brand`).
 - Mobile footer accordion links reduced 15px → 14px per client.
+
+### Round 16 (2026-08-17) — Figma sync against the NEW canonical file "Website 2026 (Copy)"
+New Figma file from Don: `Of0HOmZCY8do9VPmencu9z` (desktop node 492-969, mobile 492-1441)
+— treated as canonical, superseding both files from the 2026-08-09 QA (dUqAv... "Product
+Page Copy" and P5x4... "Website 2026"). Ground truth pulled with the new REST pipeline
+(`tools/figma-spec.py`) → `QA/figma-spec-desktop-492-969.md` / `QA/figma-spec-mobile-492-1441.md`.
+Live preview measured with Playwright at 1440/390 before editing.
+
+**Key finding — the new file RESCALES desktop type DOWN.** The build matched the old
+file's larger values; the new file wants: h1 40/48 (was 50/58), all section headings
+42/50 (was 50–58/60), section sublines 16/28 (was 22), buy-box price 40/48, Final-CTA
+button 16px (the old design's 26px is GONE), eyebrows 10px/ls2.4 desktop + 12px/ls2.88
+mobile (Final CTA mobile stays 13/ls0.52 — design's own exception). Mobile values mostly
+already matched.
+
+**Theme-asset drift discovered:** the deployed theme copy of cro-12526-v2-pdp.css had 7
+hotfix rules appended (old-design values: 26px final-CTA btn, .52px desktop eyebrow ls,
+16px setup category, 18px pill/ATC, piecemeal font-family:Poppins patches) that were
+never synced to this folder. The updated local file replaces them all — paste the FULL
+local file over the theme asset; nothing from the theme tail must survive.
+
+Fixes in this round (see the artifact table for the full change list):
+1. **Hanken Grotesk finally loaded** (Google Fonts link in main-product liquid) and
+   applied via `--cro12526v2-price-font` to buy-box price, setup card prices, compare
+   prices — QA fail group 2 closed.
+2. **Arial fallbacks killed globally**: `font-family: inherit` on every build button/
+   select/input (QA fail group 1).
+3. **Desktop thumbnails 5-up 3:2 r18** (QA fail group 3): thumbs Swiper params retuned
+   in cro-12526-v2-pdp.js (slidesPerView 5, spaceBetween 12, ≥750px only) + aspect-ratio
+   guard; mobile keeps control sizing. Mobile main image radius now actually 8px (the
+   old rule lost to the base 18px !important).
+4. **Compare type matched to Figma** (fail group 4; post-dates the round-9 "control UI
+   untouched" decision per Don's Figma QA): table text 13/19.5 both viewports (was 11px
+   mobile), names 14/24 desktop / 13 mobile, prices Hanken 600 20px (was 12px mobile),
+   See-more 13/16.9 + the missing 2px tracking (12/15.6 mobile), badge 13/16.9 ls2
+   pad 5/12 (11 mobile), pill 14/24 pad 15/40 (15/19.5 mobile).
+5. **Swatches now match the design's states**: unselected fills the 60px box (r18),
+   selected shrinks to 50px img with 4px gap + ink ring (r15). Was: everything padded.
+6. **Buy box**: title 40/48, price Hanken 40/48, field labels 600 14/24 (500 on mobile
+   per mobile frame), size select Poppins 16/28 h54 (was Arial 15), qty value 700 16
+   desktop / 600 20 mobile, ATC/quote 16/24, all detail/legal/note lines to 24px lh,
+   callout text 14/24, mobile action row 56px tall (was 60).
+7. **Sections**: headings 42/50 + sublines 16/28 everywhere; planning bar bg #F6FAFB
+   desktop / #E5ECF0 mobile (was swapped); step-day 10/ls2.4; panel + step headings
+   weight 500 desktop / 600 mobile; showroom names 16/28, addresses 14/24, tour btn
+   14/24 pad 16/28; Final CTA btn 16/28 pad 20/60, call 42/50 w500 desktop, note+meta
+   14/24; footer blurb 16/28, grid pad 60; underline/google links 2px lime underline;
+   tab labels 600 12/21 desktop / 14 mobile; section paddings 80 desktop.
+
+Deliberate deviations from the new file (design noise, kept consistent): four tab labels
+drawn Bold 700 → all 600; mobile selected-swatch pad 5 → 4 (desktop value, QA-approved);
+mobile Final-CTA note drawn in Inter → Poppins (standing decision); typos in design copy
+(walk-trough/proyects/Sidney/HOLE) NOT copied into build text.
+
+Deploy checklist: paste full pdp.css + pdp.js over theme assets, paste main-product
+section (font link + fitout <strong>). Template JSON untouched this round.

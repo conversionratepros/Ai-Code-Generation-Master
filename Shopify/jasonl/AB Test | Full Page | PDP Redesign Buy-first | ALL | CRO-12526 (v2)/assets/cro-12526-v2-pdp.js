@@ -78,10 +78,29 @@
       sw.params.threshold = 5;
       return true;
     }
-    if (!tuneSwiper()) {
+
+    // Figma sync 2026-08-17 ("Website 2026 Copy" 492-969): desktop
+    // thumbnails are 5-up filling the gallery width (180x120 @1540, 3:2,
+    // gap 12) — the control instance rendered ~9-up 102x69 (Figma QA
+    // 2026-08-09, fail group 3). Retune the EXISTING thumbs Swiper's
+    // params on desktop only; mobile keeps the control sizing (113x75).
+    function tuneThumbs() {
+      var thumbsEl = document.querySelector('.cro12526v2-gallery .thumbs-container');
+      if (!thumbsEl) return true; // nothing to tune
+      var tsw = thumbsEl.swiper || (thumbsEl.querySelector('.swiper, .swiper-container') || {}).swiper;
+      if (!tsw) return false;
+      if (window.matchMedia('(min-width: 750px)').matches) {
+        tsw.params.slidesPerView = 5;
+        tsw.params.spaceBetween = 12;
+        tsw.update();
+      }
+      return true;
+    }
+
+    if (!(tuneSwiper() & tuneThumbs())) {
       var tries = 0;
       var t = setInterval(function () {
-        if (tuneSwiper() || ++tries > 40) clearInterval(t);
+        if ((tuneSwiper() & tuneThumbs()) || ++tries > 40) clearInterval(t);
       }, 250);
     }
 
