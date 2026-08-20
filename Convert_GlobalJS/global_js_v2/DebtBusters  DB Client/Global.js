@@ -1,29 +1,25 @@
 (function () {
     "use strict";
     /* ================================================================
-       CRO Global Project JS — DebtBusters DB Client (v2, status-gated scaffold)
+       CRO Global Project JS — DebtBusters DB Client (v2, status-gated)
 
-       Solves: manually-activated experiments (Location JS condition +
-       executeExperiment from Global JS) keep firing after the test is
-       paused, because project-level JS has no idea of experience status.
+       Core change vs v1: every experiment trigger is gated on the
+       experience's status inside the Convert config (convert.data).
+       A paused / stopped / draft / archived test no longer fires its
+       executeExperiment push OR its DOM side effects (window flags),
+       no matter how many of its conditions match.
 
-       Every trigger passes four gates, in order:
-         1. STATUS  — experience is live in convert.data (the fix)
-         2. URL     — match(path) returns true
-         3. ONCE    — oncePerLoad tests don't re-arm after firing
-         4. GATE    — optional async condition (dataLayer, app state, DOM)
-
-       To onboard a client:
-         - fill in the tests[] registry (one entry per experiment)
-         - adjust/remove the decorators section (site-specific)
-         - rename window.cro_<client>_globalJS init flag
-       Reference implementation with 11 real tests: OneDayOnly/global-v2.js
-       Convert API details: Convert-Reference/js-api.md
+       Reusable pattern:
+       Convert-Reference/global-js-activation-template.js
+       Reference implementation: OneDayOnly/global-v2.js
        ================================================================ */
 
     try {
 
-        /* ---------- debug ---------- */
+        /* ---------- debug ----------
+           Activation logs always print (QA relies on them).
+           Verbose logs (skips, status checks) need ?cro_debug=1
+           or localStorage.cro_debug = "1". */
         var DEBUG = /(\?|&)cro_debug=1/.test(window.location.search) ||
             (function () { try { return window.localStorage.getItem("cro_debug") === "1"; } catch (e) { return false; } })();
 
@@ -70,6 +66,44 @@
                     if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
                 }
                 return null;
+            },
+            /* Carried over from v1 (delegated event binding helper).
+               Unused by the current registry/decorators but kept so any
+               experiment-level code referencing it keeps working. */
+            live: function (selector, event, callback, context) {
+                // helper for enabling IE 8 event bindings
+                function addEvent(el, type, handler) {
+                    if (el.attachEvent) el.attachEvent("on" + type, handler);
+                    else el.addEventListener(type, handler);
+                }
+                // matches polyfill
+                this &&
+                    this.Element &&
+                    (function (ElementPrototype) {
+                        ElementPrototype.matches =
+                            ElementPrototype.matches ||
+                            ElementPrototype.matchesSelector ||
+                            ElementPrototype.webkitMatchesSelector ||
+                            ElementPrototype.msMatchesSelector ||
+                            function (selector) {
+                                var node = this,
+                                    nodes = (node.parentNode || node.document).querySelectorAll(selector),
+                                    i = -1;
+                                while (nodes[++i] && nodes[i] != node);
+                                return !!nodes[i];
+                            };
+                    })(Element.prototype);
+                // live binding helper using matchesSelector
+                function live(selector, event, callback, context) {
+                    addEvent(context || document, event, function (e) {
+                        var found,
+                            el = e.target || e.srcElement;
+                        while (el && el.matches && el !== context && !(found = el.matches(selector)))
+                            el = el.parentElement;
+                        if (found) callback.call(el, e);
+                    });
+                }
+                live(selector, event, callback, context);
             }
         };
 
@@ -191,67 +225,98 @@
         }
 
         /* ================================================================
-           EXPERIMENT REGISTRY — one entry per manually-activated test.
+           SHARED TEST CONDITIONS (DebtBusters DB Client)
+           ================================================================ */
 
-           {
-             ticket:  "CRO-XXXXX",              // for logs
-             name:    "Readable test name",     // for logs
-             id:      "100XXXXXXX",             // Convert experience ID
-             flag:    "crotest_...",            // window flag = Location JS condition
-             classes: ["cro-xxxxx"],            // body classes to strip on cleanup
-             cleanupDelay: 400,                 // optional, ms (default 400)
-             oncePerLoad: false,                // optional, don't re-arm after firing
-             match:   function (path) {...},    // sync URL check
-             gate:    function (done) {...},    // optional async check -> done(true|false)
-             onCleanup: function () {...}       // optional extra cleanup
-           }
+        /* All three active tests target the same ClearScore landing page.
+           v1 matched on the full href (host pinned to
+           start.debtbusters.co.za) — kept verbatim. */
+        var CLEARSCORE_LANDING = "https://start.debtbusters.co.za/custom-landing-pages-debt-counselling-clear-score-landing";
+        function matchClearScoreLanding() {
+            return window.location.href.indexOf(CLEARSCORE_LANDING) !== -1;
+        }
+
+        /* v1's isFromClearScore(): ClearScore-referred visit carrying a
+           non-empty `u` payload. utm_medium differs per test ("Web" vs
+           "qa") — ported verbatim, do not normalize. */
+        function isFromClearScore(medium) {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                return (
+                    params.get("utm_source") === "ClearScore" &&
+                    params.get("utm_medium") === medium &&
+                    !!(params.get("u") || "").trim()
+                );
+            } catch (e) { return false; }
+        }
+
+        /* ================================================================
+           EXPERIMENT REGISTRY
+           One entry per test. flag names and experiment IDs must match the
+           Convert Location JS conditions exactly — do not rename.
            ================================================================ */
 
         var tests = [
-            /* EXAMPLE — plain URL-matched test:
             {
-                ticket: "CRO-00000",
-                name: "PLP | Example test",
-                id: "1004000000",
-                flag: "crotest_Example_CRO00000",
-                classes: ["cro-00000"],
-                match: function (path) { return path.indexOf("/category") !== -1; }
+                ticket: "CRO-4781",
+                name: "TEST 91 | Hide pre-filled form | ALL",
+                id: "1004162890",
+                flag: "crotest_test_91_Hide_prefilled_form",
+                classes: [],
+                match: matchClearScoreLanding,
+                gate: function (done) { done(isFromClearScore("Web")); }
             },
-            */
-            /* EXAMPLE — async-gated test (dataLayer / app state):
             {
-                ticket: "CRO-00001",
-                name: "Checkout | Signed-out only",
-                id: "1004000001",
-                flag: "crotest_Example_CRO00001",
-                classes: ["cro-00001"],
-                oncePerLoad: true,
-                match: function (path) { return path === "/checkout"; },
-                gate: function (done) {
-                    lib.poll(
-                        function () {
-                            var dl = window.dataLayer || [];
-                            for (var i = dl.length - 1; i >= 0; i--) {
-                                if (dl[i]?.user?.userStatus) return dl[i].user.userStatus;
-                            }
-                            return null;
-                        },
-                        function (status) { done(status === "signedOut"); },
-                        50, 15000
-                    );
+                ticket: "CRO-6614",
+                name: "Recipe KI93 | Wording change & Confirm CTA (it3) (Ai) | ALL",
+                id: "1004175777",
+                /* v1 flag reads "test_93_Hide_prefilled_form" (copy-paste of
+                   TEST 91's naming, not this test's name) — it is what the
+                   Location JS condition checks, do NOT rename. */
+                flag: "crotest_test_93_Hide_prefilled_form",
+                classes: [],
+                match: matchClearScoreLanding,
+                gate: function (done) { done(isFromClearScore("Web")); }
+            },
+            {
+                ticket: "CRO-6612",
+                name: "Recipe KI92 | Non-Editable Fields (it 2) | ALL",
+                id: "1004178360",
+                flag: "crotest_test_KI92_NonEditable_Fields_it2_ALL_CRO6612",
+                classes: [],
+                match: matchClearScoreLanding,
+                /* WARNING: v1 requires utm_medium === "qa" (the other two
+                   use "Web") — looks like a QA condition left in, so this
+                   test only ever fires on qa-tagged traffic. Ported
+                   verbatim; change to "Web" only with sign-off. */
+                gate: function (done) { done(isFromClearScore("qa")); }
+            }
+
+            /* RETIRED — defined in v1 but its invocation was commented out
+               (boot + SPA listener). Re-adding would fire the test again.
+            {
+                ticket: "TEST 83",
+                name: "DBCS 94 Template Start (new) | ALL",
+                id: "1004126224",
+                flag: "crotest_DBCS_Template",
+                classes: [],
+                match: function () {
+                    var href = window.location.href;
+                    return href.indexOf("/landing-pages/omni-lp") !== -1 ||
+                        href.indexOf("/landing-pages/2022-07-image-text-above-lp2") !== -1 ||
+                        href.indexOf("/2023-02-facebook-dr-turbo") !== -1;
                 }
-            },
+            }
             */
         ];
 
         /* ================================================================
-           DECORATORS — site-level DOM markers shared by several tests
-           (pagePath attributes, data-action tagging, ...). Run regardless
-           of experiment status. Client-specific: replace per site.
+           DECORATORS — site-level DOM markers shared by several tests.
+           DebtBusters DB Client v1 has none; add here when needed.
            ================================================================ */
 
         function runDecorators() {
-            /* client-specific */
+            /* none for DebtBusters DB Client (v1 had no decorators) */
         }
 
         /* ================================================================
@@ -289,15 +354,16 @@
             whenConvertReady(runTests);
         }
 
-        console.log("Global JavaScript Activate");
+        console.log("Global JavaScript Activate (v2)");
         runAll();
 
-        if (!window.cro_dbClient_globalJS) { // rename per client
+        if (!window.cro_dbClient_globalJS) {
             window.cro_dbClient_globalJS = true;
             installLocationChangeListener(runAll);
         }
 
     } catch (e) {
+        /* v1 swallowed the error object — always keep it visible */
         console.warn("[CRO] Error in Global JavaScript", e);
     }
 })();
