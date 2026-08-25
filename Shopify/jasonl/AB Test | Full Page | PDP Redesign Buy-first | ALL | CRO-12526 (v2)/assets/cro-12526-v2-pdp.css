@@ -3443,6 +3443,7 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
 .cro12526v2-finalcta__brand {
   display: none !important;
 }
+
 /* ============================================================
    FIGMA SYNC (2026-08-17) — full pass against the NEW canonical
    Figma file "JasonL — Website 2026 (Copy)" Of0HOmZCY8do9VPmencu9z
@@ -3665,5 +3666,233 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
   .cro12526v2-options {
     border-top-color: rgba(119, 119, 119, 0.4);
     border-bottom-color: rgba(119, 119, 119, 0.4);
+  }
+}
+
+/* ------------------------ */
+.compare-cnt-holder p {
+  font-weight: 400;
+  line-height: 24px;
+  color: #161616;
+  margin-bottom: 15px;
+}
+
+.cro12526v2-fitout {
+  gap: 0;
+}
+
+p.cro12526v2-fitout__copy {
+  margin-bottom: 15px;
+}
+
+.cro12526v2-showrooms__tour .cro12526v2-showrooms__tour-btn strong {
+  font-weight: 700;
+}
+
+.product-description-section .description-tab-content .card-with-icon .icon-card-body-title h3 {
+  color: #161616
+}
+
+.cro12526v2-finalcta__right .cro12526v2-finalcta__meta strong {
+  color: #FFF;
+}
+
+.section-cro12526v2-compare .compare-product-item strong.price,
+.section-cro12526v2-compare .activeproduct strong.price {
+  line-height: 16px;
+  color: #161616;
+}
+
+@media screen and (max-width: 767px) {
+  .cro12526v2-finalcta__copy {
+    line-height: normal;
+  }
+
+  .product-description-section .product-detail-tab .product-tab-nav .tab .tab-link {
+    font-size: 14px;
+  }
+
+  .header-top-right li.header-top-right-email-wrap {
+    color: #161616;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18.57px;
+  }
+
+  .header-top-right li.call-number .value {
+    font-weight: 400;
+  }
+
+  .header-top-right li.call-number {
+    color: #161616;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18.57px;
+  }
+
+  .header-top-right li.header-top-right-getaquote a {
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 19.5px;
+    letter-spacing: 0.325px;
+  }
+
+  .compare-cnt-holder p {
+    font-size: 13px;
+    line-height: normal;
+  }
+
+  .cro12526v2-compare__atc--mobilecell {
+    line-height: 130%;
+  }
+}
+
+span.cro12526v2-compare__badge {
+  line-height: 130%;
+}
+
+.cro12526v2-realbuttons {
+  display: none;
+}
+
+a.cro12526v2-finalcta__showroom-link {
+  margin-left: 4px;
+}
+
+.section-cro12526v2-compare .compare-label,
+.section-cro12526v2-compare .compare-active-value,
+.section-cro12526v2-compare .table-desp .table-col {
+  color: #161616;
+}
+
+#compareproduct .compare-btn-seemore {
+  color: #161616;
+}
+
+/* ============================================================
+   ROUND 17 (2026-08-25) — client "PDP Rebuild Updates" Round 2
+   ============================================================ */
+
+/* 2A — Buy box vertical rhythm matched to Figma 492-969 "Purchase Panel"
+   (desktop only; mobile 492-1441 already matched: panel gap 20, price
+   gap 5, variables pad 30/0 gap 15).
+     Frame 26 (title → rating → price)  gap 10   was 20 + 20
+     Price col (row → note)             gap 10   was 8
+     Variables (options)                pad 20/0 was 30/0
+     Variables field gap                20       was 25
+     Swatch fields (head → swatches)    gap 6    was 10
+   ≈ 50–70px recovered above the ATC depending on option count. */
+.cro12526v2-buybox__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .cro12526v2-buybox__head {
+    gap: 1rem;
+  }
+
+  .cro12526v2-price__note {
+    margin-top: 1rem;
+  }
+
+  .cro12526v2-options {
+    padding: 2rem 0;
+    gap: 2rem;
+  }
+
+  .cro12526v2-variants,
+  variant-selects.cro12526v2-variants {
+    gap: 2rem;
+  }
+
+  .cro12526v2-field--swatches {
+    gap: 0.6rem;
+  }
+
+  /* Optional levers (section settings "Above-the-fold levers") — OFF by
+     default; the client can be shown each one independently. */
+
+  /* Lever 1: title 32/40 instead of Figma 40/48 — a 4-line title becomes
+     3 lines (≈ −72px), a 3-line title ≈ −24px. */
+  .cro12526v2-buybox--small-title .cro12526v2-title--desktop {
+    font-size: 3.2rem;
+    line-height: 4rem;
+  }
+
+  /* Lever 2: 50px swatches instead of Figma 60px — −10px per swatch row.
+     Same geometry scaled: outer r15, selected = 3px gap + ink ring r12. */
+  .cro12526v2-buybox--small-swatches .cro12526v2-options .cro12526v2-swatches label {
+    width: 5rem !important;
+    height: 5rem !important;
+    min-width: 5rem !important;
+    min-height: 5rem !important;
+    border-radius: 15px !important;
+  }
+
+  .cro12526v2-buybox--small-swatches .cro12526v2-options .cro12526v2-swatches label img {
+    border-radius: 14px;
+  }
+
+  .cro12526v2-buybox--small-swatches .cro12526v2-options .cro12526v2-swatches input[type='radio']:checked+label {
+    padding: 0.3rem !important;
+    border-radius: 12px !important;
+  }
+
+  .cro12526v2-buybox--small-swatches .cro12526v2-options .cro12526v2-swatches input[type='radio']:checked+label img {
+    border-radius: 8px;
+  }
+}
+
+/* 1 — Planning: gap between the four step columns 40 → 100 (client Round 2
+   #1, applied to the homepage "Fitouts? Handled" grid too). Only where the
+   grid is 4-up; the 2-up (≤989) and mobile layouts keep their own gaps. */
+@media screen and (min-width: 990px) {
+  .cro12526v2-planning__steps {
+    gap: 10rem;
+  }
+}
+
+/* 2 — Planning bar copy: forced break before "No middlemen, …" on desktop
+   only (mobile centers + wraps naturally, and already breaks after the
+   bold lead-in). */
+.cro12526v2-br-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 750px) {
+  .cro12526v2-br-desktop {
+    display: inline;
+  }
+}
+
+/* 4 — Orange "Want to elevate your space?" bar under the menu: rendered by
+   layout/theme.liquid ({% render 'pdp-header-banner' %}, unconditional for
+   product templates) so it cannot be removed from the template files —
+   hidden here instead. This CSS only loads on the cro-12526-v2 template.
+   Desktop bonus: −64px above the fold. */
+.pdp-header-banner {
+  display: none !important;
+}
+
+/* 5 — "Great on its own. Better as a set." cards: title on ONE line with
+   an ellipsis; category always occupies its line so category / title /
+   price / buttons align across the four cards. */
+.cro12526v2-setup-card__title {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cro12526v2-setup-card__category {
+  min-height: 1.4rem;
+}
+
+@media screen and (max-width: 749px) {
+  .cro12526v2-setup-card__category {
+    min-height: 1.82rem;
   }
 }

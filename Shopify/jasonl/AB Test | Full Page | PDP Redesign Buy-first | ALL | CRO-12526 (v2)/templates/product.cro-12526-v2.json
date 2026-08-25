@@ -77,7 +77,7 @@
       "type": "cro-12526-v2-complete-setup",
       "settings": {
         "eyebrow": "Complete the setup",
-        "default_heading": "A desk on its own isn't a workstation.",
+        "heading_static": "Great on its own. Better as a set.",
         "subline": "Add the pieces that finish it — or take the lot as a bundle and save."
       }
     },
@@ -181,7 +181,8 @@
         "heading": "Don't pick it part by part. Let's plan it.",
         "copy": "Tell us the headcount and the space. We'll come back with a layout, a single quote and an install date — desks, chairs, storage, pods, the lot. One conversation instead of forty product pages.",
         "bar_strong": "How is 10 days possible?",
-        "bar_copy": "Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing.",
+        "bar_copy": "Stocked Australian warehouses and our own install crews.",
+        "bar_copy_2": "No middlemen, no shipping delays — it's logistics, not marketing.",
         "consult_label": "Start step 1 — book a free consult",
         "consult_url": ""
       }
@@ -210,9 +211,155 @@
         "showroom_url": ""
       }
     },
-    "cro12526v2_footer": {
+    "cro_12526_v2_footer_a6NCkQ": {
       "type": "cro-12526-v2-footer",
-      "settings": {}
+      "blocks": {
+        "link_HLjQje": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "How it works",
+            "url": "/blogs/fitouts"
+          }
+        },
+        "link_rzpp4f": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "Interior design",
+            "url": "/pages/interior-design"
+          }
+        },
+        "link_NpNgP7": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "Case studies",
+            "url": "/blogs/fitouts"
+          }
+        },
+        "link_8Lcrqz": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "Blog",
+            "url": "/blogs/main"
+          }
+        },
+        "link_zxiAAm": {
+          "type": "link",
+          "settings": {
+            "column": "1",
+            "label": "FAQs",
+            "url": "/apps/help-center"
+          }
+        },
+        "link_WaEdWz": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Chairs",
+            "url": "/collections/office-chairs"
+          }
+        },
+        "link_nr849V": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Desks",
+            "url": "/collections/office-desks"
+          }
+        },
+        "link_LPX9XE": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Workstations",
+            "url": "/collections/office-workstations"
+          }
+        },
+        "link_zVNx39": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Storage",
+            "url": "/collections/office-storage"
+          }
+        },
+        "link_qRnTkQ": {
+          "type": "link",
+          "settings": {
+            "column": "2",
+            "label": "Tables",
+            "url": "/collections/tables"
+          }
+        },
+        "link_KhnU9j": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "About us",
+            "url": "/pages/about-us"
+          }
+        },
+        "link_cTD978": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Privacy Policy",
+            "url": "/pages/privacy-policy"
+          }
+        },
+        "link_KkkHhG": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Terms of Use",
+            "url": "/pages/terms-and-condition"
+          }
+        },
+        "link_73KqnU": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Shipping & returns",
+            "url": "/pages/shipping-and-returns"
+          }
+        },
+        "link_Kgb6Pt": {
+          "type": "link",
+          "settings": {
+            "column": "3",
+            "label": "Assembly Instructions",
+            "url": "/pages/assembly"
+          }
+        }
+      },
+      "block_order": [
+        "link_HLjQje",
+        "link_rzpp4f",
+        "link_NpNgP7",
+        "link_8Lcrqz",
+        "link_zxiAAm",
+        "link_WaEdWz",
+        "link_nr849V",
+        "link_LPX9XE",
+        "link_zVNx39",
+        "link_qRnTkQ",
+        "link_KhnU9j",
+        "link_cTD978",
+        "link_KkkHhG",
+        "link_73KqnU",
+        "link_Kgb6Pt"
+      ],
+      "name": "CRO-12526 V2 Footer",
+      "settings": {
+        "blurb": "JasonL® is Australian owned and operated. We design, deliver and install office fitouts and furniture Australia-wide — Sydney, Melbourne, Brisbane, Perth, Adelaide and Canberra.",
+        "rating_line": "4.8 on Google  •  1,900+ reviews",
+        "heading_1": "Fitouts",
+        "heading_2": "Shop",
+        "heading_3": "Company"
+      }
     }
   },
   "order": [
@@ -224,6 +371,6 @@
     "planning",
     "showrooms",
     "final_cta",
-    "cro12526v2_footer"
+    "cro_12526_v2_footer_a6NCkQ"
   ]
 }

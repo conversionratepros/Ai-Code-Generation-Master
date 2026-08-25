@@ -17,7 +17,21 @@
     <div class="crohp-cases__head">
       <div class="crohp-head">
         <p class="crohp-head__eyebrow crohp-eyebrow"><span class="crohp-head__dot" aria-hidden="true"></span>{{ section.settings.eyebrow }}</p>
-        <h2 class="crohp-head__title">{{ section.settings.heading }}</h2>
+        {%- comment -%}
+          PDP Round 2 #6 (2026-08-25): "Big or small, we've done one like
+          yours." must never leave "yours." alone on the last line. The last
+          two words are glued with a nowrap span (+ text-wrap: balance on
+          this heading in cro-hp.css). Generic: any heading with 4+ words.
+        {%- endcomment -%}
+        {%- assign crohp_cs_words = section.settings.heading | strip | split: ' ' -%}
+        {%- if crohp_cs_words.size > 3 -%}
+          {%- assign crohp_cs_cut = crohp_cs_words.size | minus: 2 -%}
+          {%- assign crohp_cs_lead = crohp_cs_words | slice: 0, crohp_cs_cut | join: ' ' -%}
+          {%- assign crohp_cs_tail = crohp_cs_words | slice: crohp_cs_cut, 2 | join: ' ' -%}
+          <h2 class="crohp-head__title">{{ crohp_cs_lead }} <span class="crohp-nowrap">{{ crohp_cs_tail }}</span></h2>
+        {%- else -%}
+          <h2 class="crohp-head__title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
         {%- if section.settings.sub != blank -%}
           <p class="crohp-head__sub">{{ section.settings.sub }}</p>
         {%- endif -%}

@@ -32,7 +32,8 @@
         "trust-google",
         "trust-showrooms",
         "trust-owned"
-      ]
+      ],
+      "settings": {}
     },
     "proof_band": {
       "type": "cro-hp-proof-band",
@@ -124,7 +125,8 @@
         "stat-ontime",
         "stat-showrooms",
         "stat-consult"
-      ]
+      ],
+      "settings": {}
     },
     "how_it_works": {
       "type": "cro-hp-how-it-works",
@@ -167,7 +169,8 @@
         "step-2",
         "step-3",
         "step-4"
-      ]
+      ],
+      "settings": {}
     },
     "interior_design": {
       "type": "cro-hp-interior",
@@ -198,7 +201,8 @@
         "bullet-1",
         "bullet-2",
         "bullet-3"
-      ]
+      ],
+      "settings": {}
     },
     "case_studies": {
       "type": "cro-hp-case-studies",
@@ -364,16 +368,20 @@
         "chip-7",
         "chip-8",
         "chip-9"
-      ]
+      ],
+      "settings": {}
     },
     "people": {
-      "type": "cro-hp-people"
+      "type": "cro-hp-people",
+      "settings": {}
     },
     "showrooms": {
-      "type": "cro-hp-showrooms"
+      "type": "cro-hp-showrooms",
+      "settings": {}
     },
     "final_ask": {
-      "type": "cro-hp-final-ask"
+      "type": "cro-hp-final-ask",
+      "settings": {}
     },
     "footer": {
       "type": "cro-hp-footer",
@@ -515,10 +523,12 @@
         "flink-13",
         "flink-14",
         "flink-15"
-      ]
+      ],
+      "settings": {}
     },
     "sticky_bar": {
-      "type": "cro-hp-sticky-bar"
+      "type": "cro-hp-sticky-bar",
+      "settings": {}
     }
   },
   "order": [

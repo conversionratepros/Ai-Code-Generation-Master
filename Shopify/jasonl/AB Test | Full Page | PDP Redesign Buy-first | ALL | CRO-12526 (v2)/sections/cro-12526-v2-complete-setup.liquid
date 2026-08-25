@@ -215,10 +215,15 @@
               </a>
               <div class="cro12526v2-setup-card__body">
                 <div class="cro12526v2-setup-card__text">
-                  {%- if cs_category != '' -%}
-                    <p class="cro12526v2-setup-card__category">{{ cs_category }}</p>
-                  {%- endif -%}
-                  <a class="cro12526v2-setup-card__title" href="{{ cs_product.url }}">{{ cs_product.title | truncatewords: 8 }}</a>
+                  {%- comment -%}
+                    Round 17 (client Round 2 #5): title always ONE line — CSS
+                    ellipsis (was truncatewords: 8, which still wrapped); the
+                    full title rides in the title attribute. Category <p> now
+                    always renders (empty + min-height) so category / title /
+                    price / buttons line up across all four cards.
+                  {%- endcomment -%}
+                  <p class="cro12526v2-setup-card__category">{{ cs_category }}</p>
+                  <a class="cro12526v2-setup-card__title" href="{{ cs_product.url }}" title="{{ cs_product.title | escape }}">{{ cs_product.title }}</a>
                   <p class="cro12526v2-setup-card__price">{{ cs_variant.price | money_without_trailing_zeros }}</p>
                 </div>
 

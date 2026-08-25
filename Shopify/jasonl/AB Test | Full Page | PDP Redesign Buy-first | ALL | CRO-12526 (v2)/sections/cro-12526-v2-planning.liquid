@@ -35,6 +35,17 @@
       <p class="cro12526v2-planning__bar-copy">
         <strong>{{ section.settings.bar_strong }}</strong><br class="cro12526v2-br-mobile" aria-hidden="true">
         {{ section.settings.bar_copy }}
+        {%- if section.settings.bar_copy_2 != blank -%}
+          {%- comment -%}
+            Round 17 (client Round 2 #2): the bar copy must break onto a second
+            line at "No middlemen, …" on desktop. Second sentence is its own
+            setting; the <br> only shows ≥750px (mobile is centered + wraps
+            naturally). THEME EDITOR: shorten the stored "Bottom bar copy" to
+            the first sentence — stored values beat schema defaults.
+          {%- endcomment -%}
+          <br class="cro12526v2-br-desktop" aria-hidden="true">
+          {{ section.settings.bar_copy_2 }}
+        {%- endif -%}
       </p>
       {%- if section.settings.consult_url != blank -%}
         <a class="cro12526v2-planning__cta" href="{{ section.settings.consult_url }}">{{ section.settings.consult_label }}</a>
@@ -70,8 +81,14 @@
     {
       "type": "textarea",
       "id": "bar_copy",
-      "label": "Bottom bar copy",
-      "default": "Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing."
+      "label": "Bottom bar copy — line 1 (desktop)",
+      "default": "Stocked Australian warehouses and our own install crews."
+    },
+    {
+      "type": "textarea",
+      "id": "bar_copy_2",
+      "label": "Bottom bar copy — line 2 (desktop; breaks onto its own line)",
+      "default": "No middlemen, no shipping delays — it's logistics, not marketing."
     },
     { "type": "text", "id": "consult_label", "label": "Button label", "default": "Start step 1 — book a free consult" },
     { "type": "url", "id": "consult_url", "label": "Button URL (optional — opens Get a Quote Typeform if empty)" }

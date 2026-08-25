@@ -398,3 +398,59 @@ mobile Final-CTA note drawn in Inter → Poppins (standing decision); typos in d
 
 Deploy checklist: paste full pdp.css + pdp.js over theme assets, paste main-product
 section (font link + fitout <strong>). Template JSON untouched this round.
+
+### Round 17 (2026-08-25) — client "PDP Rebuild Updates" Round 2 (+ Round 2A fold)
+Figma re-pulled first (`QA/figma-spec-desktop-492-969-r2.md`, `-mobile-492-1441-r2.md`, plus the
+non-backup "Product Page" frame `figma-spec-desktop-478-3359.md`): file lastModified
+2026-08-17T12:20Z, buy box byte-identical to the round-16 pull — the "adjusted gaps" are NOT in
+Figma, so the build was matched to the existing Purchase Panel values. 478-3359 differs from
+492-969 only in tab weights, a different setup heading copy ("One piece is just the start.") and
+footer link lists — client copy "Great on its own…" stands.
+
+**Round 2A — CTAs above the fold (desktop, ≥750 only):**
+- New `.cro12526v2-buybox__head` wrapper (title + rating + price) → gap 10 (was 20+20, Figma
+  Frame 26); price note margin 10; options pad 20/0 gap 20 (was 30/25); swatch fields gap 6
+  (was 10). ≈ −56px for a 3-option product, −67px for 4 options.
+- Two OPTIONAL levers as main-product section settings ("Above-the-fold levers", default off):
+  `cro12526v2_small_title` → `.cro12526v2-buybox--small-title` (h1 32/40; 3-line title → 2 lines
+  ≈ −64px) and `cro12526v2_small_swatches` → `.cro12526v2-buybox--small-swatches` (50px swatches,
+  r15 / selected pad 3 r12; −10px per swatch row).
+- Orange bar hide (item 4) is a −64px bonus on desktop.
+- Honest fold budget (typical 3-option product, 1440 wide): header+bar 186 → ATC bottom ≈1135
+  today; ≈1015 after Figma match + bar hide; ≈900–950 with both levers. Above the fold on
+  1080p monitors, still ~110–160px under a 900px-tall laptop window. Structural options for
+  the client: sticky ATC bar, qty+ATC above the option groups, or collapsing option groups 3+.
+  Numbers are estimates from the round-16 screenshot — re-measure live once a preview theme is
+  available (the old preview 188303442208 and `?view=cro-12526-v2` on live no longer serve v2).
+
+**Round 2 items (PDP + homepage mirrored):**
+1. Planning steps gap 40→100 at ≥990 (`.cro12526v2-planning__steps`); homepage
+   `.crohp-how__grid` same. 2-up/mobile gaps untouched.
+2. Bar copy breaks before "No middlemen…" on desktop: new setting `bar_copy_2` + `<br
+   class="cro12526v2-br-desktop">` (display none <750). `bar_copy` default = first sentence.
+   THEME EDITOR: the stored "Bottom bar copy" carries the full sentence — shorten it to
+   "Stocked Australian warehouses and our own install crews." or the sentence renders twice.
+   Homepage: `mech_rest` / `mech_rest_2` same pattern (index.cro-hp.json stores no values there).
+3. Thumbnails: theme snippet renders `img_url:'100x'` (verified live: `COLETO-BK_100x.jpg`) —
+   100px source shown 5-up at ~180px + 2× DPR = blurry. Gallery snippet now captures the
+   unchanged theme snippet and rewrites `_100x.` → `_400x.` (main slides are 1001x/2002x).
+4. Orange "Want to elevate your space?" bar: rendered by `layout/theme.liquid`
+   `{%- render 'pdp-header-banner' -%}` (unless-list of page templates only) — cannot be
+   removed from template files. Hidden via `.pdp-header-banner{display:none!important}` in the
+   template-only CSS (PDP) and `body.index-cro-hp .pdp-header-banner` (homepage). A true removal
+   = one-line edit to theme.liquid's unless-list (`or template == 'product.cro-12526-v2' or
+   template == 'index.cro-hp'`) — shared layout file, for JasonL's devs / explicit sign-off.
+5. Setup cards: title ONE line + CSS ellipsis (truncatewords removed, full title in `title`
+   attr); category `<p>` always rendered with min-height (1.4rem / 1.82rem mobile) so
+   category/title/price/buttons align across cards.
+6. Homepage "Big or small, we've done one like yours.": last two words glued in
+   `<span class="crohp-nowrap">` (Liquid split/slice, any 4+ word heading) + `text-wrap:
+   balance` on the cases heading only.
+
+Round 1 items (consult CTA → Typeform, footer, Figma font sync, setup copy) were closed in
+rounds 15–16 — nothing further.
+
+Deploy: paste FULL pdp.css + main-product + planning + complete-setup + gallery snippet
+(PDP); cro-hp.css + how-it-works + case-studies (homepage). Template JSON: do NOT paste — set
+`bar_copy` in the theme editor (see item 2). Client artifact:
+https://claude.ai/code/artifact/bdb7f0d1-8287-447d-9518-b75500a4dfb8

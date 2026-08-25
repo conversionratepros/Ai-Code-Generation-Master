@@ -1,0 +1,123 @@
+.cro-t-93-heading p {
+    font-family: inherit;
+    color: #263648;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+.cro-t-93-heading h2 {
+    margin-bottom: 24px;
+    color: #263648;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 27px;
+    /* 84.375% */
+}
+
+body.CRO-test93-ID-4781 .container>.blurb:nth-child(1) {
+    margin-top: 40px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+    .cro-t-93-heading p {
+        font-size: 18px;
+    }
+}
+
+body.CRO-test93-ID-4781 .blurb [data-hs-cos-field="top_blurb"] {
+    display: none;
+}
+
+html body.CRO-test93-ID-4781 .cro-fields-hidden#hs-form-iframe-0 {
+    height: 80px !important;
+}
+
+body.CRO-test93-ID-4781 #form-embed-placeholder+.blurb {
+    display: none;
+}
+
+body.CRO-test93-ID-4781 .cro-t-93-footer>div {
+    font-family: arial, helvetica, sans-serif;
+    word-break: break-word;
+    line-height: normal;
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: #33475b;
+}
+
+body.CRO-test93-ID-4781 .cro-t-93-footer .tcs a {
+    /* margin-top: 14px; */
+    /* margin-bottom: 14px; */
+    color: #0000EE;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+iframe#hs-form-iframe-0.cro-fields-margin {
+    height: 375px !important;
+}
+@media (max-width: 767px) {
+    iframe#hs-form-iframe-0.cro-fields-margin {
+        height: 400px !important;
+    }
+    .cro-t-93-heading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body.CRO-test93-ID-4781 .cro-t-93-footer .tcs {
+        /* margin-top: 14px; */
+        /* margin-bottom: 14px; */
+        text-align: center;
+    }
+
+    .cro-t-93-heading h2 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .cro-t-93-heading p {
+        font-size: 16px;
+    }
+
+    .container:not(.logos) {
+        padding: 0 20px;
+    }
+
+    .cro-t-93-heading h2 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .cro-t-93-heading p {
+        font-size: 16px;
+        text-align: center;
+        line-height: 24px;
+    }
+
+    .container:not(.logos) {
+        padding: 0 20px;
+    }
+
+    body.CRO-test93-ID-4781 .container>.blurb:nth-child(1) {
+        margin-bottom: 15px;
+    }
+}
+
+.CRO-test93-ID-4781.CRO-test93-ID-4781-hide_form .cro-t-93-footer {
+    display: none;
+}
+
+.CRO-test93-ID-4781.CRO-test93-ID-4781-hide_form .cro-t-93-heading {
+    display: none;
+}
+
+.cro-t-93-footer {
+    margin-top: 5px;
+}

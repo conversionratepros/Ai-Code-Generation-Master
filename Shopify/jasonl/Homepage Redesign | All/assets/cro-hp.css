@@ -2534,6 +2534,7 @@ body.index-cro-hp .footer-wrapper {
   border-radius: 50px;
   font-size: 15px;
   padding: 0 18px;
+  min-width: 110px;
 }
 
 .crohp-sticky__call {
@@ -3691,6 +3692,10 @@ body.index-cro-hp .collection-slider-holder.large-hide {
   width: auto;
 }
 
+.cro12526v2-finalcta__btn {
+  font-size: 16px;
+}
+
 @media (max-width: 749px) {
   .crohp-rooms-head-row {
     flex-direction: column;
@@ -3700,6 +3705,14 @@ body.index-cro-hp .collection-slider-holder.large-hide {
 
   .crohp-rooms-cta {
     width: 100%;
+  }
+
+  .cro12526v2-finalcta__btn {
+    font-size: 16px !important;
+  }
+
+  main#MainContent {
+    padding-bottom: 40px;
   }
 }
 
@@ -3715,3 +3728,45 @@ body.index-cro-hp .collection-slider-holder.large-hide {
    earlier in this file are SUPERSEDED by the ported cro12526v2-* sections
    above (markup no longer uses them) — kept inert until QA sign-off,
    then safe to delete. .crohp-sticky and shared primitives stay live. */
+
+/* ============================================================
+   PDP Rebuild Updates — Round 2 (2026-08-25), homepage items
+   ============================================================ */
+
+/* #1 — "Fitouts? Handled." four step columns: gap 40 → 100 where the grid
+   is 4-up (same change on the PDP planning section). 2-up (≤989) and the
+   mobile 2×2 keep their own gaps. */
+@media (min-width: 990px) {
+  .crohp-how__grid {
+    gap: 100px;
+  }
+}
+
+/* #2 — mechanism strip copy breaks before "No middlemen, …" on desktop only */
+.crohp-br-desktop {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .crohp-br-desktop {
+    display: inline;
+  }
+}
+
+/* #4 — orange "Want to elevate your space?" bar under the menu: rendered by
+   layout/theme.liquid for every template, so it cannot be removed from the
+   template files — hidden on this template only (same body-class gate as
+   the footer hide above). */
+body.index-cro-hp .pdp-header-banner {
+  display: none !important;
+}
+
+/* #6 — "Big or small, we've done one like yours." — no "yours." orphan:
+   balanced wrapping + the last two words glued (span from the section). */
+.crohp-cases__head .crohp-head__title {
+  text-wrap: balance;
+}
+
+.crohp-nowrap {
+  white-space: nowrap;
+}

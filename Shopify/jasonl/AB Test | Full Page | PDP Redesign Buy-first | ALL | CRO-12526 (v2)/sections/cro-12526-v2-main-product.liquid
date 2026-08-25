@@ -384,8 +384,16 @@
     </div>
 
     {%- comment -%} ---------- Buy box column ---------- {%- endcomment -%}
-    <div class="cro12526v2-layout__buybox cro12526v2-buybox">
+    <div class="cro12526v2-layout__buybox cro12526v2-buybox{% if section.settings.cro12526v2_small_title %} cro12526v2-buybox--small-title{% endif %}{% if section.settings.cro12526v2_small_swatches %} cro12526v2-buybox--small-swatches{% endif %}">
 
+      {%- comment -%}
+        Round 17 (2026-08-25): title + rating + price grouped in one wrapper so
+        the desktop gaps can match Figma "Frame 26" (gap 10 between the three)
+        while the buy box keeps its 20px rhythm below. Client Round 2A —
+        "CTAs above the fold": spacing matched to Figma first; the two optional
+        levers (smaller title / 50px swatches) are theme-editor toggles.
+      {%- endcomment -%}
+      <div class="cro12526v2-buybox__head">
       <h1 class="cro12526v2-title cro12526v2-title--desktop" {% if title_block %}{{ title_block.shopify_attributes }}{% endif %}>
         {{ product.title | escape }}
       </h1>
@@ -416,6 +424,7 @@
         </div>
         <p class="cro12526v2-price__note">Configured price updates as you choose options below.</p>
       </div>
+      </div>{%- comment -%} /cro12526v2-buybox__head {%- endcomment -%}
 
       {%- comment -%}
         ---------- Options: size (sibling products) + Shopify options ----------
@@ -2857,6 +2866,22 @@ observer.observe(option_wrapper, { childList: true, subtree: true });
       "id": "cro12526v2_reviews_count",
       "label": "Review count text",
       "default": "128 reviews"
+    },
+    {
+      "type": "header",
+      "content": "CRO-12526 V2 — Above-the-fold levers (desktop)"
+    },
+    {
+      "type": "checkbox",
+      "id": "cro12526v2_small_title",
+      "label": "Smaller product title (32/40 instead of Figma 40/48)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "cro12526v2_small_swatches",
+      "label": "Smaller colour swatches (50px instead of Figma 60px)",
+      "default": false
     },
     {
       "type": "checkbox",

@@ -1,0 +1,606 @@
+# Figma spec — JasonL — Website 2026 (Copy)
+
+## Type ramp (exact values, deduped)
+
+| Family | Weight | Size | Line height | Uses |
+|---|---|---|---|---|
+| Poppins | 500 | 42.0px | 50.0px | 7 |
+| Poppins | 500 | 40.0px | 48.0px | 1 |
+| Hanken Grotesk | 600 | 40.0px | 48.0px | 1 |
+| Poppins | 500 | 36.0px | 38.0px | 4 |
+| Hanken Grotesk | 600 | 32.0px | 38.4px | 4 |
+| Poppins | 500 | 25.0px | auto | 5 |
+| Poppins | 600 | 20.0px | auto | 2 |
+| Hanken Grotesk | 600 | 20.0px | 16.0px | 3 |
+| Poppins | 400 | 18.0px | auto | 1 |
+| Poppins | 400 | 17.0px | auto | 7 |
+| Poppins | 400 | 16.0px | 28.0px | 21 |
+| Poppins | 700 | 16.0px | 28.0px | 1 |
+| Poppins | 600 | 16.0px | 24.0px | 8 |
+| Poppins | 600 | 16.0px | 20.8px | 1 |
+| Poppins | 600 | 16.0px | 28.0px | 8 |
+| Poppins | 400 | 16.0px | 46.0px | 3 |
+| Poppins | 400 | 14.0px | 24.0px | 30 |
+| Poppins | 600 | 14.0px | 24.0px | 7 |
+| Poppins | 400 | 14.0px | 27.0px | 1 |
+| Poppins | 600 | 14.0px | auto | 3 |
+| Poppins | 400 | 13.0px | 19.5px | 35 |
+| Poppins | 600 | 13.0px | 19.5px | 3 |
+| Poppins | 400 | 13.0px | 14.0px | 7 |
+| Poppins | 400 | 13.0px | auto | 2 |
+| Poppins | 700 | 13.0px | 18.6px | 2 |
+| Poppins | 400 | 13.0px | 18.6px | 1 |
+| Poppins | 600 | 13.0px | 16.9px | 4 |
+| Poppins | 400 | 13.0px | 21.0px | 4 |
+| Poppins | 600 | 12.0px | 15.6px | 2 |
+| Poppins | 700 | 12.0px | 21.0px | 8 |
+| Poppins | 400 | 11.0px | 15.4px | 1 |
+| Poppins | 600 | 10.0px | auto | 14 |
+
+## Colour palette (solid fills, deduped)
+
+- `#161616` × 142
+- `#FFFFFF` × 49
+- `#777777` × 27
+- `#C6D644` × 16
+- `#F9F9F9` × 12
+- `#F6FAFB` × 7
+- `#FF9F17` × 4
+- `#F4F4F4` × 1
+- `#E5ECF0` × 1
+
+## 1600 screen (`478:3359`)
+
+- 1600 screen [2000×7481, col, bg #FFFFFF]
+  - 1540w [2000×5647, col, bg #FFFFFF]
+    - Top Header [2000×34, row, gap 253, pad 5/230, bg #161616]
+      - Container [490×20, row, gap 10]
+        - Container [79×20, col]
+          - **"Furniture for"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #FFFFFF
+        - Frame 21 [401×15, row]
+          - Link [69×15, col, pad 0 10 0 0]
+            - **"Business"** — Poppins 600 (Poppins-SemiBold) · 13.0px/19.5px · #C6D644
+          - Link [99×15, col, pad 0/10, border #E5ECF0 1.0px]
+            - **"Home office"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #FFFFFF
+          - Link [58×15, col, pad 0/10, border #E5ECF0 1.0px]
+            - **"Trade"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #FFFFFF
+          - Link [86×15, col, pad 0/10, border #E5ECF0 1.0px]
+            - **"Education"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #FFFFFF
+          - Link [89×15, col, pad 0/10, border #E5ECF0 1.0px]
+            - **"Hospitality"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #FFFFFF
+      - Container [799×24, row, gap 29]
+        - Link [102×14, row, gap 4]
+          - **"Recent projects"** — Poppins 400 (Poppins-Regular) · 13.0px/14.0px · #FFFFFF
+        - Link [58×14, row, gap 4]
+          - **"About us"** — Poppins 400 (Poppins-Regular) · 13.0px/14.0px · #FFFFFF
+        - Link [68×14, row, gap 4]
+          - **"Clearance"** — Poppins 400 (Poppins-Regular) · 13.0px/14.0px · #FFFFFF
+        - Link [93×14, row, gap 4]
+          - **"Showrooms"** — Poppins 400 (Poppins-Regular) · 13.0px/14.0px · #FFFFFF
+          - SVG [12×12]
+        - Link [138×14, row, gap 4]
+          - **"sales@jasonl.com.au"** — Poppins 400 (Poppins-Regular) · 13.0px/14.0px · #FFFFFF
+        - Button [195×24, row, gap 10, pad 5/20, r 20, bg #F6FAFB @10%]
+          - Container [86×14, col]
+            - **"Your location"** — Poppins 400 (Poppins-Regular) · 13.0px/14.0px · #FFFFFF
+          - Container [26×14, col]
+            - **"ACT"** — Poppins 400 (Poppins-Regular) · 13.0px/14.0px · #C6D644
+          - SVG [12×12]
+    - Header [2000×90, col, pad 0/230, border #F4F4F4 0.0px]
+      - Container [1540×52, row, gap 32, pad 10/0]
+        - Frame 23 [593×37, row, gap 85]
+          - JasonL logo [120×37, border #FFFFFF 1.0px]
+          - Container [388×36, row]
+            - Input [388×36, row, pad 8/15, r 4, bg #F4F4F4]
+              - Container [340×21, col, pad 0 0 1 0]
+                - **"Search for any product ..."** — Poppins 400 (Poppins-Regular) · 13.0px/auto · #161616
+              - Container [14×8, col, gap 10]
+        - Margin [753×36, col, pad 0 0 0 289]
+          - Container [464×36, row, gap 32]
+            - Container [376×36, row, gap 24]
+              - Container [116×19, row, gap 6]
+                - **"Call"** — Poppins 700 (Poppins-Bold) · 13.0px/18.6px · #161616
+                - **"1300 864 261"** — Poppins 400 (Poppins-Regular) · 13.0px/18.6px · #161616
+              - **"Contact us"** — Poppins 700 (Poppins-Bold) · 13.0px/18.6px · #161616
+              - BTN [138×36, row, gap 10, pad 8/25, r 50, bg #FF9F17]
+                - **"GET A QUOTE"** — Poppins 600 (Poppins-SemiBold) · 13.0px/19.5px · ls 0.32px · upper · #FFFFFF
+            - Container [56×20, row, gap 16]
+              - Frame [56×20]
+      - Nav [1540×37, col, border #E9E9E9 1.0px]
+        - Container [1540×38, row, gap 50]
+          - Frame 22 [205×20, row, gap 80]
+            - Shop by Room Btn [124×20]
+              - Container [96×20, col]
+                - **"Shop by Room"** — Poppins 600 (Poppins-SemiBold) · 13.0px/19.5px · #161616
+          - Frame 25 [1284×20, row, gap 67]
+            - Frame 24 [1175×20, row, gap 50]
+              - **"Chairs"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Desks"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Workstations"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Storage"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Tables"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Privacy Pods"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Sofas & Lounges"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Whiteboards"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Acoustics & Partitions"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+              - **"Cabling"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+            - Link [42×20, row, gap 3]
+              - **"More"** — Poppins 400 (Poppins-Regular) · 13.0px/19.5px · #161616
+    - Product Gallery [2000×1475, col, gap 15, pad 40 230 15 230]
+      - Frame 17 [1540×30, row, gap 10]
+        - Breadcrumb [990×24, row]
+          - **"Office Workstations   /   Corner & L-Shaped Desks   /   Quad…"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+            - override: "Office Workstations   /   Corner & L-Sha" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - override: "Quadro A Legs Corner Office Desk" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #161616
+        - Title top [550×24, row, gap 20]
+          - **"Quadro Range"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+          - BTN [30×20, row, gap 20, border #C6D644 2.0px]
+            - **"SKU"** — Poppins 600 · 13.0px/16.9px · ls 2.0px · upper · #161616
+      - Main Row [1540×1375, row, gap 40]
+        - Gallery [950×815, col, gap 16, bg #FFFFFF]
+          - Main Image [950×633, col, gap 10, pad 20, r 18, bg image fill]
+            - Tag [120×27, row, pad 5/12, r 24, bg #FF9F17]
+              - **"BEST SELLER"** — Poppins 600 · 12.0px/15.6px · ls 2.0px · upper · #FFFFFF
+                - override: "BEST SELLER" → Poppins 600 · 13.0px/16.9px · ls 2.0px · upper; #FFFFFF
+          - Thumbnails [950×120, row, gap 12]
+            - [image] Rectangle (180×120)
+            - [image] Rectangle (180×120)
+            - [image] Rectangle (180×120)
+            - [image] Rectangle (180×120)
+            - [image] Rectangle (180×120)
+          - BTN [179×30, row, gap 20]
+            - **"view all images"** — Poppins 600 · 13.0px/16.9px · ls 2.0px · upper · #161616
+            - Icons [21×30]
+        - Purchase Panel [550×1335, col, gap 20, bg #FFFFFF]
+          - Frame 26 [550×270, col, gap 10]
+            - Title [550×178, col, gap 10]
+              - **"Quadro A Legs  L-Shaped Corner Office Desk"** — Poppins 500 · 40.0px/48.0px · #161616
+              - Frame 19 [550×24, row, gap 5]
+                - REVIEW STARS [68×11, row, gap 2]
+                - **"4.6 · 128 reviews "** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Price [550×82, col, gap 10]
+              - Price Row [156×48, row, gap 8]
+                - **"$616"** — Hanken Grotesk 600 · 40.0px/48.0px · #161616
+                - **"incl. GST"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+              - **"Configured price updates as you choose options below."** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+          - Variables [550×351, col, gap 20, pad 20/0, border #E9E9E9 1.0px]
+            - Field Size [550×88, col, gap 10]
+              - Title [550×24, row]
+                - **"1. Select a size"** — Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px · #161616
+                  - override: "1." → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px; #777777
+                  - override: "Select a size" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px
+                - **"1800 x 800 mm"** — Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px · #161616
+              - Selection Input [550×54, row, pad 18/20, r 8, border #E9E9E9 1.0px]
+                - **"1800 x 800 mm"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+            - Field Leg Colour [550×90, col, gap 6]
+              - Header [550×24, row]
+                - **"2. Select a leg colour"** — Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px · #161616
+                  - override: "2." → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px; #777777
+                  - override: "Select a leg colour" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px
+                - **"Black"** — Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px · #161616
+                  - override: "Black" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px
+              - Swatches [270×60, row, gap 10]
+                - Configurator Swatch [60×60, row, pad 4, r 15, border #161616 1.0px]
+                - Configurator Swatch [60×60, row, r 18]
+                - Configurator Swatch [60×60, row, r 18]
+                - Configurator Swatch [60×60, row, r 18]
+            - Field Top Clour [550×90, col, gap 6]
+              - Header [550×24, row]
+                - **"3. Select a top colour"** — Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px · #161616
+                  - override: "3." → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px; #777777
+                  - override: "Select a top colour" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px
+                - **"Salvage Oak"** — Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px · #161616
+                  - override: "Salvage Oak" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px
+              - Swatches [270×60, row, gap 10]
+                - Configurator Swatch [60×60, row, pad 4, r 15, border #161616 1.0px]
+                - Configurator Swatch [60×60, row, r 18]
+                - Configurator Swatch [60×60, row, r 18]
+                - Configurator Swatch [60×60, row, r 18]
+          - Purchase Details [550×56, col, gap 8, pad 0/17]
+            - **"· Get it by Thu, 16 Sept — to South Australia (change)"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+              - override: "·" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #161616
+              - override: "Get it by Thu," → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+              - override: "16 Sept" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px; #161616
+              - override: "— to" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+              - override: "South Australia" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px; #161616
+              - override: "(change)" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+            - **"· Freight from $49 — calculated at checkout."** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+              - override: "·" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+              - override: "Freight from $49" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px; #161616
+              - override: "— calculated at checkout." → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+          - Actions [550×182, col, gap 20]
+            - Actions [550×64, col, gap 20]
+              - Frame 2 [550×64, row, gap 16]
+                - Quantity Stepper [128×64, row, gap 30, pad 10/16, r 8, border #E9E9E9 1.5px]
+                  - **"−"** — Poppins 600 · 20.0px/auto · #161616
+                  - **"2"** — Poppins 700 (Poppins-Bold) · 16.0px/28.0px · #161616
+                    - override: "2" → Poppins 700 (Poppins-Bold) · 16.0px/28.0px
+                  - **"+"** — Poppins 600 · 20.0px/auto · #161616
+                - Square Big BTN [406×64, row, gap 10, pad 20/30, r 5, bg #C6D644]
+                  - **"Add to Cart"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+            - Frame 27 [550×98, col, gap 10]
+              - Add to quote BTN [550×64, row, gap 10, pad 16/28, r 8, border #161616 1.5px]
+                - **"Add to quote"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+              - **"Need a quote? Paying by PO? We do both."** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+          - Frame 29 [550×396, col, gap 5]
+            - Legals [550×188, col, gap 15, pad 20/17, border #E9E9E9 1.0px]
+              - Frame 28 [516×53, col, gap 5]
+                - **" · There is a 14-day return policy on this product ( T&Cs )"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                  - override: "· There is a" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+                  - override: "14-day return" → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px
+                  - override: "policy on this product ( T&Cs )" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+                - **" · Nationwide assembly available at checkout."** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+              - Warning Callout [516×80, row, gap 12, pad 16, r 8, bg #F6FAFB]
+                - Frame 3 [20×20, col, gap 10, r 100, bg #FF9F17]
+                  - **"!"** — Poppins 400 · 11.0px/15.4px · ls 2.64px · upper · #FFFFFF
+                    - override: "!" → Poppins 700 (Poppins-Bold) · 11.0px/15.4px · ls 2.64px · upper; #FFFFFF
+                - **"Metro areas & Ground floor only. Extra needs? Contact us or …"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                  - override: "Metro areas & Ground floor only." → Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px
+                  - override: "Extra needs?" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+                  - override: "Contact us or check" → Poppins 400 (Poppins-Italic) · 14.0px/24.0px
+                  - override: "our" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+                  - override: "Shipping & Returns" → Poppins 400 (Poppins-Italic) · 14.0px/24.0px; #161616
+                  - override: "." → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #161616
+            - Fitout CTA [550×203, col, gap 15, pad 25/30, r 8, bg #161616]
+              - **"Kitting out a whole office? Don't pick it part by part. Tell…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #FFFFFF
+                - override: "Kitting out a whole office?" → Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px; #C6D644
+                - override: "Don't pick it part by part. Tell us what" → Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px
+              - BTN [202×54, row, gap 10, pad 15/30, r 5, bg #C6D644]
+                - **"Plan my fitout"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+                - Icons [19×7]
+    - Product Info [2000×565, row, gap 40, pad 15 230 80 230]
+      - Product info Toggle [950×470, col, gap 15]
+        - Product Data [950×470, col, gap 25]
+          - Product Tabs [950×52, row, border #E5ECF0 1.0px]
+            - Product info Tab [127×52, row, gap 5, pad 10/5, border #C6D644 1.0px]
+              - Product Info Icons [40×32]
+              - **"Description"** — Poppins 700 · 12.0px/21.0px · #161616
+            - Product info Tab [102×42, row, gap 5, pad 5/10, border #C6D644 0.0px]
+              - Product Info Icons [40×32]
+              - **"Specs"** — Poppins 700 · 12.0px/21.0px · #161616
+            - Product info Tab [139×42, row, gap 5, pad 5/10, border #C6D644 0.0px]
+              - Product Info Icons [40×32]
+              - **"Dimensions"** — Poppins 700 · 12.0px/21.0px · #161616
+            - Product info Tab [129×42, row, gap 5, pad 5/10, border #C6D644 0.0px]
+              - Product Info Icons [40×32]
+              - **"Brochures"** — Poppins 700 · 12.0px/21.0px · #161616
+            - Product info Tab [130×42, row, gap 5, pad 5/10, border #C6D644 0.0px]
+              - Product Info Icons [40×32]
+              - **"3D models"** — Poppins 700 · 12.0px/21.0px · #161616
+            - Product info Tab [204×42, row, gap 5, pad 5/10, border #C6D644 0.0px]
+              - Product Info Icons [40×32]
+              - **"Assembly instructions"** — Poppins 700 (Poppins-Bold) · 12.0px/21.0px · #161616
+            - Product info Tab [125×42, row, gap 5, pad 5/10, border #C6D644 0.0px]
+              - Product Info Icons [40×32]
+              - **"Warranty"** — Poppins 700 · 12.0px/21.0px · #161616
+          - Content [950×393, row, gap 40]
+            - Description [457×393, row, gap 10, pad 30 0 35 0]
+              - **"I'm the Quadro Square Leg 2 Person Office Workstation a reli…"** — Poppins 400 · 13.0px/21.0px · #161616
+            - Featured info [453×395, col, gap 10]
+              - MODULAR [453×125, row, gap 20, pad 30/20, r 8, bg image fill]
+                - **"MODULAR PRODUCT This range offer configurations for single d…"** — Poppins 400 · 13.0px/21.0px · #161616
+                  - override: "MODULAR PRODUCT" → Poppins 700 (Poppins-Bold) · 13.0px/21.0px · ls 2.0px
+                  - override: "This range offer configurations for sing" → Poppins 400 · 12.0px/21.0px
+              - SUSTAINABLE [453×125, row, gap 20, pad 30/20, r 8, bg image fill]
+                - **"SUSTAINABLE PRODUCT This product use eco-friendly materials,…"** — Poppins 400 · 13.0px/21.0px · #161616
+                  - override: "SUSTAINABLE PRODUCT" → Poppins 700 (Poppins-Bold) · 13.0px/21.0px · ls 2.0px
+                  - override: "This product use eco-friendly materials," → Poppins 400 · 12.0px/21.0px
+              - CATALOGUE [453×125, row, gap 20, pad 30/20, r 8, bg #F6FAFB]
+                - Frame 5 [27×22, row, gap 10, pad 0/5]
+                - **"CATALOGUE View our 2024  product catalogue."** — Poppins 400 · 13.0px/21.0px · #161616
+                  - override: "CATALOGUE" → Poppins 700 (Poppins-Bold) · 13.0px/21.0px
+                  - override: "View our 2024 
+product catalogue." → Poppins 400 · 12.0px/21.0px
+                - Button [34×33, row, gap 10, pad 9 10 10 13, r 2, bg #C6D644]
+      - Product Info Video [550×451, col, gap 25]
+        - Side Bar Product Info [550×52, col, gap 10, border #E5ECF0 1.0px]
+          - Video Tab [36×52, col, gap 10]
+            - **"Video"** — Poppins 700 · 12.0px/21.0px · #161616
+        - Video Preview [550×393, r 2]
+          - [image] Photo 2 (870×467)
+          - [image] Icon 1 (58×58)
+    - CrosSale [2000×826, col, gap 15, pad 80/230, bg #F6FAFB]
+      - Frame 30 [590×173, col, gap 20]
+        - Upper titles [167×21, row, gap 10]
+          - **"Complete the setup"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #161616
+        - Title [590×117, col, gap 15]
+          - **"One piece is just the start."** — Poppins 500 (Poppins-Medium) · 42.0px/50.0px · #161616
+          - **"Add the pieces that complete it — or grab the lot as a bundl…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+      - Product cards [1540×478, row, gap 20]
+        - Product Card [370×478, col, gap 10, r 12, bg #FFFFFF]
+          - [image] Rectangle (370×270)
+          - Frame 1 [370×198, col, gap 25, pad 20]
+            - Text [330×85, col, gap 15, bg #FFFFFF]
+              - Frame 20 [330×40, col, gap 5]
+                - **"SEATING"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #777777
+                - **"Sonic Glow Mesh Task Chair ..."** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+              - **"$616"** — Hanken Grotesk 600 · 32.0px/38.4px · #161616
+            - Square Big BTN [330×48, row, gap 10, pad 15/30, r 5, bg #C6D644]
+              - **"Add to Cart"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+        - Product Card [370×478, col, gap 10, r 12, bg #FFFFFF]
+          - [image] Rectangle (370×270)
+          - Frame 1 [370×198, col, gap 25, pad 20]
+            - Text [330×85, col, gap 15, bg #FFFFFF]
+              - Frame 20 [330×40, col, gap 5]
+                - **"DESK"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #777777
+                - **"Quadro Square Desk"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+              - **"$1320"** — Hanken Grotesk 600 · 32.0px/38.4px · #161616
+            - Square Big BTN [330×48, row, gap 10, pad 15/30, r 5, bg #C6D644]
+              - **"Add to Cart"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+        - Product Card [370×478, col, gap 10, r 12, bg #FFFFFF]
+          - [image] Rectangle (370×270)
+          - Frame 1 [370×198, col, gap 25, pad 20]
+            - Text [330×85, col, gap 15, bg #FFFFFF]
+              - Frame 20 [330×40, col, gap 5]
+                - **"STORAGE"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #777777
+                - **"Uniform open door storage"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+              - **"$480"** — Hanken Grotesk 600 · 32.0px/38.4px · #161616
+            - Square Big BTN [330×48, row, gap 10, pad 15/30, r 5, bg #C6D644]
+              - **"Add to Cart"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+        - Product Card [370×478, col, gap 10, r 12, bg #FFFFFF]
+          - [image] Rectangle (370×270)
+          - Frame 1 [370×198, col, gap 25, pad 20]
+            - Text [330×85, col, gap 15, bg #FFFFFF]
+              - Frame 20 [330×40, col, gap 5]
+                - **"ACCESSORY"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #777777
+                - **"Pop-up monitor arm"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+              - **"$300"** — Hanken Grotesk 600 · 32.0px/38.4px · #161616
+            - Square Big BTN [330×48, row, gap 10, pad 15/30, r 5, bg #C6D644]
+              - **"Add to Cart"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+    - Product Alternatives [2000×931, row, pad 80/230]
+      - Title [380×761, col, gap 20, pad 0 0 32 0]
+        - Frame 7 [272×418, col, gap 30]
+          - Upper titles [135×20, row, gap 10]
+            - **"STILL DECIDING?"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #161616
+          - **"Compare alternatives"** — Poppins 500 (Poppins-Medium) · 42.0px/50.0px · #161616
+          - **"Genuine like-for-like options in the same class — not paddin…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+        - Frame 6 [390×320, col, gap 10]
+          - Frame 18 [390×250, col]
+            - Row [390×50, row, gap 10, pad 15/20, bg #F9F9F9]
+              - **"Assembly included"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20]
+              - **"Height (mm)"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20, bg #F9F9F9]
+              - **"Width (mm)"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20]
+              - **"Depth (mm)"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20, bg #F9F9F9]
+              - **"Warranty (years)"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Frame 19 [390×60, col]
+            - Row [390×60, row, gap 10, pad 15/20]
+              - BTN [118×30, row, gap 20]
+                - **"See more"** — Poppins 600 · 13.0px/16.9px · ls 2.0px · upper · #161616
+                - Icons [21×30]
+      - Alternative card [390×771, col, gap 5, pad 15/0, r 20]
+        - Card content [390×418, col, gap 25, pad 0/20]
+          - Product mage [350×307, row, gap 10, pad 20, bg image fill]
+            - Tag [140×27, row, pad 5/12, r 24, bg #FF9F17]
+              - **"This product"** — Poppins 600 · 12.0px/15.6px · ls 2.0px · upper · #FFFFFF
+                - override: "This product" → Poppins 600 · 13.0px/16.9px · ls 2.0px · upper; #FFFFFF
+          - Name and price [350×79, col, gap 15]
+            - **"Pop Monitor/Laptop Stand  Black metal"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+            - **"$270"** — Hanken Grotesk 600 · 20.0px/16.0px · #161616
+        - Frame 31 [390×318, col, gap 15]
+          - Table Rows [390×250, col]
+            - Row [390×50, row, gap 10, pad 15/20, bg #F9F9F9]
+              - **"Yes"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20]
+              - **"830"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20, bg #F9F9F9]
+              - **"450"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20]
+              - **"450"** — Poppins 400 · 13.0px/19.5px · #161616
+            - Row [390×50, row, gap 10, pad 15/20, bg #F9F9F9]
+              - **"5"** — Poppins 400 · 13.0px/auto · #161616
+          - Button [390×53, col, gap 10, pad 0/20]
+            - Square Big BTN [350×53, row, gap 10, pad 15/30, r 5, bg #C6D644]
+              - **"Add to Cart"** — Poppins 600 · 16.0px/20.8px · #161616
+      - Alternative card [380×688, col, gap 12]
+        - Card content [380×426, col, gap 25]
+          - Product image [380×322, row, pad 0/20, bg image fill]
+          - Name and price [380×79, col, gap 15, pad 0/20]
+            - **"Pop Monitor/Laptop  Stand Black metal"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+            - **"$260"** — Hanken Grotesk 600 · 20.0px/16.0px · #161616
+        - Table Rows [380×250, col]
+          - Row [380×50, row, gap 10, pad 15/20, bg #F9F9F9]
+            - **"Yes"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20]
+            - **"850"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20, bg #F9F9F9]
+            - **"560"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20]
+            - **"590"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20, bg #F9F9F9]
+            - **"3"** — Poppins 400 · 13.0px/19.5px · #161616
+      - Alternative card [380×688, col, gap 12]
+        - Card content [380×426, col, gap 25]
+          - Product image [380×322, row, pad 0/20, bg image fill]
+            - BTN [305×54, row, gap 10, pad 15/40, r 50, border #777777 @40% 1.0px]
+              - **"Not sure? We'll recommend"** — Poppins 600 (Poppins-SemiBold) · 14.0px/24.0px · #161616
+              - Icons [19×7]
+          - Name and price [380×79, col, gap 15, pad 0/20]
+            - **"Pop Monitor/Laptop  Stand Black metal"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+            - **"$220"** — Hanken Grotesk 600 · 20.0px/16.0px · #161616
+        - Table Rows [380×250, col]
+          - Row [380×50, row, gap 10, pad 15/20, bg #F9F9F9]
+            - **"Yes"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20]
+            - **"850"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20, bg #F9F9F9]
+            - **"560"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20]
+            - **"590"** — Poppins 400 · 13.0px/19.5px · #161616
+          - Row [380×50, row, gap 10, pad 15/20, bg #F9F9F9]
+            - **"3"** — Poppins 400 · 13.0px/19.5px · #161616
+    - About us [2000×924, col, gap 30, pad 80/230, bg #F6FAFB]
+      - Title [1540×280, row, gap 112]
+        - Title [683×280, col, gap 20]
+          - Upper titles [182×21, row, gap 10]
+            - **"NEW HERE? A BIT OF US"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #161616
+          - **"Here's who's behind it."** — Poppins 500 (Poppins-Medium) · 42.0px/50.0px · #161616
+          - **"JasonL is an Australian commercial furniture company.  Since…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+        - Stats [745×160, col]
+          - STAT item [372×66, col, pad 0/20, border #E5ECF0 1.0px]
+            - **"Since 2008"** — Poppins 500 (Poppins-Medium) · 36.0px/38.0px · #161616
+            - **"Australian-owned and run"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+          - STAT item [372×66, col, pad 0/20, border #E5ECF0 1.0px]
+            - **"40,000+"** — Poppins 500 (Poppins-Medium) · 36.0px/38.0px · #161616
+            - **"Workplaces furnished"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+          - STAT item [372×66, col, pad 0/20, border #E5ECF0 1.0px]
+            - **"7 Showrooms"** — Poppins 500 (Poppins-Medium) · 36.0px/38.0px · #161616
+            - **"Showrooms across country"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+          - STAT item [372×66, col, pad 0/20, border #E5ECF0 1.0px]
+            - **"In-house"** — Poppins 500 (Poppins-Medium) · 36.0px/38.0px · #161616
+            - **"Delivery & Install crew"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+      - Frame 8 [1540×393, row, gap 36, r 10, bg #E5ECF0]
+        - Content [760×393, col, gap 48, pad 34 40 40 58]
+          - Frame 9 [590×92, col]
+            - **"A few of the teams we've delivered to."** — Poppins 500 (Poppins-Medium) · 25.0px/auto · #161616
+            - **"These organisations have bought from JasonL. We're not claim…"** — Poppins 400 · 18.0px/auto · #161616
+          - Logos [567×125]
+        - Image [770×393, row, gap 10, pad 10, bg image fill]
+      - Frame 33 [242×31, row, gap 10, pad 0/40]
+        - Frame 32 [45×40]
+        - BTN [162×31, row, gap 10, border #C6D644 2.0px]
+          - **"See recent proyects"** — Poppins 600 (Poppins-SemiBold) · 13.0px/16.9px · title · #161616
+          - Icons [19×7]
+    - Planning [2000×802, col, gap 20, pad 80/230]
+      - Title [1540×205, col, gap 24, pad 0 0 30 0]
+        - Upper titles [204×21, row, gap 10]
+          - **"PLANNING A HOLE OFFICE?"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #161616
+        - **"Don't pick it part by part. Let's plan it."** — Poppins 500 (Poppins-Medium) · 42.0px/50.0px · #161616
+        - **"Tell us the headcount and the space. We'll come back with a …"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+      - Frame 38 [1540×417, col, gap 40]
+        - Days [1540×233, row, gap 40, pad 30/0]
+          - 1 [355×173, col, gap 24]
+            - **"DAY 0"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #C6D644
+            - Frame 34 [355×137, col, gap 15]
+              - **"Chat & measure"** — Poppins 500 (Poppins-Medium) · 25.0px/auto · #161616
+              - **"Tell us your headcount, floor and deadline. We'll come and m…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+          - 2 [355×173, col, gap 24]
+            - **"Days 1–2"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #C6D644
+            - Frame 35 [355×137, col, gap 15]
+              - **"Free layout & quote"** — Poppins 500 (Poppins-Medium) · 25.0px/auto · #161616
+              - **"A real layout for your actual space,  with an itemised quote…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+          - 3 [355×173, col, gap 24]
+            - **"Days 3–8"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #C6D644
+            - Frame 36 [355×137, col, gap 15]
+              - **"We pick & deliver"** — Poppins 500 (Poppins-Medium) · 25.0px/auto · #161616
+              - **"Everything's in stock in our  Australian warehouses — not on…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+          - 4 [355×173, col, gap 24]
+            - **"By day 10"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #C6D644
+            - Frame 37 [355×137, col, gap 15]
+              - **"Installed & working"** — Poppins 500 (Poppins-Medium) · 25.0px/auto · #161616
+              - **"Our own installers build it, place  it and take every box aw…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #777777
+        - SUSTAINABLE [1540×144, row, gap 12, pad 40, r 8, bg #F6FAFB]
+          - **"How is 10 days possible? Stocked Australian warehouses and o…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #161616
+            - override: "How is 10 days possible?" → Poppins 700 (Poppins-Bold) · 16.0px/28.0px
+          - Round Big BTN [346×64, row, gap 10, pad 20/40, r 42, bg #C6D644]
+            - **"Start step 1 — book a free consult"** — Poppins 600 (Poppins-SemiBold) · 16.0px/24.0px · #161616
+  - Showrooms [2000×974, col, gap 35, pad 80/230, bg #F6FAFB]
+    - Title [1540×146, col, gap 20, pad 15/0]
+      - Upper titles [105×21, row, gap 10]
+        - **"come see it"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #161616
+      - **"Showrooms? Seven of them"** — Poppins 500 (Poppins-Medium) · 42.0px/50.0px · #161616
+    - Frame 11 [1540×633, row, gap 20]
+      - Location Rows [1149×630, col]
+        - Location Row [1149×90, row, gap 43, pad 18/0, border #777777 @40% 1.0px]
+          - Content [1149×70, row, pad 10 20 10 10, r 10/0/0/10, bg #F6FAFB]
+            - **"Sydney City"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+            - **"Shop 3, 29–31 O'Riordan St, Alexandria NSW"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Button [228×56, row, gap 8, pad 16/28, r 42, bg #FFFFFF, border #161616 1.0px]
+              - **"360º Virtual walk-trough"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                - override: "360º" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+                - override: "Virtual walk-trough" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - **"1300 350 618"** — Poppins 400 (Poppins-Regular) · 17.0px/auto · #161616
+        - Location Row [1149×90, row, gap 43, pad 18/0, border #777777 @40% 1.0px]
+          - Content [1149×95, row, pad 10 20 10 10, r 10/0/0/10]
+            - **"Western Sydney"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+            - **"2A/149 McCredie Rd, Smithfield NSW"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Button [228×56, row, gap 8, pad 16/28, r 42, bg #FFFFFF, border #161616 1.0px]
+              - **"360º Virtual walk-trough"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                - override: "360º" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+                - override: "Virtual walk-trough" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - **"1300 350 624"** — Poppins 400 (Poppins-Regular) · 17.0px/auto · #161616
+        - Location Row [1149×90, row, gap 43, pad 18/0, border #777777 @40% 1.0px]
+          - Content [1149×95, row, pad 10 20 10 10, r 10/0/0/10]
+            - **"Melbourne"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+            - **"100 Park St, South Melbourne VIC"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Button [228×56, row, gap 8, pad 16/28, r 42, bg #FFFFFF, border #161616 1.0px]
+              - **"360º Virtual walk-trough"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                - override: "360º" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+                - override: "Virtual walk-trough" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - **"1300 350 627"** — Poppins 400 (Poppins-Regular) · 17.0px/auto · #161616
+        - Location Row [1149×90, row, gap 43, pad 18/0, border #777777 @40% 1.0px]
+          - Content [1149×95, row, pad 10 20 10 10, r 10/0/0/10]
+            - **"Brisbane"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+            - **"728 Ann St, Fortitude Valley QLD"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Button [227×56, row, gap 8, pad 16/28, r 42, bg #FFFFFF, border #161616 1.0px]
+              - **"360º Virtual walk-trough"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                - override: "360º" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+                - override: "Virtual walk-trough" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - **"1300 350 629"** — Poppins 400 (Poppins-Regular) · 17.0px/auto · #161616
+        - Location Row [1149×90, row, gap 43, pad 18/0, border #777777 @40% 1.0px]
+          - Content [1149×95, row, pad 10 20 10 10, r 10/0/0/10]
+            - **"Adelaide"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+            - **"179 Grote St, Adelaide SA"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Button [228×56, row, gap 8, pad 16/28, r 42, bg #FFFFFF, border #161616 1.0px]
+              - **"360º Virtual walk-trough"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                - override: "360º" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+                - override: "Virtual walk-trough" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - **"1300 395 731"** — Poppins 400 (Poppins-Regular) · 17.0px/auto · #161616
+        - Location Row [1149×90, row, gap 43, pad 18/0, border #777777 @40% 1.0px]
+          - Content [1149×95, row, pad 10 20 10 10, r 10/0/0/10]
+            - **"Perth"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+            - **"11 King Edward Rd, Osborne Park WA"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Button [227×56, row, gap 8, pad 16/28, r 42, bg #FFFFFF, border #161616 1.0px]
+              - **"360ª Virtual walk-trough"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                - override: "360ª" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px
+                - override: "Virtual walk-trough" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - **"0404 151 811"** — Poppins 400 (Poppins-Regular) · 17.0px/auto · #161616
+        - Location Row [1149×90, row, gap 43, pad 18/0, border #777777 @40% 0.0px]
+          - Content [1149×95, row, pad 10 20 10 10, r 10/0/0/10]
+            - **"Gold Coast"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+            - **"50 Ferry Rd, Southport QLD 4215"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #777777
+            - Button [228×56, row, gap 8, pad 16/28, r 42, bg #FFFFFF, border #161616 1.0px]
+              - **"360º Virtual walk-trough"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #161616
+                - override: "360º" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+                - override: "Virtual walk-trough" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #777777
+            - **"1300 182 947"** — Poppins 400 (Poppins-Regular) · 17.0px/auto · #161616
+      - Frame 10 [371×613, r 20, bg image fill]
+  - Final CTA [2000×470, row, gap 10, pad 80 230 60 230, bg #161616]
+    - Frame 12 [1540×330, row, gap 400]
+      - Column [400×330, col, gap 20]
+        - Upper titles [248×21, row, gap 10]
+          - **"No obligation, no runaround"** — Poppins 600 (Poppins-SemiBold) · 10.0px/auto · ls 2.4px · upper · #FFFFFF
+        - **"Tell us what  you're planning."** — Poppins 500 (Poppins-Medium) · 42.0px/50.0px · #FFFFFF
+        - Round Big BTN [262×68, row, gap 10, pad 20/60, r 42, bg #C6D644]
+          - **"Plan my fitout"** — Poppins 600 (Poppins-SemiBold) · 16.0px/28.0px · #161616
+          - Icons [19×7]
+        - **"Takes 60 seconds. No spam, no obligation"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #FFFFFF
+          - override: "Takes 60 seconds." → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #F6FAFB
+          - override: "No spam, no obligation" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+      - Column [620×321, col, gap 30, pad 45 0 25 0]
+        - **"JasonL team will come back within 2 business  hours on weekd…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #FFFFFF
+        - **"Call   1300 864 264"** — Poppins 500 (Poppins-Medium) · 42.0px/50.0px · #FFFFFF
+          - override: "1300 864 264" → Poppins 500 (Poppins-Medium) · 42.0px/50.0px; #C6D644
+        - Frame 13 [620×24, row, gap 10]
+          - **"sales@jasonl.com.au  •  Prefer to see it first?   Book a sho…"** — Poppins 400 (Poppins-Regular) · 14.0px/24.0px · #FFFFFF
+            - override: "sales@jasonl.com.au  •  Prefer to see it" → Poppins 400 (Poppins-Regular) · 14.0px/24.0px; #E5ECF0
+            - override: "Book a showroom visit" → Poppins 700 (Poppins-Bold) · 14.0px/24.0px
+  - Footer [2000×390, row, gap 400, pad 60/230, bg #161616, border #777777 1.0px]
+    - Column 1 [400×254, col, gap 30]
+      - JasonL logo [140×43]
+      - **"JasonL® is Australian owned and operated. We design, deliver…"** — Poppins 400 (Poppins-Regular) · 16.0px/28.0px · #FFFFFF
+      - Reviews [241×35, row, gap 10]
+        - **"4.8 on Google  •  1,900+ reviews"** — Poppins 400 · 14.0px/27.0px · #FFFFFF
+    - Column 2 [740×270, row, gap 20]
+      - Fitouts [247×271, col, gap 20]
+        - **"FITOUTS"** — Poppins 600 · 14.0px/auto · ls 2.8px · #FFFFFF
+        - **"How it works Interior design Case studies Blog FAQs"** — Poppins 400 · 16.0px/46.0px · #FFFFFF
+      - Shop [247×271, col, gap 20]
+        - **"SHOP"** — Poppins 600 · 14.0px/auto · ls 2.8px · #FFFFFF
+        - **"Chairs Desks Workstations Storage Tables"** — Poppins 400 · 16.0px/46.0px · #FFFFFF
+      - Company [247×271, col, gap 20]
+        - **"COMPANY"** — Poppins 600 · 14.0px/auto · ls 2.8px · #FFFFFF
+        - **"About Us Privacy Policy Terms of Use Shipping & Returns Asse…"** — Poppins 400 · 16.0px/46.0px · #FFFFFF

@@ -181,3 +181,20 @@ deleted (superseded — remove from theme too, optional). initShowrooms12526 por
 
 Re-upload: assets/cro-hp.css, assets/cro-hp.js, sections/cro-hp-showrooms.liquid,
 sections/cro-hp-final-ask.liquid, sections/cro-hp-footer.liquid, templates/index.cro-hp.json.
+
+## PDP Round 2 mirror (2026-08-25) — three homepage items from the CRO-12526 v2 client round
+
+Client "PDP Rebuild Updates" Round 2 named the homepage explicitly on #1 and the other two use the
+same components, so they were applied here in the same pass (details in the PDP folder's
+user-story.md round 17):
+- #1 "Fitouts? Handled." step columns gap 40 → 100 (`.crohp-how__grid`, ≥990 only).
+- #2 mechanism strip copy breaks before "No middlemen, …" on desktop: new `mech_rest_2` setting +
+  `<br class="crohp-br-desktop">`; `mech_rest` default is now the first sentence only.
+  index.cro-hp.json stores nothing for this section, so defaults apply — if "Copy" was ever saved
+  in the theme editor, shorten it there.
+- #4 orange "Want to elevate your space?" bar hidden on this template
+  (`body.index-cro-hp .pdp-header-banner`) — it is rendered from layout/theme.liquid.
+- #6 "Big or small, we've done one like yours." — last two words glued (`.crohp-nowrap` span from
+  Liquid) + `text-wrap: balance` on the cases heading.
+
+Re-upload: assets/cro-hp.css, sections/cro-hp-how-it-works.liquid, sections/cro-hp-case-studies.liquid.

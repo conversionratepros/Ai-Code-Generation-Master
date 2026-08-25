@@ -268,15 +268,37 @@
             },
             {
                 ticket: "CRO-6614",
-                name: "Recipe KI93 | Wording change & Confirm CTA (it3) (Ai) | ALL",
-                id: "1004175777",
+                name: "Recipe KI93 | Wording change & Confirm CTA (it3) | ALL",
+                /* 2026-08-24: was "1004175777" ((Ai) copy) — that experience is
+                   no longer served in the CDN config, so the status gate
+                   skipped it and the flag never got set. 1004171970 is the
+                   active it3 experiment. */
+                id: "1004171970",
                 /* v1 flag reads "test_93_Hide_prefilled_form" (copy-paste of
                    TEST 91's naming, not this test's name) — it is what the
                    Location JS condition checks, do NOT rename. */
                 flag: "crotest_test_93_Hide_prefilled_form",
                 classes: [],
                 match: matchClearScoreLanding,
-                gate: function (done) { done(isFromClearScore("Web")); }
+                /* it3 URLs carry the prefill as plain params
+                   (firstname/email/id_number…) instead of the legacy `u`
+                   payload — the QA URL in the variation code has no `u`.
+                   Accept either payload form; do NOT reuse the shared
+                   isFromClearScore() (TEST 91 still needs strict `u`). */
+                gate: function (done) {
+                    try {
+                        var p = new URLSearchParams(window.location.search);
+                        var hasPayload =
+                            !!(p.get("u") || "").trim() ||
+                            !!(p.get("id_number") || "").trim() ||
+                            !!(p.get("email") || "").trim();
+                        done(
+                            p.get("utm_source") === "ClearScore" &&
+                            p.get("utm_medium") === "Web" &&
+                            hasPayload
+                        );
+                    } catch (e) { done(false); }
+                }
             },
             {
                 ticket: "CRO-6612",

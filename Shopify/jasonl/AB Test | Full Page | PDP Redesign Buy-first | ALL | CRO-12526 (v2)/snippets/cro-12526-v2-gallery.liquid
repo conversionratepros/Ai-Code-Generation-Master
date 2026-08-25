@@ -29,7 +29,17 @@
     {%- render 'best-seller-tag' -%}
   </div>
 
-  {% render 'product-media-gallery-custom' %}
+  {%- comment -%}
+    Round 17 (2026-08-25, client Round 2 #3): the theme snippet requests
+    thumbnails at img_url:'100x' (100px wide) — fine for control's 61px
+    thumbs, blurry once this build shows them 5-up at ~180×120 (and 2×
+    DPR). The snippet is still reused UNCHANGED; its output is captured and
+    only the "_100x." thumbnail size token is rewritten to "_400x."
+    (main slides are 1001x/2002x and never contain "_100x."). Verified
+    live: thumb src = .../COLETO-BK_100x.jpg?v=… — same file, larger render.
+  {%- endcomment -%}
+  {%- capture cro12526v2_gallery_html -%}{% render 'product-media-gallery-custom' %}{%- endcapture -%}
+  {{ cro12526v2_gallery_html | replace: '_100x.', '_400x.' }}
 
   <button type="button" class="cro12526v2-gallery__view-all" data-cro12526v2-view-all>
     <span class="cro12526v2-gallery__view-all-text">View all images</span>

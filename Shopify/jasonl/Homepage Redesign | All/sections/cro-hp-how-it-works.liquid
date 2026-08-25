@@ -34,6 +34,17 @@
       <p class="crohp-how__mech-copy">
         <strong>{{ section.settings.mech_bold }}</strong>
         {{ section.settings.mech_rest }}
+        {%- if section.settings.mech_rest_2 != blank -%}
+          {%- comment -%}
+            PDP Round 2 #2 (2026-08-25, mirrored from CRO-12526 v2 planning
+            bar): copy breaks onto a second line at "No middlemen, …" on
+            desktop. <br> shows ≥750px only (mobile is centered, lead-in
+            already on its own line). THEME EDITOR: if "Copy" was ever saved,
+            shorten it to the first sentence — stored values beat defaults.
+          {%- endcomment -%}
+          <br class="crohp-br-desktop" aria-hidden="true">
+          {{ section.settings.mech_rest_2 }}
+        {%- endif -%}
       </p>
       <a class="crohp-btn crohp-btn--lime typeform-share getaquoteclick typeform-embed"
         {{ settings.typeformurls_url_1 }}
@@ -80,8 +91,14 @@
     {
       "type": "textarea",
       "id": "mech_rest",
-      "label": "Copy",
-      "default": "Stocked Australian warehouses and our own install crews. No middlemen, no shipping delays — it's logistics, not marketing."
+      "label": "Copy — line 1 (desktop)",
+      "default": "Stocked Australian warehouses and our own install crews."
+    },
+    {
+      "type": "textarea",
+      "id": "mech_rest_2",
+      "label": "Copy — line 2 (desktop; breaks onto its own line)",
+      "default": "No middlemen, no shipping delays — it's logistics, not marketing."
     },
     {
       "type": "text",
