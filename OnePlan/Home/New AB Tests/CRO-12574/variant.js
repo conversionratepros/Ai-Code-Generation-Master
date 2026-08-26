@@ -35,24 +35,30 @@
      * router chips, photographic claim card + final CTA art, name-first
      * review cards with a scrollable quote.
      *
-     * ASSETS - upload these files (in this test folder's assets/) to
-     * S3 before QA; the code references their final URLs already:
+     * v3.1 (2026-08-13) adds the client's new APP DOWNLOAD section
+     * (Figma desktop 354:659 / mobile 362:1047) as the last block of
+     * the redesign, between the self-serve strip and the site footer.
+     *
+     * ASSETS - upload these 5 files to S3 before QA; the code references
+     * their final URLs already:
      *   CRO-12574-1.jpg   (hero bg / mobile hero photo)
      *   CRO-12574-2.webp   (USP photo + final CTA tilted cards)
      *   CRO-12574-3.webp (final CTA right-hand art)
-     *   CRO-12574-4.svg       (USP + final CTA pattern bg)
-     *   CRO-12574-5.png   (app section - Google Play badge)      NEW 2026-08-13
-     *   CRO-12574-6.png   (app section - App Store badge)        NEW 2026-08-13
-     *   CRO-12574-7.png   (app section - Huawei AppGallery badge) NEW 2026-08-13
-     *   CRO-12574-8.png   (app section - Oneplan app phone photo) NEW 2026-08-13
-     *   CRO-12574-9.svg   (app section - pattern bg, navy @ 3%)  NEW 2026-08-13
+     *   CRO-12574-4.svg       (USP + final CTA + app-download pattern bg)
+     *   CRO-12574-5.png   (app section phone-in-hand photo)
+     *   NOTE 1-4 live in the v2 test folder's assets/; 5 is in this
+     *   folder's assets/. The store badges are built in markup + inline
+     *   SVG, so the Figma badge exports (assets/CRO-12574-6/7/8.png)
+     *   are kept for reference only and are NOT referenced by the code.
+     *   CRO-12574-5.png is only 228x296 in Figma and is displayed at
+     *   424x525 - ask the client for a higher-res original if it looks
+     *   soft in QA.
      *
      * PLACEHOLDER LINK DESTINATIONS - unchanged from v2, still to be
      * confirmed before launch (marked data-cro-placeholder=
-     * "verify-destination"): login, Hellopeter x3, WhatsApp number.
-     * The app section's three store badges (data-cro-placeholder=
-     * "store-link-pending") shipped WITHOUT hrefs - client has not
-     * supplied the store URLs yet; add them when they arrive.
+     * "verify-destination"): login, Hellopeter x3, WhatsApp number,
+     * plus the AppGallery badge (no Oneplan listing found - the Google
+     * Play and App Store badge links are the real, verified stores).
      * "Prefer a call?" still opens the site's #homePageCallMePopUp
      * modal (design links it to #router; modal wiring is deliberate).
      * ================================================================== */
@@ -128,7 +134,7 @@
 <section class="products" id="products">
   <div class="wrap">
     <div class="section-head">
-      <h2>What each plan covers</h2>
+      <h2>What each plan covers.</h2>
       <p>A quick look at what you get with each type of cover. Prices are a monthly starting point, and your quote is tailored to you.</p>
     </div>
     <div class="card-grid">
@@ -138,7 +144,7 @@
         <span class="picon"><svg><use href="#cro12574-health"></use></svg></span>
         <h3>Health Insurance</h3>
         <div class="price">from R250<small>/mo</small></div>
-        <p>Access to a wide range of benefits and private hospitals like Netcare, Life and Mediclinic, plus day-to-day claims paid upfront.</p>
+        <p>Access a wide range of benefits, including private hospitals like Netcare, Life and Mediclinic, 24/7 virtual doctor consultations, and Day-to-Day claims paid upfront.</p>
         <div class="pcta">
           <a class="btn btn-teal" href="https://health.oneplan.co.za/?referrer=homepagequote"><span class="cro-height btn">Get online quote </span><svg><use href="#cro12574-arrow"></use></svg></a>
           <a class="seeplans" href="https://www.oneplan.co.za/plans/HealthPlans">See plans &amp; what's covered</a>
@@ -185,7 +191,7 @@
 <!-- ===================== REVIEWS (carousel) ===================== -->
 <section class="reviews">
     <div class="wrap rev-head">
-      <h2>Making our <span class="hl2 cro-height">customers smile</span> is at the heart of what we do</h2>
+      <h2>Making our <span class="hl2 cro-height">customers smile</span> is at the heart of what we do.</h2>
       <a class="hp-link" href="https://www.hellopeter.com/oneplan" data-cro-placeholder="verify-destination" target="_blank" rel="noopener"><img class="hp-logo" src="https://www.oneplan.co.za/assets/2025/hellopeter-white.svg" alt="Hellopeter"></a>
     </div>
     <div class="rev-carousel">
@@ -247,7 +253,7 @@
 <section class="answers" id="answers">
   <div class="wrap">
     <div class="section-head">
-      <h2>Everything you want to know before you decide</h2>
+      <h2>Everything you want to know before you decide.</h2>
       <p>The questions people ask us most, answered upfront, so you can read first and talk later (or not at all).</p>
     </div>
     <div class="ans-grid">
@@ -275,7 +281,7 @@
   <img class="fc-card fc-card2" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-2.webp" alt="" aria-hidden="true" loading="lazy">
   <img class="fc-hand" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-3.webp" alt="" aria-hidden="true" loading="lazy">
   <p class="eyebrow">Health &middot; Pet &middot; Gap &middot; Car &amp; Household</p>
-  <h2>Ready when you are</h2>
+  <h2>Ready when you are.</h2>
   <p class="fc-copy">Work out an online quote and complete your Oneplan application in a few easy steps, in your own space. It only takes a few minutes, or chat to us if you need us.</p>
   <div class="row">
     <a class="btn btn-teal" href="#products"><span class="cro-height">Get a free online quote </span><svg><use href="#cro12574-arrow"></use></svg></a>
@@ -304,25 +310,102 @@
   </div>
 </section>
 
-<!-- ===================== APP DOWNLOAD (Oneplan ecosystem) - client addition 2026-08-13 ===================== -->
+<!-- ===================== APP DOWNLOAD (Figma 354:659 / mobile 362:1047) ===================== -->
 <section class="appdl">
-  <div class="ap-bg ap-bg-l" aria-hidden="true"></div>
-  <div class="ap-bg ap-bg-r" aria-hidden="true"></div>
-  <div class="wrap ap-in">
-    <div class="ap-copy">
+  <div class="ad-bg ad-bg-l" aria-hidden="true"></div>
+  <div class="ad-bg ad-bg-r" aria-hidden="true"></div>
+  <div class="wrap ad-in">
+    <div class="ad-copy">
       <p class="eyebrow">Oneplan ecosystem</p>
-      <h2>DOWNLOAD THE APP!</h2>
-      <p class="ap-sub">Download the Oneplan App on the Apple or Android app store to load and manage your claims quickly and easily.</p>
-      <!-- store URLs not supplied yet - anchors shipped without href so nothing
-           jumps to page top; add the href when the client sends the links -->
-      <div class="ap-badges">
-        <a class="ap-badge" data-cro-placeholder="store-link-pending" aria-label="Get it on Google Play"><img src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-5.png" alt="Get it on Google Play" width="233" height="44" loading="lazy"></a>
-        <a class="ap-badge" data-cro-placeholder="store-link-pending" aria-label="Download on the App Store"><img src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-6.png" alt="Download on the App Store" width="233" height="44" loading="lazy"></a>
-        <a class="ap-badge" data-cro-placeholder="store-link-pending" aria-label="Explore it on Huawei AppGallery"><img src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-7.png" alt="Explore it on Huawei AppGallery" width="220" height="44" loading="lazy"></a>
-      </div>
+      <h2>Download the app!</h2>
+      <p class="ad-lead">Download the Oneplan App on the Apple or Android app store to load and manage your claims quickly and easily.</p>
+        <div class="ad-badges">
+  <a class="ad-badge ad-badge--google" href="https://play.google.com/store/apps/details?id=co.za.oneplan" target="_blank" rel="noopener">
+    <svg class="ad-badge__icon ad-badge__icon--play" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="-4.12599 -7.65905 35.75858 45.9543" aria-hidden="true">
+    <defs>
+      <linearGradient id="google-play-blue" gradientUnits="userSpaceOnUse" y2="21.86" x2="-5.9" y1="1.87" x1="14.09">
+        <stop offset="0" stop-color="#008eff"></stop>
+        <stop offset=".01" stop-color="#008fff"></stop>
+        <stop offset=".26" stop-color="#00acff"></stop>
+        <stop offset=".51" stop-color="#00c0ff"></stop>
+        <stop offset=".76" stop-color="#00cdff"></stop>
+        <stop offset="1" stop-color="#00d1ff"></stop>
+      </linearGradient>
+
+      <linearGradient id="google-play-yellow" gradientUnits="userSpaceOnUse" y2="15.32" x2="-2.37" y1="15.32" x1="26.45">
+        <stop offset="0" stop-color="#ffd800"></stop>
+        <stop offset="1" stop-color="#ff8a00"></stop>
+      </linearGradient>
+
+      <linearGradient id="google-play-red" gradientUnits="userSpaceOnUse" y2="45.15" x2="-9.41" y1="18.05" x1="17.69">
+        <stop offset="0" stop-color="#ff3a44"></stop>
+        <stop offset="1" stop-color="#b11162"></stop>
+      </linearGradient>
+
+      <linearGradient id="google-play-green" gradientUnits="userSpaceOnUse" y2="3.81" x2="8.92" y1="-8.29" x1="-3.19">
+        <stop offset="0" stop-color="#328e71"></stop>
+        <stop offset=".07" stop-color="#2d9571"></stop>
+        <stop offset=".48" stop-color="#15bd74"></stop>
+        <stop offset=".8" stop-color="#06d575"></stop>
+        <stop offset="1" stop-color="#00de76"></stop>
+      </linearGradient>
+    </defs>
+
+    <g transform="translate(.004)">
+      <path d="M.55.48A2.39 2.39 0 000 2.15v26.34a2.41 2.41 0 00.55 1.67l.09.09 14.75-14.76v-.35L.64.39z" fill="url(#google-play-blue)"></path>
+
+      <path d="M20.31 20.41l-4.92-4.92v-.35l4.92-4.91.11.06 5.83 3.31c1.67.94 1.67 2.49 0 3.44l-5.83 3.31z" fill="url(#google-play-yellow)"></path>
+
+      <path d="M20.42 20.35l-5-5L.55 30.16a2 2 0 002.45.07l17.39-9.88" fill="url(#google-play-red)"></path>
+
+      <path d="M20.42 10.29L3 .4A1.93 1.93 0 00.55.48l14.84 14.84z" fill="url(#google-play-green)"></path>
+
+      <path d="M20.31 20.24L3 30.06a2 2 0 01-2.39 0l-.09.09.09.09a2 2 0 002.39 0l17.39-9.88z" opacity=".1"></path>
+
+      <path d="M.55 30A2.43 2.43 0 010 28.32v.17a2.41 2.41 0 00.55 1.67l.09-.09z" opacity=".07"></path>
+
+      <path d="M26.25 16.86l-5.94 3.38.11.11L26.25 17a2.11 2.11 0 001.25-1.72 2.21 2.21 0 01-1.25 1.58z" opacity=".07"></path>
+
+      <path d="M3 .58l23.25 13.19a2.2 2.2 0 011.25 1.55 2.09 2.09 0 00-1.25-1.72L3 .4C1.36-.54 0 .24 0 2.15v.17C0 .42 1.36-.37 3 .58z" fill="#fff" opacity=".3"></path>
+    </g>
+  </svg>
+
+    <span class="ad-badge__text">
+      <small>GET IT ON</small>
+      <strong>Google Play</strong>
+    </span>
+  </a>
+
+  <!-- App Store -->
+  <a class="ad-badge ad-badge--apple" href="https://apps.apple.com/za/app/oneplan-app/id1144931726" target="_blank" rel="noopener">
+    <svg class="ad-badge__icon ad-badge__icon--apple" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+<path d="M24.5495 9.62292C21.7145 9.62292 20.5164 10.9757 18.542 10.9757C16.5177 10.9757 14.9737 9.63277 12.517 9.63277C10.1123 9.63277 7.54797 11.1009 5.91953 13.6019C3.63297 17.1288 4.0211 23.7712 7.72445 29.43C9.04914 31.4557 10.8182 33.7275 13.1385 33.7521H13.1807C15.1973 33.7521 15.7963 32.4316 18.5716 32.4161H18.6138C21.3475 32.4161 21.8959 33.7443 23.9041 33.7443H23.9463C26.2666 33.7197 28.1305 31.2025 29.4552 29.1846C30.4087 27.7333 30.763 27.0049 31.4943 25.3631C26.1372 23.3296 25.2766 15.7352 30.5746 12.8236C28.9574 10.7986 26.6849 9.62574 24.5425 9.62574L24.5495 9.62292Z" fill="white"></path>
+<path d="M23.9219 2.25C22.2344 2.36461 20.2657 3.43898 19.1125 4.84172C18.0663 6.11297 17.2057 7.99875 17.5432 9.82758H17.6782C19.4754 9.82758 21.3147 8.74547 22.3891 7.35891C23.4241 6.03914 24.2088 4.16883 23.9219 2.25Z" fill="white"></path>
+</svg>
+
+    <span class="ad-badge__text">
+      <small>Download on the</small>
+      <strong>App Store</strong>
+    </span>
+  </a>
+
+  <!-- AppGallery -->
+  <a class="ad-badge ad-badge--huawei" href="https://appgallery.huawei.com/search/Oneplan" target="_blank" rel="noopener">
+  <svg class="ad-badge__icon ad-badge__icon--huawei" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+<rect width="25" height="25" rx="5" fill="#C8102E"/>
+<path d="M2.31605 16.1839V12.5475H3.08487V14.0479H4.6456V12.5475H5.41264V16.1839H4.6456V14.6818H3.08487V16.1839H2.31605ZM8.29261 12.5475H9.06143V14.909C9.06143 15.1742 8.99811 15.4062 8.87145 15.6051C8.74598 15.8039 8.57019 15.959 8.34411 16.0703C8.11802 16.1803 7.85464 16.2354 7.55398 16.2354C7.25213 16.2354 6.98816 16.1803 6.76207 16.0703C6.53598 15.959 6.3602 15.8039 6.23473 15.6051C6.10926 15.4062 6.04652 15.1742 6.04652 14.909V12.5475H6.81534V14.8433C6.81534 14.9818 6.84553 15.1049 6.90589 15.2127C6.96745 15.3204 7.05386 15.405 7.16513 15.4666C7.2764 15.5281 7.40601 15.5589 7.55398 15.5589C7.70313 15.5589 7.83274 15.5281 7.94283 15.4666C8.0541 15.405 8.13991 15.3204 8.20028 15.2127C8.26184 15.1049 8.29261 14.9818 8.29261 14.8433V12.5475ZM10.3208 16.1839H9.49689L10.7522 12.5475H11.743L12.9965 16.1839H12.1727L11.2618 13.3785H11.2334L10.3208 16.1839ZM10.2693 14.7546H12.2153V15.3547H10.2693V14.7546ZM13.8865 16.1839L12.8461 12.5475H13.6859L14.2878 15.0742H14.318L14.9821 12.5475H15.7012L16.3635 15.0795H16.3954L16.9973 12.5475H17.8372L16.7967 16.1839H16.0474L15.3549 13.8064H15.3265L14.6358 16.1839H13.8865ZM18.2487 16.1839V12.5475H20.699V13.1814H19.0175V14.0479H20.5729V14.6818H19.0175V15.55H20.7061V16.1839H18.2487ZM22.079 12.5475V16.1839H21.3102V12.5475H22.079Z" fill="white"/>
+<path d="M8.49219 3.93134C8.49219 3.93134 8.61519 8.13741 12.5039 8.13741C16.3926 8.13741 16.5156 3.93134 16.5156 3.93134" stroke="white" stroke-linecap="round"/>
+</svg>
+  
+    <span class="ad-badge__text">
+      <small>EXPLORE IT ON</small>
+      <strong>AppGallery</strong>
+    </span>
+  </a>
+</div>
     </div>
+    <img class="ad-phone" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/mockup.png" alt="The Oneplan app open on a phone" width="424" height="525" loading="lazy">
   </div>
-  <img class="ap-phone" src="https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-8.png" alt="The Oneplan app on a phone" width="424" height="525" loading="lazy">
 </section>
 </div>`;
 

@@ -1,0 +1,535 @@
+# Figma spec — Oneplan — Homepage Relook (CRO-12173)
+
+## Type ramp (exact values, deduped)
+
+| Family | Weight | Size | Line height | Uses |
+|---|---|---|---|---|
+| Anek Devanagari | 700 | 53.0px | 53.0px | 1 |
+| Anek Devanagari | 700 | 40.0px | 40.0px | 6 |
+| Anek Devanagari | 700 | 24.0px | 24.0px | 1 |
+| Anek Devanagari | 400 | 18.0px | 27.0px | 6 |
+| Anek Devanagari | 700 | 18.0px | auto | 4 |
+| Anek Devanagari | 700 | 16.0px | auto | 15 |
+| Anek Devanagari | 500 | 16.0px | auto | 5 |
+| Anek Devanagari | 600 | 16.0px | 24.0px | 3 |
+| Anek Devanagari | 400 | 14.0px | 21.0px | 25 |
+| Anek Devanagari | 600 | 14.0px | auto | 11 |
+| Anek Devanagari | 600 | 14.0px | 21.0px | 6 |
+| Aptos | 700 | 14.0px | auto | 2 |
+| Anek Devanagari | 400 | 14.0px | auto | 6 |
+| Aptos | 700 | 12.0px | auto | 5 |
+| Anek Devanagari | 400 | 12.0px | 18.0px | 8 |
+| Anek Devanagari | 700 | 12.0px | auto | 6 |
+| Anek Devanagari | 700 | 12.0px | 18.0px | 5 |
+
+## Colour palette (solid fills, deduped)
+
+- `#FFFFFF` × 43
+- `#05066A` × 35
+- `#09075C` × 33
+- `#5A5F73` × 26
+- `#B5F9FF` × 12
+- `#6EF3FF` × 10
+- `#F5F5F5` × 8
+- `#B9F0FF` × 6
+- `#0202E4` × 2
+- `#666666` × 2
+- `#C7CBE6` × 2
+- `#40AEE1` × 1
+- `#33E2D1` × 1
+- `#5BF1FD` × 1
+- `#FFD15A` × 1
+- `#DBE6FF` × 1
+
+## Homepage — Variant B v2 — Desktop (1512) (`44:5710`)
+
+- Homepage — Variant B v2 — Desktop (1512) [1512×4928, col]
+  - Header [1512×74, row, pad 0/34, bg #09075C]
+    - Oneplan Logo_One Logo 1 [107×40]
+      - Layer 1 [107×40]
+        - Group [107×40]
+    - Nav [755×74, row, gap 16]
+      - Nav link [40×29, row, gap 6, pad 10/0]
+        - **"PET"** — Anek Devanagari 400 · 14.0px/21.0px · #FFFFFF
+        - Group [11×6]
+          - Group [11×6]
+            - Group [11×6]
+      - Nav link [64×29, row, gap 6, pad 10/0]
+        - **"HEALTH"** — Anek Devanagari 400 · 14.0px/21.0px · #FFFFFF
+        - Group [11×6]
+          - Group [11×6]
+            - Group [11×6]
+      - Nav link [42×29, row, gap 6, pad 10/0]
+        - **"GAP"** — Anek Devanagari 400 · 14.0px/21.0px · #FFFFFF
+        - Group [11×6]
+          - Group [11×6]
+            - Group [11×6]
+      - Nav link [128×29, row, gap 6, pad 10/0]
+        - **"CAR & HOUSEHOLD"** — Anek Devanagari 400 · 14.0px/21.0px · #FFFFFF
+        - Group [11×6]
+          - Group [11×6]
+            - Group [11×6]
+      - Nav link [77×29, row, gap 6, pad 10/0]
+        - **"ABOUT US"** — Anek Devanagari 400 · 14.0px/21.0px · #FFFFFF
+        - Group [11×6]
+          - Group [11×6]
+            - Group [11×6]
+      - Nav link [100×29, row, gap 6, pad 10/0]
+        - **"CLAIMS PROCESS"** — Anek Devanagari 400 · 14.0px/21.0px · #FFFFFF
+      - Frame 15 [207×74, row]
+        - Link [89×74, col, pad 10/15, border #40AEE1 1.0px]
+          - **"CALL ME"** — Anek Devanagari 400 · 14.0px/21.0px · #40AEE1
+        - Link [118×74, col, pad 10/15, border #33E2D1 1.0px]
+          - **"CONTACT US"** — Anek Devanagari 400 · 14.0px/21.0px · #33E2D1
+    - Container [107×39, row, gap 12]
+      - Link [107×39, row, gap 6, pad 15/18, r 30, bg #5BF1FD, shadow 0 6 14 #000000 @18%]
+        - **"Get a quote"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #09075C
+  - Hero with 3 section [1512×1347, col, gap 36, bg #FFFFFF]
+    - Section [1512×661, col, bg image fill]
+      - Container [1280×661, col, pad 60/20]
+        - Container [664×516, col, gap 36]
+          - **"Health · Pet · Gap · Car & Home"** — Aptos 700 (Aptos-Bold) · 12.0px/auto · ls 1.2px · upper · #B5F9FF
+          - **"Insurance that pays your  claims  upfront."** — Anek Devanagari 700 · 53.0px/53.0px · #FFFFFF
+            - override: "claims" → #05066A
+            - override: "upfront" → Anek Devanagari 700 · 53.0px/53.0px; #FFFFFF
+          - **"Settle your doctor, vet or hospital bill on the spot with yo…"** — Anek Devanagari 400 · 18.0px/27.0px · #FFFFFF
+          - Frame 1 [570×274, col, gap 20]
+            - Container [566×246, col, gap 20, pad 24/20, r 16, bg #FFFFFF @20%, border #FFFFFF @18% 1.0px]
+              - **"What would you like to cover? Pick one to start."** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/21.0px · #FFFFFF
+              - Choose a product to quote:margin [524×99, row]
+                - Choose a product to quote [524×99, row, gap 12]
+                  - Radio Button [122×99, col, gap 16, pad 12, r 12, bg #FFFFFF, border #6EF3FF 2.0px]
+                    - Health 1 [32×29]
+                      - Layer 1 [32×29]
+                    - Text [74×25, col, gap 8]
+                      - **"Health"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/21.0px · #05066A
+                      - **"from R250/mo"** — Anek Devanagari 400 · 12.0px/18.0px · #5A5F73
+                        - override: "from R250" → Anek Devanagari 400 · 12.0px/18.0px
+                        - override: "/mo" → Anek Devanagari 400 · 12.0px/18.0px; #5A5F73
+                    - Text [20×20, row, r 10, bg #6EF3FF]
+                      - Icon [11×11]
+                  - Radio Button [122×99, col, gap 16, pad 12, r 12, bg #FFFFFF, border #FFFFFF 2.0px]
+                    - Hero icon [36×30]
+                      - Layer 1 [36×30]
+                        - Group [36×30]
+                    - Text [68×25, col, gap 8]
+                      - **"Pet"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/21.0px · #05066A
+                      - **"from R80/mo"** — Anek Devanagari 400 · 12.0px/18.0px · #5A5F73
+                        - override: "from R80" → Anek Devanagari 400 · 12.0px/18.0px
+                        - override: "/mo" → Anek Devanagari 400 · 12.0px/18.0px; #5A5F73
+                  - Radio Button [122×99, col, gap 16, pad 12, r 12, bg #FFFFFF, border #FFFFFF 2.0px]
+                    - Gap 1 [23×29]
+                      - Layer 1 [23×29]
+                        - Group [23×29]
+                    - Text [72×25, col, gap 8]
+                      - **"Gap"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/21.0px · #05066A
+                      - **"from R150/mo"** — Anek Devanagari 400 · 12.0px/18.0px · #5A5F73
+                        - override: "from R150" → Anek Devanagari 400 · 12.0px/18.0px
+                        - override: "/mo" → Anek Devanagari 400 · 12.0px/18.0px; #5A5F73
+                  - Radio Button [122×99, col, gap 16, pad 12, r 12, bg #FFFFFF, border #FFFFFF 2.0px]
+                    - Hero icon [32×30]
+                      - Layer 1 [32×30]
+                        - Group [32×30]
+                          - Group [20×15]
+                    - Text [100×25, col, gap 8]
+                      - **"Car & Household"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/21.0px · #05066A
+                      - **"Tailored"** — Anek Devanagari 400 · 12.0px/18.0px · #5A5F73
+              - Container [518×48, row, gap 12]
+                - Button [226×48, row, gap 8, pad 16/28, r 9999, bg #6EF3FF]
+                  - **"Get my Health quote"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                  - Text [16×16, row]
+                    - Icon [16×16]
+                - Text [105×16, row, gap 6]
+                  - Icon [16×16]
+                  - **"About 2 minutes"** — Anek Devanagari 400 · 12.0px/18.0px · #FFFFFF
+            - **"Ts&Cs apply. Bryte licensed Insurer and Auth FSP(17703). One…"** — Anek Devanagari 400 · 12.0px/18.0px · #FFFFFF
+    - Container:margin [1512×650, col, pad 72/0]
+      - Container [1280×506, col, gap 40, pad 0/28]
+        - Container [720×89, col, gap 24]
+          - **"What each plan covers."** — Anek Devanagari 700 · 40.0px/40.0px · #05066A
+          - **"A quick look at what you get with each type of cover. Prices…"** — Anek Devanagari 400 · 18.0px/27.0px · #5A5F73
+        - Container [1226×377, row, gap 20]
+          - Container [290×375, col, gap 24, pad 24 20 32 20, r 16, bg #FFFFFF, shadow 0 2 6 #0F173C @6%, shadow 0 8 24 #0F173C @18%]
+            - Container [64×64, row, r 32, bg #B9F0FF]
+              - Health 1 [32×29]
+                - Layer 1 [32×29]
+            - Container [135×50, col, gap 8]
+              - **"Health Insurance"** — Anek Devanagari 700 · 18.0px/auto · #05066A
+              - Container [131×30, row, gap 2, pad 4/16, r 9999]
+                - **"from R250"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                - Small [22×8, col]
+                  - **"/mo"** — Anek Devanagari 700 · 12.0px/auto · #5A5F73
+            - **"Access a wide range of benefits, including private hospitals…"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+            - Container [250×61, col, gap 12]
+              - Button [250×40, row, gap 8, pad 11, r 9999, bg #6EF3FF]
+                - **"Get online quote"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                - Text [16×16, row]
+                  - Icon [16×16]
+              - **"See plans & what's covered"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #05066A
+                - override: "See plans & what's covered" → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto
+            - Text [124×24, col, pad 8/14, r 99, bg #FFD15A]
+              - **"Most chosen"** — Aptos 700 (Aptos-Bold) · 12.0px/auto · ls 1.2px · upper · #05066A
+          - Card hero [290×377, col, gap 24, pad 24 20 32 20, r 16, bg #FFFFFF, border #000000 @5% 1.0px, shadow 0 1 3 #0F173C @4%, shadow 0 1 2 #0F173C @6%]
+            - Container [64×64, row, r 32, bg #B9F0FF]
+              - Pet 1 [34×29, col, gap 10]
+                - Pet 1 [34×29]
+                  - Layer 1 [34×29]
+                    - Group [34×29]
+            - Container [123×50, col, gap 8]
+              - **"Pet Insurance"** — Anek Devanagari 700 · 18.0px/auto · #05066A
+              - Container [123×30, row, gap 2, pad 4/16, r 9999]
+                - **"from R80"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                - Small [22×8, col]
+                  - **"/mo"** — Anek Devanagari 700 · 12.0px/auto · #5A5F73
+            - **"We love pets as much as you do. Cover for your furry, four-l…"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+            - Container [248×61, col, gap 12]
+              - Button [250×40, row, gap 8, pad 11, r 9999, bg #6EF3FF]
+                - **"Get online quote"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                - Text [16×16, row]
+                  - Icon [16×16]
+              - **"See plans & what's covered"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #05066A
+                - override: "See plans & what's covered" → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto
+          - Card hero [293×377, col, gap 24, pad 24 20 32 20, r 16, bg #FFFFFF, border #000000 @5% 1.0px, shadow 0 1 3 #0F173C @4%, shadow 0 1 2 #0F173C @6%]
+            - Container [64×64, row, r 32, bg #B9F0FF]
+              - Gap 1 [22×28, row, gap 10]
+                - Gap 1 [22×28]
+                  - Layer 1 [22×28]
+                    - Group [22×28]
+            - Container [129×50, col, gap 8]
+              - **"Gap Cover"** — Anek Devanagari 700 · 18.0px/auto · #05066A
+              - Container [129×30, row, gap 2, pad 4/16, r 9999]
+                - **"from R150"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                - Small [22×8, col]
+                  - **"/mo"** — Anek Devanagari 700 · 12.0px/auto · #5A5F73
+            - **"We double or quadruple scheme pay-outs, even within the MSA …"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+            - Container [251×61, col, gap 12]
+              - Button [250×40, row, gap 8, pad 11, r 9999, bg #6EF3FF]
+                - **"Get online quote"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                - Text [16×16, row]
+                  - Icon [16×16]
+              - **"See plans & what's covered"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #05066A
+                - override: "See plans & what's covered" → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto
+          - Card hero [293×377, col, gap 24, pad 24 20 32 20, r 16, bg #FFFFFF, border #000000 @5% 1.0px, shadow 0 1 3 #0F173C @4%, shadow 0 1 2 #0F173C @6%]
+            - Container [64×64, row, r 32, bg #B9F0FF]
+              - Component 1 [34×29]
+                - Car & House 1 [30×29]
+                  - Layer 1 [30×29]
+                    - Group [30×29]
+                      - Group [19×15]
+            - Container [131×50, col, gap 8]
+              - **"Car & Household"** — Anek Devanagari 700 · 18.0px/auto · #05066A
+              - Container [120×30, row, gap 2, pad 4/16, r 9999]
+                - **"Tailored quote"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #05066A
+            - **"We can never predict when things go wrong, but we can make s…"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+            - Container [251×61, col, gap 12]
+              - Button [250×40, row, gap 8, pad 11, r 9999, bg #6EF3FF]
+                - **"Get online quote"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+                - Text [16×16, row]
+                  - Icon [16×16]
+              - **"See plans & what's covered"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #05066A
+                - override: "See plans & what's covered" → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto
+    - Container:margin [681×73, col]
+      - Container [681×73, row, gap 20, pad 24/40, r 12, bg #FFFFFF, shadow 0 14 34 #0A1E5A @16%, shadow 0 -6 18 #0A1E5A @6%]
+        - Text [316×25, row, gap 12]
+          - hellopeter-blue 1 [100×25]
+          - **"4.59"** — Anek Devanagari 700 · 24.0px/24.0px · #09075C
+          - [image] image 5 (145×25)
+        - Text [4×4, r 2, bg #09075C]
+        - Text [241×10, row, gap 12]
+          - Text [99×10, row, gap 8]
+            - **"23,019"** — Anek Devanagari 700 · 16.0px/auto · #09075C
+            - **"reviews"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+          - Text [4×4, r 2, bg #09075C]
+          - Text [114×10, row, gap 8]
+            - Bold Text [39×10, col]
+              - **"10/10"** — Anek Devanagari 700 · 16.0px/auto · #09075C
+            - **"Trust Index"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+  - Section [1512×613, col, gap 40, pad 60/0, bg image fill]
+    - Container [626×120, col, gap 24]
+      - **"Making our  customers smile  is at the heart of what we do."** — Anek Devanagari 700 · 40.0px/40.0px · #FFFFFF
+        - override: "customers smile" → Anek Devanagari 700 · 40.0px/40.0px; #09075C
+      - hellopeter-blue 1 [120×30]
+    - Container [1512×284, row, gap 8, pad 0 0 0 40]
+      - Button - Previous reviews [44×44, row, r 22, bg #B5F9FF]
+        - Icon [20×20]
+      - Container [1330×284, row, gap 20]
+        - Testimonial card [250×284, col, gap 24, pad 24/20, r 16, bg #FFFFFF]
+          - Frame 2 [141×44, col, gap 20]
+            - **"Pauline van der Spuy"** — Anek Devanagari 500 · 16.0px/auto · #09075C
+            - Frame 9 [77×14, row, gap 2]
+              - Layer 2 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 3 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 4 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 5 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 6 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+          - Frame 3 [210×170, col, gap 24]
+            - **"I appreciate getting a reply from a real person"** — Anek Devanagari 400 · 14.0px/21.0px · #09075C
+            - **""I contacted Oneplan after hours on a Friday night and recei…"** — Anek Devanagari 700 · 12.0px/18.0px · #09075C
+          - Group 140 [3×138, r 2]
+            - Text [3×138, r 2, bg #F5F5F5]
+            - Text [3×40, r 2, bg #B5F9FF]
+        - Testimonial card [250×284, col, gap 24, pad 24/20, r 16, bg #FFFFFF]
+          - Frame 2 [77×44, col, gap 20]
+            - **"Julianna"** — Anek Devanagari 500 · 16.0px/auto · #09075C
+            - Frame 9 [77×14, row, gap 2]
+              - Layer 2 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 3 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 4 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 5 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 6 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+          - Frame 3 [210×134, col, gap 24]
+            - **"An amazing gesture with outstanding hospital bills"** — Anek Devanagari 400 · 14.0px/21.0px · #09075C
+            - **""The company amazed me and my family with the extended finan…"** — Anek Devanagari 700 · 12.0px/18.0px · #09075C
+          - Group 140 [3×138, r 2]
+            - Text [3×138, r 2, bg #F5F5F5]
+            - Text [3×40, r 2, bg #B5F9FF]
+        - Testimonial card [250×284, col, gap 24, pad 24/20, r 16, bg #FFFFFF]
+          - Frame 2 [77×44, col, gap 20]
+            - **"Rene N"** — Anek Devanagari 500 · 16.0px/auto · #09075C
+            - Frame 9 [77×14, row, gap 2]
+              - Layer 2 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 3 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 4 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 5 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 6 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+          - Frame 3 [210×95, col, gap 24]
+            - **"A good and effective medical plan"** — Anek Devanagari 400 · 14.0px/21.0px · #09075C
+            - **""It gives me as a fur baby mom breathing space in medical si…"** — Anek Devanagari 700 · 12.0px/18.0px · #09075C
+          - Group 140 [3×138, r 2]
+            - Text [3×138, r 2, bg #F5F5F5]
+            - Text [3×40, r 2, bg #B5F9FF]
+        - Testimonial card [250×284, col, gap 24, pad 24/20, r 16, bg #FFFFFF]
+          - Frame 2 [77×44, col, gap 20]
+            - **"Melanie V"** — Anek Devanagari 500 · 16.0px/auto · #09075C
+            - Frame 9 [77×14, row, gap 2]
+              - Layer 2 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 3 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 4 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 5 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 6 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+          - Frame 3 [210×131, col, gap 24]
+            - **"Friendly and efficient service"** — Anek Devanagari 400 · 14.0px/21.0px · #09075C
+            - **""I've had medical insurance for all three of my dogs for a w…"** — Anek Devanagari 700 · 12.0px/18.0px · #09075C
+          - Group 140 [3×138, r 2]
+            - Text [3×138, r 2, bg #F5F5F5]
+            - Text [3×40, r 2, bg #B5F9FF]
+        - Testimonial card [250×284, col, gap 24, pad 24/20, r 16, bg #FFFFFF]
+          - Frame 2 [77×44, col, gap 20]
+            - **"Doug T"** — Anek Devanagari 500 · 16.0px/auto · #09075C
+            - Frame 9 [77×14, row, gap 2]
+              - Layer 2 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 3 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 4 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 5 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+              - Layer 6 [14×14]
+                - invisible box [14×14]
+                - icons Q2 [13×12]
+          - Frame 3 [210×95, col, gap 24]
+            - **"Exceptional service"** — Anek Devanagari 400 · 14.0px/21.0px · #09075C
+            - **""Fantastic service from Razia Yousuf. Clear and to the point…"** — Anek Devanagari 700 · 12.0px/18.0px · #09075C
+          - Group 140 [3×138, r 2]
+            - Text [3×138, r 2, bg #F5F5F5]
+            - Text [3×40, r 2, bg #B5F9FF]
+      - Button - Next reviews:margin [60×44, row, pad 0 16 0 0]
+        - Button - Next reviews [44×44, row, r 22, bg #B5F9FF]
+          - Icon [20×20]
+    - Paragraph [233×9, col]
+      - **"See all 23,019 reviews on Hellopeter →"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #6EF3FF
+        - override: "See all 23,019 reviews on Hellopeter →" → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto
+  - Section [1512×924, col, pad 60/0, bg #FFFFFF]
+    - Container [840×804, col, gap 40]
+      - Container [720×161, col, gap 24]
+        - **"The Oneplan Claim Card"** — Aptos 700 (Aptos-Bold) · 12.0px/auto · ls 1.2px · upper · #05066A
+        - **"Most cover pays you back. We pay upfront."** — Anek Devanagari 700 · 40.0px/40.0px · #05066A
+        - **"We load your claim onto your Oneplan Claim Card, so you tap …"** — Anek Devanagari 400 · 18.0px/27.0px · #5A5F73
+      - Frame 16 [840×515, col, gap 32]
+        - Frame 4 [840×515, col, gap 24]
+          - [image] Oneplan Claim Card_1_A Nkosi 3 (412×258)
+          - Container:margin [840×200, col]
+            - Container [840×192, col]
+              - Container [420×200, col, gap 24, pad 32 36 32 28, r 16/0/0/16, bg #F5F5F5, border #000000 @15% 1.0px]
+                - **"The usual way"** — Aptos 700 (Aptos-Bold) · 14.0px/auto · ls 1.4px · upper · #5A5F73
+                - Numbered List [355×106, col]
+                  - List Item [355×35, row, gap 12]
+                    - Text [26×26, row, r 13, bg #B5F9FF]
+                      - **"1"** — Anek Devanagari 700 · 12.0px/auto · #05066A
+                    - **"Pay the doctor or vet yourself"** — Anek Devanagari 400 · 14.0px/auto · #5A5F73
+                  - List Item [355×35, row, gap 12]
+                    - Text [26×26, row, r 13, bg #B5F9FF]
+                      - **"2"** — Anek Devanagari 700 · 12.0px/auto · #05066A
+                    - **"Submit a claim and wait"** — Anek Devanagari 400 · 14.0px/auto · #5A5F73
+                  - List Item [355×35, row, gap 12]
+                    - Text [26×26, row, r 13, bg #B5F9FF]
+                      - **"3"** — Anek Devanagari 700 · 12.0px/auto · #05066A
+                    - **"Get refunded weeks later - if approved"** — Anek Devanagari 400 · 14.0px/auto · #5A5F73
+              - Container [420×201, col, gap 24, pad 32 36 32 40, r 0/16/16/0, bg #0202E4, border #40AEE1 1.0px]
+                - Frame 21 [305×200]
+                  - Frame 22 [239×300, col, gap 7]
+                    - Oneplan Pattern_Mono 3 [239×146]
+                    - Oneplan Pattern_Mono 4 [239×146]
+                - **"With your Oneplan Card"** — Aptos 700 (Aptos-Bold) · 14.0px/auto · ls 1.4px · upper · #FFFFFF
+                - Numbered List [342×102, col, gap 12]
+                  - List Item [354×26, row, gap 12]
+                    - Text [26×26, row, r 13, bg #FFFFFF]
+                      - Icon [14×14]
+                    - **"We load the claim onto your card"** — Anek Devanagari 400 · 14.0px/auto · #FFFFFF
+                  - List Item [354×26, row, gap 12]
+                    - Text [26×26, row, r 13, bg #FFFFFF]
+                      - Icon [14×14]
+                    - **"Tap to pay the bill on the spot"** — Anek Devanagari 400 · 14.0px/auto · #FFFFFF
+                  - List Item [354×26, row, gap 12]
+                    - Text [26×26, row, r 13, bg #FFFFFF]
+                      - Icon [14×14]
+                    - **"Done - never out of pocket"** — Anek Devanagari 400 · 14.0px/auto · #FFFFFF
+              - Container [48×48, row, r 24, bg #B5F9FF, border #F5F5F5 3.0px, shadow 0 4 12 #282972 @25%]
+                - **"vs"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/21.0px · #05066A
+          - **"Mastercard-based, so it works anywhere they do - you can eve…"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+      - Button [260×48, row, gap 8, pad 16/28, r 9999, bg #6EF3FF]
+        - **"Get a free online quote"** — Anek Devanagari 700 · 16.0px/auto · #05066A
+        - Text [16×16, row]
+          - Icon [16×16]
+  - Frame [1512×517, col, pad 80/0, bg #F5F5F5]
+    - Container [1280×357, col, gap 40, pad 0/28]
+      - Container [767×102, col, gap 24]
+        - **"Everything you want to know before you decide."** — Anek Devanagari 700 · 40.0px/40.0px · #09075C
+        - **"The questions people ask us most, answered upfront, so you c…"** — Anek Devanagari 400 · 18.0px/27.0px · #5A5F73
+      - Container [1224×215, row, gap 20]
+        - Card [395×215, col, gap 24, pad 32/24, r 16, bg #FFFFFF, border #000000 @15% 1.0px]
+          - Heading 4 [188×10, row, gap 10]
+            - Text [8×8, r 4, bg #05066A]
+            - **"What does it cover?"** — Anek Devanagari 700 · 16.0px/auto · #09075C
+          - **"See exactly what each plan includes - day-to-day, hospital, …"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+          - **"Compare plans & benefits"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #09075C
+            - override: "Compare plans & benefits" → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto
+        - Card [395×215, col, gap 24, pad 32/24, r 16, bg #FFFFFF, border #000000 @15% 1.0px]
+          - Heading 4 [188×10, row, gap 10]
+            - Text [8×8, r 4, bg #05066A]
+            - **"How much does it cost?"** — Anek Devanagari 700 · 16.0px/auto · #09075C
+          - **"Health from R250, Pet from R80, Gap from R150 a month. Get a…"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+          - Link [122×40, row, gap 9, pad 13/18, r 9999, bg #6EF3FF, shadow 0 6 16 #5DB36F @32%]
+            - **"See your price"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #09075C
+        - Card [395×215, col, gap 24, pad 32/24, r 16, bg #FFFFFF, border #000000 @15% 1.0px]
+          - Heading 4 [188×10, row, gap 10]
+            - Text [8×8, r 4, bg #05066A]
+            - **"Is there a waiting period?"** — Anek Devanagari 700 · 16.0px/auto · #09075C
+          - **"Some benefits have a waiting period before you can claim. Se…"** — Anek Devanagari 400 · 14.0px/21.0px · #5A5F73
+          - **"Read about waiting periods"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #09075C
+            - override: "Read about waiting periods" → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto
+  - Section [1512×413, col, gap 32, pad 80/20, bg #0202E4]
+    - Frame 20 [630×413]
+      - Oneplan Pattern_Mono 3 [493×302]
+      - Oneplan Pattern_Mono 4 [493×302]
+    - Frame 21 [630×413]
+      - Oneplan Pattern_Mono 3 [493×302]
+      - Oneplan Pattern_Mono 4 [493×302]
+    - Frame 17 [506×148, col, gap 24]
+      - **"Health · Pet · Gap · Car & Household"** — Aptos 700 (Aptos-Bold) · 12.0px/auto · ls 1.2px · upper · #B9F0FF
+      - **"Ready when you are."** — Anek Devanagari 700 · 40.0px/40.0px · #FFFFFF
+      - **"Work out an online quote and complete your Oneplan applicati…"** — Anek Devanagari 400 · 18.0px/27.0px · #DBE6FF
+    - Container [280×73, col, gap 16]
+      - Button [260×48, row, gap 8, pad 16/28, r 9999, bg #6EF3FF]
+        - **"Get a free online quote"** — Anek Devanagari 700 · 16.0px/auto · #09075C
+        - Text [16×16, row]
+          - Icon [16×16]
+      - **"Prefer a call? We'll phone you. "** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto · #FFFFFF
+        - override: "Prefer a call? We'll phone you." → Anek Devanagari 600 (AnekDevanagari-SemiBold) · 14.0px/auto; #FFFFFF
+    - [image] Oneplan_Card in hand_2 1 (395×502)
+    - Group 141 [350×250]
+      - [image] Oneplan Claim Card_1_A Nkosi 4 (274×224)
+      - [image] Oneplan Claim Card_1_A Nkosi 5 (274×224)
+  - Section [1512×234, col, pad 60/0, bg #F5F5F5]
+    - Container [514×114, col, gap 24]
+      - **"Already with Oneplan?"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 16.0px/24.0px · #5A5F73
+      - Container [514×80, row, gap 16]
+        - Link [257×80, row, gap 16, pad 16/24, r 16, bg #FFFFFF, shadow 0 1 3 #0F173C @4%, shadow 0 1 2 #0F173C @6%]
+          - Text [48×48, row, r 24, bg #B9F0FF]
+            - Icon [24×24]
+          - Text [145×36, col, gap 12]
+            - **"Make a claim"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 16.0px/24.0px · #05066A
+            - Frame 10 [145×14, row, gap 8]
+              - **"Start or track a claim"** — Anek Devanagari 400 · 14.0px/21.0px · #666666
+              - Icon [14×14]
+        - Link [241×80, row, gap 16, pad 16/24, r 16, bg #FFFFFF, shadow 0 1 3 #0F173C @4%, shadow 0 1 2 #0F173C @6%]
+          - Text [48×48, row, r 24, bg #25D366 @12%]
+            - Icon [24×24]
+          - Text [129×36, col, gap 12]
+            - **"Chat on WhatsApp"** — Anek Devanagari 600 (AnekDevanagari-SemiBold) · 16.0px/24.0px · #05066A
+            - Frame 10 [106×14, row, gap 8]
+              - **"Talk to us now"** — Anek Devanagari 400 · 14.0px/21.0px · #666666
+              - Icon [14×14]
+  - Frame 24 [1512×570, bg #FFFFFF]
+    - Frame 21 [630×569]
+      - Oneplan Pattern_Mono 3 [493×302]
+      - Oneplan Pattern_Mono 4 [493×302]
+    - Frame 20 [630×569]
+      - Oneplan Pattern_Mono 3 [493×302]
+      - Oneplan Pattern_Mono 4 [493×302]
+    - [image] image 11 (424×525)
+    - content [680×229, col, gap 48]
+      - titles [680×137, col, gap 32]
+        - Frame [144×8, row, r 999]
+          - **"ONEPLAN ECOSYSTEM"** — Aptos 700 (Aptos-Bold) · 12.0px/auto · ls 1.2px · upper · #09075C
+        - **"Download the app!"** — Anek Devanagari 700 · 40.0px/40.0px · #09075C
+        - **"Download the Oneplan App on the Apple or Android app store t…"** — Anek Devanagari 400 · 18.0px/27.0px · #5A5F73
+      - badges-grid [680×44, row, gap 12]
+        - [image] image 12 (233×44)
+        - [image] image 13 (233×44)
+        - [image] image 14 (220×44)
+  - Footer [1512×236, col, pad 60/0, bg #09075C]
+    - Container [1280×116, col, gap 20, pad 0/28]
+      - Frame 5 [261×24, row, gap 20]
+        - Oneplan Logo_One Logo 1 [64×24]
+          - Layer 1 [64×24]
+            - Group [64×24]
+        - [image] image 9 (62×24)
+        - [image] image 10 (95×24)
+      - **"Oneplan is administered by Oneplan Underwriting Managers (Pt…"** — Anek Devanagari 400 · 12.0px/18.0px · #C7CBE6
+      - **"© All Rights Reserved, Oneplan. Terms of use"** — Anek Devanagari 400 · 12.0px/18.0px · #C7CBE6

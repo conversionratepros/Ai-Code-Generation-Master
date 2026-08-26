@@ -171,3 +171,27 @@ placeholders tagged `data-cro-placeholder="verify-destination"`).
 - Playwright-verified on live (1440 + 390): both CTAs smooth-scroll to #products at
   77px below viewport top (61px sticky header + 16px offset), zero `#router` hrefs
   left, zero links inside `.ans` cards, card spacing intact via flex gap.
+
+## Client-requested updates (2026-08-19 Figma comments) — applied 2026-08-26
+
+Source: Oneplan Insurance's comments on the Figma main file (see `client-feedback-2026-08-26.md`).
+Azi had already applied them in Figma on 2026-08-20; the build was brought in line:
+
+- Health card copy → "Access a wide range of benefits, including private hospitals like Netcare,
+  Life and Mediclinic, 24/7 virtual doctor consultations, and Day-to-Day claims paid upfront."
+- Plan-card titles sentence case: `.pcard h3` `uppercase` → `none !important`.
+- Full stops added to the four H2s: "What each plan covers." / "Making our customers smile is at
+  the heart of what we do." / "Everything you want to know before you decide." / "Ready when you are."
+- "Download the app!" sentence case: `.appdl h2` `uppercase !important` → `none !important`.
+- Teal: build already `#5BF1FD` (the client's stated brand value) — no change. Wider palette check
+  still pending the brand hex list (Canva guide PG 20).
+- NOT done (no assets yet): new Oneplan logo (native header/footer — scope decision), new phone mockup.
+- NOT done (not an Oneplan comment): Nick's 08-11 "login removed" — design hides the "Log in"
+  self-serve card; build still shows it. Awaiting go-ahead.
+
+Playwright-verified 2026-08-26 on the live homepage with variant.css/js injected, 1440×900 + 390×844
+(20/20 checks): computed `text-transform: none` on all plan H3s and every H2, new Health copy, all
+six H2 strings exact, `.btn-teal`/`#quoteCta` = rgb(91,241,253), Anek Devanagari loaded, single
+injected root, chip click → "Get my Pet quote" + onepet URL, no variation page errors.
+
+**Re-paste BOTH variant.js and variant.css into Convert 1004206057** (CSS changed this time).

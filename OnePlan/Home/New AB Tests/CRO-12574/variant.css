@@ -498,7 +498,7 @@
 #cro-12574-redesign .pcard h3 {
   font-size: 18px;
   font-weight: 700 !important;
-  text-transform: uppercase;
+  text-transform: none !important; /* client 2026-08-19: sentence case */
   color: var(--navy);
   margin-bottom: 8px !important;
   line-height: 1.1;
@@ -1191,117 +1191,114 @@
   height: 14px;
 }
 
-/* ===================== APP DOWNLOAD (Oneplan ecosystem) =====================
-   Client addition 2026-08-13 (Figma desktop 354:659 / mobile 362:1047).
-   Same two-panel pattern treatment as the final CTA, but on white with the
-   light (navy @ 3%) pattern export - the blue CRO-12574-4.svg is too loud
-   on a white ground. */
+/* ===================== APP DOWNLOAD ===================== */
 #cro-12574-redesign .appdl {
   position: relative;
   background: #fff;
-  min-height: 570px;
-  padding: 60px 20px;
-  display: flex;
-  align-items: center;
   overflow: hidden;
 }
 
-#cro-12574-redesign .appdl .ap-bg {
+/* Same Oneplan pattern strips as the final CTA - strongest at the two
+   outer edges, faded out toward the middle. The design tints it navy
+   at 3%; the shipped SVG is #3333D1, so it is dropped to 6% opacity
+   to land on the same faint tint over white. */
+#cro-12574-redesign .appdl .ad-bg {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 630px;
-  background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-9.svg") center / 493px auto repeat;
+  opacity: .06;
+  background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-4.svg") center / 493px auto repeat;
   pointer-events: none;
 }
 
-/* the design's white overlay fades linearly across the FULL panel, so the
-   pattern stays faintly visible behind the copy - gentler than the fc-bg mask */
-#cro-12574-redesign .appdl .ap-bg-r {
+#cro-12574-redesign .appdl .ad-bg-r {
   right: 0;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 50%, #000 95%);
+  mask-image: linear-gradient(to right, transparent 50%, #000 95%);
 }
 
-#cro-12574-redesign .appdl .ap-bg-l {
+#cro-12574-redesign .appdl .ad-bg-l {
   left: 0;
-  -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 100%);
-  mask-image: linear-gradient(to left, transparent 0%, #000 100%);
+  -webkit-mask-image: linear-gradient(to left, transparent 50%, #000 95%);
+  mask-image: linear-gradient(to left, transparent 50%, #000 95%);
 }
 
-#cro-12574-redesign .appdl .ap-in {
+#cro-12574-redesign .ad-in {
   position: relative;
   z-index: 1;
-  width: 100%;
-}
-
-#cro-12574-redesign .appdl .ap-copy {
-  max-width: 680px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 570px;
 }
 
-/* base .eyebrow is light azura for dark grounds - navy here */
+#cro-12574-redesign .ad-copy {
+  max-width: 680px;
+}
+
 #cro-12574-redesign .appdl .eyebrow {
   color: var(--navy);
+  margin-bottom: 24px !important;
 }
 
 #cro-12574-redesign .appdl h2 {
   color: var(--navy);
   font-size: 40px;
   font-weight: 700 !important;
-  line-height: 1.1;
+  line-height: 1;
+  /* client 2026-08-19: sentence case (design updated 2026-08-20) */
+  text-transform: none !important;
+  margin-bottom: 24px !important;
 }
 
-#cro-12574-redesign .appdl .ap-sub {
+#cro-12574-redesign .ad-lead {
   color: var(--grey);
   font-size: 18px;
-  line-height: 150%;
-  max-width: 620px;
+  font-weight: 400;
+  line-height: 27px;
+  margin-bottom: 48px !important;
 }
 
-#cro-12574-redesign .appdl .ap-badges {
+#cro-12574-redesign .ad-badges {
   display: flex;
   align-items: center;
-  /* design row is 710px inside the 680px column - let it poke out
-     like the Figma does instead of wrapping */
-  flex-wrap: nowrap;
   gap: 12px;
-  margin-top: 16px;
+  justify-content: center;
 }
 
-#cro-12574-redesign .appdl .ap-badge {
-  flex: 0 0 auto;
+#cro-12574-redesign .ad-badge {
+  display: inline-flex;
+  transition: transform .15s ease;
+  /* the badge block further down sets color:#fff, but `#cro-12574-redesign a
+     { color: inherit }` outranks it and the wordmarks came out navy on
+     black - this wins the specificity race back */
+  color: #fff;
 }
 
-#cro-12574-redesign .appdl .ap-badge img {
+#cro-12574-redesign .ad-badge:hover {
+  transform: translateY(-2px);
+}
+
+#cro-12574-redesign .ad-badge img {
   display: block;
   height: 44px;
   width: auto;
 }
 
-#cro-12574-redesign .appdl .ap-phone {
-  position: absolute;
-  right: 142px;
-  bottom: 0;
+/* photo sits flush with the bottom edge of the section. Figma fills the
+   424x525 box with scaleMode FILL and the source art is a taller 228x296,
+   so it is cropped, not fitted - without object-fit it renders 25px tall
+   and the section outgrows the design. */
+#cro-12574-redesign .ad-phone {
+  flex: 0 0 auto;
+  align-self: flex-end;
   width: 424px;
-  height: auto;
-  pointer-events: none;
-}
-
-/* between full desktop and the 900px stack the absolute phone
-   would collide with the copy - shrink and tuck it */
-@media (max-width: 1280px) {
-  #cro-12574-redesign .appdl .ap-copy {
-    max-width: 540px;
-  }
-
-  #cro-12574-redesign .appdl .ap-phone {
-    width: 340px;
-    right: 40px;
-  }
+  height: 525px;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
 }
 
 /* ============================================================
@@ -1713,58 +1710,108 @@
     font-size: 12px;
   }
 
-  /* app download stacked: centred copy, badges 2+1, photo flush to the
-     section bottom over a bottom pattern band (same move as the final CTA) */
-  #cro-12574-redesign .appdl {
-    min-height: 0;
-    padding: 52px 16px 0;
-    flex-direction: column;
-    text-align: center;
+  /* ---- app download, mobile (Figma 362:1047, 390 wide x 778 tall) ----
+     The design's 16px gutter, an 80px run-in to the eyebrow, then 24px
+     between every block and 32px before the photo. Figma measures those
+     gaps between tight glyph boxes while CSS margins measure line boxes,
+     so the margins below are the design gaps minus the measured leading
+     (checked in-browser: ink gaps land on 80/24/24/24/32). */
+  /* left/right longhand only - a `padding` shorthand here outranks the
+     padding-top on .ad-in below and would zero the 80px run-in */
+  #cro-12574-redesign .appdl .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  #cro-12574-redesign .appdl .ap-copy {
-    max-width: 358px;
-    margin: 0 auto;
+  #cro-12574-redesign .ad-in {
+    flex-direction: column;
     align-items: center;
-    gap: 24px;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 32px;
+    min-height: 0;
+    padding-top: 80px;
+  }
+
+  #cro-12574-redesign .ad-copy {
+    max-width: 100%;
+  }
+
+  #cro-12574-redesign .appdl .eyebrow {
+    margin-bottom: 20px !important;
   }
 
   #cro-12574-redesign .appdl h2 {
-    font-size: 26px;
+    font-size: 30px;
+    margin-bottom: 16px !important;
   }
 
-  #cro-12574-redesign .appdl .ap-sub {
+  #cro-12574-redesign .ad-lead {
     font-size: 16px;
+    line-height: 24px;
+    max-width: 340px;
+    margin: 0 auto 20px !important;
   }
 
-  #cro-12574-redesign .appdl .ap-badges {
-    justify-content: center;
+  /* design puts these on two rows: 170 + 170, then 160 centred under
+     them, all 32 tall, 8px apart across and 12px down */
+  #cro-12574-redesign .ad-badges {
     flex-wrap: wrap;
+    justify-content: center;
     gap: 12px 8px;
-    margin-top: 0;
   }
 
-  #cro-12574-redesign .appdl .ap-badge img {
+  #cro-12574-redesign .ad-badge {
+    width: 170px;
     height: 32px;
   }
 
-  #cro-12574-redesign .appdl .ap-phone {
-    position: static;
-    width: min(350px, 100%);
-    margin: 32px auto 0;
+  #cro-12574-redesign .ad-badge--huawei {
+    width: 160px;
   }
 
-  #cro-12574-redesign .appdl .ap-bg-l {
+  /* badge type scaled with the box (16/8 at 210 wide -> 13/6.5 at 170).
+     Set here rather than in the badge block's own 600px query so the
+     601-900 range, which is already in the mobile layout, matches too. */
+  #cro-12574-redesign .ad-badge__text strong {
+    font-size: 13px;
+  }
+
+  #cro-12574-redesign .ad-badge__text small {
+    font-size: 7.5px;
+  }
+
+  #cro-12574-redesign .ad-badge img {
+    height: 32px;
+  }
+
+  #cro-12574-redesign .ad-phone {
+    align-self: center;
+    width: 350px;
+    height: 433px;
+    max-width: 100%;
+  }
+
+  /* One pattern band across the top, 338px deep, fading out downward.
+     Figma rotates the whole band -90deg, so the tiles read a quarter
+     turn round from the desktop ones - hence the rotate() here rather
+     than a plain background. After the transform the box covers
+     100vw x 338px from the top-left corner. */
+  #cro-12574-redesign .appdl .ad-bg-r {
     display: none;
   }
 
-  #cro-12574-redesign .appdl .ap-bg-r {
-    width: 100%;
-    top: auto;
-    height: 432px;
-    bottom: 0;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 60%);
-    mask-image: linear-gradient(to bottom, transparent 0%, #000 60%);
+  #cro-12574-redesign .appdl .ad-bg-l {
+    top: 0;
+    left: 0;
+    bottom: auto;
+    width: 338px;
+    height: 100vw;
+    background: url("https://crp-clients-images.s3.af-south-1.amazonaws.com/Oneplan/Dev+%7C+AB+Homepage+Redesign+%7C+All+%7C+CRO-12574/CRO-12574-4.svg") 0 0 / 338px auto repeat-y;
+    transform-origin: 0 0;
+    transform: rotate(-90deg) translate(-338px, 0);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 100%);
   }
 }
 
@@ -1905,4 +1952,166 @@ a[href="https://www.oneplan.co.za/login"] {
 
 .ss-in a {
   max-width: 280px;
+}
+
+
+
+.ad-badges {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: max-content;
+}
+
+.ad-badge {
+  width: 210px;
+  height: 44px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #000;
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.ad-badge:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* SVG icons */
+.ad-badge__icon {
+  flex: 0 0 auto;
+  display: block;
+}
+
+.ad-badge__icon--play {
+  width: 36px;
+  height: 36px;
+}
+
+.ad-badge__icon--apple {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+}
+
+.ad-badge__icon--huawei {
+  width: 26px;
+  height: 26px;
+}
+
+/* Text */
+.ad-badge__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+  align-items: flex-start;
+}
+
+.ad-badge__text small {
+  display: block;
+  margin-bottom: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1px;
+  color: #FFF;
+  transform: translateY(2px) !important;
+}
+
+.ad-badge__text strong {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.2px;
+  /* line-height: 18px; */
+  transform: translateY(2px) !important;
+}
+
+/* Apple text slightly larger */
+.ad-badge--apple .ad-badge__text strong {
+  font-size: 16px;
+}
+
+.ad-badge--apple .ad-badge__text small {
+  font-size: 9px;
+  color: #FFF;
+}
+
+/* Huawei */
+.ad-badge--huawei {
+  width: 210px;
+}
+
+@media (max-width: 900px) {
+  .ad-badge__icon--play {
+    width: 26px;
+    height: 26px;
+  }
+
+  .ad-badge__icon--apple {
+    width: 24px;
+    height: 24px;
+    color: #fff;
+  }
+
+  .ad-badge__icon--huawei {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .ad-badges {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .ad-badge {
+    width: calc((100% - 12px) / 3);
+    height: 32px;
+    gap: 5px;
+  }
+
+  .ad-badge__icon--play {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* .ad-badge__icon--apple {
+    width: 24px;
+    height: 21px;
+  } */
+
+  .ad-badge__icon--huawei {
+    width: 19px;
+    height: 19px;
+  }
+
+  .ad-badge__text strong {
+    font-size: 11px;
+  }
+
+  .ad-badge__text small {
+    font-size: 5px;
+  }
+}
+
+@media (min-width:901px) {
+  #callbackcolfooter .et_pb_contact {
+    z-index: 99;
+    position: relative;
+  }
 }
