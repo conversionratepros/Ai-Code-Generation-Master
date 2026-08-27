@@ -4,6 +4,9 @@
   Do not move without post-launch data.
   "Add a designer to my fitout" opens the sitewide Typeform popup;
   "Find out more" links to the interior design page.
+  Client round 2026-08-27 ("Dedicated design" video): background video
+  over the image via snippets/cro-hp-video.liquid, started only when the
+  section scrolls near the viewport.
 {% endcomment %}
 
 {{ 'cro-hp.css' | asset_url | stylesheet_tag }}
@@ -59,6 +62,17 @@
             alt="{{ section.settings.image.alt | default: section.settings.eyebrow | escape }}"
             loading="lazy" width="765" height="770">
         {%- endif -%}
+
+        {%- render 'cro-hp-video',
+          video: section.settings.video,
+          video_mobile: section.settings.video_mobile,
+          video_url: section.settings.video_url,
+          video_url_mobile: section.settings.video_url_mobile,
+          mobile_enabled: section.settings.video_mobile_enabled,
+          poster: section.settings.image,
+          poster_width: 1530,
+          defer: 'view'
+        -%}
       </div>
     </div>
   </div>
@@ -116,8 +130,39 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image",
-      "info": "Blank shows the grey placeholder until photography lands"
+      "label": "Image / video poster",
+      "info": "Shown until the video plays. Blank = grey placeholder."
+    },
+    { "type": "header", "content": "Video (plays over the image when set)" },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video — desktop",
+      "info": "Silent loop, MP4/MOV. Stored in Content › Files and transcoded by Shopify — allow ~2 min after upload; the image shows until it is ready."
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video — mobile (optional)",
+      "info": "Pre-cropped 358×400 (portrait) export. Blank = the desktop video, cover-cropped to the slot (no letterbox bars)."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_mobile_enabled",
+      "label": "Play video on mobile",
+      "default": true,
+      "info": "Off = phones get the image only (saves data)"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Custom MP4 URL — desktop",
+      "info": "S3/CDN fallback, H.264 MP4. Only used when no video is uploaded above."
+    },
+    {
+      "type": "text",
+      "id": "video_url_mobile",
+      "label": "Custom MP4 URL — mobile (optional)"
     }
   ],
   "blocks": [

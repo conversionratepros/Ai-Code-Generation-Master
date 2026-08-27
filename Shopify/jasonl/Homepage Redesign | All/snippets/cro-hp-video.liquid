@@ -1,0 +1,101 @@
+{% comment %}
+  CRO-HP — background video for a fixed-aspect media slot (hero, interior).
+  Renders on top of the slot's <img>; the image stays as poster/LCP/fallback.
+
+  params:
+    video, video_mobile        — Shopify `video` settings (Content › Files, transcoded)
+    video_url, video_url_mobile — custom H.264 MP4 URLs (S3/CDN), used when no upload
+    mobile_enabled             — checkbox; false = image only under 750px
+    poster                     — image setting for the poster attribute
+    poster_width               — px width for the poster render
+    defer                      — 'load' (after window load — hero/LCP) | 'view' (in view — below fold)
+
+  Sources are NOT children of the <video>: they sit in inert <template>s and
+  cro-hp.js clones the desktop OR mobile set in (one download only), then
+  load()+play(). No JS / reduced-motion / Save-Data → nothing downloads, image stays.
+  An uploaded video takes precedence over the custom URL.
+{% endcomment %}
+
+{%- liquid
+  assign has_video = false
+  if video != blank and video.sources.size > 0
+    assign has_video = true
+  elsif video_url != blank
+    assign has_video = true
+  endif
+  assign has_mobile = false
+  if video_mobile != blank and video_mobile.sources.size > 0
+    assign has_mobile = true
+  elsif video_url_mobile != blank
+    assign has_mobile = true
+  endif
+  if mobile_enabled == false
+    assign has_mobile = false
+  endif
+-%}
+
+{%- if has_video -%}
+  <video class="crohp-video"
+    muted playsinline loop
+    preload="none"
+    disablepictureinpicture disableremoteplayback
+    aria-hidden="true" tabindex="-1"
+    {% if poster != blank %}poster="{{ poster | image_url: width: poster_width }}"{% endif %}
+    data-crohp-video="{{ defer | default: 'view' }}"
+    {% if mobile_enabled == false %}data-crohp-video-mobile="off"{% endif %}></video>
+
+  {%- comment -%} Desktop set: HLS first (Safari, adaptive), then MP4s largest → smallest {%- endcomment -%}
+  <template data-crohp-video-sources="desktop">
+    {%- if video != blank and video.sources.size > 0 -%}
+      {%- for source in video.sources -%}
+        {%- if source.format == 'm3u8' -%}<source src="{{ source.url }}" type="{{ source.mime_type }}">{%- endif -%}
+      {%- endfor -%}
+      {%- assign mp4s = video.sources | where: 'format', 'mp4' | sort: 'height' | reverse -%}
+      {%- for source in mp4s -%}
+        <source src="{{ source.url }}" type="{{ source.mime_type }}">
+      {%- endfor -%}
+    {%- else -%}
+      <source src="{{ video_url }}" type="video/mp4">
+    {%- endif -%}
+  </template>
+
+  {%- comment -%} Mobile set: dedicated upload/URL if given, else the desktop video's ≤720p rendition (CSS cover-crops it — no letterbox bars) {%- endcomment -%}
+  {%- if has_mobile -%}
+    <template data-crohp-video-sources="mobile">
+      {%- if video_mobile != blank and video_mobile.sources.size > 0 -%}
+        {%- for source in video_mobile.sources -%}
+          {%- if source.format == 'm3u8' -%}<source src="{{ source.url }}" type="{{ source.mime_type }}">{%- endif -%}
+        {%- endfor -%}
+        {%- assign mp4s = video_mobile.sources | where: 'format', 'mp4' | sort: 'height' | reverse -%}
+        {%- for source in mp4s -%}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {%- endfor -%}
+      {%- else -%}
+        <source src="{{ video_url_mobile }}" type="video/mp4">
+      {%- endif -%}
+    </template>
+  {%- elsif mobile_enabled != false -%}
+    <template data-crohp-video-sources="mobile">
+      {%- if video != blank and video.sources.size > 0 -%}
+        {%- for source in video.sources -%}
+          {%- if source.format == 'm3u8' -%}<source src="{{ source.url }}" type="{{ source.mime_type }}">{%- endif -%}
+        {%- endfor -%}
+        {%- assign mp4s = video.sources | where: 'format', 'mp4' | sort: 'height' | reverse -%}
+        {%- assign small = '' -%}
+        {%- for source in mp4s -%}
+          {%- if source.height <= 720 and small == '' -%}
+            {%- assign small = source.url -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if small == '' -%}
+          {%- for source in mp4s -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endfor -%}
+        {%- endif -%}
+      {%- else -%}
+        <source src="{{ video_url }}" type="video/mp4">
+      {%- endif -%}
+    </template>
+  {%- endif -%}
+{%- endif -%}

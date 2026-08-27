@@ -198,3 +198,59 @@ user-story.md round 17):
   Liquid) + `text-wrap: balance` on the cases heading.
 
 Re-upload: assets/cro-hp.css, sections/cro-hp-how-it-works.liquid, sections/cro-hp-case-studies.liquid.
+
+## Client round — background videos in Hero + Interior (2026-08-27, Don)
+
+Ask: "add these videos" — Hero (Drive `19GwF7d1Ia8aNscJoZUBEDhI9SqElkeYA`) + "Dedicated design" = `#cro-hp-interior`
+(Drive `1nqcnEwLc8y5Ap5i_TKssXnW3KdiHI9HZ`); "for the mobile hero make an overflow so there is no black border"
+= cover-crop the 3:1 clip in the 1.3:1 mobile slot instead of letterboxing.
+
+**Source files (as supplied):** HEVC Main-10 `.mov` with a silent AAC track — hero 1920×648 (2.96:1, exactly the
+1540×520 desktop slot) 18.6 s 21.6 MB; interior 1920×1546 (1.24:1 vs the 740×620 slot's 1.19) 12.8 s 14 MB.
+No baked-in black bars (cropdetect = full frame). HEVC 10-bit does not play in Firefox / most Chrome → re-encoded:
+H.264 High 8-bit, no audio, `+faststart`, CRF 26/27, GOP 60 → `media/`:
+`cro-hp-hero-video.mp4` 1920×648 4.4 MB · `cro-hp-hero-video-mobile.mp4` 716×552 1.5 MB (centre crop 840×648 → 358/276)
+· `cro-hp-interior-video.mp4` 1480×1192 3.3 MB · `cro-hp-interior-video-mobile.mp4` 716×800 1.2 MB (centre crop 1384×1546
+→ 358/400) · `cro-hp-hero-poster.jpg` / `cro-hp-interior-poster.jpg` (frame @0.2 s, for the image/poster settings).
+Mobile hero shows the centre ~44 % of the 3:1 frame (jason.l signage / hands stay centred) — if the client wants more
+of the shot on phones, ask for a 4:3 export and drop it in "Video — mobile".
+
+**Build:**
+- `snippets/cro-hp-video.liquid` (NEW, shared): renders `<video class="crohp-video" muted playsinline loop preload="none">`
+  ON TOP of the slot's existing `<img>` (image stays poster / LCP / fallback) + inert `<template data-crohp-video-sources=
+  "desktop|mobile">` holding the `<source>`s. Shopify `video` upload → HLS first then MP4s largest→smallest; mobile with no
+  dedicated upload → the desktop video's ≤720p rendition; custom MP4 URL → single source. Uploaded video beats the URL.
+- Hero + Interior schema: `video`, `video_mobile`, `video_mobile_enabled` (default on), `video_url`, `video_url_mobile`;
+  `image` relabelled "… / video poster". Existing `image` id unchanged — nothing the editor holds is lost.
+- `cro-hp.js` `initVideos()`: clones the desktop OR mobile set in (one download only, split at 749px like the CSS),
+  `load()` + `play()` with `muted` re-asserted; hero (`defer="load"`) arms after `window.load` so the poster image keeps LCP;
+  interior (`defer="view"`) arms 200 px before entering the viewport; both pause off-screen; `is-playing` class fades the
+  video in. Reduced-motion / Save-Data / no-JS → sources never attach, image shows. `data-crohp-video-mobile="off"` skips
+  phones when the checkbox is off.
+- `cro-hp.css`: `.crohp-video` absolute + `object-fit: cover` (the "overflow, no black border"), opacity fade, `isolation:
+  isolate` on both media boxes (Safari radius clipping), `display:none` under `prefers-reduced-motion`.
+
+**Verification:** Playwright harness of the rendered markup + real cro-hp.css/js in Google Chrome (`channel="chrome"` —
+bundled Chromium has no H.264): 27/27 at 1440 / 390 / reduced-motion / JS-off — correct source set per viewport, playing
+with no media error, video rect == media box rect (no letterbox), live badge above the video, interior not armed until
+scrolled in and paused when out, mobile-off block image-only at 390 and playing at 1440.
+
+**Deploy (two hosting routes, either works):**
+A. Theme editor → Hero / Interior sections → "Video — desktop" (+ optional "Video — mobile") pick `media/*.mp4`; set
+   `media/*-poster.jpg` as the image. Shopify transcodes (~2 min; image shows meanwhile).
+B. S3 `crp-clients-images` (as Babylonstoren CRO-12516) → paste URLs into "Custom MP4 URL — desktop / mobile".
+Re-upload: `snippets/cro-hp-video.liquid` (NEW), `sections/cro-hp-hero.liquid`, `sections/cro-hp-interior.liquid`,
+`assets/cro-hp.css`, `assets/cro-hp.js`. Do NOT re-upload `templates/index.cro-hp.json` — the editor's copy will hold the
+video/image picks; pull it back into the repo afterwards.
+
+### Follow-up (2026-08-27) — interior video "looking very small" + keep left copy from wrapping
+
+Root cause: `.crohp-id__grid { grid-template-columns: minmax(0,1fr) minmax(320px, 40px) }` — a minmax whose max is
+below its min resolves to the min, so the media column was a fixed 320px at every width (the 740×620 Figma slot never
+rendered). Fix measured in Chrome across 2000/1762/1440/1366/1280/1024 before choosing (equal 1fr/1fr per Figma pushed
+the sub-copy to a 3rd line at 1440 — client asked that the left text NOT gain lines):
+- ≥1280: `minmax(0,1.15fr) minmax(0,1fr)` → media 605×507 @1440, 726×608 @2000 (Figma 740×620); h2 3L / sub 2L /
+  bullets 1L / CTAs one row — identical line counts to before at 1440, 1762 (Don's viewport) and 2000.
+- 990–1279: `minmax(0,1.75fr) minmax(0,1fr)` → bullets single-line down to 1024, media ≥ the old 320 everywhere.
+- ≤989 unchanged (stacked, full-width image; mobile 358×400).
+Re-upload: assets/cro-hp.css only.

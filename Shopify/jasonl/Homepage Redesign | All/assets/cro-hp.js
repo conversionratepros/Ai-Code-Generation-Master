@@ -273,6 +273,68 @@
     activate(first);
   }
 
+  /* ---------- Background videos (hero, interior) — client round 2026-08-27 ----
+     Sources live in inert <template>s next to each <video>; we clone in the
+     desktop OR mobile set (one download only) then load()+play().
+     defer="load": wait for window load so the poster <img> stays the LCP
+     element. defer="view": start ~200px before the slot scrolls in.
+     Both pause off-screen. Reduced motion / Save-Data: never attach — the
+     image underneath is the experience. */
+  function initVideos() {
+    var videos = document.querySelectorAll('video[data-crohp-video]');
+    if (!videos.length) return;
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (REDUCED || (conn && conn.saveData)) return;
+    var mobile = isMobile();
+
+    videos.forEach(function (video) {
+      if (mobile && video.getAttribute('data-crohp-video-mobile') === 'off') return;
+      var wrap = video.parentElement;
+      var want = mobile ? 'mobile' : 'desktop';
+      var tpl = wrap.querySelector('template[data-crohp-video-sources="' + want + '"]')
+        || wrap.querySelector('template[data-crohp-video-sources="desktop"]');
+      if (!tpl || !tpl.content.querySelector('source')) return;
+
+      var armed = false, inView = false;
+      function tryPlay() {
+        video.muted = true; /* attribute alone is not always honoured for autoplay */
+        var p = video.play();
+        if (p && p.catch) p.catch(function () { /* autoplay refused — poster stays */ });
+      }
+      function arm() {
+        if (armed) return;
+        armed = true;
+        video.appendChild(tpl.content.cloneNode(true));
+        video.load();
+        if (inView) tryPlay();
+      }
+      video.addEventListener('playing', function () { video.classList.add('is-playing'); });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            inView = entry.isIntersecting;
+            if (inView) {
+              if (video.getAttribute('data-crohp-video') !== 'load') arm();
+              if (armed && video.paused) tryPlay();
+            } else if (armed && !video.paused) {
+              video.pause();
+            }
+          });
+        }, { rootMargin: '200px 0px' }).observe(video);
+      } else {
+        inView = true;
+      }
+
+      if (video.getAttribute('data-crohp-video') === 'load') {
+        if (document.readyState === 'complete') arm();
+        else window.addEventListener('load', arm, { once: true });
+      } else if (!('IntersectionObserver' in window)) {
+        arm();
+      }
+    });
+  }
+
   function init() {
     syncHiddenAttrs();
     initCounters();
@@ -282,6 +344,7 @@
     initAccordions();
     initCaseRail();
     initShowrooms12526();
+    initVideos();
   }
 
   if (document.readyState === 'loading') {

@@ -3,6 +3,9 @@
   Board node 2:377. Copy per spec; layout/type/colour per board.
   "Plan my fitout" reuses the sitewide Typeform popup trigger
   (settings.typeformurls_url_1 — same pattern as header-contacts.liquid).
+  Client round 2026-08-27: background video over the hero image
+  (snippets/cro-hp-video.liquid; deferred until window load so the
+  image stays the LCP element). Mobile cover-crops — no letterbox bars.
 {% endcomment %}
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
@@ -54,6 +57,17 @@
           alt="{{ section.settings.image.alt | default: section.settings.eyebrow | escape }}"
           width="1540" height="620" fetchpriority="high">
       {%- endif -%}
+
+      {%- render 'cro-hp-video',
+        video: section.settings.video,
+        video_mobile: section.settings.video_mobile,
+        video_url: section.settings.video_url,
+        video_url_mobile: section.settings.video_url_mobile,
+        mobile_enabled: section.settings.video_mobile_enabled,
+        poster: section.settings.image,
+        poster_width: 1540,
+        defer: 'load'
+      -%}
 
       {%- if section.settings.show_badge -%}
         <div class="crohp-live" aria-live="off">
@@ -137,8 +151,39 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Hero image",
-      "info": "Blank shows the grey placeholder (board look) until photography lands"
+      "label": "Hero image / video poster",
+      "info": "Shown until the video plays (and as the LCP image). Blank = grey placeholder."
+    },
+    { "type": "header", "content": "Video (plays over the image when set)" },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video — desktop",
+      "info": "Silent loop, MP4/MOV. Stored in Content › Files and transcoded by Shopify — allow ~2 min after upload; the image shows until it is ready."
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video — mobile (optional)",
+      "info": "Pre-cropped 358×276 (1.3:1) export. Blank = the desktop video, cover-cropped to the slot (no letterbox bars)."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_mobile_enabled",
+      "label": "Play video on mobile",
+      "default": true,
+      "info": "Off = phones get the image only (saves data)"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Custom MP4 URL — desktop",
+      "info": "S3/CDN fallback, H.264 MP4. Only used when no video is uploaded above."
+    },
+    {
+      "type": "text",
+      "id": "video_url_mobile",
+      "label": "Custom MP4 URL — mobile (optional)"
     },
     { "type": "header", "content": "Live badge" },
     {
