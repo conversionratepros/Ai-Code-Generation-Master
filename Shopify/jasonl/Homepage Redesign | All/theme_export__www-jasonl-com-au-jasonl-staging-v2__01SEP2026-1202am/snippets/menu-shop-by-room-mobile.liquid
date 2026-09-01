@@ -1,0 +1,79 @@
+{%- assign current_url = request.path -%}
+{%- assign tag_map = 'business' -%}
+
+{% if page.title == 'Hospitality' %}
+  {%- assign tag_map = 'hospitality' -%}
+{% elsif page.title == 'Education' %}
+  {%- assign tag_map = 'education' -%}
+{% endif %}
+
+<details id="Details-menu-drawer-menu-item-shop-by-room-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}-shopby"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                      
+                        <strong>Shop by room</strong>
+                        <span class="svg-wrapper">
+                          {{- 'icon-arrow.svg' | inline_asset_content -}}
+                        </span>
+                        <span class="svg-wrapper">
+                          {{- 'icon-caret.svg' | inline_asset_content -}}
+                        </span>
+                      </summary>
+                      <div
+                        id="link-shop-by-room"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            <span class="svg-wrapper">
+                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                            </span>
+                            Back to Main Menu
+                          </button>
+                          {% assign menu = linklists['furniture-for'] %}
+                        
+
+                            
+                            {%- assign menu = linklists['shop-by-rooms'] -%}
+
+                            {%- if menu.links.size > 0 -%}
+                              <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                        <li>
+                                          <a href="{{ shop.url }}/pages/inspired" title="Get inspired" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if page.handle == "inspired" %} menu-drawer__menu-item--active{% endif %}"
+                                          >Get Inspired</a>
+                                        </li>
+                                        {%- for link in menu.links -%}
+                                            {%- assign parent_title = link.title | downcase -%}
+
+                                            {%- if parent_title == tag_map and link.links.size > 0 -%} 
+                                                {%- for child_link in link.links -%}
+                                                    {%- if current_url == child_link.url -%}
+                                                        {%- assign active_class = 'active' -%}
+                                                    {%- else -%}
+                                                        {%- assign active_class = '' -%}
+                                                    {%- endif -%}
+
+                                                    <li>
+                                                      <a
+                                                        id="HeaderDrawer-{{ link.handle }}-{{ child_link.handle }}"
+                                                        href="{{ child_link.url }}"
+                                                        class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if child_link.current %} menu-drawer__menu-item--active{% endif %}"
+                                                        {% if child_link.current %}
+                                                          aria-current="page"
+                                                        {% endif %}
+                                                      >
+                                                        {{ child_link.title | escape }}
+                                                      </a>
+                                                  </li>
+                                                {%- endfor -%}
+                                            {%- endif -%}
+                                        {%- endfor -%}
+                                    </ul>
+                            {%- endif -%}
+                         
+                        </div>
+                      </div>
+                    </details>

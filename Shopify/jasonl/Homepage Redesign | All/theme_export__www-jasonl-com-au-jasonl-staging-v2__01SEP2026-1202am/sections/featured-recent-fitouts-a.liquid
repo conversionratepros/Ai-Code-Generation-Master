@@ -1,0 +1,117 @@
+{%- comment -%} 
+Data source : 
+Home page :     1. Section setting   2. Random featured recent fitouts 
+Landing pages : 1. Metafield         2. random featured recent fitouts (Hospitality & Education)
+{%- endcomment -%}
+    
+
+{%- assign fitouts = blogs['fitouts'].articles -%}
+{%- assign featured_fitouts_counter = 0 -%}
+{%- for fitout in fitouts -%}
+    {%- if fitout.tags contains 'featured' -%}
+        {%- assign featured_fitouts_handle = fitout.handle -%}
+        {%-comment-%}<!-- <p><a href="{{fitout.url}}">{{featured_fitouts_handle}}</a></p> -->{%- endcomment -%}
+        {%- if featured_fitouts_counter == 0 -%}
+            {%- assign featured_fitouts_all = featured_fitouts_handle -%}
+        {%- else -%}
+            {%- assign featured_fitouts_all = featured_fitouts_all | append: ',' | append: featured_fitouts_handle -%}
+        {%- endif -%}
+        {%- assign featured_fitouts_counter = featured_fitouts_counter | plus: 1 -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- assign featured_fitouts = featured_fitouts_all | split: ',' -%}
+{%- comment -%}Randome number generate {%- endcomment -%}
+{%- assign min = 1 -%}
+{%- assign max = featured_fitouts.size | minus: 1 -%}
+{%- assign diff = max | minus: min -%}
+{%- assign random_number = "now" | date: "%N" | modulo: diff | plus: min -%}
+
+{%- if section.settings.needafitout_fitout != empty -%}
+    {%- assign selected_fitouts = section.settings.needafitout_fitout -%}
+    {%- assign selected_fitouts_section_title = selected_fitouts.title -%}
+{%- endif -%}
+
+{%- comment %} {%- if selected_fitouts -%} {%- endcomment -%}
+
+{{ 'featured-recent-fitouts.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width ab-test-group-A">
+    <h2 class="section-title">Our recent fitouts</h2>
+    <div class="featured-recent-fitouts">
+        {%- for featuredFitout in featured_fitouts -%}
+            {%-comment-%}<!--  if selected_fitouts == fitout.handle random_number -->{%-endcomment-%}
+            {%- if forloop.index == random_number -%}
+                {%- if template == 'page.home' or template == 'index' -%}
+                {%- assign fitout = articles[section.settings.needafitout_fitout] -%}
+            {%  elsif  template == "page.furniture_for_landing_pages" and page.metafields.custom.landing_page_recent_fitouts != blank -%}
+                {%- assign fitout_handle = 'fitouts/' | append: page.metafields.custom.landing_page_recent_fitouts -%}
+                {%- assign fitout = articles[fitout_handle] -%}
+            {%- else -%}
+            {%- assign fitout = articles[featuredFitout] -%}
+        {%- endif -%}
+
+        <div class="fitout-hero-wrapper">
+            {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image -%}
+                <picture>
+                    <source media="(min-width: 768px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'1200x450_crop_center'}}">
+                    {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob -%}
+                        <source media="(max-width: 500px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob | file_img_url:'500x'}}">
+                    {%- endif -%}
+                        <img src="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'375x180_crop_center'}}" alt="{{fitout.title}}" loading="lazy" width="auto" height="auto">
+                </picture>
+            {%- else -%}
+                <picture>
+                    <source media="(min-width: 768px)" srcset="{{ fitout.image | image_url: width: 1600, height : 460, crop : 'center'}}">
+                    <img src="{{ fitout.image | image_url: width: 728, height:400, crop: 'center' }}" alt="{{fitout.title}}"  loading="lazy" width="auto" height="auto">
+                </picture>
+            {%- endif -%}
+            <div class="fitout-hero-cnt">
+                {%- if fitout.metafields.fitout_blog.fitout_video_1_url != blank-%}
+                    <div class="fitouts-video-holder" style='background-image:url("{{fitout.metafields.fitout_blog.fitout_video_1_thumbnail[0].src}}")' data-video-url="{{fitout.metafields.fitout_blog.fitout_video_1_url}}">
+                        {%- assign cover_image = fitout.image -%}
+                        {%- assign video_url = fitout.metafields.fitout_blog.fitout_video_1_url -%}
+                        {%- render 'custom-modal-video', cover_image: cover_image, video_url: video_url, 
+                            youtube_title: fitout.metafields.fitout_blog.fitout_video_1__youtube_title, 
+                            youtube_description: fitout.metafields.fitout_blog.fitout_video_1_youtube_description, 
+                            youtube_uploaded_date: fitout.metafields.fitout_blog.fitout_video_1_youtube_uploaded_date,
+                            render_card_css: false,
+                            render_price_css: false
+                        -%}
+                    </div>
+                {%- endif -%}
+
+                {%- if fitout.metafields.fitout_blog.fitout_logo -%}
+                    <div class="fitout-logo-holder">
+                        <div class="logo-cnt">
+                            <img src="{{fitout.metafields.fitout_blog.fitout_logo | file_img_url: '100x'}}" alt="Logo - {{fitout.title}}"  loading="lazy" height="auto" width="auto">
+                            <a href="{{fitout.url}}" class="link">View fitout</a>
+                        </div>
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    {%- break -%}
+    {%- endif -%}
+    {%- endfor -%}
+    </div>
+</div> 
+
+{% schema %}
+    {
+    "name": "Recent Fitouts",
+    "class": "section-featured-recent-fitouts",
+    "settings": [
+    {
+    "type": "header",
+    "content": "Instruction",
+    "info": "Select fitouts from theme setting, globally"
+    },
+    {
+    "type": "article",
+    "id": "needafitout_fitout",
+    "label": "Selet Fitout",
+    "info": " Home page : 1. Section setting if not available 2. Random featured recent fitouts  Landing pages : 1. Metafield .. 2. random featured recent fitouts  "
+    }
+    ]
+    }
+{% endschema %}

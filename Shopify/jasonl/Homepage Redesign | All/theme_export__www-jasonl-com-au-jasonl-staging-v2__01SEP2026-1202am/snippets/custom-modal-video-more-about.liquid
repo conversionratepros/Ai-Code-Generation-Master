@@ -1,0 +1,102 @@
+{% if youtube_title and youtube_uploaded_date %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+          "@type": "VideoObject",
+          "name": "{{youtube_title}}",
+          "description": "{{youtube_description}}",
+          "thumbnailUrl": [
+              "https://img.youtube.com/vi/{{youtube_id}}/default.jpg", 
+            "https://img.youtube.com/vi/{{youtube_id}}/hqdefault.jpg", 
+            "https://img.youtube.com/vi/{{youtube_id}}/mqdefault.jpg", 
+              "https://img.youtube.com/vi/{{youtube_id}}/sddefault.jpg"
+          ], 
+          "uploadDate": "{{youtube_uploaded_date}}",
+          "embedUrl": "https://www.youtube.com/embed/{{youtube_id}}"
+          }
+    </script>
+{%- endif -%}
+
+{%- unless skip_styles -%}
+  {%- unless template.name == "collection" -%}
+    {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {%- endunless -%}
+{%- endunless -%} 
+
+
+{%- unless settings.cart_type == 'drawer' -%}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+              <modal-opener data-modal="#PopupModal-{{ youtube_id }}">
+                <div class="deferred-media deferred-media--placeholder">
+                  <button class="collage-content collage-card__image-wrapper media deferred-media__poster full-unstyled-link" type="button" aria-haspopup="dialog" data-media-id="{{ youtube_id }}">
+                    <span class="deferred-media__poster-button motion-reduce">
+                      <span class="play-btn">
+                        {%- render 'icon-triangle-arrow' -%}
+                      </span>
+                    </span>
+{% comment %}                                        
+                    <img
+                         src="{{ cover_image | file_img_url: '496x' }}"
+                         
+                         alt="More About"
+                         loading="lazy"
+                         width="100"
+                         height="auto"
+                         class="collage-card__image"
+                         style="position: relative;"> {% endcomment %}
+
+                         <img
+                          src="{{ cover_image | file_img_url: '372x270', crop: 'center' }}"
+                          
+                          alt="{{item3_label}}"
+                          loading="lazy"
+                          width="370"
+                          height="209"
+                          class="collage-card__image"
+                          style="position: relative;">
+                   
+                  </button>
+                </div>
+              </modal-opener>
+                <modal-dialog
+                  id="PopupModal-{{ youtube_id }}"
+                  class="modal-video media-modal color-{{ settings.color_schemes | first }}"
+                >
+                  <div
+                    class="modal-video__content"
+                    role="dialog"
+                    aria-label="{{ block.settings.description | escape }}"
+                    aria-modal="true"
+                    tabindex="-1"
+                  >
+                    <button
+                      id="ModalClose-{{ block.id }}"
+                      type="button"
+                      class="modal-video__toggle"
+                      aria-label="{{ 'accessibility.close' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-close.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                    <div class="modal-video__content-info">
+                      <deferred-media class="modal-video__video template-popup">
+                        <template>
+                            <iframe
+                              src="https://www.youtube.com/embed/{{ youtube_id }}?enablejsapi=1"
+                              class="js-youtube"
+                              allow="autoplay; encrypted-media"
+                              allowfullscreen
+                              title="{{ block.settings.description | escape }}"
+                            ></iframe>
+                        
+                        </template>
+                      </deferred-media>
+                    </div>
+                  </div>
+                </modal-dialog>

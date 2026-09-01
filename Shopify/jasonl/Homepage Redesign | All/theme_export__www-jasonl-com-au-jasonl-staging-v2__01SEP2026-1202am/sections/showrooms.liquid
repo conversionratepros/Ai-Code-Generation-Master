@@ -1,0 +1,104 @@
+
+ 
+            {%- comment -%}
+            Google optimize enabled.
+            ---------------------------------
+            1. Condition : checking office desk
+            Action: Hiding this section.
+            {%- endcomment -%}
+            {%- assign optimize_common_content = false -%}
+            {%- if template == "collection" -%}
+            {%- if collection.handle == "office-desks"-%}
+            {%- assign optimize_common_content = true -%}
+            {%- endif-%}
+            {%- endif -%}
+
+            {%- if optimize_common_content == false -%}
+
+
+
+                    {{ "component-showrooms.css" | asset_url | stylesheet_tag }}
+                    <div class="showroom page-width" id="showroom-section">
+                        <h2>{{section.settings.showrooms_heading}}</h2>
+                    {%- render 'store-locator' -%}
+                    </div>
+
+
+            {%-endif-%}
+
+
+
+
+
+
+{% schema %} 
+{ "name": "showrooms",
+"tag": "section",
+"class":"showrooms-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "showrooms_heading",
+      "label": "Heading title"
+    }
+  ]
+} 
+{% endschema %}
+
+{%-comment-%}
+"blocks": [
+     {
+       "name": "Showroom",
+       "type": "showroom",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "showroom_img",
+           "label": "Showroom/Googlemap image"
+         },
+         {
+           "type": "url",
+           "id": "showroom_link",
+           "label": "Google map URL"
+         },
+         {
+             "type":"header",
+             "content":"Location Details"
+         },
+         {
+             "type":"text",
+             "id":"showroom_name",
+             "label":"Showroom name"
+         },
+         {
+             "type":"textarea",
+             "id":"showroom_address",
+             "label":"Address"
+         },{
+             "type":"text",
+             "id":"showroom_phone",
+             "label":"Phone"
+         },
+         {
+             "type":"text",
+             "id":"showroom_email",
+             "label":"Email"
+         },
+         {
+             "type":"header",
+             "content":"opening Time"
+         },{
+             "type":"text",
+             "id":"showing_openingtime_heading",
+             "label":"Visit"
+         },
+         {
+         "type":"html",
+         "id":"showroom_officehours",
+         "label":"Opening time"
+
+         }
+       ]
+     }
+   ]
+{%-endcomment-%}

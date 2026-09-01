@@ -1,0 +1,15 @@
+<!-- fitout team listing start -->
+{{ 'trusted-companies-logo.css' | asset_url | stylesheet_tag }}
+<div class="trusted-companies-logo-wrap">
+    <div class="page-width">
+      <h5 class="section-heading">Trusted by leading companies</h5>
+      <div class="logos">
+        <div class="lg-logos">
+            {% render 'trusted-companies-logos-lg' %}
+        </div>
+        <div class="sm-logos">
+            {% render 'trusted-companies-logos-sm' %}
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+{%- capture longlasting_block -%}
+  {%- assign is_longlasting_product = false -%}
+  {%- assign product_badges =  product.metafields.productmeta.badges | split:'|' -%}
+  {%- for badge in product_badges -%}
+      {%- if badge contains 'yr' -%}
+          {%- assign badge_num = badge |  remove: 'yr' |  times: 1 -%}
+          {%- if badge_num >= 10  -%}
+          {%- assign is_longlasting_product = true -%}
+          {%- endif  -%}
+      {%- endif -%}
+  {%- endfor -%}
+    
+    {%- if is_longlasting_product == true -%}
+        <div class="card-with-icon">
+        <div class="icon">
+            <svg id="lognlastingCapa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 818.42 848.15">
+                <defs>
+                  <style>
+                  </style>
+                </defs>
+                <path class="longlastingcls-1" d="M679.57,387.04l.29-228.33c0-2.76-1.09-5.41-3.04-7.36-1.95-1.95-4.6-3.05-7.36-3.05-110.31,0-213.94-35.69-284.31-97.92-1.9-1.68-4.35-2.61-6.89-2.61h-.95c-2.54,0-4.99.93-6.89,2.61-70.37,62.23-174,97.92-284.31,97.92-5.74,0-10.4,4.66-10.4,10.4v339.46c0,79.49,39.34,153.5,105.23,197.97l187.19,126.34c1.76,1.19,3.79,1.78,5.82,1.78s3.97-.57,5.71-1.7l81.92-53.77c28.42,13.37,60.13,20.86,93.56,20.86,121.62,0,220.57-98.95,220.57-220.57,0-75.5-38.13-142.24-96.14-182.02ZM374.04,801.37l-181.46-122.47c-60.15-40.6-96.07-108.16-96.07-180.73V169c108.17-2.12,209.67-37.3,281.28-97.51,71.6,60.2,173.1,95.39,281.26,97.51l-.26,205.42c-30.92-16.53-66.21-25.92-103.65-25.92-121.62,0-220.57,98.95-220.57,220.57,0,79.77,42.56,149.78,106.17,188.52l-66.7,43.78ZM565.54,768.58v-32.54h-20.8v32.54c-65.72-3.39-123.13-38.68-157.04-90.66l28.1-16.26-10.41-18-28.14,16.28c-13.99-27.28-21.89-58.17-21.89-90.87s8.03-64.09,22.24-91.53l28.08,16.38,10.48-17.96-28.04-16.36c33.95-51.63,91.17-86.66,156.63-90.04v32.54h20.8v-32.54c65.72,3.39,123.13,38.68,157.04,90.66l-28.1,16.26,10.41,18,28.14-16.28c13.99,27.28,21.89,58.17,21.89,90.88s-8.03,64.09-22.24,91.53l-28.08-16.38-10.48,17.96,28.04,16.36c-33.95,51.63-91.17,86.66-156.63,90.04Z"/>
+                <path class="longlastingcls-1" d="M535.08,591.51l-65.32-60.83-14.17,15.22,73.38,68.34c1.93,1.8,4.46,2.79,7.09,2.79.22,0,.45,0,.67-.02,2.86-.19,5.51-1.54,7.34-3.75l121-146.21-16.02-13.26-113.97,137.72Z"/>
+              </svg>
+        </div>
+        <div class="icon-card-body">
+            <div class="icon-card-body-title"><h3>LONG LASTING PRODUCT</h3></div>
+            <div class="icon-card-body-content">
+                This product is built to last, with a 10+ year warranty ensuring durability and long-term value.
+            </div>
+        </div>
+        </div>
+    {%- endif -%}
+    {%- endcapture -%}
+    {{longlasting_block |  strip_newlines |  remove: '   ' }}
+    {% comment %} 
+    Example product
+    10 - https://www.jasonl.com.au/products/quadro-a-leg-2-person-corner-workstations-u-configuration-black-frame
+    {% endcomment %}

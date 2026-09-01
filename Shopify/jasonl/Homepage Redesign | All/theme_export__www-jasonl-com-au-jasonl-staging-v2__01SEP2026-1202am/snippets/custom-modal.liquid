@@ -1,0 +1,44 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+              <modal-opener data-modal="#PopupModal-{{modal_id}}">
+                  <div class="deferred-media">
+                    <button
+                      class="deferred-media__poster full-unstyled-link"
+                      type="button"
+                      aria-haspopup="dialog"
+                    >
+                    </button>
+                  </div>
+                </modal-opener>
+                <modal-dialog
+                  id="PopupModal-{{modal_id}}"
+                  class="media-modal color-{{ settings.color_schemes | first }} {{modal_class}}"
+                >
+                  <div
+                    class="modal-video__content"
+                    role="dialog"
+                    aria-label="{{ block.settings.description | escape }}"
+                    aria-modal="true"
+                    tabindex="-1"
+                  >
+                    <button
+                      id="ModalClose-{{ block.id }}"
+                      type="button"
+                      class="modal-video__toggle"
+                      aria-label="{{ 'accessibility.close' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-close.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                    <div class="modal-video__content-info">
+                      <deferred-media class="modal-video__video template-popup">
+                        <template>
+                            {{modal_content}}
+                        </template>
+                      </deferred-media>
+                    </div>
+                  </div>
+                </modal-dialog>

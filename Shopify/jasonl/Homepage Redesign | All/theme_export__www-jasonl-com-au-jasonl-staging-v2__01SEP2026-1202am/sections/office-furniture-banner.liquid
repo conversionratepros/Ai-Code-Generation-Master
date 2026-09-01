@@ -1,0 +1,68 @@
+{%- comment -%} 
+ DO not show the banner on following templates:
+  1. /colllections/parent-collection
+  2. /colllections/parent-collection/perth
+{%- endcomment -%}
+{{ 'office-furniture-banner.css' | asset_url | stylesheet_tag }}
+<div class="office-furniture-banner-section">
+    <div class="page-width">
+        <div class="header-banner">
+            <div class="banner-content">
+                <div class="header-banner-tag">
+                    <span>
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="18px" height="18px" viewBox="0 0 18 18">
+                            <path fill-rule="evenodd"  fill="rgb(100, 114, 14)"
+                            d="M17.367,9.894 L16.822,10.642 C16.672,10.848 16.650,10.980 16.663,11.115 L16.758,12.068 C16.894,13.436 15.711,13.903 15.004,14.182 L14.894,14.226 C14.605,14.341 14.538,14.474 14.347,14.919 C14.258,15.128 14.157,15.364 14.006,15.619 C13.682,16.169 13.125,16.472 12.464,16.478 C12.156,16.477 11.892,16.445 11.680,16.419 C11.231,16.363 11.096,16.346 10.802,16.553 L10.053,17.081 C9.744,17.299 9.391,17.408 9.038,17.408 C8.689,17.408 8.341,17.301 8.038,17.089 L7.299,16.570 C6.983,16.348 6.868,16.361 6.387,16.418 C6.185,16.442 5.955,16.469 5.676,16.479 C4.381,16.531 3.950,15.476 3.666,14.783 L3.609,14.645 C3.489,14.357 3.354,14.291 2.902,14.104 C2.689,14.017 2.448,13.918 2.188,13.769 C1.611,13.439 1.292,12.864 1.315,12.193 C1.324,11.945 1.349,11.726 1.372,11.533 C1.434,11.016 1.442,10.870 1.246,10.627 L1.196,10.564 C0.713,9.965 -0.016,9.061 0.659,7.954 C0.828,7.677 1.016,7.429 1.247,7.143 C1.442,6.901 1.434,6.754 1.372,6.234 C1.349,6.042 1.324,5.824 1.315,5.579 C1.291,4.904 1.630,4.306 2.223,3.980 C2.467,3.846 2.693,3.752 2.894,3.670 C3.352,3.480 3.490,3.413 3.609,3.126 L3.666,2.988 C3.949,2.296 4.367,1.249 5.673,1.291 C5.924,1.299 6.147,1.325 6.343,1.348 C6.855,1.407 7.014,1.416 7.249,1.236 C7.478,1.060 7.754,0.855 8.052,0.670 C9.181,-0.030 10.104,0.679 10.714,1.147 L10.826,1.234 C11.066,1.416 11.221,1.407 11.723,1.348 C11.923,1.324 12.150,1.298 12.407,1.291 C13.705,1.245 14.138,2.313 14.421,3.014 L14.458,3.107 C14.582,3.410 14.710,3.473 15.178,3.667 C15.389,3.754 15.627,3.853 15.886,3.999 C16.503,4.348 16.829,4.985 16.758,5.702 L16.663,6.656 C16.641,6.875 16.714,6.995 17.008,7.377 C17.136,7.542 17.282,7.730 17.419,7.956 C17.805,8.594 17.786,9.319 17.367,9.894 ZM16.045,8.760 C15.954,8.611 15.848,8.473 15.736,8.328 C15.402,7.896 14.987,7.359 15.072,6.503 L15.167,5.549 C15.180,5.413 15.129,5.384 15.088,5.361 C14.916,5.264 14.743,5.192 14.559,5.116 C14.021,4.894 13.351,4.617 12.974,3.690 L12.935,3.594 C12.649,2.885 12.583,2.864 12.452,2.862 C12.267,2.867 12.095,2.887 11.913,2.908 C11.335,2.976 10.615,3.061 9.847,2.476 L9.730,2.386 C9.083,1.889 9.027,1.923 8.905,1.999 C8.665,2.147 8.430,2.323 8.231,2.476 C7.468,3.060 6.740,2.976 6.157,2.908 C5.991,2.889 5.814,2.868 5.621,2.862 C5.492,2.858 5.431,2.884 5.149,3.574 L5.089,3.720 C4.715,4.623 4.048,4.898 3.512,5.119 C3.336,5.192 3.169,5.261 3.004,5.352 C2.939,5.387 2.909,5.422 2.913,5.524 C2.919,5.715 2.941,5.889 2.960,6.052 C3.029,6.633 3.114,7.355 2.500,8.118 C2.308,8.357 2.155,8.557 2.030,8.762 C1.950,8.894 1.964,8.987 2.448,9.587 L2.501,9.652 C3.114,10.416 3.029,11.136 2.960,11.715 C2.941,11.879 2.919,12.054 2.913,12.246 C2.909,12.354 2.945,12.384 2.993,12.411 C3.162,12.508 3.336,12.579 3.519,12.655 C4.051,12.874 4.713,13.147 5.088,14.049 L5.149,14.196 C5.431,14.886 5.491,14.912 5.620,14.908 C5.832,14.901 6.017,14.879 6.196,14.858 C6.394,14.834 6.594,14.810 6.803,14.810 C7.224,14.810 7.680,14.906 8.227,15.290 L8.967,15.809 C9.015,15.843 9.054,15.851 9.121,15.804 L9.870,15.276 C10.672,14.710 11.314,14.789 11.880,14.859 C12.075,14.883 12.260,14.906 12.470,14.906 C12.570,14.919 12.597,14.876 12.623,14.831 C12.723,14.662 12.796,14.491 12.874,14.309 C13.098,13.785 13.377,13.134 14.294,12.769 L14.409,12.723 C15.186,12.417 15.180,12.351 15.167,12.220 L15.072,11.267 C15.018,10.721 15.166,10.216 15.523,9.726 L16.068,8.978 C16.092,8.945 16.128,8.896 16.045,8.760 ZM5.387,8.953 L6.517,7.842 L8.191,9.488 L12.182,5.563 L13.313,6.675 L8.191,11.711 L5.387,8.953 Z"/>
+                        </svg>
+                        Commercial office furniture
+                    </span>
+                </div>
+                <h1 class="banner-title">
+                    Office furniture? <br> <span>Sorted.</span>
+                </h1>
+                <p>
+                    JasonL is one of Australia's largest commercial office furniture suppliers, <span>with over 1,000 stocked products – desks, ergonomic chairs, workstations, storage, boardroom tables and more – </span>delivered and installed Australia-wide.
+                </p>
+                <div class="buttonwrap">
+                    <a class="btn" {{ settings.typeformurls_url_1 }} href="javascript:void(0)">
+                        Get a free quote
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="20px" height="8px" viewBox="0 0 20 8">
+                            <path fill-rule="evenodd"  fill="rgb(255, 255, 255)"
+                            d="M15.574,0.624 L14.502,1.668 L16.373,3.492 L-0.002,3.492 L-0.002,4.969 L16.349,4.969 L14.498,6.773 L15.570,7.817 L19.261,4.219 L15.574,0.624 Z"/>
+                        </svg>
+                    </a>
+                    <span class="button button--border"><a href="tel:{{shop.phone}}" class="phonelink">{{ shop.phone }}</a>Talk to a specialist</span>
+                    {% comment %} <a href="tel:{{shop.phone}}" class="button button--border">{{ shop.phone }}<span>Talk to a specialist</span></a> {% endcomment %}
+                </div>
+            </div>
+            <div class="banner-img">
+                <picture>
+                    <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                    <source srcset="{{ 'banner-office-furniture.jpg' | file_img_url:'952x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+    
+                    <!-- Source for mobile devices (max-width: 768px) with retina resolution (2x) -->
+                    <source srcset="{{ 'banner-office-furniture.jpg' | file_img_url:'952x'}} 2x" media="(max-width: 768px) and (min-resolution: 2dppx)">
+                    
+                    <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                    <source srcset="{{ 'banner-office-furniture.jpg' | file_img_url:'952x'}}" media="(min-width: 769px)">
+                    
+                    <!-- Fallback image for browsers that do not support <picture> element or <source> tags = photoshop mobile size -->
+                    <img src="{{ 'banner-office-furniture.jpg' | file_img_url:'952x'}}" alt="" width="952" height="635">
+                </picture>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Office furniture banner",
+"class": "Office-furniture-banner-section"
+}
+{% endschema %}

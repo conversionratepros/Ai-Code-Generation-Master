@@ -1,0 +1,49 @@
+{
+    "sections": {
+        "collection_banner": {
+            "type": "range-collection-banner",
+            "settings": {
+                "banner_heading": "{{ collection.title }}"
+            }
+        },
+        "range_product_listing": {
+            "type": "range-collection-product-listing",
+            "settings": {}
+        },
+        "contact-buttons": {
+            "type": "contact-buttons",
+            "settings": {
+                "sectionStatus": false,
+                "sectionHeading": "Quote me on this style",
+                "sectionContent": "",
+                "sectionType": "section-white"
+            }
+        },
+        "fitouts_company_img": {
+            "type": "fitouts-companies-with-img3",
+            "settings": {
+                "fitoutscompaniesimg_heading": "We've Done Fitouts for<br>These Great Companies",
+                "fitoutscompaniesimg_paragraph": "",
+                "fitoutscompaniesimg_button": "Load more",
+                "fitoutscompaniesimg_buttonurl": "shopify:\/\/blogs\/fitouts",
+                "fitoutscompaniesimg_buttonclass": "",
+                "fitoutscompaniesimg_buttonattr": "",
+                "fitoutscompaniesimg_button2": "",
+                "fitoutscompaniesimg_buttonurl2": "",
+                "fitoutscompaniesimg_buttonclass2": "",
+                "fitoutscompaniesimg_buttonattr2": ""
+            }
+        },
+        "reviews": {
+            "type": "customer_reviews",
+            "settings": {}
+        }
+    },
+    "order": [
+        "collection_banner",
+        "range_product_listing",
+        "contact-buttons",
+        "fitouts_company_img",
+        "reviews"
+    ]
+}

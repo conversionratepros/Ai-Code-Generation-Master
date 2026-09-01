@@ -1,0 +1,49 @@
+
+<details id="Details-menu-drawer-menu-item-furniture-for-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}-furniturefor"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                      
+                        <strong>Furniture for </strong>
+                        <span class="svg-wrapper">
+                          {{- 'icon-arrow.svg' | inline_asset_content -}}
+                        </span>
+                        <span class="svg-wrapper">
+                          {{- 'icon-caret.svg' | inline_asset_content -}}
+                        </span>
+                      </summary>
+                      <div
+                        id="link-furniture-for"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            <span class="svg-wrapper">
+                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                            </span>
+                            Back to Main Menu
+                          </button>
+                          {% assign menu = linklists['furniture-for'] %}
+                          
+                          <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                            {% for childlink in menu.links %}
+                              <li>
+                                  <a
+                                    id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                    href="{{ childlink.url }}"
+                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                    {% if childlink.current %}
+                                      aria-current="page"
+                                    {% endif %}
+                                  >
+                                    {{ childlink.title | escape }}
+                                  </a>
+                              </li>
+                            {%- endfor -%}
+                         
+                          </ul>
+                        </div>
+                      </div>
+                    </details>

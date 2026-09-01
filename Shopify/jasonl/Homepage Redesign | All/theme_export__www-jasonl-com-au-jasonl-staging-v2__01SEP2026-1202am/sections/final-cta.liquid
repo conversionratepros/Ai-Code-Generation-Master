@@ -1,0 +1,45 @@
+{{ 'final-cta.css' | asset_url | stylesheet_tag }}
+
+<div class="final-cta">
+    <div class="page-width">
+        <div class="final-cta-wrap">
+            <div class="intro cta-2-col">
+                {% comment %} <div class="eyebrow">FURNITURE GLOSSARY</div> {% endcomment %}
+                <h2 class="section-title">Office furniture? <br> <span>Sorted.</span></h2>
+                <p>Get a tailored quote, or talk to a workplace specialist who'll size it from your floor plan – delivered and installed Australia-wide.</p>
+            </div>
+            <div class="cta-2-col">
+                <div class="col">
+                    <a class="btn-large typeform-share getaquoteclick" {{ settings.typeformurls_url_1 }} href="javascript:void(0)">
+                       Get a free quote 
+                        <svg width="27" height="11" viewBox="0 0 27 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.8064 0L20.3056 1.4616L22.925 4.0152H0V6.083H22.8914L20.3 8.6086L21.8008 10.0702L26.9682 5.033L21.8064 0Z" fill="black"></path>
+                        </svg>
+                   </a>
+                   <p class="btn-caption">Takes 60 seconds. <strong>No spam, no obligation</strong></p>
+                </div>
+                <div class="col">
+                    <div class="bottom-right-callout-box">
+                        <a href="tel:1300043003" class="callout-phone">Call <span>1300 043 003</span></a>
+                        <div class="bottom-text-line">
+                            {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'text hiddenemail ga4-sales-email' %}
+                            <span class="dot"></span>
+                            Prefer to see it first ? &nbsp;    
+                            <a href="#" class="book-showroom-link"> <strong> Book a showroom visit </strong> 
+                                <svg width="16" height="10" viewBox="0 0 27 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.8064 0L20.3056 1.4616L22.925 4.0152H0V6.083H22.8914L20.3 8.6086L21.8008 10.0702L26.9682 5.033L21.8064 0Z" fill="white"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> 
+
+{%- schema -%}
+{
+    "name": "final-cta",
+    "class": "section",
+    "settings": []
+}
+{%- endschema -%}

@@ -1,0 +1,209 @@
+{{ 'cart-payment-options.css' | asset_url | stylesheet_tag }}
+<div class="cart-payment-options-holder">
+    <span class="label">How would you like to proceed?</span>
+    <div class="payment-options" id="minicart-payment-options">
+       
+            <label class="formelement_container">
+                <input type="radio" name="payment_option" value="{{shop.url}}/pages/checkout?payment-option=request-quote" data-paymentoption="request-quote">
+                <span class="check_radio"></span>
+                <span>Request a quote</span>
+                <span class="box"></span>
+            </label>
+        
+            <label class="formelement_container">
+                <input type="radio" name="payment_option" valuebackup="pay-online" value="{{shop.url}}/checkout" data-paymentoption="pay-online">
+                <span class="check_radio"></span>
+                <span>Pay online</span>
+                <span class="box"></span>
+            </label>
+            {% assign cartTotal =  cart.total_price | divided_by:100 %}
+                {%- comment -%} 
+                    date: Wed 18 Sep 2024
+                    disabled due issue on payto logic. 
+                    disabled files: payments.liquid, cart-payment-options.liquid
+                    ==========================================================================
+        ==========================================================================
+            
+
+            <label   id="payment-payto" class="formelement_container {%  if cartTotal > 25000 %}disabled{% endif %}">
+                <input type="radio" {%  if cartTotal > 25000 %}disabled{% endif %} name="payment_option" value="{{shop.url}}/pages/checkout-payto" data-paymentoption="payto">
+                <span class="check_radio"></span>
+                <span>Pay via direct debit</span>
+                <span class="box"></span>
+                <div class="payment-icon-holder payment-payto">
+                </div>
+                <div class="disabled-msg">
+                    <span class="close"></span>
+                    <p>Maximum payment limit is AUD 25000</p>
+                </div>
+            </label>
+            {%- endcomment -%} 
+      
+            <label class="formelement_container">
+                <input type="radio" name="payment_option" value="{{shop.url}}/pages/checkout?payment-option=request-purchase" data-paymentoption="request-purchase">
+                <span class="check_radio"></span>
+                <span>Request a Purchase Order / Trade Account</span>
+                <span class="box"></span>
+            </label>
+        
+    </div>
+    <div class="payment-options-error" id="payment-options-error"></div>
+   <a href="{{shop.url}}/pages/checkout?payment-option=request-purchase" class="button button--primary" id="custom-checkout-btn">Continue</a> 
+    {% comment %} <a href="{{shop.url}}/checkout" class="button button--primary">Checkout</a> {% endcomment %}
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    
+    const cartBtn = document.querySelectorAll('.product-form__buttons button[name="add"]');
+    for(let i = 0; i<cartBtn.length; i++){
+        cartBtn[i].addEventListener('click', function(){
+         localStorage.setItem("clickedCartBtn", cartBtn[i].innerText);
+            if(cartBtn[i].innerText.toLowerCase().includes('quote')){
+                localStorage.setItem("minicart-payement-option", 'request-quote');
+            }else{
+                localStorage.setItem("minicart-payement-option", 'pay-online');
+            }
+        });
+    }  
+  });
+
+   function saveCheckoutOption(){
+       const payment_option = document.getElementById('minicart-payment-options').querySelectorAll('input[type="radio"]');
+       payment_option.forEach((option) =>{
+        option.addEventListener('click', function(e){
+            console.log(e.target.value);
+            if(e.target.value){
+                let payment_option = e.target.getAttribute('data-paymentoption');
+                localStorage.setItem('minicart-payement-option', payment_option);
+            }
+        })
+       }) 
+    }
+    saveCheckoutOption();
+
+    function setMinicartPaymentoption() {
+        // custom 
+        if(localStorage.getItem('minicart-payement-option')){
+          let cartBtn =  localStorage.getItem('minicart-payement-option');
+          cartBtn = cartBtn.toLowerCase();
+            switch(cartBtn) {
+              case 'request-quote':
+                document.getElementById('minicart-payment-options').querySelector('input[data-paymentoption="request-quote"]').checked = true;
+                break;
+              case 'add-to-cart':
+                document.getElementById('minicart-payment-options').querySelector('input[data-paymentoption="pay-online"]').checked = true; 
+                break;
+              case 'request-purchase':
+                document.getElementById('minicart-payment-options').querySelector('input[data-paymentoption="request-purchase"]').checked = true; 
+                break;
+              default:
+                document.getElementById('minicart-payment-options').querySelector('input[data-paymentoption="pay-online"]').checked = true; 
+            }
+      }else{
+            document.getElementById('minicart-payment-options').querySelector('input[data-paymentoption="pay-online"]').checked = true; 
+      }
+  }
+
+
+const minicartObserver = new MutationObserver(() => {
+    saveCheckoutOption();
+    setUrl();
+    setMinicartPaymentoption(); 
+});
+
+// Observe changes to the minicart
+const option_wrapper = document.getElementById('CartDrawer');
+minicartObserver.observe(option_wrapper, { childList: true, subtree: true });
+
+
+    function setUrl(){
+        const btn = document.getElementById('custom-checkout-btn');
+        const payment_option_holder = document.getElementById('minicart-payment-options');
+        btn.addEventListener('click',function(e){
+            if(!payment_option_holder.querySelector('input[name="payment_option"]:checked')){
+                // if no option is selected.
+                e.preventDefault();
+                document.getElementById('payment-options-error').innerText = "Please select an option.";
+                document.getElementById('payment-options-error').classList.add('show');
+                return false;
+            }
+        
+
+            // disable if cart total greater than 25000
+            if(payment_option_holder.querySelector('input[data-paymentoption="payto"]:checked')){
+                let totalCartPrice = parseInt(document.getElementById('sidebar-subtotal').getAttribute('data-price'))/100;
+                if(totalCartPrice > 25000){
+                    disablePayto(totalCartPrice);
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            
+ 
+            // payment option - default shopify checkout    
+             let payment_option = payment_option_holder.querySelector('input[name="payment_option"]:checked').value;
+
+             //if(payment_option == 'pay-online'){
+                //e.preventDefault();
+                //document.getElementById('form-minicart').querySelector('input[type="submit"].checkout').click();
+                //document.getElementById('cart-container').querySelector('input[type="submit"].checkout').click();
+                // document.getElementById('cart-container').querySelector('form[name="cart_form"]').submit();
+                //return true;
+             //}
+            
+            // remove error msg
+            if(document.getElementById('payment-options-error').classList.contains('show')){
+                document.getElementById('payment-options-error').innerText = "";
+                document.getElementById('payment-options-error').classList.remove('show');
+            } 
+            // payment option - 
+           this.setAttribute('href',payment_option); 
+            
+        })
+    }
+    setUrl();
+
+
+    
+
+
+
+    // function saveCheckoutOption(){
+    //    const payment_option= document.getElementById('minicart-payment-options').querySelectorAll('input[type="radio"]');
+    //    payment_option.forEach((option) =>{
+    //     option.addEventListener('click', function(e){
+    //         localStorage.setItem('minicart_checkout_option', e.target.value);
+    //     })
+    //    }) 
+    // }
+    // saveCheckoutOption()
+
+    // function selectCheckoutOption(){
+    //     let selectedOption = localStorage.getItem('minicart_checkout_option');
+    //     if(selectedOption){
+    //         document.getElementById('minicart-payment-options').querySelector('input[value="'+selectedOption+'"]').checked = true;
+    //     }
+    // }
+    // selectCheckoutOption();
+</script>
+
+
+        {%comment%}
+        <!-- <li>
+            <label class="formelement_container">
+                <input type="radio" name="payment_option" value="Request a quote">
+                <span class="check_radio"></span>
+                Pay via EFT / Bank Transfer
+            </label>
+        </li>
+        <li>
+            <label class="formelement_container">
+                <input type="radio" name="payment_option" value="Request a quote">
+                <span class="check_radio"></span>
+                Pay via Direct Debit
+            </label>
+        </li> -->
+        {%endcomment%}

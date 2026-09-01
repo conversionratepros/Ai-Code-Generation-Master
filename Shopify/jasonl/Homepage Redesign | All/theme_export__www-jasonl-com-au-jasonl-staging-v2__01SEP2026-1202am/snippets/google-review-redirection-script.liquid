@@ -1,0 +1,65 @@
+{%- if template == 'page.google-review' -%}
+<script>
+    (function(g,e,o,t,a,r,ge,tl,y){
+    t=g.getElementsByTagName(e)[0];y=g.createElement(e);y.async=true;
+    y.src='https://g1386590346.co/gl?id=-MUwsdVlmoR8i4VwGRdU&refurl='+g.referrer+'&winurl='+encodeURIComponent(window.location);
+    t.parentNode.insertBefore(y,t);
+    })(document,'script');
+
+//window.addEventListener('DOMContentLoaded', () => {
+
+function geotargetly_loaded(){
+     var region_code = geotargetly_region_code();
+     var region_name = geotargetly_region_name(); 
+    var city_name = geotargetly_city_name();
+
+    // Normalize detected city: lowercase + remove spaces + hyphens
+    let normalizedCity = "";
+    if (city_name) {
+        normalizedCity = city_name.toLowerCase().replace(/[\s-]/g, "");
+    }
+
+    // City URLs — DO NOT MODIFY
+    const cityUrls = {
+        "Sydney": "https://g.page/r/Cd5tYzhGUWTJEAE/review",
+        "Melbourne": "https://g.page/r/CalPe68WHljDEAE/review",
+        "Adelaide": "https://g.page/r/CUqbKQ_1w4IGEAE/review",
+        "Perth": "https://g.page/r/CSab6QI7FyTQEAE/review",
+        "Gold Coast": "https://g.page/r/CYlN4C4if_iqEAE/review",
+        "Brisbane": "https://g.page/r/CSvrQYLtl0HmEAE/review",
+    };
+
+    // Default redirect is Sydney
+    let redirectUrl = cityUrls["Sydney"];
+
+    // Find match using normalized comparison
+    if (normalizedCity) {
+        for (const city in cityUrls) {
+            const normalizedKey = city.toLowerCase().replace(/[\s-]/g, "");
+
+            if (normalizedCity === normalizedKey) {
+                redirectUrl = cityUrls[city];
+                break;
+            }
+        }
+    }
+    // console.log('code', region_code);
+     console.log('region_name', region_name);
+     console.log("Original City:", city_name);
+    // console.log("Normalized City:", normalizedCity);
+    // console.log("Redirect URL:", redirectUrl);
+
+     //redirect
+    window.location.href = redirectUrl;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(function(){
+        console.log('fallback');
+        window.location.href = 'https://g.page/r/Cd5tYzhGUWTJEAE/review';
+    },10000)
+});
+
+//});
+</script> 
+{%- endif -%}

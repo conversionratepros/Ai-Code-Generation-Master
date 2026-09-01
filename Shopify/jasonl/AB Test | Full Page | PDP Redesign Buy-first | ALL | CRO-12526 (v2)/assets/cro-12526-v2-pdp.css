@@ -260,15 +260,15 @@
 .cro12526v2-buybox {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .cro12526v2-title {
   margin: 0;
   color: var(--cro12526v2-ink);
   font-weight: 500;
-  font-size: 4rem;
-  line-height: 4.8rem;
+  font-size: 3rem;
+  line-height: 3.4rem;
   letter-spacing: 0;
 }
 
@@ -453,15 +453,15 @@ legend.cro12526v2-field__head+* {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 5.4rem;
+  height: 4rem;
   padding: 0 4rem 0 2rem;
   border: 1px solid var(--cro12526v2-divider);
   border-radius: 8px;
   background: #fff;
   color: var(--cro12526v2-gray);
   font-family: inherit;
-  font-size: 1.6rem;
-  line-height: 2.8rem;
+  font-size: 1.3rem;
+  line-height: 2.4rem;
   cursor: pointer;
 }
 
@@ -506,14 +506,14 @@ legend.cro12526v2-field__head+* {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 6rem !important;
-  height: 6rem !important;
-  min-width: 6rem !important;
-  min-height: 6rem !important;
+  width: 4rem !important;
+  height: 4rem !important;
+  min-width: 4rem !important;
+  min-height: 4rem !important;
   padding: 0 !important;
   margin: 0 !important;
   border: 1px solid transparent !important;
-  border-radius: 18px !important;
+  border-radius: 14px !important;
   overflow: hidden;
   cursor: pointer;
   background: #fff;
@@ -531,7 +531,7 @@ legend.cro12526v2-field__head+* {
   max-width: none;
   object-fit: cover;
   display: block;
-  border-radius: 17px;
+  border-radius: 14px;
 }
 
 /* Active swatch: black border ring with 4px gap, per design.
@@ -598,7 +598,7 @@ legend.cro12526v2-field__head+* {
 .cro12526v2-details {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0;
   padding: 0 0.4rem;
 }
 
@@ -649,7 +649,7 @@ legend.cro12526v2-field__head+* {
   display: flex;
   gap: 1.6rem;
   align-items: stretch;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 /* The theme's section-main-product.css forces .product-form__input to
@@ -992,6 +992,9 @@ html:not(:has(.product-form__buttons.preorder-show)) .cro12526v2-details__line--
    price, options, details, actions, legals, callout, fitout. */
 
 @media screen and (max-width: 749px) {
+  .cro12526v2-buybox {
+    gap: 2rem;
+  }
 
   /* Breadcrumb + top meta row: desktop only (spec) */
   .cro12526v2-topbar {
@@ -3646,13 +3649,13 @@ html:has(.product-form__buttons.preorder-show) .cro12526v2-compare__atc {
    550x351); the mobile frame uses the 40% grey divider. */
 @media screen and (min-width: 750px) {
   .cro12526v2-options {
-    padding: 2rem 0;
-    gap: 2rem;
+    padding: 1rem 0;
+    gap: 1rem;
   }
 
   .cro12526v2-variants,
   variant-selects.cro12526v2-variants {
-    gap: 2rem;
+    gap: 1rem;
   }
 
   /* 5-up thumbs hold the design's 3:2 crop whatever the source image */
@@ -3786,7 +3789,7 @@ a.cro12526v2-finalcta__showroom-link {
 .cro12526v2-buybox__head {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.2rem;
 }
 
 @media screen and (min-width: 750px) {
@@ -3795,17 +3798,18 @@ a.cro12526v2-finalcta__showroom-link {
   }
 
   .cro12526v2-price__note {
-    margin-top: 1rem;
+    margin-top: -2px;
   }
 
   .cro12526v2-options {
-    padding: 2rem 0;
-    gap: 2rem;
+    padding: 1rem 0;
+    gap: 1rem;
   }
 
   .cro12526v2-variants,
+
   variant-selects.cro12526v2-variants {
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .cro12526v2-field--swatches {

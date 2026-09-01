@@ -1,0 +1,36 @@
+.hiddenemail {
+    color: #000 !important;
+    display: inline-flex !important;
+    align-items: baseline !important;
+    white-space: nowrap !important
+}
+
+@media(min-width: 768px) {
+    .hiddenemail .header-emailaddress svg {
+        height: 13px
+    }
+}
+
+.hiddenemail .edot {
+    width: 2px;
+    height: 2px;
+    background: #000;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.rte .edot {
+    background-color: var(--color-base-color)
+}
+
+.collection-description-section p a .edot {
+    background-color: var(--color-secondary-color)
+}
+
+.hiddenemail .svgemail {
+    height: 10px;
+    width: auto;
+    position: relative;
+    top: 1px;
+    padding: 0 1px
+}

@@ -1,0 +1,1305 @@
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+{% assign is_testing = false %}
+{% assign url_prefix = "https://prnt.jasonl.com.au/" %}
+{% assign stripkey = "pk_live_Z9A3hcn98gvKqXqLADFkTKbh" %}
+
+{% if is_testing %}
+    {% assign url_prefix = "https://poptopdesk.com/" %}
+    {% assign stripkey = "pk_test_51SGHFTQsdviQ77XK9s0T9asgJdawezPdSFzHdlbZ0qCuNrYqxiVBW31MEZz4wD9iztzh3PcjR3Ngc9xQoKgGhJyo00Nw3fKW4f" %}
+    <div class="test_running_quote_automation">Test Environment Running</div>
+{% endif %}
+
+{% assign url_quote_followup = url_prefix | append: "quotationautomate/Getpipedrivedeals/quoteFollowUp/" %}
+{% assign url_approve_quote = url_prefix | append: "quotationautomate/Getpipedrivedeals/approveQuote" %}
+{% assign url_create_intent = url_prefix | append: "stripecheckout/payment/create_intent" %}
+
+{{ 'quote-proposal.css' | asset_url | stylesheet_tag }}
+<div class="loading-screen">
+    {% render 'quote-delay-msg' %}
+    <div class="loading-message"><strong>Please wait</strong> <span>Your quote is getting ready ...</span></div>
+    <div class="loader"></div>
+</div>
+<div class="sticky-quote-info-sm" id="sticy-quote-sm">
+    <div class="sticky-quote-info-wrap">
+        <div class="quote-intro">
+            <p>Quote Date: <span id="sticky-quote-date"></span></p>
+            <p>Quote No: <span id="sticky-quote-number"></span></p>
+        </div>
+        <div class="row btn-row">
+            <a class="btn button button--primary" onclick="window.scrollTo({top: 580, behavior: 'smooth'}); return false;" >VIEW QUOTE</a>
+        </div>    
+    </div>
+</div>
+<div class="quote-proposal-wrapper">
+    <div class="quote-header">
+        <div class="page-width">
+            <div class="quote-header-wrap">
+                <div class="quote-header-title">QUOTE PROPOSAL</div>
+                <div class="logo">
+                    <svg 
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 110 34" style="width: 100%; height: auto;">
+                    <path fill-rule="evenodd"  fill="rgb(255, 255, 255)"
+                    d="M107.017,26.781 C103.127,26.781 100.137,24.661 100.137,20.073 L100.137,1.163 L105.438,1.163 L105.438,19.977 C105.438,21.673 106.730,22.290 108.133,22.290 C108.530,22.290 109.137,22.252 109.526,22.163 L109.526,26.512 C108.662,26.690 107.821,26.781 107.017,26.781 ZM95.113,26.589 C93.351,26.589 91.924,25.173 91.924,23.422 C91.924,21.675 93.351,20.256 95.113,20.256 C96.875,20.256 98.304,21.675 98.304,23.422 C98.304,25.173 96.875,26.589 95.113,26.589 ZM83.906,16.266 C83.906,14.991 83.906,12.507 81.042,12.507 C77.913,12.507 77.913,15.186 77.913,16.299 L77.913,26.176 L72.446,26.176 L72.446,8.025 L77.552,8.025 L77.552,9.955 L77.616,9.955 C78.175,9.071 79.331,7.406 82.589,7.406 C84.337,7.406 86.279,8.124 87.267,8.973 C88.256,9.822 89.375,11.261 89.375,14.829 L89.375,26.176 L83.906,26.176 L83.906,16.266 ZM60.559,26.731 C53.905,26.731 50.710,21.532 50.710,17.083 C50.710,12.638 53.905,7.438 60.559,7.438 C67.212,7.438 70.408,12.638 70.408,17.083 C70.408,21.532 67.212,26.731 60.559,26.731 ZM60.559,12.506 C58.185,12.506 56.178,14.435 56.178,17.083 C56.178,19.732 58.185,21.663 60.559,21.663 C62.929,21.663 64.939,19.732 64.939,17.083 C64.939,14.435 62.929,12.506 60.559,12.506 ZM42.649,14.925 C45.746,15.776 49.039,16.691 49.039,20.615 C49.039,24.444 45.646,26.794 41.596,26.794 C38.829,26.794 34.646,25.555 34.151,20.780 L39.587,20.780 C39.817,22.447 40.995,22.665 41.661,22.665 C42.584,22.665 43.572,21.924 43.572,21.042 C43.572,19.634 42.222,19.471 38.729,18.129 C36.358,17.378 34.383,15.840 34.383,13.387 C34.383,9.792 37.676,7.406 41.465,7.406 C43.869,7.406 48.018,8.355 48.477,13.128 L43.110,13.128 C43.079,12.735 43.012,11.536 41.397,11.536 C40.246,11.536 39.851,12.474 39.851,12.963 C39.851,13.944 41.200,14.501 42.649,14.925 ZM26.305,24.212 L26.241,24.212 C25.318,25.979 23.046,26.797 20.904,26.797 C15.106,26.797 11.715,22.285 11.715,17.084 C11.715,11.132 16.031,7.406 20.904,7.406 C23.901,7.406 25.582,8.843 26.241,9.955 L26.305,9.955 L26.305,8.025 L31.774,8.025 L31.774,26.176 L26.305,26.176 L26.305,24.212 ZM21.695,12.474 C18.567,12.474 17.184,15.087 17.184,17.149 C17.184,18.850 18.435,21.728 21.729,21.728 C25.154,21.728 26.305,18.850 26.305,17.084 C26.305,14.893 24.791,12.474 21.695,12.474 ZM7.084,6.175 C7.056,6.175 7.030,6.178 7.001,6.178 C5.431,6.178 3.857,5.250 3.857,3.204 C3.857,1.155 5.404,0.131 6.974,0.131 C7.001,0.131 7.025,0.132 7.050,0.132 C8.580,0.166 10.112,1.189 10.112,3.204 C10.112,5.217 8.613,6.142 7.084,6.175 ZM4.418,8.015 L9.719,8.015 L9.719,26.924 C9.719,31.512 6.728,33.633 2.839,33.633 C2.035,33.633 1.193,33.541 0.330,33.363 L0.330,29.014 C0.719,29.104 1.326,29.143 1.724,29.143 C3.126,29.143 4.418,28.524 4.418,26.828 L4.418,8.015 Z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="expired-quotation-page">
+        <div class="page-width">
+            <div class="expired-quotation-wrap">
+                <div class="expired-quotation-header">
+                    <h2 class="expired-title">Expired Quotation:</h2>
+                    <p class="expired-message-top">
+                        Your quotation with the order id <span id="order-id"></span> has <strong>expired</strong>.
+                    </p>
+                    <p>
+                        Please contact your sales representative to proceed with a new quotation.
+                    </p>
+                </div>
+                <div class="sale-rep">
+                    <div class="sale-rep-label">Your Account Manager</div>
+                    <div class="sale-rep-title">
+                        <span class="sales-rep-name"> &nbsp; </span>
+                    </div>
+                    <p>
+                        <span class="sales-rep-role"></span> 
+                        <span class="sales-rep-phone"></span>
+                        <span class="sales-rep-email"></span>
+                    </p>
+                    <div class="sales-rep-photos">
+                        <a href="#" class="sales-rep-photo-in-wrap sales-rep-photo-link">
+                            <picture class="salesman-img">
+                                <img src="{{ 'jasonl-default-img-thumb.png' | file_img_url: '102x' }}" alt="sales rep" width="102" height="auto" class="avatar-img">
+                            </picture>
+                            <div class="icon-wrap">
+                                <svg id="phoneiconLayer_2" data-name="phoneiconLayer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.13 26.13">
+                                    <defs>
+                                        <style>
+                                        .phoneiconcls-1 {
+                                            fill: #fff;
+                                        }
+    
+                                        .phoneiconcls-1, .phoneiconcls-2 {
+                                            fill-rule: evenodd;
+                                        }
+    
+                                        .phoneiconcls-2 {
+                                            fill: #c6d644;
+                                        }
+                                        </style>
+                                    </defs>
+                                    <g id="phoneiconLayer_1-2" data-name="phoneiconLayer 1">
+                                        <g>
+                                        <path class="phoneiconcls-2" d="m26.13,12.16c0,8.11-5.85,13.96-13.06,13.96S0,20.28,0,12.16C0,5.85,5.85,0,13.06,0s13.06,5.85,13.06,12.16Z"/>
+                                        <path class="phoneiconcls-1" d="m7.42,5.09c-.5.1-1.4,1.23-1.65,1.68-1,1.83-.37,3.55.55,5.23,1.58,2.9,4.41,5.94,7.45,7.3,2.24,1,6.17,1.85,7.76-.61.4-.62.82-1.9.09-2.4-.39-.27-2.89-1.44-3.34-1.56-.32-.08-.55,0-.79.2-.41.38-1.01,1.28-1.43,1.54-.48.3-1.28-.17-1.75-.4-1.52-.77-3.99-2.64-4.59-4.27-.31-.84.55-1.42.91-2.09.24-.45.2-.48.04-.95-.4-1.14-1.06-2.31-1.52-3.44-.26-.3-1.36-.3-1.73-.22Z"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% render 'quote-automation-timeout' %}
+
+    <div class="page-width quote-proposal-content-page" id="quote-proposal-content-screen">
+        <div class="quote-proposal-content">
+            <div class="introduction-wrap">
+                <div class="introduction-wrap-inner animate-css">
+                    <p class="quote-greeting"><strong>Dear <span id="customername"></span>,</strong></p>   
+                    <div class="quote_letter_body">
+                        {{ section.settings.quote_letter_body }}
+                    </div>
+                    <div class="signature">
+                        {% comment %} <img src="{{ 'signature_f8a95d6b-d470-4324-ba5c-764f5c3a069b.png' | file_img_url: '114x' }}" alt="" width="114px" height="auto"> {% endcomment %}
+                    </div>
+                    <div class="sale-rep">
+                        <div class="sale-rep-title">
+                            <span class="sales-rep-name"> &nbsp; </span>
+                        </div>
+                        <div class="sale-rep-label">Your Account Manager</div>
+                        <p>
+                            <span class="sales-rep-role"></span> 
+                            <span class="sales-rep-phone"></span>
+                            <span class="sales-rep-email"></span>
+                        </p>
+                        <div class="sales-rep-photos">
+                            <a href="#" class="sales-rep-photo-in-wrap sales-rep-photo-link">
+                                <picture class="salesman-img">
+                                    <img src="{{ 'jasonl-default-img-thumb.png' | file_img_url: '102x' }}" alt="salesman placeholder" width="102" height="auto" class="avatar-img">
+                                </picture>
+                                <div class="icon-wrap">
+                                   <svg id="phoneiconLayer_2" data-name="phoneiconLayer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.13 26.13">
+                                        <defs>
+                                            <style>
+                                            .phoneiconcls-1 {
+                                                fill: #fff;
+                                            }
+
+                                            .phoneiconcls-1, .phoneiconcls-2 {
+                                                fill-rule: evenodd;
+                                            }
+
+                                            .phoneiconcls-2 {
+                                                fill: #c6d644;
+                                            }
+                                            </style>
+                                        </defs>
+                                        <g id="phoneiconLayer_1-2" data-name="phoneiconLayer 1">
+                                            <g>
+                                            <path class="phoneiconcls-2" d="m26.13,12.16c0,8.11-5.85,13.96-13.06,13.96S0,20.28,0,12.16C0,5.85,5.85,0,13.06,0s13.06,5.85,13.06,12.16Z"/>
+                                            <path class="phoneiconcls-1" d="m7.42,5.09c-.5.1-1.4,1.23-1.65,1.68-1,1.83-.37,3.55.55,5.23,1.58,2.9,4.41,5.94,7.45,7.3,2.24,1,6.17,1.85,7.76-.61.4-.62.82-1.9.09-2.4-.39-.27-2.89-1.44-3.34-1.56-.32-.08-.55,0-.79.2-.41.38-1.01,1.28-1.43,1.54-.48.3-1.28-.17-1.75-.4-1.52-.77-3.99-2.64-4.59-4.27-.31-.84.55-1.42.91-2.09.24-.45.2-.48.04-.95-.4-1.14-1.06-2.31-1.52-3.44-.26-.3-1.36-.3-1.73-.22Z"/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-wrap-section">
+                <div class="animatable animate-css">
+                    <div class="info-wrap">
+                        <div class="quote-info-box">
+                            <p>Quote Date: <span id="quote_date"></span> <br>
+                                Quote No: <span id="quote_no"></span></p>
+                        </div>
+                    </div>
+                    <div class="info-wrap">
+                        <div class="quote-info-box">
+                            {{ section.settings.office_address }}
+                        </div>
+                    </div>
+                    <div class="info-wrap">
+                        <div class="quote-info-box">
+                            <div class="quote-to">
+                                <p>
+                                <strong>Quote to:</strong> <br>
+                                <span class="quote_to_addresss_block"> </span>
+                                {% comment %} 
+                                <span id="quote_to_name" class="w-100"></span>
+                                <span id="quote_to_address_street" class="w-100"></span>
+                                <span id="quote_to_address_deliverystate"> </span>
+                                <span id="quote_to_address_territorycode"> </span>
+                                <span id="quote_to_address_territory"> </span> 
+                                {% endcomment %}
+                                <br> 
+                                <span id="quote_to_address_phone" class="w-100"> </span> <br>
+                                {% comment %} CENTURIA <br>
+                                Georges Terrace St, <br>
+                                WA 6000, Perth.<br>
+                                Phone: 0447763226.<br> 
+                                {% endcomment %}
+                                </p>
+                            </div>
+                            <div class="deliver-to">
+                                <p>
+                                <strong>Deliver to:</strong> <br>
+                                <span class="deliver_to_addresss_block"> </span>
+                                {% comment %} 
+                                <span id="deliver_to_name" class="w-100"></span>
+                                <span id="deliver_to_street" class="w-100"></span>
+                                <span id="deliver_to_deliverystate"></span> 
+                                <span id="deliver_to_territorycode"></span> 
+                                <span id="deliver_to_territory"></span>
+                                {% endcomment %}<br>
+                                <span id="deliver_to_phone" class="w-100"></span> 
+                                {% comment %} 
+                                CENTURIA <br>
+                                Georges Terrace St, <br>
+                                WA 6000, Perth.<br>
+                                Phone: 0447763226.<br> 
+                                {% endcomment %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="quote-section animate-css">
+                <div class="productlist" id="productList"></div>
+                <div class="productlist projectservice" id="projectservice-wrap">
+                    <div class="product">
+                        <div class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <details>
+                                <summary>
+                                    Project Notes 
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="9px" height="4px" viewBox="0 0 9 4" class="arrow"><path fill-rule="evenodd"  fill="rgb(0, 0, 0)" d="M8.1000,4.002 L-0.010,4.002 L4.495,0.002 L8.1000,4.002 Z"/></svg> 
+                                </summary>
+                                <div>
+                                    <ul class="project-service-list" id="project-note-list">
+                                        <li> Delivery into premises</li>
+                                        <li> On-site installation</li>
+                                        <li> Damage coverage</li>
+                                        <li> Rubbish removal</li>
+                                        <li> Dedicated project manager</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-section total-section-first-child">
+                    <div class="total-section-inner">
+                        <div class="total-row" id="shipping-row">
+                            <span class="total-label">Shipping</span>
+                            <span class="total-value">$ <span id="total-Shipping"> </span></span>
+                        </div>
+                        <div class="total-row" id="assembly-row">
+                            <span class="total-label">Assembly</span>
+                            <span class="total-value">$ <span id="total-assembly"> </span></span>
+                        </div>
+                        <div class="total-row" id="discount-row">
+                            <span class="total-label">Discount</span>
+                            <span class="total-value"> <span id="total-discount"> </span></span>
+                        </div>
+                        <div class="total-row" id="other-row">
+                            <span class="total-label">Other</span>
+                            <span class="total-value"> <span id="total-other"> </span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-section">
+                    <div class="total-section-inner rm-bg">
+                        <div class="total-row">
+                            <span class="total-label">Total (Exc. GST)</span>
+                            <span class="total-value">$ <span id="total-ex-gst"> </span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-section">
+                    <div class="total-section-inner rm-bg">
+                        <div class="total-row">
+                            <span class="total-label">GST</span>
+                            <span class="total-value">$ <span id="total-gst"> </span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="total-section">
+                    <div class="total-section-inner rm-bg">
+                        <div class="total-row">
+                            <span class="total-label"><strong>Total (Inc. GST)</strong></span>
+                            <span class="total-value"><strong>$ <span id="grand-total"> </span></strong></span>
+                        </div>
+                        <div class="row btn-row">
+                            <button class="btn button button--primary" id="approve_quote_btn-modal-opener">APPROVE QUOTE</button>
+                            <a href="#" class="sales-rep-photo-link">TALK WITH SALES REP<span class="hidden text-uppercase sales-rep-name"></span></a>
+                        </div>
+                        <div class="note-box">
+                            <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="28px" height="24px" class="note-icon">
+                            <path fill-rule="evenodd"  fill="rgb(244, 216, 118)"
+                            d="M14.020,0.307 C14.659,0.230 15.323,0.493 15.748,0.967 C19.708,7.704 23.603,14.489 27.479,21.276 C27.919,22.484 27.132,23.765 25.861,23.924 L2.671,23.924 C1.427,23.771 0.637,22.528 1.032,21.333 C4.897,14.518 8.820,7.725 12.784,0.967 C13.068,0.639 13.589,0.359 14.020,0.307 ZM13.371,8.014 C13.167,8.208 12.992,8.527 12.963,8.811 L12.966,14.497 C13.269,15.931 15.275,15.924 15.559,14.490 L15.566,8.735 C15.381,7.744 14.110,7.314 13.371,8.014 ZM15.584,18.208 C15.584,17.480 14.994,16.889 14.266,16.889 C13.538,16.889 12.948,17.480 12.948,18.208 C12.948,18.936 13.538,19.526 14.266,19.526 C14.994,19.526 15.584,18.936 15.584,18.208 Z"/>
+                            </svg>
+                            <p>
+                                This quotation is valid for thirty (30) days and may be amended at any time to reflect supplier price increases and currency fluctuations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="payment-screen" id="payment-screen">
+        {% render 'payments-screen' %}
+    </div>
+    <div class="thankyou-msg" id="thankyou_msg_box">
+        {% render 'thankyou-msg-content' %}
+    </div>
+</div>
+<div class="popup-confirm" style="display: none;" id="popup-confirm-modal">
+    <div class="popup-confirm-inner"> 
+        <div class="overlay" id="overlay"></div>
+        <div class="popupbox" id="popupbox">
+            <div class="error-status">
+                Confirmation is required to proceed with the quote approval.
+            </div>
+            <div class="approved-quote-modal-info" style="display: none;">
+                <strong>Thank you for approving your quote! <br></strong>
+                <span>Please proceed to payment to complete your order.</span>
+            </div>
+            
+            {% comment %} <form action="https://poptopdesk.com/quotationautomate/Getpipedrivedeals/approveQuote" id="approved-form" method="POST"> {% endcomment %}
+            <form action="" id="approved-form" method="POST">
+                <input type="hidden" name="order_id" value="" id="orderIdField">
+                <input type="hidden" name="grand_total" value="" id="grand_total">
+                <div class="checkbox-text-label-box">
+                    <div class="checkbox-wrap">
+                        <input type="checkbox" class="confirm-checkbox" id="confirm-checkbox" name="confirm-checkbox">
+                        <div class="custom-checkbox">
+                            <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="17px" height="13px">
+                            <path fill-rule="evenodd"  fill="rgb(255, 255, 255)"
+                            d="M16.081,2.641 L6.057,12.677 C5.882,12.852 5.599,12.852 5.424,12.677 L0.316,7.563 C0.141,7.388 0.141,7.104 0.316,6.929 L1.442,5.802 C1.617,5.627 1.900,5.627 2.075,5.802 L5.424,9.155 C5.599,9.330 5.882,9.330 6.057,9.155 L14.322,0.880 C14.497,0.705 14.780,0.705 14.955,0.880 L16.081,2.007 C16.256,2.183 16.256,2.466 16.081,2.641 Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <label for="confirm-checkbox">
+                        I confirm that I have carefully reviewed and approved this quote, including all products, pricing, and <a href="/pages/terms-and-condition" class="term-link">terms and conditions</a>.</label>
+                </div>
+                <div class="checkbox-text-label-box assembly-checkbox">
+                    <div class="checkbox-wrap">
+                        <input type="checkbox" class="confirm-checkbox" id="deliver-groundfloor-checkbox" name="deliver-groundfloor-checkbox">
+                        <div class="custom-checkbox">
+                            <svg 
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="17px" height="13px">
+                            <path fill-rule="evenodd"  fill="rgb(255, 255, 255)"
+                            d="M16.081,2.641 L6.057,12.677 C5.882,12.852 5.599,12.852 5.424,12.677 L0.316,7.563 C0.141,7.388 0.141,7.104 0.316,6.929 L1.442,5.802 C1.617,5.627 1.900,5.627 2.075,5.802 L5.424,9.155 C5.599,9.330 5.882,9.330 6.057,9.155 L14.322,0.880 C14.497,0.705 14.780,0.705 14.955,0.880 L16.081,2.007 C16.256,2.183 16.256,2.466 16.081,2.641 Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <label for="deliver-groundfloor-checkbox">By choosing Delivery Only, I understand my order may be delivered to the ground floor, depending on service availability in my area.</label>
+                </div>
+                <div id="buttonwrap">
+                    <button type="submit" class="btn button button--primary submitbtn" id="aprove_submit_btn" disabled>PROCEED TO PAYMENT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% comment %} loader {% endcomment %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    // const stripe = Stripe("pk_test_51SGHFTQsdviQ77XK9s0T9asgJdawezPdSFzHdlbZ0qCuNrYqxiVBW31MEZz4wD9iztzh3PcjR3Ngc9xQoKgGhJyo00Nw3fKW4f");
+    {% comment %} const stripe = Stripe("pk_live_Z9A3hcn98gvKqXqLADFkTKbh"); {% endcomment %}
+    const stripe = Stripe("{{ stripkey }}");
+    let elements;
+    let cardNumber;
+    let cardExpiry;
+    let cardCvc;
+    let clientSecret = null;
+
+    let cardNumberComplete = false;
+    let cardExpiryComplete = false;
+    let cardCvcComplete    = false;
+
+    const paymentscreen = document.getElementById('payment-screen');
+
+    function thankyouScreenHandle(orderIdValue, amountValue){
+        const orderIdThankyou = document.getElementById('orderid-thankyou');
+        const amountValueThankyou = document.getElementById('amountValue-thankyou');
+        const paymentCreditcard = document.getElementById('payment-creditcard');
+        const thankyou_msg_box = document.getElementById('thankyou_msg_box');
+        const sticyQuoteSm = document.getElementById('sticy-quote-sm');
+        const quoteProposalContentScreen = document.getElementById('quote-proposal-content-screen');
+
+        orderIdThankyou.innerHTML = orderIdValue;
+        amountValueThankyou.innerHTML = "$"+amountValue;
+
+        // UI class and style changes after submition for active/inactive screen
+        paymentscreen.style.display = "none";
+        document.querySelector('.quote-proposal-wrapper').style.backgroundImage = "none";
+        thankyou_msg_box.style.display = "block";
+        sticyQuoteSm.style.display = "none";
+        quoteProposalContentScreen.style.display = "none";
+        
+
+        document.querySelector('.loading-screen').classList.add('loaded'); // Hide the loading screen when the page is fully loaded
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+
+        setTimeout(function() {
+            thankyou_msg_box.classList.add("active-visible");
+        }, 500);
+
+    }
+    // thankyouScreenHandle(123, 9999);
+    function getOrderId(){
+        const urlPath = window.location.pathname;
+        const segments = urlPath.split('/');
+        const order_id = segments.pop() || segments.pop();
+        return order_id;
+    }
+    
+    const order_id = getOrderId();
+    
+    function checkforApprovedMsg(status){
+        if(status === 1){
+            confirmCheckbox.checked = true;
+            deliverGroundfloorCheckbox.checked = true;
+            checkboxChangeHandler();
+            popupConfirmModal.style.display = 'block';
+        }else if(status === "DataFromMiddleware"){
+            confirmCheckbox.checked = false;
+            deliverGroundfloorCheckbox.checked = false;
+            checkboxChangeHandler();
+            // popupConfirmModal.style.display = 'block';
+        }else{
+            return;
+        }
+    }
+
+       let confirmCheckbox = document.getElementById('confirm-checkbox');
+       let deliverGroundfloorCheckbox = document.getElementById('deliver-groundfloor-checkbox');
+       let submitbtn = document.getElementById('aprove_submit_btn');
+       let approveQuoteBtnModalOpener = document.getElementById('approve_quote_btn-modal-opener');
+       let popupConfirmModal = document.getElementById('popup-confirm-modal');
+       let overlay = document.getElementById('overlay');
+       let popupbox = document.getElementById('popupbox');
+
+       // confirm check box submit enable and checked if quote_automation_order_id is stored
+        submitbtn.disabled = !confirmCheckbox.checked;
+
+       
+        
+        if(localStorage.getItem('quote_automation_order_id') && localStorage.getItem('quote_automation_order_id') == order_id ){
+            confirmCheckbox.checked = true;
+            deliverGroundfloorCheckbox.checked = true;
+            checkboxChangeHandler();
+        }
+        
+        // onload run checkboxChangeHandler once 
+        setTimeout(function() {
+            initCheckboxChangeHandler();
+        }, 1000);
+
+        function initCheckboxChangeHandler() {
+            // Select all checkboxes inside .has-assembly
+            var checkboxes = document.querySelectorAll('.has-assembly input[type="checkbox"]');
+            
+            // Check if ANY of them is checked
+            var checkedBox = document.querySelector('.has-assembly input[type="checkbox"]:checked');
+            
+            if (checkedBox) {
+                submitbtn.disabled = false;
+            } else {
+            }
+        }
+        confirmCheckbox.addEventListener('change', function(){
+            if(this.checked){
+                submitbtn.disabled = false;
+                popupbox.classList.remove('disabled-button-clicked');
+                approveQuoteBtnModalOpener.innerHTML = "APPROVED";
+            } else {
+                submitbtn.disabled = true;
+                document.querySelector('.approved-quote-modal-info').style.display = 'none';
+                approveQuoteBtnModalOpener.innerHTML = "APPROVE QUOTE";
+            }
+            checkboxChangeHandler();
+        });
+        // check for assembly checkbox change
+        deliverGroundfloorCheckbox.addEventListener('change', function(){
+            checkboxChangeHandler();
+        });
+       
+
+         // check both checkbox status    
+        function checkboxChangeHandler(){
+            if(document.getElementById('approved-form').classList.contains('has-assembly')){
+                if(confirmCheckbox.checked){
+                    submitbtn.disabled = false;
+                }
+            } else {
+                console.log("no assembly class: check for both checkbox");
+                // check if both checkbox are checked
+                // confirmCheckbox,  deliverGroundfloorCheckbox , submitbtn
+                if(confirmCheckbox.checked && deliverGroundfloorCheckbox.checked){
+                    submitbtn.disabled = false;
+                    popupbox.classList.remove('disabled-button-clicked');
+                    approveQuoteBtnModalOpener.innerHTML = "APPROVED";
+                }else{
+                    submitbtn.disabled = true;
+                    document.querySelector('.approved-quote-modal-info').style.display = 'none';
+                    approveQuoteBtnModalOpener.innerHTML = "APPROVE QUOTE";
+                }
+            }
+        }
+
+
+
+        // modal opener
+        approveQuoteBtnModalOpener.addEventListener('click', function(e){
+            e.preventDefault();
+            popupConfirmModal.style.display = 'block';
+        });
+        
+
+        // modal close on click outside
+        overlay.addEventListener('click', function(event) {
+           popupConfirmModal.style.display = 'none';
+        });
+
+        // if disabled button is click 
+        document.getElementById('buttonwrap').addEventListener("click", function(e){
+            if(submitbtn.hasAttribute("disabled")){
+                popupbox.classList.add("disabled-button-clicked");
+            }
+        });
+        
+        // submit button click event
+        document.getElementById('approved-form').addEventListener('submit', function(e){
+            e.preventDefault();
+            localStorage.setItem("quote_automation_order_id", order_id);
+            if (!confirmCheckbox.checked) {
+                alert("Please check the confirmation box first!");
+                return false; // keep form blocked
+                
+            }else{
+                console.log("submit now");
+                popupConfirmModal.style.display= "none";
+                document.getElementById('quote-proposal-content-screen').style.display = "none";
+                paymentscreen.style.display = "block";
+                setTimeout(() => {
+                    paymentscreen.classList.add('active-screen');
+                    initializeStripePayment();
+                }, 200);
+                
+                // document.getElementById('approved-form').submit(); // manually allow submission
+                // ajax send data
+                const form = this;
+                // const url = "https://prnt.jasonl.com.au/quotationautomate/Getpipedrivedeals/approveQuote";
+                const url = "{{ url_approve_quote }}";
+                const formData = new FormData(form);
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    console.log('Form submitted successfully!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    console.log('Something went wrong!');
+                });
+            }
+        });
+
+        // sticky animation
+        setTimeout(function(){
+            document.querySelector('.sticky-quote-info-sm').classList.add('sticky-entry')
+        }, 3000); 
+        window.addEventListener('scroll', function(){
+            if(window.scrollY > 200){
+                document.querySelector('.sticky-quote-info-sm').classList.add('sticky-hidden');
+                document.querySelector('.sticky-quote-info-sm').classList.remove('sticky-entry');
+            } else {
+                document.querySelector('.sticky-quote-info-sm').classList.remove('sticky-hidden');
+                document.querySelector('.sticky-quote-info-sm').classList.add('sticky-entry');
+            }
+        });
+        console.log("Quote Automation Test" + order_id);
+        document.getElementById("orderIdField").value = order_id;
+    
+        // check for checkbox status then set order id in local storage 
+        document.getElementById("confirm-checkbox").addEventListener('change', function(){
+            if(this.checked){
+                // localStorage.setItem("quote_automation_order_id", order_id);
+                // console.log("insert data into local storage");
+            }else{
+                // localStorage.removeItem("quote_automation_order_id");
+                // console.log("Remove the data !!!");
+            }
+        });
+
+        const delayMsg = document.getElementById('ajax-delay-msg');
+        // start 10s timer
+        const delayTimer = setTimeout(() => {
+        delayMsg.style.display = 'block';
+        }, 10000);
+        function clearDelayTimer() {
+            clearTimeout(delayTimer);
+            delayMsg.style.display = 'none';
+        }
+        $.ajax({
+            // url: 'https://poptopdesk.com/quotationautomate/Getpipedrivedeals/quoteFollowUp/', 
+            // url: 'https://prnt.jasonl.com.au/quotationautomate/Getpipedrivedeals/quoteFollowUp/', 
+            url: '{{ url_quote_followup }}', 
+            type: 'POST', 
+            data: {
+                order_id: order_id
+            },
+            // timeout: 20000,
+            dataType: 'json', 
+            success: function(response) {
+                console.log('Success:', response);
+                console.log(response.status);
+                if(response.status == "error"){
+                    // delay timer removed
+                    clearDelayTimer();
+                    document.querySelector('.loading-screen').classList.add('loaded');
+                    $('body').addClass('quote-automation-timeout');
+                    return;
+                }
+                //if(response.expired == true || response.status == "error"){
+                if(response.expired == true){
+                    // delay timer removed
+                    clearDelayTimer();
+
+                    $('body').addClass('form-error');
+                }
+                if(response.message === "Already Approved"){
+                    checkforApprovedMsg(1);
+                }
+                else if (response.message === "Data from middleware") {
+                    checkforApprovedMsg("DataFromMiddleware");
+                }
+                else{
+                    checkforApprovedMsg(0);
+                }
+                if(response.data.customer.name){
+                    $('#customername').html(response.data.customer.name.split(" ")[0]);
+                }
+                if(response.order_id){
+                    $('#order-id').html(response.order_id);
+                }
+                if(response.data){
+                    // delay timer removed
+                    clearDelayTimer();
+                    // check if already paid check for flag
+                    let alreadyPaid = 0;
+                    if(response.message === "Payment Completed"){
+                        alreadyPaid = 1;
+                    }
+                    if(alreadyPaid === 1){
+                        thankyouScreenHandle(response.order_id, response.data.total_incl_tax);
+                    }else{
+                        if (response.data.gst_total === 0) {
+                            console.log('fill old data :) ******');
+                            fillDataOld(response.data);
+                        }else{
+                            console.log('fill new data :) ******');
+                            fillDataNew(response.data);
+                            fillForm(response);
+                        }
+                        // loading screen
+                        setTimeout(function(){
+                            document.querySelector('.loading-screen').classList.add('loaded'); // Hide the loading screen when the page is fully loaded
+                            document.body.style.overflow = 'auto'; // Re-enable scrolling
+                            // class for animation 
+                            // document.querySelector('.introduction-wrap-inner').classList.add('animate__animated', 'animate__fadeInUp');
+        
+                            document.querySelectorAll('.animate-css').forEach(function(infoWrap, index) {
+                                infoWrap.classList.add('animate__animated', 'animate__fadeInUp');
+                                infoWrap.style.setProperty('--animate-delay', `${index * 0.5}s`);
+                            });
+        
+                             // modal open on page load if the local storage has quote_automation_order_id
+                            const storedOrderId = localStorage.getItem('quote_automation_order_id');
+                            if (storedOrderId && storedOrderId === order_id) {
+                                    document.querySelector('body').classList.add('approved-quote-has-order-id');
+                                    document.getElementById('popup-confirm-modal').style.display = 'block';
+                                    document.querySelector('.approved-quote-modal-info').style.display = 'block';
+                                } 
+                        }, 500); // simulate a delay for demonstration
+                        checkforAssembly(response.data);
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                // delay timer removed
+                clearTimeout(delayTimer);      // stop timer
+                delayMsg.style.display = 'none';
+
+                console.log('Error:', status);
+                document.querySelector('.loading-screen').classList.add('loaded');
+                $('body').addClass('quote-automation-timeout');
+                // if(status === "timeout"){
+                //     console.error("Timeout");
+                //     document.querySelector('.loading-screen').classList.add('loaded');
+                //     $('body').addClass('quote-automation-timeout');
+                // }else{
+                //     console.error("ajax error");
+                // }
+            }
+        });
+        
+        // old data
+        function fillDataOld(data){
+            // Global gst rate
+            var gstRate = 0.1; // gst 10% percent -> 0.1
+    
+            if(data.sales.signature){
+                $('.signature').html(`<img src="${data.sales.signature}" alt="salesman signature" width="114px" height="auto">`);
+            }
+            if(data.sales.avatar){
+                $('.avatar-img').attr('src', `${data.sales.avatar}`);
+            }
+            if(data.sales.name){
+                $('.sales-rep-name').html(data.sales.name);
+            }
+            if(data.sales.designation){
+                $('.sales-rep-role').html(data.sales.designation);
+            }
+            if(data.sales.phone){
+                $('.sales-rep-phone').html(`<a href="tel:${data.sales.phone}">JasonL - Office Furniture</a>`);
+                $('.sales-rep-photo-link').attr('href', `tel:${data.sales.phone}`);
+            }
+            if(data.sales.email){
+                $('.sales-rep-email').html(`<a href="mailto:${data.sales.email}">${data.sales.email}</a>`);
+            }
+            if(data.quote_date){
+                $('#quote_date').html(data.quote_date);
+                $('#sticky-quote-date').html(data.quote_date);
+            }
+            if(data.quote_no){
+                $('#quote_no').html(data.quote_no);
+                $('#sticky-quote-number').html(data.quote_no);
+            }
+    
+            // quote to :
+            if(data.quote_to_info){
+                $('.quote_to_addresss_block').html(data.quote_to_info);
+            }
+            if(data.quote_to.phone){
+                $('#quote_to_address_phone').html(`<a href="tel:${data.quote_to.phone}">Phone: ${data.quote_to.phone} </a>`);
+            }
+    
+            // deliver to : 
+            if(data.deliver_to.name){
+                $('#deliver_to_name').html(data.deliver_to.name);
+            }
+            if(data.deliver_to_info){
+                $('.deliver_to_addresss_block').html(data.deliver_to_info);
+            }
+            if(data.deliver_to.phone){
+                $('#deliver_to_phone').html(`<a href="tel:${data.deliver_to.phone}">Phone: ${data.deliver_to.phone} </a>`);
+            }
+            // total amount
+            if(data.totalamount){
+                if(!data.shipping[0]){
+                    var total_shipping = 0;
+                }else{
+                    var total_shipping = parseFloat(data.shipping[0].unit_price).toFixed(2) / (1 + gstRate);
+                }
+                if(!data.assembly[0]){
+                    var total_assembly = 0;
+                }else{
+                    var total_assembly = parseFloat(data.assembly[0].unit_price).toFixed(2) / (1 + gstRate);
+                }
+    
+                var grandTotal = data.total_incl_tax; // grand total from pipeline
+    
+                var totalamtIncShipAssembly = grandTotal/(1 + gstRate); // total amount including shippping and assembly excluding gst * this total = grand total - gst
+    
+    
+                var totalgst = grandTotal - totalamtIncShipAssembly;  // total gst 
+                
+    
+                var totalAmtExcShipAssembly = totalamtIncShipAssembly - total_shipping - total_assembly; // total excluding shipping and Assembly
+                
+                
+                $('#grand_total').val(grandTotal);
+                $('#total-ex-gst').html(totalamtIncShipAssembly.toFixed(2)); // exclued shipping, assembly and gst
+                if(total_assembly < 1 ){
+                    document.getElementById('assembly-row').classList.add('hidden');
+                } 
+                $('#total-assembly').html(total_assembly.toFixed(2));
+                $('#total-gst').html(totalgst.toFixed(2));
+                $('#total-Shipping').html(total_shipping.toFixed(2));
+                $('#total-discount').html(data.discount[0].item_price);
+                $('#grand-total').html(grandTotal);
+    
+            }
+    
+            // Create final object with loop for product loop
+            let payload = {
+                line_items: []
+            };
+            // product loop 
+            if(data && data.line_items){
+                data.line_items.forEach(item => {
+                    payload.line_items.push({
+                        quantity: item.quantity,
+                        image: item.image,
+                        codetype: item.codetype,
+                        itemcode: item.itemcode,
+                        itemname: item.itemname,
+                        unit_price: item.unit_price, 
+                        item_color: item.itemcolor,
+                        item_size: item.itemsize
+                        
+                    });
+                });
+            }
+    
+            console.log('Playload: ', payload );
+           
+            // Example: show items in HTML
+            let html = "";
+            payload.line_items.forEach((li, index) => {
+                if(li.itemname.includes("Assembly")){
+                    li.image = "https://cdn.shopify.com/s/files/1/1249/7859/files/assembly-product-for-existing-customers-270289_130x.jpg?v=1744283985";
+                }
+                html += `
+                 <div class="product">
+                                <div class="product-img">
+                                    <picture>
+                                        <img src="${li.image}" alt="product" width="130" height="auto"  onerror="this.onerror=null; this.src='https://cdn.shopify.com/s/files/1/1249/7859/files/logo-default.png?v=1768389452';">
+                                    </picture>
+                                    <div class="qty">${li.quantity}</div>
+                                </div>
+                                <div class="product-info">
+                                    <h3>${li.itemname}</h3>
+                                    <p class="product-color">${li.item_color}</p>
+                                    <p class="product-color">${li.item_size}</p>
+                                    <p>$${(li.unit_price / (1 + gstRate)).toFixed(2)}</p>
+                                </div>
+                            </div>`;
+            });
+            $("#productList").html(html);
+        }
+        // new data fill
+        function fillDataNew(data){
+            // Global gst rate
+            var gstRate = 0.1; // gst 10% percent -> 0.1
+    
+            if(data.sales.signature){
+                $('.signature').html(`<img src="${data.sales.signature}" alt="signature" width="114px" height="auto">`);
+            }
+            if(data.sales.avatar){
+                $('.avatar-img').attr('src', `${data.sales.avatar}`);
+            }
+            if(data.sales.name){
+                $('.sales-rep-name').html(data.sales.name);
+            }
+            if(data.sales.designation){
+                $('.sales-rep-role').html(data.sales.designation);
+            }
+            if(data.sales.phone){
+                $('.sales-rep-phone').html(`<a href="tel:${data.sales.phone}">JasonL - Office Furniture</a>`);
+                $('.sales-rep-photo-link').attr('href', `tel:${data.sales.phone}`);
+            }
+            if(data.sales.email){
+                $('.sales-rep-email').html(`<a href="mailto:${data.sales.email}">${data.sales.email}</a>`);
+            }
+            if(data.quote_date){
+                $('#quote_date').html(data.quote_date);
+                $('#sticky-quote-date').html(data.quote_date);
+            }
+            if(data.quote_no){
+                $('#quote_no').html(data.quote_no);
+                $('#sticky-quote-number').html(data.quote_no);
+            }
+    
+            // quote to :
+            if(data.quote_to_info){
+                $('.quote_to_addresss_block').html(data.quote_to_info);
+            }
+            if(data.quote_to.phone){
+                $('#quote_to_address_phone').html(`<a href="tel:${data.quote_to.phone}">Phone: ${data.quote_to.phone} </a>`);
+            }
+    
+            // deliver to : 
+            if(data.deliver_to.name){
+                $('#deliver_to_name').html(data.deliver_to.name);
+            }
+            if(data.deliver_to_info){
+                $('.deliver_to_addresss_block').html(data.deliver_to_info);
+            }
+
+            if(data.deliver_to.phone){
+                $('#deliver_to_phone').html(`<a href="tel:${data.deliver_to.phone}">Phone: ${data.deliver_to.phone} </a>`);
+            }
+            // total amount
+            if(data.total_incl_tax){
+                if(!data.shipping[0]){
+                    var total_shipping = 0;
+                }else{
+                    var total_shipping = data.shipping[0].unit_price_excl_tax;
+                }
+                if(!data.assembly[0]){
+                    var total_assembly = 0;
+                }else{
+                    var total_assembly = data.assembly[0].unit_price_excl_tax;
+                }
+    
+                var grandTotal = data.total_incl_tax; // grand total from pronto
+    
+                var totalamtIncShipAssembly = data.total_excl_tax; // total amount including shippping and assembly excluding gst * this total = grand total - gst
+    
+    
+                var totalgst = data.gst_total;  // total gst 
+                
+    
+                // var totalAmtExcShipAssembly = totalamtIncShipAssembly - total_shipping - total_assembly; // total excluding shipping and Assembly
+                
+                
+                $('#grand_total').val(grandTotal);
+                $('#total-ex-gst').html(totalamtIncShipAssembly); // exclued shipping, assembly and gst
+                if(total_assembly < 1 ){
+                    document.getElementById('assembly-row').classList.add('hidden');
+                    toggleAllTotalSections();
+                } 
+                if(total_shipping < 1 ){
+                    document.getElementById('shipping-row').classList.add('hidden');
+                    toggleAllTotalSections();
+                } 
+                if(total_assembly > 1 && data.assembly[0].itemcode == "ASSEMS068") {
+                    $('#assembly-row .total-label').html(data.assembly[0].itemname);
+                }
+                if(total_assembly > 1 && data.assembly[0].itemcode == "ASSEMWHSE") {
+                    $('#assembly-row .total-label').html("Assembly<br>(Warehouse)");
+                }
+                $('#total-assembly').html(total_assembly);
+                $('#total-gst').html(totalgst);
+                $('#total-Shipping').html(total_shipping);
+                if(!data.discount[0]){
+                    document.getElementById('discount-row').classList.add('hidden');
+                    toggleAllTotalSections();
+                } else {
+                    const discountValue = Number(data.discount[0].item_price);
+                    const formattedDiscount = discountValue < 0
+                        ? `-$ ${Math.abs(discountValue)}`
+                        : `$ ${discountValue}`;
+
+                    $('#total-discount').html(formattedDiscount);
+                }
+
+                if(!data.other_items[0]){
+                    document.getElementById('other-row').classList.add('hidden');
+                    toggleAllTotalSections();
+                } else {
+                    const otherValue = Number(data.other_items[0].item_price);
+                    const formattedOther = otherValue < 0
+                        ? `-$ ${Math.abs(otherValue)}`
+                        : `$ ${otherValue}`;
+
+                    $('#total-other').html(formattedOther);
+                     $('#other-row .total-label').html(data.other_items[0].itemname);
+                }
+                $('#grand-total').html(grandTotal);
+    
+            }
+            
+            function toggleAllTotalSections() {
+                const totalSections = document.querySelectorAll('.total-section');
+
+                totalSections.forEach(section => {
+                    const rows = section.querySelectorAll('.total-row');
+
+                    // If this section has no rows, hide it
+                    if (!rows.length) {
+                        section.style.display = 'none';
+                        return;
+                    }
+
+                    // Check if at least one row is visible
+                    const hasVisibleRow = Array.from(rows).some(row => {
+                        return !row.classList.contains('hidden') &&
+                            row.style.display !== 'none';
+                    });
+
+                    // Toggle ONLY this section
+                    section.style.display = hasVisibleRow ? '' : 'none';
+                });
+            }
+
+            // Create final object with loop for product loop
+            let payload = {
+                line_items: []
+            };
+            // product loop 
+            if(data && data.line_items){
+                data.line_items.forEach(item => {
+
+                    payload.line_items.push({
+                        quantity: item.quantity,
+                        image: item.image,
+                        codetype: item.codetype,
+                        itemcode: item.itemcode,
+                        itemname: item.itemname,
+                        unit_price: item.unit_price_excl_tax, 
+                        item_color: item.itemcolor,
+                        item_size: item.itemsize,
+                        item_discount_percent : item.discount_percentage,
+                        item_discount_amt: item.discount_amt
+                    });
+                });
+            }
+            console.log('Playload: ', payload );
+           
+            // Example: show items in HTML
+            let html = "";
+            payload.line_items.forEach((li, index) => {
+                if(li.itemname.includes("Assembly")){
+                    li.image = "https://cdn.shopify.com/s/files/1/1249/7859/files/assembly-product-for-existing-customers-270289_130x.jpg?v=1744283985";
+                }
+                html += `
+                 <div class="product">
+                                <div class="product-img">
+                                    <picture>
+                                        <img src="${li.image}" alt="product" width="130" height="auto"  height="auto"  onerror="this.onerror=null; this.src='https://cdn.shopify.com/s/files/1/1249/7859/files/logo-default.png?v=1768389452';">
+                                    </picture>
+                                    <div class="qty">${li.quantity}</div>
+                                    ${li.item_discount_percent > 0 ? `<div class="dis_percent">${li.item_discount_percent}% OFF</div>` : ``}
+                                </div>
+                                <div class="product-info">
+                                    <h3>${li.itemname}</h3>
+                                    <p class="product-color">${li.item_color}</p>
+                                    <p class="product-color">${li.item_size}</p>                                    
+                                    <p> ${li.item_discount_amt > 0 ? `<i><del>$${(li.unit_price + li.item_discount_amt).toFixed(2)}</del></i>` : ``} $${li.unit_price}</p>
+                                </div>
+                            </div>`;
+            });
+            $("#productList").html(html);
+
+            // for data note 
+            if(data && data.notes.length > 0){
+                const noteList = document.getElementById('project-note-list');
+                noteList.innerHTML = '';
+
+                data.notes.forEach(item => {
+                    if (item.description && item.description.trim() !== '') {
+                        const li = document.createElement('li');
+                        li.textContent = item.description;
+                        noteList.appendChild(li);
+                    }
+                })
+            }else{
+                document.getElementById('projectservice-wrap').innerHTML = '';
+            }
+
+        }
+        function fillForm(response){
+            // fill billing detail form 
+            if(response.data.customer.name){
+                document.getElementById("name").value=response.data.customer.name;
+            }
+            if(response.data.customer.email){
+                document.getElementById("email").value=response.data.customer.email;
+            }
+            if(response.order_id){
+                document.getElementById("order_id").value=response.order_id;
+                document.getElementById("orderid-thankyou").innerHTML = response.order_id;
+            }
+            if(response.data.total_incl_tax){
+                document.getElementById("amount").value=response.data.total_incl_tax;
+            }
+            if(response.data.customer.company){
+                document.getElementById("company").value=response.data.customer.company;
+            }else{
+                document.getElementById("company").style.display = 'none';
+                document.getElementById('company-label').style.display = 'none';
+            }
+        }
+
+        // check for assembly product in the list
+        function checkforAssembly(data){
+            if(data.assembly.length > 0){
+                var assembly = true;
+                console.log("Assembly product found in the list");
+                // approved-form
+                document.getElementById('approved-form').classList.add('has-assembly');
+    
+            }else{
+                var assembly = false;
+                console.log("Assembly product not found in the list");
+                document.getElementById('approved-form').classList.remove('has-assembly');
+            }
+        }
+
+
+          async function initializeStripePayment(){
+
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const company = document.getElementById("company").value.trim();
+            const order_id = document.getElementById("order_id").value.trim();
+            const amount = parseFloat(document.getElementById("amount").value.trim());
+
+            const amount_cents = Math.round(amount * 100);
+
+            // const response = await fetch("https://prnt.jasonl.com.au/stripecheckout/payment/create_intent", {
+            const response = await fetch("{{ url_create_intent }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    amount: amount_cents,
+                        email: email,
+                        name: name,
+                        company: company,
+                        order_id: order_id,
+                        payment_portal: 'quotation_page'
+                })
+            });
+
+            const data = await response.json();
+
+            const clientSecret = data.clientSecret;
+            const total_amount_cents = data.total_amount;
+
+            const appearance = {
+                theme: "flat",
+                variables: { 
+                    fontFamily: "Inter, sans-serif",
+                    colorPrimary: "#000"
+                }
+            };
+
+            const elements = stripe.elements({ appearance });
+
+            const cardNumber = elements.create("cardNumber");
+            const cardExpiry = elements.create("cardExpiry");
+            const cardCvc    = elements.create("cardCvc");
+
+            cardNumber.mount("#card-number");
+            cardExpiry.mount("#card-expiry");
+            cardCvc.mount("#card-cvc");
+
+            const form = document.getElementById("payment-creditcard");
+
+            form.addEventListener("submit", async function(e){
+
+                e.preventDefault();
+
+                const {paymentIntent, error} = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: cardNumber
+                    }
+                });
+
+                if(error){
+                    document.getElementById("payment-message").innerText = error.message;
+                }else if(paymentIntent.status === "succeeded"){
+                    alert("Payment Successful!");
+                }
+
+            });
+          const rightCol = document.getElementById("rightcol");
+
+            function updateRightColState() {
+            if (cardNumberComplete && cardExpiryComplete && cardCvcComplete) {
+                rightCol.classList.add("card-complete");
+            } else {
+                rightCol.classList.remove("card-complete");
+            }
+            }
+
+            cardNumber.on("change", (event) => {
+            cardNumberComplete = event.complete;
+            updateRightColState();
+            });
+
+            cardExpiry.on("change", (event) => {
+            cardExpiryComplete = event.complete;
+            updateRightColState();
+            });
+
+            cardCvc.on("change", (event) => {
+            cardCvcComplete = event.complete;
+            updateRightColState();
+            });
+
+            const paymentRequest = stripe.paymentRequest({
+                country: 'AU',
+                currency: 'aud',
+                total: {
+                label: 'Total',
+                amount: total_amount_cents
+                },
+                requestPayerName: true,
+                requestPayerEmail: true
+            });
+
+            const prButton = elements.create('paymentRequestButton', { paymentRequest });
+
+            const leftRightColWrap = document.getElementById('left-right-col-wrap');
+
+            paymentRequest.canMakePayment().then(result => {
+                if (result) {
+                document.getElementById("wallet-button").style.display = "block";
+                document.getElementById("wallet-unavailable").style.display = "none";
+                prButton.mount("#wallet-button");
+                //document.getElementById("rightcol").style.display = "block";
+                leftRightColWrap.classList.add("child-visible");
+                document.getElementById("rightcol").classList.add('visible');
+                document.getElementById('continue-btn').style.display = "none";
+                if(window.innerWidth < 768){
+                    document.getElementById("rightcol").scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                } else {
+                // No wallet available — show message
+                //document.getElementById("rightcol").style.display = "block";
+                leftRightColWrap.classList.add("child-visible");
+                document.getElementById("rightcol").classList.add('visible');
+                document.getElementById('continue-btn').style.display = "none";
+                document.getElementById("wallet-unavailable").style.display = "block";
+                document.getElementById("wallet-button").style.display = "none";
+                if(window.innerWidth < 768){
+                    document.getElementById("rightcol").scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                }
+            });
+
+
+        // CARD BUTTON: "Pay Now"
+        document.getElementById("pay-btn").addEventListener("click", async () => {
+        // loading added in button clicked
+        /* if(document.getElementById("card-element").classList.contains("StripeElement--complete")){
+        } */
+        document.getElementById('pay-btn').classList.add('loading');
+        
+        const message = document.getElementById("payment-message");
+
+        const { error } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: { card: cardNumber }
+        });
+
+        if (error) {
+            message.innerHTML = `<svg 
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="17px" height="15px">
+            <path fill-rule="evenodd"  fill="rgb(239, 243, 247)"
+            d="M16.731,13.907 C16.355,14.588 15.670,14.995 14.898,14.995 L2.103,14.995 C1.331,14.995 0.646,14.588 0.270,13.907 C-0.106,13.226 -0.089,12.424 0.315,11.760 L6.711,1.019 C6.712,1.017 6.714,1.015 6.715,1.013 C7.100,0.382 7.767,0.006 8.500,0.006 C9.233,0.006 9.901,0.382 10.286,1.013 C10.287,1.015 10.288,1.017 10.290,1.019 L16.686,11.760 C17.089,12.424 17.106,13.226 16.731,13.907 ZM15.604,12.432 C15.603,12.430 15.602,12.428 15.600,12.426 L9.205,1.685 C9.050,1.433 8.793,1.289 8.500,1.289 C8.207,1.289 7.951,1.433 7.796,1.685 L1.400,12.426 C1.399,12.428 1.398,12.430 1.397,12.432 C1.236,12.694 1.229,13.012 1.378,13.281 C1.527,13.551 1.797,13.712 2.103,13.712 L14.898,13.712 C15.203,13.712 15.474,13.551 15.623,13.281 C15.771,13.012 15.764,12.694 15.604,12.432 ZM8.500,12.410 C7.969,12.410 7.538,11.975 7.538,11.437 C7.538,10.900 7.969,10.464 8.500,10.464 C9.032,10.464 9.462,10.900 9.462,11.437 C9.462,11.975 9.032,12.410 8.500,12.410 ZM8.500,9.621 C8.150,9.621 7.866,9.334 7.866,8.980 L7.866,4.340 C7.866,3.986 8.150,3.699 8.500,3.699 C8.851,3.699 9.135,3.986 9.135,4.340 L9.135,8.980 C9.135,9.334 8.851,9.621 8.500,9.621 Z"/>
+            </svg> ${error.message}` ;
+        document.getElementById("payment-message").classList.add("error");
+        document.getElementById('pay-btn').classList.remove('loading');
+        } else {
+            const orderIdValue = document.getElementById("order_id").value.trim();
+            const amountValue  = document.getElementById("amount").value.trim();
+            const successUrl =  "https://www.jasonl.com.au/pages/payment-success" +
+        "?orderid=" + encodeURIComponent(orderIdValue) +
+        "&amount=" + encodeURIComponent(amountValue) +
+        "&formtype=stripecheckout";
+
+            // window.location.href = successUrl;
+            // fill data after success form submit
+            thankyouScreenHandle(orderIdValue, amountValue);
+            {% comment %} window.location.href = "https://www.jasonl.com.au/pages/payment-success"; {% endcomment %}
+        }
+        });
+    }
+ });
+
+    
+   
+
+
+</script>
+
+{% schema %}
+  {
+    "name": "Quote Proposal",
+    "settings": [
+    {
+        "type": "textarea",
+        "id": "quote_letter_body",
+        "label": "Quote letter body"
+    },
+    {
+        "type": "textarea",
+        "id": "office_address",
+        "label": "Office Address"
+    }
+    ]
+  }
+{% endschema %}

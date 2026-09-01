@@ -1,0 +1,180 @@
+{{ 'beforeafter.css' | asset_url | stylesheet_tag }}
+{{ 'beforeafter-fitout.css' | asset_url | stylesheet_tag }}
+
+<section class="before-after before-after-fitout">
+   <div class="page-width">
+      <p class="eyebrow">ACROSS AUSTRALIA</p>
+      <h2 class="section-heading">
+        Office fitouts <br>
+        we've completed
+      </h2>
+      <div class="before-after-wrapper">
+        <div id="before-after" class="twentytwenty-container">              
+          {%- if section.settings.before_image != blank -%}
+          {% comment %} <img 
+              src="{{ section.settings.before_image | image_url: width: 1540 }}" 
+              alt="Before"
+              > {% endcomment %}
+              <picture>
+                <source srcset="{{ section.settings.before_image | image_url: width: 1540 }}, {{ section.settings.before_image | image_url: width: 3080 }} 2x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+                <img src="{{ section.settings.before_image | image_url: width: 1540 }}" alt="Sydney fitout before" loading="lazy"/>
+              </picture>
+          {%- endif -%}
+          {%- if section.settings.after_image != blank -%}
+          {% comment %} <img 
+              src="{{ section.settings.after_image | image_url: width: 1540 }}" 
+              alt="After"
+              > {% endcomment %}
+              <picture>
+                <source srcset="{{ section.settings.after_image | image_url: width: 1540 }}, {{ section.settings.after_image | image_url: width: 3080 }} 2x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+                <img src="{{ section.settings.after_image | image_url: width: 1540 }}" alt="Sydney fitout after" loading="lazy"/>
+              </picture>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="before-after-content">
+        <div class="client-story">
+          <div class="client-story-left">
+              <h3 class="client-story-heading">What is an office fitout?</h3>
+              <p class="client-story-quote">We needed to be operational in our new floor within two weeks of handing back the old lease. They delivered with three days to spare. Nothing about it felt difficult.</p>
+              <p class="client-story-author"><span class="dash">- </span> ALICE COOPER, HEAD OF OPERATIONS</p>
+          </div>
+
+          <div class="client-story-right">
+              <table class="client-details-table">
+                  <tbody>
+                      <tr>
+                          <td class="client-details-cell">
+                              <p class="client-details-label">CLIENT</p>
+                              <p class="client-details-value">Cooperative NWG</p>
+                          </td>
+                          <td class="client-details-cell">
+                              <p class="client-details-label">INDUSTRY</p>
+                              <p class="client-details-value">Professional services</p>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="client-details-cell">
+                              <p class="client-details-label">LOCATION</p>
+                              <p class="client-details-value">Surry Hills, NSW</p>
+                          </td>
+                          <td class="client-details-cell">
+                              <p class="client-details-label">YEAR</p>
+                              <p class="client-details-value">2023</p>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+      {%  render 'fitout-list-grid' %}
+      {% comment %} 
+        <div class="featured-fitouts-list-wrapper">
+          {% for i in (1..2) %}
+            <div class="featured-card">
+              <div class="thumbnail">
+                <div class="card-tag-with-location">
+                  FEATURED <span class="dot">&bull;</span> SURRY HILLS, NSW
+                </div>
+                <picture>
+                    <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                    <source srcset="{{ 'north-lake.jpg' | file_img_url: '1536x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+
+                    <!-- Source for mobile devices (max-width: 768px) with retina resolution (2x) -->
+                    <source srcset="{{ 'north-lake.jpg' | file_img_url: '768x' }} 2x" media="(max-width: 768px) and (min-resolution: 2dppx)">
+                    
+                    <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                    <source srcset="{{ 'north-lake.jpg' | file_img_url: '768x' }}" media="(min-width: 768px)">
+                    
+                    <!-- Fallback image for browsers that do not support <picture> element or <source> tags = photoshop mobile size -->
+                    <img src="{{ 'north-lake.jpg' | file_img_url: '768x' }}" alt="jasonl fitout" width="768" height="auto">
+                </picture>
+              </div>
+              <div class="client-story">
+                  <div class="client-story-left">
+                      <h3 class="client-story-heading">Northlake Legal</h3>
+                      <p class="client-story-quote">
+                        We needed to be operational in our new floor within two weeks of handing back the old lease. They delivered with three days to spare. Nothing about it felt difficult.
+                      </p>
+                      <p class="client-story-author"><span class="dash">- </span> ALICE COOPER, HEAD OF OPERATIONS</p>
+                  </div>
+                  <div class="client-story-right">
+                      <table class="client-details-table">
+                          <tbody>
+                              <tr>
+                                  <td class="client-details-cell">
+                                      <p class="client-details-label">CLIENT</p>
+                                      <p class="client-details-value">Cooperative NWG</p>
+                                  </td>
+                                  <td class="client-details-cell">
+                                    <div class="space_left-td">
+                                      <p class="client-details-label">INDUSTRY</p>
+                                      <p class="client-details-value">Professional services</p>
+                                    </div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td class="client-details-cell">
+                                      <p class="client-details-label">LOCATION</p>
+                                      <p class="client-details-value">Surry Hills, NSW</p>
+                                  </td>
+                                  <td class="client-details-cell">
+                                    <div class="space_left-td">
+                                      <p class="client-details-label">YEAR</p>
+                                      <p class="client-details-value">2023</p>
+                                    </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+            </div>
+          {% endfor %}
+          
+        </div>  
+      {% endcomment %}
+   </div>
+</section>
+
+<script src="{{ 'jquery.event.move.js' | asset_url }}" type="text/javascript" defer="defer"></script>
+<script src="{{ 'jquery.twentytwenty.js' | asset_url }}" type="text/javascript" defer="defer"></script>
+<script>
+  jQuery(document).ready(function($){
+    $("#before-after").twentytwenty({
+      before_label: 'Before',
+      after_label: 'After',
+      no_overlay: false,
+      default_offset_pct: 0.75,   // starts showing 25% after
+      reveal_on_scroll: true,
+      reveal_offset_pct: 0.15,    // animates to show 80% after
+      reveal_threshold: 1,      // triggers when 50% of container is on screen
+      reveal_duration: 1200,       // 800ms ease-in-out
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Before After",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before After",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

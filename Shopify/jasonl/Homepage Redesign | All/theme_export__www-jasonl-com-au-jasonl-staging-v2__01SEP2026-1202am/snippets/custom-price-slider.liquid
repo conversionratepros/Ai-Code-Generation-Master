@@ -1,0 +1,205 @@
+
+ {%- comment -%}
+Price range changes                      
+{% endcomment %}
+<!-- ===============================================  -->
+
+{%- paginate collection.products by 1000 -%}
+    {% for p in collection.products %}
+        {%- if forloop.index0 == 0 -%}
+            {% assign all_price =  p.price | money_without_currency | remove:'.00'|remove:',' %}
+        {%-else-%}
+            {% assign all_price =  p.price | money_without_currency | remove:'.00'|remove:','|append:'|' | append : all_price%}
+        {%-endif-%}
+    {% endfor %}
+            {%- assign split_price = all_price | split:'|'-%}
+            {%- assign json_price = split_price | json -%}
+    {%- endpaginate -%}
+  
+  {%- assign max_price_amount = filter.range_max | remove:'00'| strip_html | escape -%}
+  <div id="pricelist" data-price='{{json_price}}' data-price-count="{{ split_price.size }}" data-price-max="{{ max_price_amount }}"></div>
+  <div id="histogramSlider" class="histogramSlider">
+    <!-- <a href="https://www.jqueryscript.net/slider/">Slider</a> -->
+    <div class="loader"></div>
+  </div>
+  
+  
+  <script>
+   $(document).ready(function(){
+  
+  
+  function handleResponse() {
+    let response  =  JSON.parse(this.responseText);
+    let response_html = response.custom_price_slider_data;
+    const matches = response_html.match(/\[(.*?)\]/);
+    if(matches){
+      const data = JSON.parse(matches[0]);
+     // console.log(data);
+      histoRangeSlider(data);
+    }
+    let tempContainer = document.createElement('div');
+    tempContainer.innerHTML = response.custom_price_slider_data;
+    //console.log(JSON.parse(tempContainer.querySelector('[type="application/json"]').textContent));
+    
+  }
+  
+  let current_page_url = window.location.search;
+  const urlParams = new URLSearchParams(current_page_url);
+  if(urlParams.get('page') > 1){
+    const request = new XMLHttpRequest();
+    request.addEventListener('load', handleResponse);
+    request.open('GET', '{{routes.collections_url}}/{{collection.handle}}?sections=custom_price_slider_data', true);
+    request.send();
+  }
+  
+  
+   
+  function histoRangeSlider(data){
+          // get selected range
+        let data_price = data || {{json_price}};
+        // console.log(data_price);
+        // console.log('tester - {{routes.collections_url}}/{{collection.handle}}');
+        const numberOfBins = 10;
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let selectedPriceRange_min = 0;
+        let selectedPriceRange_max = 0;
+            
+        let urlParams_min = urlParams.get('filter.v.price.gte');
+        let urlParams_max = urlParams.get('filter.v.price.lte');
+        (urlParams_min)?selectedPriceRange_min=urlParams_min:selectedPriceRange_min=0;
+        (urlParams_max)?selectedPriceRange_max=urlParams_max:selectedPriceRange_max={{max_price_amount}};
+        
+          $("#histogramSlider").histogramSlider({
+                data: dataFactory(data_price, numberOfBins, false),
+                sliderRange: [0, {{max_price_amount}}],
+                optimalRange: [0, {{max_price_amount}}],
+                selectedRange: [selectedPriceRange_min, selectedPriceRange_max],
+                numberOfBins: numberOfBins,
+                showSelectedRange: true,
+                showTooltips: false
+          });
+          $("#histogramSlider_mobile").histogramSlider({
+                data: dataFactory(data_price, numberOfBins, false),
+                sliderRange: [0, {{max_price_amount}}],
+                optimalRange: [0, {{max_price_amount}}],
+                selectedRange: [selectedPriceRange_min, selectedPriceRange_max],
+                numberOfBins: numberOfBins,
+                showSelectedRange: true,
+                showTooltips: false
+          });
+  }
+  
+  
+      
+      histoRangeSlider()
+      document.getElementById('load_price_range').addEventListener('click', function(){
+        histoRangeSlider()
+      })
+  
+  
+       function dataFactory(itemCount, numberOfBins, group) {
+                  //dataFactory(itemCount, numberOfBins, group)
+                  var data = { "items": [] };
+                  //console.log(itemCount.length);
+                 for (var i = 0; i < itemCount.length; i++) {
+                    var v = itemCount[i];
+                      if (group) {
+                          data.items.push({ "value": v, "count": countDuplicateOccurence(itemCount, v) });
+                      } else {
+                          data.items.push({ "value": v });
+                      }
+                  }
+                  return data;
+              }
+  
+          function countDuplicateOccurence(array, value){
+            return array.reduce((count,currentValue) =>{
+              return count + (currentValue === value);
+            }, 0 )
+          }
+  
+    function range(start, end) {
+    return Array(end - start + 1).fill().map((_, idx) => start + idx)
+  }
+          function grpTesting(total){
+                  let numberOfBins = 10;
+              let grp = total/numberOfBins;
+              const ranges = []
+              for (let i = 0; i < total; i += grp) {
+               // ranges.push(range(i, i + grp))
+                if(i == 0){
+                 //   console.log(`${i}, ${i + grp}`)
+                }else{
+                   // console.log(`${i+1}, ${i + grp}`)
+                }
+                ranges.push(i + grp);
+              }
+   // console.log(ranges);
+              return ranges
+            
+              
+          }
+  
+  
+  
+    /*
+     let grp = grpTesting({{max_price_amount}});
+     let price = {{json_price}};
+     price.some(p => {
+       grp.some(item => {
+         console.log(Math.floor(item) + '--');
+    console.log(Math.floor(p));
+          if(parseInt(p) <= parseInt(Math.floor(item))){
+            return false;
+          }else{
+          }
+      })
+       return false;
+     })
+  */
+  
+      let grp = grpTesting({{max_price_amount}});
+     let price = {{json_price}};
+  
+    //console.log(price.length);
+    //console.log(grp.length);
+    var grpArray = [];
+   // console.log(grpArray);
+    let temp_index, temp_value;
+    for(var p = 0; p < price.length; p++){
+      for(var item = 0; item < grp.length - 1; item++){
+          if(parseInt(Math.floor(price[p])) <= parseInt(grp[item])  ){
+            
+              //console.log(item);
+              
+                  if(grpArray[item]){
+                    //console.log(grpArray[item]);
+                    grpArray[item] += 1; 
+                  }else{
+                    grpArray[item] = 1;
+                  }  
+              //console.log(grpArray[item]);
+              break;
+          }
+      }
+    //break;
+    }
+  
+    //console.log(grpArray);
+  
+  
+    function test(){
+    const grp = grpTesting({{max_price_amount}});
+    const price = {{json_price}};
+    }
+  
+  
+  
+    
+    })
+  </script>
+  
+  <!-- ===============================================  -->
+  {%- comment-%}END of price range changes {%- endcomment -%}
+  

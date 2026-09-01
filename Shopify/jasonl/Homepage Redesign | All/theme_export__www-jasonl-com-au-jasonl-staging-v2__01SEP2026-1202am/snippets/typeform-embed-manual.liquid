@@ -1,0 +1,66 @@
+{% comment %} 
+uses : render 'typeform-embed-manual', typeform_id:'Xcco8a2p', class:'' 
+{% endcomment %}
+{% stylesheet %}
+    .get-a-quote-btn-ab, 
+    .get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-b, 
+    .get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-a, 
+    .home-office-image-banner .banner .cta-button.get-a-quote-btn-ab, 
+    .inspire-slider-holder .inspire-slider .slider-products-holder .slider-products-item .btn-holder a.button.get-a-quote-btn-ab,
+    .ad-wrap.styled-ad a.link.get-a-quote-btn-ab{
+        display: none;
+    }
+    .get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b,
+    .inspire-slider-holder .inspire-slider .slider-products-holder .slider-products-item .btn-holder a.button.get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .inspire-slider-holder .inspire-slider .slider-products-holder .slider-products-item .btn-holder a.button.get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b{
+        /* display: inline-block; */
+        display: inline-flex;
+    }
+    .header-top-right-getaquote .get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .header-top-right-getaquote .get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b{
+        /* display: inline; */
+        display: inline-flex;
+        white-space: nowrap;
+    }
+    .home-office-image-banner .banner .cta-button.get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a,
+    .home-office-image-banner .banner .cta-button.get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-b,
+    .ideas-slider-section .get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .ideas-slider-section .get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b,
+    .ad-wrap.styled-ad .get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .ad-wrap.styled-ad .get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b{
+        display: flex;
+    }
+    .callout-right-col .get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .callout-right-col .get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b,
+    .getaquote-banner-wrapper .getaquote-banner a.get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .getaquote-banner-wrapper .getaquote-banner a.get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b,
+    .cta-section a.button.get-a-quote-btn-ab.get-a-quote-btn-a.show-ab-a, 
+    .cta-section a.button.get-a-quote-btn-ab.get-a-quote-btn-b.show-ab-b{
+        display: inline-flex;
+    }
+{% endstylesheet %}
+
+<a class="{{ button_class }} get-a-quote-btn-ab get-a-quote-btn-b show-ab-a" {{ settings.typeformurls_url_1 }}
+href="javascript:void(0)" data-tf-on-ready="ready" {% if button_id %} id="{{ button_id }}" {% endif %}>
+    {%- if button_text -%} 
+        {{- button_text -}}
+    {%- else -%}
+        Get a quote
+    {%- endif -%}
+</a>
+    
+{%- if typeform_id == 'Xcco8a2p'  -%}
+    <a class="{{ button_class }} get-a-quote-btn-ab get-a-quote-btn-a ab-testing-oq7mO0d2 show-ab-a" 
+    data-tf-popup="oq7mO0d2" 
+    data-tf-iframe-props="title=Marketing - Get A Quote" 
+    data-tf-medium="snippet" 
+    data-tf-on-submit="submit" href="javascript:void(0)" data-tf-on-ready="ready">
+        {%- if button_text -%} 
+            {{- button_text -}}
+        {%- else -%}
+            Get a quote
+        {%- endif -%}
+    </a>
+{%- endif -%}
+

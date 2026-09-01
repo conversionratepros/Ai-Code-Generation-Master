@@ -1,0 +1,90 @@
+{{ 'meet-the-people-section.css' | asset_url | stylesheet_tag }}
+<div class="meet-the-people-section">
+    <div class="page-width">
+        <div class="meet-the-people-row">
+            <div class="video-col">
+                <h2>Say hi to your JasonL Adelaide team</h2>
+                <p>Say hello to Alex and Adriana - the friendly faces who make the JasonL Adelaide experience easy from the moment you walk in. Alex manages the showroom, Adriana handles sales, and together they help customers every day with advice that's practical, honest and close to home.</p>
+                <div class="video-contianer">
+                    {% comment %} <video controls poster="{{ "adelaide-team-interview-poster.jpg" | file_img_url: '1000x' }}">
+                        <source data-src="{{ 'team-spotlight-AdrianaHorizontal.mp4' | file_url }}" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video> {% endcomment %}
+                    <div class="interview-video-wrap">
+                        <div class="video-ui interview-video-ui" style="background-image: url('{{ 'interview-video-thumb1.jpg' | file_img_url:'1900x' }}');">
+                            <div class="playbtn" id="interview-playBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="27px" viewBox="0 0 22 27">
+                                    <path fill-rule="evenodd" fill="#fff" d="M0.125,26.661 L21.774,13.500 L0.125,0.339 L0.125,26.661 Z"/>
+                                </svg>
+                            </div>
+                            <div class="vidoe-ui-text">
+                                <div class="video-title">Meet the <br> Adelaide Team</div>
+                                <div class="video-type">INTERVIEW</div>
+                            </div>
+                        </div>
+                        <video id="interviewVideo" 
+                            controls 
+                            preload="none" 
+                            poster="{{ 'adelaide-team-interview-poster.jpg' | file_img_url:'1900x' }}" 
+                            src = "{{ 'interview-adelaide-1.mp4' | file_url }}"  
+                        >
+                        <!-- source injected later -->
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="manager-photo-col">
+                <div class="manager-detail">
+                    <div class="manager-title">Alex L'Efevre</div>
+                    <div class="degingnation">Showroom Manager</div>
+                    <picture class="signature">
+                        <img src="{{ 'alex-signature.png' | file_img_url: '118x' }}" alt="alex signature" width="118px" height="auto" loading="lazy">
+                    </picture>
+                </div>
+                <div class="manger-photo-cutout">
+                    <picture>
+                        <img src="{{ 'team-alex-img1.png' | file_img_url: '552x' }}" alt="alex" width="552px" height="auto" loading="lazy"> 
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const video = document.getElementById("interviewVideo");
+    const wrapper = document.querySelector('.interview-video-wrap');
+    const videoUI = document.querySelector('.interview-video-ui');
+    const playbtn = document.getElementById('interview-playBtn');
+
+    playbtn.addEventListener('click', function(){
+        video.play();
+    });
+
+    // When video starts playing
+    video.addEventListener('play', () => {
+        wrapper.classList.add('playing');
+        videoUI.style.display = 'none';
+    });
+
+    // When video is paused or ends
+    video.addEventListener('pause', () => {
+        wrapper.classList.remove('playing');
+        videoUI.style.display = 'flex';
+    });
+    
+    video.addEventListener('ended', () => {
+        wrapper.classList.remove('playing');
+        videoUI.style.display = 'none';
+    });
+   
+});
+</script> 
+
+
+
+{% schema %}
+{ "name": "Meet the people", "class": "meet-the-people-section-wrap" }
+{% endschema %}

@@ -1,0 +1,62 @@
+
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "custom-pages-image-banner-v2",
+      "settings": {}
+    },
+    "education-mian-info": {
+      "type": "education-main-info",
+      "settings": {}
+    },
+    "education_featured_collections": {
+      "type": "education-featured-collections-products",
+      "settings": {
+        "products_to_show": 4
+      }
+    },
+    "recent_fitouts": {
+      "type": "education-featured-recent-fitouts",
+      "settings": {
+        "needafitout_fitout": "fitouts/pet-circle"
+      }
+    },
+    "shop_by_room": {
+      "type": "shop-by-room-education",
+      "settings": {
+        "section_title": "Shop by room"
+      }
+    },
+    "calloutsection": {
+      "type": "callout-section",
+      "settings": {}
+    },
+   "locationMap": {
+      "type": "location-map-1-b_placeholder",
+      "settings": {}
+    },
+    "meetPeople": {
+      "type": "new-meet-people",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "education-mian-info",
+    "education_featured_collections",
+    "recent_fitouts",
+    "shop_by_room",
+    "calloutsection",
+    "locationMap",
+    "meetPeople"
+  ]
+}

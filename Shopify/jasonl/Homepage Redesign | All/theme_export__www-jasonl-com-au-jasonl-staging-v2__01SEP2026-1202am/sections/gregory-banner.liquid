@@ -1,0 +1,44 @@
+{{ 'gregory-banner.css' | asset_url | stylesheet_tag }}
+<div class="product-header-hero">
+    <picture class="bannerimg">  
+        <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+        <source srcset="{{ 'gregory-banner-img.jpg' | file_img_url:'3800x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+        <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+        <source srcset="{{ 'gregory-banner-img.jpg' | file_img_url:'1900x'}}" media="(min-width: 768px)">
+        <img src="{{ 'gregory-banner-img.jpg' | file_img_url:'768x' }}" alt="Gregory office chairs are back" width="1600" height="auto">
+    </picture>
+    <div class="page-width banner-text-page-width">
+        <div class="banner-text">
+            <h2 class="banner-title">
+                Gregory office <br>chairs are back
+            </h2>
+            <div class="banner-info-text">
+                The original ergonomic icon, now part of the JasonL family.
+            </div>
+            <a href="#products-listing-section" class="button button--primary">BUY NOW</a>
+            <a href="#p-custom-section" class="link">Learn more</a>
+        </div>
+    </div>
+</div>
+<div class="banner-avatar-section">
+    <div class="page-width banner-avatar-page-width">
+        <div class="avatar-section-inner">
+            <div class="avatar-col">
+                <div class="avatar">
+                    <picture class="bannerimg">  
+                        <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                        <source srcset="{{ 'gregory-chairs-logo.png' | file_img_url:'402x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                        <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                        <source srcset="{{ 'gregory-chairs-logo.png' | file_img_url:'201x'}}" media="(min-width: 768px)">
+                        <img src="{{ 'gregory-chairs-logo.png' | file_img_url:'201x' }}" alt="Gregory office chairs" width="201" height="auto">
+                    </picture>
+                </div>
+            </div>
+            <div class="avatar-dis">
+                <p>
+                    <strong>Gregory office chairs</strong> have been an institution of Australian workplaces for more than 30 years - designed by physiotherapist Peter Gregory and loved for their comfort, quality and real support. When the brand faced closure, we couldn’t let a true Aussie icon fade away. So <strong>JasonL stepped in to bring Gregory back</strong>: same Dual Density Posture Support System, same handcrafted quality, now paired with the speed, service and style JasonL is known for. Whether it’s a single Gregory chair or a full office fitout, we’ll help you create a space where comfort and productivity go hand-in-hand.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

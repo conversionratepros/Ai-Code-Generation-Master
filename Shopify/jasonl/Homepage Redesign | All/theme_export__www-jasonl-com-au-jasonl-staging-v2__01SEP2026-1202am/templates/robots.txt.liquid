@@ -1,0 +1,238 @@
+# we use Shopify as our ecommerce platform
+{%- comment -%}
+# Caution! Please read https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt before proceeding to make changes to this file.
+{% endcomment %}
+{% for group in robots.default_groups %}
+  {{- group.user_agent -}}
+
+  {% for rule in group.rules %}
+    {{- rule -}}
+  {% endfor %}
+
+  {%- if group.sitemap != blank -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{% endfor %}
+
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: Claude-User
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: Gemini-Deep-Research
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+User-agent: bingbot
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /12497859/checkouts
+Disallow: /12497859/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /search
+Crawl-delay: 5
+
+# Custom rules for all search engines
+User-agent: *
+
+# Block pagination pages for collections
+Disallow: /collections/*page=*
+Disallow: /collections/*?page=*
+
+Disallow: /collections/*?*
+
+# Block Perth-specific pages and tags
+Disallow: /collections/*/perth$
+Disallow: /collections/*/perth?*
+Disallow: /collections/*/*+perth
+Disallow: /collections/*/*+perth?*
+
+# Allow other location pages explicitly
+Allow: /collections/*/*+sydney
+Allow: /collections/*/*+melbourne
+Allow: /collections/*/*+brisbane
+Allow: /collections/*/*+adelaide
+Allow: /collections/*/*+canberra
+
+Disallow: /*.atom
+
+Sitemap: https://cdn.shopify.com/s/files/1/1249/7859/files/video_sitemap_4.xml

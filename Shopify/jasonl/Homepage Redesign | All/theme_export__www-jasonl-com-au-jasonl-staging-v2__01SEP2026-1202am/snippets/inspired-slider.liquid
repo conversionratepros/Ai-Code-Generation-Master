@@ -1,0 +1,163 @@
+{%- if article.metafields.fitout_blog.inspired_image.size > 0 -%}
+    {%- unless loadSliderScripts == false -%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {{ 'inspired-slider.css' | asset_url | stylesheet_tag }}
+    {%- endunless %}
+
+    
+
+    <div class="inspire-slider-holder">
+        <div class="page-width">
+            <div class="inspire-slider">
+                <div class="slider-left">
+
+                    <div class="swiper" data-slider="PopupModal-{{id}}" id="slider-{{id}}">
+                        <div class="swiper-wrapper">
+                            {%- for inspiredImg in article.metafields.fitout_blog.inspired_image -%} 
+                                <div class="swiper-slide">
+                                <picture>
+                                    {%- assign imgSrc = article.metafields.fitout_blog.inspired_image[forloop.index0]  -%}
+                                    <img src="{{imgSrc |  file_img_url:'master' }}" alt="{{article.title}}" />
+                                </picture>
+                                </div>
+                            {%- endfor -%}
+                        </div>
+
+                        {% comment %} <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div> {% endcomment %}
+
+                        {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
+                    </div>
+                </div>
+                <div class="slider-right">
+                    <div class="slider-products-holder" data-slider="PopupModal-{{id}}">
+                        {% if article.metafields.fitout_blog.inspired_image.size > 1 %}
+                        <div class="slider-arrows">
+                                <span class="swiper-button-prev swiper-button-prev-{{id}}"></span>
+                                <span class="swiper-button-next  swiper-button-next-{{id}}"></span>
+                            </div>
+                        {%- endif-%}
+
+
+
+                        {% comment %} {% capture meta_tag %}
+                            {%- assign tags = metaTags | remove:'all|' | split:'|'-%} 
+                            {%- if tags.size > 1-%}
+                                {%- for tag in tags -%}
+                                    {{tag}}
+                                    {%- break -%}
+                                {%- endfor -%}
+                            {%- else -%}
+                                {{tags}}
+                            {%- endif -%}
+                        {% endcapture %} {% endcomment %}
+
+                        {%- for inspiredImg in article.metafields.fitout_blog.inspired_image -%} 
+                                <div class="slider-products-item {% if forloop.index0 == 0 %}active{% endif  %}" data-index="{{forloop.index0}}">
+                                    {%- assign tags = article.metafields.fitout_blog.inspired_image_tags -%}
+                                    {%- assign allTags = tags[forloop.index0] | split:'|' -%}
+                                    {% for tag in allTags %}
+                                        {% unless tag == 'all' %}
+                                            {% comment %} <h2>{{tag | replace:'-',' '}}</h2> {% endcomment %}
+                                            {%- break -%}
+                                        {% endunless %}
+                                    {%- endfor  -%}
+                                    <ul>
+{% assign hidProducts = '' %}
+                                    {% if article.metafields.fitout_blog.inspired_product_2[forloop.index0] and article.metafields.fitout_blog.inspired_product_2[forloop.index0]  != empty %}
+                                        <li data-producthandle="{{article.metafields.fitout_blog.inspired_product_2[forloop.index0]}}">
+                                            {% assign meta_product_handle2 = article.metafields.fitout_blog.inspired_product_2[forloop.index0] %}
+                                            {% assign hidProducts = meta_product_handle2 %}
+                                            {%- render 'inspired-slider-getproduct', metaProductHandle:meta_product_handle2 -%}
+                                        </li>
+                                         {% endif %}
+
+                                         {% if article.metafields.fitout_blog.inspired_product_3[forloop.index0] and article.metafields.fitout_blog.inspired_product_3[forloop.index0] != empty %}
+                                        <li data-producthandle="{{article.metafields.fitout_blog.inspired_product_3[forloop.index0]}}">
+                                            {% assign meta_product_handle3 = article.metafields.fitout_blog.inspired_product_3[forloop.index0] %}
+                                            {% assign hidProducts = hidProducts | append:'|'| append: meta_product_handle3 %}
+                                            {%- render 'inspired-slider-getproduct', metaProductHandle:meta_product_handle3 -%}
+                                        </li>
+                                         {% endif %}
+
+                                    
+                                        {% if article.metafields.fitout_blog.inspired_product_1[forloop.index0] and article.metafields.fitout_blog.inspired_product_1[forloop.index0] != empty %}
+                                        <li data-producthandle="{{article.metafields.fitout_blog.inspired_product_1[forloop.index0]}}">
+                                            {% assign meta_product_handle1 = article.metafields.fitout_blog.inspired_product_1[forloop.index0] %}
+                                            {% assign hidProducts = hidProducts | append:'|'| append: meta_product_handle1 %}
+                                            {%- render 'inspired-slider-getproduct', metaProductHandle:meta_product_handle1 -%}
+                                        </li>
+                                        {% endif %} 
+
+                                    </ul>
+                                    <div class="btn-holder">
+                                        {%- unless template == 'article.fitouts' -%}
+                                            {%- assign show_projectBtn = true  -%}
+                                            
+                                            {%- for t in article.tags -%}
+                                                {%- if t == 'fitouts-enviro' -%}
+                                                    {%- assign show_projectBtn = false  %}
+                                                    {%- break -%}
+                                                {%- endif -%}                                 
+                                            {%- endfor -%}
+                                            {%- unless show_projectBtn == false -%}
+                                                <a href="{{article.url}}" class="link">SEE PROJECT</a>
+                                            {%- endunless -%}
+                                        {%- endunless -%}
+                                        {% assign hidImgUrl = inspiredImg | file_img_url:'800x' %}
+                                        {% assign newHiddenFields =  'inspired_page=' | append: article.url | append: ',' | append: 'inspired_products=' | append: hidProducts | append: ','| append:'inspired_image =' | append: hidImgUrl %}
+                                        {% assign newDataHidden =  'data-tf-hidden="' | append: newHiddenFields | append:'"' %} 
+                                        
+                                        {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'typeform-share getaquoteclick button', button_id:'', button_text:"Replicate this look" -%}
+
+                                        {% comment %} 
+                                        <a class="typeform-share getaquoteclick button" {{settings.typeformurls_url_1 |  replace: 'data-tf-hidden=""', newDataHidden }}  href="javascript:void(0)">
+                                        Replicate this look
+                                        </a> 
+                                        {% endcomment %}
+
+                                        {% comment %} <script src="//embed.typeform.com/next/embed.js"></script> {% endcomment %}
+                                    </div>
+                                </div>
+                        {%- endfor -%}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {%- unless loadSliderScripts == false -%}
+    <script>
+
+
+    // -----
+    // Slider
+
+    const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    effect: "fade",
+    loop: true,
+
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next-{{id}}',
+        prevEl: '.swiper-button-prev-{{id}}',
+    }
+    });
+
+        swiper.on('slideChangeTransitionStart', function (e) {
+            console.log(e);
+            console.log('.swiper-button-next-{{id}}');
+            let prevIndex = e.previousRealIndex;
+            let activeIndex = e.realIndex;
+            let prodListItem = document.querySelectorAll('.slider-products-item');
+            prodListItem[prevIndex].classList.remove('active');
+            prodListItem[activeIndex].classList.add('active');
+
+        });
+
+    </script>
+    {%- endunless -%}
+{%- endif -%}

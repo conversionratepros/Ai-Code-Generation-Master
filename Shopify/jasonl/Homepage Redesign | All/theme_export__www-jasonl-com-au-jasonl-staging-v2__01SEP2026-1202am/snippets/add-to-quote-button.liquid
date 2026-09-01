@@ -1,0 +1,21 @@
+{%- assign is_contactTag = false -%}
+            {%- if product_card_product.tags contains 'contact-to-purchase' or product_card_product.available == false -%}
+                    {%- assign is_contactTag = true -%}
+            {%- endif %}
+                {%- unless is_contactTag == true -%}
+                    <div class="add-to-quote-button">   
+                        <form method="post" action="/cart/add">
+                          <input type="hidden" name="id" value="{{ product_card_product.first_available_variant.id}}" />
+                          {%- render 'i-star' -%}
+                          <button onclick="listing_addtoquote(this)" type="submit" value="Add to quote" data-button-title="Add to quote" class="link addtocart-btn" 
+                          data-tag-contact="{{is_contactTag}}" 
+                                    data-variant-quantity="{{ product_card_product.selected_or_first_available_variant.inventory_quantity }}" 
+                                    data-product-handle="{{ product_card_product.handle }}" 
+                                    data-product-title="{{ product_card_product.title }}"  
+                                    data-quantity="1" 
+                                    data-product-price="{{ product_card_product.selected_or_first_available_variant.price | money | remove: '.00' }}" 
+                                    data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}" 
+                          >Add to quote</button>
+                        </form>
+                      </div>
+                  {%-endunless-%}

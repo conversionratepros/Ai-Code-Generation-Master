@@ -1,0 +1,64 @@
+{{ 'home-office-lp-got-ideas.css' | asset_url | stylesheet_tag }}
+
+<div class="home-office-lp-got-ideas">
+    <div class="section-intro">
+        <div class="page-width">
+            <h3 class="section-heading">Got ideas? <br class="visible-sm"> We're all ears!</h3>
+            <p class="intro-dis">Big, small or somewhere in between - <br>bring us your vision and we'll make it real. Fast.</p>
+        </div>
+    </div>
+    <div class="ideas-slider-section">
+        <div class="page-width slider-page-width">
+            {% assign slider_data = "ideas1,ideas2,ideas3,ideas4" | split: "," %}
+             <!-- Swiper -->
+            <div class="swiper ideasSwiper">
+                <div class="swiper-wrapper">
+                    {% for img in slider_data %}
+                        <div class="swiper-slide">
+                            <picture>
+                                 <source srcset="{{ img | append: '.jpg' | file_img_url: '740x' }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                                <img src="{{ img | append: '.jpg' | file_img_url:'370x' }}" alt="home office ideas" width="370" height="467">
+                            </picture>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
+            </div>
+            <div class="btn-wrap">
+                {% comment %} {% render 'typeform-btn', extra_classes: 'typeform-btn button button-primary', button_text: "<strong>GET A QUOTE</strong>" %} {% endcomment %}
+                 {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'typeform-btn button button-primary', button_id:'', button_text:"<strong>GET A QUOTE</strong>" -%}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+    const swiper = new Swiper(".ideasSwiper", {
+        slidesPerView: 1.2, // Default for mobile
+        spaceBetween: 10,
+        loop: true,
+        {% comment %} pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        }, {% endcomment %}
+        breakpoints: {
+            {% comment %} Responsive settings {% endcomment %}
+            640: {
+                slidesPerView: 3,
+                spaceBetween: 15,
+            },
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            }
+        }
+    });
+});
+</script>
+
+{% schema %}
+{
+"name": "Inspiration Section",
+"settings": []
+}
+{% endschema %}

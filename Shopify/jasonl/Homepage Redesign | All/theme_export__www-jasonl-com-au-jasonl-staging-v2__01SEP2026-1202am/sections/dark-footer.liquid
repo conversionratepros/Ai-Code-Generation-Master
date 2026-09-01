@@ -1,0 +1,61 @@
+{{ 'dark-footer.css' | asset_url | stylesheet_tag }}
+{%  style %} 
+    .dark-footer-inwrap:after{
+        background-image: url('{{ 'dark-footer-bg-img.jpg' | file_url }}');
+    }
+{% endstyle %}
+<div class="dark-footer">
+  <div class="page-width">
+    <div class="dark-footer-inwrap">
+        <div class="dark-left">
+            <h3 class="eyebrow">READY WHEN YOU ARE</h3>
+            <div class="section-title">
+              Ready to plan <br>
+              your office <br class="small-hide">
+              fitout?
+            </div>
+            <div class="footer-description">
+              No delays. No guesswork. <br>
+              Just a workspace that works, delivered by a team that’s done it 1,400+ times.
+            </div>
+            <div class="button-link-wrap">
+                {%- render 'typeform-embed-manual',
+                typeform_id: 'Xcco8a2p',
+                button_class: 'typeform-share getaquoteclick btn typeform-embed',
+                button_id: '',
+                button_text: 'Get a quote'
+                -%}
+                <a class="phonelink" href="tel:+1300864251">Call - 1300 864 251</a>
+            </div>
+        </div>
+        <div class="dark-right">
+            <div class="spec-box">
+                <div class="spec-item">
+                    <div class="spec-label">Average install</div>
+                    <div class="spec-value">7-10 days</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Fitouts completed</div>
+                    <div class="spec-value">1,400+</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Australia-wide</div>
+                    <div class="spec-value">5 states</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Commercial warranty</div>
+                    <div class="spec-value">Up to 10 years</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+{%- schema -%}
+{
+  "name": "dark-footer",
+  "class": "section",
+  "settings": []
+}
+{%- endschema -%}

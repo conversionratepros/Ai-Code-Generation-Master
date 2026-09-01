@@ -1,0 +1,124 @@
+{% assign enviro_images = product.metafields.accentuate.product_enviro_image_list | remove: ' ' | strip_html | split: ','  %}
+<div class="enviro-images-wrap" id="enviro-images-wrap">
+  <ul>
+    {% for eviro_img in enviro_images %}
+      <li>
+        <picture>
+          <img src="{{ eviro_img | file_img_url: '494x' | strip_html }}" alt="{{ product.title }}" width="494px" height="330px" loading="lazy">
+        </picture>
+      </li>
+    {% endfor %}
+    {% comment %} 
+      <li>
+        <picture>
+          <img src="{{ 'env-2.jpg' | file_img_url: '495x' }}" alt="" width="495px" height="330px">
+        </picture>
+      </li> 
+    {% endcomment %}
+  </ul>
+  <div class="view-all-btn-wrap">
+    <a href="#" class="btn view-all-btn" id="eviro-img-toggle-btn">VIEW ALL</a>
+  </div>
+</div>
+{% comment %} swiper gallery {% endcomment %}
+ <!-- Swiper -->
+ {% comment %} toggle slider: add active {% endcomment %}
+<div class="enviro_full_page_slider" id='enviro_full_page_slider'> 
+  <div class="enviro_full_page_slider_container">
+    <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper enviro-thumb-slider">
+      <div class="swiper-wrapper">
+        {% for eviro_img in enviro_images %}
+            <div class="swiper-slide">
+              <img src="{{ eviro_img | file_img_url: '1920x' }}" alt="{{ product.title }}" width="495px" height="330px" loading="lazy">
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+    <!-- Navigation -->
+    <div class="nav-and-pagination-wrap">
+        <div class="nav-wrap">
+            <div class="swiper-button-prev swiper-button-prev-enviro-gallery"></div>
+            <div class="swiper-button-close" id="swiper-enviro-button-close">&#10005;</div>
+            <div class="swiper-button-next swiper-button-next-enviro-gallery"></div>
+            <!-- If we need pagination -->
+        </div>
+        <div class="swiper-pagination swiper-pagination-enviro-slider"></div>
+    </div>
+    <div thumbsSlider="" class="swiper enviro-swiper">
+      <div class="swiper-wrapper">
+        {% for eviro_img in enviro_images %}
+            <div class="swiper-slide">
+              <img src="{{ eviro_img | file_img_url: '100x' }}" alt="{{ product.title }}" width="100px" height="78px" loading="lazy">
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var evn_container = document.getElementById('enviro-images-wrap');
+    var enviro_btn = document.getElementById('eviro-img-toggle-btn');
+    var env_images = document.querySelectorAll('#enviro-images-wrap img');
+    var enviroFullPageSlider = document.getElementById('enviro_full_page_slider');
+    var swiperEnviroButtonClose = document.getElementById('swiper-enviro-button-close');
+
+    enviro_btn.addEventListener('click', function(e){
+      e.preventDefault();
+      if(evn_container.classList.contains('show-all')){
+        evn_container.classList.remove('show-all');
+        enviro_btn.innerHTML = "VIEW All";
+      }else{
+        evn_container.classList.add('show-all');
+        enviro_btn.innerHTML = "VIEW LESS";
+      }
+    });
+
+    // swiper for gallery
+     var swiper = new Swiper(".enviro-swiper", {
+      slidesPerView: "auto",
+      spaceBetween: 10,
+      centeredSlides: false,
+      freeMode: false,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
+    var swiper2 = new Swiper(".enviro-thumb-slider", {
+      pagination: {
+          el: ".swiper-pagination-enviro-slider",
+          type: "fraction",
+      },
+      loop: true,
+      spaceBetween: 16,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      thumbs: {
+        swiper: swiper,
+      },
+    });
+    
+    // Enviro slider js
+    env_images.forEach(function(img, index){
+      img.addEventListener('click', function(){
+        openEnviroSlider(index);
+      });
+    });
+    swiperEnviroButtonClose.addEventListener('click', function(){
+      closeEnviroSlider();
+    });
+
+    function openEnviroSlider(index){
+      enviroFullPageSlider.classList.add('active');
+      swiper2.slideToLoop(index); // jumps to slide #3
+    }
+    function closeEnviroSlider(){
+      enviroFullPageSlider.classList.remove('active');
+    }
+  });
+</script>

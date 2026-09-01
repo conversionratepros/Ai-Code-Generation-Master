@@ -1,0 +1,46 @@
+{% assign badges_meta = product.metafields.productmeta.badges | strip -%}
+{%- if badgesMeta !='' -%} 
+    {%- assign badges = badges_meta | split:'|' -%} 
+    <ul class="badge-list">
+      {%- comment -%} Get badge name from metafield. It will be checked on metaobject. {%- endcomment %}
+        {%- for badge in badges -%}
+          {%- for metaobj_badge in shop.metaobjects.product_badges.values -%}
+            {%- assign badge = badge | downcase -%}
+            {%- assign metabadge_name_value = metaobj_badge.badge_name.value | downcase -%}
+            {%- if badge == metabadge_name_value -%}
+
+              {%- comment -%}Check if badge belong to warranty {%- endcomment -%}
+                {%- assign is_warranty_badge = false  -%}
+              {%- if metaobj_badge.badge_name.value contains '1yr' or 
+                      metaobj_badge.badge_name.value contains '2yr' or 
+                      metaobj_badge.badge_name.value contains '3yr' or 
+                      metaobj_badge.badge_name.value contains '5yr' or 
+                      metaobj_badge.badge_name.value contains '10yr' or 
+                      metaobj_badge.badge_name.value contains '25yr' -%}
+                {%- assign is_warranty_badge = true  -%}
+              {%- endif -%} 
+
+            <li data-tippy-content="{{ metaobj_badge.badge_info.value }}" class="badge-tooltip 
+              {% if is_warranty_badge == true %}has-right-seperator{% endif %}
+               ">
+              {% comment %} check if the svg code is added both in colored and grayscale {% endcomment %}
+              {% if metaobj_badge.badge_svg_code and metaobj_badge.badge_grayscale_svg_code %}
+                  {{ metaobj_badge.badge_grayscale_svg_code }}
+                  {{ metaobj_badge.badge_svg_code }}
+                {% else %}
+                  <img class="{% if metaobj_badge.badge_colour_image.value %}badge-grey{% endif %}" src="{{ metaobj_badge.badge_image.value | img_url }}" alt="Product Warranty Badge" width="62" height="62" />
+                  
+                  {%- comment -%}hover color badges{%- endcomment -%}
+                  {%- if metaobj_badge.badge_colour_image.value -%}
+                          <img loading="lazy" class="badge-colour" src="{{ metaobj_badge.badge_colour_image.value | img_url }}" alt="Product Warranty Badge" width="62" height="62" /> 
+                  {%- endif -%}
+                {% endif %}
+              {% comment %} <p id="badge-text-{{ badge }}" class="quick-add-hidden">
+                  {{ metaobj_badge.badge_info.value }}
+                </p> {% endcomment %}
+            </li>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+    </ul>
+{%- endif %}

@@ -1,0 +1,124 @@
+{% unless current_tags contains 'resource-hub' %}
+{% comment %} Get the latest design inspiration blogs that doesnot have exclude tags {% endcomment %}
+
+{% assign design_inspiration_tag = section.settings.design_inspiration_tag %}
+{% assign exclude_tags = section.settings.exclude_tag | split: "," %}
+
+<div class="page-width" id="section-design-inspiration">
+  <div class="row">
+    <h2 class="list-heading">Design Inspiration</h2>
+    <ul class="listing listing--grid">
+
+      {% assign articles_shown = 0 %}
+
+
+
+      {% if current_tags %}
+        {% assign tags_to_include = design_inspiration_tag | split: "," %}
+      {% else %}
+              {% comment %} <!-- Fallback logic if current_tags is not present --> {% endcomment %}
+              {% if design_inspiration_tag == blank %}
+                {% assign design_inspiration_tag = "business" %}
+              {% else %}
+                {% assign design_inspiration_tag = design_inspiration_tag | append: ",business" %}
+              {% endif %}
+    
+              {% assign tags_to_include = design_inspiration_tag | split: "," %}
+      {% endif %}
+
+
+      {%- comment -%}
+      Jarred request:
+      HOme does not have inspired content. so he is creating one.
+      we have show them on resource-hub page
+      {%- endcomment -%}
+
+      {% assign inspired_articles =  blogs.fitouts.articles %}
+      {% if current_tags contains 'home' %}
+        {% assign inspired_articles =  blog.articles %}
+      {% endif %}
+
+
+      {% for article in inspired_articles %}
+        {% if articles_shown >= 4 %}
+          {% break %}
+        {% endif %}
+
+        {% assign exclude = false %}
+
+        {% for tag in exclude_tags %}
+          {% if article.tags contains tag %}
+            {% assign exclude = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% comment %} <!-- Check if the article contains all tags in tags_to_include --> {% endcomment %}
+        {% assign all_tags_present = true %}
+        {% for tag in tags_to_include %}
+          {% unless article.tags contains tag %}
+            {% assign all_tags_present = false %}
+            {% break %}
+          {% endunless %}
+        {% endfor %}
+
+        {% comment %} <!-- If the article should not be excluded and meets the inclusion criteria --> {% endcomment %}
+         {% comment %}  {% if exclude == false and all_tags_present and article.metafields.fitout_blog.inspired_image[0] %} {% endcomment %}
+
+
+
+         {% comment %} {% unless article.template_suffix == "fitouts_inspired"  %}
+            {% assign exclude = true %}
+         {% endunless %} {% endcomment %}
+
+        {% if exclude == false and all_tags_present %}
+          {% comment %} {% if all_tags_present or article.tags contains "fitouts-enviro"%} {% endcomment %}
+          <li class="{{article.template_suffix}}">
+            <a href="{{ article.url }}">
+              {% if article.image %}
+                  <img src="{{ article.image | img_url:'300x' }}" alt="{{ article.title }}" style="width: 100%; height: auto; ">  
+              {% else %}
+                  <img src="{{ article.metafields.fitout_blog.inspired_image[0] | file_img_url:'300x' }}" alt="{{ article.title }}" style="width: 100%; height: auto;">
+              {% endif %}
+            </a>
+            <a class="spacing" href="{{ article.url }}">
+              <h3>{{ article.title }}</h3>
+              {%- comment -%} <p>{{ article.content | strip_html | truncate: 50 }}</p> {%- endcomment -%}
+              <p class="date">{{ article.published_at | date: "%B %d, %Y" }} 
+                {%- comment -%} {% render 'rh-blog-tag', tags: article.tags %} {%- endcomment -%}
+              </p>
+            </a>
+          </li>
+          {% assign articles_shown = articles_shown | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+
+
+      {% if articles_shown < 4 %}  
+       {% render 'rh-blog-limit-ajax', section_id:section.id, section_name:'rh-design-inspiration', section_tag:'design-inspiration' %}
+      {% endif %}
+
+
+    </ul>
+  </div>
+</div>
+    {% endunless %}
+{% schema %}
+{
+  "name": "Design Inspiration",
+  "class": "rh-design-inspiration",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "design_inspiration_tag",
+      "label": "Enter a tag"
+    },
+    {
+      "type": "text",
+      "id": "exclude_tag",
+      "label": "Enter tags to exclude (comma-separated)"
+    }
+  ]
+}
+{% endschema %}

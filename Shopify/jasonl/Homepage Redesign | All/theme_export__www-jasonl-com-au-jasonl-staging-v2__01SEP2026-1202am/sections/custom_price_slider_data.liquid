@@ -1,0 +1,21 @@
+{%- paginate collection.products by 1000 -%}
+    {% for p in collection.products %}
+        {%- if forloop.index0 == 0 -%}
+            {% assign all_price =  p.price | money_without_currency | remove:'.00'|remove:',' %}
+        {%-else-%}
+            {% assign all_price =  p.price | money_without_currency | remove:'.00'|remove:','|append:'|' | append : all_price%}
+        {%-endif-%}
+    {% endfor %}
+            {%- assign split_price = all_price | split:'|'-%}
+            {%- assign json_price = split_price | json -%}
+            {{json_price}}
+    {%- endpaginate -%}
+<style>.price-slider-data{display: none;}</style>
+{% schema %}
+{
+  "name": "Price Slider",
+  "class": "price-slider-data",
+  "settings": [
+  ]
+}
+{% endschema %}

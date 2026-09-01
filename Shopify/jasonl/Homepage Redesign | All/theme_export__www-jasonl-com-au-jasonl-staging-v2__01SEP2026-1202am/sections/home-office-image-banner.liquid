@@ -1,0 +1,43 @@
+{{ 'home-office-image-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="home-office-image-banner">
+    <div class="banner">
+        <div class="banner-content">
+            <h1 class="banner-heading">Stylish workspaces <br> for every home. <br> Simple. Seamless!</h1>
+            {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'cta-button', button_id:'bh-get-a-quote', button_text:"GET A QUOTE" -%}
+                 
+            {% comment %} 
+            {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'cta-button'  -%}
+            <a class="cta-button" {{ settings.typeformurls_url_1 }} href="javascript:void(0)" data-tf-on-ready="ready">
+                GET A QUOTE
+            </a> 
+            {% endcomment %}
+        </div>
+        <picture>
+            <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+            <source srcset="{{ 'home-office-banner-img.jpg' | file_img_url: '3280x' }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+    
+            <!-- Source for mobile devices (max-width: 768px) with retina resolution (2x) -->
+            <source srcset="{{ 'home-office-banner-img-sm.jpg' | file_img_url: '1536x' }} 2x" media="(max-width: 768px) and (min-resolution: 2dppx)">
+            
+            <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+            <source srcset="{{ 'home-office-banner-img.jpg' | file_img_url: '1640x' }}" media="(min-width: 769px)">
+            
+            <!-- Fallback image for browsers that do not support <picture> element or <source> tags = photoshop mobile size -->
+            <img src="{{ 'home-office-banner-img-sm.jpg' | file_img_url: '800x' }}" alt="home office" width="1600px" height="612px">
+        </picture>
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Page Hero Section",
+"settings": [
+{
+"type":"header",
+"content":"Instruction",
+"info" : "Home Page data source section settings. Other pages data source is metafield"
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,84 @@
+{% comment %} NOTE:: current_tags  contains 'Perth' not required below condition {% endcomment %}
+ {%- assign locations = 'melbourne,brisbane,sydney,adelaide,canberra' | split:','-%}
+ {%- assign cities_secondary =  shop.metafields.custom_fields.location_collection__locations__secondary  | split: ',' -%}
+
+ 
+
+{%- assign is_location_colleciton = false -%}
+{%- assign is_location_collection_secondary = false -%}
+
+
+
+
+{%- for location_secondary in cities_secondary -%}
+  {%- if current_tags contains location_secondary -%}
+    {%- assign is_location_collection_secondary = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- for location in locations -%}
+  {%- if current_tags contains location -%}
+    {%- assign is_location_colleciton = true -%}
+  {%- endif -%}
+{%- endfor -%}
+{% capture collection_title_output %}
+{%- render 'collection-title' -%}
+{% endcapture %}
+{% if collection_title_output != blank %}
+  {%- if is_location_colleciton == false and is_location_collection_secondary == false -%}
+    <div class="page-heading" id="location-page-title">
+      {% assign collection_title = collection.title | strip | downcase %}
+      {% if collection.handle == "office-furniture" %}
+        <h2 class="aside-collection-title {{ collection_title | replace: " ", "-" }}">{%- render 'collection-title' -%}</h2>
+        {% unless collection_title == 'office furniture' %}
+          {%- render 'collection-title-suffix' -%}
+        {% endunless  %}
+      {% else %}
+        <h1 class="aside-collection-title {{ collection_title | replace: " ", "-" }}">{%- render 'collection-title' -%}</h1>
+        {% unless collection_title == 'office furniture' %}
+          {%- render 'collection-title-suffix' -%}
+        {% endunless  %}
+      {% endif  %}
+    </div>
+  {%- endif -%}
+{% else %}
+  {% for c_tag in current_tags %}
+    {% if c_tag == collection.handle%}
+      <div class="page-heading" id="location-page-title">
+        <h1>{{ collection.title }}</h1>
+        {%- render 'collection-title-suffix' -%}
+      </div>
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+{% endif %}
+
+{%- comment -%} The snippet (location_collections_secondary__content.liquid) was added on 21st Aug 2025. 
+Jarred added addition secondary cities like Bendigo..... 
+This should be SEO purposes {%- endcomment -%}
+{%- unless  is_location_colleciton == true -%}
+    {%- render 'location_collections_secondary__content', 
+                      is_location_collection_secondary:is_location_collection_secondary -%}
+{%- endunless -%}
+
+{% comment %} {%-unless current_tags  contains 'melbourne' or current_tags contains 'brisbane' or current_tags contains 'sydney' or current_tags contains 'adelaide' or current_tags contains 'canberra'  -%}
+{%- endunless -%} {% endcomment %}
+
+{%- if template == "collection" and current_tags -%}
+  <script>
+     (function () {
+    const url = new URL(window.location.href);
+    const hasLocationParam = url.searchParams.has('location');
+   
+   let bannerSections = document.getElementById('location-page-title');
+    if(bannerSections){
+      if (hasLocationParam) {
+        bannerSections.style.display = 'none';
+      } else {
+        bannerSections.style.display = 'block';
+      }
+    }
+  })();
+  </script>
+  {%- endif -%}

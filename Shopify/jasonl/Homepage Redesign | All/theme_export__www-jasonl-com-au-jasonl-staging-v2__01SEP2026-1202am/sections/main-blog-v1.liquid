@@ -1,0 +1,55 @@
+{%- assign resource_hub_tags = 'home-office,business,trade,education' | split:','-%}
+{% if current_tags contains 'resource-hub' %}
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{%- paginate blog.articles by 12 -%}
+  <div class="main-blog page-width section-{{ section.id }}-padding">
+
+{%- assign back_link = "/blogs/main" -%}
+{%- for url_tag in current_tags -%}
+    {%- if resource_hub_tags contains url_tag -%}
+      {%- assign back_link = "/blogs/main/tagged/" | append:url_tag -%}
+    {%- endif -%}
+{%- endfor -%}
+
+
+<a class="back-btn" href="{{back_link}}">Back to Resource Hub</a>
+    <h1  class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {% comment %} {{ blog.title | escape }}  {% endcomment %}
+        {%- assign resource_hub_tag_title = 'Featured' -%}
+        {%- for blog_tag in current_tags -%}
+          {%- if resource_hub_tags contains blog_tag -%}
+            {%- assign resource_hub_tag_title = blog_tag | replace:'-',',' | capitalize -%}
+            {%- break -%}
+          {%- endif-%}
+        {%- endfor -%}
+        All {{resource_hub_tag_title}} Articles
+    </h1> 
+<ul class="listing listing--grid listing--resourcehub">
+    {%- for article in blog.articles -%}
+        <li>        
+          <a href="{{ article.url }}" class="img-holder" style="background-image:url({{ article.image | img_url: '503x' }})"></a>
+          <a class="spacing" href="{{ article.url }}">
+              <h3>{{ article.title }}</h3>
+              {% comment %} <p>{{ article.content | strip_html | truncate: 50 }}</p> {% endcomment %}
+               <div class="row-col">
+                <p class="date">{{ article.published_at | date: "%B %d, %Y" }} </p>
+                  {%- render 'rh-blog-tag', tags: article.tags -%}
+               </div>
+            </a>
+        </li>
+      {%- endfor -%}
+</ul>
+
+
+
+
+
+    {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+{% endif %}

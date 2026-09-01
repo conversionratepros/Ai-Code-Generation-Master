@@ -1,0 +1,75 @@
+<div class="contact-box-sidebar">
+    <div class="card-icon">
+        <svg 
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="21px" height="22px">
+        <path fill-rule="evenodd"  fill="rgb(147, 158, 53)"
+        d="M20.413,9.484 C19.973,4.490 15.773,0.559 10.672,0.559 C5.571,0.559 1.371,4.490 0.931,9.484 L0.890,9.484 L0.890,16.251 C0.890,17.804 2.152,19.067 3.704,19.067 L4.773,19.067 C6.325,19.067 7.587,17.804 7.587,16.251 L7.587,12.301 C7.587,10.747 6.325,9.484 4.773,9.484 L2.672,9.484 C3.106,5.448 6.527,2.294 10.672,2.294 C14.817,2.294 18.238,5.448 18.672,9.484 L16.571,9.484 C15.019,9.484 13.757,10.747 13.757,12.301 L13.757,16.251 C13.757,17.804 15.019,19.067 16.571,19.067 L17.607,19.067 C17.025,19.668 16.143,20.125 14.790,20.125 L10.387,20.125 L10.387,21.860 L14.790,21.860 C19.049,21.860 20.327,18.492 20.442,16.479 C20.448,16.403 20.454,16.328 20.454,16.251 L20.454,9.484 L20.413,9.484 ZM5.854,12.301 L5.854,16.251 C5.854,16.847 5.369,17.332 4.773,17.332 L3.704,17.332 C3.108,17.332 2.623,16.847 2.623,16.251 L2.623,11.219 L4.773,11.219 C5.369,11.219 5.854,11.704 5.854,12.301 ZM18.717,16.279 C18.702,16.862 18.226,17.332 17.640,17.332 L16.571,17.332 C15.975,17.332 15.490,16.847 15.490,16.251 L15.490,12.301 C15.490,11.704 15.975,11.219 16.571,11.219 L18.720,11.219 L18.720,16.184 C18.720,16.206 18.719,16.241 18.717,16.279 Z"/>
+        </svg>
+    </div>
+    <h3 class="box-title">Need help choosing?</h3>
+    <p>
+        Talk to a workplace specialist – we'll size it from your floor plan.
+    </p>
+    <a href="tel:1300043003">
+        Call 1300 043 003 
+        <svg width="27" height="11" viewBox="0 0 27 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.8064 0L20.3056 1.4616L22.925 4.0152H0V6.083H22.8914L20.3 8.6086L21.8008 10.0702L26.9682 5.033L21.8064 0Z" fill="black"/>
+        </svg>
+    </a>
+</div>
+{% stylesheet %}
+    .contact-box-sidebar{
+        background-color: #f3f7d6;
+        padding: 29px 30px;
+        max-width: 100%;
+        border-radius: 10px;
+        box-sizing: border-box;
+        @media(min-width: 750px){
+            width: 300px;
+        }
+    }
+    .contact-box-sidebar .card-icon{
+        background-color: #FFF;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+    h3.box-title {
+        margin: 10px 0 0 0;
+        padding: 0;
+        font-weight: 600;
+    }
+
+    .contact-box-sidebar p {
+        margin: 7px 0 0 0;
+        padding: 0;
+        line-height: 1.6;
+        max-width: 210px;
+    }
+
+    .contact-box-sidebar a {
+        margin-top: 16px;
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+    }
+    .contact-box-sidebar a:hover::after{
+        border-color: #afca00;
+    }
+    .contact-box-sidebar a:after{
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        display: block;
+        border-bottom: 2px solid #000;
+        transition: border-color 0.3s ease-in-out;
+    }
+{% endstylesheet %}

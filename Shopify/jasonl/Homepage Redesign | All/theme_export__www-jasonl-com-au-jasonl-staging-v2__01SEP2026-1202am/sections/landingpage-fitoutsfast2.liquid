@@ -1,0 +1,55 @@
+{{ "fitouts-companies-with-img.css" | asset_url | stylesheet_tag }}
+{{ "landingpage-fitoutsfast.css" | asset_url | stylesheet_tag }}
+{{ "landingpage-fitoutsfast2.css" | asset_url | stylesheet_tag }}
+
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous"> {% endcomment %}
+
+
+<div class="fitoutsfast1-container fitoutsfast2-container">
+    <div class="page-width">
+        <div class="fitoutsImg__col3">
+<div class="fitoutImg__heading">
+                <h2>Our recent fitouts<span>.</span></h2>
+                </div>
+                <div class="fitoutfast2-holder swiffy-slider slider-nav-autopause slider-indicators-round" id="fitoutfast2-slider">
+                    <div class="fitoutsImg__list fitoutfast2-slider-container">
+                        {%- assign fitoutlist = 'creditor-watch-sydney-nsw,pet-circle,kaddy-sydney-nsw,prospa,bell-shakespeare,digi-direct' -%}
+                        {%- assign fitouts = fitoutlist | split:',' -%}    
+                        {%- for fitout in fitouts -%}
+                            {%- assign fitout_articles = blogs['fitouts'].articles -%}
+                            {%- for fitout_article in  fitout_articles -%}
+                                
+                                {%- assign fitout_handle = 'fitouts/' | append:fitout-%}
+                                {%- if fitout_article.handle == fitout_handle -%}
+                                        {%- render 'landingpage-fitout-card', article:fitout_article -%}
+                                {%- endif -%}
+                            {%- endfor -%}
+                        {%- endfor -%}
+                    </div>
+                    <div class="slider-indicators large-up-hide medium-hide">
+                        <button class="active"></button>
+                        <button></button>
+                        <button></button>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    if(window.innerWidth < 767 ){
+        let sliderContainer = document.querySelector('.fitoutfast2-slider-container');
+        sliderContainer.classList.add('slider-container');
+        window.addEventListener('load', () => {
+        //Use only one of the loading options below!
+        //loads all sliders
+        //swiffyslider.init();
+        //loads specific slider
+         
+        swiffyslider.initSlider(document.getElementById('fitoutfast2-slider'));
+    });
+    }
+    
+</script>

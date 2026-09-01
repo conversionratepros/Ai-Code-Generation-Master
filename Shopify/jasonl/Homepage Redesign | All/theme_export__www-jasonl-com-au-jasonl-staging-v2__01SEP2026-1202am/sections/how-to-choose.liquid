@@ -1,0 +1,60 @@
+{{ 'how-to-choose.css' | asset_url | stylesheet_tag }}
+<div class="how-to-choose">
+    <div class="page-width">
+        <div class="how-to-choose-wrap">
+            <div class="intro">
+                <div class="eyebrow">
+                    FREQUENTLY ASKED
+                </div>
+                <h2 class="section-title">How to choose office furniture.</h2>
+                <p>A quick, no-nonsense guide – whether you're kitting out one room or a whole floor.</p>
+                <span class="button button--border"> 
+                    <a href="tel:{{shop.phone}}" class="phonelink">{{ shop.phone }}</a>
+                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19.523 8.925C19.083 3.93 14.883 0 9.782 0C4.681 0 0.481 3.93 0.041 8.925H0V15.691C0 17.244 1.262 18.508 2.814 18.508H3.883C5.434 18.508 6.697 17.244 6.697 15.691V11.741C6.697 10.188 5.434 8.925 3.883 8.925H1.782C2.216 4.889 5.637 1.735 9.782 1.735C13.927 1.735 17.348 4.889 17.782 8.925H15.681C14.129 8.925 12.867 10.188 12.867 11.741V15.691C12.867 17.244 14.129 18.508 15.681 18.508H16.717C16.135 19.11 15.253 19.566 13.9 19.566H9.497V21.301H13.9C18.159 21.301 19.437 17.932 19.552 15.92C19.558 15.845 19.563 15.769 19.563 15.691V8.925H19.523ZM4.964 11.741V15.691C4.964 16.288 4.479 16.773 3.883 16.773H2.814C2.218 16.773 1.733 16.288 1.733 15.691V10.66H3.883C4.479 10.66 4.964 11.145 4.964 11.741ZM17.828 15.721C17.812 16.303 17.336 16.773 16.75 16.773H15.681C15.085 16.773 14.6 16.288 14.6 15.691V11.741C14.6 11.145 15.085 10.66 15.681 10.66H17.83V15.625C17.83 15.647 17.829 15.681 17.828 15.721Z" fill="#939E35"/>
+                    </svg>
+                    Talk to a specialist
+                </span>
+            </div>
+            <div class="note-wrap">
+                <div class="note-group">
+                    <div class="number">1</div>
+                    <div class="note-text">
+                        <h3 class="question">How many desks and chairs do you need?</h3>
+                        <p>Start with headcount, then add 10–15% for growth and hot-desking. For most offices, plan one task chair per desk and a handful of visitor chairs per meeting room. Not sure? Our team will size it from your floor plan.</p>
+                    </div>
+                </div>
+                <div class="note-group">
+                    <div class="number">2</div>
+                    <div class="note-text">
+                        <h3 class="question">Fixed desk or sit-stand?</h3>
+                        <p>Sit-stand (height-adjustable) desks support healthier workdays and are increasingly the default for new fitouts. Fixed desks cost less up front and suit high-density or budget-led setups. Many offices mix both.</p>
+                    </div>
+                </div>
+                <div class="note-group">
+                    <div class="number">3</div>
+                    <div class="note-text">
+                        <h3 class="question">What actually makes a chair ergonomic?</h3>
+                        <p>Look for seat-height and seat-depth adjustment, adjustable lumbar support, and adjustable armrests at a minimum. For full-time desk roles, a mesh back and a reliable tilt mechanism make the biggest day-to-day difference.</p>
+                    </div>
+                </div>
+                <div class="note-group">
+                    <div class="number">4</div>
+                    <div class="note-text">
+                        <h3 class="question">Do you need a full fitout or just furniture?</h3>
+                        <p>If you're moving, scaling, or reconfiguring a floor, a fitout saves time – we handle layout design, delivery and installation, often in under 10 days. Buying a few pieces? Order online and we'll deliver Australia-wide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div> 
+</div> 
+
+{%- schema -%}
+{
+    "name": "how-to-choose",
+    "class": "section",
+    "settings": []
+}
+{%- endschema -%}

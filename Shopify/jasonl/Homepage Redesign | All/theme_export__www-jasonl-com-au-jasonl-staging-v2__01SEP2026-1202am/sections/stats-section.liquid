@@ -1,0 +1,78 @@
+{%- comment -%} 
+ DO not show the banner on following templates:
+  1. /colllections/parent-collection
+  2. /colllections/parent-collection/perth
+{%- endcomment -%}
+{{ 'stats-section.css' | asset_url | stylesheet_tag }}
+<div class="stats-section-wrap">
+    <div class="page-width">
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="stat-box swiper-slide">
+                    {% comment %} <h2 class="stat-box-title">1000+</h2> {% endcomment %}
+                    1000+
+                    <p>Products, ready to ship</p>
+                </div>
+                <div class="stat-box swiper-slide">
+                    <h2 class="stat-box-title">Nationwide</h2>
+                    <p>Delivered & installed</p>
+                </div>
+                <div class="stat-box swiper-slide">
+                    <h2 class="stat-box-title">7 Showrooms</h2>
+                    <p>Australia-wide, plus 3D virtual</p>
+                </div>
+                <div class="stat-box swiper-slide">
+                    <h2 class="stat-box-title">Under 10 days</h2>
+                    <p>Typical stocked fitout</p>
+                </div>
+                <div class="stat-box swiper-slide">
+                    <h2 class="stat-box-title">Commercial grade</h2>
+                    <p>Built for daily office use</p>
+                </div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+</div>
+<script>
+    const swiper = new Swiper('.swiper', {
+        slidesPerView: 1,
+        speed: 400,
+        spaceBetween: 0,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
+        },
+    });
+</script>
+{% schema %}
+{
+"name": "Stats Section",
+"class": "stats-section"
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+{{'fitouts-trade_testimonial.css' |  asset_url |  stylesheet_tag }}
+<div class="grid-testimonial-holder">
+    <div class="page-width">
+        <h2>Jason.l customers see<br>results like these<span>.</span></h2>
+      <div class="grid-testimonials">
+        <div class="testimonial-item">
+          <a href="https://www.jasonl.com.au/blogs/fitouts/digi-direct">
+              <div class="testimonial-img">
+                  <picture>
+                    <img
+                      src="{{ 'trade-digidirect-testimonial-img.png' | file_img_url : '357x' }}"
+                      alt="Testimonial 1"
+                    />
+                  </picture>
+                  <img class="profile-img" src="{{'george-graoroski.png' |  file_img_url:'60x'}}" alt="George Graoroski" />
+              </div>
+              <article>
+                <div class="stars">
+                  {%- for i in (1..5) -%} {% render 'i-star' %} {%- endfor -%}
+                </div>
+                <h4>George Graoroski</h4>
+                <span>- Product Manager at <strong>digiDirect</strong></span>
+                <p>
+                  "The JasonL staff came here with swatch-books and different samples and guided us through the whole process. They actually invited us to be a bit more creative, bringing nice furniture into our environment and just making it a better place to work in"
+                </p>
+              </article>
+          </a>
+        </div>
+        <div class="testimonial-item">
+          <a href="https://www.jasonl.com.au/blogs/fitouts/kaddy-sydney-nsw">
+              <div class="testimonial-img">
+                  <picture>
+                    <img
+                      src="{{ 'testimonial-img1.png' | file_img_url : '357x' }}"
+                      alt="Testimonial 2"
+                    />
+                  </picture>
+                  <img class="profile-img" src="{{'dean-tavlor.png' |  file_img_url:'60x'}}" alt="Dean Tavlor" />
+              </div>
+              <article>
+                <div class="stars">
+                  {%- for i in (1..5) -%} {% render 'i-star' %} {%- endfor -%}
+                </div>
+                <h4>Dean Tavlor</h4>
+                <span>- CEO at <strong>Kaddy</strong></span>
+                <p>
+                  "JasonL has been a fantastic team to work with. The furniture is great quality, very robust and it's got a nice modern feel about it. You can handover the task to them and let them manage it for you, and you can just get on with business as usual!"
+                </p>
+              </article>
+          </a>
+        </div>
+        <div class="testimonial-item">
+          <a href="https://www.jasonl.com.au/blogs/fitouts/bell-shakespeare">
+              <div class="testimonial-img">
+                  <picture>
+                    <img
+                      src="{{ 'testimonial-img3.png' | file_img_url : '357x' }}"
+                      alt="Testimonial 3"
+                    />
+                  </picture>
+                  <img class="profile-img" src="{{'eva.png' |  file_img_url:'60x'}}" alt="Eva Tandy" />
+              </div>
+              <article>
+                <div class="stars">
+                  {%- for i in (1..5) -%} {% render 'i-star' %} {%- endfor -%}
+                </div>
+                <h4>Eva Tandy</h4>
+                <span>- Project Administrator at <strong>Bell Shakespeare</strong></span>
+                <p>
+                  "We had an amazing design process with Ondrej. They're incredibly generous and adaptable. There were adjustments needed to be made all the way through and they were excellent at accommodating everything”
+                </p>
+              </article>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>

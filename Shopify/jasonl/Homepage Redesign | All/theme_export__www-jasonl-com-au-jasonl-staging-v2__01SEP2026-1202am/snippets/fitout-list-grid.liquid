@@ -1,0 +1,186 @@
+{%- assign fitout_blog = blogs.fitouts -%}
+
+<div id="fitout-grid" class="featured-fitouts-list-wrapper only-featured-visible" data-section-id="{{ section.id }}">
+  {% paginate fitout_blog.articles by 2 %}
+    {%- for article in fitout_blog.articles -%}
+      <div class="fitout-card featured-card">
+        <div class="thumbnail">
+          <div class="card-tag-with-location">
+            {%- assign global_index = forloop.index | plus: paginate.current_offset -%}
+            {% if global_index < 3 %}
+              FEATURED <span class="dot">&bull;</span>
+            {% endif %}
+            {{ article.title }}
+          </div>
+          <picture>
+            <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+
+            <source
+              srcset="{{ article.image | image_url: width: 1536 }} 2x"
+              media="(min-width: 769px) and (min-resolution: 2dppx)"
+            >
+
+            <!-- Source for mobile devices (max-width: 768px) with retina resolution (2x) -->
+            <source
+              srcset="{{ article.image | image_url: width: 768 }} 2x"
+              media="(max-width: 768px) and (min-resolution: 2dppx)"
+            >
+
+            <!--
+              Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse
+            -->
+            <source srcset="{{ article.image | image_url: width: 768 }}" media="(min-width: 768px)">
+
+            <!--
+              Fallback image for browsers that do not support <picture> element or <source> tags = photoshop mobile size
+            -->
+            <img src="{{ article.image | image_url: width: 768 }}" alt="jasonl fitout" width="768" height="auto">
+          </picture>
+        </div>
+        <div class="client-story">
+          <div class="client-story-left">
+            <h3 class="client-story-heading">{{ article.title }}</h3>
+            <div class="client-story-quote">
+              {%- for item in article.metafields.fitout_blog.description -%}
+                {%- assign word_count = item | split: ' ' | size -%}
+                <div class="fitout-desc-item">
+                  {%- if word_count > 50 -%}
+                    <div class="fitout-desc-text text-truncated">{{ item | truncatewords: 30, ' ...' }}</div>
+                    <div class="fitout-desc-text text-full" hidden>{{ item }}</div>
+                    <button type="button" class="fitout-read-more">Read more</button>
+                  {%- else -%}
+                    <div class="text-full fitout-desc-text">{{ item }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+            {% if article.metafields.accentuate.client_info %}
+              <div class="client-story-author"><span class="dash">- </span> 
+              {{ article.metafields.accentuate.client_info | strip_newlines | strip | replace: '  ', ' ' | remove: '&nbsp;' }}
+                {% comment %} {{ article.metafields.accentuate.client_info | trim }} {% endcomment %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="client-story-right">
+            <table class="client-details-table">
+              <tbody>
+                <tr>
+                  <td class="client-details-cell">
+                    <p class="client-details-label">CLIENT</p>
+                    <p class="client-details-value">{{ article.metafields.fitout_blog.fitout_client_name }}</p>
+                  </td>
+                  <td class="client-details-cell">
+                    <div class="space_left-td">
+                      <p class="client-details-label">INDUSTRY</p>
+                      <p class="client-details-value">Professional services</p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="client-details-cell">
+                    <p class="client-details-label">LOCATION</p>
+                    <p class="client-details-value">{{ article.metafields.fitout_blog.fitout_location }}</p>
+                  </td>
+                  <td class="client-details-cell">
+                    <div class="space_left-td">
+                      <p class="client-details-label">YEAR</p>
+                      <p class="client-details-value">{{ article.metafields.fitout_blog.fitout_year }}</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+
+    {%- if paginate.next -%}
+      <div class="loadmore-btn-wrap">
+        <button
+          class="fitout-load-more button button-primary"
+          data-next-url="{{ paginate.next.url }}"
+        >
+          Load more
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="11px"
+            height="7px"
+          >
+            <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+            d="M5.690,6.187 L0.903,1.369 L2.233,0.030 L5.690,3.510 L9.181,-0.005 L10.511,1.334 L5.690,6.187 Z"/>
+          </svg>
+        </button>
+      </div>
+    {%- endif -%}
+  {% endpaginate %}
+</div>
+
+<script>
+  document.getElementById('fitout-grid').addEventListener('click', function (e) {
+    const btn = e.target.closest('.fitout-read-more');
+    if (!btn) return;
+
+    const item = btn.closest('.fitout-desc-item');
+    const truncated = item.querySelector('.text-truncated');
+    const full = item.querySelector('.text-full');
+
+    const isExpanded = !full.hidden;
+
+    if (isExpanded) {
+      truncated.hidden = false;
+      full.hidden = true;
+      btn.textContent = 'Read more';
+    } else {
+      truncated.hidden = true;
+      full.hidden = false;
+      btn.textContent = 'Read less';
+    }
+  });
+
+  document.querySelector('.fitout-load-more')?.addEventListener('click', async function () {
+    const btn = this;
+    const btnwrap = this.closest('.loadmore-btn-wrap');
+    const grid = document.getElementById('fitout-grid');
+
+    btn.classList.add('is-loading');
+    btn.disabled = true;
+
+    try {
+      // Build the fetch URL safely with URLSearchParams so we never
+      // produce a malformed URL with two "?" marks (which happens if
+      // paginate.next.url already has ?page=2 and we naively append
+      // another ?section_id=... after it in Liquid). Also cache-bust
+      // so CDN/edge layers can't serve a stale cached response.
+      const url = new URL(btn.dataset.nextUrl, window.location.origin);
+      url.searchParams.set('section_id', grid.dataset.sectionId);
+      url.searchParams.set('_ts', Date.now());
+
+      const res = await fetch(url.toString(), {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache' },
+      });
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+
+      const newCards = doc.querySelectorAll('#fitout-grid .fitout-card');
+
+      newCards.forEach((card) => {
+        grid.classList.remove('only-featured-visible');
+        grid.insertBefore(card, btnwrap);
+      });
+
+      const nextBtn = doc.querySelector('.fitout-load-more');
+      if (nextBtn) {
+        btn.dataset.nextUrl = nextBtn.dataset.nextUrl;
+      } else {
+        btn.remove(); // no more pages, remove the button entirely
+        return;
+      }
+    } finally {
+      btn.classList.remove('is-loading');
+      btn.disabled = false;
+    }
+  });
+</script>

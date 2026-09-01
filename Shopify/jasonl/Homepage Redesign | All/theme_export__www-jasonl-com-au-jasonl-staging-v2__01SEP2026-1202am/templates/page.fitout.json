@@ -1,0 +1,206 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "hero_banner_custom_fitout": {
+      "type": "hero-banner-fitout",
+      "blocks": {
+        "item_RCKmPY": {
+          "type": "item",
+          "settings": {
+            "text": "Local stock",
+            "sub_title": "Ready to go"
+          }
+        },
+        "item_nAkkLE": {
+          "type": "item",
+          "settings": {
+            "text": "Transparency",
+            "sub_title": "Transparent pricing"
+          }
+        },
+        "item_3VWdhQ": {
+          "type": "item",
+          "settings": {
+            "text": "10 years",
+            "sub_title": "warranty"
+          }
+        }
+      },
+      "block_order": [
+        "item_RCKmPY",
+        "item_nAkkLE",
+        "item_3VWdhQ"
+      ],
+      "name": "Hero Custom",
+      "settings": {
+        "bg_image": "shopify://shop_images/hero-banner-img.png",
+        "bg_video": "",
+        "main_title": "Beautiful <br>office fitouts in under 10 days. <br><span> Easy. Fast.</span>",
+        "top_title": "MANAGED OFFICE FITOUTS <span> </span> AUSTRALIA-WIDE",
+        "sub_title": "From layout to install, we help Australian businesses build practical, comfortable workspaces - without delays, hidden costs, or operational chaos.",
+        "phone": "",
+        "email": "",
+        "link_label": "Free layout & design",
+        "link": "/pages/interior-design"
+      }
+    },
+    "intro_heading_stat_section": {
+      "type": "intro-heading-stat-section",
+      "settings": {}
+    },
+    "validation_section": {
+      "type": "validation-section",
+      "settings": {}
+    },
+    "question_section": {
+      "type": "question-section",
+      "settings": {}
+    },
+    "why_fitout_section": {
+      "type": "why-fitout-section",
+      "settings": {}
+    },
+    "process_fitout_section": {
+      "type": "process-fitout-section",
+      "settings": {}
+    },
+    "comparisson_fitout": {
+      "type": "comparisson-fitout",
+      "settings": {}
+    },
+    "beforeafter": {
+      "type": "beforeafter-fitout",
+      "name": "Before After",
+      "settings": {
+        "before_image": "shopify://shop_images/Slider-Before_2x_e38e3ea3-1939-4b92-bf78-5094135a87a1.jpg",
+        "after_image": "shopify://shop_images/Slider-After_2x_ff552da6-f7ff-40aa-afab-a57e6e81f9c9.jpg"
+      }
+    },
+    "office_furniture_range": {
+      "type": "office-furniture-range",
+      "settings": {
+        "furniture_range_eyebrow": "OUR COLLECTIONS",
+        "furniture_range_heading": "What's in our office furniture range",
+        "furniture_range_description": "Explore our complete range of office furniture designed to support every area of your workplace, from workstations and meeting rooms to breakout spaces and storage."
+      }
+    },
+    "office_furniture_faq": {
+      "type": "office-furniture-faq",
+      "blocks": {
+        "text_qDRYQ8": {
+          "type": "text",
+          "settings": {
+            "faq_question": "What is included in an office fitout?",
+            "faq_answer": "An office fitout typically includes everything needed to create a functional, cohesive and ready-to-use workspace — from furniture selection and layout planning to delivery, installation and final setup. At JasonL, we manage the entire process from start to finish, coordinating every stage to ensure the space not only looks consistent visually, but also supports the way your team works day to day."
+          }
+        },
+        "text_3Mtaw9": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Do I need an interior designer?",
+            "faq_answer": ""
+          }
+        },
+        "text_LRiX34": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Can I customise my office layout?",
+            "faq_answer": ""
+          }
+        },
+        "text_yyQDMh": {
+          "type": "text",
+          "settings": {
+            "faq_question": "What size businesses do you work with?",
+            "faq_answer": ""
+          }
+        },
+        "text_3hM9Ei": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Do you offer site visits?",
+            "faq_answer": ""
+          }
+        },
+        "text_mXcj39": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Does JasonL handle the construction side of a fitout?",
+            "faq_answer": ""
+          }
+        },
+        "text_RTMMc9": {
+          "type": "text",
+          "settings": {
+            "faq_question": "What if my office needs electrical, data or building work?",
+            "faq_answer": ""
+          }
+        },
+        "text_3HULyk": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Who keeps everything aligned when a fitout partner is involved?",
+            "faq_answer": ""
+          }
+        },
+        "text_U4tyFF": {
+          "type": "text",
+          "settings": {
+            "faq_question": "What does JasonL do, and what do your fitout partners do?",
+            "faq_answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_qDRYQ8",
+        "text_3Mtaw9",
+        "text_LRiX34",
+        "text_yyQDMh",
+        "text_3hM9Ei",
+        "text_mXcj39",
+        "text_RTMMc9",
+        "text_3HULyk",
+        "text_U4tyFF"
+      ],
+      "settings": {
+        "faq_eyebrow_text": "FREQUENTLY ASKED",
+        "faq_heading": "Everything elsein one place.",
+        "faq_description": "Don't see your question? Call a planner directly.\nMonday to Friday. 8am–6pm AEST."
+      }
+    },
+    "dark_footer": {
+      "type": "dark-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "hero_banner_custom_fitout",
+    "intro_heading_stat_section",
+    "validation_section",
+    "question_section",
+    "why_fitout_section",
+    "process_fitout_section",
+    "comparisson_fitout",
+    "beforeafter",
+    "office_furniture_range",
+    "office_furniture_faq",
+    "dark_footer"
+  ]
+}

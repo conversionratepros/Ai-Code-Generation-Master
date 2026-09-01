@@ -1,0 +1,410 @@
+<script>
+// for pagination
+let currentPage = 1;
+const perPage = 24;
+let totalPages = 1;
+const fetchUrl = "https://prnt.jasonl.com.au/nps/Nps/reviews";
+let searchQuery = "";
+let sortOrder = "desc";
+let sourceFilter = "";
+let totalresult = "";
+
+// add nps review ajax start
+async function loadReviews(page = 1) {
+   try {
+      // Build query parameters
+      let queryParams = `count=${perPage}&page=${page}&sort=${sortOrder}`;
+      
+      // Add search query if present
+      if (searchQuery) {
+         queryParams += `&search=${encodeURIComponent(searchQuery)}`;
+      }
+      
+      // Add source filter if selected
+      if (sourceFilter) {
+         // If GMB is selected, use wildcard or like query
+         if (sourceFilter === 'gmb') {
+            queryParams += `&source=gmb&filterType=contains`;
+         } else {
+            queryParams += `&source=${sourceFilter}`;
+         }
+      }
+
+      const response = await fetch(`${fetchUrl}?${queryParams}`);
+      const data = await response.json()
+      
+      if (data && data.status === "success" && data.results.length > 0) {
+         const container = document.getElementById("nps-review-list-contianer");
+         container.innerHTML = "";
+         totalresult = data.total_count;
+         
+         // added total post count in totalpostcount div which is added after search
+         let totalpostcount = document.getElementById("totalpostcount");
+         if(totalpostcount){
+            totalpostcount.innerHTML = `total ${totalresult} result found`;
+         }
+         
+         data.results.forEach(function(review, index){
+            if(index === 0){
+               container.innerHTML = '<div class="grid-sizer"></div>';
+            }
+            addData(container, review);
+         });
+         
+         
+         
+         // reinit masonry
+         checkMasonryInit();
+         
+         // Update pagination
+         updatePagination(data.page, data.total_pages, data.next_page, data.prev_page);
+      } else {
+         console.log("No reviews found.");
+         const container = document.getElementById("nps-review-list-contianer");
+         container.innerHTML = '<p style="text-align: center; padding: 20px;">No reviews found.</p>';
+      }
+   } catch (error) {
+      console.error("Error loading reviews:", error);
+   }
+}
+
+// Update pagination links
+function updatePagination(current_page, total_pages, next_page, prev_page){
+   let paginationContainer = document.querySelector('#nps-pagination ul');
+   let prevBtn = document.getElementById('prev-pagination');
+   let nextBtn = document.getElementById('next-pagination');
+   let lastBtn = document.getElementById('last-pagination');
+   
+   // Remove old page number links and ellipsis
+   let pageLinks = paginationContainer.querySelectorAll('li[id^="page-number-"], li[id^="ellipsis"]');
+   pageLinks.forEach(link => link.remove());
+   
+   // Calculate range to show (current page ±1)
+   let startPage = Math.max(1, current_page - 1);
+   let endPage = Math.min(total_pages, current_page + 1);
+   
+   // Add left ellipsis if needed
+   if (startPage > 1) {
+      let li = document.createElement('li');
+      li.id = 'ellipsis-left';
+      let a = document.createElement('a');
+      a.textContent = '...';
+      a.href = '#';
+      li.appendChild(a);
+      paginationContainer.insertBefore(li, nextBtn);
+   }
+   
+   // Insert page numbers before next button
+   for (let i = startPage; i <= endPage; i++) {
+      let li = document.createElement('li');
+      li.id = `page-number-${i}`;
+      let a = document.createElement('a');
+      a.href = '#';
+      a.textContent = i;
+      
+      if (i === current_page) {
+         a.classList.add('pagination-current');
+      }
+      
+      a.onclick = function(e) {
+         e.preventDefault();
+         goToPage(i);
+      };
+      
+      li.appendChild(a);
+      paginationContainer.insertBefore(li, nextBtn);
+   }
+   
+   // Add right ellipsis if needed
+   if (endPage < total_pages) {
+      let li = document.createElement('li');
+      li.id = 'ellipsis-right';
+      let a = document.createElement('a');
+      a.textContent = '...';
+      a.href = '#';
+      li.appendChild(a);
+      paginationContainer.insertBefore(li, nextBtn);
+   }
+   
+   // Update prev button
+   if(current_page > 1){
+      prevBtn.querySelector('a').onclick = function(e) {
+         e.preventDefault();
+         goToPage(current_page - 1);
+      };
+      prevBtn.classList.remove('disabled');
+   } else {
+      prevBtn.classList.add('disabled');
+   }
+   
+   // Update next button - hide if no next page
+   if(next_page != null){
+      nextBtn.querySelector('a').onclick = function(e) {
+         e.preventDefault();
+         goToPage(current_page + 1);
+      };
+      nextBtn.classList.remove('disabled');
+      nextBtn.style.display = 'inline-block';
+   } else {
+      nextBtn.classList.add('disabled');
+      nextBtn.style.display = 'none';
+   }
+
+   // Update last button - hide if no next page
+   if(next_page != null) {
+      lastBtn.querySelector('a').onclick = function(e) {
+         e.preventDefault();
+         goToPage(total_pages);
+      };
+      lastBtn.style.display = 'inline-block';
+   } else {
+      lastBtn.style.display = 'none';
+   }
+   
+   // Update first button - show only after page 3
+   let firstBtn = document.getElementById('first-pagination');
+   if (firstBtn) {
+      firstBtn.querySelector('a').onclick = function(e) {
+         e.preventDefault();
+         goToPage(1);
+      };
+      
+      if (current_page > 3) {
+         firstBtn.style.display = 'inline-block';
+         firstBtn.classList.remove('disabled');
+      } else {
+         firstBtn.style.display = 'none';
+      }
+   }
+
+   // hide pagination if no next page
+   if(next_page === null && prev_page === null){
+      paginationContainer.style.display = "none";
+   }else{
+      paginationContainer.style.display = "flex";
+   }
+}
+
+// Navigate to specific page
+function goToPage(page) {
+   currentPage = page;
+   loadReviews(page);
+   // Scroll to review container with 300px offset
+   setTimeout(function() {
+      let element = document.getElementById('nps-review-list-contianer');
+      let elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+         top: elementPosition - 300,
+         behavior: 'smooth'
+      });
+   }, 100);
+}
+
+// Search functionality
+document.addEventListener("DOMContentLoaded", function(){
+   // Initial load
+   loadReviews(1);
+   checkMasonryInit();
+   
+   // Search input event with debounce
+   const searchInput = document.getElementById("searchinput");
+
+   function searchEnteredText(){
+      if(!searchInput){
+         // Initial load
+         return;
+      }
+      searchQuery = searchInput.value.trim();
+      currentPage = 1;
+      loadReviews(1);
+
+      // this will show search text in #search-value div
+      const searchvalue = document.createElement("div");
+      searchvalue.id = "searchvalue";
+      document.getElementById('search-value').appendChild(searchvalue);
+      if(searchQuery){
+         document.getElementById('searchvalue').innerHTML = `Result for: <strong> "${searchQuery}"</strong> <span id="totalpostcount"></span>`;
+      }else{
+         document.getElementById('searchvalue').innerHTML = '';
+      }
+   }
+
+   function addTextAreaCallback(textArea, callback, delay) {
+      let timer = null;
+
+      textArea.addEventListener("input", function(){
+         clearTimeout(timer);
+
+         const value = this.value.trim();
+
+         timer = setTimeout(() => {
+            callback();
+         }, delay);
+      });
+   }
+   addTextAreaCallback( searchInput, searchEnteredText, 1000 );
+
+   /* old search 
+   if(searchInput) {
+      searchInput.addEventListener('input', function(e) {
+         searchQuery = e.target.value;
+         currentPage = 1;
+         loadReviews(1);
+      });
+   } */
+   
+   // Date/Sort filter
+   const dateSelect = document.getElementById("date");
+   if(dateSelect) {
+      dateSelect.addEventListener('change', function(e) {
+         sortOrder = e.target.value || "desc";
+         currentPage = 1;
+         loadReviews(1);
+      });
+   }
+   
+   // Platform filter
+   const platformSelect = document.getElementById("platform");
+   if(platformSelect) {
+      platformSelect.addEventListener('change', function(e) {
+         sourceFilter = e.target.value;
+         currentPage = 1;
+         loadReviews(1);
+      });
+   }
+   
+   // Mobile search toggle
+   const searchToggleBtn = document.getElementById("toogle-search-btn");
+   const searchInputLabel = document.getElementById("search-input-label");
+   if(searchToggleBtn && searchInputLabel) {
+      searchToggleBtn.addEventListener('click', function(){
+         searchInputLabel.classList.toggle("show");
+      });
+   }
+});
+
+// add data and save to variable and place them accordingly
+function addData(container, review){
+   let commet = " "; 
+   let reviewer = " ";
+   let updated = timeAgo(review.updated);
+   let profilePhoto = " ";
+   let npsScore = " ";
+   let source = " ";
+   let reviewphoto = "";
+   
+   if(review.source != null){
+      source = reviewSourceHandler(review.source);
+   }
+   if (review.profile_photo_url != null) {
+      profilePhoto = `<img src="${review.profile_photo_url}" alt="${review.reviewer}" width="50" height="50"/>`;
+   }
+   if(review.reviewer != null){
+      reviewer = review.reviewer;
+   }
+   if(review.comment != null){
+      commet = review.comment; 
+   }
+   
+   // stars
+   let starsHtml = " ";
+   if(review.NPS_score != null){
+      let startcount = Math.ceil(review.NPS_score/2);
+      for(let i = 0; i < startcount; i++){
+         starsHtml += `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="19px" viewBox="0 0 20 19">
+         <path fill-rule="evenodd"  fill="rgb(248, 207, 86)" d="M9.767,0.573 L11.988,7.599 L19.404,7.541 L13.422,11.942 L15.692,19.000 L9.725,14.643 L3.712,19.000 L5.982,11.942 L-0.000,7.541 L7.359,7.574 L9.767,0.573 Z"/>
+      </svg>`;
+      }
+   }
+   
+   // Create each review card
+   const card = document.createElement("div");
+   card.classList.add("nps-card", "grid-item");
+   card.innerHTML = `
+      <div class="card-body">
+         <div class="rating">
+            <span class="star-rating">
+               ${starsHtml}
+            </span>
+         </div>
+         <div class="review-content">
+            <p class="review-text">${commet}</p>
+            <div class="card-footer customer-with-logo">
+               <div class="customer">
+                  <p class="review-author">${reviewer}</p>
+                  <div class="time">${updated}</div>
+               </div>
+               <div class="footer-logos">
+                  ${source} ${profilePhoto}
+               </div>
+            </div>
+         </div>
+      </div>
+   `;
+   container.appendChild(card);
+}
+
+// Review Source reviewSourceHandler
+function reviewSourceHandler(src){
+   let source = src.toLowerCase();
+   if(source.includes('gmb') || source == 'gmb'){
+      let googlelogo = `<svg width="33px" height="33px" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4"/><path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#34A853"/><path d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782" fill="#FBBC05"/><path d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251" fill="#EB4335"/>
+      </svg>`;
+      return googlelogo;
+   }else if(source == 'yotpo'){
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34"><defs><style>.yotpocls-1 {fill: #fff;}.yotpocls-2 {fill: #e0e4e9;}</style></defs><g id="yotpoLayer_1-2" data-name="yotpoLayer 1"><g><circle class="yotpocls-2" cx="17" cy="17" r="17"/><path class="yotpocls-1" d="m23.06,10.93l-6.28,14.51h-4.23l2.47-5.18-4.09-9.32h4.3l1.84,4.97,1.72-4.97h4.26Z"/></g></g></svg>`;
+   }else if(source == "jasonl typeforms"){
+      return `<svg class="jasonlRevLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.97 43.98"><defs><style>.jasonllogocls-1 {fill: #fff;}.jasonllogocls-2 {fill: #e0e4e9; fill-rule: evenodd;}</style></defs><g id="jasonllogoLayer_1-2" data-name="jasonllogoLayer 1"><path class="jasonllogocls-2" d="m21.99,0c12.14,0,21.99,9.84,21.99,21.99s-9.84,21.99-21.99,21.99S0,34.13,0,21.99,9.84,0,21.99,0Z"/><path class="jasonllogocls-1" d="m21.81,6.99c-9.46,0-14.48,4.51-14.32,8.96.04,1.12.37,2.49,1.19,3.81.54.87,1.29,1.72,2.3,2.47.47.35,1.01.68,1.6.98,0,0,.01,0,.02.01,1.84.92,4.55,1.56,7.78,1.67l.77,1.54h.07s.16,0,.16,0v1.9c-.37.03-.43.1-.43.18v5.9c-3.54.4-6.14,1.03-6.14,1.59,0,.02,0,.04,0,.07,0,.02,0,.04,0,.07,0,.41,3.23.85,7.21.85s7.18-.44,7.18-.85c0-.02,0-.04,0-.07,0-.02,0-.04,0-.07,0-.6-2.65-1.32-6.17-1.59v-5.89c0-.08-.06-.15-.43-.18v-1.9h.14-.08s.22,0,.22,0l.66-1.46c4.95.11,7.86-1.09,9.84-2.74.5-.42.93-.86,1.29-1.32,1.32-1.69,1.77-3.57,1.82-4.96.16-4.45-4.98-8.96-14.68-8.96Zm5.78,3.14c.64,0,1.16.52,1.16,1.16s-.52,1.16-1.16,1.16-1.16-.52-1.16-1.16.52-1.16,1.16-1.16Zm-11.3,0c.64,0,1.16.52,1.16,1.16s-.52,1.16-1.16,1.16-1.16-.52-1.16-1.16.52-1.16,1.16-1.16Zm17.19,8.18c-.04.1-.09.2-.14.3-.26.5-.58.98-.93,1.45-.15.2-.36.39-.54.56-.59.57-1.26.99-1.99,1.31-1.78.77-3.89.86-5.95.86-1.63,0-3.26.1-4.89.03-1.64-.06-3.42-.28-4.93-.9-1.01-.41-1.9-1.01-2.54-1.87-.35-.46-.67-.94-.93-1.45-.01-.03-.03-.05-.04-.08-.27-.57-.47-1.28-.48-1.88-.02-1.89,3.09-2.01,4.68-2.01h14.36c1.59,0,4.7.12,4.69,2.01,0,.53-.16,1.14-.38,1.66Z"/></g></svg>`;
+   }else if (source == 'productreviews.com.au'){
+      return `<svg width="32" height="37" viewBox="0 0 256 292" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M223.774 57.34c-.201-1.46-1.48-2.268-2.537-2.357-1.055-.088-23.383-1.743-23.383-1.743s-15.507-15.395-17.209-17.099c-1.703-1.703-5.029-1.185-6.32-.805-.19.056-3.388 1.043-8.678 2.68-5.18-14.906-14.322-28.604-30.405-28.604-.444 0-.901.018-1.358.044C129.31 3.407 123.644.779 118.75.779c-37.465 0-55.364 46.835-60.976 70.635-14.558 4.511-24.9 7.718-26.221 8.133-8.126 2.549-8.383 2.805-9.45 10.462C21.3 95.806.038 260.235.038 260.235l165.678 31.042 89.77-19.42S223.973 58.8 223.775 57.34zM156.49 40.848l-14.019 4.339c.005-.988.01-1.96.01-3.023 0-9.264-1.286-16.723-3.349-22.636 8.287 1.04 13.806 10.469 17.358 21.32zm-27.638-19.483c2.304 5.773 3.802 14.058 3.802 25.238 0 .572-.005 1.095-.01 1.624-9.117 2.824-19.024 5.89-28.953 8.966 5.575-21.516 16.025-31.908 25.161-35.828zm-11.131-10.537c1.617 0 3.246.549 4.805 1.622-12.007 5.65-24.877 19.88-30.312 48.297l-22.886 7.088C75.694 46.16 90.81 10.828 117.72 10.828z" fill="#95BF46"/><path d="M221.237 54.983c-1.055-.088-23.383-1.743-23.383-1.743s-15.507-15.395-17.209-17.099c-.637-.634-1.496-.959-2.394-1.099l-12.527 256.233 89.762-19.418S223.972 58.8 223.774 57.34c-.201-1.46-1.48-2.268-2.537-2.357" fill="#5E8E3E"/><path d="M135.242 104.585l-11.069 32.926s-9.698-5.176-21.586-5.176c-17.428 0-18.305 10.937-18.305 13.693 0 15.038 39.2 20.8 39.2 56.024 0 27.713-17.577 45.558-41.277 45.558-28.44 0-42.984-17.7-42.984-17.7l7.615-25.16s14.95 12.835 27.565 12.835c8.243 0 11.596-6.49 11.596-11.232 0-19.616-32.16-20.491-32.16-52.724 0-27.129 19.472-53.382 58.778-53.382 15.145 0 22.627 4.338 22.627 4.338" fill="#FFF"/>
+      </svg>`;
+   }
+   else{
+      return source;
+   }
+}
+
+// Data ago converter
+function timeAgo(dateString) {
+   const date = new Date(dateString);
+   const now = new Date();
+   const seconds = Math.floor((now - date) / 1000);
+
+   const intervals = {
+      year: 31536000,
+      month: 2592000,
+      week: 604800,
+      day: 86400,
+      hour: 3600,
+      minute: 60
+   };
+
+   for (const [unit, value] of Object.entries(intervals)) {
+      const count = Math.floor(seconds / value);
+      if (count >= 1) {
+         return `${count} ${unit}${count > 1 ? "s" : ""} ago`;
+      }
+   }
+
+   return "Just now";
+}
+
+// Wait until the Masonry script is ready
+function checkMasonryInit(){
+   const checkMasonry = setInterval(function() {
+      if (typeof Masonry !== 'undefined') {
+         clearInterval(checkMasonry);
+         const grid = document.querySelector('.listing-masonry');
+         if (!grid) return;
+         
+         // Initialize Masonry
+         new Masonry(grid, {
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+            percentPosition: true,
+            gutter: 20
+         });
+      }
+   }, 100);
+}
+</script>

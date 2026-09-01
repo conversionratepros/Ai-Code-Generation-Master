@@ -1,0 +1,65 @@
+{{ 'explore-more.css' | asset_url | stylesheet_tag }}
+{%  capture arrowsvg %}
+    <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.576 0L14.504 1.045L16.375 2.869H0V4.346H16.351L14.5 6.15L15.572 7.194L19.263 3.595L15.576 0Z" fill="black"/>
+    </svg>
+{% endcapture %}
+
+{% capture locationsvg %}
+    <svg width="17" height="23" viewBox="0 0 17 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.389 12.397L8.251 22.622L0.955 12.095C0.247 11.004 0 9.399 0 8.253C0 3.702 3.703 0 8.254 0C12.805 0 16.507 3.702 16.507 8.253C16.507 9.683 16.136 11.092 15.432 12.329L15.389 12.397ZM8.254 1.73C4.657 1.73 1.73 4.656 1.73 8.253C1.73 9.365 1.996 10.521 2.392 11.131L8.257 19.593L13.947 11.44C14.491 10.472 14.778 9.37 14.778 8.253C14.778 4.656 11.851 1.73 8.254 1.73ZM8.254 11.777C6.31 11.777 4.729 10.196 4.729 8.253C4.729 6.309 6.31 4.728 8.254 4.728C10.198 4.728 11.779 6.309 11.779 8.253C11.779 10.196 10.198 11.777 8.254 11.777ZM8.254 6.458C7.264 6.458 6.459 7.263 6.459 8.253C6.459 9.242 7.264 10.048 8.254 10.048C9.244 10.048 10.049 9.242 10.049 8.253C10.049 7.263 9.244 6.458 8.254 6.458Z" fill="#939E35"/>
+    </svg>
+{% endcapture %}
+
+{% capture categorysvg %}
+    <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.318 8.92175L11.84 16.2697C11.691 16.3747 11.517 16.4268 11.343 16.4268C11.169 16.4268 10.996 16.3747 10.847 16.2697L0.369019 8.92175C0.138019 8.75975 0 8.49575 0 8.21375C0 7.93175 0.138019 7.66675 0.369019 7.50575L10.847 0.15675C11.145 -0.05225 11.542 -0.05225 11.84 0.15675L22.318 7.50575C22.548 7.66675 22.686 7.93175 22.686 8.21375C22.686 8.49575 22.548 8.75975 22.318 8.92175ZM11.343 1.92075L2.37097 8.21375L11.343 14.5058L20.315 8.21375L11.343 1.92075ZM1.362 10.9898L11.343 17.9897L21.324 10.9898C21.715 10.7148 22.255 10.8098 22.529 11.2008C22.803 11.5918 22.709 12.1308 22.318 12.4048L11.84 19.7537C11.691 19.8587 11.517 19.9107 11.343 19.9107C11.169 19.9107 10.996 19.8587 10.847 19.7537L0.369019 12.4048C-0.0229814 12.1308 -0.117018 11.5918 0.156982 11.2008C0.430982 10.8098 0.971 10.7148 1.362 10.9898ZM1.362 14.4738L11.343 21.4737L21.324 14.4738C21.715 14.1988 22.255 14.2938 22.529 14.6848C22.803 15.0758 22.709 15.6148 22.318 15.8888L11.84 23.2377C11.691 23.3417 11.517 23.3947 11.343 23.3947C11.169 23.3947 10.996 23.3417 10.847 23.2377L0.369019 15.8888C-0.0229814 15.6148 -0.117018 15.0758 0.156982 14.6848C0.430982 14.2938 0.971 14.1988 1.362 14.4738Z" fill="#939E35"/>
+    </svg>
+{% endcapture %}
+<div class="explore-more">
+    <div class="page-width">
+        <div class="explore-more-wrap">
+            <div class="intro">
+                {% comment %} <div class="eyebrow">FURNITURE GLOSSARY</div> {% endcomment %}
+                <h2 class="section-title">Explore more office furniture</h2>
+            </div>
+            <div class="expolor-more-cat-wrap">
+                {% comment %} make two div as per design {% endcomment %}
+                <div class="explore-more-col explore-more-col--location">
+                    <div class="explore-more-col__label">
+                        {{ locationsvg }}
+                        <span>By location</span>
+                    </div>
+                    <div class="explore-more-col__pills">
+                        <a href="/collections/office-furniture/sydney" class="explore-pill">Office furniture in Sydney</a>
+                        <a href="/collections/office-furniture/melbourne" class="explore-pill">Office furniture in Melbourne</a>
+                        <a href="/collections/office-furniture/brisbane" class="explore-pill">Office furniture in Brisbane</a>
+                        <a href="/collections/office-furniture/perth?location=true" class="explore-pill">Office furniture in Perth</a>
+                        <a href="/collections/office-furniture/adelaide" class="explore-pill">Office furniture in Adelaide</a>
+                    </div>
+                </div>
+                <div class="explore-more-col explore-more-col--category">
+                    <div class="explore-more-col__label">
+                        {{ categorysvg }}
+                        <span>By category</span>
+                    </div>
+                    <div class="explore-more-col__pills">
+                        <a href="/collections/office-chairs/ergonomic-chairs" class="explore-pill">Ergonomic office chairs</a>
+                        <a href="/collections/office-desks/height-adjustable-desks" class="explore-pill">Sit-stand &amp; height-adjustable desks</a>
+                        <a href="/collections/office-partitions/office-work-pods-booths" class="explore-pill">Office workstations &amp; pods</a>
+                        <a href="/collections/tables/boardroom-tables" class="explore-pill">Boardroom &amp; meeting tables</a>
+                        <a href="/pages/interior-design" class="explore-pill">Office fitout services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> 
+
+{%- schema -%}
+{
+    "name": "explore-more",
+    "class": "section",
+    "settings": []
+}
+{%- endschema -%}

@@ -1,0 +1,168 @@
+{{ 'breadcrumb.css' | asset_url | stylesheet_tag }}
+<ul class="breadcrumb-menu">
+  {% if collection.handle == "office-furniture"%}
+    <li>
+      <a href="{{ shop.url }}">
+        Home
+      </a>
+    </li>
+  {% endif %}
+    {%- assign is_metaFieldParentMenu = false -%}
+    {% if collection.metafields.coln_relation.coln_parent %}
+        {% comment %} {%-if collection.metafields.coln_relation.coln_parent == "Office Furniture"-%} {% endcomment %}
+          {%-if collection.metafields.coln_relation.coln_parent contains "Office Furniture"-%}
+            <li>
+            <a href="{{ shop.url }}/">
+              {%- assign  metaFieldParentMenu = collection.metafields.coln_relation.coln_parent -%}
+              {{metaFieldParentMenu}}
+              {%- assign is_metaFieldParentMenu = true -%}
+              </a>
+            </li>
+        {% endif %}
+    {% endif %}
+  
+    <li>
+      <!-- <a href="{{link.url}}"> -->
+        <a href="{{collection.url}}">
+        {%-if collection.handle == "home-office-furniture"-%}
+            Home office Furniture
+        {% elsif collection.handle == "all" %}
+          Products
+        {%-else-%}
+           {%-comment-%}
+           <!--
+              child_list_handle variable not assigned in this snippet. It is assigned inside top submenu on collection page. 
+              This varible was accessed in the old as it was included in the same submenu snippets.
+              It is not working here as it has to include outside of submenu snippet in new design.
+              Alternative solution: get collection title directly.
+           -->
+          {{- collections[child_list_handle].title -}}
+          {%-endcomment-%}
+          {{collection.title}}
+        {%-endif-%}
+      </a>
+    </li>
+
+   
+    {%- assign is_metaFieldTag = false -%}
+    {%- assign child_collection_title = false -%}
+    {%- assign curr_location = false -%}
+
+    {%- for ctag in current_tags -%}
+          {% assign datavalue= ctag | downcase %}
+          {% assign datavalue= datavalue | replace: " ","" %}
+          {% assign datavalue= datavalue | slice: 0, 24 %}
+          {% assign colnamevalue= datavalue | append: "_t" %}
+          {%- assign tagprod = 'tagproducts' -%}
+          {% if shop.metafields[tagprod][colnamevalue] %}
+              {% assign tagtitlevalue= shop.metafields[tagprod][colnamevalue] %}
+              {%- assign is_metaFieldTag = true -%}
+              {%- assign child_collection_title = tagtitlevalue -%}
+                  <!-- <li><a href="javascript:void(0)">{{ tagtitlevalue }}</a></li> -->
+          {% else %}
+                {%- assign locationName_all = shop.metafields.custom_fields.location_collection__locations -%}
+                {%- if locationName_all contains ctag -%}
+                    {%- assign curr_location = ctag -%}
+                {%- endif -%}
+          {% endif %}
+    {%- endfor -%}
+    {%- if child_collection_title -%}
+        {%- if curr_location -%}
+            {%- assign withPlus_curr_location = '+' | append: curr_location -%}
+            <li><a href="{{request.path | remove:withPlus_curr_location | remove: curr_location}}">{{ tagtitlevalue }}</a></li>
+        {%- else -%}
+            <li><span>{{ tagtitlevalue }}</span></li>
+        {%- endif -%}
+    {%- endif -%}
+    
+  </ul>
+
+
+
+{%-if collection.metafields.coln_relation.coln_parent == "Office Furniture"-%}
+    {%- assign shopURL = shop.url | append:'/' -%}
+{%-else-%}
+    {%- if collection.title == 'Office Furniture'-%}
+        {%- assign shopURL = shop.url | append:'/' -%}
+    {%-else-%}
+        {%-assign shopURL = shop.url | append: link.url %}
+    {%-endif-%}
+{%-endif-%}
+  {%- if is_metaFieldTag == false -%}
+        {%- if is_metaFieldParentMenu == false -%}
+              <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "{{collection.title}}",
+                    "item": "{{shopURL}}"
+                  }]
+                }
+              </script>
+        {%- else -%}
+              
+              <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "{{metaFieldParentMenu}}",
+                    "item": "{{shopURL}}"
+                  },{
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{collection.title}}",
+                    "item": "{{shop.url}}{{collection.url}}"
+                  }]
+                }
+              </script>
+        {%- endif -%}
+  {%- else -%}
+      {%- if is_metaFieldParentMenu == false -%}
+          <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "{{collection.title}}",
+                    "item": "{{shop.url}}{{collection.url}}"
+                  },{
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{ tagtitlevalue }}",
+                    "item": "{{shop.url}}{{collection.url}}/{{ tagtitlevalue | handleize}}"
+                  }]
+                }
+              </script>
+      {%- else -%}
+              <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "{{metaFieldParentMenu}}",
+                  "item": "{{shopURL}}"
+                },{
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "{{collection.title}}",
+                  "item": "{{shop.url}}{{collection.url}}"
+                },{
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "{{ tagtitlevalue }}",
+                  "item": "{{shop.url}}{{collection.url}}/{{ tagtitlevalue | handleize}}"
+                }]
+              }
+              </script>
+      {%-endif-%}
+  {%- endif -%}

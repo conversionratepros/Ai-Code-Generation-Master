@@ -1,0 +1,101 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js" defer></script>
+{{ 'nps-review-section.css' | asset_url | stylesheet_tag }}
+
+<div class="nps-review-list-section">
+   <div class="page-width">
+      <div class="heading-with-filter-wrap">
+         <h2 class="section-title">Latest reviews</h2>
+         <div class="nps-filter-wrap">
+            <div class="filter-group search-input-group">
+               <label class="search-input" for="searchinput" id="search-input-label">
+                  <input type="search" placeholder="Search ..." id="searchinput">
+                  <button class="search-submit-btn">
+                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px" viewBox="0 0 15 15">
+                        <path fill-rule="evenodd"  fill="rgb(0, 0, 0)" d="M5.019,0.911 C9.266,0.705 12.012,5.333 9.781,8.974 C9.754,9.019 9.598,9.228 9.605,9.256 L13.927,13.597 C14.518,14.461 13.433,15.458 12.622,14.771 L8.353,10.508 C8.326,10.501 8.116,10.656 8.071,10.684 C5.329,12.364 1.738,11.255 0.450,8.324 C-1.039,4.934 1.338,1.089 5.019,0.911 ZM8.809,6.190 C8.809,4.245 7.232,2.669 5.287,2.669 C3.342,2.669 1.765,4.245 1.765,6.190 C1.765,8.135 3.342,9.712 5.287,9.712 C7.232,9.712 8.809,8.135 8.809,6.190 Z"/>
+                     </svg>
+                  </button>
+               </label>
+               <button class="btn-toggle-sm" id="toogle-search-btn">
+                     <div class="closebtn">&times;</div>
+                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px" viewBox="0 0 15 15">
+                        <path fill-rule="evenodd"  fill="rgb(0, 0, 0)" d="M5.019,0.911 C9.266,0.705 12.012,5.333 9.781,8.974 C9.754,9.019 9.598,9.228 9.605,9.256 L13.927,13.597 C14.518,14.461 13.433,15.458 12.622,14.771 L8.353,10.508 C8.326,10.501 8.116,10.656 8.071,10.684 C5.329,12.364 1.738,11.255 0.450,8.324 C-1.039,4.934 1.338,1.089 5.019,0.911 ZM8.809,6.190 C8.809,4.245 7.232,2.669 5.287,2.669 C3.342,2.669 1.765,4.245 1.765,6.190 C1.765,8.135 3.342,9.712 5.287,9.712 C7.232,9.712 8.809,8.135 8.809,6.190 Z"/>
+                     </svg>
+                  </button>
+            </div>
+            <div class="filter-group select-group select-group-date">
+               <select id="date">
+                 <option value="">Date</option>
+                 <option value="asc">Ascending</option>
+                 <option value="desc">Descending</option>
+              </select>
+            </div>
+            <div class="filter-group select-group select-group-platform">
+               <select id="platform">
+                  <option value="">All</option>
+                  <option value="gmb">Google</option>
+                  <option value="yotpo">Yotpo</option>
+                  <option value="jasonl">JasonL</option>
+                  <option value="productreviews">Product Review</option>
+                  <option value="aroflo">NPS Review</option>
+              </select>
+            </div>
+         </div>
+      </div>
+      <div id="search-value"></div>
+      <div class="nps-review-list listing-masonry" id="nps-review-list-contianer">
+         <div class="grid-sizer"></div> {% comment %} <!-- from masonry documentation added this --> {% endcomment %}
+         {%- comment -%} <!-- card backup --> {% for i in (1..8) %} 
+            <div class="nps-card grid-item">
+               <picture class="card-thumbnail">
+                  <img src="{{ 'nps-card-img.jpg' | file_img_url: '370x' }}" alt="" width="370" height="258">
+               </picture>
+               <div class="card-body">
+                  <div class="rating">
+                     <span class="star-rating">
+                        {% for i in (1..5) %}
+                           <svg 
+                           xmlns="http://www.w3.org/2000/svg"
+                           xmlns:xlink="http://www.w3.org/1999/xlink"
+                           width="20px" height="19px" viewBox="0 0 20 19">
+                           <path fill-rule="evenodd"  fill="rgb(248, 207, 86)"
+                           d="M9.767,0.573 L11.988,7.599 L19.404,7.541 L13.422,11.942 L15.692,19.000 L9.725,14.643 L3.712,19.000 L5.982,11.942 L-0.000,7.541 L7.359,7.574 L9.767,0.573 Z"/>
+                           </svg>
+                        {% endfor %}
+                     </span>
+                  </div>
+                  <div class="review-content">
+                     <p class="review-text">I wanted to take a moment to share my recent experience with our sales, service and install, and I must say, it was absolutely fantastic! From start to finish, the entire process was flawless and left me feeling extremely satisfied. First and foremost, I was impressed by the personable service provided. The team was incredibly patient and helped me navigate through the entire process with ease. No question was too silly or too difficult, and I felt truly valued as a customer. Eric Tehranchi, in particular, stood out with his exceptional customer service.</p>
+                     <div class="card-footer customer-with-logo">
+                        <div class="customer">
+                           <p class="review-author">JELLY CUNNINGHAM</p>
+                           <div class="time">3 Weeks ago</div>
+                        </div>
+                        <div class="footer-logos">
+                           <svg width="33px" height="33px" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                              <path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4"/><path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#34A853"/><path d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782" fill="#FBBC05"/><path d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251" fill="#EB4335"/>
+                           </svg>
+                           {% comment %} <svg width="34" height="38" viewBox="0 0 256 292" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
+                              <path d="M223.774 57.34c-.201-1.46-1.48-2.268-2.537-2.357-1.055-.088-23.383-1.743-23.383-1.743s-15.507-15.395-17.209-17.099c-1.703-1.703-5.029-1.185-6.32-.805-.19.056-3.388 1.043-8.678 2.68-5.18-14.906-14.322-28.604-30.405-28.604-.444 0-.901.018-1.358.044C129.31 3.407 123.644.779 118.75.779c-37.465 0-55.364 46.835-60.976 70.635-14.558 4.511-24.9 7.718-26.221 8.133-8.126 2.549-8.383 2.805-9.45 10.462C21.3 95.806.038 260.235.038 260.235l165.678 31.042 89.77-19.42S223.973 58.8 223.775 57.34zM156.49 40.848l-14.019 4.339c.005-.988.01-1.96.01-3.023 0-9.264-1.286-16.723-3.349-22.636 8.287 1.04 13.806 10.469 17.358 21.32zm-27.638-19.483c2.304 5.773 3.802 14.058 3.802 25.238 0 .572-.005 1.095-.01 1.624-9.117 2.824-19.024 5.89-28.953 8.966 5.575-21.516 16.025-31.908 25.161-35.828zm-11.131-10.537c1.617 0 3.246.549 4.805 1.622-12.007 5.65-24.877 19.88-30.312 48.297l-22.886 7.088C75.694 46.16 90.81 10.828 117.72 10.828z" fill="#95BF46"/><path d="M221.237 54.983c-1.055-.088-23.383-1.743-23.383-1.743s-15.507-15.395-17.209-17.099c-.637-.634-1.496-.959-2.394-1.099l-12.527 256.233 89.762-19.418S223.972 58.8 223.774 57.34c-.201-1.46-1.48-2.268-2.537-2.357" fill="#5E8E3E"/><path d="M135.242 104.585l-11.069 32.926s-9.698-5.176-21.586-5.176c-17.428 0-18.305 10.937-18.305 13.693 0 15.038 39.2 20.8 39.2 56.024 0 27.713-17.577 45.558-41.277 45.558-28.44 0-42.984-17.7-42.984-17.7l7.615-25.16s14.95 12.835 27.565 12.835c8.243 0 11.596-6.49 11.596-11.232 0-19.616-32.16-20.491-32.16-52.724 0-27.129 19.472-53.382 58.778-53.382 15.145 0 22.627 4.338 22.627 4.338" fill="#FFF"/>
+                           </svg> {% endcomment %}
+                           <img src="{{ 'avatar-txt.png' | file_img_url:'50x' }}" alt="avatar" width="50" height="50"/>
+                        </div>
+      
+                     </div>
+                  </div>
+               </div>
+            </div>
+         {% endfor %} {%- endcomment -%}
+      </div>
+      <div class="pagination" id="nps-pagination">
+         <ul>
+            <li id="first-pagination"><a href="#">First</a></li>
+            <li id="prev-pagination"><a href="#">&#10094;</a></li>
+            <!-- Page numbers will be inserted here dynamically -->
+            <li id="next-pagination"><a href="#">&#10095;</a></li>
+            <li id="last-pagination"><a href="#">Last</a></li>
+         </ul>
+      </div>
+   </div>
+</div> 
+{% render 'nps-review-section-script' %}

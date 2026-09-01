@@ -1,0 +1,192 @@
+{%- capture hero_banner -%}
+{{ 'hero-banner.css' | asset_url | stylesheet_tag }}
+<style>
+    .hero-container {
+    {% comment %} background: url({{ section.settings.hero_image | image_url: width :1540 }}) no-repeat 100% 0; {% endcomment %}
+    background-size: cover;
+    border-radius:6px;
+    }
+
+    @media(max-width:1439px) {
+    .hero-container {
+    background-size: cover;
+    }
+    }
+
+    @media (min-width:768px) {
+        .hero-container {
+            background: url({{ section.settings.hero_image | image_url: width :1540 }}) no-repeat 100% 0;
+            background-size: cover;
+        }
+    }
+
+    @media(min-width:768px) and (max-width:1450px) {
+    .new-header .hero-container {
+    background-size: cover;
+    }
+    }
+
+    @media(max-width:767px) {
+    .hero-container {
+        background: url({{ section.settings.hero_image_mob | image_url: width :767 }}) no-repeat 100% 0;
+        height: 270px;
+        border-radius: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hero-text {
+    background-size: contain;
+    }
+    }
+</style>
+<div class="page-width ab-test-group-A">
+    <div class="hero-container">
+
+    {% comment %} <picture class="hero-picture">
+    <img src="{{  'landingpage1-hero-image1-mob.png' |  file_img_url:'750x' }}" height="" width="" alt="">
+    </picture> {% endcomment %}
+
+    <div class="hero-text">
+    <h2 class="h1-style">{{ section.settings.hero_title }}</h2>
+    {% assign btn_label = section.settings.button_link_text  | handleize %}
+    {% if btn_label contains "quote" %}
+    <a class="typeform-share getaquoteclick link" {{ settings.typeformurls_url_1 }}
+    href="javascript:void(0)">
+    Get a quote
+    </a>
+    {% else %}
+    <a href="{{ section.settings.button_link }}"
+    class="link {% if section.settings.button_class %}{{section.settings.button_class}}{%else %} {% endif %}">
+    {{- section.settings.button_link_text -}}
+    </a>
+    {% endif %}
+
+    </div>
+    </div>
+</div>
+{%- endcapture -%}
+
+
+{%- capture hero_bannerB -%}
+{{ 'hero-banner.css' | asset_url | stylesheet_tag }}
+<style>
+    .herobannerb .hero-container {
+    {% comment %} background: url({{ section.settings.hero_image | image_url: width :1540 }}) no-repeat 100% 0; {% endcomment %}
+    background-size: cover;
+    border-radius:6px;
+    }
+
+    @media(max-width:1439px) {
+    .herobannerb .hero-container {
+    background-size: cover;
+    }
+    }
+
+    @media (min-width:768px) {
+        .herobannerb .hero-container {
+            background: url({{ 'hero-img-banner-b.jpg' | file_img_url: '1500x' }}) no-repeat 100% 0;
+            background-size: cover;
+        }
+    }
+
+    @media(min-width:768px) and (max-width:1450px) {
+    .new-header .hero-container {
+    background-size: cover;
+    }
+    }
+
+    @media(max-width:767px) {
+        .herobannerb .hero-container {
+            background: url({{ 'hero-img-banner-mobile-b.jpg' | file_img_url: '767x' }}) no-repeat 100% 0;
+            height: 270px;
+            border-radius: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .herobannerb .hero-text {
+            background-size: contain;
+        }
+    }
+</style>
+<div class="page-width herobannerb ab-test-group-B">
+    <div class="hero-container">
+        {% comment %} <picture class="hero-picture">
+        <img src="{{  'landingpage1-hero-image1-mob.png' |  file_img_url:'750x' }}" height="" width="" alt="">
+        </picture> {% endcomment %}
+        <div class="hero-text">
+            <div class="banner-tag-text">
+                Launching a startup?
+            </div>
+            <h2 class="h1-style">Your plan to perfect <br />workspace. Fast!</h2>
+            <div class="banner-description">
+                Australia-wide fitouts in under 10 days — from start to finish.
+            </div>
+            {% assign btn_label = section.settings.button_link_text  | handleize %}
+            {% if btn_label contains "quote" %}
+                <a class="oval-button typeform-share getaquoteclick link" {{ settings.typeformurls_url_1 }}
+                href="javascript:void(0)">
+                    START YOUR FITOUT
+                </a>
+            {% else %}
+                <a href="{{ section.settings.button_link }}"
+                class="oval-button link {% if section.settings.button_class %}{{section.settings.button_class}}{%else %} {% endif %}">
+                    {{- section.settings.button_link_text -}}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{%- endcapture -%}
+
+{{- hero_banner |  strip_newlines -}}
+{{- hero_bannerB |  strip_newlines -}}
+
+{%- schema -%}
+    {
+    "name": "Hero Section",
+    "class": "hero-banner-section",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "hero_image",
+    "label": "Hero Image"
+    },
+    {
+    "type": "image_picker",
+    "id": "hero_image_mob",
+    "label": "Mobile - Hero Image"
+    },
+    {
+    "type": "text",
+    "id": "hero_title",
+    "label": "Hero Title",
+    "default": "Beautiful fitouts in under 10 days. Easy. Fast"
+    },
+    {
+    "type": "url",
+    "id": "button_link",
+    "label": "Button Link"
+    },
+    {
+    "type": "text",
+    "id": "button_link_text",
+    "label": "Link Text",
+    "default": "GET A QUOTE"
+    },
+    {
+    "type": "text",
+    "id": "button_class",
+    "label": "Link Class"
+    },
+    {
+    "type": "textarea",
+    "id": "hero_description",
+    "label": "Description"
+    }
+    ]
+    }
+{%- endschema %}

@@ -1,0 +1,59 @@
+{{ 'question-section.css' | asset_url | stylesheet_tag }}
+<div class="question-section">
+    <div class="page-width">
+        <div class="top-intro-wrap">
+            <div class="top-intro-left">
+                <p class="eyebrow">QUICK ANSWERS</p>
+                <h2 class="section-heading">The three questions everyone asks <br><span class="highlight">before starting</span>.</h2>
+            </div>
+            <div class="top-intro-right">
+                <img
+                    class="top-right-image"
+                    src="{{ 'quick-answer-cutout.png' | file_img_url: '733x' }}"
+                    srcset="
+                        {{ 'quick-answer-cutout.png' | file_img_url: '360x' }} 360w,
+                        {{ 'quick-answer-cutout.png' | file_img_url: '550x' }} 550w,
+                        {{ 'quick-answer-cutout.png' | file_img_url: '686x' }} 687w,
+                        {{ 'quick-answer-cutout.png' | file_img_url: '1000x' }} 1000w,
+                        {{ 'quick-answer-cutout.png' | file_img_url: '1374x' }} 1466w
+                    "
+                    sizes="(max-width: 749px) 100vw, 687px"
+                    alt="Modern office interior"
+                >
+            </div>
+        </div>
+        <div class="question-box-wrap-outer">
+            <div class="question-box-wrap">
+                <div class="question-box">
+                    <div class="question">
+                        What is an office fitout?
+                    </div>
+                    <div class="answer">
+                        An office fitout is the process of designing, furnishing and setting up a workspace so it’s ready for your team to move in and start working. It includes furniture, layout planning, and installation.
+                    </div>
+                </div>
+                <div class="question-box">
+                    <div class="question">
+                        What’s the cost of an office fitout?
+                    </div>
+                    <div class="answer">
+                        Cost depends on team size, layout and furniture selection, so every fitout is different. What stays the same is the process - we scope it properly and give you a fixed price upfront, so there are no surprises down the track.
+                    </div>
+                </div>
+                <div class="question-box">
+                    <div class="question">
+                        How long does an office fitout take?
+                    </div>
+                    <div class="answer">
+                        Most JasonL fitouts are completed in under 10 days. Because we hold stock locally and manage the full process in-house, we avoid many of the delays commonly associated with traditional office fitouts.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "question section"
+}
+{% endschema %}

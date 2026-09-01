@@ -1,0 +1,238 @@
+{% comment %}
+  CRP copy of buy-buttons.liquid — PDP Add to Quote Journey (CRO-12170)
+  Changes vs original:
+    1. show_dynamic_checkout forced false — Buy Now never renders
+    2. Add to Cart button hidden via style (stays in DOM for form submission)
+    3. crp-buy-box class added to .product-form__buttons to scope CSS
+{% endcomment %}
+{%- unless skip_styles -%}
+{{ 'buy-buttons.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
+<div {{ block.shopify_attributes }}>
+  {%- if product != blank -%}
+    {%- liquid
+      assign gift_card_recipient_feature_active = false
+      if block.settings.show_gift_card_recipient and product.gift_card?
+        assign gift_card_recipient_feature_active = true
+      endif
+
+      assign show_dynamic_checkout = false
+    -%}
+
+    <product-form
+      class="product-form"
+      data-hide-errors="{{ gift_card_recipient_feature_active }}"
+      data-section-id="{{ section.id }}"
+    >
+      <div class="product-form__error-message-wrapper" role="alert" hidden>
+        <span class="svg-wrapper">
+          {{- 'icon-error.svg' | inline_asset_content -}}
+        </span>
+        <span class="product-form__error-message"></span>
+      </div>
+      {%- assign variant = product.selected_or_first_available_variant -%}
+      {%- assign minQty = 1 -%}
+
+      {%- if variant.metafields.custom.min_order_quantity_variant -%}
+        {%- assign minQty = variant.metafields.custom.min_order_quantity_variant -%}
+      {%- elsif product.metafields.custom.min_order_quantity -%}
+        {%- assign minQty = product.metafields.custom.min_order_quantity -%}
+      {%- else -%}
+        {%- assign minQty = 1 -%}
+      {%- endif -%}
+
+      {%- if block == "card" and product.tags contains 'contact-to-purchase' -%}
+      <button class="product-form__submit link button--full-width backorder-btn"
+              type="button"
+              onclick="contactPurchaseModal('{{ product.title | escape }}', '{{ product.url }}', {{ product.selected_or_first_available_variant.id }})">
+        Back-Order
+      </button>
+      {%- else -%}
+
+      {%- form 'product',
+        product,
+        id: product_form_id,
+        class: 'form',
+        novalidate: 'novalidate',
+        data-type: 'add-to-cart-form'
+      -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          {% if product.selected_or_first_available_variant.available == false
+            or quantity_rule_soldout
+            or product.selected_or_first_available_variant == null
+          %}
+            disabled
+          {% endif %}
+          class="product-variant-id"
+        >
+          {%- if block == "card" or  block == "compare-product" -%}
+            <input style="visibility:hidden; display:none"  type="text" name="quantity"
+              value="{{ minQty }}" {% if minQty != 1 %}readonly{% endif %} {% if minQty != 1 %} step="{{minQty}}" {% endif %}>
+            {%- endif -%}
+
+        {%- if gift_card_recipient_feature_active -%}
+          {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+        {%- endif -%}
+
+        <div class="product-form__buttons crp-buy-box {% if product.tags contains 'contact-to-purchase' %}contact-to-purchase-buttons preorder-show{% endif %}">
+          {%- liquid
+            assign check_against_inventory = true
+            if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
+              assign check_against_inventory = false
+            endif
+            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+              assign quantity_rule_soldout = true
+            endif
+          -%}
+          <button
+            {% if template.name != "collection" %}
+              id="ProductSubmitButton-{{ section_id }}"
+            {% endif %}
+            type="submit"
+            name="add"
+            data-btntype="add-to-basket"
+            data-checkouttype="{%- if block == "card" or  block == "compare-product" -%}request-quote{%- else -%}pay-online{%- endif -%}"
+            class="add-to-cart-btn product-form__submit link button--full-width"
+            style="display:none; visibility:hidden;"
+            {% if product.selected_or_first_available_variant.available == false
+              or quantity_rule_soldout
+              or product.selected_or_first_available_variant == null
+            %}
+              disabled
+            {% endif %}
+          >
+            <span>
+              {%- if product.selected_or_first_available_variant == null -%}
+                {{ 'products.product.unavailable' | t }}
+              {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- else -%}
+                {%- if block == "card" or  block == "compare-product" -%}
+                  {{ 'products.product.add_to_quote' | t }}
+                {%- else -%}
+                 {{ 'products.product.add_to_cart' | t }}
+                {%- endif -%}
+              {%- endif -%}
+            </span>
+            {%- render 'loading-spinner' -%}
+          </button>
+          {%- if product.available == true and template.name == "product" and block != "compare-product" and block != "card"-%}
+              {%- unless product.tags contains 'contact-to-purchase' -%}
+
+                  <div class="button-icon-holder">
+                    <button type="button"
+                    id="btn-addtoquote"
+                      class="addtoquote addtoquote-mainproduct-btn button button--primary {% if product.selected_variant.available == false %}hide{% endif %}"
+                      onclick="click_addtoquote_button(this, 'ProductSubmitButton-{{ section_id }}')">
+                      Add to quote
+                    </button>
+                  </div>
+             {%- else -%}
+                  <button class="button button--primary backorder-btn" type="button" onclick="contactPurchaseModal('{{product.title | escape }}', '{{product.url }}', {{ product.selected_or_first_available_variant.id }})" data-btn="perth-location_back-order">Back-Order</button>
+              {%- endunless-%}
+
+              {% comment %}
+                ------------------------------------------------------------
+                remove below condition. then check on this product page: https://www.jasonl.com.au/products/report-executive-straight-desk.
+                there was no back order button.
+                to fix the issue, below logic is added temporarily to make site-overhaul live on Wed 9 Apr 2025.
+                ------------------------------------------------------------
+              {% endcomment %}
+              {% else %}
+                            {%- if product.available == false and product.tags contains 'contact-to-purchase' and template.name == "product" -%}
+                              <button class="button button--primary backorder-btn" type="button" onclick="contactPurchaseModal('{{product.title | escape }}', '{{product.url }}', {{ product.selected_or_first_available_variant.id }})" data-btn="perth-location_back-order">Back-Order</button>
+                            {%- endif -%}
+              {% comment %} ------------------------------------------------------------ {% endcomment %}
+
+            {%-endif -%}
+
+
+            {%- if block != "card"  and  block != "compare-product"-%}
+              {%- unless product.tags contains 'contact-to-purchase' -%}
+                  <button class="button button--primary backorder-btn" type="button"  onclick="contactPurchaseModal('{{ product.title | escape }}', '{{product.url }}', {{ product.selected_or_first_available_variant.id }})" data-btn="perth-location_back-order">Back-Order</button>
+              {%- endunless-%}
+            {%- endif -%}
+        </div>
+      {%- endform -%}
+    {%- endif -%}
+    </product-form>
+
+  {%- endif -%}
+
+
+  {%- if show_pickup_availability -%}
+    {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
+
+    {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
+      | where: 'pick_up_enabled', true
+    -%}
+
+    <pickup-availability
+      class="product__pickup-availabilities quick-add-hidden"
+      {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}
+        available
+      {% endif %}
+      data-root-url="{{ routes.root_url }}"
+      data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      data-has-only-default-variant="{{ product.has_only_default_variant }}"
+      data-product-page-color-scheme="gradient color-{{ section.settings.color_scheme }}"
+    >
+      <template>
+        <pickup-availability-preview class="pickup-availability-preview">
+          <span class="svg-wrapper">
+            {{- 'icon-unavailable.svg' | inline_asset_content -}}
+          </span>
+          <div class="pickup-availability-info">
+            <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
+            <button class="pickup-availability-button link link--text underlined-link">
+              {{ 'products.product.pickup_availability.refresh' | t }}
+            </button>
+          </div>
+        </pickup-availability-preview>
+      </template>
+    </pickup-availability>
+
+    <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+</div>
+
+<script type="text/javascript">
+  function click_addtoquote_button(_this, addToBasketBtnId) {
+      let addToQuoteBtn = _this;
+      let price = document.getElementsByClassName('price-item--regular');
+      let addToBasketBtn = document.getElementById(addToBasketBtnId);
+      let productUrl = window.location.pathname;
+
+      addToQuoteBtn.classList.add('addToQuote_clicked');
+      addToQuoteBtn.classList.add('disabled');
+      addToQuoteBtn.innerText = 'Adding..';
+      addToBasketBtn.click();
+      localStorage.setItem('clickedCartBtn','Add to quote');
+      localStorage.setItem("minicart-payement-option", 'request-quote');
+
+      setTimeout(function () {
+          addToQuoteBtn.classList.remove('addToQuote_clicked');
+          addToQuoteBtn.classList.remove('disabled');
+          addToQuoteBtn.innerHTML = 'Add to quote';
+
+          // ga4 event through tagmanager
+          {% comment %}
+          // -------------------------------------------
+          //  20/16/2026 :
+          // This is commented due to duplicate event firing. As an alternative solution we have used ga4 event trigger on add to quote form submit.
+          // ---------------------------------------------
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+          'event' : 'Add to Quote',
+          'GA4_eventAction':productUrl,
+          'GA4_eventLabel':price[0].textContent
+          })
+        {% endcomment %}
+      }, 800);
+
+  }
+</script>

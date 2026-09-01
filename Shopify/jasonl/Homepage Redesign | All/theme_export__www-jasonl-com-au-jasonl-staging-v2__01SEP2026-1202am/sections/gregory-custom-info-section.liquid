@@ -1,0 +1,49 @@
+{{ 'gregory-custom-info-section.css' | asset_url | stylesheet_tag }}
+
+<div class="gregory-custom-info-section">
+    <div class="page-width gregory-custom-info-width">
+        <div class="gregory-custom-info-width-banner">
+            <picture>  
+                <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+                <source srcset="{{ 'gregory-custom-info-sec-banner.jpg' | file_img_url:'3074x'}} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+                <source srcset="{{ 'gregory-custom-info-sec-banner.jpg' | file_img_url:'1537x'}}" media="(min-width: 768px)">
+                <img src="{{ 'gregory-custom-info-sec-banner.jpg' | file_img_url:'1537x' }}" alt="Gregory" width="1537" height="auto">
+            </picture>
+        </div>
+        <div class="gregory-custom-info-content">
+            <div class="gregory-content-col col-highlight">
+                <div class="col-highlight-inner-wrap">
+                    <h2>Gregory is back and with added benefits</h2>
+                    <p>Gregory built its name on comfortable office chairs that last. JasonL builds on that legacy with everything modern workspaces need.</p>
+                    <p>Together, we make it easy to create a space that looks great, feels better and gets done fast.</p>
+    
+                    <div class="list-title"><strong>Here's what that means for you:</strong></div>
+                    <ul>
+                        <li> The same Gregory ergonomic design you trust.</li>
+                        <li> Fast delivery & install — ready in days, not weeks.</li>
+                        <li> Real people, real help — from plan to furniture.</li>
+                        <li> 5,000+ products in stock, Australia-wide.</li>
+                        <li> Full fitout support when you're ready to grow.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gregory-content-col detail-col">
+                <h2 class="col-title">Pioneering ergonomic comfort - then and now</h2>
+                <div class="col-2-detail">
+                    <p>Gregory Office Chairs were born from a simple idea: sitting shouldn't hurt.</p>
+                    <p>Back in 1988, physiotherapist Peter Gregory changed the way Australia works with the world's first Dual Density Posture Support System. It was a breakthrough that balanced comfort, posture and support like nothing else.</p>
+                    <p>That same innovation still sits at the heart of every Gregory chair today. Each one is designed to move with you, not against you - reducing strain, improving posture and keeping you comfortable for the long haul.</p>
+    
+                    <p>
+                        Now, as part of the JasonL family, that legacy of ergonomic excellence is reaching more workplaces than ever. Same science-backed comfort. Same handcrafted quality. Delivered faster, with the friendly service and fitout expertise JasonL is known for.
+                    </p>
+                    <p>
+                        That legacy lives on in Gregory's classics — Inca, Boxta, Evoke and more — all available through JasonL.
+                    </p>
+                    <p><a href="#products-listing-section" class="link">Explore the Gregory range</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

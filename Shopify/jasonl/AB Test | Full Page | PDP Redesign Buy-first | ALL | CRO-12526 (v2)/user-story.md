@@ -454,3 +454,39 @@ Deploy: paste FULL pdp.css + main-product + planning + complete-setup + gallery 
 (PDP); cro-hp.css + how-it-works + case-studies (homepage). Template JSON: do NOT paste — set
 `bar_copy` in the theme editor (see item 2). Client artifact:
 https://claude.ai/code/artifact/bdb7f0d1-8287-447d-9518-b75500a4dfb8
+
+### Round 18 (2026-08-31) — client Round 3 #2: product FAQ ported from staging-v2
+Source: `theme_export__www-jasonl-com-au-jasonl-staging-v2__01SEP2026-1202am` (client-attached,
+sits inside the Homepage Redesign folder). Key recon: the FAQ is NOT new — the July live-theme
+export already carries identical `product-faq.liquid` / `hidden-emails.liquid` / `hidden-email.css`
+(css differs only in minified whitespace) and live PDPs render it; our v2 section simply predates
+it (forked-template drift, again — [[feedback_forked_template_reconcile_drift]]). Control call
+site: `main-product.liquid:1435` — `{% if product.metafields.custom.faqs.value %}{% render
+'product-faq' %}{% endif %}`, between the description tabs and the companies slider.
+
+Port (all four doc-listed files, renamed per client):
+- `sections/cro-12526-v2-faq.liquid` — staging snippet content verbatim + the same metafield gate,
+  wrapped as a SECTION. Why a section, not a snippet call in the main-product tail: raw div
+  counting across the verbatim tail is inconclusive (+1 open at the old companies-slider slot that
+  lives inside some liquid branch), so an inline insert risked landing INSIDE the description
+  page-width wrapper (double padding, no full-bleed bg). Everything after the tabs in our
+  main-product section is invisible (popups/scripts/JSON-LD), so a template section placed right
+  after `main` renders in the exact same visual slot, guaranteed top-level. Theme editor can
+  manage it (preset "CRO-12526 V2 FAQ").
+- `assets/cro-12526-v2-faq.css` + `assets/cro-12526-v2-hidden-email.css` — verbatim copies.
+- `snippets/cro-12526-v2-hidden-emails.liquid` — verbatim, css ref renamed; still renders the
+  theme's existing `svgemail-at` (on live — header/footer use it site-wide; not in the doc's
+  dependency list so NOT copied).
+- Template JSON: `cro12526v2_faq` added to order right after `main` (before cross-sell).
+- One deliberate fix: FAQPage JSON-LD emits question/answer via `| strip_html | json` (control
+  interpolates raw — breaks on quotes/HTML in answers). Markup/classes otherwise untouched so it
+  matches the client screenshot exactly.
+
+Deploy: upload the 2 new assets + 2 new liquid files, then ADD the "CRO-12526 V2 FAQ" section via
+theme editor right under the main product section (same rule as the footer — don't paste template
+JSON). QA: one product WITH custom.faqs (e.g. finch-ergonomic-mesh-chair) and one without (must
+render nothing); check the type scale next to our 42/50 sections — staging's 56/62 heading kept
+verbatim per client, flagged as optional alignment.
+
+NOT done this round (per client "only pull the faq"): no restyle of the FAQ to the round-16 type
+ramp; no theme.liquid orange-bar removal.

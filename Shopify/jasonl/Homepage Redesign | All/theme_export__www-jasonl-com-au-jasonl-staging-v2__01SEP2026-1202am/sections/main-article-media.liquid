@@ -1,0 +1,644 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+{{ 'article-details.css' | asset_url | stylesheet_tag }}
+
+
+
+{%- assign resource_hub_tags = 'home-office,business,trade,education' | split:','-%}
+{%- assign back_link = "/blogs/main" -%}
+{%- for url_tag in article.tags -%}
+    {%- if resource_hub_tags contains url_tag -%}
+      {% comment %} {%- assign back_link = "/blogs/main/tagged/" | append:url_tag -%} {% endcomment %}
+       {% comment %} temporary fix {% endcomment %}
+       {%- assign back_link = "/blogs/main" -%}
+    {%- endif -%}
+{%- endfor -%}
+
+
+
+
+
+<article class="article-template__wrapper">
+  <div class="page-width">
+    <div class="article-content-wrapper">
+      <div class="article-content">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        <div class="page-width">
+          {% render block %}
+        </div>
+  		
+      {%- when 'featured_image'-%}
+        {%- if article.image -%}
+          <div class="article-template__hero-container" {{ block.shopify_attributes }}>
+            <div class="article-template__hero-{{ block.settings.image_height }} media"
+              itemprop="image"
+              {% if block.settings.image_height == 'adapt' and article.image %} style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"{% endif %}
+            >
+              <img
+                srcset="{% if article.image.width >= 350 %}{{ article.image | img_url: '350x' }} 350w,{% endif %}
+                  {% if article.image.width >= 750 %}{{ article.image | img_url: '750x' }} 750w,{% endif %}
+                  {% if article.image.width >= 1100 %}{{ article.image | img_url: '1100x' }} 1100w,{% endif %}
+                  {% if article.image.width >= 1500 %}{{ article.image | img_url: '1500x' }} 1500w,{% endif %}
+                  {% if article.image.width >= 2200 %}{{ article.image | img_url: '2200x' }} 2200w,{% endif %}
+                  {% if article.image.width >= 3000 %}{{ article.image | img_url: '3000x' }} 3000w,{% endif %}"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                src="{{ article.image | img_url: '1100x' }}"
+                loading="lazy"
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+                alt="{{ article.image.alt | escape }}">
+            </div>
+          </div>
+        {%- endif -%}
+
+
+        {%- when 'title'-%}
+          <a href="{{back_link}}" class="link back-btn">Back to Resource Hub</a>
+          <header class="post-header" {{ block.shopify_attributes }}>
+            <h1 class="article-template__title" itemprop="headline">{{ article.title | escape }}</h1>
+           
+            
+            
+            {% if article.metafields.blog_blog.collection_title %}
+            <P class="article-meta-link">
+              PART OF THE
+              {% for link in article.metafields.blog_blog.collection_title %}
+                <a href="{{ article.metafields.blog_blog.collection_url[forloop.index0]}}">
+                  {{ article.metafields.blog_blog.collection_title[forloop.index0] -}}
+                    {%- if article.metafields.blog_blog.collection_title.size > 1 -%}
+                        {%- unless forloop.last -%}
+                          ,
+                        {% endunless %}
+                    {%- endif -%}
+                </a>
+              {% endfor %}
+              COLLECTION{%- if article.metafields.blog_blog.collection_title.size > 1 -%}S{%- endif -%}
+            </P>
+            {% endif %}
+            
+            {%- if block.settings.blog_show_date -%}
+              <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated datePublished">{{ article.published_at |  time_tag: '%B %d, %Y'  }}</span>
+            {%- endif -%}
+            {%- if block.settings.blog_show_author -%}
+              <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">{{ article.author }}</span>
+              </span>
+            {%- endif -%}
+            {% render "rh-gated-content-form" %}
+          </header>
+
+        {% comment %} {% endcomment %}
+         {%- if article.tags.size > 0 -%}
+        <ul class="tags" style="display: none;">
+              {%- for tag in article.tags -%}
+                {% unless tag contains 'dev-test-' %}
+                <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+                {% endunless %}
+              {%- endfor -%}
+        </ul>
+      {%- endif -%} 
+
+        {%- when 'content'-%}
+          
+          <div class="article-template__content rte" itemprop="articleBody" {{ block.shopify_attributes }}>
+            {% assign imgInvalidPath = 'src="https://www.jasonl.com.au/apps/cdn/1/1249/7859/files/' %}
+            {% assign imgValidPath = 'src="https://cdn.shopify.com/s/files/1/1249/7859/files/' %}
+
+            {%- assign article_cnt = article.content   | replace:imgInvalidPath,imgValidPath -%}
+
+            {%- comment -%}
+            -----------------------------------------------------------------------------
+            DYNAMIC BLOG LINKER
+            {%- endcomment -%}
+            {%- comment -%} 
+                  first - retrieve metaobject and structured to business|https://www.jasonl.com.au/collections/office-chairs/ergonomic-chairs,office|https://www.jasonl.com.au/collections/sofas-lounges-collaborative-soft-furniture/2-seater-lounges-sofas,benefit|https://www.jasonl.com.au/collections/office-storage
+                  {%- assign seo_keywords = "business|https://www.jasonl.com.au/collections/office-chairs/ergonomic-chairs,office|https://www.jasonl.com.au/collections/sofas-lounges-collaborative-soft-furniture/2-seater-lounges-sofas,benefit|https://www.jasonl.com.au/collections/office-storage" | split:','-%} 
+            {%- endcomment -%}
+                  
+                 
+
+
+
+
+                 {%- comment -%} 
+                 ------------------------------------------------------------------------------------------------------------
+                    updated : OCT 9 .
+                    request from Jarred.
+                    He created single metaobject for all articles instead of separate metaobject items for every articles.
+
+                    1. This is still usefull when metaobject is assigned within article from admin.
+                    {%- assign metaobject = article.metafields.custom.auto_linker.value -%}  
+                  ------------------------------------------------------------------------------------------------------------
+                 {%- endcomment -%}
+
+
+
+
+                 {% assign metaobject = shop.metaobjects.auto_linker.main-keywords %}  
+                {% comment %} {%- assign metaobject = article.metafields.custom.auto_linker.value -%}   {% endcomment %}
+                {%- assign keyword_urls = metaobject['keyword_and_url'].value -%}
+
+
+
+
+
+                {%- for item in  keyword_urls -%}
+                  {%- if forloop.first -%}
+                    {%- assign seo_keywords = '' -%}
+                  {%- else -%}
+                    {%- assign seo_keywords = seo_keywords -%}
+                  {%- endif -%}
+                  {%- assign seo_keywords = seo_keywords | append:item.text | append:'|' | append: item.url -%}
+                  {%- unless forloop.last -%}
+                    {%- assign seo_keywords = seo_keywords | append:',' -%}
+                  {%- endunless -%}
+                {%- endfor -%}
+
+                
+                {% comment %} {%- assign seo_keywords = seo_keywords |  downcase | split:',' %}  {% endcomment %}
+                {%- assign seo_keywords = seo_keywords | split:',' %}
+               
+            {%- comment -%} second : Add 'Linker_' to all keywords in content of the blog page in order to avoid conflict keywords inside URLs {% endcomment %}
+            {%- for keyword in seo_keywords -%}
+                {%- assign keyword_item = keyword  |  split: '|' -%}
+                {%- assign keyword_link = 'Linker_' | append : keyword_item[0] -%}
+                {%- assign org_keyword = keyword_item[0] | append: ' ' -%}
+                {%- assign article_cnt = article_cnt |  replace: org_keyword, keyword_link -%}
+            {%- endfor -%}  
+            {%- comment -%} third: final step: change the keyword to clickable link. {% endcomment %}
+            {%- for keyword in seo_keywords -%}
+                {%- assign keyword_item = keyword |  split: '|' -%}
+                {%- assign keyword_link = 'Linker_' | append : keyword_item[0] -%}
+                {% capture linker %}
+                  {% comment %}Wed 10 Dec 2025, Jarred asked to remove "&nbsp;". This create extra space on frontend.
+                    <a href="{{keyword_item[1]}}">&nbsp;{{keyword_item[0]}}</a> 
+                  {% endcomment %}
+                   <a href="{{keyword_item[1]}}">{{keyword_item[0]}}</a>
+                {% endcapture %}
+               {%- assign article_cnt = article_cnt |  replace: keyword_link, linker -%} 
+            {%- endfor -%} 
+            {%- comment -%}
+            END :: DYNAMIC BLOG LINKER
+            -----------------------------------------------------------------------------
+            {%- endcomment -%}
+            {{ article_cnt | replace:'https://cdn.shopify.com/s/files/1/1249/7859/','//www.jasonl.com.au/cdn/shop/' }}
+
+          </div>
+
+    {%- endcase -%}
+  {%- endfor -%}
+
+  <div class="article-prev-next-holder">
+      {%comment%}
+    <a href="{{ blog.url }}" class="article-template__link link animate-arrow{% if blog.comments_enabled? == false %} spaced-section{% endif %}">
+      <span class="icon-wrap">{% render 'icon-arrow' %}</span>
+      {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+    </a>
+    {%endcomment%}
+    {% if blog.previous_article %}
+    {%-comment-%}{{ 'OLDER POSTS' | link_to: blog.previous_article }}{%-endcomment-%}
+    <a href="{{blog.previous_article}}" class="older-posts">OLDER POSTS</a>
+    {% endif %}
+    {% if blog.next_article %}
+    {%-comment-%}{{ 'NEWER POSTS' | link_to: blog.next_article }}{%-endcomment-%}
+    <a href="{{blog.previous_article}}" class="newer-posts">NEWER POSTS</a>
+    {% endif %}
+
+
+  </div>
+
+  {%- if blog.comments_enabled? -%}
+    <div class="article-template__comment-wrapper">
+      <div id="comments" class="page-width">
+        {%- if article.comments_count > 0 -%}
+          {%- assign anchorId = '#Comments-' | append: article.id -%}
+
+          <h2 id="Comments-{{ article.id }}">{{ 'blogs.article.comments' | t: count: article.comments_count }}</h2>
+          {% paginate article.comments by 5 %}
+            <div class="article-template__comments">
+              {%- if comment.status == 'pending' and comment.content -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
+                  </footer>
+                </article>
+              {%- endif -%}
+
+              {%- for comment in article.comments -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span><span class="caption-with-letter-spacing">{{ comment.created_at | time_tag: format: 'month_year' }}</span>
+                  </footer>
+                </article>
+              {%- endfor -%}
+              {% render 'pagination', paginate: paginate, anchor: anchorId %}
+            </div>
+          {% endpaginate %}
+        {%- endif -%}
+        {% form 'new_comment', article %}
+          {%- liquid
+            assign post_message = 'blogs.article.success'
+            if blog.moderated? and comment.status == 'unapproved'
+              assign post_message = 'blogs.article.success_moderated'
+            endif
+          -%}
+          <h2>{{ 'blogs.article.comment_form_title' | t }}</h2>
+          {%- if form.errors -%}
+            <div class="form__message" role="alert">
+              <h3 class="form-status caption-large" tabindex="-1" autofocus>
+                {% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}
+              </h3>
+            </div>
+            <ul class="form-status-list caption-large">
+              {%- for field in form.errors -%}
+                <li>
+                  <a href="#CommentForm-{{ field }}" class="link">
+                    {%- if form.errors.translated_fields[field] contains 'author' -%}
+                      {{ 'blogs.article.name' | t }}
+                    {%- elsif form.errors.translated_fields[field] contains 'body'-%}
+                     {{ 'blogs.article.message' | t }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] }}
+                    {%- endif -%}
+                    {{ form.errors.messages[field] }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- elsif form.posted_successfully? -%}
+            <div class="form-status-list form__message" role="status">
+              <h3 class="form-status" tabindex="-1" autofocus>{% render 'icon-success' %} {{ post_message | t }}</h3>
+            </div>
+          {%- endif -%}
+
+          <div{% if blog.moderated? == false %} class="article-template__comments-fields"{% endif %}>
+            <div class="article-template__comment-fields">
+              <div class="field field--with-error">
+                <input
+                  type="text"
+                  name="comment[author]"
+                  id="CommentForm-author"
+                  class="field__input"
+                  autocomplete="name"
+                  value="{{ form.author }}"
+                  aria-required="true"
+                  {% if form.errors contains 'author' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-author-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.name' | t }}"
+                >
+                <label class="field__label" for="CommentForm-author">{{ 'blogs.article.name' | t }} <span aria-hidden="true">*</span></label>
+                {%- if form.errors contains 'author' -%}
+                  <small id="CommentForm-author-error">
+                    <span class="form__message">{% render 'icon-error' %}{{ 'blogs.article.name' | t }} {{ form.errors.messages['author'] }}.</span>
+                  </small>
+                {%- endif -%}
+              </div>
+              <div class="field field--with-error">
+                <input
+                  type="email"
+                  name="comment[email]"
+                  id="CommentForm-email"
+                  autocomplete="email"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  aria-required="true"
+                  {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-email-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.email' | t }}"
+                >
+                <label class="field__label" for="CommentForm-email">{{ 'blogs.article.email' | t }} <span aria-hidden="true">*</span></label>
+                {%- if form.errors contains 'email' -%}
+                  <small id="CommentForm-email-error">
+                    <span class="form__message">{% render 'icon-error' %}{{ 'blogs.article.email' | t }} {{ form.errors.messages['email'] }}.</span>
+                  </small>
+                {%- endif -%}
+              </div>
+            </div>
+            <div class="field field--with-error">
+              <textarea
+                rows="5"
+                name="comment[body]"
+                id="CommentForm-body"
+                class="text-area field__input"
+                aria-required="true"
+                {% if form.errors contains 'body' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentForm-body-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.message' | t }}"
+              >{{ form.body }}</textarea>
+                <label class="form__label field__label" for="CommentForm-body">{{ 'blogs.article.message' | t }} <span aria-hidden="true">*</span></label>
+            </div>
+            {%- if form.errors contains 'body' -%}
+              <small id="CommentForm-body-error">
+                <span class="form__message">{% render 'icon-error' %}{{ 'blogs.article.message' | t }} {{ form.errors.messages['body'] }}.</span>
+              </small>
+            {%- endif -%}
+          </div>
+          {%- if blog.moderated? -%}
+            <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
+          {%- endif -%}
+          <input type="submit" class="button button--primary" value="{{ 'blogs.article.post' | t }}">
+        {% endform %}
+      </div>
+  </div>
+  {%- endif -%}
+      </div>
+
+{%-comment-%}
+          <div class="sidebar-form fitout-checklist-form">
+                <img class="fitout-checklist-top-img" src="{{ 'Free-151-point-office-fitout-checklist.png' | file_img_url: '230x' }}" />
+                <p>We've put together the ultimate checklist to ensure your next office fitout hits all the right notes from design to budget. </p> 
+                {%- form 'customer', id:'fitout_checklist1', class:"fitout_checklist1"-%}
+                    {{ form.errors | default_errors }}
+                      {%- if form.posted_successfully? -%}
+                            <div class="note form-success">Thank you, we'll send you the checklist shortly. Please check your spam filter just in case.</div>
+                          <script>
+                            // already event created in another form
+                            //  document.addEventListener("DOMContentLoaded", function() {
+                            //       fbq('trackCustom', 'Fitout_Checkist', {newsletter: 'Fitout_Checklist'});
+                            //   });
+                          </script> 
+                      {% else %}
+                            <div class="form-item">
+                                  <input class="" autocomplete="name" type="text" 
+                                          id="ContactForm-first_name" 
+                                          name="contact[first_name]" 
+                                          value="" aria-required="true" placeholder="Name" required>
+                                  </div>
+                                  <div class="form-item">
+                                    <!-- The line below is where you can set your customer tags. Use commas to separate and assign multiple tags. -->
+                                    <input type="hidden" name="contact[tags]" value="fitout-checklist">
+                                    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" 
+                                          placeholder="Email Address" 
+                                          name="contact[email]" id="Email" 
+                                          aria-label="Email Address" 
+                                          autocorrect="off" autocapitalize="off">
+                                  </div>
+                                  <div class="form-item form-action">
+                                  <input type="submit" name="commit" id="fitout_checklist1_Subscribe" value="Submit" class="button button--secondary">
+                            </div>
+                      {% endif %}
+                  {%- endform -%}
+                  <img class="fitout-checklist-btm-img" src="{{ 'chairs-icon.png' | file_img_url: '260x' }}" />
+          </div>
+              <style>
+              .form-success{
+                padding: 15px;
+                background:#eefcd8;
+                color:#7fb52b;
+              }
+              </style>    
+              {%-endcomment-%}
+
+
+
+
+            {%-comment-%} 
+      <div class="blog-sidebar">  
+              <a class="blog-catalogue" href="https://builder.jasonl.com.au/catalogue/" target="_blank">
+                <img class="sidebar-calogue-desktop" src="{{'Blog-banner-catalogue.png' | file_img_url:'300x'}}" alt="View digital catalogue" />
+                <img class="sidebar-calogue-mobile" src="{{'sidebar-catalogue-mobile.png' | file_img_url:'master' }}" alt="" />
+              </a>
+              <div class="sidebar-need-advice">
+                <h4>Need advice?</h4>
+                <a href="tel:1300527665">Call 1300 527 665</a>
+                <a {{settings.cotactus_typeformurls_url_1}} href="javascript:void(0)" 
+                class="button button--yellow typeform-share gclid-contact-typeform">contact us</a>
+                <img src="{{'sidebar-need-advice-img-1.png' | file_img_url:'master'}}" srcset="{{'sidebar-need-advice-img-1.png' | file_img_url:'300x'}} 1920w, {{'sidebar-need-advice-img-1.png' | file_img_url:'600x'}} 2x" alt="Need Advice" />
+              </div>
+              <div class="sidebar-need-fitouts-fast">
+                <div class="sidebar-need-fitouts-fast-cnt">
+                      <h4>Need a
+                          <span>fitout fast?</span>
+                      </h4>
+                      <a class="typeform-share getaquoteclick button button--white"
+                          {{settings.typeformurls_url_1}} 
+                          href="javascript:void(0)">
+                          get a quote
+                      </a>
+                </div>
+                {%- assign blog_sidebar_need_fitout_fast = 'sidebar-need-fitout-fast1.png'  -%}
+                    <img src="{{blog_sidebar_need_fitout_fast | file_img_url:'master'}}" 
+                    srcset="{{blog_sidebar_need_fitout_fast | file_img_url:'298x'}} 1920w, 
+                    {{blog_sidebar_need_fitout_fast | file_img_url:'600x'}} 2x" 
+                    alt="Need a fitout fast" />    
+              </div>
+        </div>
+      {%-endcomment-%}
+
+
+
+      </div>
+  </div>
+</article>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "{%- if article.excerpt != blank -%} articleBody {%- else -%} description {%- endif -%}": {{ article.content | strip_html | strip | truncatewords: 29 | json }},
+    "articleSection": "main",
+    "keywords" : ["{{ shop.name }}", "{{ article.title }}"],
+    "wordCount": {{ article.content | strip_html | split: ' ' | size }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ shop.url }}{{ request.path }}" {% comment %} "@id": {{ shop.url | append: page.url | json }} {% endcomment %}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | truncatewords: 29 | json }},
+    {% endif %}
+    {% if article.image %}
+      {% assign image_size = article.image.width | append: 'x' %}
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": "{{ article | img_url: image_size | prepend: "https:" }}",
+          "width": 760
+        }
+      ],
+    {% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+        {% assign image_size = settings.share_image.width | append: 'x' %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": {{ settings.share_image.height | json }},
+          "url": "{{ settings.share_image | img_url: image_size | prepend: "https:" | json }}",
+          "width": {{ settings.share_image.width | json }}
+        },
+      {% else %}
+        {% if settings.logo %}
+          "logo": {
+            {%- assign logo_url = settings.logo | image_url %}
+            "@type": "ImageObject",
+            "url": "{%- if logo_url contains "http" -%} {{- logo_url -}} {%- else -%} {{- logo_url | prepend: 'https:' -}} {%- endif -%}",
+            "width": {{ settings.logo_width }}
+          },
+        {% endif -%}
+      {% endif %}
+      "name": {{ shop.name | json }}
+    }
+  }
+  </script>
+
+
+ {% comment %}
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+function youtube_schema(){
+const YOUTUBE_API_KEY ="AIzaSyDp4s5VrEIvohon4rwG6K6BHbfemgpUY68"; 
+//replace the text in the "" with your YouTube API key that you can obtain in the Google Cloud Console
+var counter = 0;
+[].forEach.call(document.querySelectorAll('iframe'), function(e) {
+counter++;
+
+  console.log(e);
+  console.log(e.getAttribute("src"));
+  console.log(`counter ${counter}`);
+        // var id = 'yYx_DuZweyk';
+        var id = e.src.match(/embed\/(\w+)/i)[1];
+        console.log(id);
+        var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+id+"&key="+YOUTUBE_API_KEY;
+        
+        var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+               console.log('true');
+              var responseObject = JSON.parse(this.response);
+              console.log(responseObject)
+              var video = responseObject.items[0].snippet;
+              var jsonld = {
+                          "@context": "http://schema.org",
+                          "@type": "VideoObject",
+                          "name": video.title,
+                          "description": video.description,
+                          "thumbnailUrl": [ 
+                                        video.thumbnails.default.url, 
+                                        video.thumbnails.medium.url, 
+                                        video.thumbnails.high.url, 
+                                        video.thumbnails.maxres.url,
+                                      ], 
+                                      "uploadDate": video.publishedAt,
+                                      "embedUrl": "https://www.youtube.com/embed/"+id,
+                          }
+                        var el = document.createElement('script');
+                        el.type = 'application/ld+json';
+                        el.text = JSON.stringify(jsonld);
+                        document .querySelector ('head').appendChild(el);
+            }else{
+              //console.log('false');
+            }
+          };
+xhttp.open("GET", url, true);
+xhttp.send();
+
+});
+}
+youtube_schema();
+    });
+  
+
+</script>
+ {% endcomment %} 
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            }
+          ],
+          "default": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+          "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-article.blocks.share.settings.text.label",
+          "default": "Share"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

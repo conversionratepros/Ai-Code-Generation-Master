@@ -1,0 +1,141 @@
+{%- liquid
+assign og_title = page_title | default: shop.name
+assign og_url = canonical_url | default: shop.url
+assign og_type = 'website'
+assign og_description = page_description | default: shop.description | default: shop.name
+
+if request.page_type == 'product'
+assign og_type = 'website'
+elsif request.page_type == 'article'
+assign og_type = 'article'
+elsif request.page_type == 'collection'
+assign og_type = 'website'
+elsif request.page_type == 'password'
+assign og_url = shop.url
+endif
+%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+{%- comment -%}<meta property="og:title" content="{{ og_title | escape }}">{%- endcomment %}
+<meta property="og:title" content="{{  metatitle | strip }}">
+<meta property="og:type" content="{{ og_type }}">
+{%- comment -%} <meta property="og:description" content="{{ og_description | escape }}">{%- endcomment %}
+<meta property="og:description" content="{{ metadescription | strip }}">
+
+{%- case template -%}
+  {%- when 'blog.fitouts' %}
+  <meta property="og:image" content="https://cdn.shopify.com/s/files/1/1249/7859/articles/057A9713.jpg">
+  <meta property="og:image:secure_url" content="https://cdn.shopify.com/s/files/1/1249/7859/files/the-carton-factory-fitout.jpg?v=1620909248">
+  <meta property="og:image:width" content="1160">
+  <meta property="og:image:height" content="580">
+  {% when 'index' -%}
+  {%- comment -%} <meta property="og:image"
+    content="https://cdn.shopify.com/s/files/1/1249/7859/files/JasonL_Office_Furniture_Australia.jpg"> {%- endcomment %}
+  <meta property="og:image" content="https:{{ page_image | image_url }}">
+  {%- when 'collection'-%}
+  {% if tagimagevalue !='' %}
+  {% assign imageurl= tagimagevalue | strip %}
+  {%- assign submenu_imgsrc = imageurl | file_img_url: 'original' -%}
+  <meta property="og:image" content="https:{{ submenu_imgsrc }}">
+
+  {%- else if page_image -%}
+  <meta property="og:image" content="https:{{ page_image | img_url: 'master' }}">
+  {%- endif -%}
+  {%- else -%}
+    {%- if template.name == 'page' and page.metafields.custom.social_sharing_image -%}
+      <meta property="og:image" content="https:{{ page.metafields.custom.social_sharing_image | image_url: width: 1200 }}">
+      <meta property="og:image:secure_url" content="https:{{ page.metafields.custom.social_sharing_image | image_url: width: 1200 }}">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="630">
+    {%- elsif page_image %}
+      <meta property="og:image" content="https:{{ page_image | img_url: 'master' }}">
+      <meta property="og:image:secure_url" content="https:{{ page_image | img_url: 'master' }}">
+      <meta property="og:image:width" content="{{ page_image.width }}">
+      <meta property="og:image:height" content="{{ page_image.height }}">
+    {%- endif -%}
+{%- endcase %}
+
+{%- if request.page_type == 'product' -%}
+<meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+<meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+
+
+{% if settings.social_twitter_link != blank %}
+<meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+{%- endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{  metatitle  | strip }}">
+<meta name="twitter:description" content="{{ metadescription  | strip }}">
+{%- case template -%}
+  {%- when 'blog.fitouts' %}
+    <meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/1249/7859/articles/057A9713.jpg">
+  {%- when 'index'-%}
+    {%- comment -%}<meta name="twitter:image" content="https:{{'JasonL_Office_Furniture_Australia.jpg' | file_img_url:'master'}}"> {%- endcomment %}
+    <meta name="twitter:image" content="https:{{ page_image | image_url }}">
+  {%- when 'collection'-%}
+    {% if tagimagevalue !='' %}
+    {% assign imageurl= tagimagevalue | strip %}
+    {%- assign submenu_imgsrc = imageurl | file_img_url: 'original' -%}
+    <meta property="twitter:image" content="https:{{ submenu_imgsrc }}">
+    {%- else if page_image %}
+    <meta name="twitter:image" content="https:{{ page_image | img_url: 'master' }}">
+    {%- endif -%}
+  {%- when 'product'-%}
+    {%- if page_image %}
+    <meta name="twitter:image" content="https:{{ page_image | img_url: 'master' }}">
+    {%- endif -%}
+  {%- when 'page' -%}
+    {%- if page.metafields.custom.social_sharing_image -%}
+      <meta name="twitter:image" content="https:{{ page.metafields.custom.social_sharing_image | img_url: 'master' }}">
+    {%- elsif page_image -%}
+      <meta name="twitter:image" content="https:{{ page_image | img_url: 'master' }}">
+    {%- endif -%}
+  {%-else-%}
+{%- endcase %}
+
+
+{%- comment -%} 
+SHopify 2.0 version 15. Default meta-tag backup
+-----------------------------------------------
+{%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_url = canonical_url | default: request.origin
+  assign og_type = 'website'
+  assign og_description = page_description | default: shop.description | default: shop.name
+
+  if request.page_type == 'product'
+    assign og_type = 'product'
+  elsif request.page_type == 'article'
+    assign og_type = 'article'
+  elsif request.page_type == 'password'
+    assign og_url = request.origin
+  endif
+%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:description" content="{{ og_description | escape }}">
+
+{%- if page_image -%}
+  <meta property="og:image" content="http:{{ page_image | image_url }}">
+  <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
+  <meta property="og:image:width" content="{{ page_image.width }}">
+  <meta property="og:image:height" content="{{ page_image.height }}">
+{%- endif -%}
+
+{%- if request.page_type == 'product' -%}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+  <meta property="og:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+
+{%- if settings.social_twitter_link != blank -%}
+  <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+<meta name="twitter:description" content="{{ og_description | escape }}"> 
+{%- endcomment -%}

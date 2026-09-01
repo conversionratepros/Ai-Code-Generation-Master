@@ -1,0 +1,67 @@
+{%- comment -%}END:: video comment {%- endcomment -%}
+{% if product.metafields.productmeta.assembly_video %}
+  {% assign assembly_video = product.metafields.productmeta.assembly_video %}
+{% endif %}
+
+{%- if diagram_dimension -%}
+    <div class="diagram-col {% if assembly_video %}has-assembly-video-after{% endif %}"> 
+
+      <div class="product-dimensions-figure">
+        {% assign image_tag_parts = diagram_dimension | split: "<img" %}
+        {% assign dimension_image = "<img" | append: image_tag_parts[1] | split: ">" | first | append: ">" %}
+        {% comment %} {% assign alt_text = product.title | append: " dimension" %}
+        {% assign dimension_image = "<img" | append: image_tag_parts[1] | split: "alt=\"" | first | append: "alt=\"" | append: alt_text | append: "\">" %} {% endcomment %}
+        {% assign image_alt_text = "alt='dimensions figure'" %}
+        {{ dimension_image
+          | replace: 'width="80%"', 'width="100%"'
+          | replace: 'alt=""', image_alt_text
+        }}
+      </div>
+
+      {%- assign dimension_cleaned = diagram_dimension | strip_html -%}
+      {% assign dimension_parts = dimension_cleaned | split: ", " %}
+      {% if dimension_cleaned != blank %}
+        <div class="figure-legend">
+          {% for part in dimension_parts %}
+            {% assign part_split = part | split: " = " %}
+            <div class="figure-legend-group">
+              <div class="legend-title">{{ part_split[0] }}</div>
+              <div class="legend-value">{{ part_split[1] }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+{% endif %}
+
+{% if assembly_video %}
+  {% if assembly_video contains '/embed/' %}
+    {% assign video_url_id = assembly_video | split: '/embed/' | last %}
+  {% elsif assembly_video contains 'watch?v=' %}
+    {% assign video_url_id = assembly_video | split: 'v=' | last | split: '&' | first %}
+  {% endif %}
+  
+  {%- assign videoCoverImgFromSection1 =  "" -%}
+  
+  {% assign video_coverimg_from_meta1 = "https://img.youtube.com/vi/" | append: video_url_id | append: "/hqdefault.jpg" %}
+
+  
+  
+  <div class="diagram-col video-diagram-col"> 
+    <div class="product-dimensions-figure">
+      {%- render 'assembly-instruction-video', 
+                  cover_image: video_coverimg_from_meta1,
+                  cover_image_lazy:true,
+                  cover_image_width:500,
+                  cover_image_alt:product.metafields.productmeta.assembly_video_title,
+                  video_url: product.metafields.productmeta.assembly_video, 
+                  youtube_id: video_url_id,
+                  youtube_title: product.metafields.productmeta.assembly_video_title, 
+                  youtube_description: product.metafields.productmeta.assembly_video_seo_description, 
+                  youtube_uploaded_date: product.metafields.productmeta.assembly_video_seo_uploaded_date
+              -%}
+    </div>
+  </div>
+{% endif %}
+
+

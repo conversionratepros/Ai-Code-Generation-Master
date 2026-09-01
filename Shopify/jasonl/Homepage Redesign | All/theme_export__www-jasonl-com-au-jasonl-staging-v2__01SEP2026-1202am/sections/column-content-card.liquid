@@ -1,0 +1,189 @@
+{{ 'column-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+<section class="content-cards">
+  <div class="page-width">
+    {%- if section.settings.subtitle != blank -%}
+      <p class="heading-subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h2 class="heading-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <ul class="cards-grid">
+      {%- for block in section.blocks -%}
+        <li class="card">
+          {%- if block.settings.image != blank -%}
+            <div class="card-image">
+              {% comment %} <img 
+                src="{{ block.settings.image | image_url: width: 755 }}" 
+                alt="{{ block.settings.title }}"
+                loading="lazy"
+              > {% endcomment %}
+              <picture>
+                <source srcset="{{ block.settings.image | image_url: width: 760 }}, {{ block.settings.image | image_url: width: 1520 }} 2x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+                <img src="{{ block.settings.image | image_url: width: 760 }}"
+                alt="jasonl" loading="lazy"/>
+              </picture>
+            </div>
+          {%- endif -%}
+          <div class="card-content">
+            <div class="card-block">
+                <div class="left-content">
+                    <div class="title-wrap">
+                        {%- if block.settings.title != blank -%}
+                          <h3 class="card-title">{{ block.settings.title }}</h3>
+                        {%- endif -%}
+                        {%- if block.settings.subtitle != blank -%}
+                          <p class="card-subtitle">{{ block.settings.subtitle }}</p>
+                        {%- endif -%}
+                    </div>
+                    <div class="card-buttons">
+                    {%- if block.settings.button_label != blank -%}
+                        <a target="_blank" href="{{ block.settings.button_link }}" class="btn primary">
+                        {{ block.settings.button_label }}
+                        </a>
+                    {%- endif -%}
+                    </div>
+                </div>
+                <div class="right-content">
+                  {%- if block.settings.text != blank -%}
+                    <div class="card-text">
+                        {{ block.settings.text }}
+                    </div>
+                    <div class="email-block">
+                      {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'hiddenemail ga4-sales-email' %}
+                    </div>
+                  {%- endif -%}
+                </div>
+            </div>
+            <div class="link-wrap">
+                <div class="link-text">
+                  {%- if block.settings.button2_label != blank -%}
+                  <div class="btn-link">
+                    <span class="icon"></span>
+                    <span class="link">{{ block.settings.button2_label }}</span>
+                  </div>
+                  {%- endif -%}
+                </div>
+                <div class="btn-bg">
+                {%- if block.settings.button2_bg != blank -%}
+                    <img 
+                      src="{{ block.settings.button2_bg | image_url: width: 300 }}" 
+                      alt="{{ block.settings.title }}"
+                      loading="lazy"
+                    >
+                {%- endif -%}
+                </div>
+                {%- render 'custom-modal-virtual-tour-landingsydney', iframe_src: block.settings.button2_link, location_name: block.settings.title -%}
+            </div>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.virtual-tour-btn');
+    if (!btn) return;
+
+    const iframeSrc = btn.getAttribute('iframe_src');
+    const modalId = btn.closest('modal-opener').dataset.modal;
+    const modal = document.querySelector(modalId);
+
+    if (!modal) return;
+
+    const iframe = modal.querySelector('iframe');
+
+    if (iframe) {
+      iframe.src = iframeSrc;
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Content Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Explore"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Experiences"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Card Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Short subtitle"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button 1 Label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button 1 Link"
+        },
+        {
+          "type": "text",
+          "id": "button2_label",
+          "label": "Button 2 Label",
+          "default": "Get Started"
+        },
+        {
+          "type": "image_picker",
+          "id": "button2_bg",
+          "label": "Button 2 Bg"
+        },
+        {
+          "type": "text",
+          "id": "button2_link",
+          "label": "Matterport Url Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content Cards",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

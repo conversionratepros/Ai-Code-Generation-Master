@@ -1,0 +1,74 @@
+<div class="fields-block separator-top" id="fields-block-delivery-method">
+  <div class="heading">
+    <h3>Billing address</h3>
+  </div>
+  <div class="form-field">
+    <label class="checkbox-container">
+      <input id="ccf_billing_address_checkbox" type="checkbox" name="billing_address_check" value="true" checked="checked"> Use shipping address as billing address <span class="checkmark"></span>
+    </label>
+  </div>
+  <div class="address-form-holder" id="billing_address_form_holder">
+    <div class="form-field label-holder active">
+      <label>Country/Region</label>
+      {% comment %} <input class="input" id="ccf_ba_country" placeholder="Country/Region" type="text" name="billing_country_region" value=""> {% endcomment %}
+        <div class="select-holder">
+            <select id="ccf_ba_country" name="billing_country_region">
+                <option value="Au" selected>Australia</option>
+            </select> 
+        </div>
+    </div>
+    <div class="form-field cols">
+      <div class="col-item label-holder">
+        <label>First name</label>
+        <input id="ccf_ba_firstname" placeholder="First name" type="text" name="billing_firstname" value="">
+      </div>
+      <div class="col-item label-holder">
+        <label>Last name</label>
+        <input id="ccf_ba_lastname" placeholder="Last name" type="text" name="billing_lastname" value="">
+      </div>
+    </div>
+    <div class="form-field label-holder">
+      <label>Company</label>
+      <input id="ccf_ba_company2" placeholder="Company (optional)" type="text" name="billing_company" value="">
+    </div>
+    <div class="form-field label-holder">
+      <label>Address</label>
+      <input id="ccf_ba_address2" placeholder="Address" type="text" name="billing_address" value="">
+    </div>
+    <div class="form-field add-apartmentsuit label-holder">
+      <span class="link link-apartment">+ Add apartment, suite, etc</span>
+      <label>Apartment, suite, etc.(optional)</label>
+      <input id="ccf_ba_apartment" class="field-apartmentsuit" placeholder="Apartment, suite, etc.(optional)" type="text" name="billing_apartment" value="">
+    </div>
+    <div class="form-field cols">
+      <div class="col-item label-holder">
+        <label>City</label>
+        <input id="ccf_ba_city" placeholder="City" type="text" name="billing_city" value="">
+      </div>
+      <div class="col-item state-holder">
+        <div class="select-holder">
+          <select id="ccf_ba_state" name="billing_state">
+            <option value="" disabled selected>State/Territory</option>
+            <option value="Australian Capital Territory">Australian Capital Territory</option>
+            <option value="New South Wales">New South Wales</option>
+            <option value="Northern Territory">Northern Territory</option>
+            <option value="Queensland">Queensland</option>
+            <option value="South Australia">South Australia</option>
+            <option value="Tasmania">Tasmania</option>
+            <option value="Western Australia"> Western Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-item label-holder">
+        <label>Postal code</label>
+        <input id="ccf_ba_postalcode" placeholder="Postal code" type="text" name="billing_postalcode" value="">
+      </div>
+    </div>
+    <div class="form-field">
+        <div class="label-holder">
+            <label>Phone</label>
+            <input placeholder="Phone (optional)" type="text" name="phone" value="" id="ccf_ba_phone">
+        </div>
+    </div>
+  </div>
+</div>

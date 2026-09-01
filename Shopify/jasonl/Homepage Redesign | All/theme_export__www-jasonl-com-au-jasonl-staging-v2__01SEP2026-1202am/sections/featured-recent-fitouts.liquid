@@ -1,0 +1,214 @@
+{%- comment -%} 
+Data source : 
+Home page :     1. Section setting   2. Random featured recent fitouts 
+Landing pages : 1. Metafield         2. random featured recent fitouts (Hospitality & Education)
+{%- endcomment -%}
+    
+
+{%- assign fitouts = blogs['fitouts'].articles -%}
+{%- assign featured_fitouts_counter = 0 -%}
+{%- for fitout in fitouts -%}
+    {%- if fitout.tags contains 'featured' -%}
+        {%- assign featured_fitouts_handle = fitout.handle -%}
+        {%-comment-%}<!-- <p><a href="{{fitout.url}}">{{featured_fitouts_handle}}</a></p> -->{%- endcomment -%}
+        {%- if featured_fitouts_counter == 0 -%}
+            {%- assign featured_fitouts_all = featured_fitouts_handle -%}
+        {%- else -%}
+            {%- assign featured_fitouts_all = featured_fitouts_all | append: ',' | append: featured_fitouts_handle -%}
+        {%- endif -%}
+        {%- assign featured_fitouts_counter = featured_fitouts_counter | plus: 1 -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- assign featured_fitouts = featured_fitouts_all | split: ',' -%}
+{%- comment -%}Randome number generate {%- endcomment -%}
+{%- assign min = 1 -%}
+{%- assign max = featured_fitouts.size | minus: 1 -%}
+{%- assign diff = max | minus: min -%}
+{%- assign random_number = "now" | date: "%N" | modulo: diff | plus: min -%}
+
+{%- if section.settings.needafitout_fitout != empty -%}
+    {%- assign selected_fitouts = section.settings.needafitout_fitout -%}
+    {%- assign selected_fitouts_section_title = selected_fitouts.title -%}
+{%- endif -%}
+
+{%- comment %} {%- if selected_fitouts -%} {%- endcomment -%}
+
+{{ 'featured-recent-fitouts.css' | asset_url | stylesheet_tag }}
+<div class="page-width ab-test-group-A">
+    <h2 class="section-title">Our recent fitouts </h2>
+    <div class="featured-recent-fitouts">
+        {%- for featuredFitout in featured_fitouts -%}
+            {%-comment-%}<!--  if selected_fitouts == fitout.handle random_number -->{%-endcomment-%}
+            {%- if forloop.index == random_number -%}
+                {%- if template == 'page.home' or template == 'index' -%}
+                {%- assign fitout = articles[section.settings.needafitout_fitout] -%}
+            {%  elsif  template == "page.furniture_for_landing_pages" and page.metafields.custom.landing_page_recent_fitouts != blank -%}
+                {%- assign fitout_handle = 'fitouts/' | append: page.metafields.custom.landing_page_recent_fitouts -%}
+                {%- assign fitout = articles[fitout_handle] -%}
+            {%- else -%}
+            {%- assign fitout = articles[featuredFitout] -%}
+        {%- endif -%}
+
+        <div class="fitout-hero-wrapper">
+            {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image -%}
+                <picture>
+                    <source media="(min-width: 768px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'1200x450_crop_center'}}">
+                    {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob -%}
+                        <source media="(max-width: 500px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob | file_img_url:'500x'}}">
+                    {%- endif -%}
+                        <img src="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'375x180_crop_center'}}" alt="{{fitout.title}}" loading="lazy" width="auto" height="auto">
+                </picture>
+            {%- else -%}
+                <picture>
+                    <source media="(min-width: 768px)" srcset="{{ fitout.image | image_url: width: 1600, height : 460, crop : 'center'}}">
+                    <img src="{{ fitout.image | image_url: width: 728, height:400, crop: 'center' }}" alt="{{fitout.title}}"  loading="lazy" width="auto" height="auto">
+                </picture>
+            {%- endif -%}
+            <div class="fitout-hero-cnt">
+                {%- if fitout.metafields.fitout_blog.fitout_video_1_url != blank-%}
+                    <div class="fitouts-video-holder" style='background-image:url("{{fitout.metafields.fitout_blog.fitout_video_1_thumbnail[0].src}}")' data-video-url="{{fitout.metafields.fitout_blog.fitout_video_1_url}}">
+                        {%- assign cover_image = fitout.image -%}
+                        {%- assign video_url = fitout.metafields.fitout_blog.fitout_video_1_url -%}
+                        {%- render 'custom-modal-video', cover_image: cover_image, video_url: video_url, 
+                            youtube_title: fitout.metafields.fitout_blog.fitout_video_1__youtube_title, 
+                            youtube_description: fitout.metafields.fitout_blog.fitout_video_1_youtube_description, 
+                            youtube_uploaded_date: fitout.metafields.fitout_blog.fitout_video_1_youtube_uploaded_date,
+                            render_card_css: false,
+                            render_price_css: false
+                        -%}
+                    </div>
+                {%- endif -%}
+
+                {%- if fitout.metafields.fitout_blog.fitout_logo -%}
+                    <div class="fitout-logo-holder">
+                        <div class="logo-cnt">
+                            <img src="{{fitout.metafields.fitout_blog.fitout_logo | file_img_url: '100x'}}" alt="Logo - {{fitout.title}}"  loading="lazy" height="auto" width="auto">
+                            <a href="{{fitout.url}}" class="link">View fitout</a>
+                        </div>
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    {%- break -%}
+    {%- endif -%}
+    {%- endfor -%}
+    </div>
+</div>
+
+{% comment %} <div class="page-width featured-recent-fitouts-outer ab-test-group-B">
+    <h2 class="section-title">Just wrapped: Our latest fitouts.</h2>
+    <div class="featured-recent-fitouts">
+        {%- for featuredFitout in featured_fitouts -%}
+            <!--  if selected_fitouts == fitout.handle random_number -->
+            {%- if forloop.index == random_number -%}
+                {%- if template == 'page.home' or template == 'index' -%}
+                {%- assign fitout = articles[section.settings.needafitout_fitout] -%}
+            {%  elsif  template == "page.furniture_for_landing_pages" and page.metafields.custom.landing_page_recent_fitouts != blank -%}
+                {%- assign fitout_handle = 'fitouts/' | append: page.metafields.custom.landing_page_recent_fitouts -%}
+                {%- assign fitout = articles[fitout_handle] -%}
+            {%- else -%}
+            {%- assign fitout = articles[featuredFitout] -%}
+        {%- endif -%}
+
+        <div class="fitout-hero-wrapper">
+            {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image -%}
+                <picture>
+                    <source media="(min-width: 768px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'1200x450_crop_center'}}">
+                    {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob -%}
+                        <source media="(max-width: 500px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob | file_img_url:'500x'}}">
+                    {%- endif -%}
+                        <img src="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'375x180_crop_center'}}" alt="{{fitout.title}}" loading="lazy" width="auto" height="auto">
+                </picture>
+            {%- else -%}
+                <picture>
+                    <source media="(min-width: 768px)" srcset="{{ fitout.image | image_url: width: 1600, height : 460, crop : 'center'}}">
+                    <img src="{{ fitout.image | image_url: width: 728, height:400, crop: 'center' }}" alt="{{fitout.title}}"  loading="lazy" width="auto" height="auto">
+                </picture>
+            {%- endif -%}
+            <div class="fitout-hero-cnt">
+                 {%- if fitout.metafields.fitout_blog.fitout_logo -%}
+                    <div class="fitout-logo-holder">
+                        <div class="logo-cnt">
+                            <img src="{{fitout.metafields.fitout_blog.fitout_logo | file_img_url: '100x'}}" alt="Logo - {{fitout.title}}"  loading="lazy" height="auto" width="auto">
+                        </div>
+                    </div>
+                {%- endif -%}
+
+                {%- if fitout.metafields.fitout_blog.fitout_video_1_url != blank-%}
+                    <div class="fitouts-video-holder" style='background-image:url("{{fitout.metafields.fitout_blog.fitout_video_1_thumbnail[0].src}}")' data-video-url="{{fitout.metafields.fitout_blog.fitout_video_1_url}}">
+                        {%- assign cover_image = fitout.image -%}
+                        {%- assign video_url = fitout.metafields.fitout_blog.fitout_video_1_url -%}
+                        {%- render 'custom-modal-video', cover_image: cover_image, video_url: video_url, 
+                            youtube_title: fitout.metafields.fitout_blog.fitout_video_1__youtube_title, 
+                            youtube_description: fitout.metafields.fitout_blog.fitout_video_1_youtube_description, 
+                            youtube_uploaded_date: fitout.metafields.fitout_blog.fitout_video_1_youtube_uploaded_date,
+                            render_card_css: false,
+                            render_price_css: false
+                        -%}
+                    </div>
+                {%- endif -%}
+
+                {%- if fitout.metafields.fitout_blog.fitout_logo -%}
+                    <div class="fitout-logo-holder bottomlink">
+                        <div class="logo-cnt">
+                            <a href="{{fitout.url}}" class="link">View fitout</a>
+                        </div>
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    {%- break -%}
+    {%- endif -%}
+    {%- endfor -%}
+        <div class="featured-recent-fitout-bottom">
+            <div class="fitout-inner-wrap">
+                <div class="fitout-quote">
+                    <div class="quoteicon-wrap">
+                        <svg class="quoteicon" id="quoteiconLayer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.52 26.12">
+                            <defs>
+                                <style>
+                                .quoteiconLayer_2cls-1 {
+                                    fill: #d8dde1;
+                                }
+                                </style>
+                            </defs>
+                            <g id="Layer_1-2" data-name="Layer 1">
+                                <path class="quoteiconLayer_2cls-1" d="m18.52,0c-3.02,0-5.69.46-8,1.39-2.31.92-4.24,2.16-5.79,3.7-1.55,1.54-2.73,3.31-3.53,5.31-.8,2-1.2,4.09-1.2,6.28,0,1.6.19,2.98.57,4.16.38,1.18.89,2.16,1.53,2.94.64.78,1.39,1.37,2.23,1.76.84.39,1.72.59,2.65.59s1.72-.16,2.39-.48c.67-.32,1.22-.73,1.66-1.22.43-.49.76-1.04.97-1.64.21-.6.31-1.18.31-1.74,0-1.09-.18-1.97-.55-2.62-.36-.66-.77-1.28-1.22-1.87-.45-.59-.85-1.22-1.22-1.89-.36-.67-.55-1.55-.55-2.65s.28-2.06.84-2.9c.56-.84,1.29-1.54,2.2-2.1.91-.56,1.95-.97,3.11-1.24,1.16-.27,2.36-.38,3.59-.36V0Zm22,0c-3.02,0-5.69.46-8,1.39-2.31.92-4.24,2.16-5.79,3.7-1.55,1.54-2.72,3.31-3.51,5.31-.78,2-1.18,4.09-1.18,6.28,0,1.6.19,2.98.57,4.16.38,1.18.89,2.16,1.53,2.94.64.78,1.39,1.37,2.23,1.76.84.39,1.72.59,2.65.59s1.72-.16,2.39-.48c.67-.32,1.22-.73,1.66-1.22.43-.49.76-1.04.97-1.64.21-.6.31-1.18.31-1.74,0-1.09-.18-1.97-.55-2.62-.36-.66-.77-1.28-1.22-1.87-.45-.59-.85-1.22-1.22-1.89-.36-.67-.55-1.55-.55-2.65s.27-2.06.82-2.9c.55-.84,1.27-1.54,2.18-2.1.91-.56,1.95-.97,3.11-1.24,1.16-.27,2.36-.38,3.59-.36V0Z"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="quote-text">
+                        The furniture is great quality, very robust. You can just hand over the task to them and let them manage it for you so that you can get on with business as usual.
+                    </div>
+                </div>
+                <div class="avatar-with-detail">
+                    <div class="avatar"><img src="{{ 'patrick-1.png' | file_img_url : '130x' }}" alt="" width="130" height="130"></div>
+                    <div class="avatar-detail">
+                        <div class="avatar-name">PATRICK COGHLAN</div>
+                        <div class="avatar-position">CEO at Creditor Watch</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+{% schema %}
+    {
+    "name": "Recent Fitouts",
+    "class": "section-featured-recent-fitouts",
+    "settings": [
+    {
+    "type": "header",
+    "content": "Instruction",
+    "info": "Select fitouts from theme setting, globally"
+    },
+    {
+    "type": "article",
+    "id": "needafitout_fitout",
+    "label": "Selet Fitout",
+    "info": " Home page : 1. Section setting if not available 2. Random featured recent fitouts  Landing pages : 1. Metafield .. 2. random featured recent fitouts  "
+    }
+    ]
+    }
+{% endschema %}

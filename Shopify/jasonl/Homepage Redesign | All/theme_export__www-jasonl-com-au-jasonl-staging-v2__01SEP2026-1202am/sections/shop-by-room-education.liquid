@@ -1,0 +1,138 @@
+{{ 'shop-by-room-education.css' | asset_url | stylesheet_tag }} 
+
+<div class="shop-by-room-education">
+    <div class="page-width">
+        <div class="section-heading-wrap">
+            <h2 class="section-heading">Solutions for every education space</h2>
+        </div>
+        <div class="shop-by-room-articles-list">
+            {%- assign tag_map = 'business' -%}
+
+            {% if page.title == 'Hospitality' %}
+            {%- assign tag_map = 'hospitality' -%}
+            {% elsif page.title == 'Education' %}
+            {%- assign tag_map = 'education' -%}
+            {% endif %}
+
+            {%- assign has_articles = false -%}
+            {%- for article in blogs['shop-by-rooms'].articles -%}
+                {%- if article.tags contains tag_map -%}
+                    {%- assign has_articles = true -%}
+                    {%- break -%}
+                {%- endif -%}
+            {%- endfor -%}
+
+            {%- if has_articles -%}
+                {%- for article in blogs['shop-by-rooms'].articles -%}
+                    {%- if article.tags contains tag_map -%}
+                        <div class="card">
+                            <a href="{{ article.url }}" title="{{ article.title }}"> 
+                                <div class="card-img">
+                                    {%- if article.image -%}
+                                        <picture>
+                                            <source srcset="{{ article.image | image_url: width:964 }} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+                                            <img src="{{ article.image | image_url: width: 482 }}" alt="{{ article.image.alt | escape }}" width="485" height="auto" loading="lazy">
+                                        </picture>
+                                    {%- endif -%}
+                                </div>
+                                <div class="card-body">
+                                    <span class="label-title">Shop by <span class="article-title"><strong>{{ article.title }}</strong></span></span>
+                                </div>
+                            </a>
+                        </div>
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% comment %} 
+{%- capture shop_by_room -%}
+  <div class="shop-by-room-holder">
+    <div class="page-width">
+      {%- assign section_title = section.settings.section_title -%}
+      
+      {%- if section_title != blank -%}
+        <h2>{{ section_title }}</h2>
+      {%- endif -%}
+
+      <div class="item-holder">
+        
+        {%- assign tag_map = 'business' -%}
+
+        {% if page.title == 'Hospitality' %}
+          {%- assign tag_map = 'hospitality' -%}
+        {% elsif page.title == 'Education' %}
+          {%- assign tag_map = 'education' -%}
+        {% endif %}
+
+        {%- assign has_articles = false -%}
+        {%- for article in blogs['shop-by-rooms'].articles -%}
+            {%- if article.tags contains tag_map -%}
+                {%- assign has_articles = true -%}
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- if has_articles -%}
+          <div class="">
+            <ul class="">
+              {%- for article in blogs['shop-by-rooms'].articles -%}
+                {%- if article.tags contains tag_map -%}
+                  <li class="">
+                    <div>
+                      <a href="{{ article.url }}" title="{{ article.title }}"> 
+                        {%- if article.image -%}
+                          <picture>
+                            <source srcset="{{ article.image | image_url: width:964 }} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+                            <img src="{{ article.image | image_url: width: 482 }}" alt="{{ article.image.alt | escape }}" width="485" height="auto" loading="lazy">
+                          </picture>
+                          
+                          {% comment %} {{ article.image | image_url: width: 370 | image_tag }} {% endcomment %}
+                        {%- endif -%}
+                        <div class="item-cnt">
+                          <span class="label">Shop by</span>
+                          <h4 class="title">{{ article.title }}</h4>
+                        </div>
+                      </a>
+                    </div>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {% comment %} 
+        <button class="swiper-button-next" id="swiper-btn-next"></button>
+        <button class="swiper-button-prev" id="swiper-btn-previous"></button>
+        {% endcomment %}
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+{%- endcapture -%}
+
+  
+
+{{ shop_by_room |  strip_newlines }} 
+{% endcomment %}
+
+{%- schema -%}
+    {
+    "name": "Shop by room",
+    "settings": [
+    {
+        "type":"header",
+        "content":"Instruction",
+        "info": "Data source is metafield"
+    },
+    {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section Title"
+        
+    }
+    ]
+    }
+{% endschema %}

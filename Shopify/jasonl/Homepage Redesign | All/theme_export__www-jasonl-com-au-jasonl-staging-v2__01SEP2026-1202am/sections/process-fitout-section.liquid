@@ -1,0 +1,67 @@
+{{ 'process-fitout-section.css' | asset_url | stylesheet_tag }}
+<div class="process-fitout-section">
+    <div class="page-width">
+        <p class="eyebrow"> <span class="dot"></span> HOW IT WORKS</p>
+        <div class="process-fitout-section-top">
+            <div class="left-col">
+                <h2 class="section-heading">Our office fitout process</h2>
+            </div>
+            <div class="right-col">
+                <p>
+                    From your first quote to final installation, JasonL
+                    makes your office fitout easier to plan, easier to
+                    manage and easier to move into.
+                </p>
+                <div class="buton_wrap">
+                    {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'typeform-share getaquoteclick btn typeform-embed', button_id:'', button_text:"Start your fitout" -%}
+                </div>
+            </div>
+        </div>
+        <div class="process-steps">
+            <div class="step-item">
+                <p class="step-eyebrow">STEP 01</p>
+                <h3 class="step-heading">Chat, quote and brief</h3>
+                <p class="step-desc">We start with a quick chat about your team, your space, your budget and what you want your office to do better. From there, we recommend the right products, talk through your options and get a quote back quickly.</p>
+                <div class="step-faq-card">
+                    <p class="step-faq-question">What happens after I get a quote?</p>
+                    <p class="step-faq-answer">Once you're happy with the quote, we move to site measurement and space planning. There's no obligation at the quote stage — most clients get two or three iterations before committing.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <p class="step-eyebrow">STEP 02</p>
+                <h3 class="step-heading">Measure, plan and design</h3>
+                <p class="step-desc">We can visit your site, measure up and create a layout that suits the way your team works — workstations, meeting rooms, breakout areas, storage and shared spaces — with a focus on flow, comfort and everyday use.</p>
+                <div class="step-faq-card">
+                    <p class="step-faq-question">Do I need an interior designer for an office fitout?</p>
+                    <p class="step-faq-answer">No. JasonL includes commercial space planning and interior styling as part of the fitout process. Our team handles layout, furniture selection, finishes and colour at no extra cost.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <p class="step-eyebrow">STEP 03</p>
+                <h3 class="step-heading">Furniture, styling and construction planning</h3>
+                <p class="step-desc">Our team helps bring the workspace together through furniture selection, interior styling and layout support. For projects requiring construction, electrical or data work, we coordinate with local fitout partners.</p>
+                <div class="step-faq-card">
+                    <p class="step-faq-question">Do I need to manage the trades myself?</p>
+                    <p class="step-faq-answer">No - JasonL stays your single point of contact throughout, even when construction, electrical or data cabling is involved. We coordinate with trusted local partners so you're not juggling multiple suppliers.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <p class="step-eyebrow">STEP 04</p>
+                <h3 class="step-heading">Delivery, installation and aftercare</h3>
+                <p class="step-desc">Once approved, we coordinate furniture delivery and installation. If a fitout partner is involved, we work alongside them to ensure a smooth setup, then complete a final check before handover.</p>
+                <div class="step-faq-card">
+                    <p class="step-faq-question">What support is available after installation?</p>
+                    <p class="step-faq-answer">JasonL provides a 10-year structural warranty on installed furniture and ongoing support for any adjustments, additions or repairs. Your account manager stays your contact post-installation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+"name": "process-fitout-section"
+}
+{% endschema %}

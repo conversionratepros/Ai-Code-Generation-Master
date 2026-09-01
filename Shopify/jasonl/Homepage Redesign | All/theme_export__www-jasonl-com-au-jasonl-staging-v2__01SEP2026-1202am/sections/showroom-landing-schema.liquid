@@ -1,0 +1,10 @@
+{% assign city = page.title | downcase | escape %}
+{% for shopmeta_location in shop.metafields.custom_fields.location_collection_showroom %}
+    {% assign location_showroom = shopmeta_location | downcase | escape %}
+    {% if city == location_showroom %}
+        {% assign shopmeta_index = forloop.index0 %}
+    {% endif %}    
+{% endfor %}
+{% if shop.metafields.accentuate.structure_data_schema[shopmeta_index] %}
+    {{ shop.metafields.accentuate.structure_data_schema[shopmeta_index] }}
+{% endif %}

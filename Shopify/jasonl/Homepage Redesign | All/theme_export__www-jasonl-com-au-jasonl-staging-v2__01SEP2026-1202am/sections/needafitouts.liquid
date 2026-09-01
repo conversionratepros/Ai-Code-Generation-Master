@@ -1,0 +1,214 @@
+
+
+
+            {%- comment -%}
+                Google optimize enabled.
+                ---------------------------------
+                1. Condition : checking office desk
+                Action: Hiding this section.
+            {%- endcomment -%}
+            {%- assign optimize_common_content = false -%}
+            {%- if template == "collection" -%}
+                {%- if collection.handle == "office-desks"-%}
+                    {%- assign optimize_common_content = true -%}
+                {%- endif-%}
+            {%- endif -%}
+
+
+
+            {%- if optimize_common_content == false -%}
+
+            {% if settings.needafitout_fitout != empty%}
+                {%assign selected_fitouts = settings.needafitout_fitout  %}
+                {% if settings.needafitout_title != empty%}
+                    {%assign selected_fitouts_section_title = settings.needafitout_title %}
+                {%else%}
+                    {%assign selected_fitouts_section_title = selected_fitouts.title  %}
+                {%endif%}
+            {% endif %}
+
+            {%- assign fitouts = blogs['fitouts'].articles -%}
+            {%- assign featured_fitouts_counter = 0 -%}
+            {% for fitout in fitouts %}
+                {% if fitout.tags contains 'featured' %}
+                    {%- assign featured_fitouts_handle = fitout.handle -%}
+                    {%-comment-%}<!-- <p><a href="{{fitout.url}}">{{featured_fitouts_handle}}</a></p> -->{%- endcomment -%}
+                    {%- if featured_fitouts_counter == 0-%}
+                        {%- assign featured_fitouts_all = featured_fitouts_handle -%}
+                    {%-else-%}           
+                        {%- assign featured_fitouts_all = featured_fitouts_all | append : ',' | append: featured_fitouts_handle -%}
+                    {%-endif-%}
+                    {%- assign featured_fitouts_counter =  featured_fitouts_counter | plus:1 -%}
+                {%-endif-%} 
+            {%- endfor-%}
+
+            {%- assign featured_fitouts = featured_fitouts_all | split:',' -%}
+
+
+
+            {%- comment -%}Randome number generate {%- endcomment -%}
+
+            {%- assign min = 1 -%}
+            {%- assign max = featured_fitouts.size | minus: 1-%}
+            {%- assign diff = max | minus: min -%}
+            {%- assign random_number = "now" | date: "%N" | modulo: diff | plus: min -%}
+
+            {%-comment-%}
+            ================================================================================
+            {%- assign random_number = 8 %}
+            12
+            2,3, 12, 13, 17, 25,  
+            18, 21, 29, 30
+            fixed : 26,33 
+            {%- if template.name == 'collection' -%}
+                {% if collection.metafields.coln_fitout.fitout %}
+                    {%assign selected_fitouts = collection.metafields.coln_fitout.fitout  %}
+                    {%assign selected_fitouts_section_title = collection.metafields.coln_fitout.fitout_title  %}
+                {%- endif -%}
+            {%- endif -%}
+
+            {%- if template.name == 'index' or template == 'blog.fitouts' or template == 'page.home'-%}
+                {%- if section.settings.needafitout_fitout != empty -%}
+                    {%assign selected_fitouts = section.settings.needafitout_fitout  %}
+                    {%assign selected_fitouts_section_title = selected_fitouts.title  %}
+                {%- endif -%}
+            {%- endif -%}
+            ===============================================================================
+            {%-endcomment-%}
+
+
+            {% if selected_fitouts %}
+                {{ 'fitouts-products.css' | asset_url | stylesheet_tag }}
+                {% if template.name == 'index' or template == 'blog.fitouts' or template == '' or page.title == 'home' %}
+                {{ 'product-listing.css' | asset_url | stylesheet_tag }}
+                {{ 'component-card.css' | asset_url | stylesheet_tag }}
+                {{ 'component-price.css' | asset_url | stylesheet_tag }}
+            {%- endif -%}
+                <div class="page-width">
+                <div class="fitout-products">
+                    
+                        {% for featuredFitout in featured_fitouts %}
+                            {%-comment-%}<!--  if selected_fitouts == fitout.handle random_number -->{%-endcomment-%}
+                            {%- if forloop.index == random_number -%}
+
+                                    {%- if template == 'page.home' or template == 'index' -%}
+                                        {%- assign fitout = articles[section.settings.needafitout_fitout] -%}
+                                    {%- else -%}
+                                        {%- assign fitout = articles[featuredFitout] -%}
+                                    {%- endif -%}
+                                
+                                <a class="fitout-hero-wrapper" href="{{fitout.url}}">
+                                    {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image -%}
+                                        <picture> 
+                                        <source media="(min-width: 768px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'1200x450_crop_center'}}">
+                                        {%- if fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob -%}
+                                            <source media="(max-width: 500px)" srcset="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image_mob | file_img_url:'500x'}}">
+                                        {%- endif -%}
+                                        <img src="{{fitout.metafields.fitout_blog.need_a_fitout_banner_image | file_img_url:'375x180_crop_center'}}" alt="{{fitout.title}}" loading="lazy">
+                                        </picture>
+                                    {%- else -%}
+                                        <picture>
+                                        <source media="(min-width: 768px)" srcset="{{fitout.image | img_url:'1160x270_crop_center'}}">
+                                        <img src="{{fitout.image | img_url:'375x180_crop_center'}}" alt="{{fitout.title}}" loading="lazy">
+                                        </picture>
+                                    {%-endif-%}
+                                    <div class="fiout-hero-cnt">
+                                        {%- comment -%}
+                                        <!-- {%- if template == 'page.home' -%}
+                                            <h2>Need <br>a Fitout?</h2>
+                                        {% elsif template contains 'collection' %}
+                                            <h2>Need <br>a Fitout?</h2>
+                                        {%- else -%}
+                                            <h2>Need a Fitout?</h2>
+                                        {%- endif -%} -->
+                                        {%- endcomment -%}
+
+                                        <h2>Need <br>a Fitout?</h2>
+                                        {% if fitout.metafields.fitout_blog.fitout_client_name != empty %}
+                                            <p>Shop the {{fitout.metafields.fitout_blog.fitout_client_name}} Look!</p>
+                                        {% endif %}
+                                        {%- if fitout.metafields.fitout_blog.fitout_logo -%}
+                                            <img src="{{fitout.metafields.fitout_blog.fitout_logo | file_img_url: '100x'}}" alt="Logo - {{fitout.title}}" loading="lazy">
+                                        {%- endif -%}
+                                    </div>
+                                </a>
+                                {%- break -%}
+                            {%- endif -%}
+                        {% endfor %}   
+                    
+                    <div class="fitout-products-wrapper">
+                            {% for featuredFitout in featured_fitouts %}
+                    {%-comment-%}<!-- if selected_fitouts == fitout.handle  -->{%- endcomment -%}
+                    {%- if forloop.index ==  random_number -%}
+                    {%-comment-%}
+                            {%- assign fitout = articles[featuredFitout] -%}
+                    {%-endcomment-%}
+                            {%- assign metaproducts = fitout.metafields.fitout_blog.fitout_products | split: '|'-%}       
+                        <ul class="grid product-grid">
+                            {%- assign metaproduct_counter = 0 -%}
+                            {% for metaproduct in metaproducts %}
+                        
+                                {%- if metaproduct_counter < 4 -%}
+                                    {%- if all_products[metaproduct].handle != empty-%}
+                                        <li class="grid__item moreinfo-poz-abs">
+                                            {% render 'card-product',
+                                                card_product: all_products[metaproduct],
+                                                media_size:'adapt',
+                                                show_secondary_image: true,
+                                                add_image_padding: true,
+                                                show_vendor: false,
+                                                show_image_outline: false,
+                                            %}      
+                                        </li> 
+                                        {%- assign metaproduct_counter = metaproduct_counter | plus:1 -%}
+                                    {%- endif -%}
+                                {%- else -%}
+                                    {%- break -%}
+                                {%- endif -%}
+
+                            {% endfor %}
+                            </ul>
+                            {%break%}
+                    {%endif%}
+                    {% endfor %}
+                    </div>
+                </div>
+                </div>
+
+            {%- endif -%}
+
+            {%- endif -%}       
+
+
+{% schema %}
+  {
+    "name": "Need a fitouts",
+    "class":"needafitout-section",
+    "settings": [
+    {
+    "type":"header",
+    "content":"Instruction",
+    "info":"Select fitouts from theme setting, globally"
+    },
+{
+		"type": "article",
+		"id": "needafitout_fitout",
+		"label": "Selet Fitout",
+        "info": "1. First priority: theme section or metafields. 2. Second priority: theme settings. "
+		}
+    ]
+  }
+{% endschema %}
+{%-comment-%}
+    	{
+		"type": "article",
+		"id": "needafitout_fitout",
+		"label": "Selet Fitout",
+        "info": "1. First priority: theme section or metafields. 2. Second priority: theme settings. "
+		},
+        {
+            "type":"text",
+            "id":"needafitout_title",
+            "label":"Title"
+        }
+{%-endcomment-%}

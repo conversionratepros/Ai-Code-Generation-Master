@@ -1,0 +1,31 @@
+{{ 'showroom-callout-section-1.css' | asset_url | stylesheet_tag }}
+<div class="showroom-callout-section-1-section">
+    <div class="page-width">
+        <div class="callout-wrap">
+            <div class="callout-left-col">
+                <h2>About JasonL</h2>
+                <div class="dis">
+                    <p>At JasonL, we're not just another retailer shipping boxes from interstate - we set up in Adelaide because SA businesses deserve better service, better speed, and real local support. Our Grote Street showroom lets you see and try everything in person, with real people ready to help - no guesswork and no long waits.</p>
+                    <p>Whether you're a startup, government team, or family business, we make fitouts simple: layouts, product selection, installation, and fast local delivery. We're proud to be part of Adelaide, working with local trades and supporting SA projects every day.</p>
+                    <p><strong>Why Adelaide? Because this city gets things done - and so do we.</strong></p>
+                </div>
+            </div>
+            <div class="callout-right-col">
+                <div class="call-out-right-inner">
+                    <h2>Your space, your way</h2>
+                    <p>Big office or small, startup or scale-up - we'll help you build a workspace that works. Quick quotes. No-fuss delivery. Local support.</p>
+                    {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'btn', button_id:'', button_text:"LET'S GET STARTED" -%}
+                    {% comment %} <a {{ settings.typeformurls_url_1 }} href="javascript:void(0)" class="btn" data-tf-on-ready="ready">LET'S GET STARTED</a> {% endcomment %}
+                    <div class="seperator"></div>
+                    <div class="call-now">
+                         Call us now: <a href="tel: 0812345678">1300 395 731</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{ "name": "callout", "class": "showroom-callout-section-1-section-wrap" }
+{% endschema %}

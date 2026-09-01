@@ -1,0 +1,75 @@
+{{ "education-main-info.css" | asset_url | stylesheet_tag }}
+
+<div class="education-main-info">
+    <div class="statistics-section">
+      <div class="page-width">
+        {% render 'education-stat-slider' %}
+      </div>
+    </div>
+    <div class="education-main-info-content-outer">
+      <div class="page-width">
+        <div class="education-main-info-content">
+          <div class="education-main-info-banner education-main-box1">
+              <img src="{{ 'education-main-banner.jpg'| file_img_url:'631x' }}" alt="education furniture" width="631px" height="621px">
+          </div>
+          <div class="education-main-box2">
+            <picture class="bag-top">
+              <source media="(min-width: 992px)" srcset="{{ 'bag-note.png' | file_img_url: '382x' }}">
+              <img src="{{ 'bag-note-sm.png' | file_img_url:'162x' }}" alt="education furniture" width="162px" height="143px">
+            </picture>
+            <div class="main-box-wrap yellow-bg">
+              <h3 class="box-title">Your learning zones deserve <br> better than a nap-worthy setup</h3>
+              <ul class="dot-list">
+                <li>Study spaces that keep students switched on</li>
+                <li>Breakout zones that actually feel like a break</li>
+                <li>Libraries, labs, and lounges - all covered</li>
+                <li>Durable, stylish, and designed for daily use</li>
+                <li>Fast lead times, no delays before enrolment rush</li>
+              </ul>
+            </div>
+          </div>
+          <div class="education-main-box3">
+            <div class="main-box-wrap main-box-slider-wrap">
+              <!-- Swiper -->
+              <div class="swiper boxslider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"> 
+                    <h3 class="box-title">Faster solutions, <br>less downtime</h3>
+                    <p>Long lead times can slow down critical projects. We solve this with fast delivery and a large stock of over 5,000 products ready to ship. You get the furniture you need, when you need it, helping you avoid delays and disruptions.</p>
+                  </div>
+                  <div class="swiper-slide"> 
+                    <h3 class="box-title">End-to-end support <br>for a seamless experience</h3>
+                    <p>Long lead times can slow down critical projects. We solve this with fast delivery and a large stock of over 5,000 products ready to ship. You get the furniture you need, when you need it, helping you avoid delays and disruptions.</p>
+                  </div>
+                  <div class="swiper-slide"> 
+                    <h3 class="box-title">Reliable, consistent products <br>for long-term planning</h3>
+                    <p>Our product lines are available for years, meaning you can easily reorder the same items as your needs grow. No need to worry about mismatched furniture or inconsistent styles. We make it easy to maintain a cohesive look across your campus.</p>
+                  </div>
+                  <div class="swiper-slide"> 
+                    <h3 class="box-title">Designed for key<br> educational spaces</h3>
+                    <p>We focus on key areas like breakout zones, admin offices, libraries, collaborative areas, and staff rooms. Our solutions are practical, durable, and designed to create comfortable, efficient spaces where students and staff can thrive. No need for flashy promises - just furniture that works.</p>
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+ <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".boxslider", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 7000,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>

@@ -1,0 +1,124 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+    {% comment %}  
+    {%- unless current_tags contains 'shipping-speed=nostock' or current_tags contains 'contact-to-purchase'-%} 
+    {% endcomment %}
+    {%- unless current_tags contains 'contact-to-purchase'-%} 
+
+     {%- if paginate.current_page == paginate.pages and isfliter_availablity_active == false -%}
+        
+        function nostockproducts_lastpage(type, tag, i){
+            let is_exist_paginated_nostock = false;
+            var url_without_pageParameter = window.location.href.split('?')[0];
+            var final_url = '';
+            var url_combined_currentTags = '';
+            {%- if current_tags -%}
+                url_combined_currentTags = `${url_without_pageParameter}+${tag}?page=${i}`;
+                if(type == 'type_no_stock') {
+                    url_combined_currentTags = `${url_without_pageParameter}+${tag}?page=${i}&filter.v.availability=0`;
+                }
+                url_combined_currentTags = url_combined_currentTags.replace("/+", "+");
+                final_url = url_combined_currentTags;
+            {%- else -%}
+                if(type == 'type_no_stock'){
+                    const url = new URL(window.location.href);
+                    // update page parameter
+                    url.searchParams.set('page', i);
+                    url.searchParams.set('filter.v.availability', '0');
+                    const url_with_params = `${url.origin}${url.pathname}?${url.searchParams.toString()}`;
+                    final_url = url_with_params;
+                }else{
+                    final_url = `{{shop.url}}/collections/{{collection.handle}}/${tag}?page=${i}`;
+                }
+            {%- endif -%}
+            var content_ajax = null;
+            var parser = null;
+            var responseDoc = null;
+            var gridContainer_ajax = null;
+
+            return $.ajax({
+                url:final_url,
+                type:'GET',
+                success: function(data){
+                    const gridContainer = document.getElementById('product-grid');
+                    parser = new DOMParser ();
+                    responseDoc = parser.parseFromString (data, "text/html");
+                    gridContainer_ajax = responseDoc.getElementById('product-grid');
+                    content_ajax = gridContainer_ajax.innerText;
+                    let pagination = responseDoc.querySelectorAll('.pagination-wrapper');
+                    if(content_ajax.search("No products found") < 0  ){
+                        const outOfStock_products = gridContainer_ajax.innerHTML;
+                        const lastPageStock_products = gridContainer.innerHTML;
+                        const combined_products =  lastPageStock_products + outOfStock_products;
+                        //gridContainer.innerHTML = combined_products;
+                        //gridContainer.innerHTML += outOfStock_products;
+                        document.getElementById("last-page-last-product").insertAdjacentHTML("afterend",outOfStock_products);
+                        // repeat the ajax call for pagination
+                        if(pagination){
+                            i++;
+                            nostockproducts_lastpage(type, tag, i);
+                        }
+                    }
+                } 
+            })
+        }
+    
+        nostockproducts_lastpage('type_no_stock','',1).done(customColorOption);
+        nostockproducts_lastpage('type_tag','contact-to-purchase',1).done(customColorOption);
+
+     {%- endif -%}
+{%- endunless -%}
+
+            function customColorOption(data){
+                if(!window.matchMedia("(pointer: coarse)").matches) { // if not touch devices
+                        // color option image change on listing
+                        //let listing_product_item = document.querySelectorAll('#main-collection-product-grid .grid__item');
+                        let listing_product_item = document.querySelectorAll('#product-grid .grid__item');
+                        for(let i = 0; i<listing_product_item.length; i++){
+                
+                            let listing_color_item = listing_product_item[i].querySelectorAll('.color-list .option-color[data-variant_img]');
+                            let colorImgHolder = listing_product_item[i].querySelector('.active-color-img');
+                            for(let x = 0; x<listing_color_item.length; x++){
+
+                                listing_color_item[x].addEventListener('mouseenter', () => {
+                                // show loader on first time hover 
+                                if(listing_color_item[x].getAttribute('data-visited') == 'false'){
+                                    listing_product_item[i].classList.add('first-time-hover');
+                                    listing_color_item[x].setAttribute('data-visited','true');
+                                    setTimeout(function(){
+                                        listing_product_item[i].classList.remove('first-time-hover');
+                                    },500)
+                                    }
+                                    // -----
+                                    let colorImgSrc = listing_color_item[x].getAttribute('data-variant_img');
+                                    colorImgHolder.setAttribute('src',colorImgSrc);
+                                    listing_product_item[i].classList.add('color-img-active');
+                                });
+
+                                listing_color_item[x].addEventListener('mouseleave', () => {
+                                    if(listing_color_item[x].getAttribute('data-visited') == 'true'){
+                                        listing_product_item[i].classList.remove('first-time-hover');
+                                    }
+                                    listing_product_item[i].classList.remove('color-img-active');
+                                });
+                            }
+                        }
+                    }
+                }
+                customColorOption();
+
+});
+</script>
+
+ {%- comment -%}
+// ---------------------------------------------
+// {%- if current_tags -%}
+// // url:url_without_pageParameter+'+shipping-speed-nostock?page='+i,
+// url:url_combined_currentTags,
+// {%- else -%}
+// //url: '{{shop.url}}/collections/{{collection.handle}}/shipping-speed-nostock?page='+i,
+// url: `{{shop.url}}/collections/{{collection.handle}}/${tag}?page=${i}`,
+// {%- endif -%}
+// ----------------------------------------------
+ {%- endcomment -%}

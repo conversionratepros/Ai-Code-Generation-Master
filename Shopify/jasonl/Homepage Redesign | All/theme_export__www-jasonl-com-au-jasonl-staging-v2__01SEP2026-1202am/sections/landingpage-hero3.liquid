@@ -1,0 +1,72 @@
+{%- comment -%}
+// Inherited
+// -----------------------------------------------------
+{%- endcomment -%}
+
+{{ "landingpage-hero.css" | asset_url | stylesheet_tag }}
+{{ "landingpage-hero2.css" | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+// -----------------------------------------------------
+{%- endcomment -%}
+
+
+{%- comment -%}
+// blank
+// use below if need to override ....-hero.css,...-her02.css 
+
+{{ "landingpage-hero3.css" | asset_url | stylesheet_tag }}
+{%- endcomment -%}
+
+<div class="hero-container hero-container-2">
+        <div class="hero-main-wrapper">
+            <picture class="hero-picture white-overlay">
+                <img src="{{'landingpage2-hero-img.png' | file_img_url:'master'}}" alt="Office furniture matters" />
+            </picture>
+            <div class="page-width">
+                <div class="hero-text">
+                    <h1 class="h1-style">Office <br>furniture <br>matters<span>.</span></h1>
+                    <ul class="disc-number-bullets disc-number-bullets-2">
+                        <li>Happy people</li>
+                        <li>Increased productivity</li>
+                        <li>Encourages collaboration</li>
+                        <li>Enhances your brand identity</li>
+                        <li>We'll help you achieve all of that</li>
+                    </ul>
+                    <a class="typeform-share getaquoteclick button button-secondary" {{ settings.typeformurls_url_1 }} href="javascript:void(0)">
+                        Get a quote
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-width hero-column-wrapper">
+        <div class="hero-column">
+            <div class="hero-column-left">
+<p>We know how much a great working environment can make a difference, to the people working to achieve your business goals.</p>
+
+<p>That's why we value your business and personnel needs, and tailor-fit offices that will increase productivity and create a winning culture within your organisation.</p>
+
+<p>5000+ products, a free floor plan and a dedicated project manager means you are covered at every point. We even deliver and assemble it all. With you every step of the way.</p>
+
+            </div>
+            <div class="hero-column-right">
+                <div class="img-holder">
+<img src="{{'chair-plant2.png' | file_img_url : 'master'}}" alt="Office furniture matters 2" />
+                </div>
+                
+                <div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-embed" data-tf-widget="rvv9MINp" data-tf-on-ready="ready" data-tf-iframe-props="title=JasonL - Get A Quote - Inbound" data-tf-medium="snippet" data-tf-hidden="" style="width:390px;height:470px;"></div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero 3",
+  "tag": "section",
+  "class": "section-hero2 section-hero3",
+  "settings": [
+  ]
+}
+{% endschema %}

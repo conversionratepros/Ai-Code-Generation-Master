@@ -1,0 +1,188 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "cro-12405-hero-search",
+      "blocks": {
+        "category_chairs": {
+          "type": "category",
+          "settings": {
+            "title": "Chairs",
+            "url": "https://www.jasonl.com.au/collections/office-chairs"
+          }
+        },
+        "category_storage": {
+          "type": "category",
+          "settings": {
+            "title": "Storage",
+            "url": "https://www.jasonl.com.au/collections/office-storage"
+          }
+        },
+        "category_tables": {
+          "type": "category",
+          "settings": {
+            "title": "Tables",
+            "url": "https://www.jasonl.com.au/collections/tables"
+          }
+        },
+        "category_desks": {
+          "type": "category",
+          "settings": {
+            "title": "Desks",
+            "url": "https://www.jasonl.com.au/collections/office-desks"
+          }
+        },
+        "category_cafe": {
+          "type": "category",
+          "settings": {
+            "title": "Cafe & Breakout",
+            "url": "https://www.jasonl.com.au/collections/cafe-hospitality-furniture"
+          }
+        },
+        "category_workstations": {
+          "type": "category",
+          "settings": {
+            "title": "Workstations",
+            "url": "https://www.jasonl.com.au/collections/office-workstations"
+          }
+        },
+        "category_pods": {
+          "type": "category",
+          "settings": {
+            "title": "Pods & Acoustics",
+            "url": "https://www.jasonl.com.au/collections/office-partitions"
+          }
+        },
+        "category_monitor_arms": {
+          "type": "category",
+          "settings": {
+            "title": "Monitor Arms",
+            "url": "https://www.jasonl.com.au/collections/monitor-arms"
+          }
+        }
+      },
+      "block_order": [
+        "category_chairs",
+        "category_storage",
+        "category_tables",
+        "category_desks",
+        "category_cafe",
+        "category_workstations",
+        "category_pods",
+        "category_monitor_arms"
+      ],
+      "settings": {
+        "heading_line_1": "Find the perfect pieces for",
+        "heading_accent": "your workspace.",
+        "search_placeholder": "Search for chairs, desks, workstations...",
+        "search_button_label": "Search",
+        "quote_prompt_text": "Need a custom fitout solution?",
+        "quote_link_text": "Get a Quote",
+        "category_label": "Or browse by category"
+      }
+    },
+    "company_logo_slider": {
+      "type": "companies_list_slider-section",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections-products-theme-settings-v1",
+      "blocks": {
+        "repeater_block_LXrX3e": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Chairs? Clever Choice !",
+            "collection_handle": "office-chairs",
+            "tag_handle": "",
+            "featured_product_handle": "",
+            "featured_product_handle_perth": ""
+          }
+        },
+        "repeater_block_cpEkYB": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Desks? Done!",
+            "collection_handle": "office-desks",
+            "tag_handle": "",
+            "featured_product_handle": "quadro-square-leg-office-desk-1200lx700w, just-right-height-adjustable-desk, quadro-loop-leg-l-shaped-corner-office-desk",
+            "featured_product_handle_perth": "quadro-square-leg-office-desk-1200lx700w, just-right-height-adjustable-desk, quadro-loop-leg-l-shaped-corner-office-desk"
+          }
+        },
+        "repeater_block_3cam4h": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Workstations? Work Hard!",
+            "collection_handle": "office-workstations",
+            "tag_handle": "",
+            "featured_product_handle": "quadro-square-leg-2-person-office-workstations, quadro-cylinder-leg-4-person-office-workstations-1400lx700w, just-right-height-adjustable-6-person-h-bench-workstation-black-frame",
+            "featured_product_handle_perth": "quadro-square-leg-2-person-office-workstations, quadro-cylinder-leg-4-person-office-workstations-1400lx700w, just-right-height-adjustable-6-person-h-bench-workstation-black-frame"
+          }
+        },
+        "repeater_block_ewqgg7": {
+          "type": "repeater_block",
+          "settings": {
+            "block_title": "Privacy Pods? Peace & Productivity!",
+            "collection_handle": "sofas-lounges-collaborative-soft-furniture",
+            "tag_handle": "office-work-pods-booths",
+            "featured_product_handle": "nest-phone-booth,dune-small-acoustic-office-pod,nest-4-person-meeting-booth-acoustic-panel-with-fabric",
+            "featured_product_handle_perth": "nest-phone-booth,dune-small-acoustic-office-pod,nest-4-person-meeting-booth-acoustic-panel-with-fabric"
+          }
+        }
+      },
+      "block_order": [
+        "repeater_block_LXrX3e",
+        "repeater_block_cpEkYB",
+        "repeater_block_3cam4h",
+        "repeater_block_ewqgg7"
+      ],
+      "settings": {
+        "products_to_show": 3
+      }
+    },
+    "featured_services": {
+      "type": "featured-services-b-placholder",
+      "settings": {
+        "bg-color": "dark"
+      }
+    },
+    "recent_fitouts": {
+      "type": "featured-recent-fitouts-b",
+      "settings": {
+        "needafitout_fitout": "fitouts/mm-geomechanics",
+        "pdp-fitout": ""
+      }
+    },
+    "shop_by_room": {
+      "type": "shop-by-room-b",
+      "settings": {
+        "section_title": "Shop by room"
+      }
+    },
+    "locationMap": {
+      "type": "location-map-1-b_placeholder",
+      "settings": {}
+    },
+    "meetPeople": {
+      "type": "new-meet-people",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "company_logo_slider",
+    "featured_collections",
+    "featured_services",
+    "recent_fitouts",
+    "shop_by_room",
+    "locationMap",
+    "meetPeople"
+  ]
+}

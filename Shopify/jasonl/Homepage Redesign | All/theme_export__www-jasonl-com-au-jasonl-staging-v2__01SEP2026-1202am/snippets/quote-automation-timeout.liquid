@@ -1,0 +1,33 @@
+<div class="expired-quotation-page quotation-page-error quotation-timeout">
+        <div class="page-width">
+            <div class="expired-quotation-wrap">
+                <div class="expired-quotation-header">
+                    <h2 class="expired-title">Something went wrong!</h2>
+                    <p class="expired-message-top">
+                        Please try refreshing the page. If the problem persists, please contact our sales team <a href="mailto:salesteam@jasonl.com.au">salesteam@jasonl.com.au</a>.
+                        <br> <button type="button" class="btn page-reload">Please retry!</button> 
+                    </p>
+                </div>
+                    <div class="info-wrap">
+                        <div class="quote-info-box">
+                            <p>
+                            JasonL Office Furniture <br>
+                            ABN: 27 138 695 404.<br>
+                            2A/149 McCredie Road Smithfield, <br>
+                            NSW 2164. Phone: <a href="tel:1300-527-665">1300-527-665</a>.
+                        </p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const element = document.querySelector('.page-reload');
+    if (element) {
+        element.addEventListener("click", function() {
+            location.reload();
+        });
+    }
+});
+    </script>

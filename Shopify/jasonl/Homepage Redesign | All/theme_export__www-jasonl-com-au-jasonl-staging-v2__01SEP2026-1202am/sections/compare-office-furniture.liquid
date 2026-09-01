@@ -1,0 +1,63 @@
+{{ 'compare-office-furniture.css' | asset_url | stylesheet_tag }}
+{%  capture arrowsvg %} 
+    <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.576 0L14.504 1.045L16.375 2.869H0V4.346H16.351L14.5 6.15L15.572 7.194L19.263 3.595L15.576 0Z" fill="black"/>
+    </svg>
+{% endcapture %}
+<div class="compare-office-furniture">
+    <div class="page-width">
+        <div class="compare-office-furniture-wrap">
+            <div class="intro">
+                <div class="eyebrow">COMPARE</div>
+                <h2 class="section-title">Office chairs at a glance</h2>
+                <p>A simple way to match a chair tier to how it'll be used</p>
+            </div>
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Chair tier</th>
+                            <th>Best for</th>
+                            <th>Key adjustments</th>
+                            <th colspan="2">Price from</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="tier-cell">Task/mesh</td>
+                            <td>Everyday desk work, hot-desks, study.</td>
+                            <td>Seat height, basic tilt.</td>
+                            <td class="price-cell">$194</td>
+                            <td class="cta-cell"><a href="collections/office-chairs/mesh-chairs" class="compare-btn">Shop <span aria-hidden="true">{{ arrowsvg }}</span></a></td>
+                        </tr>
+                        <tr class="is-highlighted">
+                            <td class="tier-cell">
+                                Ergonomic
+                                <span class="badge"><span aria-hidden="true">&#9733;</span> Most popular</span>
+                            </td>
+                            <td>Full-time desk roles, 8+ hour days.</td>
+                            <td>Lumbar, seat depth, arms, tilt tension.</td>
+                            <td class="price-cell">$279</td>
+                            <td class="cta-cell"><a href="/collections/office-chairs/ergonomic-chairs" class="compare-btn compare-btn--solid">Shop <span aria-hidden="true">{{ arrowsvg }}</span></a></td>
+                        </tr>
+                        <tr>
+                            <td class="tier-cell">Executive</td>
+                            <td>Offices, boardrooms, client-facing rooms.</td>
+                            <td>Premium padding, headrest, full ergo.</td>
+                            <td class="price-cell">$449</td>
+                            <td class="cta-cell"><a href="/collections/office-chairs/executive-office-chairs" class="compare-btn">Shop <span aria-hidden="true">{{ arrowsvg }}</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+</div> 
+
+{%- schema -%}
+{
+    "name": "compare-office-furniture",
+    "class": "section",
+    "settings": []
+}
+{%- endschema -%}

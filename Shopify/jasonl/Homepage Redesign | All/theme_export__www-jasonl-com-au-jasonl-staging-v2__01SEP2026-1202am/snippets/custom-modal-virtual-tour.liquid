@@ -1,0 +1,50 @@
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{% assign location_name_downcase = location_name | replace: ' ', '-' | remove: '&' | downcase %}
+
+              <modal-opener data-modal="#PopupModal3d-var-{{ location_name_downcase }}">
+                  <div class="deferred-media">
+                    
+                    <button
+                      class="virtual-tour-btn"
+                      type="button"
+                      aria-label="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
+                      aria-haspopup="dialog"
+                      data-media-id="{{ video_url_id }}" 
+                      iframe_src = "{{ matterportlink }}"
+                      storeLocation= "{{ location_name }}"
+                    > 3D VIRTUAL TOUR
+                    </button>
+                  </div>
+                </modal-opener>
+                <modal-dialog
+                  id="PopupModal3d-var-{{ location_name_downcase }}"
+                  class="modal-video media-modal color-{{ settings.color_schemes | first }}"
+                >
+                  <div
+                    class="modal-video__content"
+                    role="dialog"
+                    aria-label="{{ block.settings.description | escape }}"
+                    aria-modal="true"
+                    tabindex="-1"
+                  >
+                    <button
+                      id="ModalClose-{{ block.id }}"
+                      type="button"
+                      class="modal-video__toggle"
+                      aria-label="{{ 'accessibility.close' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-close.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                    <div class="modal-video__content-info">
+                      <deferred-media class="modal-video__video template-popup">
+                        <template>
+                          <iframe src="{{ matterportlink }}" allowfullscreen store_location="{{ location_name | remove: "showroom" | remove: "Showroom" }} showroom" ></iframe>
+                        </template>
+                      </deferred-media>
+                    </div>
+                  </div>
+                </modal-dialog>

@@ -1,0 +1,83 @@
+{{ "landingpage-thumbnailbanner.css" | asset_url | stylesheet_tag }}
+
+<div class="thumbnailbanner-container">
+    <div class="page-width">
+        <div class="swiffy-slider slider-nav-autopause slider-indicators-round" id="thumb-banner">
+            <ul class="slider-container ">
+                <li>
+                    {%- assign thumbnailBannerLink1 = "https://www.jasonl.com.au/collections/office-workstations" -%}
+                    {%- assign thumbnailBannerLink1_nsw = thumbnailBannerLink1 -%}
+                    {%- comment -%}
+                    NOTE: 
+                    if thumbnailBannerLink1 is parent = append : '/wa'
+                    if thumbnailBannerLink1 is child category  = append : '+wa'
+                    {%- endcomment -%}
+                    {%- assign thumbnailBannerLink1_wa = thumbnailBannerLink1 | append : '/wa' -%}
+
+                    <a href="{{thumbnailBannerLink1}}" data-nsw="{{thumbnailBannerLink1_nsw}}" data-wa="{{thumbnailBannerLink1_wa}}" data-js_updatemenuurl="true" style="background-color: #fff0c9;">
+
+
+                    <div class="thumbnailbanner-header">
+                        <h3>Workstations?</h3>
+                        <span>We've got you!</span>
+                    </div>
+                    <img src="https://cdn.shopify.com/s/files/1/1249/7859/files/workstations.png?v=1672983288" alt="Workstations" />
+                    </a>
+                </li>
+                <li>
+
+                    {%- assign thumbnailBannerLink2 = "https://www.jasonl.com.au/collections/office-chairs" -%}
+                    {%- assign thumbnailBannerLink2_nsw = thumbnailBannerLink2 -%}
+                    {%- comment -%}
+                    NOTE: 
+                    if thumbnailBannerLink1 is parent = append : '/wa'
+                    if thumbnailBannerLink1 is child category  = append : '+wa'
+                    {%- endcomment -%}
+                    {%- assign thumbnailBannerLink2_wa = thumbnailBannerLink2 | append : '/wa' -%}
+                    <a href="{{thumbnailBannerLink2}}" data-nsw="{{thumbnailBannerLink2_nsw}}" data-wa="{{thumbnailBannerLink2_wa}}" data-js_updatemenuurl="true" style="background-color: #e9f0bd;">
+                    <div class="thumbnailbanner-header">
+                        <h3>Office chairs? </h3>
+                        <span>Of course!</span>
+                    </div>
+                    <img src="{{'officechairs-thumbnail-banner.png' |  file_img_url:'391x'}}" alt="Office chairs" />
+                    </a>
+                </li>
+                <li>
+
+                {%- assign thumbnailBannerLink3 = "https://www.jasonl.com.au/collections/sofas-lounges-collaborative-soft-furniture/office-work-pods-booths" -%}
+                {%- assign thumbnailBannerLink3_nsw = thumbnailBannerLink3 -%}
+                {%- comment -%}
+                NOTE: 
+                if thumbnailBannerLink1 is parent = append : '/wa'
+                if thumbnailBannerLink1 is child category  = append : '+wa'
+                {%- endcomment -%}
+                {%- assign thumbnailBannerLink3_wa = thumbnailBannerLink3 | append : '+wa' -%}
+
+                <a href="{{thumbnailBannerLink3}}" data-nsw="{{thumbnailBannerLink3_nsw}}" data-wa="{{thumbnailBannerLink3_wa}}" data-js_updatemenuurl="true" style="background-color: #e3ecfb;">
+                    <div class="thumbnailbanner-header">
+                        <h3>Acoustic pods?</h3>
+                        <span>Yes please!</span>
+                    </div>
+                    <img src="{{'acoustic-pods.png' |  file_img_url:'392x'}}" alt="Acoustic pods" />
+                    </a>
+                </li>
+            </ul>
+            <div class="slider-indicators large-up-hide medium-hide">
+                <button class="active"></button>
+                <button></button>
+                <button></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        //Use only one of the loading options below!
+        //loads all sliders
+        //swiffyslider.init();
+        //loads specific slider
+         
+        swiffyslider.initSlider(document.getElementById('thumb-banner'));
+    });
+</script>

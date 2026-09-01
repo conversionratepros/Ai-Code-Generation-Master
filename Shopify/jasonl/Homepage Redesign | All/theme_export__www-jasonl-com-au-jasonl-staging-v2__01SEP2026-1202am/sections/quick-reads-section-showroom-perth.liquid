@@ -1,0 +1,89 @@
+{% comment %} this template is for Perth showroom landing page only  {% endcomment %}
+{{ 'quick-reads-section.css' | asset_url | stylesheet_tag }}
+<div class="quick-reads-section">
+    <div class="page-width">
+        <h2>Quick reads for <br class="large-hide"> Perth businesses </h2>
+        <div class="bloglist-with-banner-wrap">
+            <div class="blog-list-wrap">
+                {%- assign blog_handle_list = '5-signs-it-s-time-for-a-furniture-refresh-in-your-perth-office,13-things-killing-focus-in-perth-offices-and-how-to-fix-them-properly,15-things-perth-offices-wish-they-knew-before-their-last-one,how-to-choose-office-furniture-that-handles-wa-conditions' -%}
+                {%- assign bloglist = blog_handle_list | split:',' -%}
+                {%- for fitout in bloglist -%}
+                    {%- assign key = 'main/' | append: fitout -%}
+                    {%- assign fitout_article = articles[key] -%}
+                    {%- if fitout_article -%}
+                        <div class="blog-list {% if forloop.last %}last-list{% endif %}">
+                            <div class="blog-img">
+                                <a href="{{ fitout_article.url }}">
+                                    <picture>
+                                        <img src="{{ fitout_article.image.src |  image_url: width: '300x' }}" alt="quick reads" width="150" height="120" loading="lazy">
+                                    </picture>
+                                </a>
+                            </div>
+                            <div class="blog-list-body-wrap-outer">
+                                <div class="blog-list-body">
+                                    <div class="blog-list-body-wrap">
+                                        <div class="blog-title"><a href="{{ fitout_article.url }}">{{ fitout_article.title }}</a></div>
+                                        <div class="blog-dis"><a href="{{ fitout_article.url }}">{{ fitout_article.excerpt | strip_html }}</a></div>
+                                        <div class="blog-list-footer">
+                                            <span class="date-time">{{ fitout_article.published_at  | date: "%b %d, %Y" }} in</span>
+                                            <span class="blog-tag">
+                                                {% for tag in fitout_article.tags %}
+                                                    {{ tag }} 
+                                                    {% if forloop.index != fitout_article.tags.size %}
+                                                        ,
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%- endif -%}
+                {%- endfor -%}
+                <div class="blog-list has-viewbtn">
+                    <div class="blog-img"> </div>
+                    <div class="blog-list-body-wrap-outer">
+                        <div class="blog-list-body">
+                            <div class="blog-list-body-wrap">
+                                <a href="/blogs/main" class="btn view-all-btn">VIEW ALL</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-list-banner">
+                <div class="banner-ad-top">
+                    <picture class="bannerimg">
+                        <source srcset="{{ 'banner-bg-image.jpg' | file_img_url: '885x' }}" media="(min-width: 768px)">
+                        <img src="{{ 'banner-bg-image.jpg' | file_img_url: '335x' }}" alt="Perth banner" width="885px" height="298px" loading="lazy">
+                    </picture>
+                    <div class="banner-title">
+                        <div class="banner-title-text-arrow">
+                            Planning your Perth office: 10 game-changing tips that actually deliver
+                        </div>
+                        <a href="https://www.jasonl.com.au/10-tips-to-plan-your-perth-office" class="btn" target="_blank">DOWNLOAD NOW</a>
+                    </div>
+                    <a href="https://www.jasonl.com.au/10-tips-to-plan-your-perth-office" class="bottom-right-btn" target="_blank">FREE RESOURCE</a>
+                </div>
+                <div class="banner-bottom-section">
+                    <div class="bottom-heading-info-col">
+                        <div class="bottom-title-wrap">
+                            <h3 class="bottom-title">
+                                Don't miss our next free guide.
+                            </h3>
+                        </div>
+                        <div class="bottom-info">We're creating a growing library of guides, checklists, and insights to help WA businesses plan ahead and build better workspaces. Sign up when you download to receive updates as new resources are released.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% schema %}
+{ "name": "Quick reads", "tag": "section", "class": "section--quick-reads left-shadow" }
+{% endschema %}

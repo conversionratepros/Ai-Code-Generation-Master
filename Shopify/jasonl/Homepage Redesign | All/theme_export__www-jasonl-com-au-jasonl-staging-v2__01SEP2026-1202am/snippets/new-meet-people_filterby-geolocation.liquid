@@ -1,0 +1,170 @@
+<style>
+.filterby-geolocation{
+    display:none;
+}
+[data-location="ACT"] .filterby-geolocation.filter-item-none  {
+display:block
+}
+
+[data-location="NT"] .filterby-geolocation.filter-item-none  {
+display:block
+}
+
+[data-location="QLD"] .filterby-geolocation.filter-item-brisbane  {
+display:block
+}
+
+[data-location="SA"] .filterby-geolocation.filter-item-adelaide  {
+display:block
+}
+
+[data-location="TAS"] .filterby-geolocation.filter-item-none  {
+display:block
+}
+
+[data-location="NSW"] .filterby-geolocation.filter-item-sydney  {
+display:block
+}
+
+[data-location="VIC"] .filterby-geolocation.filter-item-melbourne  {
+display:block
+}
+
+[data-location="WA"] .filterby-geolocation.filter-item-perth  {
+display:block
+}
+
+
+
+</style>
+{%- assign showroom_manager_count = shop.metafields.custom_fields.location_collection_team_main_location.size | minus:1  -%}
+{%- for manager_item in (0..showroom_manager_count) -%}
+
+    {%- assign shopmeta_index = forloop.index0 -%}
+    {%- if shop.metafields.custom_fields.location_collection_team_main_location[shopmeta_index] != empty  -%}
+        {%- if shop.metafields.custom_fields.location_collection_team_main_location[shopmeta_index] -%}
+            {%- assign location_state = shop.metafields.custom_fields.location_collection_team_main_location[shopmeta_index] | handleize -%}
+        {%- else -%}
+            {%- assign location_state = 'none' -%}
+        {%- endif -%}
+    <div class="meetpeople1-container filterby-geolocation filter-item-{{location_state}}">
+        <div class="page-width page-width-override">
+            <div class="">
+            <div class="meetpeople-wrapper">
+                {%- render 'meetpeople-left', index: shopmeta_index -%}
+                
+                {%- assign city = shop.metafields.custom_fields.location_collection_team_main_location[shopmeta_index] -%}
+                {%- if city == blank -%}
+                    {%- assign city = 'none' -%}
+                {%- endif -%}
+                {%- assign team_member_index_list = '' -%}
+                {%- if city != blank -%}
+                {%- for shopmeta_location_team_member_location in shop.metafields.custom_fields.location_collection_team_member_location -%}
+                    {%- assign location_showroom = shopmeta_location_team_member_location | downcase | escape -%}
+                    
+                    {%- if city == location_showroom -%}
+                    {%- assign team_member_index_list = team_member_index_list | append: forloop.index0 | append: ',' -%}
+                    {%- endif -%}
+                {%- endfor -%}
+                {%- else -%}
+                {%- assign review_handles_string = shop.metafields.custom_fields.location_collection_team_main_review_handles[shopmeta_index] -%}
+                {%- if review_handles_string != blank -%}
+                    {%- assign review_handles_array = review_handles_string | split: ',' -%}
+
+                    {%- for name in review_handles_array -%}
+                    {%- assign name_handle = name | strip | handle -%}
+
+                    {%- for member in shop.metafields.custom_fields.location_collection_team_member_name -%}
+                        {%- assign member_handle = member | strip | handle -%}
+                        {%- if name_handle == member_handle -%}
+                        {%- assign team_member_index_list = team_member_index_list | append: forloop.index0 | append: ',' -%}
+                        {%- break -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                    {%- endfor -%}
+                {%- endif -%}
+                {%- endif -%}
+
+                {%- assign team_member_index_list = team_member_index_list | remove_last: ',' -%}
+                {%- assign team_member_index_list_array = team_member_index_list | split: ',' -%}
+
+                {%- render 'meetpeople-right', team_member_index_list_array: team_member_index_list_array -%}
+            </div>
+            </div>
+        </div>
+    </div>
+    {%- endif -%}
+{%- endfor -%}
+
+
+
+
+
+{%- comment -%} SAME OLD LOGIC (Location OR Random) {%- endcomment -%}
+{%- comment -%}
+<!-- Rondom logic -->
+{% assign shopmeta_index = null %}
+
+{% if is_location_collection == true or is_showroom_collection == true %}
+  {% if city != blank %}
+    {% for shopmeta_location in shop.metafields.custom_fields.location_collection_team_main_location %}
+      {% assign location_showroom = shopmeta_location | downcase | escape %}
+      {% if city == location_showroom %}
+        {% assign shopmeta_index = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{% if shopmeta_index == null %}
+  {% assign max_count = shop.metafields.custom_fields.location_collection_team_main_header.size %}
+  {% assign random_index = 'now' | date: '%N' | modulo: max_count %}
+  {% assign shopmeta_index = random_index %}
+{% endif %}
+
+
+<div class="meetpeople1-container random-wrap">
+  <div class="page-width page-width-override">
+    <div class="">
+      <div class="meetpeople-wrapper">
+        {% render 'meetpeople-left', index: shopmeta_index %}
+
+        {% assign city = shop.metafields.custom_fields.location_collection_team_main_location[shopmeta_index] %}
+        {% assign team_member_index_list = '' %}
+
+        {% if city != blank %}
+          {% for shopmeta_location_team_member_location in shop.metafields.custom_fields.location_collection_team_member_location %}
+            {% assign location_showroom = shopmeta_location_team_member_location | downcase | escape %}
+            {% if city == location_showroom %}
+              {% assign team_member_index_list = team_member_index_list | append: forloop.index0 | append: ',' %}
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% assign review_handles_string = shop.metafields.custom_fields.location_collection_team_main_review_handles[shopmeta_index] %}
+          {% if review_handles_string != blank %}
+            {% assign review_handles_array = review_handles_string | split: ',' %}
+
+            {% for name in review_handles_array %}
+              {% assign name_handle = name | strip | handle %}
+
+              {% for member in shop.metafields.custom_fields.location_collection_team_member_name %}
+                {% assign member_handle = member | strip | handle %}
+                {% if name_handle == member_handle %}
+                  {% assign team_member_index_list = team_member_index_list | append: forloop.index0 | append: ',' %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+
+        {% assign team_member_index_list = team_member_index_list | remove_last: ',' %}
+        {% assign team_member_index_list_array = team_member_index_list | split: ',' %}
+
+        {% render 'meetpeople-right', team_member_index_list_array: team_member_index_list_array %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- endcomment -%}

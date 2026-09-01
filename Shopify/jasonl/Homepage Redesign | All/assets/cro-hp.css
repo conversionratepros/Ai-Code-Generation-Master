@@ -3789,7 +3789,8 @@ body.index-cro-hp .pdp-header-banner {
    ============================================================ */
 .crohp-hero__media,
 .crohp-id__media {
-  isolation: isolate; /* Safari: keep the 20px radius clipping the video layer */
+  isolation: isolate;
+  /* Safari: keep the 20px radius clipping the video layer */
 }
 
 .crohp-video {

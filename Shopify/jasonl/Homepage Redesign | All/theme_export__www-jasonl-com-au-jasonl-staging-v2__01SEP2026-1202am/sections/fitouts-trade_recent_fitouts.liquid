@@ -1,0 +1,275 @@
+{% comment %} 
+NOTE:
+This JS has been used on following pages:
+- fitout-trade_recent_fitouts.liquid 
+- Fitouts-companies-with-img4.liquid
+
+{% endcomment %}
+
+{{ "component-company-logo.css" | asset_url | stylesheet_tag }}
+{{ "fitouts-companies-with-img.css" | asset_url | stylesheet_tag }}
+{{ "fitouts-companies-with-img4.css" | asset_url | stylesheet_tag }}
+{% comment %} 
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous"> {% endcomment %}
+
+
+        {%-comment-%} using render gets an error {%-endcomment-%}
+       
+            <div class="page-width fitouts-list-with-img" id="fitouts-list-with-img">
+                <div class="fitoutImg__heading heading-with-tab">
+                <h2>Our recent projects<span>.</span></h2>
+                <span id="active-slider-index"></span>
+                <div class="fitout-tabs">
+                        <div class="tab active" data-filter="all">All industries</div>
+                        <div class="tab" data-filter="business">Business</div>
+                        <div class="tab" data-filter="home">Home office</div>
+                        <div class="tab" data-filter="trade">Trade</div>
+                        <div class="tab" data-filter="hospitality">Hospitality</div>
+                        <div class="tab" data-filter="npo">NPO</div>
+                    </div>
+                </div>
+                <div id="fitoutsImg4__list" class="fitoutsImg__col3 swiffy-slider slider-nav-autopause slider-indicators-round slider-item-reveal slider-item-snapstart" style="
+                --swiffy-slider-item-ratio:100/33.3;
+                --swiffy-slider-item-reveal:15%;">
+                    <div class="fitoutsImg__list fitoutImg__ajaxHolder fitoutsImg4-mobile-slider-container slider-container"></div>
+                    <div id="fitoutsCounter" class="slider-indicators large-up-hide medium-hide" data-fitoutscounter="0">
+                    </div>
+                </div>
+                <div class="button-holder">
+                    <div class="link fitoutImgList_seemore" id="fitoutImg2List_seemore">
+                        Load more {%- render 'icon-arrow' -%}<span class="loader"></span>
+                    </div>
+                </div>
+            </div>
+ 
+            <script src="{{'fitouts-companies-with-img4.js' |  asset_url }}" type="text/javascript" defer></script>
+{%- comment -%}
+<script>
+
+        let fitoutImg4_buttonFitout = document.getElementById('fitoutImg2List_seemore');
+           
+    function fitoutImg4_loadFitouts(i) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var temp = document.createElement("div");
+                temp.innerHTML = this.responseText;
+                var fitoutsImglist = temp.querySelector("#fitoutsImg4__list");
+    
+                    let tempSliderContainer = fitoutsImglist.querySelector(".fitoutsImg4-mobile-slider-container");
+                    let innerItems = fitoutsImglist.querySelector(".fitoutImg__ajaxHolder");
+    
+                    if (window.innerWidth < 767) {
+                        tempSliderContainer.classList.add("slider-container");
+                        document
+                            .getElementById("fitoutsImg4__list")
+                            .querySelector(".fitoutImg__ajaxHolder").innerHTML += innerItems.innerHTML;
+                            //document.getElementById("fitoutsImg4__list").querySelector(".slider-indicators").innerHTML += '<button></button>';
+                            let activeClass = '';
+                            let index = (i - 1)*8;
+                            // initialCount = (i - 1)*8;
+                            for(let x = 0; x < innerItems.querySelectorAll('a.fitout-article').length; x++){
+                                activeClass = (i === 1 && x + 1 === 1) ? 'active' : '';
+                                index = index + 1;
+                                document.getElementById("fitoutsImg4__list").querySelector(".slider-indicators").innerHTML += `<button class="${activeClass}" data-index="${index}"></button>`;
+                            }
+                    } else {
+                        //document.getElementById("fitoutsImg4__list").innerHTML += fitoutsImglist.innerHTML;
+                        let existingContainer = document
+                            .getElementById("fitoutsImg4__list")
+                            .querySelector(".fitoutImg__ajaxHolder");
+                    
+                        if (existingContainer) {
+                            existingContainer.insertAdjacentHTML("beforeend", innerItems.innerHTML);
+                        }
+                    }
+    
+                fitoutImg4_buttonFitout.classList.remove("active");
+                disablePassiveTabs();
+                if(window.innerWidth < 767 ) {
+                    slideNumber();
+                    }
+            }
+        };
+        xhttp.open("GET", `https://www.jasonl.com.au/blogs/fitouts/tagged/fitouts?page=${i}`);
+        xhttp.send();
+    }
+
+
+    
+            
+            // let fitoutImg4_buttonFitout = document.getElementById('fitoutImg2List_seemore');
+            // let fitoutImg4_numPage = 3;
+
+
+            // function fitoutImg4_loadFitouts(i, direction) {
+            // const xhttp = new XMLHttpRequest();
+            // xhttp.onreadystatechange = function() {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //         console.log(this);
+            //     var temp = document.createElement('div');
+            //         temp.innerHTML = this.responseText;
+                
+            //     var fitoutsImglist = temp.querySelector('#fitoutsImg4__list');
+            //     fitoutImg4_numPage = fitoutsImglist.getAttribute('data-tatolpage');
+            //     console.log(fitoutImg4_numPage);
+
+            //     if(direction == "upward"){
+            //         let newHtml = fitoutsImglist.querySelector('.fitoutImg__ajaxHolder');
+            //         document.getElementById("fitoutsImg4__list").prepend(newHtml);
+            //     }else{
+            //         fitoutsImglist.querySelector('.fitoutImg__ajaxHolder').classList.remove('slider-container');
+            //         let tempSliderContainer = fitoutsImglist.querySelector('.fitoutsImg4-mobile-slider-container');
+            //          let innerItems = fitoutsImglist.querySelector('.fitoutImg__ajaxHolder');
+            //          console.log(fitoutsImglist);
+            //         if(window.innerWidth < 767 ){
+            //             tempSliderContainer.classList.add('slider-container');
+            //             document.getElementById("fitoutsImg4__list").querySelector('.fitoutImg__ajaxHolder').innerHTML += innerItems.innerHTML;
+            //             document.getElementById("fitoutsImg4__list").querySelector('.slider-indicators').innerHTML += '<button></button><button></button><button></button><button></button><button></button><button></button>';
+            //         }else{
+            //             document.getElementById("fitoutsImg4__list").innerHTML  += fitoutsImglist.innerHTML;
+            //         }
+                                  
+
+
+            //     }
+            //     fitoutImg4_buttonFitout.classList.remove('active');
+            //     }
+            // };
+            // //xhttp.open("GET", `https://www.jasonl.com.au/blogs/fitouts?page=${i}`);
+            // xhttp.open("GET", `https://www.jasonl.com.au/blogs/fitouts/tagged/fitouts?page=${i}`);
+            // xhttp.send();
+            // }
+            
+            let fitoutImg4_fitoutCounter = 1;
+            let fitoutImg4_load_fitouts_direction = "downward";
+            
+            fitoutImg4_buttonFitout.addEventListener("click", function(){
+                 console.log(fitoutImg4_numPage);
+                fitoutImg4_buttonFitout.classList.add('active');
+                if(fitoutImg4_fitoutCounter < fitoutImg4_numPage){
+                    fitoutImg4_fitoutCounter++;
+                    fitoutImg4_loadFitouts(fitoutImg4_fitoutCounter, fitoutImg4_load_fitouts_direction );
+                }
+                if(fitoutImg4_fitoutCounter === parseInt(fitoutImg4_numPage)){
+                    setTimeout(function(){
+                         fitoutImg4_buttonFitout.remove();
+                    },2000)
+                }
+            });
+           
+            function initFitouts(){
+             let fitoutsHolders = document.querySelectorAll('.fitoutImg__ajaxHolder');
+             fitoutsHolders.forEach((holder,index) => {
+                holder.remove();
+             });
+             fitoutImg4_loadFitouts(1, 'downward')
+            }
+            initFitouts();
+
+
+            </script>
+
+            <script>
+                if(window.innerWidth < 767 ){
+                    let sliderContainer = document.querySelector('.fitoutsImg4-mobile-slider-container');
+                //  sliderContainer.classList.add('slider-container');
+                    window.addEventListener('load', () => {
+                    //Use only one of the loading options below!
+                    //loads all sliders
+                    //swiffyslider.init();
+                    //loads specific slider
+                    
+                    //swiffyslider.initSlider(document.getElementById('fitoutsImg4__list'));
+                });
+            
+                }
+                
+            </script>
+{%- endcomment -%}
+{% schema %}
+{
+"name": "Fitouts-Trade",
+ "tag": "section",
+"class":"section-fitouts-companies-with-img4 section-fitouts-trade"
+}
+{% endschema %}
+
+
+
+
+
+                
+{%- comment -%} 
+
+<script>
+        function handleResponse() {
+            console.log(this);
+            let response  = JSON.parse(this.responseText);
+            
+            
+            
+            
+            
+            
+            let isLastPage = false;
+
+            
+            let responseHtml = response['inspired-fitouts'];
+            
+            // remove parent sectio tag from response html
+            var temp = document.createElement('div');
+            temp.innerHTML = responseHtml;
+            //let tempHtml = temp.querySelector('.section-inspired-fitouts');
+            let items = temp.querySelectorAll('.grid-item');
+        if(temp.querySelector('.grid-item')){
+
+           
+            var elems = [];
+            var fragment = document.createDocumentFragment();
+            if(items.length < 7 ){
+                isLastPage = true;
+            }
+            items.forEach((item,index) => {
+                fragment.appendChild( item );
+                elems.push( item );
+                // Callback foreach loop
+                if(index == items.length - 1){                    
+                    elem.appendChild( fragment );
+                  //  msnry.appended( elems );
+                     
+                    
+
+                }
+            })
+        }
+    
+    }
+
+        function getFitouts(page){
+            const request = new XMLHttpRequest();
+            //let thisFilter = filter;
+            request.addEventListener('load', handleResponse);
+            request.open('GET', `/blogs/fitouts/?page=${page}&sections=fitouts-companies-with-img4`, true);
+            request.send();
+        }
+        function loadmore(){
+            let btnLoadmore = document.getElementById("loadmore");
+            let page = 1;
+            btnLoadmore.addEventListener('click', function(){
+                let searchParams = new URLSearchParams(window.location.search);
+                if(searchParams.get('page')){
+                    page = searchParams.get('page');
+                    var currentPage  = page;
+                }
+
+                 page++;
+                var nextPage = page; 
+
+                
+                    
+                
+            })
+        }
+</script> {%- endcomment -%}

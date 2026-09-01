@@ -1,0 +1,57 @@
+{%- comment -%} 
+ NOTE::
+ - must use comma(,) after each class
+ - must use shopify white space compress tag ({%- -%}) instead of just normal tag ({%  %})
+{%- endcomment -%}
+{%- capture body_classes_all_combined -%}
+
+gradient,
+
+{%- if settings.animations_hover_elements != 'none' -%}
+    animate--hover-{{ settings.animations_hover_elements }},
+{%- endif -%}
+
+{{template.name}},
+{{template}},
+
+{%- if page.handle == 'assembly-instructions' -%}
+    assembly-instructions-page,
+{%- endif -%}
+
+{%- if page.handle == 'we-make-your-office-fitout-easy-fast' or page.handle == 'blank-canvas-to-beautiful-fitout-fast' or page.handle == 'office-furniture-matters' -%}
+    remove-header,
+{%- endif -%}
+
+status-sidemenu-min,
+
+{%- unless template.name == 'addresses' -%}
+    {%- if template.suffix -%}
+        {{template.name}}-{{template.suffix}},
+    {%- else -%}
+        {{template.name}},
+    {%- endif -%}
+{%- endunless -%}
+
+{%- if template.suffix -%}
+    {{template.name}}-{{template.suffix}},
+{%- else -%}
+    {{template.name}}-template,
+{%- endif -%}
+
+{%- if template.name == 'collection' -%}
+    collection-{{collection.handle}},
+{%- endif -%}
+
+{%- if template == 'collection.rewards' -%}
+    collection collection-template,
+{%- endif -%}
+
+{%- if template == 'product'  and product.tags contains 'bulk' -%}
+    product-template-bulk,
+{%- endif -%}
+
+{%- endcapture -%}
+
+{%- assign body_classes = body_classes_all_combined | strip_newlines | replace: " ", "" | replace: "	", "" -%}
+{{- body_classes |  replace: ',',' ' -}}
+

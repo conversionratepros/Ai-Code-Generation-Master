@@ -1,0 +1,691 @@
+
+{% capture pluseicon %}
+  {% comment %} + {% endcomment %}
+  {% comment %} <svg 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="9px" height="9px" viewBox= "0 0 9 9">
+  <path fill-rule="evenodd"  fill="rgb(0, 0, 0)"
+  d="M8.1000,4.1000 L5.000,4.1000 L5.000,9.000 L4.000,9.000 L4.000,4.1000 L-0.000,4.1000 L-0.000,3.1000 L4.000,3.1000 L4.000,0.000 L5.000,0.000 L5.000,3.1000 L8.1000,3.1000 L8.1000,4.1000 Z"/>
+  </svg> {% endcomment %}
+{% endcapture %}
+{%- assign active_geo_location = 'perth' -%}
+{{ 'location-map-1.css' | asset_url | stylesheet_tag }}
+<div class="shoroom-location-wrap-section">
+  <div class="page-width groupb-showroom-section" id="location-map-1">
+    <div class="accordion-wrapper">
+      <h2>Experience JasonL? <br> Stop by a showroom.</h2>
+        <div class="accordion-list" data-location-region="act">
+          <div class="accordion active">
+            <div class="toggle-title">
+              <div class="toggle-title-text">Sydney City Showroom </div>
+              <address>
+                <div class="address-card-left">
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>Sydney City Showroom</strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                      Shop 3, 29-31 O'Riordan Street,<br> Alexandria, NSW 2015
+                    </div>
+                    <a class="location-call" href="tel:1300350618">Call: 1300 350 618</a> <br>
+                    <a href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Sydney City Showroom">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                  <picture>
+                    <source srcset="{{ 'Fitout-th-alexandria.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ 'Fitout-th-alexandria.jpg' | file_img_url: '245x' }}" alt="Sydney City Showroom" width="205" height="171" loading="lazy">
+                  </picture>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="panel">
+            <address>
+              <div class="address-title">
+                <strong>Sydney City Showroom </strong>
+              </div>
+              <div>Shop 3, 29-31 O'Riordan Street,<br>Alexandria, NSW 2015</div>
+              <a class="location-call" href="tel:1300350618">Call: 1300 350 618</a> <br>
+              <a href="https://goo.gl/maps/aKBosJc6JCzMQVcu8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Sydney City Showroom">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    <picture>
+                      {% comment %} <source srcset="{{ 'Alexandria-materport-poster.png' | file_img_url:'2296x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)"> {% endcomment %}
+                      <source srcset="{{ 'Alexandria-materport-poster.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'Alexandria-materport-poster.png' | file_img_url:'430x' }}" alt="Showroom" width="1148" height="610"  class="cusomthumbnail-img" loading="lazy">
+                    </picture>
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=DaFVZmgStpF&play=1" allowfullscreen="" loading="lazy" store_location="Sydney City Showroom" title="Sydney City Showroom"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-list" data-location-region="brisbane">
+          <div class="accordion">
+            <div class="toggle-title">
+              <div class="toggle-title-text">Brisbane Showroom </div>
+              <address>
+                <div class="address-card-left">
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>Brisbane Showroom </strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                      728 Ann Street,<br>Fortitude Valley, QLD 4006
+                    </div>
+                    <a class="location-call" href="tel:1300350629">Call: 1300 350 629</a> <br>
+                    <a href="https://goo.gl/maps/zPdA8zH1PjU38Co89" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Brisbane Showroom">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                  <picture>
+                    <source srcset="{{ 'Fitout-th-brisbane.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ 'Fitout-th-brisbane.jpg' | file_img_url: '245x' }}" alt="Brisbane Showroom" width="205" height="171" loading="lazy">
+                  </picture>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="panel hidden">
+            <address>
+              <div class="address-title">
+                <strong>Brisbane Showroom </strong>
+              </div>
+              <div>728 Ann Street,<br>Fortitude Valley, QLD 4006</div>
+              <a class="location-call" href="tel:1300350629">Call: 1300 350 629</a> <br>
+              <a href="https://goo.gl/maps/zPdA8zH1PjU38Co89" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Brisbane Showroom">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    <picture>
+                      {% comment %} <source srcset="{{ 'Brisbane-materport-poster.png' | file_img_url:'2296x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)"> {% endcomment %}
+                      <source srcset="{{ 'Brisbane-materport-poster.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'Brisbane-materport-poster.png' | file_img_url:'430x' }}" alt="Brisbane Showroom" width="1148" height="610"  class="cusomthumbnail-img" loading="lazy">
+                    </picture>
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=QjKmwoBrWGW&play=1" allowfullscreen="" loading="lazy" store_location="Brisbane Showroom" title="Brisbane Showroom"></iframe>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="accordion-list" data-location-region="western-sydney">
+          <div class="accordion">
+            <div class="toggle-title">
+              <div class="toggle-title-text">Western Sydney Showroom </div>
+              <address>
+                <div class="address-card-left">
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>Western Sydney Showroom </strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                      15 Sturt Street,<br> Smithfield, NSW 2164
+                    </div>
+                    <a class="location-call" href="tel:1300350624">Call: 1300 350 624</a> <br>
+                    <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Western Sydney Showroom">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                  <picture>
+                    <source srcset="{{ 'Fitout-th-west-sydney.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ 'Fitout-th-west-sydney.jpg' | file_img_url: '245x' }}" alt="Western Sydney Showroom" width="205" height="171" loading="lazy">
+                  </picture>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="panel hidden">
+            <address>
+              <div class="address-title">
+                <strong>Western Sydney Showroom </strong>
+              </div>
+              <div>15 Sturt Street, <br> Smithfield, NSW 2164</div>
+              <a class="location-call" href="tel:1300350624">Call: 1300 350 624</a> <br>
+              <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Western Sydney Showroom">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    <picture>
+                      <source srcset="{{ 'Smithfield-materport-poster.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'Smithfield-materport-poster.png' | file_img_url:'430x' }}" alt="Western Sydney Showroom" width="1148" height="610"  class="cusomthumbnail-img" loading="lazy">
+                    </picture> 
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=9buVPRDFoGQ&play=1" allowfullscreen="" loading="lazy" store_location="Western Sydney Showroom" title="Western Sydney Showroom"></iframe>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="accordion-list" data-location-region="adelaide">
+          <div class="accordion">
+            <div class="toggle-title">
+              <div class="toggle-title-text">Adelaide Showroom </div>
+              <address>
+                <div class="address-card-left">  
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>Adelaide Showroom </strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                      176 Grote Street,<br>Adelaide, SA 5000
+                    </div>
+                    <a class="location-call" href="tel:1300395731">Call: 1300 395 731</a> <br>
+                    <a href="https://goo.gl/maps/DdAtriu4aJzTWpMK7" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Adelaide Showroom">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                  <picture>
+                    <source srcset="{{ 'Fitout-th-adelaide.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ 'Fitout-th-adelaide.jpg' | file_img_url: '245x' }}" alt="Adelaide Showroom" width="205" height="171" loading="lazy">
+                  </picture>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="panel hidden">
+            <address>
+              <div class="address-title">
+                <strong>Adelaide Showroom </strong>
+              </div>
+              <div>176 Grote Street,<br>Adelaide, SA 5000</div>
+              <a class="location-call" href="tel:1300395731">Call: 1300 395 731</a> <br>
+              <a href="https://goo.gl/maps/DdAtriu4aJzTWpMK7" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Adelaide Showroom">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    <picture>
+                      <source srcset="{{ 'Adelaide-materport-poster.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'Adelaide-materport-poster.png' | file_img_url:'430x' }}" alt="Adelaide Showroom" width="1148" height="610"  class="cusomthumbnail-img" loading="lazy">
+                    </picture>
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=cbgWoqogtAb&play=1" allowfullscreen="" loading="lazy" store_location="Adelaide Showroom" title="Adelaide Showroom"></iframe>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="accordion-list" data-location-region="melbourne">
+          <div class="accordion">
+            <div class="toggle-title">
+              <div class="toggle-title-text">Melbourne Showroom </div>
+              <address>
+                <div class="address-card-left">
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>Melbourne Showroom </strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                      100 Park Street,<br>South Melbourne, VIC 3205
+                    </div>
+                    <a class="location-call" href="tel:1300350627">Call: 1300 350 627</a> <br>
+                    <a href="https://goo.gl/maps/DwHYi3deQ9sk3PxAA" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Melbourne Showroom">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                  <picture>
+                    <source srcset="{{ 'Fitout-th-melbourne.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ 'Fitout-th-melbourne.jpg' | file_img_url: '245x' }}" alt="Melbourne Showroom" width="205" height="171" loading="lazy">
+                  </picture>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="panel hidden">
+            <address>
+              <div class="address-title">
+                <strong>Melbourne Showroom </strong>
+              </div>
+              <div>100 Park Street,<br>South Melbourne, VIC 3205</div>
+              <a class="location-call" href="tel:1300350627">Call: 1300 350 627</a> <br>
+              <a href="https://goo.gl/maps/DwHYi3deQ9sk3PxAA" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Melbourne Showroom">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    
+                    <picture>
+                      <source srcset="{{ 'South-Melbourne-materport-poster.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'South-Melbourne-materport-poster.png' | file_img_url:'430x' }}" alt="Melbourne Showroom" width="1148" height="610"  class="cusomthumbnail-img" loading="lazy">
+                    </picture> 
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=BqWrC3LkYnH&play=1" allowfullscreen="" loading="lazy" store_location="Melbourne Showroom" title="Melbourne Showroom"></iframe>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="accordion-list" data-location-region="perth">
+          <div class="accordion">
+            <div class="toggle-title">
+              <div class="toggle-title-text">Perth Showroom & Distribution Centre</div>
+              <address>
+                <div class="address-card-left">
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>Perth Showroom & Distribution Centre</strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                      11 King Edward Road,<br>Osborne Park, WA 6017
+                    </div>
+                    <a class="location-call" href="tel:1300249035">Call: 1300 249 035</a> <br>
+                    <a href="https://maps.app.goo.gl/fiR7X5EX4tRwyDPF8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Perth Showroom">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                  <picture>
+                    <source srcset="{{ 'Fitout-th-perth.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ 'Fitout-th-perth.jpg' | file_img_url: '245x' }}" alt="Perth Showroom & Distribution Centre" width="205" height="171" loading="lazy">
+                  </picture>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="panel hidden">
+            <address>
+              <div class="address-title">
+                <strong>Perth Showroom </strong>
+              </div>
+              <div>11 King Edward Road,<br> Osborne Park, WA 6017</div>
+              <a class="location-call" href="tel:1300249035">Call: 1300 249 035</a> <br>
+              <a href="https://maps.app.goo.gl/fiR7X5EX4tRwyDPF8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Perth Showroom">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    <picture>
+                      <source srcset="{{ 'Perth-materport-poster.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'Perth-materport-poster.png' | file_img_url:'430x' }}" alt="Perth Showroom" width="1148" height="610"  class="cusomthumbnail-img" loading="lazy">
+                    </picture> 
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=MqNTA1bfuc9&play=1" allowfullscreen="" loading="lazy" store_location="Perth Showroom" title="Perth Showroom"></iframe>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="accordion-list" data-location-region="east-coast">
+          <div class="accordion">
+            <div class="toggle-title">
+              <div class="toggle-title-text">East Coast Distribution Centre </div>
+              <address>
+                <div class="address-card-left">
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>East Coast Distribution Centre </strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                      2A/149 McCredie Road,<br> Smithfield, NSW 2164
+                    </div>
+                    <a class="location-call" href="tel:1300350624">Call: 1300 350 624</a> <br>
+                    <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="East Coast Distribution Centre">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                  <picture>
+                    <source srcset="{{ 'Fitout-th-east-coast-dist-centre.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                    <img src="{{ 'Fitout-th-east-coast-dist-centre.jpg' | file_img_url: '245x' }}" alt="East Coast Distribution Centre" width="205" height="171" loading="lazy">
+                  </picture>
+                </div>
+
+              </address>
+            </div>
+          </div>
+          <div class="panel hidden">
+            <address>
+              <div class="address-title">
+                <strong>East Coast Distribution Centre </strong>
+              </div>
+              <div>2A/149 McCredie Road,<br> Smithfield, NSW 2164</div>
+              <a class="location-call" href="tel:1300350624">Call: 1300 350 624</a> <br>
+              <a href="https://goo.gl/maps/QspxWRWqcy4M6TGs9" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="East Coast Distribution Centre">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    <picture>
+                      <source srcset="{{ 'Smithfield-materport-poster.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'Smithfield-materport-poster.png' | file_img_url:'430x' }}" alt="East Coast Distribution Centre" width="1148" height="610"  class="cusomthumbnail-img" loading="lazy">
+                    </picture> 
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=9buVPRDFoGQ&play=1" allowfullscreen="" loading="lazy" store_location="East Coast Distribution Centre" title="East Coast Distribution Centre"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="accordion-list" data-location-region="gold-coast">
+          <div class="accordion">
+            <div class="toggle-title">
+              <div class="toggle-title-text">Gold Coast Showroom</div>
+              <address>
+                <div class="address-card-left">
+                  <div class="listicon">
+                    {{ pluseicon }}
+                  </div>
+                  <div class="location-title-lg">
+                    <strong>Gold Coast Showroom</strong>
+                  </div>
+                  <div class="address-card-body">
+                    <div>
+                        50 Ferry Rd, Southport <br>QLD 4215, Australia
+                    </div>
+                    <a class="location-call" href="tel:1300182947">Call: 1300 182 947</a> <br>
+                    <a href="https://maps.app.goo.gl/24kes8yqHdZF1GvN8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Gold Coast Showroom">Get Directions</a>
+                  </div>
+                </div>
+                <div class="address-card-right">
+                    <picture>
+                      <source srcset="{{ 'Fitout-th-gold-coast.jpg' | file_img_url: '490x' }}" media="(min-width: 769px) and (min-resolution: 2dppx)">
+                      <img src="{{ 'Fitout-th-gold-coast.jpg' | file_img_url: '245x' }}" alt="Gold Coast Showroom" width="205" height="171" loading="lazy">
+                    </picture>
+                </div>
+              </address>
+            </div>
+          </div>
+          <div class="panel hidden">
+            <address>
+              <div class="address-title">
+                <strong>Gold Coast Showroom</strong>
+              </div>
+              <div> 50 Ferry Rd, Southport <br>QLD 4215, Australia</div>
+              <a class="location-call" href="tel:1300182947">Call: 1300 182 947</a> <br>
+              <a href="https://maps.app.goo.gl/24kes8yqHdZF1GvN8" class="location-call getdirectionbtn" target="_blank" rel="noopener noreferrer" data-ga4="location_engagement" direction_location="Gold Coast Showroom">Get Directions</a>
+            </address>
+            <div class="matterport-with-thumbnail">
+              <div class="iframe-container" style="background-image: url(' ');">
+                
+                  <div class="cusomthumbnail">
+                    <div class="playbtn"><span class="playicon"></span></div> 
+                    <span class="walkthrough-overlay-text">3D Showroom <br> walkthrough</span>
+                    <div class="poweredbymtrportlogo">
+                      <svg data-name="matterportCapa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.55 51.74" width="116px" height="48px">
+                        <g>
+                          <path d="M37.89,29.71l3.02,6.03,3.15-6.03h3.15v11.37h-2.74l.14-7.12-3.63,6.85-3.5-6.85c-.34,0,0,.4,0,.48v6.65h-2.74v-11.37h3.15Z"></path>
+                          <path d="M91.47,31.49v1.51s.82-1.03.82-1.03c2.59-1.8,5.06-.09,5.58,2.78.69,3.76-.9,8.04-5.38,6.06l-1.03-1.23v4.38h-2.67l-.21-.21v-12.06l.21-.21h2.67ZM94.57,38.57c.58-.57.54-2.4.46-3.17-.24-2.29-3.32-2.46-3.56-.27-.08.69-.08,2.62.24,3.18.48.83,2.22.89,2.86.26Z"></path>
+                          <path d="M74.61,37.25c-.06,1.69,1.6,2.05,2.99,1.69.66-.17,1.04-.7,1.6-1,.19.38,1.4,1.5,1.3,1.83-.08.26-1.41,1.03-1.74,1.15-4.53,1.65-7.81-1.18-6.99-5.89.86-4.98,7.98-5.12,8.97-.13.13.66.36,1.81-.03,2.36h-6.1ZM77.9,35.47c.2-2.86-3.36-2.72-3.29,0h3.29Z"></path>
+                          <path d="M57.07,38.76h.82v2.33h-1.99c-.56,0-1.24-1.08-1.51-1.51-.84,2.29-4.85,2.37-5.71.1-.53-1.39-.23-2.96,1.1-3.75.24-.14,1.4-.6,1.6-.6h2.81c.16-1.47-1-2.07-2.33-1.72-.55.15-.98.73-1.43,1.03l-1.57-1.55c1.36-2.36,6.31-2.52,7.69-.19.18.31.52,1.36.52,1.67v4.18ZM54.2,36.97c-.79.03-2.61-.24-2.85.78-.29,1.23.54,1.69,1.65,1.51,1.32-.21,1.23-1.19,1.2-2.3Z"></path>
+                          <path d="M103.09,31.26c3.94-.27,5.47,3.08,4.93,6.57-.73,4.71-8.67,4.91-9.15-.65-.25-2.9,1.04-5.71,4.23-5.93ZM103.08,33.58c-.44.09-1.07.57-1.17,1.02-.11.48-.1,2.73-.02,3.25.25,1.58,3.05,1.77,3.28-.54.15-1.53.15-4.2-2.09-3.73Z"></path>
+                          <path d="M62.28,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.53c-.79,0-2.12-1.45-2.12-2.26v-5h-1.37v-2.33c1.84.22,1.72-.7,1.64-2.19h2.6Z"></path>
+                          <path d="M69.13,29.3v2.19h1.92v2.33h-1.92v4.93h1.78v2.33h-2.4c-1,0-2.26-1.41-2.26-2.4v-4.86h-1.37v-2.33l1.47-.17.17-2.02h2.6Z"></path>
+                          <path d="M118.32,29.3v2.19h2.19v2.33h-1.92v4.73c.44.41,1.21.13,1.78.21v2.33h-2.4c-.63,0-1.64-.79-1.92-1.37-.06-.12-.34-.98-.34-1.03v-9.39h2.6Z"></path>
+                          <path d="M84.75,31.49l.07,1.65c.58-1.26,1.72-1.8,3.08-1.65v2.33c-.88.25-2.32-.01-2.86.91-.05.09-.29.75-.29.8v5.55h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M112.02,31.49l.07,1.65c.45-1.13,1.73-1.88,2.95-1.59l.11,2.25c-.96.34-1.96-.11-2.72.77-.07.08-.41.65-.41.69v5.82h-2.67l-.21-.21v-9.18l.21-.21h2.67Z"></path>
+                          <path d="M25.97,25.86l-6.64,1.93-6.7-1.93-2.59.78v17.17l2.75.72,6.55-1.84,6.7,1.84,2.59-.75v-17.14l-2.66-.78ZM23.23,38.72l-3.9-1.13-4.02,1.13v-6.97l4.02,1.11,3.9-1.11v6.97Z"></path>
+                        </g>
+                        <g>
+                          <path d="M38.89,16.38c-.15.28-.39.51-.72.69-.33.18-.75.27-1.27.27h-1.13v2.54h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67.25.6.25.94c0,.32-.07.62-.22.9ZM37.77,16.24c.19-.18.29-.43.29-.75,0-.68-.39-1.03-1.16-1.03h-1.13v2.04h1.13c.39,0,.68-.09.87-.27Z"></path>
+                          <path d="M42.42,19.53c-.49-.27-.88-.65-1.16-1.14-.29-.49-.43-1.04-.43-1.65s.14-1.16.43-1.65c.28-.49.67-.87,1.16-1.14.49-.27,1.02-.41,1.61-.41s1.13.14,1.62.41c.49.27.87.65,1.16,1.14.28.49.42,1.04.42,1.65s-.14,1.16-.42,1.65c-.28.49-.67.87-1.16,1.14-.49.27-1.03.41-1.62.41s-1.12-.14-1.61-.41ZM45.14,18.76c.32-.19.58-.46.76-.81s.27-.76.27-1.22-.09-.87-.27-1.21-.44-.62-.76-.8c-.32-.19-.69-.28-1.11-.28s-.78.09-1.11.28c-.32.19-.58.45-.76.8-.18.35-.27.75-.27,1.21s.09.87.27,1.22c.18.35.44.62.76.81.32.19.69.28,1.11.28s.78-.09,1.11-.28Z"></path>
+                          <path d="M57.46,13.62l-1.85,6.25h-1.16l-1.31-4.73-1.4,4.73h-1.15s-1.77-6.25-1.77-6.25h1.09l1.3,5.09,1.4-5.09h1.15l1.31,5.07,1.31-5.07h1.1Z"></path>
+                          <path d="M60.41,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M68.43,19.88l-1.44-2.5h-.78v2.5h-1.03v-6.25h2.16c.48,0,.89.08,1.22.25s.58.39.75.67c.17.28.25.6.25.95,0,.41-.12.78-.36,1.11-.24.33-.6.56-1.09.68l1.55,2.59h-1.22ZM66.2,16.55h1.13c.38,0,.67-.1.87-.29.19-.19.29-.45.29-.77s-.1-.58-.29-.76-.48-.27-.87-.27h-1.13v2.1Z"></path>
+                          <path d="M72.97,14.45v1.84h2.16v.84h-2.16v1.92h2.43v.84h-3.46v-6.26h3.46v.84h-2.43Z"></path>
+                          <path d="M81.54,14c.5.26.89.62,1.16,1.1s.41,1.03.41,1.67-.14,1.19-.41,1.66c-.27.47-.66.83-1.16,1.08s-1.08.37-1.75.37h-2.04v-6.25h2.04c.67,0,1.25.13,1.75.38ZM81.47,18.44c.39-.4.58-.95.58-1.67s-.19-1.29-.58-1.7c-.39-.41-.95-.61-1.68-.61h-1.02v4.58h1.02c.73,0,1.29-.2,1.68-.59Z"></path>
+                          <path d="M92.83,17.19c.23.29.35.63.35,1,0,.32-.08.6-.25.86-.17.26-.4.46-.72.6-.31.15-.68.22-1.09.22h-2.5v-6.25h2.39c.43,0,.79.07,1.1.22.31.14.54.34.69.58.16.24.23.51.23.81,0,.36-.1.66-.29.9-.19.24-.45.42-.77.53.34.06.62.24.85.53ZM89.65,16.25h1.27c.34,0,.6-.08.79-.23s.28-.37.28-.66-.09-.5-.28-.66c-.19-.16-.45-.24-.79-.24h-1.27v1.79ZM91.85,18.79c.2-.17.3-.4.3-.7s-.1-.55-.31-.73c-.21-.18-.49-.27-.84-.27h-1.35v1.95h1.39c.35,0,.62-.08.82-.25Z"></path>
+                          <path d="M100.01,13.62l-2.07,3.99v2.27h-1.03v-2.27l-2.08-3.99h1.14l1.45,3.07,1.45-3.07h1.13Z"></path>
+                        </g>
+                      </svg> 
+                    </div>
+                    <picture>
+                      <source srcset="{{ 'Gold-Coast.png' | file_img_url:'1148x' }}" media="(min-width: 768px)">
+                      <img src="{{ 'Gold-Coast.png' | file_img_url:'430x' }}" alt="Gold Coast Showroom" width="1148" height="610" class="cusomthumbnail-img" loading="lazy">
+                    </picture> 
+                  </div>
+                  <iframe data-src="https://my.matterport.com/show/?m=VUVAtTzHRai&play=1" allowfullscreen="" loading="lazy" store_location="Gold Coast Showroom" title="Gold Coast Showroom"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      
+    </div>
+  </div> 
+</div>
+{% comment %} <script src="{{ 'location-with-matterport.js' | asset_url }}" defer></script> {% endcomment %}

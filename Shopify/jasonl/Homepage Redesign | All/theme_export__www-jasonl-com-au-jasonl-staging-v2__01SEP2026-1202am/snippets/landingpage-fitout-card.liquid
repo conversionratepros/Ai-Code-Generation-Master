@@ -1,0 +1,27 @@
+
+{%- if article.metafields.fitout_blog.logo -%}
+{%- assign class_imglogo = 'img-logo' -%}
+{%- assign img_desktop = article.metafields.fitout_blog.fitout_logo | file_img_url: '114x114' -%}
+{%- assign img_mobile = article.metafields.fitout_blog.fitout_logo | file_img_url: '100x100' -%}
+{%-else-%}
+{%- assign img_desktop = article.image | img_url: '114x114_crop_center' -%}
+{%- assign img_mobile = article.image | img_url: '100x100_crop_center' -%}
+{%-endif-%}
+{%- assign img_fitout = article.image | img_url: '375x190_crop_center' -%}
+<div class="landingpage-fitout-card">
+    <picture>
+        <img {%if class_imglogo %}class="{{class_imglogo}}" {% endif %} {% unless template contains 'fitouts'
+            %}loading="lazy" {%endunless%} src="{{img_fitout}}"
+            alt="{{article.metafields.fitout_blog.fitout_client_name}} Office Fitout" />
+    </picture>
+    <div class="fitoutsImg_cnt">
+        <h3>
+            {%- if article.metafields.fitout_blog.fitout_client_name != blank -%}
+            {{article.metafields.fitout_blog.fitout_client_name}}
+            {%- else -%}
+            {{article.title}}
+            {%- endif -%}
+        </h3>
+        <img src="{{img_desktop}}" alt="{{article.metafields.fitout_blog.fitout_client_name}}" />
+    </div>
+</div>

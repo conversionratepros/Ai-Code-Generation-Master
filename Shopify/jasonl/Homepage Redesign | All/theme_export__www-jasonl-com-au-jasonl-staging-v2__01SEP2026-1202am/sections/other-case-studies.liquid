@@ -1,0 +1,57 @@
+{% comment %} Featured Fitouts with tab filter on desktop and slider on mobile {% endcomment %}
+{{ "other-case-studies.css" | asset_url | stylesheet_tag }}
+<div class="other-case-studies">
+    <div class="page-width">
+        <h2>Curious to see more?</h2>
+        <div class="card-list">
+            {% assign ran_array = "" %}
+            {%- assign random_number = "" -%}
+
+            {% for i in (1..10) %} 
+                    {%- assign seed = "now" | date: "%s%N" -%}
+                    {%- assign ran_array = seed | modulo: blog.articles.size | plus: 1 -%}
+                    {% if forloop.index == 1  %}
+                        {%- assign random_number = ran_array -%}
+                    {% else %}
+                        {%- assign random_number = random_number | append:',' | append: ran_array-%}
+                    {%- endif -%}
+                    {% comment %} ----- {{ ran_array | json }} ---- {% endcomment %}
+            {% endfor %}
+
+            {%- assign random_number_split = random_number | split:',' -%}
+            {%- assign unique_rand_num = random_number_split | uniq -%}
+              {% comment %} {%- for item in unique_rand_num limit:4 -%} {% endcomment %}
+            {% for i in (0..3) %}
+                {% assign idx = unique_rand_num[i] | plus: 0 %}
+                {% assign article = blog.articles[idx] %}
+                {% if article %}
+                    <div class="card">
+                        <div class="thumnail">
+                            {% if article.image.src %}
+                                <img src="{{ article.image.src | image_url }}" alt="{{ article.title }}" width="auto" height="auto">
+                            {% else %}
+                                <img src="{{ 'Fitout-header.jpg' |  file_img_url: '600x' }}" alt="{{ article.title }}" width="auto" height="auto">
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ article.url }}">{{ article.title }}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%- schema -%}
+{
+"name": "Fitouts",
+ "tag": "section",
+// "class":"section-fitouts-companies-with-img4"
+}
+{%- endschema %}
+
+
+
+
+
+                

@@ -1,0 +1,222 @@
+{{'jscalender.css' | asset_url | stylesheet_tag }}
+{{'blocked-customer.css' | asset_url | stylesheet_tag }}
+{{ 'jscalender.js' | asset_url | script_tag }}
+
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous"> {% endcomment %}
+<style>
+    html{
+        padding: 0px;
+    }
+</style>
+{%- capture tickicon -%}
+<svg class="svg-tick" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.89163 13.2687L9.16582 17.5427L18.7085 8" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+{%- endcapture -%}
+{%- capture html -%}
+<div class="bc-wrapper">
+  <div class="page-width">
+    <div class="bc-top">
+      <svg class="jasonl-logo" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.05 24.775">
+        <path d="M22.8,5.8H19.2c-.2,0-.2.1-.2.2V7.2a.09794.09794,0,0,0-.1-.1,4.07135,4.07135,0,0,0-1.4-1.2,6.1187,6.1187,0,0,0-4-.4A6.369,6.369,0,0,0,8.7,9.8a8.325,8.325,0,0,0,0,5.4,6.98584,6.98584,0,0,0,1.9,2.9,6.381,6.381,0,0,0,3.7,1.5,5.70769,5.70769,0,0,0,2.9-.4A4.88733,4.88733,0,0,0,19,17.8V19c0,.2,0,.2.2.2h3.6c.2,0,.2-.1.2-.2V6C23.1,5.9,23,5.8,22.8,5.8Zm-5.7,9.8a3.3119,3.3119,0,0,1-4.7-2.5A3.43608,3.43608,0,0,1,14,9.5a3.3685,3.3685,0,0,1,5,2.3c0,.2.1.5.1.7A3.16681,3.16681,0,0,1,17.1,15.6Z" />
+        <path d="M47.1,5.9a7.75588,7.75588,0,0,0-4.5-.4,6.71251,6.71251,0,0,0-4.7,3.3,7.25491,7.25491,0,0,0-.6,6.1,6.14446,6.14446,0,0,0,2,3,7.07139,7.07139,0,0,0,4.8,1.7,6.56512,6.56512,0,0,0,3.2-.7,6.82754,6.82754,0,0,0,4-6,6.95143,6.95143,0,0,0-.9-4A6.07823,6.07823,0,0,0,47.1,5.9Zm-2,9.9a3.18985,3.18985,0,0,1-3.9-2,3.55971,3.55971,0,0,1,1.3-4.1,3.14074,3.14074,0,0,1,4.8,2,2.48542,2.48542,0,0,1,.1.8A3.36656,3.36656,0,0,1,45.1,15.8Z" />
+        <path d="M65.3,10.8a13.55363,13.55363,0,0,0-.2-2,4.13515,4.13515,0,0,0-2-2.8,5.59846,5.59846,0,0,0-3.6-.7,3.726,3.726,0,0,0-2.7,1.5c-.1.1-.1.2-.2.3h0V5.9c0-.2,0-.2-.2-.2H53.1c-.2,0-.3.1-.3.2v13c0,.2,0,.2.2.2h3.5c.2,0,.3,0,.3-.3v-8A1.921,1.921,0,0,1,58.2,9a6.14959,6.14959,0,0,1,1.4-.1A1.70591,1.70591,0,0,1,61,10.2a5.01937,5.01937,0,0,1,.2,1.2v7.3c0,.2,0,.2.2.2h3.5a.26517.26517,0,0,0,.3-.3C65.3,16.3,65.3,13.6,65.3,10.8Z" />
+        <path d="M33.7,11.9a12.53666,12.53666,0,0,0-2.5-.9,7.10415,7.10415,0,0,1-1.8-.8.80737.80737,0,0,1-.4-.9,1.25,1.25,0,0,1,2.4,0,.26517.26517,0,0,0,.3.3h3.2c.4,0,.4,0,.4-.4a4.32012,4.32012,0,0,0-2.1-3.1,5.82292,5.82292,0,0,0-3.4-.7,5.2185,5.2185,0,0,0-3.4,1.4,3.68526,3.68526,0,0,0-1.2,3.5,3.33205,3.33205,0,0,0,2.1,2.5,17.178,17.178,0,0,0,2.9,1.1,4.49453,4.49453,0,0,1,1.2.6,1.12691,1.12691,0,0,1,.2,1.6,1.4362,1.4362,0,0,1-1.5.5,1.38266,1.38266,0,0,1-1.2-1.1c0-.2-.1-.3-.3-.2H25.1c-.1,0-.2,0-.2.2a4.27913,4.27913,0,0,0,2.2,3.4,6.4711,6.4711,0,0,0,5.9.3,4.28989,4.28989,0,0,0,2.8-3.3,3.57121,3.57121,0,0,0-2.1-4Z" />
+        <path d="M6.6,5.8H3.2C3,5.8,3,5.8,3,6V19.7a1.632,1.632,0,0,1-1.4,1.7,6.55208,6.55208,0,0,1-1.4,0c-.1,0-.2,0-.2.1v2.9a.21508.21508,0,0,0,.2.2,6.89252,6.89252,0,0,0,3.5-.1,4.14262,4.14262,0,0,0,2.9-2.7,7.61252,7.61252,0,0,0,.3-2.1V6.1C6.9,5.8,6.8,5.8,6.6,5.8Z" />
+        <path d="M79.9,16.3a2.4375,2.4375,0,0,1-1.2,0,1.83858,1.83858,0,0,1-1.4-.8,1.97808,1.97808,0,0,1-.2-1.1V.9a.26517.26517,0,0,0-.3-.3H73.4a.26517.26517,0,0,0-.3.3V14.4a7.56868,7.56868,0,0,0,.1,1.5A4.44178,4.44178,0,0,0,75.4,19a6.66309,6.66309,0,0,0,4.4.4c.1,0,.1-.1.1-.2V16.3Z" />
+        <path d="M69.6,14.9a2.3,2.3,0,1,0,0,4.6,2.3,2.3,0,1,0,0-4.6Z" />
+        <path d="M4.9,0A2.20485,2.20485,0,0,0,2.6,2.3,2.07692,2.07692,0,0,0,4.9,4.5,2.18163,2.18163,0,0,0,7.2,2.3,2.20485,2.20485,0,0,0,4.9,0Z" />
+      </svg>
+    </div>
+    <div class="bc-body not-confirmed" data-slide-index="slide-0" data-slide-active="slide-0">
+      <div class="bc-col bc-col-left">
+        <div class="bc-cnt bc-cnt-steps">
+          <div class="bc-user" id="customer-name"></div> {% if  page.metafields.custom_fields.intro_text %} <h3 class="label-date">{{ page.metafields.custom_fields.intro_text }}</h3> {% endif %} <h3 class="label-method"> Select how you prefer to be contacted. </h3>
+          <ul class="bc-steps">
+            <li class="active"> {% if  page.metafields.custom_fields.title_step_1 %} <span class="step-num">1</span>
+              {{ page.metafields.custom_fields.title_step_1 }} {% render 'icon-arrow' %} {{tickicon}} {% endif %}
+            </li>
+            <li> {% if  page.metafields.custom_fields.title_step_2 %} <span class="step-num">2</span>
+              {{ page.metafields.custom_fields.title_step_2 }} {% render 'icon-arrow' %} {{tickicon}} {% endif %}
+            </li>
+            <li> {% if  page.metafields.custom_fields.title_step_3 %} <span class="step-num">3</span>
+              {{ page.metafields.custom_fields.title_step_3 }} {% render 'icon-arrow' %} {{tickicon}} {% endif %}
+            </li>
+          </ul>
+        </div>
+        <div class="bc-cnt bc-cnt-summery">
+          <h3> {% if page.metafields.custom_fields.summary_text_1 %} {{ page.metafields.custom_fields.summary_text_1 }} {% endif %} </h3>
+        </div>
+      </div>
+      <div class="bc-col bc-col-right">
+        <div class="swiffy-slider slider-nav-autohide slider-nav-noloop" id="swiffy-slider">
+          <div class="slider-container">
+            <div class="bc-item bc-item-1">
+              <div id="jsCalendar" data-zero-fill="true" data-navigator-position="right" data-month-format="month YYYY"></div>
+              <span id="enter-date" class="error-msg">Please select a date. <span class="close"></span>
+              </span>
+            </div>
+            <div class="bc-item bc-item-2">
+              <div class="timepicker">
+                <span class="label">Time</span>
+                <div class="time-holder">
+                  <ul>
+                    <li id="hour" class="time-dropdown hour">
+                      <span id="hour-up" class="time-arrow up hour-up"></span>
+                      <input type="text" id="hour-value" class="hour-value" value="00" disabled>
+                      <span id="hour-down" class="time-arrow down hour-down"></span>
+                      <!-- <div class="time-table hour-table"><ul class="hour-list"><li>10 AM</li><li>11 AM</li><li>12 PM</li><li>1 PM</li><li>2 PM</li><li>3 PM</li><li>4 PM</li></ul></div> -->
+                    </li>
+                    <li class="time-sep">:</li>
+                    <li id="minute" class="time-dropdown minute">
+                      <span id="minute-up" class="time-arrow up minute-up"></span>
+                      <input type="text" id="minute-value" class="minute-value" value="00" disabled>
+                      <span id="minute-down" class="time-arrow down minute-down"></span>
+                      <!-- <div class="time-table minute-table"><ul class="minute-list"><li>0 min</li><li>10 min</li><li>15 min</li><li>20 min</li><li>25 min</li><li>30 min</li><li>35 min</li><li>40 min</li><li>45 min</li><li>50 min</li><li>55 min</li></ul></div> -->
+                    </li>
+                  </ul>
+                </div>
+                <div id="ampm-status" class="ampm-holder">
+                  <ul>
+                    <li class="am">AM</li>
+                    <li class="pm">PM</li>
+                    <li class="active"></li>
+                  </ul>
+                </div>
+              </div>
+              <span id="enter-time" class="error-msg">Please pick a time. <span class="close"></span>
+              </span>
+              <span id="enter-hour" class="error-msg">Please pick a time. <span class="close"></span>
+              </span>
+            </div>
+            <div class="bc-item bc-item-3">
+              <div class="contact-medium">
+                <label class="radio-container container-googlemeet">
+                  <svg xmlns="http://www.w3.org/2000/svg" aria-label="Google Meet" role="img" viewBox="0 0 512 512">
+                    <path d="M166 106v90h-90" fill="#ea4335" />
+                    <path d="M166 106v90h120v62l90-73v-49q0-30-30-30" fill="#ffba00" />
+                    <path d="M164 406v-90h122v-60l90 71v49q0 30-30 30" fill="#00ac47" />
+                    <path d="M286 256l90-73v146" fill="#00832d" />
+                    <path d="M376 183l42-34c9-7 18-7 18 7v200c0 14-9 14-18 7l-42-34" fill="#00ac47" />
+                    <path d="M76 314v62q0 30 30 30h60v-92" fill="#0066da" />
+                    <path d="M76 196h90v120h-90" fill="#2684fc" />
+                  </svg>
+                  <span class="contact-title">Google Meet</span>
+                  <input type="radio" name="radio" value="googlemeet">
+                  <span class="checkmark">
+                    {{tickicon}}
+                  </span>
+                </label>
+                <label class="radio-container container-phoneme">
+                  <svg class="svg-icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M554.666667 341.333333a128 128 0 0 1 128 128 42.666667 42.666667 0 0 0 85.333333 0 213.333333 213.333333 0 0 0-213.333333-213.333333 42.666667 42.666667 0 0 0 0 85.333333z" />
+                    <path d="M554.666667 170.666667a298.666667 298.666667 0 0 1 298.666666 298.666666 42.666667 42.666667 0 0 0 85.333334 0 384 384 0 0 0-384-384 42.666667 42.666667 0 0 0 0 85.333334zM928 678.826667a42.666667 42.666667 0 0 0-30.72-27.733334l-256-58.453333a42.666667 42.666667 0 0 0-39.253333 11.093333c-5.973333 5.546667-6.4 5.973333-34.133334 58.88a422.826667 422.826667 0 0 1-207.786666-208.64C414.293333 426.666667 414.72 426.666667 420.266667 420.266667a42.666667 42.666667 0 0 0 11.093333-39.253334L372.906667 128a42.666667 42.666667 0 0 0-27.733334-30.72 161.706667 161.706667 0 0 0-30.72-7.68A168.106667 168.106667 0 0 0 281.6 85.333333 196.266667 196.266667 0 0 0 85.333333 281.6 657.92 657.92 0 0 0 742.4 938.666667a196.266667 196.266667 0 0 0 196.266667-196.266667 203.52 203.52 0 0 0-2.56-32.426667 185.173333 185.173333 0 0 0-8.106667-31.146666z" />
+                  </svg>
+                  <span class="contact-title">Phone me</span>
+                  <input type="radio" name="radio" value="phone">
+                  <span class="checkmark">
+                    {{tickicon}}
+                  </span>
+                </label>
+              </div>
+              <span id="enter-method" class="error-msg">Please select a contact method. <span class="close"></span>
+              </span>
+            </div>
+            <div class="bc-item bc-item-4 bc-item-last">
+              <div class="summery-container">
+                <strong class="heading">Summary</strong>
+                <ul>
+                  <li class="summary-datetime">
+                    <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve">
+                      <path d="M30,0.061c-16.542,0-30,13.458-30,30s13.458,29.879,30,29.879s30-13.337,30-29.879S46.542,0.061,30,0.061z M32,30.939
+                                        c0,1.104-0.896,2-2,2H14c-1.104,0-2-0.896-2-2s0.896-2,2-2h14v-22c0-1.104,0.896-2,2-2s2,0.896,2,2V30.939z" />
+                    </svg>
+                    <span class="selected-date-time"></span>
+                  </li>
+                  <li class="summary-contactmedium">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                      <g id="XMLID_1_">
+                        <path id="XMLID_6_" d="M319.8,79.6H32.3C15,79.6,0,93.7,0,111.9v288.3c0,17.3,14.2,32.3,32.3,32.3h288.3
+                                        c17.3,0,32.3-14.2,32.3-32.3V111.1C352.1,93.7,337.9,79.6,319.8,79.6z" />
+                        <path id="XMLID_7_" d="M484.4,133.9l-59.1,35.4c-11.8,7.1-28.4,17.3-41.7,25.2v119.7c12.6,7.9,29.1,17.3,41.7,25.2
+                                        l59.1,35.4c15,9.5,27.6,2.4,27.6-15.8V149.7C512,132.3,499.4,125.2,484.4,133.9z" />
+                      </g>
+                    </svg>
+                    <span class="selected-contact-medium"></span>
+                  </li>
+                </ul>
+                <div class="next-steps">
+                  <strong class="heading">Next Steps?</strong> {% comment %} <p> {% if  page.metafields.custom_fields.summary_text_2 %} {{ page.metafields.custom_fields.summary_text_2 }} {% endif %} </p> {% endcomment %} <p>You will receive an email invite with an "add to calender" option</p>
+                  <p>If you have opted for a Google Meet call you will find the link attached to the event foreasy access.</p>
+                </div>
+                <!-- <a class="button button--primary confirm">Confirm</a> -->
+                <!-- <button type="button" class=" link pick-different-option">Pick different option</button>  -->
+              </div>
+            </div>
+          </div>
+          <div class="button-holder">
+            <button type="button" class="slider-nav slider-nav-prev">
+              <svg class="svg-icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M640 768c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C661.333333 763.733333 652.8 768 640 768z" />
+                <path d="M853.333333 554.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C874.666667 550.4 866.133333 554.666667 853.333333 554.666667z" />
+                <path d="M853.333333 554.666667 170.666667 554.666667c-25.6 0-42.666667-17.066667-42.666667-42.666667s17.066667-42.666667 42.666667-42.666667l682.666667 0c25.6 0 42.666667 17.066667 42.666667 42.666667S878.933333 554.666667 853.333333 554.666667z" />
+              </svg>
+              <span>Prev</span>
+            </button>
+            <button disabled type="button" class="slider-nav slider-nav-next">
+              <span>Next</span>
+              <svg class="svg-icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M640 768c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C661.333333 763.733333 652.8 768 640 768z" />
+                <path d="M853.333333 554.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C874.666667 550.4 866.133333 554.666667 853.333333 554.666667z" />
+                <path d="M853.333333 554.666667 170.666667 554.666667c-25.6 0-42.666667-17.066667-42.666667-42.666667s17.066667-42.666667 42.666667-42.666667l682.666667 0c25.6 0 42.666667 17.066667 42.666667 42.666667S878.933333 554.666667 853.333333 554.666667z" />
+              </svg>
+            </button>
+            <button id="temp-btn" class="temp-btn">
+              <span>Next</span>
+              <svg class="svg-icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M640 768c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C661.333333 763.733333 652.8 768 640 768z" />
+                <path d="M853.333333 554.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C874.666667 550.4 866.133333 554.666667 853.333333 554.666667z" />
+                <path d="M853.333333 554.666667 170.666667 554.666667c-25.6 0-42.666667-17.066667-42.666667-42.666667s17.066667-42.666667 42.666667-42.666667l682.666667 0c25.6 0 42.666667 17.066667 42.666667 42.666667S878.933333 554.666667 853.333333 554.666667z" />
+              </svg>
+            </button>
+            <button class="slider-nav slider-nav-next confirm">
+              <span>Next</span>
+              <svg class="svg-icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path d="M640 768c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C661.333333 763.733333 652.8 768 640 768z" />
+                <path d="M853.333333 554.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C874.666667 550.4 866.133333 554.666667 853.333333 554.666667z" />
+                <path d="M853.333333 554.666667 170.666667 554.666667c-25.6 0-42.666667-17.066667-42.666667-42.666667s17.066667-42.666667 42.666667-42.666667l682.666667 0c25.6 0 42.666667 17.066667 42.666667 42.666667S878.933333 554.666667 853.333333 554.666667z" />
+              </svg>
+            </button>
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          <div id="slider-indicators" class="slider-indicators" style="">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+            <button></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a id="page-back" class="page-back">{% render 'icon-arrow' %} Go back</a>
+  </div>
+</div>
+{%- endcapture -%}
+{%- assign html_strip_space = html | replace: "  ","" -%}
+{{html_strip_space | strip_newlines }}
+<script>
+  (function(g,e,o,t,a,r,ge,tl,y){
+  t=g.getElementsByTagName(e)[0];y=g.createElement(e);y.async=true;
+  y.src='https://g1386590346.co/gl?id=-MUwsdVlmoR8i4VwGRdU&refurl='+g.referrer+'&winurl='+encodeURIComponent(window.location);
+  t.parentNode.insertBefore(y,t);
+  })(document,'script');
+</script>
+<script src="{{'blocked-customer-sms.js' | asset_url }}" defer></script>
+
+

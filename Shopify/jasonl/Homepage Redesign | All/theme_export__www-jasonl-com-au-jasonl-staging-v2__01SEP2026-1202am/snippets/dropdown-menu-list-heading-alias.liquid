@@ -1,0 +1,26 @@
+{% comment %} {{ headingtitle }} {% endcomment %}
+
+{% assign menutitle_downcase = headingtitle | downcase | replace: "&", "and" %}
+{% assign menutitle_downcase = menutitle_downcase | strip %}
+{% case menutitle_downcase %}
+{% when "chairs" %}
+    Office Chair Options
+{% when "desks" %}
+    Office Desk Options
+{% when "workstations" %}
+    Office Workstation Options
+{% when "storage" %}
+    Office Storage Options
+{% when "tables" %}
+    Office Table Options
+{% when "pods and acoustics" %}
+    Office Pods & Acoustics
+{% when "sofas and lounges" %}
+    Office Sofas & Lounges
+{% when "whiteboards" %}
+    Whiteboard Options
+{% when "cafe and breakout" %}
+    Cafe & Breakout
+{% else %}
+  {{ headingtitle }} Options
+{% endcase %}

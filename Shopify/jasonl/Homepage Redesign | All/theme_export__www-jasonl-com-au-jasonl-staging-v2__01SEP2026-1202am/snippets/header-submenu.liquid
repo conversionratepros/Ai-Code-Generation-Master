@@ -1,0 +1,67 @@
+{%- assign limit = parentMenu.links.size %}
+{%- if firstFour %}
+  {%- assign limit = 4 %}
+{%- endif %}
+
+{%- assign start_index = 0 %}
+{%- if firstFour == false %}
+  {%- assign start_index = 4 %}
+{%- endif %}
+
+{%- assign counter = 0 %}
+{%- for childlink in parentMenu.links %}
+  {%- if counter >= start_index %}
+    {% capture perthURL %}
+        {%- assign isChild = false -%}
+        {%- assign perth = '/' | append: locationAvailability_filterTag -%}
+        {%- assign linkUrl = childlink.url | split: '/' -%}
+        {%- if linkUrl.size >= 4 -%}
+          {%- assign isChild = true -%}
+        {%- endif -%}
+
+        {%- if isChild == true -%}
+            {%- assign perth = '+' | append: locationAvailability_filterTag -%}
+        {%- endif -%}
+        {{ perth }}
+    {% endcapture %}
+
+    {% capture submenuTitle_withoutIcon %}
+        {%- if childlink.title contains '|' -%}
+        {%- assign linktitle = childlink.title | split:'|' -%}
+        {{ linktitle[0] }}
+        {%- else -%}
+        {{ childlink.title | escape }}
+        {%- endif %}
+    {% endcapture %}
+
+    {%- assign submenuImage = "" %}
+    {%- if childlink.title contains '|' -%}
+      {%- assign imagePart = childlink.title | split: '|' -%}
+      {%- assign submenuImage = imagePart[1] | strip -%} 
+      {%- assign submenuImageAlt = imagePart[2] | strip -%} 
+      {%- assign default_alt_tag = childlink.url | split: '/' | last | replace: "-", " " | capitalize -%} 
+    {%- endif -%}
+
+    <li class="{% if firstFour == false %}{% if counter < 11 %}one-column{% elsif counter >= 11 and counter < 18  %}two-column{% elsif counter >= 18 and counter < 25  %}three-column{% else %}more-column{% endif %}{% endif %}{% if childlink.active %} childmenu-item--active{% endif %}">
+        <a href="{{ childlink.url }}" data-nsw="{{ childlink.url }}" data-wa="{{ childlink.url }}{{ perthURL }}" data-js_updatemenuurl="true">
+            {% if submenuImage != "" %}
+                <img src="{{ submenuImage | file_img_url: '100x100' }}" width="73" height="49" loading="lazy" alt="
+                {%- if submenuImageAlt == blank -%}
+                  {{- default_alt_tag -}}
+                {%- else -%}
+                  {{- submenuImageAlt -}} 
+                {%- endif -%}
+                "/>
+            {% endif %}
+            <span class="submenu-title">
+              {{ submenuTitle_withoutIcon }}
+            </span>
+        </a>
+    </li>
+  {%- endif %}
+  
+  {%- assign counter = counter | plus: 1 %}
+  {%- if counter == limit %}
+    {%- break %}
+  {%- endif %}
+{%- endfor %}

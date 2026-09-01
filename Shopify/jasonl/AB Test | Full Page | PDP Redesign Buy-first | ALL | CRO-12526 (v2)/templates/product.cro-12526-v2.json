@@ -54,6 +54,8 @@
         "cro12526v2_reviews_enable": true,
         "cro12526v2_reviews_rating": "4.6",
         "cro12526v2_reviews_count": "128 reviews",
+        "cro12526v2_small_title": false,
+        "cro12526v2_small_swatches": false,
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "large",
@@ -77,8 +79,8 @@
       "type": "cro-12526-v2-complete-setup",
       "settings": {
         "eyebrow": "Complete the setup",
-        "heading_static": "Great on its own. Better as a set.",
-        "subline": "Add the pieces that finish it — or take the lot as a bundle and save."
+        "heading_static": "One piece is just the start.",
+        "subline": "Add the pieces that complete it — or grab the lot as a bundle and save."
       }
     },
     "product-compare": {
@@ -360,10 +362,15 @@
         "heading_2": "Shop",
         "heading_3": "Company"
       }
+    },
+    "cro12526v2_faq": {
+      "type": "cro-12526-v2-faq",
+      "settings": {}
     }
   },
   "order": [
     "main",
+    "cro12526v2_faq",
     "store_availability",
     "cross-sell",
     "product-compare",

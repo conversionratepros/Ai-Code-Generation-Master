@@ -1,0 +1,62 @@
+{{ 'why-office-furniture.css' | asset_url | stylesheet_tag }}
+{%  capture arrowsvg %} 
+    <svg width="20" height="8" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.576 0L14.504 1.045L16.375 2.869H0V4.346H16.351L14.5 6.15L15.572 7.194L19.263 3.595L15.576 0Z" fill="black"/>
+    </svg>
+{% endcapture %}
+<div class="why-office-furniture">
+    <div class="page-width">
+        <div class="why-office-furniture-wrap">
+            <div class="intro">
+                <div class="eyebrow">FURNITURE GLOSSARY</div>
+                <h2 class="section-title">Office furniture terms, explained.</h2>
+            </div>
+            <div class="question-box-wrap">
+                <div class="question-box">
+                    <div class="number">01</div>
+                    <div class="question-box-body">
+                        <div class="question">
+                            What is a sit-stand desk?
+                        </div>
+                        <p>A height-adjustable desk that moves between sitting and standing positions, letting people change posture through the day. Also called a standing or height-adjustable desk.</p>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <div class="number">02</div>
+                    <div class="question-box-body">
+                        <div class="question">
+                            What is commercial-grade?
+                        </div>
+                        <p>Furniture built and tested for daily use in a workplace – stronger materials, higher weight ratings and longer warranties than typical home furniture.</p>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <div class="number">03</div>
+                    <div class="question-box-body">
+                        <div class="question">
+                            What is a workstation?
+                        </div>
+                        <p>A desk system designed for multiple people, usually with shared structures, dividing screens and built-in cable management, used to seat teams efficiently.</p>
+                    </div>
+                </div>
+                <div class="question-box">
+                    <div class="number">04</div>
+                    <div class="question-box-body">
+                        <div class="question">
+                            What makes a chair ergonomic?
+                        </div>
+                        <p>Adjustability that supports good posture – seat height and depth, lumbar support and armrests at minimum – so the chair fits the person rather than the other way around.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> 
+
+{%- schema -%}
+{
+    "name": "why-office-furniture",
+    "class": "section",
+    "settings": []
+}
+{%- endschema -%}

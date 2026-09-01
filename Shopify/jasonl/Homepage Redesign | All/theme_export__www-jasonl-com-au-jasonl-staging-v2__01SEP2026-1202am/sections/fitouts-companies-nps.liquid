@@ -1,0 +1,125 @@
+{% comment %} Featured Fitouts with tab filter on desktop and slider on mobile {% endcomment %}
+{{ "component-company-logo.css" | asset_url | stylesheet_tag }}
+{{ "fitouts-companies-with-img.css" | asset_url | stylesheet_tag }}
+{{ "fitouts-companies-with-img4.css" | asset_url | stylesheet_tag }}
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script> {% endcomment %}
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+
+<div class="nps-fitout-list">
+    <div class="page-width fitouts-list-with-img" id="fitouts-list-with-img">
+        <div class="fitoutImg__heading heading-with-tab">
+            <h2>Our featured fitouts</h2>
+            <span id="active-slider-index" class="large-up-hide medium-hide">1/8</span>
+        </div>
+    <div id="fitoutsImg4__list" class="fitoutsImg__col3 swiffy-slider slider-nav-autopause slider-indicators-round slider-item-reveal slider-item-snapstart" style="
+        --swiffy-slider-item-ratio:100/33.3;
+        --swiffy-slider-item-reveal:15%;">
+        <div class="fitoutsImg__list fitoutsImg4-mobile-slider-container slider-container">
+            {% assign article_counter = 1 %}
+                {% for article in blogs['fitouts'].articles %}
+                    {%- unless  article.tags contains 'fitouts-inspiration' or article.tags contains 'fitouts-enviro' or article.tags contains 'external-fitouts' -%}
+                        <a href="{{ article.url }}" class="fitout-article fitout-all" >
+                            <picture>
+                                <img loading="lazy" src="{{ article.image | img_url: '375x190_crop_center' }}" alt="Office Fitout"  width="" height="" />
+                            </picture>
+                            <div class="fitoutsImg_cnt">
+                                <h3>
+                                    {{ article.title }}
+                                </h3>
+                                {% comment %} <img src="{{ article.image.src }}" alt=""  width="" height="" /> {% endcomment %}
+                            </div>
+                        </a>
+                        {% assign article_counter = article_counter | plus: 1 %}
+                        {% if article_counter > 8 %}
+                          {% break %}
+                        {% endif %}
+                    {% endunless %}
+                {% endfor %}
+            </div>
+            <div id="fitoutsCounter" class="slider-indicators large-up-hide medium-hide">
+                {%- comment -%} slider dots will be appended here by JS {%- endcomment -%}
+                 <ul class="slider-indicators" id="slider-indicator-ul">
+                    <li class="active"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="button-holder">
+            <div class="link fitoutImgList_seemore" id="fitoutImg2List_seemore">
+            <a href="/blogs/fitouts#fitouts-list-with-img" class="morelink">Load more &nbsp;  {%- render 'icon-arrow' -%} <span class="loader"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+     
+
+
+<script>
+    function removeSlider() {
+        const list = document.getElementById("fitoutsImg4__list");
+        const container = document.querySelector(".fitoutsImg4-mobile-slider-container");
+
+        if (list && list.classList.contains("swiffy-slider")) {
+            list.classList.remove("swiffy-slider");
+        }
+
+        if (container && container.classList.contains("slider-container")) {
+            container.classList.remove("slider-container");
+        }
+    }
+    function addSlider() {
+        const list = document.getElementById("fitoutsImg4__list");
+        const container = document.querySelector(".fitoutsImg4-mobile-slider-container");
+
+        if (list && !list.classList.contains("swiffy-slider")) {
+            list.classList.add("swiffy-slider");
+        }
+
+        if (container && !container.classList.contains("slider-container")) {
+            container.classList.add("slider-container");
+        }
+    }
+    function fitoutsliderInitHandle(){
+       if (window.innerWidth > 767) {
+            removeSlider();
+        } else {
+            addSlider();
+        }
+    }
+    // Run on DOM ready
+    document.addEventListener("DOMContentLoaded", fitoutsliderInitHandle);
+    // Run on resize (debounced for performance)
+    let resizeTimeout;
+    window.addEventListener("resize", function () {
+    clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(fitoutsliderInitHandle, 200);
+    });
+    document.addEventListener("DOMContentLoaded", function(){
+        let sliderElement = document.getElementById("fitoutsImg4__list");
+      
+        let ul = document.getElementById('slider-indicator-ul');
+        let items = ul.querySelectorAll('li');
+        let activeItem = ul.querySelector('li.active');
+        let activeIndex = Array.from(items).indexOf(activeItem);
+        let totalSlides = 8;
+
+        swiffyslider.onSlideEnd(sliderElement, function() {
+            let activeItem = ul.querySelector('li.active');
+            let activeIndex = Array.from(items).indexOf(activeItem);
+            let currentInexNumber = activeIndex+1;
+            document.getElementById('active-slider-index').innerText = currentInexNumber+'/'+totalSlides;    
+        });
+    });
+
+</script>
+
+
+                

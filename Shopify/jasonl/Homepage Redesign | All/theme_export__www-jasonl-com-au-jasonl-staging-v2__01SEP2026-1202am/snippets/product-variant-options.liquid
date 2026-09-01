@@ -1,0 +1,393 @@
+{% comment %}
+  Renders product variant options
+
+  Accepts:
+  - product: {Object} product object.
+  - option: {Object} current product_option object.
+  - block: {Object} block object.
+  - picker_type: {String} type of picker to dispay
+
+
+  Usage:
+  {% render 'product-variant-options',
+    product: product,
+    option: option,
+    block: block
+    picker_type: picker_type
+  %}
+{% endcomment %}
+
+
+{% comment %}
+  Renders product variant options
+
+  Accepts:
+  - product: {Object} product object.
+  - option: {Object} current product_option object.
+  - block: {Object} block object.
+  - picker_type: {String} type of picker to dispay
+
+
+  Usage:
+  {% render 'product-variant-options',
+    product: product,
+    option: option,
+    block: block
+    picker_type: picker_type
+  %}
+{% endcomment %}
+
+
+{% assign productoptions = product.metafields.productmeta.product_options |  replace: "color", "colour" %}
+{% assign option_values_all = '' %}
+
+{%- comment -%} override product option display style {%- endcomment -%}
+{%- if product.metafields.custom.option_thumbnail_style -%}
+  {%- for optstyle in product.metafields.custom.option_thumbnail_style.value -%}
+      {%- if optstyle contains optionforloopindex -%}
+          {%- assign override_style = optstyle | split : ' ' | last  -%}
+          {%- if override_style == "circle" -%}
+            {%- assign override_style_class = "option-type-color" -%}
+          {%-  elsif override_style == "square" -%}
+              {%- assign override_style_class = "option-type-object " -%}
+          {%- endif -%}
+          {%- comment -%} 
+            option-type-color
+            option-type-object   
+          {%- endcomment -%}
+      {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{% if productoptions contains '[option]' %}
+  {% assign option_array = productoptions | split:'[option]' %}
+  {% assign numvalue = 0 %}
+  {% assign item_index = 0 %}
+
+  {% for eachoption in option_array %}
+    {% if eachoption contains '[title]' %}
+      {% assign title_array = eachoption | split:'[title]' %}
+      {% for titlevalue in title_array %}
+        {% if eachoption contains '[/title]' %}
+          {% assign title_array_value = titlevalue | split:'[/title]' %}
+          {% assign titleonly = title_array_value[0] %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if eachoption contains '[/option]' %}
+      {% if eachoption contains '[item]' %}
+        {% assign item_array = eachoption | split:'[item]' %}
+        {% assign item_num_counter = item_array | size | minus:1 %}
+
+        {% for itemvalue in item_array %}
+          {% if itemvalue contains '[/item]' %}
+
+            {% if itemvalue contains '[opt]' %}
+              {% assign opt_array = itemvalue | split:'[opt]' %}
+              {% for optvalue in opt_array %}
+                {% if optvalue contains '[/opt]' %}
+                  {% assign opt_array_value = optvalue | split:'[/opt]' %}
+                  {% assign optonly = opt_array_value[0] %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if itemvalue contains '[optimage]' %}
+              {% assign optimage_array = itemvalue | split:'[optimage]' %}
+              {% for optimagevalue in optimage_array %}
+                {% if optimagevalue contains '[/optimage]' %}
+                  {% assign optimage_array_value = optimagevalue | split:'[/optimage]' %}
+                  {% assign optimageonly = optimage_array_value[0] %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if itemvalue contains '[optAddonimage]' %}
+              {% assign optAddonimage_array = itemvalue | split:'[optAddonimage]' %}
+              {% for optAddonimagevalue in optAddonimage_array %}
+                {% if optAddonimagevalue contains '[/optAddonimage]' %}
+                  {% assign optAddonimage_array_value = optAddonimagevalue | split:'[/optAddonimage]' %}
+                  {% assign optAddonimageonly = optAddonimage_array_value[0] %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% assign price_array = varient_name_price | split:',' %}
+            {% for name_price in price_array %}
+              {% assign price_and_name = name_price | split:':' %}
+              {% if price_and_name[0] == optonly %}
+                {% assign optionprice = price_and_name[1] %}
+              {% endif %}
+            {% endfor %}
+
+            {% assign option_values_each = titleonly | append: ',' | append: optonly | append: ',' | append: optimageonly | append: ',' | append: optionprice | append: ',' | append: optAddonimageonly | append: ';' %}
+            {% if item_index < 1 %}
+              {% assign option_values_all = option_values_each %}
+            {% else %}
+              {% assign option_values_all = option_values_all | append: option_values_each %}
+            {% endif %}
+            {% assign item_index = item_index | plus: 1 %}
+            {% assign optionprice = '' %}
+
+          {% endif %}
+        {% endfor %}
+
+        {% assign numvalue = numvalue | plus: 1 %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign option_values_array = option_values_all | split: ';' %}
+
+{%- liquid
+  assign product_form_id = 'product-form-' | append: section.id
+-%}
+
+{% comment %} if option has blank the addon_swiper_index need to increase by one {% endcomment %}
+
+{% comment %} 
+{%  if option.values[0] == 'none' %}
+  {% assign loop_increment = 1 %}
+{% else %}
+  {% assign loop_increment = 0 %}
+{% endif %} 
+{% endcomment %}
+
+{%- for value in option.values -%}
+  {%- liquid
+    assign swatch_focal_point = null
+    if value.swatch.image
+      assign image_url = value.swatch.image | image_url: width: 50
+      assign swatch_value = 'url(' | append: image_url | append: ')'
+      assign swatch_focal_point = value.swatch.image.presentation.focal_point
+    elsif value.swatch.color
+      assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+    else
+      assign swatch_value = null
+    endif
+
+    assign option_disabled = true
+    if value.available
+      assign option_disabled = false
+    endif
+  -%}
+
+  {%- capture input_id -%}
+    {{ section.id }}-{{ option.position }}-{{ forloop.index0 -}}
+  {%- endcapture -%}
+
+  {%- capture input_name -%}
+    {{ option.name }}-{{ option.position }}
+  {%- endcapture -%}
+
+  {%- capture input_dataset -%}
+    data-product-url="{{ value.product_url }}"
+    data-option-value-id="{{ value.id }}"
+  {%- endcapture -%}
+
+  {%- capture label_unavailable -%}
+    <span class="visually-hidden label-unavailable">
+      {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
+    </span>
+  {%- endcapture -%}
+  {%- assign option_img_url = '' -%}
+  {%- for option_values in option_values_array -%}
+    {%- assign option_values_item_array = option_values | split: ',' -%}
+    {%- comment -%}
+        Thu 12 feb 2026
+        "if option_values_item_array[1] == value" to "if option_values_item_array[1] == value and option_values_item_array[0] == option.name"
+        1. Issue: option was not working when option label are same example: option1 Select a color : {{white}} maple wenge option2 select screen: {{white}}, grey
+        2. White is repeated on above example. Dev logic meet the condition from first white and grab image from it. It should go to second "white" and grab its image.
+        3. Solution: check option label and option heading to grab image
+     {%- endcomment -%}
+      
+
+      {%- assign optionvalues_itemarray_0 = option_values_item_array[0] | strip -%}
+      {%- assign optionvalues_itemarray_1 = option_values_item_array[1] | strip -%}
+      
+          {%- if optionvalues_itemarray_1 == value and optionvalues_itemarray_0 == option.name -%}
+            {%- assign option_img_url = option_values_item_array[2] -%}
+            {%- assign option_addon_img_url = option_values_item_array[4] -%}
+            {% break %}
+          {%- endif -%}
+  {%- endfor -%}
+
+  {%- if picker_type == 'swatch' -%}
+    {%- capture help_text -%}
+      <span class="visually-hidden">{{ value | escape }}</span>
+      {{ label_unavailable }}
+    {%- endcapture -%}
+    {%
+      render 'swatch-input',
+      id: input_id,
+      name: input_name,
+      value: value | escape,
+      swatch: value.swatch,
+      product_form_id: product_form_id,
+      checked: value.selected,
+      visually_disabled: option_disabled,
+      shape: block.settings.swatch_shape,
+      help_text: help_text,
+      additional_props: input_dataset
+    %}
+  {%- elsif picker_type == 'button' -%}
+      {%- comment -%} 
+      -------------------------------- 
+      check "addon image" 
+      {%- endcomment -%}
+      {%- assign is_addon_active = false -%}
+      {%- if option_img_url != '' and value != "none" and option_addon_img_url != blank -%}
+          {%- assign is_addon_active = true -%}
+      {%- endif -%}
+      {%- comment -%} END :: check "addon image" 
+         -------------------------------- 
+        {%- endcomment -%}
+
+    {%- if is_addon_active == true -%}
+      <div class="addon-item-wrap">
+    {%- endif -%}
+    <input
+      type="radio"
+      id="{{ input_id }}"
+      name="{{ input_name | escape }}"
+      value="{{ value | escape }}"
+      form="{{ product_form_id }}"
+      {% if value.selected %}
+        checked
+      {% endif %}
+      class="
+      {% if option_disabled %}disabled {% endif %}
+      {% if option_addon_img_url != blank %} tippy-option-radio{% endif %}
+      "
+      {{ input_dataset }}
+    >
+    
+      
+    <label 
+          {% if is_addon_active == true %}
+          data-tippy-content='<img class="addon-img" src="{{ option_addon_img_url }}" alt="{{option_addon_img_url}}" width="800" height="" />' 
+          {% endif %}
+          for="{{ input_id }}" 
+          class="
+          {%- if override_style_class -%}
+            {{ override_style_class }}
+          {%- else -%}
+            {%- if option.name contains 'colour' -%}
+              option-type-color
+            {%- else -%} 
+              option-type-object 
+            {%- endif -%}
+          {%- endif %} 
+          {%- comment -%} check for the option image and divider  {%- endcomment -%}
+          {%- capture result -%}
+            {%- render 'check_addon_img', optionforloopindex : optionforloopindex, forloopindex : forloop.index -%}
+          {%- endcapture -%}
+          {%- assign checkaddonimg = result | split: '|' -%}
+          {%- assign isborder = checkaddonimg[0] -%}
+          {%- assign addonimg = checkaddonimg[1] -%}
+          
+          {{ isborder }}
+
+          {% if addonimg contains 'http' or addonimg contains '.jp' or addonimg contains '.png' or addonimg contains '.webp' %}
+            has-sliderimg
+          {% else %}
+            no-sliderimg
+          {% endif %}
+
+ 
+          {% comment %} check for the option image and divider end {% endcomment %}
+
+          {% if option_img_url != '' and value == "none" %} none-label {% endif %} 
+
+          {% if option_addon_img_url != blank %} addon-holder {% endif %}
+          {% if is_addon_active == true %} tooltip-addon-img {% endif %}"  
+            addon_swiper_index = "{{ forloop.index }}" 
+        >
+        
+      {% comment %} {{ value -}} {% endcomment %}
+      {%- if option_img_url != '' -%}
+            {%- unless value == "none" -%}
+              <img src="{{ option_img_url }}" width="38" height="38" alt="{{ value | escape }}">
+            {%- else -%}
+              <span class="icon-none"></span>
+            {%- endunless -%}
+      {%- endif -%}
+
+      {%- if is_addon_active == true -%}
+        <span class="addon-active-icon"></span>
+      {%- endif -%}
+
+      {% comment %} {% if option_addon_img_url != blank %}
+         <picture class="addon-pic"><img class="addon-img" src="{{ option_addon_img_url }}" alt="{{option_addon_img_url}}" width="600" height="" /></picture>
+      {% endif %}  {% endcomment %}
+
+      {{ label_unavailable }}
+    </label>
+    {% if isborder contains 'has_divider' %}
+      <span class="seperator"></span>
+    {% endif %}
+    {% if is_addon_active == true %}
+      <span class="addon-img-mobile tooltip-addon-mob-img" data-tippy-content='<img class="addon-img" src="{{ option_addon_img_url }}" alt="{{option_addon_img_url}}" width="800" height="" />'>i</span>
+       </div> {%- comment -%} <-- end :: addon-item-wrap  {%- endcomment -%}
+    {% endif %}
+  {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+    <option
+      id="{{ input_id }}"
+      value="{{ value | escape }}"
+      {% if value.selected %}
+        selected="selected"
+      {% endif %}
+      {% if swatch_value and picker_type == 'swatch_dropdown' %}
+        data-option-swatch-value="{{ swatch_value }}"
+        {% if swatch_focal_point %}
+          data-option-swatch-focal-point="{{ swatch_focal_point }}"
+        {% endif %}
+      {% endif %}
+      {{ input_dataset }}
+    >
+      {% if option_disabled -%}
+        {{- 'products.product.value_unavailable' | t: option_value: value -}}
+      {%- else -%}
+        {{- value -}}
+      {%- endif %}
+    </option>
+  {%- endif -%}
+{%- endfor -%}
+
+<script>
+  // Hide "None" option from Addon options. Trigger click on "None" when clicked on active option
+  window.addEventListener('DOMContentLoaded', () => {
+/*
+  //did not work. Okay to REMOVE......
+function triggerNoneOption(){
+    const option_container = document.getElementById('options_container');
+    let checked_option = option_container.querySelector('input.tippy-option-radio[type=radio]:checked');
+    if(checked_option && checked_option.value.toLowerCase() === "none") return;
+
+    let checked_option_id = checked_option.getAttribute('id');
+    let checked_option_target_button = option_container.querySelector('label[for="'+checked_option_id+'"]');
+    let cross_icon = checked_option_target_button.querySelector('.addon-active-icon');
+    console.log(cross_icon);
+    cross_icon.addEventListener('click',function(){
+    console.log(123123);
+            // Find the radio button with the value "none"
+            const radioButton = option_container.querySelector('input.tippy-option-radio[type="radio"][value="none"]');
+            // Check if the radio button exists and trigger it
+            if (radioButton) {
+              console.log(1231234);
+              setTimeout(function(){
+                radioButton.checked = true; // Check the radio button 
+              },1000)
+            }
+        })
+  }
+*/
+  
+
+  // triggerNoneOption();
+  
+
+  })
+</script>

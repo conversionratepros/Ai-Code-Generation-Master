@@ -1,0 +1,71 @@
+{%- if settings.assembly_1_title != blank -%}
+	{%- if settings.assembly_1_icon != '' and settings.assembly_1_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_1_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = settings.assembly_1_title | append:'=' | append:settings.assembly_1_subtitle | append:'='| append: icon_url -%}  
+{%- endif -%}
+
+{%- if settings.assembly_2_title != blank -%}
+	{%- if settings.assembly_2_icon != '' and settings.assembly_2_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_2_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_2_title | append:'=' | append:settings.assembly_2_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_3_title != blank -%}
+	{%- if settings.assembly_3_icon != '' and settings.assembly_3_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_3_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_3_title | append:'=' | append:settings.assembly_3_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_4_title != blank -%}
+	{%- if settings.assembly_4_icon != '' and settings.assembly_4_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_4_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_4_title | append:'=' | append:settings.assembly_4_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_5_title != blank -%}
+	{%- if settings.assembly_5_icon != '' and settings.assembly_5_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_5_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_5_title | append:'=' | append:settings.assembly_5_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_6_title != blank -%}
+	{%- if settings.assembly_6_icon != '' and settings.assembly_6_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_6_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_6_title | append:'=' | append:settings.assembly_6_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_7_title != blank -%}
+	{%- if settings.assembly_7_icon != '' and settings.assembly_7_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_7_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_7_title | append:'=' | append:settings.assembly_7_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_8_title != blank -%}
+	{%- if settings.assembly_8_icon != '' and settings.assembly_8_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_8_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_8_title | append:'=' | append:settings.assembly_8_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_9_title != blank -%}
+	{%- if settings.assembly_9_icon != '' and settings.assembly_9_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_9_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_9_title | append:'=' | append:settings.assembly_9_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{%- if settings.assembly_10_title != blank -%}
+	{%- if settings.assembly_10_icon != '' and settings.assembly_10_icon != 'null' -%}
+    	{%- assign icon_url = settings.assembly_10_icon -%}
+    {%- endif -%}
+	{%- assign assemblyinfo = assemblyinfo | append:'|' | append:settings.assembly_10_title | append:'=' | append:settings.assembly_10_subtitle | append:'='| append: icon_url -%}
+{%- endif -%}
+
+{{-assemblyinfo-}}

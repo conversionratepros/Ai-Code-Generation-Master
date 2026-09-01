@@ -254,3 +254,14 @@ the sub-copy to a 3rd line at 1440 — client asked that the left text NOT gain 
 - 990–1279: `minmax(0,1.75fr) minmax(0,1fr)` → bullets single-line down to 1024, media ≥ the old 320 everywhere.
 - ≤989 unchanged (stacked, full-width image; mobile 358×400).
 Re-upload: assets/cro-hp.css only.
+
+## Round 3 #1 (2026-08-31) — furniture chips wired to categories
+
+Client: "Need a furniture-only section — direct these badges to the relevant categories." The
+section already exists (S7 furniture door); the 9 chips just had labels only, so every pill
+rendered with an empty href. `templates/index.cro-hp.json` now stores a `url` per chip, verified
+against the live nav: office-chairs / office-desks / office-workstations / office-storage /
+tables / sofas-lounges-collaborative-soft-furniture / whiteboards-presentation-boards; **Privacy
+pods + Acoustics both → /collections/office-partitions** — the live site has no separate
+collections (every "Pods & Acoustics" submenu item links there); flag to client in case they want
+dedicated URLs. Re-upload: templates/index.cro-hp.json only.

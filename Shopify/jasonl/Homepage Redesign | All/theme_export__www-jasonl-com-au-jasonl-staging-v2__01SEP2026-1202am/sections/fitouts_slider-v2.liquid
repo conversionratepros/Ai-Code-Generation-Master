@@ -1,0 +1,25 @@
+{%- comment -%}Do not load HTML JS CSS if no image on the slider. {%- endcomment -%}
+{%- if article.metafields.fitout_blog.inspired_image.size > 0 -%} 
+
+{{ 'fitouts_slider-v2.css' | asset_url | stylesheet_tag }}
+<div class="fitout_1-fitout-slider-wrapper">
+    <div class="page-width">
+        {% render 'inspired-slider-v2', loadSliderScripts:true, id:"fitouts" %}
+    </div>
+</div>
+
+{%- else -%}
+<style>
+   .fitout_1-fitout-slider-wrapper{
+    padding: 0px;
+   } 
+</style>
+{%- endif -%} {%- comment -%}END checking :: Do not load HTML JS CSS if no image on the slider. {%- endcomment -%}
+
+
+{% schema %}
+{
+    "name": "Fitout v2",
+    "class": "fitout-v2-section"
+}
+{% endschema %}

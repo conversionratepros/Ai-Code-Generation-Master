@@ -1,0 +1,306 @@
+
+{%- comment -%} 
+========================================================================================
+Due to two showroom in Sydney the logic to check cities is page title for page
+for collection it is cities metafield
+========================================================================================
+{%- endcomment -%}
+ 
+
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split:','-%}
+{%- comment -%} 
+========================================================================================
+<!-- Get address details from shop/global metafield --> 
+<!-- get showroom index -->
+========================================================================================
+{%- endcomment -%}
+{% for shopmeta_location in shop.metafields.custom_fields.location_collection_showroom %}
+    {% assign location_showroom = shopmeta_location | downcase | escape %}
+    {% if city == location_showroom %}
+        {% assign shopmeta_index = forloop.index0 %}
+        <!-- <p>tester : {{shopmeta_index}} - {{shop.metafields.custom_fields.location_collection_store_image[shopmeta_index]}}</p> -->
+    {% endif %}    
+{% endfor %}
+
+
+
+
+
+{%- assign imgs = shop.metafields.custom_fields.location_collection_store_image[shopmeta_index] -%}
+{%- assign getDirection = shop.metafields.custom_fields.location_collection_map_url[shopmeta_index] -%}
+{%- assign iframemap = shop.metafields.custom_fields.location_collection_map[shopmeta_index] -%}
+{%- assign address = shop.metafields.custom_fields.location_collection_address[shopmeta_index] -%}
+{%- assign phoneNumber = shop.metafields.custom_fields.location_collection_phone_number[shopmeta_index] -%}
+{%- assign emailAddress = shop.metafields.custom_fields.location_collections_email_address[shopmeta_index] -%}
+{%- assign videoId = shop.metafields.custom_fields.matterport_video_url[shopmeta_index] -%}
+{%- assign showroomImage = shop.metafields.custom_fields.showroom_image[shopmeta_index] -%}
+{%- assign mapImage = shop.metafields.custom_fields.location_map_image[shopmeta_index] -%}
+
+
+        
+         
+
+
+
+        {%- comment -%} 
+        ========================================================================================
+        <!-- Logic for parent collection --> 
+        ========================================================================================
+        {%- endcomment -%}
+        
+
+
+{%- comment -%}
+------------------
+OKAY TO DELETE
+        <!-- {% for collectionmeta_location in collection.metafields.collectionmeta.location_collection_showroom %}
+            {% assign location_showroom = collectionmeta_location | downcase | escape %}
+            {% if city == location_showroom %}
+                {% assign collectionmeta_index = forloop.index0 %}
+            {% endif %}    
+        {% endfor %}
+
+        {%- assign collectionTitle = collection.title -%}
+        {%- assign icon = collection.metafields.collectionmeta.location_collection_icon[collectionmeta_index] -%}
+       
+        
+        {%- if collection.metafields.collectionmeta.location_collection_description[collectionmeta_index] -%}
+            {%- assign description = collection.metafields.collectionmeta.location_collection_description[collectionmeta_index] -%}
+        {% else %}
+            {% assign description = collection.metafields.collectionmeta.collection_excerpt %}
+        {%- endif -%} -->
+------------------
+{%- endcomment -%}
+
+
+
+        {% for collectionmeta_location in collection.metafields.collectionmeta.location_collection_select_city %}
+            {% assign location_showroom = collectionmeta_location | downcase | escape %}
+            {% if city == location_showroom %}
+                {% assign collectionmeta_index = forloop.index0 %}
+            {% endif %}    
+        {% endfor %}
+
+        {%- assign collectionTitle = collection.title -%}
+        {%- assign icon = collection.metafields.collectionmeta.location_collection_1_icon -%}
+       
+        
+        {%- if collection.metafields.collectionmeta.location_collection_description[collectionmeta_index] -%}
+            {%- assign description = collection.metafields.collectionmeta.location_collection_description[collectionmeta_index] -%}
+        {% else %}
+            {% assign description = collection.metafields.collectionmeta.collection_excerpt %}
+        {%- endif -%}
+
+
+
+{% comment %}
+----------------------
+        <!-- {%- assign collectionTitle = collection.title -%}
+        {%- assign icon = collection.metafields.collectionmeta.location_collection_1_icon -%}
+        {%- assign city_meta = 'location_collection_1_description_' | append: city -%}
+
+        {%- if collection.metafields.collectionmeta[city_meta] -%}
+                {%- assign description = collection.metafields.collectionmeta[city_meta] -%}
+        {% else %}
+                {% assign description = collection.metafields.collectionmeta.collection_excerpt %}
+        {%- endif -%} -->
+----------------------
+{% endcomment %}
+
+
+
+    
+
+    
+{% for tagname in current_tags %}
+        {%- assign tag_names = tagname | downcase | escape -%} 
+
+
+        {%- comment -%} 
+            Date : 25 Aug 2025
+            Secondary cities added to the logic for conflict on URLs like /office-chairs/bendigo+sydney
+        {%- endcomment -%}
+        {%- assign cities_secondary =  shop.metafields.custom_fields.location_collection__locations__secondary   -%}
+        {%- assign cities_main=  shop.metafields.custom_fields.location_collection__locations   -%}
+        {%- assign all_cities = cities_main | append:',' |  append: cities_secondary | split: ','-%} 
+
+        {% comment %} {%- unless cities contains tag_names -%} {% endcomment %}
+        {%- unless all_cities contains tag_names -%}
+            {%-assign ctag = tagname -%}
+            {%-break-%}
+        {%- endunless -%}
+{%- endfor -%}
+
+
+{%- comment -%}
+Show location section if url contain any location name except 'perth'
+{%- endcomment -%}
+
+ 
+    {%- assign showroom_locations_except_perth =  cities | remove:'perth' -%}
+    {% assign has_city_tag = false %}
+
+    {% for tag in current_tags %}
+      {% assign tag_downcase = tag | downcase %}
+      {% if showroom_locations_except_perth contains tag_downcase %}
+        {% assign has_city_tag = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+
+ {%- if ctag -%}
+        {%- comment -%} 
+        ========================================================================================
+        <!-- Logic for child collection --> 
+        ========================================================================================
+        {%- endcomment -%}
+
+
+        {%- assign tagprod = 'tagproducts' -%}
+          {% assign datavalue= ctag | downcase %}
+            {% assign datavalue= datavalue | replace: " ","" %}
+            {% assign datavalue= datavalue | slice: 0, 24 %}
+            {% assign sydney_description_metaKey= datavalue | append: "_sd" %}
+            {% assign title_metaKey= datavalue | append: "_t" %}
+
+        {%- assign collectionTitle = shop.metafields[tagprod][title_metaKey] -%}
+
+        {% if shop.metafields[tagprod][sydney_description_metaKey][city] != blank %}
+            {%- assign description = shop.metafields[tagprod][sydney_description_metaKey][city] -%}
+        {% else %}
+            {% assign subCollection_metaKey = datavalue | append: "_ex" %}
+            {%- assign description = shop.metafields[tagprod][subCollection_metaKey] -%}
+        {% endif %}
+    
+{%- endif -%}
+
+
+
+
+{{"collection-location-hero-banner.css" | asset_url | stylesheet_tag }}
+
+
+{% capture location_banner %} 
+    <div class="banner-section {% unless iframemap contains 'iframe' %} no-map{% endunless %}" id="location-banner">
+        <div class="container page-width banner-container">
+            <div class="heading-col">
+                {%- if showroom == true-%}
+                    <h1>Office furniture <span style="font-style: italic;">in</span> <span class="city">{{city |  capitalize}}.</span></h1>
+                    <strong class="h1">Easy. Fast!</strong>
+                {%- else -%}
+                    <h1>{{- collectionTitle -}}<span style="padding-left: 8px;">in</span> <span class="city">{{city |  capitalize | remove: "."}}.</span></h1>
+                {%- endif -%}
+            </div>
+            <div class="location-col">
+                {%  if address != empty %}
+                <div class="icon-card icon-shop">
+                    <h2 class="h3 icon-title">Visit our showroom</h2>
+                    <div class="icon-card-content">
+                            {{address}}
+                    </div>
+                </div>
+                {% endif %}
+                {%  if phoneNumber != empty or emailAddress != empty %}
+                <div class="icon-card icon-phone">
+                    <h2 class="h3 icon-title">Contact us</h2>
+                    <div class="icon-card-content">
+                        {%  if phoneNumber != empty %}
+                        <div>Call {{ phoneNumber }} </div>
+                        {% endif %}
+                        {%  if emailAddress != empty %}
+                        <div>{{ emailAddress }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="banner-img-map-col {% if videoId == empty %}no-video-walkthrought-section{% endif %}">
+                {%  if videoId != empty %}
+                <div class="walkthrought-section">
+                    <div class="iframe-container">
+                        <iframe src="{{videoId}}" allowfullscreen store_location="{{ city }} showroom" id="mpIframe"></iframe>
+                    </div>
+                </div>
+            {%  elsif showroomImage != empty %}
+                <div class="image-only-banner">
+                    <picture>
+                        <source srcset="{{showroomImage | file_img_url:'1416x'}} 2x" media="(min-width: 768px) and (min-resolution: 2dppx)">
+                        <img src="{{showroomImage | file_img_url:'708x'}}" alt="Showroom {{ city }}" width="708" height="306">
+                    </picture>
+                </div>
+                {% endif %}
+                <div class="img-grid">
+                    <ul>
+                        <li>
+                            {% capture bannerimages %}
+                                {%- if mapImage != '' -%}
+                                    <img src="{{mapImage | file_img_url:'380x'}}" alt="Banner {{ city }}" width="229" height="138" />
+                                {%- else -%}
+                                        {% if imgs contains ',' %}
+                                                {%- assign imgList = imgs | split : ','-%}
+                                                <img src="{{ imgList[0] | file_img_url:'380x'}}" alt="{{ city }}" width="229" height="138" />
+                                        {%- else -%}
+                                                <img src="{{ img | file_img_url:'380x'}}" alt="{{ city }}"  width="229" height="138" />
+                                        {%- endif -%}
+                                {%- endif -%}
+                            {% endcapture %}
+
+                            {%  if getDirection == "" or getDirection == nil or getDirection == blank %}
+                                    {{ bannerimages }}
+                                {% else %}
+                                    <a href="{{getDirection}}" target="_blank" rel="noopener noreferrer" class="get-direction-btn" data-ga4="location_engagement" direction_location="{{ city | remove: "showroom" | remove: "Showroom"}} showroom">
+                                        <div class="get-direction-overlay-btn">
+                                            <span class="btn">Get Directions {% render 'icon-marker' %}</span>
+                                        </div>
+                                        {{ bannerimages }}
+                                        </a>
+                            {% endif %}
+                            
+                        </li>
+                        {%- if imgs != empty and imgs != blank and imgs -%}
+                                {% if imgs contains ',' %}
+                                    {%- assign imgList = imgs | split : ','-%}
+                                    {% for img in imgList limit:2 %}
+                                <li> <img src="{{ img | file_img_url:'380x'}}" srcset="{{ img | file_img_url:'245x'}} 1920w, {{ img | file_img_url:'380x'}} 1550w, {{ img | file_img_url:'598x'}} 2x" alt="{{ city }}"  width="229" height="138"/></li>
+                                    {% endfor %}
+                                {%- else -%}
+                                    {%- assign img  = imgs -%}
+                                    <li> <img src="{{ img | file_img_url:'master'}}" alt="{{ city }}" width="229" height="138"/></li>
+                                {%- endif -%} 
+                        {%- endif -%}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endcapture %}
+
+{% if template == "collection" or template == "collection.rewards" %}
+    {% if has_city_tag %}
+        {{ location_banner }}
+        {% else %}
+    {% endif %} 
+{% else %}
+    {{ location_banner }}
+{% endif %}
+
+
+{% if template == "collection" %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    (function () {
+      const url = new URL(window.location.href);
+      const hasLocationParam = url.searchParams.has('location');
+    
+ 
+      if (hasLocationParam) {
+        let bannerSections = document.getElementById('location-banner');
+        if (bannerSections) {
+          bannerSections.style.display = 'block';
+        }
+      }
+    })();
+  });
+</script>
+{% endif %}

@@ -1,0 +1,18 @@
+{%- comment -%} 
+ DO not show the banner on following templates:
+  1. /colllections/parent-collection
+  2. /colllections/parent-collection/perth
+{%- endcomment -%}
+{{ 'breadcrumb-top.css' | asset_url | stylesheet_tag }}
+<div class="section breadcrumb-top-section">
+    <div class="page-width">
+        {%- render 'breadcrumb' -%}
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Breadcrumb_top",
+"class": "breadcrumb-top-section"
+}
+{% endschema %}

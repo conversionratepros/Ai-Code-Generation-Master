@@ -1,0 +1,144 @@
+{{ 'product-faq.css' | asset_url | stylesheet_tag }}
+{{ 'office-furniture-faq.css' | asset_url | stylesheet_tag }}
+{% capture pluseicon %}
+<span class="plusicon">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 7.1H7.1V12H5V7.1H0V5H5V0H7.1V5H12V7.1Z" fill="#767a7b"/>
+    </svg>
+</span>
+{% endcapture %}
+<div class="p_faq_section quick-add-hidden">
+    <div class="page-width">
+        <div class="p-faq-container">
+            <div class="p-faq-left">
+                <h3 class="title-sm">{{ section.settings.faq_eyebrow_text }}</h3>
+                <div class="section-title">{{ section.settings.faq_heading }}</div>
+                <div class="faq-info">
+                    {{ section.settings.faq_description }}
+                </div>
+                <div class="contact-box">
+                    <div class="contact-icon-wrap">
+                        <span class="phoneicon">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.09262 1.07776C8.09262 1.07776 7.45501 -0.0760843 6.66855 0.0038943C5.89457 0.0826034 5.52832 0.480884 5.285 0.754727C5.04168 1.02857 0.926047 5.1757 0.926047 5.1757C0.926047 5.1757 -0.264036 6.4492 0.0540279 8.58464C0.356487 10.7217 1.0868 13.7327 3.69774 17.765C6.29214 21.7894 12.3648 27.7241 16.0171 29.656C16.0171 29.656 19.4336 31.7649 22.4832 32.4527C23.3674 32.6356 25.1164 32.8124 25.5159 32.7718C25.9216 32.7305 26.6379 32.6577 27.3991 31.9733C28.1738 31.2812 32.4823 27.0309 32.4823 27.0309C32.4823 27.0309 33.5252 25.8764 32.0684 24.8059C30.6053 23.736 26.2629 21.4675 25.3205 20.8507C24.3754 20.2232 23.1653 20.6647 22.6779 21.2046C22.1923 21.7474 21.3175 22.6483 21.2108 22.7617C21.0497 22.9136 20.6149 23.3977 20.056 23.2354C19.3451 23.0349 16.3879 21.7985 13.4282 18.5081C10.4845 15.2192 10.0825 14.0871 9.56947 12.8717C9.48524 12.6929 9.46379 12.4909 9.50858 12.2983C9.55338 12.1058 9.6618 11.934 9.81631 11.8108C10.176 11.503 11.4799 10.1706 11.4799 10.1706C11.4799 10.1706 12.3096 9.16713 11.8152 8.13431C11.3207 7.10149 8.09262 1.07776 8.09262 1.07776Z" fill="white"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="contact-box-body">
+                        <a class="phone" href="tel:1300864251">1300 864 251</a>
+                        {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'sales-email' %}
+                    </div>
+                </div>
+            </div>
+            <div class="faq-accordion">
+                {% for faq in section.blocks %}
+                <details name="p-faq-item" {% if forloop.index == 1 %} open {% endif %} >
+                    <summary>
+                        {{ faq.settings.faq_question }}
+                        {% comment %} Who is the best office furniture supplier in Australia? {% endcomment %}
+                        <span class="toogleicon">{{ pluseicon }}</span>
+                    </summary>
+                        <div class="detail_body">
+                        {{ faq.settings.faq_answer }} 
+                        {% comment %} JasonL is one of Australia's largest commercial office furniture suppliers, with over 1,000 stocked products delivered and installed Australia-wide, and showrooms in Sydney, Melbourne, Brisbane, Perth, Adelaide and the Gold Coast. {% endcomment %}
+                        </div>
+                    </details>
+                {% endfor %}
+                {% comment %} 
+                <details name="p-faq-item">
+                    <summary>How much does it cost to furnish an office?<span class="toogleicon">{{ pluseicon }}</span></summary>
+                    <div class="detail_body">
+                        It depends on the size of your space and what you need, but stocked products keep costs predictable and delivery fast. Talk to a planner for a clear quote built around your space and budget.
+                    </div>
+                </details>
+                <details name="p-faq-item">
+                    <summary>Does JasonL deliver and install office furniture?<span class="toogleicon">{{ pluseicon }}</span></summary>
+                    <div class="detail_body">
+                        Yes. Delivery and installation are handled Australia-wide, right down to the clean-up - one team, start to finish.
+                    </div>
+                </details>
+                <details name="p-faq-item">
+                    <summary>How long does an office fitout take?<span class="toogleicon">{{ pluseicon }}</span></summary>
+                    <div class="detail_body">
+                        Qualifying, stocked-product fitouts can be completed in under 10 days, from measure-up to clean-up. Timing depends on product availability, site access and your final sign-off - a planner can confirm what's realistic for your space.
+                    </div>
+                </details>
+                <details name="p-faq-item">
+                    <summary>Can I get trade or bulk pricing?<span class="toogleicon">{{ pluseicon }}</span></summary>
+                    <div class="detail_body">
+                        Fitting out multiple desks or an entire office? Speak to a planner about pricing that scales with your order.
+                    </div>
+                </details>
+                <details name="p-faq-item">
+                    <summary>Where can I see JasonL office furniture in person?<span class="toogleicon">{{ pluseicon }}</span></summary>
+                    <div class="detail_body">
+                        In one of our showrooms in Sydney, Melbourne, Brisbane, Perth, Adelaide or the Gold Coast. Come take a seat before you commit.
+                    </div>
+                </details> 
+                {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+{% comment %} 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for faq in product.metafields.custom.faqs.value %}
+    {
+        "@type": "Question",
+        "name": "{{ faq.question }}",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ faq.answer }}"
+        }
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {% endfor %}
+  ]
+}
+</script> 
+{% endcomment %}
+{%- schema -%}
+{
+    "name": "office-furniture-faq",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text", 
+            "id": "faq_eyebrow_text",
+            "label": "Faq eyebrow text",
+            "default": "FREQUENTLY ASKED"
+        },
+        {
+            "type": "text", 
+            "id": "faq_heading",
+            "label": "Faq heading"
+        },
+        {
+            "type": "textarea", 
+            "id": "faq_description",
+            "label": "Faq description"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "FAQ",
+            "type": "text",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "faq_question",
+                    "label": "FAQ Question"
+                },
+                {
+                    "type": "text",
+                    "id": "faq_answer",
+                    "label": "FAQ Answer"
+                }
+            ]
+        }
+    ]
+}
+{%- endschema -%}

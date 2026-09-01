@@ -1,0 +1,757 @@
+<div class="mobile-order-summary">
+    <p class="label">Show order summary </p>
+    <div class="mobile-total" id="mob-checkoutTotal"></div>
+</div>
+<div class="cart-products">
+    <ul>
+        {%- for item in cart.items -%}
+        <li>
+            <div class="cart-prod-lt">
+                {% if item.image %}
+                <div class="prod-img">
+                    <a href="{{item.url}}">
+                        <img
+                            class="cart-notification-product__image"
+                            src="{{ item.image | img_url: '98x' }}"
+                            alt="{{ item.image.alt | escape }}"
+                            width="98"
+                            height="{{ 98 | divided_by: item.image.aspect_ratio | ceil }}"
+                            loading="lazy"
+                        >
+                    </a>
+                    <span class="qty">{{ item.quantity }}</span>
+                </div>
+                {% endif %}
+            </div>
+            <div class="cart-prod-mid">
+                <h4>
+                    <a href="{{item.url}}">{{ item.product.title | escape }} </a>
+                </h4>
+                {%- unless item.product.has_only_default_variant -%}
+                <dl>
+                    {%- for option in item.options_with_values -%}
+                    <div class="cart-notification-product__option h4" title="{{ option.name | remove:'Select a'  }}">
+                        {% comment %} <dt>{{ option.name | remove:'Select a'  }}:</dt> {% endcomment %}
+                        <dd>{{ option.value }}</dd>
+                    </div>
+                    {%- endfor -%}
+                </dl>
+                {%- endunless -%}
+            </div>
+            <div class="cart-prod-rt">
+                <span class="price">{{item.price |  times: item.quantity | money}}</span>
+            </div>
+        </li>
+        {%- endfor-%}
+    </ul>
+    <div class="cart-total-holder">
+        <div class="cart-total-item">
+            <div class="label">Subtotal</div>
+            <div class="total">
+                {% comment %} <span data-carttotal="{{cart.total_price | money_without_trailing_zeros | remove:',' | remove:'$'}}">{{cart.total_price | remove:',' | money_without_trailing_zeros}}</span> {% endcomment %}
+                <span data-carttotal="{{cart.total_price | money_without_trailing_zeros | remove:',' | remove:'$'}}">{{cart.total_price  | money_without_trailing_zeros}}</span>
+            </div>
+        </div>
+        <div class="cart-total-item">
+            <div class="label" id="checkoutShippingMethodLabel">Shipping</div>
+            <div class="total" id="shipping-cost"></div>
+        </div>
+        <div class="cart-total-item grand-total">
+            <div class="label"><strong>Total</strong><span style="display: block">Including taxes</span></div>
+            <div class="total" id="checkoutTotal"></div>
+        </div>
+        
+    </div>
+</div>
+<script>
+  
+    const prodTotal = parseInt({{cart.total_price | money_without_trailing_zeros | remove:',' | remove:'$'}});
+    const allRates = {{ shop.metafields.custom_fields.shipping_and_assembly_rates | json }};
+    var calcRates = [];
+    let getData = (obj) => {
+        calcRates['subtotal'] = prodTotal;
+        calcRates['is_billing_and_shipping_same'] = true;
+
+
+      // get shipping rate and assembly rate comparing rate list from metafield
+      
+        for (let i in obj){
+            for (let x in obj[i]){
+                let minVal = parseInt(obj[i][x].min);
+                let maxVal = parseInt(obj[i][x].max);
+                calcRates[i] = 0;
+                if(prodTotal > minVal && prodTotal < maxVal){
+                        calcRates[i] = obj[i][x].cost;
+                        break;
+                }
+            }
+        }
+      console.log(calcRates);
+        return calcRates;
+   }
+
+   document.querySelector('.mobile-order-summary').addEventListener('click', function(){
+    this.classList.toggle('active');
+    if(this.classList.contains('active')){
+        this.querySelector('.label').innerText = 'Hide order summary';
+    }else{
+        this.querySelector('.label').innerText = 'Show order summary';
+    }
+    
+        document.querySelector('.cart-products').classList.toggle('active');
+   })
+
+   function showShippingRates(radioBtn){
+    let rates = getData(allRates);
+    const shippingEle = document.getElementById('shipping-cost');
+    if(radioBtn.getAttribute('data-value') == 'shipping-method-ship-and-assembly'){
+        shippingEle.innerHTML = '$'+(parseInt(rates.shipping)+parseInt(rates.assembly));
+        calcRates['shipping_method'] = 'shipping-with-assembly';
+        calcRates['delivery_method'] = 'ship';
+    }else if(radioBtn.getAttribute('data-value') == 'pickup'){
+        shippingEle.innerHTML = 'Free';
+        calcRates['shipping_method'] = 'shipping-method-none';
+        //calcRates['shipping_method'] = 'Pick-up at 2A/149 McCredie Road Smithfield, NSW 2164.';
+        calcRates['delivery_method'] = 'pickup';
+        calcRates['is_billing_and_shipping_same'] = false;
+    }else{
+         shippingEle.innerHTML = '$'+rates.shipping;
+         calcRates['shipping_method'] = 'shipping-without-assembly';
+         calcRates['delivery_method'] = 'ship';
+    }
+   }
+   //showShippingRates('shipping-method-none');
+
+//    function showAssemblyRates(){
+//     let rates = getData(allRates);
+//     const shippingEle = document.getElementById('shipping-cost');
+//     shippingEle.innerHTML = '$'+rates.shipping;
+//    }
+   //showAssemblyRates()
+
+
+   var deliverMethod = document.querySelectorAll('.checkbox-container input[name="delivery_method"]');
+   var shippingMethod = document.querySelectorAll('.checkbox-container input[name="shipping_method"]');
+
+   function radioField(radioBtn){
+        let radioBtn_value;
+        for(var i = 0; i < radioBtn.length; i++){
+            if(radioBtn[i].checked){
+                radioBtn_value = radioBtn[i].value;
+                showShippingRates(radioBtn[i]);
+                togglePickup();
+            }
+             radioBtn[i].onclick = function() {
+               radioField(radioBtn);
+               if(calcRates.shipping_method == 'shipping-without-assembly'){
+                 calcRates['total_shipping_price'] = calcRates.shipping;
+               }else if(calcRates.shipping_method == 'shipping-with-assembly'){
+                 calcRates['total_shipping_price'] = calcRates.shipping + calcRates.assembly;
+               }else{
+                 calcRates['total_shipping_price'] = 0;
+               }
+                   
+            }
+        }
+        checkoutTotal();
+        toggleAddressForms();
+        disableShippingMethod(radioBtn_value);
+        return radioBtn_value;
+   }
+   radioField(deliverMethod);
+   radioField(shippingMethod);
+
+   function disableShippingMethod(radioSelectedValue){
+    if(radioSelectedValue == 'pickup'){
+        document.getElementById('ccf_shippingmethod_disable').checked = true;
+        document.getElementById('fields-block-shipping-method').style.display = 'none';
+    }
+    else{
+        if(document.getElementById('ccf_shippingmethod_disable').checked){
+             document.getElementById('ccf_ship_rate').checked = true;
+        }
+        document.getElementById('fields-block-shipping-method').style.display = 'block';
+    }
+   }
+
+   function checkoutTotal(){
+          let total = calcRates.subtotal;
+          document.getElementById('checkoutShippingMethodLabel').innerHTML = 'Shipping';
+          
+        if(calcRates.delivery_method == 'pickup'){
+            document.getElementById('checkoutShippingMethodLabel').innerHTML = 'Pickup';
+            total = total;
+            calcRates['total_shipping_price'] = 0;
+        }else if(calcRates.delivery_method == 'ship' && calcRates.shipping_method == 'shipping-without-assembly'){
+            total = calcRates.subtotal + calcRates.shipping;
+            calcRates['total_shipping_price'] = calcRates.shipping;
+          
+        }else if(calcRates.delivery_method == 'ship' && calcRates.shipping_method == 'shipping-with-assembly'){
+            document.getElementById('checkoutShippingMethodLabel').innerHTML = 'Shipping + Assembly';
+            total = calcRates.subtotal + calcRates.shipping + calcRates.assembly;
+            calcRates['total_shipping_price'] = calcRates.shipping + calcRates.assembly;
+        }
+        document.getElementById('checkoutTotal').innerHTML = "<span class='currency'>AUD</span><strong> $"+Intl.NumberFormat('en-US').format(total.toFixed(2))+"</strong>";
+        document.getElementById('mob-checkoutTotal').innerHTML = "<span style='font-size:20px'> $"+Intl.NumberFormat('en-US').format(total.toFixed(2))+"</span>";
+
+        return total;
+   }
+
+
+
+
+
+   function showRate(){
+    let holders = [
+        '[data-ratetype="shipping-rate"]',
+        '[data-ratetype="assembly-rate"]',
+        '[data-ratetype="total-shipping-assembly-rate"]'
+    ]
+    for(let i = 0; i < holders.length; i++){
+        document.querySelectorAll(holders[i]).forEach(element => {
+            if(holders[i] == '[data-ratetype="shipping-rate"]'){
+                element.innerHTML = '$'+calcRates.shipping;
+                let shippingLabel = document.getElementById('shipping-only-label').innerText;
+                document.getElementById('ccf_ship_rate').setAttribute('value',shippingLabel);
+            }else if(holders[i] == '[data-ratetype="assembly-rate"]'){
+                if(calcRates.assembly > 0){
+                    element.innerHTML = '$'+calcRates.assembly;
+                    let shippingLabel = document.getElementById('shipping-with-assembly-label').innerText;
+                    document.getElementById('ccf_ship_assembly_rate').setAttribute('value',shippingLabel);
+                }else{
+                    document.getElementById('ccf_ship_assembly_rate').parentNode.remove();
+                } 
+            }else{
+                if(calcRates.assembly > 0){
+                    element.innerHTML ='$'+(calcRates.assembly + calcRates.shipping);
+                }
+            }
+        })
+    }
+    
+   } 
+   showRate();
+
+   function togglePickup(){
+        let pickupInfo = document.getElementById('pickup-info-holder');
+        if(calcRates.delivery_method == 'pickup'){
+            pickupInfo.classList.remove("hide");
+        }else{
+            pickupInfo.classList.add("hide");
+        }
+   }
+
+    
+   function toggleAddressForms(){
+            if(calcRates.delivery_method == 'pickup'){
+                document.getElementById('ccf_billing_address_checkbox').checked = false;
+                document.getElementById('billing_address_form_holder').style.display = "block";
+                document.getElementById('shipping_address_form_holder').style.display = "none";
+                document.getElementById('ccf_billing_address_checkbox').parentElement.style.display = "none";
+            }else{
+                document.getElementById('ccf_billing_address_checkbox').checked = true;
+                document.getElementById('billing_address_form_holder').style.display = "none";
+                document.getElementById('shipping_address_form_holder').style.display = "block";
+                document.getElementById('ccf_billing_address_checkbox').parentElement.style.display = "block";
+            }
+   }
+   toggleAddressForms();
+
+// toggle billing checkbox = Billing address same as shipping address
+const billing_checkbox = document.getElementById('ccf_billing_address_checkbox');
+billing_checkbox.addEventListener("click", function(){
+  console.log(billing_checkbox.checked);
+  if(calcRates.delivery_method == 'pickup' && billing_checkbox.checked == false){
+      // case do not exist
+  }else if(calcRates.delivery_method == 'pickup' && billing_checkbox.checked == true){
+      billing_checkbox.checked = false;
+      calcRates['is_billing_and_shipping_same'] = false;
+  }else if(calcRates.delivery_method == 'ship' && billing_checkbox.checked == true) {
+      // shipping method 'ship' selected and billing address is same as shipping address
+      document.getElementById('billing_address_form_holder').style.display = "none";
+      calcRates['is_billing_and_shipping_same'] = true;
+  }else if(calcRates.delivery_method == 'ship' && billing_checkbox.checked == false) {
+      console.log(billing_checkbox.checked);
+      // shipping method 'ship' selected and billing address is different
+      document.getElementById('billing_address_form_holder').style.display = "block";
+      calcRates['is_billing_and_shipping_same'] = false;
+      // initValidate(true, true, false); // revalidate = ture, billind address different = true, pick enabled = false
+  }else{
+      //case do not exist
+  }
+  
+})
+var isFormValidate_shipping, isFormValidate_billing, isValidate_postalcode_shipping,isValidate_postalcode_billing;
+  function initValidate(address){
+        isFormValidate_shipping = false;
+        isFormValidate_billing = false;
+       
+        document.getElementById('custom-checkout-payto').classList.add('payto_validate_loaded');
+        const validate = new window.JustValidate('#custom-checkout-payto');
+           
+
+
+
+
+        
+            validate.addField('#ccf_email', [
+                {
+                    rule: 'required',
+                },
+                {
+                    rule: 'email',
+                }
+            ]);
+        
+
+
+
+
+            if(address == 'shipping'){
+
+            validate.onSuccess(( event ) => {
+                isFormValidate_shipping = true;
+            });
+            
+            validate.addField('#ccf_country', [
+                {
+                    rule: 'required',
+                }
+            ]);
+            validate.addField('#ccf_firstname', [
+                {
+                    rule: 'required',
+                },
+            ]);
+            validate.addField('#ccf_lastname', [
+                {
+                    rule: 'required',
+                },
+            ]);
+            validate.addField('#ccf_address2', [
+                {
+                    rule: 'required',
+                },
+            ]);
+            validate.addField('#ccf_city', [
+                {
+                    rule: 'required',
+                }
+            ]);  
+            validate.addField('#ccf_state', [
+                {
+                    rule: 'required',
+                }
+            ]);   
+            validate.addField('#ccf_postalcode', [
+                {
+                    rule: 'required',
+                },
+                {
+                    rule: 'integer',
+                },
+                {
+                    rule: 'minLength',
+                    value: 4
+                },
+                {
+                    rule: 'maxLength',
+                    value: 4
+                }
+            ]); 
+            validate.addField('#ccf_phone', [
+                {
+                    rule: 'required',
+                },{
+                validator: (value, context) => {
+                    let t = validatePhoneShipping(value);
+                    if(t === true){
+                        return true; 
+                    }
+                    return false;
+                },
+                    errorMessage: 'Please enter valid phone number!',
+                },
+            ]);
+        }
+        if(address == 'billing'){
+            validate.onSuccess(( event ) => {
+                isFormValidate_billing = true;
+            });
+            validate.addField('#ccf_ba_country', [
+                {
+                    rule: 'required',
+                }
+            ]);
+            validate.addField('#ccf_ba_firstname', [
+                {
+                    rule: 'required',
+                },
+            ]);
+            validate.addField('#ccf_ba_lastname', [
+                {
+                    rule: 'required',
+                },
+            ]);
+            validate.addField('#ccf_ba_address2', [
+                {
+                    rule: 'required',
+                },
+            ]);
+            validate.addField('#ccf_ba_city', [
+                {
+                    rule: 'required',
+                }
+            ]);  
+            validate.addField('#ccf_ba_state', [
+                {
+                    rule: 'required',
+                }
+            ]);   
+            validate.addField('#ccf_ba_postalcode', [
+                {
+                    rule: 'required',
+                },
+                {
+                    rule: 'integer',
+                },
+                {
+                    rule: 'minLength',
+                    value: 4
+                },
+                {
+                    rule: 'maxLength',
+                    value: 4
+                }
+            ]);
+            validate.addField('#ccf_ba_phone', [
+               {
+                validator: (value, context) => {
+                    if(value == ""){
+                        return true;
+                    }else{
+                        let t = validatePhoneShipping(value);
+                        if(t === true){
+                            return true; 
+                        }
+                    }
+                    
+                    return false;
+                },
+                    errorMessage: 'Please enter valid phone number!',
+                },
+            ]);
+        }   
+    }
+    initValidate('shipping'); 
+    initValidate('billing'); 
+
+
+
+
+
+   $(document).on('submit', '#custom-checkout-payto',function(e){
+    e.preventDefault();
+    console.log(calcRates);
+   // return;
+   
+   // block form if checkout total amount greater than 25000 
+    let checkout_total = document.getElementById('checkoutTotal').querySelector('strong').innerText;
+    let checkout_total_num = parseInt(checkout_total.replace(/[$,]/g, ''));
+    console.log(checkout_total_num);
+     if(checkout_total_num > 25000){
+        document.getElementById('fail-msg-payto').style.display = 'block';
+        document.getElementById('fail-msg-payto').addEventListener('click', function(){
+            document.querySelector('body').classList.add('sidebar-open');
+            document.querySelector('#minicart-payment-options input[value="pay-online"]').checked = true;
+            
+        });
+        document.getElementById('custom-checkout-payto').style.display = "none";
+        // to update checkout total prices
+        document.querySelector('.slideoutcart-close').addEventListener('click', function(){
+            location.reload();
+        })
+        document.getElementById('site-overlay').addEventListener('click', function(){
+            location.reload();
+        })
+        return;
+     }
+     // validate phone
+     console.log(calcRates);
+        
+    
+    var url = $( this ).attr('action');
+    var unique_key = Date.now();
+    var formData = {  
+          email: $('#ccf_email').val(),
+          subscribe: ($('#ccf_subscribe:checked').val())?$('#ccf_subscribe:checked').val():null,
+          delivey_method: $('input[name="delivery_method"]:checked').val(),
+           shipping_method: $('input[name="shipping_method"]:checked').val(),
+           shipping_data: {
+             firstname:  $('#ccf_firstname').val(),
+             lastname:  $('#ccf_lastname').val(),
+             country: $('#ccf_country').val(),
+             company: $('#ccf_company2').val(),
+             address: $('#ccf_address2').val(),
+             apartment: $('#ccf_apartment').val(),
+             city: $('#ccf_city').val(),
+             state: $('#ccf_state').val(),
+             postalcode: $('#ccf_postalcode').val(),
+             phone: $('#ccf_phone').val(),
+          },
+            billing_data: {
+             firstname:  (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_firstname').val():'',
+             lastname:  (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_lastname').val():'',
+             country: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_country').val():'',
+             company: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_company2').val():'',
+             address: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_address2').val():'',
+             apartment: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_apartment').val():'',
+             city: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_city').val():'',
+             state: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_state').val():'',
+             postalcode: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_postalcode').val():'',
+             phone: (calcRates.is_billing_and_shipping_same==false)?$('#ccf_ba_phone').val():''
+          },
+          unique_key: unique_key,
+          products: get_cookie('product_list'),
+          total_shipping_price: calcRates.total_shipping_price
+   };
+
+  
+ //console.log(formData.shipping_data.phone);
+// let testData = validatePhoneShipping(formData.shipping_data.phone);
+// console.log(testData);
+
+     if(calcRates.delivery_method == 'pickup'){
+        // form validation
+        if(isFormValidate_billing == false){
+            return;
+        }
+        // postalcode, custom validation
+        if(isValidate_postalcode_billing == false){
+            return;
+        }
+   }
+
+   if(calcRates.delivery_method == 'ship' && calcRates.is_billing_and_shipping_same == false){
+        // form validation
+        if(isFormValidate_shipping == false || isFormValidate_billing == false){
+            return;
+        }
+        // postalcode, custom validation
+        if(isValidate_postalcode_shipping == false  || isValidate_postalcode_billing ==  false){
+            return;
+        }
+   }
+
+   if(calcRates.delivery_method == 'ship' && calcRates.is_billing_and_shipping_same == true){
+        // form validation
+        if(isFormValidate_shipping == false){
+            return;
+        }
+        // postalcode, custom validation
+        if(isValidate_postalcode_shipping == false){
+            return;
+        }
+   }
+
+
+
+     $.ajax({
+       type: "POST",
+       url: url,
+       data: formData,
+       dataType: "html",
+       beforeSend: function(){
+            const node = document.createElement("div");
+            node.classList.add('loader');
+            document.querySelector('input[type="submit"]').parentElement.appendChild(node);
+
+       },
+       complete: function(r) {
+           console.log(r);
+           document.querySelector('.loader').remove();
+           console.log(`shipping:${isValidate_postalcode_shipping}`);
+           console.log(`billing:${isValidate_postalcode_billing}`);
+           if(r.statusText == 'error'){
+                console.log('error');
+                document.getElementById('fail-msg').style.display = 'block';
+                document.getElementById('fail-msg').addEventListener('click', function(){
+                    document.querySelector('body').classList.add('sidebar-open');
+                    document.querySelector('#minicart-payment-options input[value="pay-online"]').checked = true;
+                });
+           }
+         },
+       success: function(data)
+        {
+          console.log(data);
+         if(data.search('https://') == 0){
+            window.location.href = data; 
+         }else{
+            document.getElementById('fail-msg').style.display = 'block';
+            document.getElementById('fail-msg').addEventListener('click', function(){
+                document.querySelector('body').classList.add('sidebar-open');
+                document.querySelector('#minicart-payment-options input[value="pay-online"]').checked = true;
+            });
+         }
+         
+        }
+       });
+     });
+
+
+
+
+    function validatePhoneShipping(number) {
+    // Regular expression for Australian landline numbers
+    //var landlineRegex = /^(?:\((0\d)\)|0\d)\s?\d{4}\s?\d{4}$/;
+    var landlineRegex = /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/;
+    // Regular expression for Australian mobile numbers
+    var mobileRegex = /^04\d{8}$/;
+    var specialNumberPattern = /^1300\d{6}$/;
+
+    // Remove whitespace and hyphens from the number .replace("(","").replace(")","")
+    number = number.replace(/\s+/g, '').replace(/-/g, '');
+
+    // Check if the number matches either the landline or mobile regex
+    return landlineRegex.test(number) || mobileRegex.test(number) || specialNumberPattern.test(number);
+}
+
+function validatePostalCode(state,postalcode){
+    const australian_postcodes = {
+        "Australian Capital Territory": ["0200-0221", "2600-2639", "2900-2920"],
+        "New South Wales": ["1000-1999", "2000-2599", "2619-2899", "2921-2999"],
+        "Northern Territory": ["0800-0899"],
+        "Queensland": ["4000-4999", "9000-9999"],
+        "South Australia": ["5000-5799", "5800-5999"],
+        "Tasmania": ["7000-7799", "7800-7999"],
+        "Victoria": ["3000-3999", "8000-8999"],
+        "Western Australia": ["6000-6797", "6800-6999"]
+    }
+
+    console.log(australian_postcodes[state]);
+   // if(calcRates.delivery_method == 'ship' && form == 'form_shipping_address'){
+        let ranges = australian_postcodes[state];
+        for(i=0; i<ranges.length; i++){
+            console.log(ranges[i]);
+            let range = ranges[i].split('-');
+            let range_min = parseInt(range[0]);
+            let range_max = parseInt(range[1]);
+            console.log(`min ${range_min} - max: ${range_max}`);
+            if(postalcode >= range_min && postalcode <= range_max){
+                console.log('postalcode valid.');
+                return true;
+                break;
+            }
+        }
+        return false;
+   // }
+
+}
+
+
+//validatePostalCode('form_shipping_address','New South Wales',2000);
+//validatePostalCode('form_billing_address','New South Wales',2000);
+
+document.getElementById('ccf_postalcode').addEventListener('change',function(){
+    let ele_state = document.getElementById('ccf_state');    
+    let ele_postalcode = document.getElementById('ccf_postalcode');
+   doValidate(ele_state, ele_postalcode, 'shipping');
+})
+document.getElementById('ccf_ba_postalcode').addEventListener('change',function(){
+    let ele_state = document.getElementById('ccf_ba_state');    
+    let ele_postalcode = document.getElementById('ccf_ba_postalcode');
+   doValidate(ele_state, ele_postalcode, 'billing');
+})
+
+document.getElementById('ccf_state').addEventListener('change', function() {
+    let ele_state = document.getElementById('ccf_state');    
+    let ele_postalcode = document.getElementById('ccf_postalcode');
+    if(ele_postalcode.value){
+       doValidate(ele_state, ele_postalcode, 'shipping');
+    }
+});
+document.getElementById('ccf_ba_state').addEventListener('change', function() {
+    let ele_state = document.getElementById('ccf_ba_state');    
+    let ele_postalcode = document.getElementById('ccf_ba_postalcode');
+    if(ele_postalcode.value){
+       doValidate(ele_state, ele_postalcode, 'billing');  
+    }
+});
+
+function doValidate(field_state,field_postalcode,method){
+     //method
+     if(method == 'shipping'){
+       isValidate_postalcode_shipping = false;
+     }
+     if(method == 'billing'){
+       isValidate_postalcode_billing = false;
+     }
+       
+       if(field_postalcode.value && field_state.value){
+        let state = field_state.value;
+        let postalcode = parseInt(field_postalcode.value);
+        let isValidatePostalCode = validatePostalCode(state,postalcode);
+        let errorLabel = field_postalcode.parentElement.querySelectorAll('.just-validate-error-label');
+        if(isValidatePostalCode){
+           // console.log('postalcode valid:'+isValidatePostalCode);
+            field_postalcode.classList.remove('custom-validate-error-field');
+            if(errorLabel.length > 0){
+                field_postalcode.parentElement.querySelector('.just-validate-error-label').remove();
+            }
+       
+            if(method == 'shipping'){
+                isValidate_postalcode_shipping = true;
+            }
+            if(method == 'billing'){
+                isValidate_postalcode_billing = true;
+            }
+           
+            return true;
+        }else{
+           // console.log('postalcode valid:'+isValidatePostalCode);
+           if(errorLabel.length == 0){
+                field_postalcode.classList.add('custom-validate-error-field');
+                const node = document.createElement("div");
+                node.classList.add('just-validate-error-label');
+                node.textContent = "Enter a valid postal code for "+field_state.value;
+                field_postalcode.parentElement.appendChild(node);
+           }
+                if(method == 'shipping'){
+                    isValidate_postalcode_shipping = false;
+                }
+                if(method == 'billing'){
+                    isValidate_postalcode_billing = false;
+                }
+            
+           return false;
+        }   
+    }else{
+        console.log('no val found');
+    } 
+            if(method == 'shipping'){
+                isValidate_postalcode_shipping = false;
+            }
+            if(method == 'billing'){
+                isValidate_postalcode_billing = false;
+            }
+     
+    return false;
+}
+
+    // if(this.value && document.getElementById('ccf_state').value){
+    //     let state = document.getElementById('ccf_state').value
+    //     let postalcode = parseInt(this.value);
+    //     let isValidatePostalCode = validatePostalCode(state,postalcode);
+    //     if(isValidatePostalCode){
+    //         console.log('postalcode valid:'+isValidatePostalCode);
+    //     }else{
+    //         console.log('postalcode valid:'+isValidatePostalCode);
+    //     }   
+    // }else{
+    //     console.log('no val found');
+    // }
+
+
+ 
+
+</script> 

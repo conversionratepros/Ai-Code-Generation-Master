@@ -1,0 +1,425 @@
+<div id="zoho-form-holder" data-form-loaded="false">
+{% assign forms = shop.metaobjects.gated_content_forms.values %}
+{% assign matched_forms = "" %}
+{% for tag in article.tags %}
+  {% for form_data in forms %}
+    {% assign format_form_data = form_data.tag |  remove:'["' | remove:'"]' %}
+    {% if format_form_data == tag %}
+      {% assign matched_forms = matched_forms | append: forloop.index0 | append: "|" %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign matched_forms_num_array = matched_forms | split: "|" %}
+
+{% assign matched_forms_array_size = matched_forms_num_array.size %}
+{%- assign random_form = "" -%}
+{% if matched_forms_array_size > 1 %}
+      {%- assign max = matched_forms_array_size -%}
+      {%- assign random_number = "now" | date: "%N" | modulo: max -%}
+
+       {% comment %} {% if random_number > 7 %}
+            {%  assign random_number = 7  %}
+      {% endif %} {% endcomment %}
+      
+      {% assign random_form = matched_forms_array[random_number] %}
+{% elsif matched_forms_array_size == 1 %}
+      {% assign random_form = matched_forms_array[0] %}
+{% endif %}
+
+
+{% if random_form != "" %}
+  
+        {% for meta in shop.metaobjects.gated_content_forms.values %}
+              {% assign randNum = matched_forms_num_array[random_number] |  strip  |  times: 1%}
+          {% comment %}{% assign randNum = 5 %} {% endcomment %}
+
+              {% if forloop.index0 == randNum %}
+                          {%- assign buttonLabel = meta.button_label -%}
+                          {%- assign metaHeaderText = meta.header -%}
+                          {%- assign metaIntroText = meta.sub_header -%}
+                          {%- assign metaUTMCampaign = meta.utm_campaign -%}
+                          {%- assign metaUTMMedium = meta.utm_medium -%}
+                          {%- assign metaDownloadItem = meta.download_item -%}
+                          {%- assign metaUTMSource = meta.utm_source -%}
+                          {%- assign metaUTMContent = meta.utm_content -%}
+                          {%- assign metaSource = meta.source -%}
+                          {%- capture formHtml -%}
+                              {% render 'rh-zohoform-embed-script',  default_utm_source:metaUTMSource, default_utm_medium:metaUTMMedium, default_utm_campaign:metaUTMCampaign, default_utm_content:metaUTMContent, default_source:metaSource, download_item:metaDownloadItem, headerText: metaHeaderText, introText: metaIntroText %}
+                          {%- endcapture -%}
+                          {{ 'rh-gated-content--raw-html-form.css' | asset_url | stylesheet_tag }}
+                          {% assign className =  'button button--primary zoho-cta-btn ' | append : meta.url | append:' ' | append : randNum %}
+                          {%- render 'simple-popup-modal', 
+                                      modal_id: 'get-content-form', 
+                                      modal_class: 'get-content-form',
+                                      modal_size:'small', 
+                                      modal_label:buttonLabel , 
+                                      modal_button_class:className,
+                                      modal_content: formHtml -%}
+                {% endif %}
+          {% endfor %} 
+
+{% else %}
+  <!-- <div>No matching form found.</div> -->
+{% endif %} 
+
+
+
+ 
+
+
+
+
+
+
+<!-- FORM -->
+</div>
+
+
+
+<style>
+  #PopupModal-get-content-form.popupModal-get-content-form{
+    top: 0px;
+  }
+  #PopupModal-get-content-form.simple-popup-modal[open]{
+    z-index: 999;
+    background: rgba(var(--color-foreground), 0.8);
+  }
+  #PopupModal-get-content-form.popupModal-get-content-form .simple-popup-modal__content{
+    max-width: 1000px;
+    /* height: calc(100vh - 100px); */
+    height: calc(100vh - 10px);
+    width: 100%;
+    background: transparent;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    overflow: hidden;
+  }
+
+  #PopupModal-get-content-form.simple-popup-modal iframe,  
+  #PopupModal-get-content-form.simple-popup-modal deferred-media,  
+  #PopupModal-get-content-form.simple-popup-modal .simple-popup-modal__content-info{
+    height: 100%;
+  }
+
+  @media(max-width:767px){
+    #PopupModal-get-content-form .simple-popup-modal__content-info,
+    #PopupModal-get-content-form.popupModal-get-content-form .simple-popup-modal__content{
+      padding: 0px;
+    }
+  }
+
+
+  /* Gated content form */
+  #zcOptinSuccessPopup #THANKS_PAGE_BODY_PARENT{
+background: none!important;
+padding: 0px!important;
+}
+  header.post-header #embedLink{
+    margin-top: 25px;
+    button{
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+  #zc_popoverlay{
+    z-index: 200 !important;
+  }
+  #signUpFormInline{
+    padding: 0px !important;
+  }
+  #privacyNotes span {
+    line-height: 24px;
+  }
+
+  /* form design over-ride */
+  #SIGNUP_BODY_ALL h1{
+    padding: 0px !important;
+    background: none !important;
+    color: #000 !important;
+  }
+  #SIGNUP_BODY{
+    background: transparent !important;
+    padding: 0px !important;
+  }
+  #signUpFormInline{
+    background: #f1f5f8 !important;
+    border-radius: 10px!important;
+  }
+  .large_form_2_css{
+    background: #f1f5f8 !important;
+    border-radius: 10px!important;
+    /* padding: 30px 20px 30px 30px !important; */
+    /* padding-bottom: 200px !important; */
+    background: url('https://cdn.shopify.com/s/files/1/1249/7859/files/zoho-form-catalog-icon.png?v=1725542940') no-repeat -15px 100% !important;
+    padding: 30px 30px 200px 40px !important;
+  }
+
+  #zc_popoverlay #customForm #signupMainDiv{
+    width: 350px !important;
+    min-width: unset !important;
+  }
+  #customForm #signupMainDiv input{
+    height: 50px !important;
+    /* border: 0px !important; */
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  #customForm #signupMainDiv input[type="button"]{
+    height: 40px !important;
+    border: 0px !important;
+    border-radius: 4px;
+    margin-top: 0px;
+    border-radius: 30px !important;
+    width: auto;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    left: calc(-50% - 10px);
+    transform: translateX(50%);
+    position: relative;
+    margin-bottom: 5px;
+  }
+  #imgBlock[name="LOGO_DIV"]{
+    display: none !important;
+  }
+  #privacyNotes{
+    /* border-top: 1px solid #fff;
+    padding: 20px 0 0 0; */
+    margin: 0 !important;
+  }
+  #privacyNotes span{
+    color: #555;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  #captchaParent{
+    width: calc(100% - 30px) !important;
+    max-width: unset !important;
+  }
+  .recaptcha{
+    padding: 10px 0 0 0 !important;
+  }
+  #captchaDiv{
+    width: 98.8% !important;
+    border: 0px !important;
+    background: #fff !important;
+    border-radius: 5px;
+  }
+  
+
+  /* thankyou popup */
+  #zcOptinOverLay{
+    background: #000;
+   opacity: 0.9 !important;
+  }
+
+  /* button */
+  #embedLink>button{
+    background-color: var(--color-base-color)!important;
+    border: 0px !important;
+    border-radius: 4px!important;
+    padding-left:25px !important;
+    padding-right:25px !important;
+    font-size: 14px !important;
+    letter-spacing: 0.5px;;
+    height: 48px;
+  }
+  #embedLink>button:hover{
+    background-color: var(--color-base-color-hover)!important;
+      }
+
+  @media(max-width:767px){
+    #embedLink>button{
+      padding-left:25px !important;
+      padding-right:25px !important;
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      height: auto;
+    }
+   
+  }
+  #embedLink>button span{
+    cursor:  pointer !important;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 0px;
+  }
+  /* div:has(#zcWebOptin) {
+    text-align: left !important;
+    padding: 10px 0 !important;
+  } */
+
+</style>
+{% comment %} <script>
+  function reloadPage(){
+    let elements = document.querySelectorAll('#zcOptinSuccessPopup, #zcOptinOverLay');
+
+    elements.forEach(function(element) {
+        element.addEventListener('click', function() {
+            window.location.reload();
+        });
+    });
+  }
+  let demo = document.querySelector(".article-template");
+
+      function callback(mutationList, observer) {
+        for (let list of mutationList) {
+          if(list.target.id == "zcOptinSuccessPopup"){
+            reloadPage();
+          }
+        }
+      }
+
+      let mo = new MutationObserver(callback);
+      mo.observe(demo, { childList: true, attributes: true, subtree: true });
+</script> 
+ {% endcomment %}
+ <script>
+
+// function onSubmit(token) {
+//     console.log('token:'+token);
+//     document.getElementById("zcampaignOptinForm").submit();
+//   }
+window.addEventListener('DOMContentLoaded',function () {
+
+      let zoho_form_holder = document.querySelector("#zoho-form-holder");
+      function callback(mutationList, observer) {
+        for (let list of mutationList) {
+          if(list.target.id == "zcampaignOptinForm" && zoho_form_holder.getAttribute('data-form-loaded') == "false"){
+            //getZohoUtmData();
+            setZohoUtmData();
+          }
+        }
+      }
+      let mo = new MutationObserver(callback);
+      mo.observe(zoho_form_holder, { childList: true, attributes: true, subtree: true });
+
+
+
+      zoho_form_holder.querySelector('button.zoho-cta-btn').addEventListener('click',function(){
+        //  zoho_form_holder.querySelector('button[btntype="nrmlBtn"]').addEventListener('click',function(){
+        //if(zoho_form_holder.getAttribute('data-form-loaded') == "true"){
+          setTimeout(function(){
+            setZohoUtmData();
+          },1500)
+          
+        //}
+      })
+
+
+
+
+
+  function getZohoUtmData(){
+    let zoho_form_holder = document.querySelector("#zoho-form-holder");
+    zoho_form_holder.setAttribute('data-form-loaded',"true");
+    let form = document.getElementById('zcampaignOptinForm');
+    let form_fields_holder = form.querySelector('.zcsffieldsdiv');
+    let form_fields_hidden =  form_fields_holder.querySelectorAll('div[ishidden="true"]');
+    for(let i = 0; i<form_fields_hidden.length; i++){
+      let utm_label_selector =  form_fields_hidden[i].querySelector('div[name="SIGNUP_FORM_LABEL"]');
+      let utm_label = utm_label_selector.textContent;
+      let utm_label_remove_blankspace = utm_label.replace(/^\s+|\s+$/gm,'');
+      let formatted_utm_label = utm_label_remove_blankspace.toLowerCase().replace(" ", "-");
+      
+      let utmSource_value, utmMedium_value, utmContent_value, utmCampaign_value
+        if(formatted_utm_label == "utm-source"){
+           utmSource_value = form_fields_hidden[i].querySelector('input').value;
+        }
+        if(formatted_utm_label == "utm-medium"){
+          utmMedium_value = form_fields_hidden[i].querySelector('input').value;
+        }
+        if(formatted_utm_label == "utm-content"){
+          utmContent_value = form_fields_hidden[i].querySelector('input').value;
+        }
+        if(formatted_utm_label == "utm-campaign"){
+          utmCampaign_value = form_fields_hidden[i].querySelector('input').value;
+        } 
+    }
+  }
+
+
+  function setZohoUtmData(){
+    let zoho_form_holder = document.querySelector("#zoho-form-holder");
+    zoho_form_holder.setAttribute('data-form-loaded',"true");
+    let localstorage_utm_data = getLocalStorageUtmData();
+    let form = document.getElementById('zcampaignOptinForm');
+    let form_fields_holder = form.querySelector('.zcsffieldsdiv');
+    let form_fields_hidden =  form_fields_holder.querySelectorAll('div[ishidden="true"]');
+    for(let i = 0; i<form_fields_hidden.length; i++){
+      let utm_label_selector =  form_fields_hidden[i].querySelector('div[name="SIGNUP_FORM_LABEL"]');
+      let utm_label = utm_label_selector.textContent;
+      let utm_label_remove_blankspace = utm_label.replace(/^\s+|\s+$/gm,'');
+      let formatted_utm_label = utm_label_remove_blankspace.toLowerCase().replace(" ", "-");
+      
+      let utmSource_value, utmMedium_value, utmContent_value, utmCampaign_value
+        if(formatted_utm_label == "utm-source"){
+          if(localstorage_utm_data.utmSource == null){
+            // Rick and Leanne requested not to make field blank on 17 OCT 2024 meeting
+            // form_fields_hidden[i].querySelector('input').value = " ";
+          }else{
+            form_fields_hidden[i].querySelector('input').value = localstorage_utm_data.utmSource;
+            console.log(localstorage_utm_data.utmSource);
+          }
+          
+        }
+        if(formatted_utm_label == "utm-medium"){
+          if(localstorage_utm_data.utmMedium == null){
+            // Rick and Leanne requested not to make field blank on 17 OCT 2024 meeting
+            // console.log('empty');
+            // form_fields_hidden[i].querySelector('input').value = " ";
+          }else{
+            console.log(localstorage_utm_data.utmMedium);
+            form_fields_hidden[i].querySelector('input').value = localstorage_utm_data.utmMedium;
+          }
+          
+        }
+        if(formatted_utm_label == "utm-content"){
+          if(localstorage_utm_data.utmContent == null){
+            // Rick and Leanne requested not to make field blank on 17 OCT 2024 meeting
+            // console.log('empty');
+            // form_fields_hidden[i].querySelector('input').value = " ";
+          }else{
+            console.log(localstorage_utm_data.utmContent);
+            form_fields_hidden[i].querySelector('input').value = localstorage_utm_data.utmContent;
+          }
+          
+        }
+        if(formatted_utm_label == "utm-campaign"){
+          if(localstorage_utm_data.utmCampaign == null){
+            // Rick and Leanne requested not to make field blank on 17 OCT 2024 meeting
+            // form_fields_hidden[i].querySelector('input').value = " ";
+            // console.log('empty');
+          }else{
+            console.log(localstorage_utm_data.utmCampaign);
+            form_fields_hidden[i].querySelector('input').value = localstorage_utm_data.utmCampaign;
+          }
+          
+        } 
+    }
+  }
+
+  function getLocalStorageUtmData(){
+    let utmSource, utmMedium, utmContent, utmCampaign;
+    utmSource = JSON.parse(localStorage.getItem('utm_source'));
+    utmMedium = JSON.parse(localStorage.getItem('utm_medium')); 
+    utmContent = JSON.parse(localStorage.getItem('utm_content'));
+    utmCampaign = JSON.parse(localStorage.getItem('utm_campaign'));
+    let localStorage_UTM_data = {utmSource,utmMedium,utmContent,utmCampaign}
+    return localStorage_UTM_data;
+  }
+
+
+
+
+
+
+
+
+
+
+
+})
+ </script>

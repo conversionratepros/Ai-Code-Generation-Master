@@ -1,0 +1,89 @@
+{%- comment -%}END:: video comment {%- endcomment -%}
+{%- if product.metafields.productmeta.showcase_video -%}
+    <div class="video-col"><h3>Video</h3><div>
+    
+     <!-- {{ 'tabvideo.css' | asset_url | stylesheet_tag }} -->
+      <div id="tab1" class="tabcontent" {% if numberOfVideos == 1 %}style="display:block"{% endif %}>
+        {% comment %} <div class="tablinks large-up-hide medium-hide-lg" onclick="openVideoTab(event, 'tab1')">
+          <div class="vid-thumb-holder">
+            <!-- <img src="https://img.youtube.com/vi/{{videoUrl1_idOnly}}/sddefault.jpg" alt="" /> -->
+            {%- if product.metafields.productmeta.showcase_video_image -%}
+            <img src="{{ product.metafields.productmeta.showcase_video_image | file_img_url: '100x' }}" alt="{{product.metafields.productmeta.showcase_video_seo_title }}"  width='' height='' />
+            {%- else -%}
+            <img src="{{'general-video-cover.jpg' | file_img_url: '100x' }}" alt="{{product.metafields.productmeta.showcase_video_seo_title }}"  width='' height='' />
+            {%- endif -%}
+          </div>
+        </div> {% endcomment %}
+        <div class="tabcontent-holder {% if product.metafields.productmeta.tab_content_title or product.metafields.productmeta.tab_content_description %}tabcontent--col2{% endif %}">
+          <div class="tabcontent--left">
+            {%- assign videoUrl1 = product.metafields.productmeta.showcase_video -%}
+
+
+            {%- if videoUrl1 contains '/watch' -%}
+                {%- assign videoUrl1_all = videoUrl1 | split: "/watch?v=" -%}
+                {%- if videoUrl1_all[1] contains '&' -%}
+                    {%- assign videoUrl1_withParameters = videoUrl1_all[1] | split: "&"-%}
+                    {%- assign videoUrl1_idOnly = videoUrl1_withParameters[0] -%}
+                {%- else -%}
+                    {%- assign videoUrl1_idOnly = videoUrl1_all[1] -%}
+                {%- endif -%}
+            {%- else -%}
+                {%- assign videoUrl1_all = videoUrl1 | split: "/embed/" -%}
+                {%- if videoUrl1_all[1] contains '?'-%}
+                    {%- assign videoUrl1_withParameters = videoUrl1_all[1] | split: "?"-%}
+                    {%- assign videoUrl1_idOnly = videoUrl1_withParameters[0] -%}
+                {%- else -%}
+                    {%- assign videoUrl1_idOnly = videoUrl1_all[1] -%}
+            {%- endif-%}
+{%- endif -%}
+
+            {%- assign videoCoverImgFromSection1 =  "" -%}
+
+            {%- if product.metafields.productmeta.showcase_video_image -%}
+                {% comment %} {% assign video_coverimg_from_meta1 =  product.metafields.productmeta.showcase_video_image | file_img_url: '640x' %} {% endcomment %}
+                {% assign video_coverimg_from_meta1 =  product.metafields.productmeta.showcase_video_image |  file_img_url: '500x' %}
+            {%- else -%}
+                {%- assign video_coverimg_from_meta1 = "general-video-cover.jpg" |  file_img_url -%}
+            {%- endif -%}
+
+
+           {% comment %} {%- render "video-product", 
+            video_url: videoUrl1, 
+            video_id: videoUrl1_idOnly,
+            video_img: video_coverimg_from_meta1,
+            youtube_id: videoUrl1_idOnly,
+            youtube_title: product.metafields.productmeta.showcase_video_seo_title, 
+            youtube_description: product.metafields.productmeta.showcase_video_seo_description, 
+            youtube_uploaded_date: product.metafields.productmeta.showcase_video_seo_uploaded_date 
+            -%}  {% endcomment %}
+{%- comment -%} 
+DEBUG::
+<p>video: {{videoUrl1}}</p>
+<p>ID: {{videoUrl1_idOnly}}</p>
+<p>complete: https://www.youtube.com/embed/{{ videoUrl1_idOnly }}?enablejsapi=1</p> 
+{%- endcomment -%}
+            {%- render 'custom-modal-video-product-tab', 
+                cover_image: video_coverimg_from_meta1,
+                cover_image_lazy:true,
+                cover_image_width:500,
+                cover_image_alt:product.metafields.productmeta.showcase_video_seo_title,
+                video_url: videoUrl1, 
+                youtube_id: videoUrl1_idOnly,
+                youtube_title: product.metafields.productmeta.showcase_video_seo_title, 
+                youtube_description: product.metafields.productmeta.showcase_video_seo_description, 
+                youtube_uploaded_date: product.metafields.productmeta.showcase_video_seo_uploaded_date
+            -%}
+
+
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+
+{%- endif -%}
+  {%- comment -%}END:: video comment {%- endcomment -%}
+
+
+

@@ -1,0 +1,21 @@
+{
+    "sections": {
+        "find_scholarship": {
+            "type": "find-scholarship",
+            "settings": {}
+        },
+        "featured-universities": {
+            "type": "featured-universities",
+            "settings": {}
+        },
+        "search-result": {
+            "type": "scholarship-search-result",
+            "settings": {}
+        }
+    },
+    "order": [
+        "find_scholarship",
+        "featured-universities",
+        "search-result"
+    ]
+}

@@ -1,0 +1,88 @@
+{% comment %} <p>tester 123 <br> {{ product.metafields.accentuate.addon_json }} </p> {% endcomment %}
+{% unless addon_assets_loaded %}
+  {% assign addon_assets_loaded = true %}
+  {{ 'product-addon.css' | asset_url | stylesheet_tag }}
+{% endunless %}
+{% comment %} product.metafields.accentuate.addon_json is in two file check_addon_img.liquid and addon_data.liquid {% endcomment %}
+{%- assign data = product.metafields.accentuate.addon_json.value -%}
+{%- if data.addon -%}
+  {%- for addon in data.addon -%}
+    {%- if addon.addonIndex == option_index -%}
+      {% comment %} this is for touch device for showing selected option {% endcomment %}
+      {% for item in addon.addonItems %}
+        {% if selected_index_value == forloop.index %}
+            {% if item.addonImage != '' %}
+              <div class="selected-option-img">
+                <div class="img-holder">
+                  <img src="{{ item.addonImage }}" alt="item addon" height="auto" width="auto">
+                </div>
+              </div>
+            {% endif %}
+        {% endif %}
+      {% endfor %}
+      <div class="custom-tippy-container">
+        <div class="addon_swiper swiper">
+          <div class="swiper-wrapper">
+            {%- for item in addon.addonItems -%}
+              <div class="swiper-slide color-img-tooltip-addon-img-{{forloop.index}}">
+                {% if item.addonImage != '' %}
+                  <picture class="slide-img-main">
+                    {% comment %} crop image from item.addonImage to 860x573 {% endcomment %}
+                    {% if item.addonImage contains '.jpg' %}
+                      {% assign addonimg_cropped =  item.addonImage | replace: '.jpg', '_860x573_crop_left.jpg' %}
+                    {% elsif item.addonImage contains '.jpeg' %}
+                      {% assign addonimg_cropped =  item.addonImage | replace: '.jpeg', '_860x573_crop_left.jpeg' %}
+                    {% elsif item.addonImage contains '.png' %}
+                      {% assign addonimg_cropped =  item.addonImage | replace: '.png', '_860x573_crop_left.png' %}
+                    {% elsif item.addonImage contains '.webp' %}
+                      {% assign addonimg_cropped =  item.addonImage | replace: '.webp', '_860x573_crop_left.webp' %}
+                    {% else %}
+                      {% assign addonimg_cropped =  item.addonImage %}
+                    {% endif %}
+                    <img src="{{ addonimg_cropped }}" alt="{{ item.addonOpt }}" height="" width="" loading="lazy">
+                  </picture>
+                {% endif %}
+                <div class="img-info">
+                  <strong>
+                     {{ option.values[forloop.index0] }}
+                  </strong><br>
+                  {{ item.addonSpec | newline_to_br }}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- if addon.addonNotePreview -%}
+        <div class="addon-image-notice-box">
+          <div class="addon-img-notice-inner">
+            <span class="bold-text">Preview only:</span> {{ addon.addonNotePreview }}
+          </div>
+        </div>
+        {%- endif -%}
+      </div>
+
+      {% if data.addon %}
+        {% if option_selected != 'none' %}
+          <div class="selected-note">
+          {% assign option_name = option.name | downcase | strip %}
+          
+          {% comment %} removed select a and add a from option_name {% endcomment %}
+          {% assign first8 = option_name | slice: 0, 8 %}
+          {% assign first5 = option_name | slice: 0, 5 %}
+
+          {% if first8 == "select a" %}
+            {% assign option_name = option_name | slice: 8, option_name.size | strip %}
+          {% elsif first5 == "add a" %}
+            {% assign option_name = option_name | slice: 5, option_name.size | strip %}
+          {% endif %}
+
+          {% assign option_name = option_name | capitalize %}
+          {{ option_name | append: " successfully selected" }}
+          <br>
+          </div>
+        {% endif %}
+      {% endif %}
+
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

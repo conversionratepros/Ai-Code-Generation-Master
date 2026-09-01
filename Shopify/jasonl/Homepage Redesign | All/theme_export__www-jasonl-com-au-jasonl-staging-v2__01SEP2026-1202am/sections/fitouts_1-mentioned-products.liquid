@@ -1,0 +1,262 @@
+
+
+{% comment %}get all products from metafield and save them to array {% endcomment  %}
+{% assign ref_product = '' %}
+ {%- for inspiredImg in article.metafields.fitout_blog.inspired_image -%} 
+
+    {% if article.metafields.fitout_blog.inspired_product_2[forloop.index0] and article.metafields.fitout_blog.inspired_product_2[forloop.index0]  != empty %}
+        {% if ref_product == ''  %}
+            {% assign ref_product = article.metafields.fitout_blog.inspired_product_2[forloop.index0] %}
+        {% else %}
+            {% assign ref_product = ref_product |append:'|' | append: article.metafields.fitout_blog.inspired_product_2[forloop.index0] %}
+        {% endif  %}
+    {% endif %}
+    {% if article.metafields.fitout_blog.inspired_product_3[forloop.index0] and article.metafields.fitout_blog.inspired_product_3[forloop.index0] != empty %}
+        {% assign ref_product = ref_product |append:'|' | append: article.metafields.fitout_blog.inspired_product_3[forloop.index0] %}
+    {% endif %}
+    {% if article.metafields.fitout_blog.inspired_product_1[forloop.index0] and article.metafields.fitout_blog.inspired_product_1[forloop.index0] != empty %}
+        {% assign ref_product = ref_product |append:'|' | append: article.metafields.fitout_blog.inspired_product_1[forloop.index0] %}
+    {% endif %}
+{% endfor %}
+
+
+
+
+
+{% comment %} {% assign ref_product = article.metafields.fitout_blog.fitout_products %} {% endcomment %}
+{%- if ref_product != '' -%}
+    {% assign products_array = ref_product| split:'|' %} 
+    {%- assign productCount = products_array | size-%}
+    {{ 'component-card.css' | asset_url | stylesheet_tag }}
+    {{ 'component-price.css' | asset_url | stylesheet_tag }}
+    {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+    {{ 'product-listing.css' | asset_url | stylesheet_tag }}
+    {{  "fitouts_1-mentioned-products.css" |  asset_url |  stylesheet_tag}}
+
+
+    
+{%- unless section.settings.quick_add == 'none' -%}
+    {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  {%- endunless -%}
+  
+    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  
+  {%- if section.settings.quick_add == 'bulk' -%}
+    <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+  
+  {{ 'custom-color-option.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'custom-color-option.js' | asset_url }}" defer="defer"></script>
+  
+
+<div class="fitouts_1-mentioned-prodcuts-wrapper">
+    <div class="page-width">
+        <div class="mentioned-products-cnt">
+            <h2>Mentioned products</h2>
+            <div class="mentioned-products-list">
+                {%- assign prods_counter = 0 -%}
+                {% comment %}
+                {%- assign products_array = products_array | concat: products_array -%}
+                {%- assign products_array = products_array | concat: products_array -%}
+                {% endcomment %}
+                    {% for productvalue in  products_array %}
+                        {% assign prod_value = productvalue %}
+                        {% if  prod_value contains '?' %}
+                            {% assign  productvalue_queryStrings = productvalue | split:'?'%}
+                            {% assign productvalue_variant = productvalue_queryStrings[1] | split:'variant'%}
+                            {% assign prod_variant = productvalue_variant[1]%}
+                            {% assign prod_value =  productvalue_queryStrings[0]%}
+                        {% endif %}
+                        
+                        {% if all_products[prod_value].title != empty %}
+                            {%  assign prods_counter = prods_counter | plus:1  %} 
+                            
+                            <div class="mentioned-item" {{forloop.index}}>
+                                    <div class="product-item" data-product-title="{{all_products[productvalue].title}}">
+                                            {% render 'card-product',
+                                                        card_product: all_products[prod_value],
+                                                        media_aspect_ratio: section.settings.image_ratio,
+                                                        image_shape: section.settings.image_shape,
+                                                        show_secondary_image: false,
+                                                        show_vendor: section.settings.show_vendor,
+                                                        show_rating: section.settings.show_rating,
+                                                        skip_styles: false,
+                                                        quick_add: 'standard',
+                                                        section_id: section.id,
+                                                        hover_effect: false
+                                            %}
+                                    </div>
+                                </div>
+                                {%- if prods_counter == 3 -%}
+                                <div class="mentioned-item">
+                                    <div class="box-download-3d-library">
+
+                                        <div class="download-cnt">
+                                            <ul class="software-icons">
+             
+              <li class="icon2">
+                
+<a href="https://drive.google.com/drive/folders/1gr2hVlbUY-URar2oHTEBL8jmfOcp5sHb?usp=drive_link" target="_blank" rel="noopener noreferrer" class="tracking-revit-button">
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 188.3 230.7" style="enable-background:new 0 0 188.3 230.7;" xml:space="preserve">
+  
+  <g>
+    <polygon fill="#112a71" points="99.5,62.2 27.3,35 108.4,120 	"></polygon>
+    <polygon fill="#174ebe" points="0,224.7 43.2,230.7 55,167 11.7,143.7 	"></polygon>
+    <polygon fill="#123c8f" points="99.5,62.2 143.8,78.9 89.5,0 27.3,35 99.5,62.2 	"></polygon>
+    <polygon fill="#164dbc" points="108.4,120 136.8,111.5 143.8,78.9 99.5,62.2 	"></polygon>
+    <polygon points="99.5,62.2 143.8,78.9 99.5,62.2 	"></polygon>
+    <polygon fill="#113b8f" points="108.4,120 27.3,35 11.7,143.7 55,167 63,128.8 	"></polygon>
+    <polygon fill="#164cb9" points="188.3,203.7 108.4,120 63,128.8 55,167 174.5,230.7 	"></polygon>
+  </g>
+  </svg>
+</a>
+
+              </li>
+              <li class="icon3">
+<a href="https://drive.google.com/drive/folders/1K9eXnhwyxA1uoOAjpx9y8MhChjkEy3o9?usp=drive_link" target="_blank" rel="noopener noreferrer" class="tracking-sketch-button">
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 196.9 211.9" style="enable-background:new 0 0 196.9 211.9;" xml:space="preserve">
+  <g>
+    <path fill="#ff182d" d="M194.2,49.4c-18.7-14.5-37.5-28.9-56-43.8c-5.4-4.4-10.6-6.9-17.5-5c-2.6,0.7-5.4,0.8-8.1,1.1
+      C83.4,5.6,54.1,9.3,24.9,13.1C16.7,14.2,8.5,15.3,0,16.4c0.3,2.1,0.4,3.7,0.7,5.3C5,47.6,9.3,73.5,13.8,99.4
+      c1.8,10.7,2.9,21.6,6,32c7.5,25.3,16,50.3,24,75.4c0.5,1.7,1.1,3.4,1.8,5.2c1.2-0.2,2.1-0.3,2.9-0.5
+      c43.8-12.4,87.6-24.8,131.4-37.1c2.4-0.7,3.3-2,3.5-4.3c4.4-38.3,8.9-76.6,13.5-114.8C197.2,52.3,196.1,50.9,194.2,49.4z"></path>
+    <path fill="#FFFFFF" d="M60.5,154.5c-3.1,0.8-6.3,1.7-9.4,2.2c-1,0.2-2.9-0.6-3.2-1.4c-2.3-5.9-4.2-11.9-6.5-18.4
+      c12.5-2.9,24.3-5.6,36.2-8.2c0.7-0.2,2.1,0.4,2.4,1.1c3.1,5.7,6,11.4,9.1,17.6C79.2,149.8,69.8,152.2,60.5,154.5z"></path>
+    <path fill="#FFFFFF" d="M90,108.5c-1.2,0.2-3.2-0.8-3.9-1.9c-2.8-4.2-5.2-8.6-7.7-13c-1.1-2-2.3-2.9-4.9-2.3
+      c-11.6,2.4-23.3,4.5-35,6.9c-2.5,0.5-3.7,0-4.5-2.5c-1.7-5.2-3.8-10.4-5.9-16.1c7.5-1.4,14.5-2.7,21.6-3.9c17.3-3,34.6-6.1,52-9
+      c1.2-0.2,3,0.1,3.6,0.9c8.5,10.3,16.8,20.7,25.2,31c0.1,0.2,0.1,0.5,0.4,1.2C117.1,102.9,103.6,105.8,90,108.5z"></path>
+    <g>
+      <path fill="#FFFFFF" d="M178.6,54.7c-9.1,1.6-18.2,3.3-27.3,4.9c-5,0.9-10,1.5-14.9,2.7c-2.8,0.7-4.3-0.2-6-2.1
+        c-8.1-8.4-16.3-16.7-24.3-25.1c-1.7-1.8-3.2-2.4-5.8-2C75.4,36.8,50.5,40.3,25.7,44c-2.6,0.4-4,0-4.9-2.7
+        c-1.6-4.5-3.6-8.8-5.6-13.7c8.8-1.2,17.1-2.3,25.4-3.3c27.3-3.5,54.7-7.1,82-10.5c1.9-0.2,4.3,0,5.7,1.1
+        c16.4,12.5,32.5,25.2,48.8,37.8c0.6,0.5,1.3,0.8,2,1.2C178.9,54.1,178.7,54.4,178.6,54.7z"></path>
+    </g>
+  </g>
+  </svg>
+</a>
+
+
+              </li>
+              
+            </ul>
+                                            <h3>Download our design<br>resources</h3>
+                                            <p>Access a vast selection of over 5000 products, all readily available for use within your preferred design software.</p>
+                                            <a class="button tracking-download-3d-library" href="https://drive.google.com/drive/folders/1MNyTgGFc_G5gJSyun_92DOybuiB0MyGI?usp=drive_link" target="_blank" rel="noopener noreferrer">Download Free 3D Library</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            {%- endif-%}
+                        {%- endif -%}
+                    {% endfor %}
+            </div>
+            <div class="box-download-3d-library box-mob">
+                        <div class="download-cnt">
+                            <h3>Download our design<br>resources</h3>
+                            <p>Access a vast selection of over 5000 products, all readily available for use within your preferred design software.</p>
+                            <a class="button tracking-download-3d-library" href="https://drive.google.com/drive/folders/1MNyTgGFc_G5gJSyun_92DOybuiB0MyGI?usp=drive_link" target="_blank" rel="noopener noreferrer">Download Free 3D Library</a>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>
+{%- endif -%}
+<style>
+
+        .software-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    position: relative;
+    justify-content: center;
+}
+.software-icons li {
+    height: 52px;
+    width: 52px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.software-icons li.icon1 {
+    background: #7dc4c4;
+}
+.software-icons li.icon2 {
+    background: #729beb;
+}
+.software-icons li.icon2:hover {
+    background: #5c7fc7;
+    cursor: pointer;
+}
+.software-icons li.icon3 {
+    background: #ff7b87;
+}
+.software-icons li.icon3:hover {
+    background: #db616c;
+    cursor: pointer;
+}
+.software-icons li svg {
+    width: 27px;
+}
+
+    
+</style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      {% comment %} mobile add to quote button {% endcomment %}
+      document.querySelectorAll('.add-to-quote-button').forEach(button => {
+        button.addEventListener('click', function() {
+          const formButton = this.closest('.card-wrapper').querySelector('.product-form__submit');
+          formButton.click();
+        });
+      });
+      {% comment %} mobile add to quote button {% endcomment %}
+  
+     function customColorOption(data){
+    
+    if(!window.matchMedia("(pointer: coarse)").matches) { // if not touch devices
+         // color option image change on listing
+          //let listing_product_item = document.querySelectorAll('#main-collection-product-grid .grid__item');
+          let listing_product_item = document.querySelectorAll('#product-grid .grid__item');
+          for(let i = 0; i<listing_product_item.length; i++){
+    
+              let listing_color_item = listing_product_item[i].querySelectorAll('.color-list .option-color[data-variant_img]');
+              let colorImgHolder = listing_product_item[i].querySelector('.active-color-img');
+              for(let x = 0; x<listing_color_item.length; x++){
+  
+                  listing_color_item[x].addEventListener('mouseenter', () => {
+                    // show loader on first time hover 
+                    if(listing_color_item[x].getAttribute('data-visited') == 'false'){
+                        listing_product_item[i].classList.add('first-time-hover');
+                        listing_color_item[x].setAttribute('data-visited','true');
+                        setTimeout(function(){
+                            listing_product_item[i].classList.remove('first-time-hover');
+                        },500)
+                      }
+                      // -----
+                      let colorImgSrc = listing_color_item[x].getAttribute('data-variant_img');
+                      colorImgHolder.setAttribute('src',colorImgSrc);
+                      listing_product_item[i].classList.add('color-img-active');
+                    });
+  
+                    listing_color_item[x].addEventListener('mouseleave', () => {
+                        if(listing_color_item[x].getAttribute('data-visited') == 'true'){
+                            listing_product_item[i].classList.remove('first-time-hover');
+                        }
+                       listing_product_item[i].classList.remove('color-img-active');
+                    });
+                }
+            }
+        }
+  }
+  
+  customColorOption();
+  });
+  
+  </script>

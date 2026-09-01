@@ -1,0 +1,82 @@
+
+{% if youtube_title and youtube_uploaded_date %}
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org/",
+                "@type": "VideoObject",
+                "name": "{{youtube_title}}",
+                "description": "{{youtube_description}}",
+                "thumbnailUrl": [
+                    "https://img.youtube.com/vi/{{youtube_id}}/default.jpg", 
+                  "https://img.youtube.com/vi/{{youtube_id}}/hqdefault.jpg", 
+                  "https://img.youtube.com/vi/{{youtube_id}}/mqdefault.jpg", 
+                    "https://img.youtube.com/vi/{{youtube_id}}/sddefault.jpg"
+                ], 
+                "uploadDate": "{{youtube_uploaded_date}}",
+                "embedUrl": "https://www.youtube.com/embed/{{youtube_id}}"
+                }
+          </script>
+{%- endif -%}
+
+{% comment %} template == 'article.fitouts' {% endcomment %}
+
+{% comment %} {%- if template == 'collection' or template == 'product' -%} 
+    {%- unless youtube_title and youtube_uploaded_date -%}
+          <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    function youtube_schema(){
+                          const YOUTUBE_API_KEY ="AIzaSyDp4s5VrEIvohon4rwG6K6BHbfemgpUY68"; 
+                          //replace the text in the "" with your YouTube API key that you can obtain in the Google Cloud Console
+                          var counter = 0;
+                          [].forEach.call(document.querySelectorAll('.youtube_iframe'), function(e) {
+                          counter++;
+
+                            // console.log(e);
+                            // console.log(e.getAttribute("class"));
+                            // console.log(`counter ${counter}`);
+                                  // var id = 'yYx_DuZweyk';
+                                  var id = e.src.match(/embed\/(\w+)/i)[1];
+                                 //console.log(id);
+                                  var url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+id+"&key="+YOUTUBE_API_KEY;
+                                  //console.log(url);
+                                  var xhttp = new XMLHttpRequest();
+                                    xhttp.onreadystatechange = function(){
+                                      if (this.readyState == 4 && this.status == 200) {
+                                        // console.log('true');
+                                        var responseObject = JSON.parse(this.response);
+                                      // console.log(responseObject)
+                                        var video = responseObject.items[0].snippet;
+                                        var jsonld = {
+                                                    "@context": "http://schema.org",
+                                                    "@type": "VideoObject",
+                                                    "name": video.title,
+                                                    "description": video.description,
+                                                    "thumbnailUrl": [ 
+                                                                  video.thumbnails.default.url, 
+                                                                  video.thumbnails.medium.url, 
+                                                                  video.thumbnails.high.url, 
+                                                                  video.thumbnails.maxres.url,
+                                                                ], 
+                                                                "uploadDate": video.publishedAt,
+                                                                "embedUrl": "https://www.youtube.com/embed/"+id,
+                                                    }
+                                                  var el = document.createElement('script');
+                                                  el.type = 'application/ld+json';
+                                                  el.text = JSON.stringify(jsonld);
+                                                  document .querySelector ('head').appendChild(el);
+                                      }else{
+                                        //console.log('false');
+                                      }
+                                    };
+                          xhttp.open("GET", url, true);
+                          xhttp.send();
+
+                          });
+                    }
+                youtube_schema();
+            });
+        </script>
+    {%- endunless -%}
+{%- endif -%}
+
+ {% endcomment %}

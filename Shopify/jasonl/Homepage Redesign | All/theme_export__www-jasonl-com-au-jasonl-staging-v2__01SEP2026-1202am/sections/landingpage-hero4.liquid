@@ -1,0 +1,59 @@
+{{ "landingpage-hero.css" | asset_url | stylesheet_tag }}
+{{ "landingpage-hero4.css" | asset_url | stylesheet_tag }}
+<div class="hero-container hero-container-2">
+        <div class="hero-main-wrapper">
+                <picture class="hero-picture">
+                    <source srcset="{{ 'Fitout-header.jpg' | file_img_url: '3800x1000' }} 2x, {{ 'Fitout-header.jpg' | file_img_url: '5700x1500' }} 3x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+                    <source srcset="{{ 'Fitout-header.jpg' | file_img_url: '1903x616' }}" media="(max-width: 1024px)">
+                    <img class="thumb-card-img" src="{{ 'Fitout-header.jpg' | file_img_url: '1903x616' }}" width="auto" height="auto" alt="Fitout Header">
+                </picture>
+            <div class="page-width">
+                <div class="hero-main-innner-container">
+                    <div class="hero-text">
+                        <h1 class="h1-style">Blank canvas <br>to beautiful <br>fitout. Fast!</h1>
+                        <ul class="disc-number-bullets disc-number-bullets-2" style="display: none;">
+                            <li>No-obligation floor plan & quote</li>
+                            <li>Dedicated project manager every step of the way</li>
+                            <li>± 5000 tailored products to choose from</li>
+                            <li>Delivery & complete assembly</li>
+                        </ul>
+                        {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'typeform-share getaquoteclick link', button_id:'', button_text:"GET A QUOTE" -%}
+                       {% comment %} {%- render 'landingpage-typeform' -%} {% endcomment %}
+                    </div>
+                        <div class="typeform-snippet-wrap">
+                            <div id="typeform-rvv9MINp-1" class="typeform-snippet typeform-share typeform-embed" data-tf-on-submit="submit" data-tf-widget="rvv9MINp" data-tf-iframe-props="title=JasonL - Get A Quote - Inbound" data-tf-medium="snippet" data-tf-hidden="" style="width:390px;height:550px;"></div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="hero-column-wrapper" style="display: none;">
+            <div class="page-width">
+                <div class="hero-column">
+                    <div class="hero-column-left">
+                        <p>Go from an empty office to a quality fitout. Get Australia's #1 most internationally recognised team to help you pick the best product, deliver to your door and assemble, all while your dedicated project manager guides you through every step of the way.</p>
+                    </div>
+                    <div class="hero-column-right">
+                        <div class="img-holder">
+                            <img src="{{'landingpage2-chair.png' | file_img_url : 'master'}}" alt="Go from an empty office to a quality fitout." width="" height="" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+</div>
+{%- comment -%} companies list slider {%- endcomment -%}
+<div class="page-width fitout-company-slider-section">
+    {% render 'companies_list_slider' %}
+</div>
+{%- comment -%} companies list slider end {%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Hero 2",
+  "tag": "section",
+  "class": "section-hero2",
+  "settings": [
+  ]
+}
+{% endschema %}

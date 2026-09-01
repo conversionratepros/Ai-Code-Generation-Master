@@ -1,0 +1,90 @@
+<div id="featured-service-placeholder" class="dark">
+    <div style="text-align:center">Loading ....</div>
+    <noscript>
+        <h2>Fitouts done <br />
+        in under 10 days. <br />
+        <span class="thin">Yep, really.</span></h2>
+        <p>We've built a system that moves fast — from planning to install. Most fitouts are done in 10 days or less, without cutting corners. Just ask our happy customers.</p>
+        <h2>Your own <br /> fitout pro.<br />
+        <span class="thin">Start to finish.</span></h2>
+        <p>From day one, you get a real person who knows the ropes and has your back. They'll guide you through every step, make smart calls and keep things moving - no chasing, no guesswork.</p>
+        <h2>We plan it,<br /> bring it, build it.<br />
+        <span class="thin">You just show up.</span></h2>
+        <p>We're not here to handball tasks back to you. From free floor plans to delivery and assembly, we take care of the lot. You walk in when it's ready, no tools or to-do lists required.</p>
+        <h2>Showrooms across <br /> Australia.<br />
+        <span class="thin">Swing by anytime.</span></h2>
+        <p>Want to see it before you buy it? No dramas. Pop into one of our showrooms to test, touch and talk through your fitout - with real people who know their stuff and are happy to help.</p>
+    </noscript>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const featuredServicePlaceholder = document.getElementById("featured-service-placeholder");
+    if (!featuredServicePlaceholder) return;
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+
+        // add data 
+        function handleResponse() {
+          JSON.parse(this.responseText);
+          // console.log(Object.values(JSON.parse(this.responseText))[0]);
+          featuredServicePlaceholder.innerHTML = Object.values(JSON.parse(this.responseText))[0];
+          loadScript("{{ 'custom-dot-animate-slider.js' | asset_url }}", function () {
+            myScriptInit();
+          });
+        }
+
+        function myScriptInit() {
+          console.log("loaded dot slider");
+        }
+
+        function loadScript(src, callback) {
+          const script = document.createElement("script");
+          script.src = src;
+          script.onload = callback;
+          script.type = "module"; 
+          document.body.appendChild(script);
+        }
+        const request = new XMLHttpRequest();
+        request.addEventListener('load', handleResponse);
+        request.open('GET', '/?sections=featured-services-b', true);
+        request.send();
+        
+        // Stop observing after load
+        obs.unobserve(el);
+
+      });
+    }, {
+      rootMargin: "300px"
+    });
+
+  observer.observe(featuredServicePlaceholder);
+  //   sections.forEach(section => observer.observe(section));
+  }); 
+
+</script>
+{%- schema -%}
+{
+"name": "feat-ser-b-placeholder",
+"settings": [
+{
+    "type": "select",
+    "id": "bg-color",
+    "label": "Section backgound color",
+    "options": [
+        {
+        "value": "light",
+        "label": "light"
+        },
+        {
+        "value": "dark",
+        "label": "dark"
+        }
+    ],
+    "default": "light"
+}
+]
+}
+{%- endschema -%}

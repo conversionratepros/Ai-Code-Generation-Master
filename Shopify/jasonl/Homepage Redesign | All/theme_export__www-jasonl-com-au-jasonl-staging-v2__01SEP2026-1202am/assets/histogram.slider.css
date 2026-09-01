@@ -1,0 +1,108 @@
+.bin { 
+    position: relative; 
+    margin-right: 1px;
+}
+
+.bin-color { background-color: #DBE0E2; }
+.bin-color-selected { background-color: #0079BA; }
+.bin-color-optimal { background-color: #CAF9F6; }
+.bin-color-optimal-selected { background-color: #01E2D4; }
+
+.in-range { z-index: 1;}
+.out-of-range { z-index: 0;}
+.selected-range { text-align: center; }
+
+.ui-slider-horizontal { height: .2em; }
+.ui-slider .ui-slider-handle {
+    width: .8em;
+    height: .8em;
+    border-radius: 50%;
+}
+
+.ui-corner-all {
+    border-radius: 0;
+}
+
+.tooltip > .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #FFFFCA;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    position: absolute;
+    z-index: 100;
+}
+
+.tooltip:hover > .tooltiptext {
+    visibility: visible;
+    margin-top: 50px;
+}
+
+.display-none{
+    display: none;
+}
+
+price-range .field__input{
+ height:3.0rem;
+}
+price-range .field__label{
+ top:0.5rem;
+ font-size: 15px;
+}
+price-range .field__input:focus~.field__label,
+price-range .field__input:not(:placeholder-shown)~.field__label
+{
+ display:none;
+}
+price-range .field__input:not(:placeholder-shown){
+ padding-top:11px;
+ font-size:14px;
+ padding-right:1rem;
+}
+
+/* price-range input[type=number]::-webkit-inner-spin-button, 
+price-range input[type=number]::-webkit-outer-spin-button { 
+ -webkit-appearance: none;
+} */
+/* price-range .field{
+ position:relative;
+}
+price-range .field:after{
+    content: "";
+   position: absolute;
+   right: 11px;
+   top: 10px;
+   width: 8px;
+   height: 8px;
+   border: 2px solid #000;
+   border-top: 0px;
+   border-left: 0px;
+   border-radius: 2px;
+   transform: rotate(45deg);
+} */
+price-range .field{
+ position:relative;
+}
+price-range .field svg{
+   position: absolute;
+   right: 11px;
+   top: 12px;
+   width: 11px;
+}
+price-range .field:hover svg,price-range .field input:focus ~ svg{
+ display:none;
+}
+/* price-range .field svg{
+ display:none
+} */
+
+@media(max-width:1024px){
+ .histogramSlider,price-range.facets__price{
+    padding:0 20px;
+ }
+ .histogramSlider{
+   width:300px;
+ }
+}
+

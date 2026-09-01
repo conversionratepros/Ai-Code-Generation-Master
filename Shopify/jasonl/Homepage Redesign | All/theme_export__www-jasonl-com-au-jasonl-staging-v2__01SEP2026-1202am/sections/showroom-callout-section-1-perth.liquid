@@ -1,0 +1,34 @@
+{{ 'showroom-callout-section-1.css' | asset_url | stylesheet_tag }}
+<div class="showroom-callout-section-1-section">
+    <div class="page-width">
+        <div class="callout-wrap">
+            <div class="callout-left-col">
+                <h2>About JasonL</h2>
+                <div class="dis">
+                    <p>At JasonL, we're more than an online furniture supplier sending products across the country. We're here in Perth because WA businesses value fast service, reliable delivery, and support from people who understand the local market. Our Perth showroom gives you the chance to see the range up close, try it out, and get helpful advice from a real team.</p>
+                    <p>From startups to government departments and established family businesses, we make office fitouts straightforward - from planning layouts and selecting products to installation and quick local delivery. We're proud to support Perth organisations and work with local trades on projects across Western Australia.</p>
+                    <p><strong>Why Perth? Because WA businesses move fast - and so do we.</strong></p>
+                </div>
+            </div>
+            <div class="callout-right-col">
+                <div class="call-out-right-inner">
+                    <h2>Your space, your way</h2>
+                    <p>Big office or small, startup or scale-up - we'll help you build a workspace that works. Quick quotes. No-fuss delivery. Local support.</p>
+                     {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'btn', button_id:'', button_text:"LET'S GET STARTED" -%}
+                    {% comment %} 
+                        <a {{ settings.typeformurls_url_1 }} href="javascript:void(0)" class="btn" data-tf-on-ready="ready">LET'S GET STARTED</a> 
+                    {% endcomment %}
+                    
+                    <div class="seperator"></div>
+                    <div class="call-now">
+                         Call us now: <a href="tel: 1300249035">1300 249 035</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{ "name": "callout", "class": "showroom-callout-section-1-section-wrap" }
+{% endschema %}

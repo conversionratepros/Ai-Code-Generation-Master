@@ -1,0 +1,161 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "office_furniture_breadcrumb": {
+      "type": "breadcrumb-top",
+      "settings": {}
+    },
+    "office_furniture_banner": {
+      "type": "office-furniture-banner",
+      "settings": {}
+    },
+    "stats_section": {
+      "type": "stats-section",
+      "settings": {}
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid2",
+      "settings": {
+        "products_per_page": 45,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "quiz_section": {
+      "type": "quiz-section",
+      "settings": {}
+    },
+    "office_furniture_range": {
+      "type": "office-furniture-range",
+      "settings": {
+        "furniture_range_eyebrow": "OUR RANGE",
+        "furniture_range_heading": "What's in our office furniture range",
+        "furniture_range_description": "Everything is designed to work together — visually, practically and operationally. From furniture selection and workspace planning to delivery and installation, every element is considered as part of one cohesive fitout experience, helping create a workplace that feels consistent, functional and built for the way your team works."
+      }
+    },
+    "how_to_choose": {
+      "type": "how-to-choose",
+      "settings": {}
+    },
+    "compare_office_furniture": {
+      "type": "compare-office-furniture",
+      "settings": {}
+    },
+    "why_office_furniture": {
+      "type": "why-office-furniture",
+      "settings": {}
+    },
+    "office_furniture_faq": {
+      "type": "office-furniture-faq",
+      "blocks": {
+        "text_4Cn8jG": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Who is the best office furniture supplier in Australia?",
+            "faq_answer": "JasonL is one of Australia's largest commercial office furniture suppliers, with over 1,000 stocked products delivered and installed Australia-wide, and showrooms in Sydney, Melbourne, Brisbane, Perth, Adelaide and the Gold Coast."
+          }
+        },
+        "text_aUzmEM": {
+          "type": "text",
+          "settings": {
+            "faq_question": "How much does it cost to furnish an office?",
+            "faq_answer": "It depends on the size of your space and what you need, but stocked products keep costs predictable and delivery fast. Talk to a planner for a clear quote built around your space and budget."
+          }
+        },
+        "text_DrifRW": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Does JasonL deliver and install office furniture?",
+            "faq_answer": "Yes. Delivery and installation are handled Australia-wide, right down to the clean-up - one team, start to finish."
+          }
+        },
+        "text_E4rjqX": {
+          "type": "text",
+          "settings": {
+            "faq_question": "How long does an office fitout take?",
+            "faq_answer": "Qualifying, stocked-product fitouts can be completed in under 10 days, from measure-up to clean-up. Timing depends on product availability, site access and your final sign-off - a planner can confirm what's realistic for your space."
+          }
+        },
+        "text_bzth99": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Can I get trade or bulk pricing?",
+            "faq_answer": "Fitting out multiple desks or an entire office? Speak to a planner about pricing that scales with your order."
+          }
+        },
+        "text_FPa3FH": {
+          "type": "text",
+          "settings": {
+            "faq_question": "Where can I see JasonL office furniture in person?",
+            "faq_answer": "In one of our showrooms in Sydney, Melbourne, Brisbane, Perth, Adelaide or the Gold Coast. Come take a seat before you commit."
+          }
+        }
+      },
+      "block_order": [
+        "text_4Cn8jG",
+        "text_aUzmEM",
+        "text_DrifRW",
+        "text_E4rjqX",
+        "text_bzth99",
+        "text_FPa3FH"
+      ],
+      "settings": {
+        "faq_eyebrow_text": "FREQUENTLY ASKED",
+        "faq_heading": "Common Office Furniture FAQs",
+        "faq_description": "Don't see your question? Call a planner directly. Monday to Friday. 8am—6pm AEST."
+      }
+    },
+    "collection_more_about": {
+      "type": "collection-more-about",
+      "settings": {}
+    },
+    "explore_more": {
+      "type": "explore-more",
+      "settings": {}
+    },
+    "final_cta": {
+      "type": "final-cta",
+      "settings": {}
+    },
+    "footer_office_furniture": {
+      "type": "footer-office-furniture",
+      "settings": {}
+    }
+  },
+  "order": [
+    "office_furniture_breadcrumb",
+    "office_furniture_banner",
+    "stats_section",
+    "product-grid",
+    "quiz_section",
+    "office_furniture_range",
+    "how_to_choose",
+    "compare_office_furniture",
+    "why_office_furniture",
+    "office_furniture_faq",
+    "collection_more_about",
+    "explore_more",
+    "final_cta",
+    "footer_office_furniture"
+  ]
+}

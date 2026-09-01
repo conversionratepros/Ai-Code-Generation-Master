@@ -1,0 +1,59 @@
+
+{%- assign discount-tag__clearanceSale = false -%}
+
+{%-if product.variants.first.compare_at_price -%}
+	{%- assign normalPrice = product.variants.first.price | money_without_currency | remove : '.00' | remove:',' | times:1 -%}
+	{%- assign comparePrice = product.variants.first.compare_at_price | money_without_currency | remove : '.00' | remove:',' | times:1 -%}
+	{%- assign clearanceSale = false -%}
+	{%- if comparePrice > normalPrice  -%}
+		{%- assign discount-tag__clearanceSale = true -%}
+		{%- capture getDiscountPercent-%}
+			{%- assign discountCalc = comparePrice | minus: normalPrice -%}
+			{%- assign discountCalc = discountCalc | times : 100.00  -%}
+			{%- assign discountCalc = discountCalc | divided_by:comparePrice -%}
+			{{discountCalc}}
+		{%- endcapture-%}
+
+          
+        <div class="discount-tag" data-cp="{{comparePrice}}" data-np="{{normalPrice}}">
+          <span class="discount-tag-percent" id="discount_tag_{{product.id}}">
+            {% assign getDiscountPercentToInteger = getDiscountPercent | times : 1 %}
+            {% if  getDiscountPercentToInteger < 1 %}
+                <style>
+                  .discount-tag{
+                    width:auto;
+                    min-width:47px;
+                    padding-right:10px;
+                  }
+                </style>
+                {{- getDiscountPercent | round:2 | strip -}}
+            {% else %}
+                {{- getDiscountPercent | round:0 | strip -}}
+            {% endif -%}
+            %</span>
+          <span class="discount-tag-off">OFF</span>
+        </div>
+	{%-endif-%}
+{%-endif-%}
+
+
+{% comment %} {%- assign discount-tag__clearanceSale = false -%}
+
+{%-if product.variants.first.compare_at_price -%}
+	{%- assign normalPrice = product.variants.first.price | money_without_currency | remove : '.00' | remove:',' | times:1 -%}
+	{%- assign comparePrice = product.variants.first.compare_at_price | money_without_currency | remove : '.00' | remove:',' | times:1 -%}
+	{%- assign clearanceSale = false -%}
+	{%- if comparePrice > normalPrice  -%}
+		{%- assign discount-tag__clearanceSale = true -%}
+		{%- capture getDiscountPercent-%}
+			{%- assign discountCalc = comparePrice | minus: normalPrice -%}
+			{%- assign discountCalc = discountCalc | times : 100 -%}
+			{%- assign discountCalc = discountCalc | divided_by:comparePrice -%}
+			{{discountCalc}}
+		{%- endcapture-%}
+        <div class="discount-tag" data-cp="{{comparePrice}}" data-np="{{normalPrice}}">
+          <span class="discount-tag-percent">{{- getDiscountPercent | strip -}}%</span>
+          <span class="discount-tag-off">OFF</span>
+        </div>
+	{%-endif-%}
+{%-endif-%} {% endcomment %}

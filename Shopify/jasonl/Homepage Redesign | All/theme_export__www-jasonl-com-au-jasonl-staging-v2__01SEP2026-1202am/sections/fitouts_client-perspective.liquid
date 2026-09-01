@@ -1,0 +1,88 @@
+{% if article.metafields.accentuate.clients_perspective_title %}
+    {% liquid
+        assign cp_title = article.metafields.accentuate.clients_perspective_title 
+        assign cp_dis = article.metafields.accentuate.clients_perspective_description
+        assign cp_info = article.metafields.accentuate.client_info
+    %}
+    {% else %}
+        {% liquid
+            assign cp_title = "The client's perspective" 
+            if article.metafields.fitout_blog.fitout_quotes.html
+                assign cp_dis = article.metafields.fitout_blog.fitout_quotes.html | strip_html
+            endif
+            assign cp_info = ""
+        %}
+{% endif %}
+{% if cp_dis != blank %}
+{{ 'fitout-client-perspective_section.css' | asset_url | stylesheet_tag }}
+<div class="fitout-client-perspective_section">
+    <div class="page-width">
+        <div class="client-perspective-wrap">
+            <div class="client-perspective-text">
+                <h2>{{ cp_title }}</h2>
+                <p>{{ cp_dis }}</p>
+                {% if cp_info %}
+                    <div class="client-info">
+                        {{ cp_info }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            {% assign cp_youtubeurl = article.metafields.accentuate.clients_perspective_video_url %}
+            {% assign video_id = cp_youtubeurl | split : '?v=' | last %}
+            {% comment %} check for duplicate video and remove duplicate ld+json {% endcomment %}
+            {% assign video_duplicate = false %}
+            {% capture video_list_string %}
+                {{ article.metafields.fitout_blog.fitout_video_1_url }}, 
+                {{ article.metafields.fitout_blog.fitout_video_2_url }},
+                {{ article.metafields.accentuate.clients_perspective_video_url }}
+            {% endcapture %}
+            {% assign video_url_list = video_list_string | split: ',' | map: 'strip' %}
+            {% assign unique_video_url_list = video_url_list | uniq %}
+            {% assign list_has_duplicate = false %}
+            {% if video_url_list.size != unique_video_url_list.size %}
+                {% assign list_has_duplicate = true %}
+            {% endif %}
+
+            {% for video_url in video_url_list %}
+                {% assign clean_video_url = video_url | strip %}
+                {% assign clean_cp_youtubeurl = cp_youtubeurl | strip %}
+                {% if clean_video_url == clean_cp_youtubeurl %}
+                    {% assign video_duplicate = true %}
+                {% endif %}
+                {% break %}
+            {% endfor %}
+
+            {% assign has_custom_thumbnial = false %}
+            {% if article.metafields.accentuate.clients_video_upload_date != blank %}
+                {% assign youtube_uploaded_date = article.metafields.accentuate.clients_video_upload_date %}
+            {% else %}
+                {% assign youtube_uploaded_date = article.metafields.accentuate.clients_video_upload_date %}
+            {% endif %}
+            {% if article.metafields.accentuate.clients_perspective_video_thumbnail %}
+               {% assign video_thumb = article.metafields.accentuate.clients_perspective_video_thumbnail | file_img_url:'1280x' %} 
+               {% assign has_custom_thumbnial = true %}
+            {% else %}
+                {% assign video_thumb = 'https://img.youtube.com/vi/' | append: video_id | append: '/hqdefault.jpg' %}
+                {% assign youtube_custom_thum = article.metafields.accentuate.clients_perspective_video_thumbnail %}
+                {% if youtube_custom_thum %}
+                    {% assign video_thumb = youtube_custom_thum %}
+                {% endif %}
+            {% endif %}
+            
+            {% if cp_youtubeurl %}
+                <div class="client-video">
+                    {% render 'custom-modal-video', cover_image: video_thumb, video_url: cp_youtubeurl , youtube_title : cp_title,
+                    youtube_description: cp_dis, 
+                    youtube_uploaded_date: youtube_uploaded_date, 
+                    has_custom_thumbnial: has_custom_thumbnial, 
+                    is_duplicate_video: list_has_duplicate, 
+                    video_parent_section: "clients_perspective"
+                    %}
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endif %}

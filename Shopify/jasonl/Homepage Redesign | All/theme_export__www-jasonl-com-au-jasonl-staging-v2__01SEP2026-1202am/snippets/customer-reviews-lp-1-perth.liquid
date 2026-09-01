@@ -1,0 +1,27 @@
+{% comment %} 
+Check if template is collection
+Check if it is location collection page except perth
+
+{% endcomment %}
+
+
+
+{{ 'customer-reviews-lp-1.css' | asset_url | stylesheet_tag }}
+<div class="customer-reviews-lp-section">
+    <div
+      class="customer-reviews"
+      {% if template == 'collection' or template == 'collection.rewards' %}
+        {%- unless has_city_tag %}
+          style="display: none;"
+        {% endunless %}
+      {% endif %}
+    >
+      <div class="page-width customer-review-page-width">
+        <h2 class="section-title text-left">{{ review_title }}</h2>
+        {%- render 'customer-reviews-v2-perth', reviewsLimit: 3 -%}
+        {% comment %} <div class="view-all-reviews-link-wrap"><a href="/pages/reviews">View all reviews</a></div> {% endcomment %}
+      </div>
+    </div>
+</div>
+
+

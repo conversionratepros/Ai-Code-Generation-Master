@@ -1,0 +1,148 @@
+{%- assign position = 1 -%}
+{%- assign valid_items = '' -%}
+{%- assign number_of_items = 0 -%}
+{%- for product in collection.products limit: section.settings.products_per_page -%}
+  {% unless product.tags contains "contact-to-purchase" %}
+    {% if product.available %}
+      {%- capture item -%}
+        {
+          "@type": "ListItem",
+          "position": {{ position }},
+          "item": {
+            "@type": "Product",
+            "name": "{{ product.title }}",
+            "sku": "{{ product.variants.first.sku }}",
+            "url": "{{ shop.url }}{{ product.url }}",
+            {% comment %} "description": "{{- product.description | strip_html | strip_newlines | remove: "Description" | truncate: 150 }}", {% endcomment %}
+            "description": "{{ product.metafields.productmeta.product_tab_description | strip_html | strip_newlines | replace: '"', '' }}",
+             {%- for tag in product.tags -%}
+              {% if tag contains "brand=" %}
+                "brand" : {
+                  "@type": "Brand",
+                  "name": "{{ tag | remove: "brand=" }}"
+                },
+                {% break %}
+              {%- endif -%}
+             {%- endfor -%}
+            {%- comment -%} for product color {%- endcomment -%}
+            {%- if product.metafields.productmeta.product_options contains "colour" -%}
+              {%- assign option_blocks = product.metafields.productmeta.product_options | split: '[option]' -%}
+              {%- assign colors_value = '' -%}
+              {%- for block in option_blocks -%}
+                {% assign block_title = block | split: '[title]' | last | split: '[/title]' | first | downcase %}
+                {% if block_title contains 'colour' or block_title contains 'color' %}
+                  {% assign opt_values = block | split: '[opt]' %}
+                  {% for item in opt_values %}
+                    {% if item contains '[/opt]' %}
+                      {% assign color = item | split: '[/opt]' | first | strip | downcase %}
+                      {% unless color == 'none' or colors_value contains color %}
+                        {% assign colors_value = colors_value | append: color | append: ',' %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {%- endfor -%}
+              {%- assign color_array = colors_value | split: ',' | uniq -%}
+              {%- assign colors_value_cleaned = '' -%}
+              {%- for color in color_array -%}
+                {% assign color = color | strip %}
+                {% unless color == blank %}
+                  {% if colors_value_cleaned != blank %}
+                    {% assign colors_value_cleaned = colors_value_cleaned | append: ', ' %}
+                  {% endif %}
+                  {% assign colors_value_cleaned = colors_value_cleaned | append: color %}
+                {% endunless %}
+              {%- endfor -%}
+              "color":[
+                      {%- assign colors = colors_value_cleaned | split: ',' -%}
+                      {%- for color in colors -%}
+                        "{{ color | strip }}"{% unless forloop.last %},{% endunless -%}
+                      {%- endfor -%}
+                    ],
+            {%- endif -%}
+            {% comment %} end for product color {% endcomment %}
+            {% if collection.title -%}
+            "category": "{{ collection.title }} {% if current_tags %} > {{ current_tags }} {% endif %}",
+            {%- endif %}
+            {% assign imgurl = product.featured_image | img_url: 'master' %}
+            {% unless imgurl contains 'http://' or imgurl contains 'https://' %}
+              {% assign imgurl = imgurl | prepend: 'https:' %}
+            {% endunless %}
+            "image": "{{ imgurl }}",
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "AUD",
+              "price": {{ product.price | divided_by: 100.0 }},
+              "availability": "https://schema.org/InStock",
+              "url": "{{ shop.url }}{{ product.url }}",
+              "seller": {
+                "@type": "Organization",
+                "name": "JasonL"
+              }
+            }
+          }
+        }
+      {%- endcapture -%}
+      {%- if valid_items != blank -%}
+        {%- assign valid_items = valid_items | append: ',' -%}
+      {%- endif -%}
+      {%- assign valid_items = valid_items | append: item -%}
+      {%- assign position = position | plus: 1 -%}
+      {%- assign number_of_items = number_of_items | plus: 1 -%}
+    {% endif %}
+  {% endunless %}
+{%- endfor -%}
+
+
+{% assign formatted_tags = '' %}
+
+{% for tag in current_tags %}
+  {% assign formatted_tag = tag | replace: '-', ' ' | capitalize | escape %}
+  {% if forloop.first %}
+    {% assign formatted_tags = formatted_tag %}
+  {% else %}
+    {% assign formatted_tags = formatted_tags | append: ' - ' | append: formatted_tag %}
+  {% endif %}
+{% endfor %}
+
+{% if formatted_tags != '' %}
+  {% assign name = collection.title | append: ' - ' | append: formatted_tags %}
+{% else %}
+  {% assign name = collection.title %}
+{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "{{ name }}",
+      "url": "{{ shop.url }}{{ request.path }}",
+      {% assign collection_description = collection.description |  replace: '</h2>', '</h2>. ' | strip_html | strip_newlines | replace: '"', '' | replace: '  ', ' ' |  replace: '&amp;','&' | strip %}
+      "description": "{% if collection_description != blank %} {{ collection_description }} {% else %} {{ page_description | strip }} {% endif %}",
+      {% comment %} for offer aggregate price {% endcomment -%}
+      {%- assign lowest_price = collection.products.first.price_min -%}
+      {%- assign highest_price = collection.products.first.price_max -%}
+      {%- for product in collection.products -%}
+        {%- if product.price_min < lowest_price -%}
+          {%- assign lowest_price = product.price_min -%}
+        {%- endif -%}
+        {%- if product.price_max > highest_price -%}
+          {%- assign highest_price = product.price_max -%}
+        {%- endif -%}
+      {%- endfor -%}
+      
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "{{ name }}",
+        "url": "{{ shop.url }}{{ request.path }}",
+        "numberOfItems": {{ number_of_items }},
+        "itemListElement": [{{ valid_items }}]
+      }
+    }{%- if collection.metafields.custom.faq -%},
+    {{ collection.metafields.custom.faq }}
+    {% endif %}
+  ]
+}
+</script> 

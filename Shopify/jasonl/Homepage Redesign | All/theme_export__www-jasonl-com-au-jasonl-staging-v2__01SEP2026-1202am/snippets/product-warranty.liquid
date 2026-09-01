@@ -1,0 +1,83 @@
+
+{%- assign warrentysetting = settings.product_warranty -%}
+
+{%- case badge -%}
+{%- when '1yr' -%}
+{%- assign year = 'one' -%}
+{%- assign year_number = '1' -%}
+{%- when '2yr' -%}
+{%- assign year = 'two' -%}
+{%- assign year_number = '2' -%}
+{%- when '3yr' -%}
+{%- assign year = 'three' -%}
+{%- assign year_number = '3' -%}
+{%- when '5yr' -%}
+{%- assign year_number = '5' -%}
+{%- assign year = 'five' -%}
+{%- when '7yr' -%}
+{%- assign year_number = '7' -%}
+{%- assign year = 'seven' -%}
+{%- when '10yr' -%}
+{%- assign year = 'ten' -%}
+{%- assign year_number = '10' -%}
+{%- when '12yr' -%}
+{%- assign year = 'twelve' -%}
+{%- assign year_number = '12' -%}
+{%- when '15yr' -%}
+{%- assign year = 'fifteen' -%}
+{%- assign year_number = '15' -%}
+{%- when 'lifetimewarranty' -%}
+{%- assign year = 'life time' -%}
+{%- assign year_number = '25' -%}
+{%- when '1_5yr' -%}
+{%- assign year = '1.5' -%}
+{%- assign year_number = '1.5' -%}
+{%- else -%}
+{%- assign year = 'one' -%}
+{%- assign year_number = '1' -%}
+{%- endcase -%}
+{{warrentysetting |  replace: 'YEARNUMBER',year_number |  replace: 'YEARWORD',year }}
+
+
+
+
+
+
+
+{%- comment -%} <div class="card top-card">
+<h2>10 YEARS WARRANTY</h2>
+<p>This range offer customizable configurations for single desk, multi-person workstations, boardroom setups, and more.</p>
+</div>
+<div class="card">
+This Product is guaranteed for a period of ten year against faulty workmanship and/or raw materials for normal office use - i.e. 8 working hours per day. For more info please call 1300 859 087 or email customerservice@jasonl.com.au
+</div> {%- endcomment -%}
+
+
+{%- comment -%}
+{%- assign warrantynum = '' -%}
+                {%- assign warrantyword = '' -%}
+                {%- assign warrantydata = product.metafields.productmeta.warranty_info | strip -%}
+              
+                {%- if warrentydata !='' -%}
+                {%- assign warrentysetting =settings.product_warranty -%}
+                  {%- if warrantysetting !='' -%}
+                  {%- assign warrantydata_clean = warrantydata | remove:"years" | remove:"year" | strip -%}
+              
+                  {%- assign numbervalues =
+                  '1:one,2:two,3:three,4:four,5:five,6:six,7:seven,8:eight,9:nine,10:ten,11:eleven,12:twelve,13:thirteen,14:fourteen,15:fifteen,16:sixteen,17:seventeen,18:eighteen,19:nineteen,20:twenty,21:twenty
+                  one,22:twenty two,23:twenty three,24:twenty four,25:twenty five' -%}
+                  {%- assign numbervalue_array = numbervalues | split: ',' -%}
+                    {%- for numbers in numbervalue_array -%}
+                    {%- assign combinenumber = numbers | split:":" -%}
+                      {%- if combinenumber[0] == warrantydata_clean -%}
+                      {%- assign warrantynum = combinenumber[0] | strip -%}
+                      {%- assign warrantyword = combinenumber[1] | strip -%}
+                      {%- break; -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endif -%}
+                {%- endif -%}
+            {%- if warrantyword != blank -%}
+                {{ warrentysetting | replace: "YEARNUMBER", warrantynum | replace: "YEARWORD", warrantyword }}
+            {%- endif -%}
+{%- endcomment -%}

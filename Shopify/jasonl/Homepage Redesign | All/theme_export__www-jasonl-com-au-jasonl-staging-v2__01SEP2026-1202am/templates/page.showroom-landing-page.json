@@ -1,0 +1,63 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "showroom_hero_banner": {
+      "type": "showroom-hero-banner",
+      "settings": {}
+    },
+    "company_logo_slider": {
+      "type": "companies_list_slider-section",
+      "settings": {}
+    },
+    "featured_collections": {
+      "type": "featured-collections-products",
+      "settings": {
+        "products_to_show": 3
+      }
+    },
+    "client_experiences": {
+      "type": "client-experiences",
+      "settings": {
+        "section_title": "Our Client's Experience"
+      }
+    },
+    "shop_by_room": {
+      "type": "shop-by-room",
+      "settings": {
+        "section_title": ""
+      }
+    },
+    "featured_services": {
+      "type": "featured-services",
+      "settings": {
+        "bg-color": "dark"
+      }
+    },
+    "LocationMeetPeople": {
+      "type": "new-meet-people",
+      "settings": {}
+    },
+    "shoroom_landing_schema": {
+      "type": "showroom-landing-schema",
+      "settings": {}
+    }
+  },
+  "order": [
+    "showroom_hero_banner",
+    "company_logo_slider",
+    "featured_collections",
+    "client_experiences",
+    "shop_by_room",
+    "featured_services",
+    "LocationMeetPeople",
+    "shoroom_landing_schema"
+  ]
+}

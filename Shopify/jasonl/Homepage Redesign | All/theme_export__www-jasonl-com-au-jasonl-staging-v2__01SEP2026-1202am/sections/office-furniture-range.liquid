@@ -1,0 +1,48 @@
+{{ 'office-furniture-range.css' | asset_url | stylesheet_tag }}
+<div class="office-furniture-range-wrap">
+    <div class="page-width">
+        <div class="intro-wrap">
+            <div class="heading-wrap">
+                <div class="eyebrow"> 
+                    {{ section.settings.furniture_range_eyebrow }} 
+                </div>
+                <h2 class="section-title">{{ section.settings.furniture_range_heading }}</h2>
+            </div>
+            {% if section.settings.furniture_range_description != blank %}
+                <p>
+                    {{ section.settings.furniture_range_description }}
+                    {% comment %}                     
+                    Everything is designed to work together — visually, practically and operationally. From furniture selection and workspace planning to delivery and installation, every element is considered as part of one cohesive fitout experience, helping create a workplace that feels consistent, functional and built for the way your team works.
+                    {% endcomment %}
+                </p>
+            {% endif %}
+        </div>
+        {% render 'collection-list-box' %}
+    </div>
+</div> 
+
+{%- schema -%}
+{
+    "name": "office-furniture",
+    "class": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "furniture_range_eyebrow",
+            "label": "Section Eyebrow",
+            "default": "OUR RANGE"
+        },
+        {
+            "type": "text",
+            "id": "furniture_range_heading",
+            "label": "Section heading",
+            "default": "What's in our office furniture range"
+        },
+        {
+            "type": "textarea",
+            "id": "furniture_range_description",
+            "label": "Section description"
+        }
+    ]
+}
+{%- endschema -%}

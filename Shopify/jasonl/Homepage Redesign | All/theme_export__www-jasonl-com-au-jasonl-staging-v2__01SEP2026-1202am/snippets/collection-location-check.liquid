@@ -1,0 +1,71 @@
+{%- comment -%}
+---------------------------------------------------------
+{%- assign collectionPath = request.path | remove:'/collections/' | downcase | escape -%}
+{%- if collectionPath contains 'melbourne' or  collectionPath contains 'brisbane'  -%}
+    {%- assign is_collection_location = true -%}
+{%- else -%}
+    {%- assign is_collection_location = false -%}
+{%- endif -%}
+{%- if collectionPath contains 'melbourne' -%}
+    {%- assign collectionShowroom = 'melbourne' -%}
+{%- elsif collectionPath contains 'brisbane' -%}
+    {%- assign collectionShowroom = 'brisbane' -%}
+{% endif %}
+---------------------------------------------------------
+{%- endcomment -%}
+
+
+{%- comment -%}<!-- check location active or no and get the active location  -->{%- endcomment -%}
+{%- assign is_collection_location = false -%}
+{%- comment -%}<!-- {%- assign cities = 'sydney,melbourne,brisbane,adelaide' | split:','-%}  -->{%- endcomment -%}
+{%- assign cities = shop.metafields.custom_fields.location_collection__locations | split:','-%}
+{% for tagname in current_tags %}
+        {%- assign tag_name = tagname | downcase | escape -%}   
+        {%- if cities contains tag_name -%}
+            {%- assign is_collection_location = true -%}
+            {%-assign collectionShowroom = tagname -%}
+            {%-break-%}
+        {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%}<!-- enable the section on the Location-collection page checking the above conditions  -->{%- endcomment -%}
+{%- comment -%}
+        {% if template == 'collection' %}
+            {% if is_collection_location == true %}
+                {% assign is_section_enabled = true %}
+            {% else %}
+                {% assign is_section_enabled = false %}
+            {% endif %}
+        {% else %}
+            {% assign is_section_enabled = true %}
+        {% endif %}
+{%- endcomment -%}
+
+
+
+{% if template contains 'collection' %}
+        {%- if is_section_selected == true -%}
+
+                {% if is_collection_location == true %}
+                    {% assign is_section_enabled = true %}
+                {% else %}
+                     {% assign is_section_enabled = false %} 
+                {% endif %}
+
+        {%- else -%}
+                 {% if is_collection_location == true %}
+                    {% assign is_section_enabled = false %} 
+                {% else %}
+                    {% assign is_section_enabled = true %}
+                {% endif %}
+        {%- endif -%}
+
+
+
+            
+{%- else -%}
+    {%- assign is_section_enabled = true -%}
+{%- endif -%}
+
+
+

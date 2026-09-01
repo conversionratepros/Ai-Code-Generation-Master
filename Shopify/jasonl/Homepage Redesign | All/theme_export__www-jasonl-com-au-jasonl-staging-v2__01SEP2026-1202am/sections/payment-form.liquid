@@ -1,0 +1,539 @@
+{{ "payment-form.css" | asset_url | stylesheet_tag }}
+{% capture cardsIcon %}
+    <svg viewBox="0 0 1000 206"><path fill="#D0D8DF" fill-rule="evenodd" d="M999.969 184.152v-22.847c-1.477-.783-2.393-2.182-3.537-3.32-4.123-4.101-8.188-8.261-12.268-12.407-.511.012-.989-1.072-1.459-1.629-1.241-1.465-1.239-1.472.056-2.779 5.417-5.467 10.833-10.935 16.449-16.392.082-.272.263-.128.759.092V98.172c-5.071.003-10.142.007-15.214.005-.496-.001-1.012.082-1.458-.244l-.141-.299c-.358-.694-.212-1.443-.212-2.168-.008-15.346-.002-30.691-.007-46.036 0-.638.363-1.291-.169-1.907-1.654 4.441-3.293 8.888-4.967 13.322-1.575 4.325-3.202 8.324-4.551 12.497-1.638 4.528-3.01 7.506-4.397 11.261a9317.772 9317.772 0 00-4.726 12.808c.343.216-.027.441-.363.545-.412.256-.874.222-1.328.222-3.786.003-8.742.005-13.114 0-.492-.001-1.015.082-1.413-.337-.307-.461-.614-1.607-.921-2.41-.078-.185-.155.169-.233-.557l-.059-.275c-.075-.176-.149-.351-.223.121l-.011-.3c-.081-.566-.163-.753-.244-.941a.802.802 0 00-.054-.256c.766-.102.066-.023-.212-.305-.207-.634-.415-1.269-.622-1.768-.48-.374-.466-.824-.475-1.263l-.343-1.08-.219-.554c-.084-.096-.168.357.117-.288-.24-.179-.416-.357-.44-.535-.073-.189-.146.09-.219-.568a1.024 1.024 0 00-.059-.256 33.042 33.042 0 01-.212-.305c-.017-.086-.035-.172-.057.129-.069-.565-.138-.744-.208-.923-.086-.286.01-.638-.297-.846a1.114 1.114 0 01-.275-.809c-.105-.281-.209-.561-.314-.742a4.617 4.617 0 00-.219-.642c.76-.091.53-.182.3-.273-.924-.313-.852-.857-.871-1.369l-.004-.011c-.593-.295-.275-.857-.536-1.376l-.066-.275c-.066.526-.133-.189-.199-.283l-.059-.302a24.032 24.032 0 01-.181-.26l-.099-.549a122.03 122.03 0 00-.223-.537c-.02-.093-.039.247-.059-.278.377-.101-.127-.202-.19-.303a1.23 1.23 0 00-.065-.254c-.569.432-.47-.871-.497-1.238 0-.233-.022-.315-.065-.392-.377-.168-.446-.5-.456-.864-1.677-5.278-3.22-10.397-5.693-15.585-.862-2.336-1.795-4.653-2.582-7.021-.464-1.398-1.07-2.75-1.612-4.123l-.506.019.277 3.281c.376.875.205 1.167.206 1.758.008 14.591.012 29.182.012 44.367 0-.048.198.511-.2 1.025l-.116.309c-.492.338-1.055.243-1.296.243-10.37.005-22.171.004-33.109-.002-.582 0-.951.112-1.72-.274l-4.972-12.395-32.027.025-5.031 12.393c-.352.271-.766.254-1.174.254-5.495.001-10.99.001-16.485-.002-.408-.001-.822.017-1.184-.231-.235-.507.153-.225.323-1.262 3.82-8.726 7.655-17.445 11.492-26.163 4.861-11.044 9.726-22.084 14.877-33.126.425-1.619 1.128-3.242 1.848-4.858.162-.363.25-.815.771-.862.506-.288 1.161-.219 1.604-.219 6.24-.003 12.687-.003 18.719.001.542 0 1.1-.072 1.593.253 2.72 6.121 5.416 12.251 8.033 18.418 2.916 6.87 6.065 13.64 9.019 20.495 2.64 6.125 5.559 12.125 7.986 18.346.932 2.389 2.447 4.669 3.224 6.999.263.653.526.19.788.286l-.076-.404c-.051-.592-.148-1.184-.148-1.119-.007-20.76-.006-40.863 0-60.967 0-.589-.11-1.199.216-1.643.039-.203.078-.299.243-.395.314-.337.832-.258 1.328-.259 8.225-.007 16.451-.01 24.676-.009.498 0 1.013-.063 1.452.271 1.844 4.011 3.204 8.213 4.825 12.672 2.229 3.795 3.23 7.973 4.824 12.148 2.081 5.444 4.141 10.896 6.23 16.337.096.249-.077.759.427.71.259-.026.335-.369.486.105.999-2.149 1.269-3.893 1.917-5.483 1.303-3.067 2.475-6.458 3.681-9.698 2.155-5.791 4.205-11.623 6.478-17.367 1.206-3.049 2.265-6.153 4.136-9.172-.05-.116-.415-.197-.323-.293.593-.338 1.245-.226 1.874-.226 8.606-.007 17.212-.006 25.818-.006v-9.59l.001.098V184.54l-.001-.388zM871.521 46.19c-3.265 8.6-5.751 15.736-9.622 23.584.561.555.473.84 1.077.839 5.841-.012 11.681-.007 17.522-.026.301-.001 1.492-.181.901-.278-3.263-8.024-6.526-16.047-9.878-24.119zm-14.401 66.029c-.362-.46-.313-.963-.332-1.462-.019-.486.076-.657.661-.76 1.09-.008 2.179-.151 3.269-.151 23.89-.01 47.779-.006 71.669-.016.84 0 1.536.062 2.188.785 3.33 3.694 6.59 8.065 10.106 10.974l.193.208.055.057c.271.074.821.346.219.906l.051-.63.222.228.047.048.226.241.03.039.237.262.016.019c.633.593.169.179.254.268l.012.011.262.265.011.011.259.276.004.005c.09.095.179.19.691 1.087.062-.254.7.293 1.031.84l.209.213.049.049c.075.708.15.156.226.234l.245.042c-.13.083-.052.166.026.248l.025.032.244.265.012.015c.086.089.172.672.259 1.102l.013-.823c.086.091.173.181.871.271l.06.006c-.579.092-.491.185-.404.277l.005.005.268.278c.089.516.178.204.267.306.014.078.034.155.061.23.963.103.873.207.216.311.315.42.631.839 1.118 1.079.092.074.185.3.277 1.03l.035-.771.237.254.021.025c.083.088.859.175 1.059.262l-.795.018.245.289.299.019c.781-.502 1.303-1.256 1.887-1.536.087-.508.173-.602.26-.696l.01-.011c.086-.089.173-.179.844-.269l.12-.011c-.607-.088-.52-.176-.433-.264l.013-.015c.082-.089.164-.034.246-.267l.021-.026.232-.254.037-.046c.071-.072.384-.145 1.084-.217 4.301-5.571 9.478-11.139 14.642-16.72 1.038-.49.877-.841 1.613-.838 6.626.028 13.252.018 19.878.024.124 0 .248.054.59.134-1.246 1.358-2.39 2.627-3.557 3.874-4.792 5.115-9.581 11.052-14.393 15.329-2.347 2.485-4.83 5.153-7.088 7.41-1.115 1.818-3.275 3.551-5.001 5.24-.474.463.336.809-.12 1.388.27.359.916.757.846 1.049 2.449 2.132 4.425 4.717 7.27 7.033 2.111 3.403 4.711 5.63 7.326 8.474 2.525 2.744 5.874 5.433 7.608 8.197 2.285 2.526 4.635 4.982 7.001 7.426l.093.056-.029.098a1.167 1.167 0 00-.177.207c.048 1.135-.884.19-1.336.19-6.242.003-12.485.002-18.728-.002-.452 0-.916.347-.588-.219-3.04-3.186-6.2-6.362-9.08-9.562-2.795-2.279-4.883-4.596-6.997-6.889-1.327-1.44-2.263-2.842-3.991-4.309-.544-.617-.867-.515-1.39.024-1.542 2.346-4.458 4.783-6.632 7.228-1.963 2.207-4.088 4.266-6.094 6.436-2.132 2.307-4.208 4.668-6.309 7.005-.383.33-.851.288-1.107.288-6.406.001-12.615 0-18.824-.003-.41 0-.825.021-1.201-.196l-.069-.077.774-.004c-1.005.032-1.119.063-1.233.095-.4.062-.801.179-1.202.179-17.334.007-34.667.004-52 0-.182 0-.364-.022-.546-.034-.334-.008-.717.745-.93-.273-.307-.507-.211-1.07-.212-1.362-.003-19.68-.002-40.295.004-60.316.001-.587-.123-1.201.339-1.745zm16.651 22.72c-.013.787.419 1.231 1.022.997.902-.096 1.811-.192 2.716-.193 10.739-.012 21.478-.009 32.217.002.485 0 1.008-.163 1.453.192.24.367.223.785.224 1.196v11.403c0 .412.016.828-.22 1.197-.433.391-.96.209-1.441.21-5.52.015-11.041.01-16.561.01-5.886 0-11.772.028-17.657-.021-1.272-.011-1.867.195-1.782 1.706.15 2.652.041 5.318.043 7.979.002 2.04.003 2.04 2.094 1.912.045-.003.089-.021.241-.031.389-.332 1.59-.224 1.49-.224 10.9-.006 21.799-.006 32.699.001.534 0 1.103-.128 1.58.256l.061.085c.356.485.255 1.049.256 1.589.008 3.424.002 7.315.007 10.271.001.704-.08 1.105.279 2.144.04-.21.091-.33.12-.622 9.842-10.527 19.679-21.058 29.536-31.571.398-.227.298-.626-.032-.974-.974-1.027-1.909-2.091-2.875-3.125-3.123-3.343-6.307-6.63-9.368-10.028-5.694-6.325-11.508-12.535-17.342-18.728-.429 1.238-.315 1.126-.317 1.711-.009 3.386 0 7.277-.009 10.159-.001.541.105 1.107-.249 1.918-.096.42-.194-.24-.291-.197-.025.313-1.251.199-1.881.2-10.527.006-21.054.013-31.58-.005-1.535-.003-3.067.435-4.603.031.061 1.082.163 2.164.175 3.247.027 3.064.035 4.87-.005 7.303zM963.859 19.95c-1.971 3.557-3.306 8.208-5.032 12.712-.96 2.506-1.859 5.036-2.893 7.852-1.144-3.086-2.149-5.863-3.2-8.621-1.395-3.661-2.923-7.274-4.19-10.979.416-1.309-.833-2.162-2.35-1.374-3.243.17-6.486-.44-9.729-.438-11.605.006-23.21.025-34.815.668-1.372-.05-1.814-.326-1.794 1.085.076 5.327.033 10.656.026 15.984-.001.59.095 1.531-.197 1.759l-.076.398c.041.324.056.774.045.134.077.144.021.154-.099.099-.063-.078-.126.501-.188-.233-2.891-6.401-5.791-12.799-8.66-19.211-.28-.626-.447-.79-1.279-.205-7.924.15-15.849.33-23.774-.477-4.737.007-9.474.005-14.211.007-1.453 2.557-2.203 5.335-3.604 8.013-4.385 10.287-8.694 19.871-13.068 29.795-3.117 7.072-6.389 14.077-9.405 21.192-2.126 5.012-4.026 10.88-6.487 15.87-2.348 4.566-4.732 9.999-7.1 15.439 3.053.025 6.107.068 9.16.073 6.753.011 13.506 0 20.258.006.633.001 1.282-.104 2.633.198-.097.453-.622 1.163-.38 1.705.32.502.224 1.067.224 1.709.004 24.2.004 48.39 0 72.59 0-.087.098.479-.235.977-.123 1.998-.123 1.998 2.125 1.88.546-.334 1.154-.231 1.74-.231 30.468-.004 60.936-.004 91.403 0 .548 0 1.095.037 1.643.057 1.157-1.204 2.428-1.733 3.449-3.63 2.831-3.637 6.045-6.933 9.02-10.439.359-.422.606-.433.963-.006 2.604 3.126 5.191 6.267 7.848 9.347 1.347 1.561 2.528 3.272 4.071 4.66l33.845.008c-1.968 10.637-10.56 17.13-20.863 17.13H716.495c-11.756 0-21.287-9.58-21.287-20.913V21.963c0-11.819 9.531-21.399 21.287-21.399h262.188c10.774 0 19.676 8.045 21.09 18.926-5.269.19-10.537.47-15.806-.389-6.702.008-13.405.879-20.108.849zm36.11 168.373h-.423a21.54 21.54 0 00.423-4.171v4.171zm0-168.833v2.375c-.004-.955-.071-1.894-.196-2.375h.196zM630.271 205.453H368.83c-12.504 0-22.034-9.58-22.034-20.913V21.963c0-11.819 9.53-21.399 22.034-21.399h261.441c11.999 0 21.287 9.58 21.287 21.399V184.54c0 11.333-9.288 20.913-21.287 20.913zM532.81 47.129c-13.045 0-24.42 4.034-33.633 10.849-9.214-6.815-20.589-10.849-32.904-10.849-30.699 0-55.586 25.018-55.586 56.671 0 30.07 24.887 55.088 55.586 55.088 12.315 0 23.69-4.034 32.904-10.498 9.213 6.464 20.588 10.498 33.633 10.498 29.97 0 54.856-25.018 54.856-55.088 0-31.653-24.886-56.671-54.856-56.671zM499.177 148.39c-13.752-10.523-22.682-26.901-22.682-44.59 0-19.272 8.93-35.65 22.682-45.822 13.752 10.172 22.681 26.55 22.681 45.822 0 17.689-8.929 34.067-22.681 44.59zm-215.66 57.104H21.329C9.573 205.494.42 195.913.42 184.94V22.3C.42 10.185 9.573.604 21.329.604h262.188c11.757 0 21.287 9.581 21.287 21.696v162.64c0 10.973-9.53 20.554-21.287 20.554zM91.303 63.777c-.729.019-1.712 1.38-2.088 3.163-3.519 7.921-6.93 16.731-10.373 25.529-3.041 7.77-6.082 16.331-9.382 23.969-.245-1.137-.33-1.524.01-1.913-3.364-13.762-6.513-27.125-9.16-41.305-1.01-6.827-3.682-9.555-11.601-9.57-9.99-.019-19.981-.016-29.97.009-.985.002-1.97.219-2.955.336a27.2 27.2 0 00-.089 1.485c.863-.142 1.736.119 2.587.442 5.688 2.938 11.359 4.372 17.061 6.498 2.134.795 2.974 2.348 3.559 4.471 5.649 20.489 11.437 40.94 17.066 61.435.588 2.138 1.342 2.998 3.657 2.916 6.345.248 10.965-.276 16.915.004 2.208.138 3.221-.999 4.156-2.896 6.443-15.546 12.985-30.734 19.504-45.932 4.052-9.446 8.12-18.886 12.362-28.746-7.371 0-14.318-.072-21.259.105zm33.453-.202c-2.646-.107-3.645.843-4.081 4.065-3.25 19.141-6.565 38.831-10.01 58.532-.839 4.938-1.195 10.418-2.484 15.188 6.784 0 13.092.083 19.392-.111.747-.023 1.91-1.469 2.096-2.411 1.139-5.428 2.052-11.638 3.041-17.465l9.801-57.73c-6.206 0-11.988.155-17.755-.068zm67.026-1.238c-12.07-1.005-23.616.649-33.191 8.955-8.456 7.336-12.479 22.285 1.519 32.017 2.87 2.079 6.181 3.664 9.347 5.455 2.516 1.422 5.189 2.609 8.143 4.426 4.643 3.481 4.245 9.131-1.77 11.092-4.233 1.381-9.084 1.863-13.51 1.376-5.735-.378-11.321-2.308-17.216-4.09-.762 4.324-1.541 9.088-2.464 13.823-.431 2.211.26 3.212 2.463 3.864 10.119 2.995 20.374 4.105 30.796 2.296 8.275-1.436 15.916-4.323 21.548-11.083 6.1-7.323 8.682-21.066-2.022-29.364-3.023-2.344-6.465-4.156-9.778-5.904-3.229-2.094-6.7-3.613-9.774-5.724-4.208-2.889-3.773-7.156.8-9.295 2.461-.651 6.057-2.016 8.027-1.806 6.1.489 12.143 2.475 19.15 2.995.029-4.969.951-10.11 2.01-16.528-4.869-.892-9.439-2.119-14.078-2.505zm68.773 3.008c-.161-.716-1.598-1.6-1.615-1.623-5.783-.13-10.727.031-15.668-.011-5.49-.047-8.869 2.559-11.066 7.621-8.981 20.858-17.826 41.284-27.275 61.916-1.113 2.522-2.196 5.058-3.479 8.015 7.25 0 14 .058 20.746-.082.745-.016 1.787-1.02 2.139-1.814 1.131-2.545 1.85-4.507 3.055-7.784.429-.892 1.785-1.871 2.733-1.887 7.625-.129 15.254.006 23.475-.045 1.168-.012 1.788.646 2.083 2.849.525 2.92 1.707 5.75 2.072 9.32h19.59a7715.566 7715.566 0 00-16.79-76.475zm-15.016 19.524l6.275 28.751h-17.381c4.137-9.381 7.194-18.623 11.106-28.751z"/></svg>
+    {% comment %} <img class="mob-img" src="{{'creditcard-mob.png' |  file_img_url:'master'}}" alt="" /> {% endcomment %}
+{% endcapture %}
+{% capture paytoIcon %}
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 993 469" style="enable-background:new 0 0 993 469;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#D0D8DF;}
+</style>
+<path class="st0" d="M910.8,466.2c-5.3,1.1-10.8,1.7-16.2,1.7c-89.2,0.1-178.4-0.6-267.6,0.4c-36.5,0.4-88.6-26.8-100.4-83.6
+	c-1.2-5.9-2-12-2-18c-0.1-89.4-1.3-178.8,1-268.1c0.9-61.3,58-98.3,100.7-97.8c89.8,1,179.6-0.1,269.5,0.5
+	c55.6,0.3,97.7,53.8,96.9,96.6c-0.8,45.6-0.2,91.2-0.2,136.8c0,43.8-1.5,87.6,0.4,131.3C994.6,406.8,961,456.2,910.8,466.2z
+	 M646.8,171.2c0-13.2,0-25.2,0-37.4c-10,0-19,0-29.2,0c0,12.7,0,24.9,0,37.9c-12,0-22.8,0-34.2,0c0,10.1,0,19.5,0,29.6
+	c11.5,0,22.5,0,34.4,0c0,4.3,0,7.6,0,10.9c0,27.4-0.2,54.7,0.1,82.1c0.4,36.1,35.4,63,68.7,53c3-0.8,6.3-3.1,7.2-4.9
+	c0-8.6-0.4-17.3-0.4-26.7c-3.4,0.9-6.9,1.5-9.5,2c-22.9,4.6-36.5-6.5-36.6-30c0-12.5,0-24.9,0-37.4c0-16,0-32,0-49.1
+	c15.8,0,30.6,0.1,45.4-0.1c2.9,0,6.8-0.1,9.1-1.8c7.9-8.7,15.9-17.9,25.2-28.3C699.6,171.2,673.6,171.2,646.8,171.2z M898.2,144.9
+	c0,9.6,0,17.6,0,26.7c-4.3,0-7.5,0-10.8,0c-30.4,0-60.9-0.2-90.8,0c-56.2,0.8-98.1,52.3-86.9,106.6c10.3,50.4,59.8,81.1,109,68.7
+	c49.9-12.5,78.7-63.3,63.9-112.5c-2.3-7.8-5.4-12.7-14.9-11.3c-6.8,1-13.9,0.2-19.4,0.2c2.6,14.2,6.9,26.3,7,38.9
+	c0.5,32.2-25.9,57.4-58.4,57.1c-32.5,0.4-58.4-25.9-58.4-58.8c0-32.4,26-59.1,57.9-59.3c31-0.1,62.1,0,93.1,0c2.8,0,5.3,0.3,9,0.5
+	c0,8.5,0,16.6,0,26.9c18-14.9,34.2-28.3,51-42.3C932.4,172.4,916.1,159,898.2,144.9z M409.5,390.3c-7.6,19.4-18.1,36.5-40.7,39.9
+	c-11.1,1.8-24,0.3-37.2,0.3c1.2-11.5,2.2-22.9,3.2-33c1-0.4,2.1-0.6,1.5-0.6c28.9,1.8,31.5,0,42.2-27c4.5-10.6,4.2-19.4,0.3-29.9
+	c-19.9-42.9-38.2-86.1-56.7-129.3c-1.2-2.7-1.5-5.6-3.5-9.5c13.6,0,26.3-0.4,38.9,0.3c2.3,0.1,5.4,4.1,6.6,6.9
+	c12.1,31,24,62.1,36,93.2c1.2,3,2.4,6,4.3,10.9c12.2-35.6,23.8-68.9,34.8-102.5c2.3-6.7,5.5-9.5,12.8-9c10.2,0.7,20,0.2,31.2,0.2
+	c-6.4,18.4-14,35.5-20.6,52.7C444.9,299.4,427.3,344.9,409.5,390.3z M271.2,354.7c-0.3-5.7-0.5-10.9-0.8-17.2
+	c-21.3,24.1-46.7,26.2-74,17.1c-18.8-5.8-31-21.5-31.7-38.2c-1-23.2,7.1-35.8,27.3-45.7c19.7-9.3,41-10.6,62.2-11.8
+	c5.1-0.3,10.2-0.7,15.2-1c1.8-14.8-5.5-24.8-20.5-28.5c-16.7-5-31.8-1-46,8c-3.3,2.1-6.4,4.5-10,7.1c-6.6-7.8-13-15.3-19.9-22.5
+	c21.8-20.2,46.8-26.6,74.6-25.2c13.8,0.9,26.9,4.4,38.2,13.1c14,10.8,20.7,25.8,21.1,42.7c0.9,33.7,0.3,67.4,0.3,102.1
+	C294.7,354.7,283.2,354.7,271.2,354.7z M270.2,284.7c-12.5,0.9-25.5,0.9-37.6,2.9c-6.9,1.2-15.2,4.3-21.6,9.2
+	c-11.5,6.8-10.2,23.1,2.3,28.9c14.5,6.7,29.2,5.5,42.4-3.4C268.2,313.8,270.7,300.6,270.2,284.7z M105,257.9
+	c-12.2,2.3-24.7,2.8-37.1,3.6c-8.7,1.1-17.5,0.1-27.2,0.1c0,31.1,0,61.6,0,93.1c-14.1,0-26.8,0-40,0c0-75.3,0-150.2,0-225.5
+	c1-0.3,2.1-0.8,3.2-0.8c28.9,0.1,57.8-0.6,86.7,0.5c21.3,0.9,41.8,6.2,56.1,24C178.3,192.2,155.8,248.4,105,257.9z M118.6,192.8
+	c0-13.3-8-24.6-21.7-26.8c-18.3-3-37.1-3.2-56.1-4.7c0,23.3,0,44.1,0,66c19.8-0.5,40.1,2,58-5.1
+	C112.5,217.9,119.3,206.6,118.6,192.8z"/>
+</svg>
+{% endcapture %}
+<div class="payment-top-section">
+    <div class="payment-header-wrap">
+        <div class="page-width">
+            <div class="page-header">
+                <h1>Payments</h1>
+                <p>Select payment method</p>
+            </div>
+        </div>
+    </div>
+    <div class="payment-option-wrap">
+        <div class="page-width">
+            <div class="payment-options">
+                <a href="#payment-creditcard" class="option creaditcard" data-payment="payment-creditcard" id="creditcard_option">
+                    <div class="option-cnt" >
+                        <div class="option-cnt-left">
+                            <div class="payment-icon">{{cardsIcon}}</div>
+                            <p><strong>Credit card</strong></p>
+                            <p>1.2% surcharge</p>
+                        </div>
+                        <div class="option-cnt-left">
+                        <button class="button button--primary"></button>
+                        </div>
+                    </div>
+                </a>
+                <div class="option fund-transfer">
+                    <div class="extra-info-holder">
+                        <div class="option-cnt">
+                            <p>Account: JasonL</p>
+                            <p>BSB: 062-000</p>
+                            <p>Account Number: 2089 0553</p>
+                            <h4>Electronic funds transfer (EFT)</h4>
+                            <p>0% Surcharge</p>
+                        </div>
+                        <div class="extra-info">
+                            <p>When initiating a payment, kindly include the quote or invoice number along with your name or company name to facilitate accurate matching of payments to the corresponding quote/invoice.</p>
+                        </div>
+                    </div>
+                     {% capture  eft_modal_content %}
+                    <strong>Electronic funds transfer (EFT)</strong>
+                    <p>When initiating a payment, kindly include the quote or invoice number along with your name or company name to facilitate accurate matching of payments to the corresponding quote/invoice.</p>
+                    {% endcapture %}
+                    <modal-opener class="simple-popup-modal__opener" data-modal="#PopupModal-show-moreinfo-eft">
+                        <button class="button button--primary" data-payment="payment-electronicfundtransfer">More info</button>
+                    </modal-opener>
+                    {%- render 'simple-popup-modal', 
+                    modal_id: 'show-moreinfo-eft', 
+                    modal_class: '',
+                    modal_size:'small', 
+                    modal_label:'', 
+                    modal_content: eft_modal_content -%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-width">
+  <div class="payment-creditcard-wrap">
+      <div class="payment-form-section" id="payment-creditcard">
+        <div class="into-section">
+          <div class="page-width">
+            <h2 class="section-heading">Complete your purchase</h2>
+            <p>Fill in your details below to continue</p>
+          </div>
+        </div>
+        <div class="container-flex" id="left-right-col-wrap">
+        
+          <!-- LEFT SIDE: CUSTOMER DETAILS -->
+          <div class="left-col">
+            <div class="box-row heading-box-row">
+              <h3 class="box-heading">Billing Details</h3>
+            </div>
+            <div class="box-row box-body">
+              <label for="name">Full Name <span class="text-red">*</span></label>
+              <input id="name" class="input-field" placeholder="Full Name" required>
+              
+              <label for="email">Email Address <span class="text-red">*</span></label>
+              <input id="email" class="input-field" placeholder="Email" type="email" name="email" required>
+              
+              <label for="company">Company</label>
+              <input id="company" class="input-field" placeholder="Company">
+              
+              <div class="row">
+                <div class="col-left">
+                  <label for="order_id">Quote No or Invoice No<span class="text-red">*</span></label>
+                  <input id="order_id" class="input-field" placeholder="Quote No/Invoice No" required>
+                </div>
+                <div class="col-right">
+                  <label for="amount">Amount <span class="text-red">*</span></label>
+                  <input id="amount" class="input-field" type="number" step="0.01" placeholder="$0.00" min="0" required>
+                </div>
+              </div>
+              <div id="error-msg" class="error" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px" height="15px">
+                  <path fill-rule="evenodd"  fill="rgb(239, 243, 247)" d="M16.731,13.907 C16.355,14.588 15.670,14.995 14.898,14.995 L2.103,14.995 C1.331,14.995 0.646,14.588 0.270,13.907 C-0.106,13.226 -0.089,12.424 0.315,11.760 L6.711,1.019 C6.712,1.017 6.714,1.015 6.715,1.013 C7.100,0.382 7.767,0.006 8.500,0.006 C9.233,0.006 9.901,0.382 10.286,1.013 C10.287,1.015 10.288,1.017 10.290,1.019 L16.686,11.760 C17.089,12.424 17.106,13.226 16.731,13.907 ZM15.604,12.432 C15.603,12.430 15.602,12.428 15.600,12.426 L9.205,1.685 C9.050,1.433 8.793,1.289 8.500,1.289 C8.207,1.289 7.951,1.433 7.796,1.685 L1.400,12.426 C1.399,12.428 1.398,12.430 1.397,12.432 C1.236,12.694 1.229,13.012 1.378,13.281 C1.527,13.551 1.797,13.712 2.103,13.712 L14.898,13.712 C15.203,13.712 15.474,13.551 15.623,13.281 C15.771,13.012 15.764,12.694 15.604,12.432 ZM8.500,12.410 C7.969,12.410 7.538,11.975 7.538,11.437 C7.538,10.900 7.969,10.464 8.500,10.464 C9.032,10.464 9.462,10.900 9.462,11.437 C9.462,11.975 9.032,12.410 8.500,12.410 ZM8.500,9.621 C8.150,9.621 7.866,9.334 7.866,8.980 L7.866,4.340 C7.866,3.986 8.150,3.699 8.500,3.699 C8.851,3.699 9.135,3.986 9.135,4.340 L9.135,8.980 C9.135,9.334 8.851,9.621 8.500,9.621 Z"/>
+                </svg> All <span class="error">*</span> field are required
+              </div>
+              <button id="continue-btn" class="btn btn-primary w-full">Continue <div class="loader"></div></button>
+            </div>
+          </div>
+        
+          <!-- RIGHT SIDE: CARD + APPLE PAY / GOOGLE PAY -->
+          <div class="right-col" id="rightcol">
+            <div class="box-row heading-box-row">
+              <h3 class="box-heading">Pay Securely 
+                <svg 
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="15px" height="18px" viewBox="0 0 15 18">
+                <path fill-rule="evenodd"  fill="rgb(224, 229, 235)"
+                d="M12.644,6.759 L11.955,6.759 L11.955,4.995 C11.955,2.528 9.952,0.521 7.489,0.521 C5.026,0.521 3.023,2.528 3.023,4.995 L3.023,6.759 L2.334,6.759 C1.512,6.759 0.843,7.429 0.843,8.252 L0.843,15.951 C0.843,16.774 1.512,17.444 2.334,17.444 L12.644,17.444 C13.466,17.444 14.135,16.774 14.135,15.951 L14.135,8.252 C14.135,7.429 13.466,6.759 12.644,6.759 ZM4.282,4.995 C4.282,3.223 5.720,1.782 7.489,1.782 C9.257,1.782 10.696,3.223 10.696,4.995 L10.696,6.759 L4.282,6.759 L4.282,4.995 ZM12.876,15.951 C12.876,16.079 12.772,16.183 12.644,16.183 L2.334,16.183 C2.206,16.183 2.102,16.079 2.102,15.951 L2.102,8.252 C2.102,8.124 2.206,8.020 2.334,8.020 L12.644,8.020 C12.772,8.020 12.876,8.124 12.876,8.252 L12.876,15.951 Z"/>
+                </svg>
+              </h3>
+            </div>
+            
+            <div class="box-row box-body">
+              <!-- Wallet button -->
+              <div id="wallet-button" style="display:none;"></div>
+              <div id="wallet-unavailable" style="display:none;"></div>
+          
+              <!-- Card Form -->
+              <label><strong>Card Details</strong></label>
+              <div class="card-field">
+                <label>Card number <span class="text-red"> *</span></label>
+                <div id="card-number"></div>
+              </div>
+
+              <div class="card-row">
+                <div class="card-field">
+                  <label>Expiry <span class="text-red"> *</span></label>
+                  <div id="card-expiry"></div>
+                </div>
+
+                <div class="card-field">
+                  <label>CVC</label>
+                  <div id="card-cvc"></div>
+                </div>
+              </div>
+                      
+              <button id="pay-btn" class="btn btn-primary w-full" style="margin-top:20px;">Pay Now <div class="loader"></div></button>
+              <div class="info-msg">
+                Your payment info is encrypted and secure <br>
+                <svg 
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="15px" height="18px" viewBox="0 0 15 18">
+                <path fill-rule="evenodd"  fill="rgb(224, 229, 235)"
+                d="M12.644,6.759 L11.955,6.759 L11.955,4.995 C11.955,2.528 9.952,0.521 7.489,0.521 C5.026,0.521 3.023,2.528 3.023,4.995 L3.023,6.759 L2.334,6.759 C1.512,6.759 0.843,7.429 0.843,8.252 L0.843,15.951 C0.843,16.774 1.512,17.444 2.334,17.444 L12.644,17.444 C13.466,17.444 14.135,16.774 14.135,15.951 L14.135,8.252 C14.135,7.429 13.466,6.759 12.644,6.759 ZM4.282,4.995 C4.282,3.223 5.720,1.782 7.489,1.782 C9.257,1.782 10.696,3.223 10.696,4.995 L10.696,6.759 L4.282,6.759 L4.282,4.995 ZM12.876,15.951 C12.876,16.079 12.772,16.183 12.644,16.183 L2.334,16.183 C2.206,16.183 2.102,16.079 2.102,15.951 L2.102,8.252 C2.102,8.124 2.206,8.020 2.334,8.020 L12.644,8.020 C12.772,8.020 12.876,8.124 12.876,8.252 L12.876,15.951 Z"/>
+                </svg> 256-bit SSL Encrypted
+              </div>
+              <div id="payment-message"></div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  // remove old cache input value
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted && !sessionStorage.getItem('pageReloaded')) {
+
+      // Clear normal inputs BEFORE reload
+      document.querySelectorAll('input, textarea, select').forEach(el => {
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          el.checked = false;
+        } else if (el.type !== 'hidden') {
+          el.value = '';
+        }
+      });
+
+      // Mark reload to avoid loop
+      sessionStorage.setItem('pageReloaded', '1');
+
+      // Reload to re-mount Stripe Elements
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('pageReloaded');
+    }
+  });
+  // remove old cache input value end
+
+  // form toggle script
+  document.addEventListener("DOMContentLoaded", function(){
+
+
+    const formToggleBtn = document.getElementById('creditcard_option');
+    const paymentForm = document.getElementById('payment-creditcard');
+    paymentForm.style.display = "none";
+    formToggleBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        paymentForm.style.display = "block";
+        paymentForm.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    });
+});
+
+const stripe = Stripe("pk_live_Z9A3hcn98gvKqXqLADFkTKbh");
+
+let elements;
+let cardNumber;
+let cardExpiry;
+let cardCvc;
+let clientSecret = null;
+
+let cardNumberComplete = false;
+let cardExpiryComplete = false;
+let cardCvcComplete    = false;
+
+
+
+
+document.getElementById("continue-btn").addEventListener("click", async () => {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const company = document.getElementById("company").value.trim();
+  const order_id = document.getElementById("order_id").value.trim();
+  const amount = parseFloat(document.getElementById("amount").value.trim());
+  
+  const reqFields = document.querySelectorAll("#name, #email, #order_id, #amount");
+  let hasError = false;
+
+  reqFields.forEach(field => {
+    if(!field.value.trim()){
+      field.classList.add('error');
+      hasError = true;
+      document.getElementById('error-msg').style.display = "block";
+      return;
+    } else{
+      field.classList.remove('error');
+    }
+
+    // check for negetive amount
+    if(field.id === "amount"){
+      if(amount < 0){
+        field.classList.add('error');
+        hasError = true;
+        document.getElementById('error-msg').style.display = "block";
+      }else{
+        field.classList.remove('error');
+      }
+    }
+  });
+  
+  // Simple email regex for validation
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Check if email is valid
+  if (!emailPattern.test(email)) {
+    document.getElementById("email").classList.add('error');
+    hasError = true;
+    document.getElementById('error-msg').style.display = "block";
+    return;
+  }
+  
+  document.getElementById('error-msg').style.display = "none";
+
+  if (!name || !email || !amount || !order_id ) {
+    // alert("Please fill required fields");
+    document.getElementById('error-msg').style.display = "block";
+    return;
+  }
+  
+  // amount check if negetive return
+  if(amount < 0){
+    hasError = true;
+    document.getElementById('error-msg').style.display = "block";
+    return;
+  }
+
+  document.getElementById('continue-btn').classList.add('loading');
+  
+  const amount_cents = Math.round(amount * 100);
+
+  // Create Payment Intent
+  const res = await fetch("https://prnt.jasonl.com.au/stripecheckout/payment/create_intent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      amount: amount_cents,
+      email: email,
+      name: name,
+      company: company,
+      order_id: order_id,
+      payment_portal: 'payment_page'
+    })
+  });
+
+  const data = await res.json();
+  clientSecret = data.clientSecret;
+  const total_amount_cents = data.total_amount;
+
+  // Initialize Stripe Elements
+  const appearance = {
+    theme: "flat",
+    variables: { 
+      fontFamily: "Inter, sans-serif",
+      colorPrimary: "#000"
+    }
+  };
+
+  elements = stripe.elements({ appearance });
+
+    // SPLIT ELEMENTS
+  cardNumber = elements.create("cardNumber");
+  cardExpiry = elements.create("cardExpiry");
+  cardCvc    = elements.create("cardCvc");
+
+  cardNumber.mount("#card-number");
+  cardExpiry.mount("#card-expiry");
+  cardCvc.mount("#card-cvc");
+
+  const rightCol = document.getElementById("rightcol");
+
+function updateRightColState() {
+  if (cardNumberComplete && cardExpiryComplete && cardCvcComplete) {
+    rightCol.classList.add("card-complete");
+  } else {
+    rightCol.classList.remove("card-complete");
+  }
+}
+
+cardNumber.on("change", (event) => {
+  cardNumberComplete = event.complete;
+  updateRightColState();
+});
+
+cardExpiry.on("change", (event) => {
+  cardExpiryComplete = event.complete;
+  updateRightColState();
+});
+
+cardCvc.on("change", (event) => {
+  cardCvcComplete = event.complete;
+  updateRightColState();
+});
+
+
+
+  // Payment Request Button (Apple Pay / Google Pay)
+  const paymentRequest = stripe.paymentRequest({
+    country: 'AU',
+    currency: 'aud',
+    total: {
+      label: 'Total',
+      amount: total_amount_cents
+    },
+    requestPayerName: true,
+    requestPayerEmail: true
+  });
+
+  const prButton = elements.create('paymentRequestButton', { paymentRequest });
+
+  const leftRightColWrap = document.getElementById('left-right-col-wrap');
+
+  paymentRequest.canMakePayment().then(result => {
+    if (result) {
+      document.getElementById("wallet-button").style.display = "block";
+      document.getElementById("wallet-unavailable").style.display = "none";
+      prButton.mount("#wallet-button");
+      //document.getElementById("rightcol").style.display = "block";
+      leftRightColWrap.classList.add("child-visible");
+      document.getElementById("rightcol").classList.add('visible');
+      document.getElementById('continue-btn').style.display = "none";
+      if(window.innerWidth < 768){
+        document.getElementById("rightcol").scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // No wallet available — show message
+      //document.getElementById("rightcol").style.display = "block";
+      leftRightColWrap.classList.add("child-visible");
+      document.getElementById("rightcol").classList.add('visible');
+      document.getElementById('continue-btn').style.display = "none";
+      document.getElementById("wallet-unavailable").style.display = "block";
+      document.getElementById("wallet-button").style.display = "none";
+      if(window.innerWidth < 768){
+        document.getElementById("rightcol").scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+
+  paymentRequest.on("paymentmethod", async ev => {
+    const { error } = await stripe.confirmCardPayment(
+      clientSecret,
+      { payment_method: ev.paymentMethod.id },
+      { handleActions: false }
+    );
+
+    if (error) {
+      ev.complete("fail");
+      document.getElementById("payment-message").innerHTML = `<svg 
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="17px" height="15px">
+      <path fill-rule="evenodd"  fill="rgb(239, 243, 247)"
+      d="M16.731,13.907 C16.355,14.588 15.670,14.995 14.898,14.995 L2.103,14.995 C1.331,14.995 0.646,14.588 0.270,13.907 C-0.106,13.226 -0.089,12.424 0.315,11.760 L6.711,1.019 C6.712,1.017 6.714,1.015 6.715,1.013 C7.100,0.382 7.767,0.006 8.500,0.006 C9.233,0.006 9.901,0.382 10.286,1.013 C10.287,1.015 10.288,1.017 10.290,1.019 L16.686,11.760 C17.089,12.424 17.106,13.226 16.731,13.907 ZM15.604,12.432 C15.603,12.430 15.602,12.428 15.600,12.426 L9.205,1.685 C9.050,1.433 8.793,1.289 8.500,1.289 C8.207,1.289 7.951,1.433 7.796,1.685 L1.400,12.426 C1.399,12.428 1.398,12.430 1.397,12.432 C1.236,12.694 1.229,13.012 1.378,13.281 C1.527,13.551 1.797,13.712 2.103,13.712 L14.898,13.712 C15.203,13.712 15.474,13.551 15.623,13.281 C15.771,13.012 15.764,12.694 15.604,12.432 ZM8.500,12.410 C7.969,12.410 7.538,11.975 7.538,11.437 C7.538,10.900 7.969,10.464 8.500,10.464 C9.032,10.464 9.462,10.900 9.462,11.437 C9.462,11.975 9.032,12.410 8.500,12.410 ZM8.500,9.621 C8.150,9.621 7.866,9.334 7.866,8.980 L7.866,4.340 C7.866,3.986 8.150,3.699 8.500,3.699 C8.851,3.699 9.135,3.986 9.135,4.340 L9.135,8.980 C9.135,9.334 8.851,9.621 8.500,9.621 Z"/>
+      </svg> ${error.message}`;
+      document.getElementById("payment-message").classList.add("error");
+    } else {
+      ev.complete("success");
+     const orderIdValue = document.getElementById("order_id").value.trim();
+    const amountValue  = document.getElementById("amount").value.trim();
+    const successUrl =  "https://www.jasonl.com.au/pages/payment-success" +
+      "?orderid=" + encodeURIComponent(orderIdValue) +
+      "&amount=" + encodeURIComponent(amountValue) +
+      "&formtype=stripecheckout";
+
+       window.location.href = successUrl;
+       {% comment %} window.location.href = "https://www.jasonl.com.au/pages/payment-success"; {% endcomment %}
+    }
+  });
+});
+
+// CARD BUTTON: "Pay Now"
+document.getElementById("pay-btn").addEventListener("click", async () => {
+  // loading added in button clicked
+  /* if(document.getElementById("card-element").classList.contains("StripeElement--complete")){
+  } */
+  document.getElementById('pay-btn').classList.add('loading');
+  
+  const message = document.getElementById("payment-message");
+
+  const { error } = await stripe.confirmCardPayment(clientSecret, {
+    payment_method: { card: cardNumber }
+  });
+
+  if (error) {
+    message.innerHTML = `<svg 
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="17px" height="15px">
+      <path fill-rule="evenodd"  fill="rgb(239, 243, 247)"
+      d="M16.731,13.907 C16.355,14.588 15.670,14.995 14.898,14.995 L2.103,14.995 C1.331,14.995 0.646,14.588 0.270,13.907 C-0.106,13.226 -0.089,12.424 0.315,11.760 L6.711,1.019 C6.712,1.017 6.714,1.015 6.715,1.013 C7.100,0.382 7.767,0.006 8.500,0.006 C9.233,0.006 9.901,0.382 10.286,1.013 C10.287,1.015 10.288,1.017 10.290,1.019 L16.686,11.760 C17.089,12.424 17.106,13.226 16.731,13.907 ZM15.604,12.432 C15.603,12.430 15.602,12.428 15.600,12.426 L9.205,1.685 C9.050,1.433 8.793,1.289 8.500,1.289 C8.207,1.289 7.951,1.433 7.796,1.685 L1.400,12.426 C1.399,12.428 1.398,12.430 1.397,12.432 C1.236,12.694 1.229,13.012 1.378,13.281 C1.527,13.551 1.797,13.712 2.103,13.712 L14.898,13.712 C15.203,13.712 15.474,13.551 15.623,13.281 C15.771,13.012 15.764,12.694 15.604,12.432 ZM8.500,12.410 C7.969,12.410 7.538,11.975 7.538,11.437 C7.538,10.900 7.969,10.464 8.500,10.464 C9.032,10.464 9.462,10.900 9.462,11.437 C9.462,11.975 9.032,12.410 8.500,12.410 ZM8.500,9.621 C8.150,9.621 7.866,9.334 7.866,8.980 L7.866,4.340 C7.866,3.986 8.150,3.699 8.500,3.699 C8.851,3.699 9.135,3.986 9.135,4.340 L9.135,8.980 C9.135,9.334 8.851,9.621 8.500,9.621 Z"/>
+      </svg> ${error.message}` ;
+  document.getElementById("payment-message").classList.add("error");
+  document.getElementById('pay-btn').classList.remove('loading');
+  } else {
+    const orderIdValue = document.getElementById("order_id").value.trim();
+    const amountValue  = document.getElementById("amount").value.trim();
+    const successUrl =  "https://www.jasonl.com.au/pages/payment-success" +
+  "?orderid=" + encodeURIComponent(orderIdValue) +
+  "&amount=" + encodeURIComponent(amountValue) +
+  "&formtype=stripecheckout";
+
+    window.location.href = successUrl;
+    {% comment %} window.location.href = "https://www.jasonl.com.au/pages/payment-success"; {% endcomment %}
+  }
+});
+// check form input for validation and enable continue button
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.box-row.box-body').forEach(formBox => {
+
+    const requiredInputs = formBox.querySelectorAll('input[required]');
+    const emailInput = formBox.querySelector('#email');
+    const amountInput = formBox.querySelector('#amount');
+    const continueBtn = formBox.querySelector('#continue-btn');
+
+    function isEmailValid(email) {
+      // Simple & safe email regex
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function checkFormFilled() {
+      let allValid = true;
+
+      requiredInputs.forEach(input => {
+        if (input.value.trim() === '') {
+          allValid = false;
+        }
+      });
+
+      // Email validation
+      if (!isEmailValid(emailInput.value.trim())) {
+        allValid = false;
+      }
+
+      // Amount validation (> 0)
+      if (Number(amountInput.value) <= 0) {
+        allValid = false;
+      }
+
+      continueBtn.classList.toggle('enable', allValid);
+    }
+
+    requiredInputs.forEach(input => {
+      input.addEventListener('input', checkFormFilled);
+      input.addEventListener('blur', checkFormFilled);
+    });
+
+    checkFormFilled(); // initial check
+  });
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Payments",
+    "class": "payment-form-section-wrap",
+    "settings": []
+  }
+{% endschema %}

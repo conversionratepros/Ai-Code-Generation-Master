@@ -1,0 +1,44 @@
+<details id="Details-menu-drawer-menu-item-showrooms-{{ forloop.index }}">
+    <summary
+    id="HeaderDrawer-showrooms-{{ link.handle }}"
+    class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+    >
+        <strong>Showrooms</strong>
+        <span class="svg-wrapper">
+            {{- 'icon-arrow.svg' | inline_asset_content -}}
+        </span>
+        <span class="svg-wrapper">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+    </summary>
+    <div
+    id="link-showrooms-{{ link.handle | escape }}"
+    class="menu-drawer__submenu has-submenu gradient motion-reduce"
+    tabindex="-1"
+    >
+        <div class="menu-drawer__inner-submenu">
+            <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+            <span class="svg-wrapper">
+                {{- 'icon-arrow.svg' | inline_asset_content -}}
+            </span>
+            Back to Main Menu
+            </button>
+            <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                {%- assign store_counts = 7 -%}
+                {%- for i in (1..store_counts) -%}
+                    {%- assign itemid_name = 'store' | append:i | append:'_showroom_name'-%}
+                    {%- assign itemid_address = 'store' | append:i | append:'_showroom_address'-%}
+                    {%- assign itemid_order = 'store' | append:i | append:'_showroom_order'-%}
+                    {%- unless settings[itemid_address] contains 'Granville'-%}
+                        <li>
+                            {%- assign  city = settings[itemid_name] | replace: 'Showroom', '' | replace: 'Western ', 'Western-'  | replace: 'City', '' | replace: 'East Coast Distribution Centre', 'Sydney' -%}
+                            <a id="HeaderDrawer-showrooms-{{settings[itemid_order]}}" href="{{ shop.url }}/pages/{{ city | replace: ' ', '' | downcase}}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                                {{settings[itemid_name]}}
+                            </a>
+                        </li>
+                    {%- endunless -%}
+                {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+</details>

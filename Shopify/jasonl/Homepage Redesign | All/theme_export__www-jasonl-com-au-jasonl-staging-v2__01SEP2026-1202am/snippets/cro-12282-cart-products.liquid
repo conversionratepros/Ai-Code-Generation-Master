@@ -1,0 +1,63 @@
+<div class="cro-order-summary">
+  <div class="cro-section-heading cro-aside-heading">
+    <h3>Your project so far</h3>
+    <span class="cro-green-underline"></span>
+  </div>
+
+  <ul class="cart-products cro-cart-list">
+    {%- for item in cart.items -%}
+      {% assign product = item.product %}
+      <li class="cro-cart-card" data_product_collection="{% render 'get_product_category', product: product %}">
+
+        <div class="cro-card-image">
+          {% if item.image %}
+            <a href="{{ item.url }}">
+              <img
+                src="{{ item.image | img_url: '120x120', crop: 'center' }}"
+                alt="{{ item.image.alt | escape }}"
+                width="56"
+                height="56"
+                loading="lazy"
+              >
+            </a>
+            <span class="cro-qty-badge">{{ item.quantity }}</span>
+          {% endif %}
+        </div>
+
+        <div class="cro-card-details">
+          <h4 class="cro-product-name">
+            <a href="{{ item.url }}">{{ item.product.title | escape }}</a>
+          </h4>
+          {%- unless item.product.has_only_default_variant -%}
+            <dl class="cro-variants">
+              {%- for option in item.options_with_values -%}
+                <div class="cro-variant-item">
+                  <dt>{{ option.name | remove: 'Select a' }}:</dt>
+                  <dd>{{ option.value }}</dd>
+                </div>
+              {%- endfor -%}
+            </dl>
+          {%- endunless -%}
+          <p class="cro-qty-line">Qty: {{ item.quantity }}</p>
+        </div>
+
+        <div class="cro-card-price">
+          <span class="cro-price">{{ item.price | money | remove: '.00' }}</span>
+        </div>
+
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <div class="cart-total-holder">
+    <div class="cart-total-item">
+      <div class="label"><strong>Total</strong></div>
+      <div class="total">
+        <span class="currency">AUD</span>
+        <strong data-carttotal="{{ cart.total_price | money_without_trailing_zeros | remove: ',' | remove: '$' }}">
+          {{ cart.total_price | money_without_trailing_zeros }}
+        </strong>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+{{ 'hero-custom.css' | asset_url | stylesheet_tag }}
+
+<section class="hero-custom">
+  <div class="page-width">
+    <div class="hero-custom-wrap">
+      {%- if section.settings.bg_video != blank -%}
+      <div class="hero-bg">
+        <video autoplay muted loop playsinline>
+          <source src="{{ section.settings.bg_video }}" type="video/mp4">
+        </video>
+      </div>
+      {%- elsif section.settings.bg_image != blank -%}
+        <div class="hero-bg">
+          {% comment %} <img src="{{ section.settings.bg_image | image_url }}" alt=""> {% endcomment %}
+          {% comment %} <picture>
+            <source srcset="{{ section.settings.bg_image | image_url: width: 1540 }}, {{ section.settings.bg_image | image_url: width: 3080 }} 2x" media="(min-resolution: 2dppx), (min-resolution: 192dpi)">
+            <img src="{{ section.settings.bg_image | image_url: width: 1540 }}"
+            alt="" loading="lazy"/>
+          </picture> {% endcomment %}
+          <picture class="bannerimg">  
+            <!-- Source for tablet and desktop devices (min-width: 769px) with retina resolution (2x) -->
+            <source srcset="{{ section.settings.bg_image | image_url: width: 3080 }} 2x" media="(min-width: 769px) and (min-resolution: 2dppx)">
+            <!-- Source for tablet and desktop devices (min-width: 769px) with standard resolution = photoshop desktop sizse -->
+            <source srcset="{{ section.settings.bg_image | image_url: width: 1540 }}" media="(min-width: 768px)">
+            <img src="{{ section.settings.bg_image | image_url: width: 1540 }}" alt="{% if section.settings.main_title %}{{ section.settings.main_title }} {% else %} Office fitout {% endif %}" loading="lazy">
+        </picture>
+        </div>
+      {%- endif -%}
+      <div class="hero-content">
+        {%- if section.settings.top_title != blank -%}
+          <p class="title-top"><strong>{{ section.settings.top_title }}</strong></p>
+        {%- endif -%}
+        <div class="title-wrap">
+          {%- if section.settings.main_title != blank -%}
+            <h1>{{ section.settings.main_title }}</h1>
+          {%- endif -%}
+          {%- if section.settings.sub_title != blank -%}
+            <p class="subtitle">{{ section.settings.sub_title }}</p>
+          {%- endif -%}
+        </div>
+        <div class="hero-btm-content">
+          <div class="hero-buttons">
+            {%- render 'typeform-embed-manual', typeform_id:'Xcco8a2p', button_class:'typeform-share getaquoteclick btn typeform-embed', button_id:'', button_text:"Get a fast quote" -%}
+            {% comment %} <a class="typeform-share getaquoteclick btn typeform-embed" {{ settings.typeformurls_url_1 }}
+              href="javascript:void(0)" data-tf-on-ready="ready" {% if button_id %} id="{{ button_id }}" {% endif %}>
+                Get a fast quote
+            </a> {% endcomment %}
+
+            <div class="contact">
+              <div class="call-number">
+                {%- if section.settings.phone != blank -%}
+                  <a href="tel:{{ section.settings.phone }}" class="text value">{{ section.settings.phone }}</a>
+                {%- endif -%}
+              </div>
+
+              {% comment %} {%- if section.settings.email != blank -%}
+                <a href="mailto:{{ section.settings.email }}" class="text">{{ section.settings.email }}</a>
+              {%- endif -%} {% endcomment %}
+              {% render 'hidden-emails' email:'sales@jasonl.com.au' classname:'text hiddenemail ga4-sales-email' %}
+            </div>
+          </div>
+          <div class="hero-repeater">
+            {%- for block in section.blocks -%}
+              <dl class="repeater-item">
+                {%- if block.settings.text != blank -%}
+                  <dt>{{ block.settings.text }}</dt>
+                {%- endif -%}
+                {%- if block.settings.sub_title != blank -%}
+                  <dd>{{ block.settings.sub_title }}</dd>
+                {%- endif -%}
+              </dl>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+    {%- render 'showroom-landing-schema' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Custom Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image_mob",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "text",
+      "id": "bg_video",
+      "label": "Background Video URL (MP4)"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Your Title Here"
+    },
+    {
+      "type": "textarea",
+      "id": "top_title",
+      "label": "Top Title"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtitle",
+      "default": "Your subtitle here"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email Address"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Repeater Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Subtitle"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Custom",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

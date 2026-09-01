@@ -1,0 +1,34 @@
+{{ 'quiz-section.css' | asset_url | stylesheet_tag }}
+<div class="quiz-section">
+    <div class="page-width">
+        <div class="quiz-section-wrap">
+            <div class="intro">
+                <div class="eyebrow">
+                    FREE, NO OBLIGATION
+                </div>
+                <h2 class="section-title">Not sure where to start?</h2>
+                <p>Tell us about your space and our team will put together a free layout and furniture plan — no obligation. Or take the quick quizz and we'll point to the right range.</p>
+                <a class="button button--border" {{ settings.typeformurls_url_1 }} href="javascript:void(0)"> 
+                    Get a free space plan 
+                    <svg width="27" height="11" viewBox="0 0 27 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.8064 0L20.3056 1.4616L22.925 4.0152H0V6.083H22.8914L20.3 8.6086L21.8008 10.0702L26.9682 5.033L21.8064 0Z" fill="white"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="quiz-form-wrap">
+                <div class="quiz-form-wrap-inner">
+                    <div  data-sa-url="https://a65cf222-514c-4497-bc6e-6e93a362605f.scoreapp.com/?sa_target=_top" data-sa-view="inline" style="max-width: 100%; width: 100%" data-sa-auto-height="1"></div>
+                    <script src="https://static.scoreapp.com/js/integration/v1/embedding.js?v=vZ49lQ"></script>
+                </div>
+            </div>
+        </div>
+        
+    </div> 
+</div> 
+
+{%- schema -%}
+{
+    "name": "quiz-section",
+    "class": "section",
+    "settings": []
+}
+{%- endschema -%}

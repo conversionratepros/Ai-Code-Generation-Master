@@ -1,0 +1,49 @@
+<style>
+        {%- comment -%}
+        Below condition is when the location is not 'Perth' but 'Perth' is selected from sidebar filter menu in collection pages.
+        TODO: NOTE: Best way to manage 'perth' somewhere in themesettings
+      
+        {%- assign full_url = request.host | append: request.path -%}
+        {%- if full_url contains '/perth' or full_url contains '+perth' -%}
+            .banner-payment-options-header{
+            display: none;
+            }
+           .banner-payment-options-header.banner-header-perth{
+                display: block;
+            }
+        {%- endif -%}
+        {%- endcomment -%}
+    
+</style>
+
+
+{%- assign excludePages =  "sustainability,payments,checkout,careers,followup,thankyou,we-make-your-office-fitout-easy-fast" |  split: ',' %}
+    {%- assign is_excludePage = false -%}
+    {%- assign is_current_tag_perth = false -%}
+    {%- for excludePage in excludePages -%}
+        {%- if  page.handle contains excludePage -%}
+            {%- assign is_excludePage = true -%}
+        {%- endif -%}
+    {%- endfor -%}
+
+
+
+{%- unless is_excludePage == true -%}
+    {{'banner-payment-options-header.css' |  asset_url |  stylesheet_tag }}
+        {%- assign min = 1 -%}
+        {%- assign max = 4 -%}
+        {%- assign diff = max | minus: min -%}
+        {%- assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min -%}
+
+        {%- if randomNumber == 1  -%}
+                {% comment %} {%- render 'banner-header-transact' -%} {% endcomment %}
+                {%- render 'banner-header-10days' -%}
+        {% elsif randomNumber == 2 %}
+                {% comment %} {%- render 'banner-header-sustainability' -%} {% endcomment %}
+                {%- render 'banner-header-spend-n-save' -%}
+        {%-  elsif randomNumber == 3 -%}
+                {%- render 'banner-header-showrooms' -%}
+        {% comment %} {% elsif randomNumber == 4 %}
+                {%- render 'banner-header-black-friday' -%} {% endcomment %}
+        {%- endif -%}
+{% endunless %}

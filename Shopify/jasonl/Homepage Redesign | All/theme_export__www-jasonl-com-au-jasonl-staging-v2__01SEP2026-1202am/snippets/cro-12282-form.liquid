@@ -1,0 +1,74 @@
+<script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+{{ 'just-validate-form.css' | asset_url | stylesheet_tag }}
+
+<div class="checkout-form-holder cro-form-holder">
+  {% if shop.url contains 'jasonldev.myshopify' %}
+    {% assign formUrl = 'https://poptopdesk.com/contact/addtoquotehandler' %}
+  {% else %}
+    {% assign formUrl = 'https://prnt.jasonl.com.au/contact/addtoquotehandler' %}
+  {% endif %}
+
+  <form action="{{ formUrl }}" id="custom-checkout" method="POST">
+    <div class="fields-block">
+
+      <div class="cro-section-heading cro-form-heading">
+        <h3>Your quote details</h3>
+        <span class="cro-green-underline"></span>
+      </div>
+
+      <div class="form-field cro-field">
+        <label class="cro-label" for="ccf_firstname">Full name <span class="cro-required">*</span></label>
+        <input id="ccf_firstname" placeholder="Full name" type="text" name="first-name" value="">
+      </div>
+
+      <div class="form-field cro-field">
+        <label class="cro-label" for="ccf_email">Email <span class="cro-required">*</span></label>
+        <input id="ccf_email" placeholder="Email" type="email" name="email" value="">
+      </div>
+
+      <div class="form-field cro-field">
+        <label class="cro-label" for="ccf_phone">Mobile phone number <span class="cro-optional">(optional)</span></label>
+        <input id="ccf_phone" placeholder="Mobile phone number" type="text" name="phone_number" value="">
+        <p class="cro-helper-text"><em>We only call if we need to clarify scope. Otherwise email all the way.</em></p>
+      </div>
+
+      <div class="form-field cro-field">
+        <label class="cro-label" for="ccf_company">Company</label>
+        <input id="ccf_company" placeholder="Company" type="text" name="company" value="">
+      </div>
+
+      <div class="form-field cro-field">
+        <label class="cro-label" for="ccf_state">State / Territory <span class="cro-required">*</span></label>
+        <div class="select-holder">
+          <select id="ccf_state">
+            <option value="" disabled selected>Select your state</option>
+            <option value="Australian Capital Territory">Australian Capital Territory</option>
+            <option value="New South Wales">New South Wales</option>
+            <option value="Northern Territory">Northern Territory</option>
+            <option value="Queensland">Queensland</option>
+            <option value="South Australia">South Australia</option>
+            <option value="Tasmania">Tasmania</option>
+            <option value="Victoria">Victoria</option>
+            <option value="Western Australia">Western Australia</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field cro-field">
+        <label class="cro-label" for="ccf_quote_enquiry">Tell us about your project</label>
+        <textarea class="input" id="ccf_quote_enquiry" cols="50" rows="5" placeholder="e.g. workstations count, fitout size, timeline, brand standards" name="quote-enquiry"></textarea>
+      </div>
+
+      <div class="cro-trust-callout">
+        <p><strong>Within 24 hours</strong> your project lead will email a detailed quote with itemised pricing, delivery, install and lead times. No automated email — a real person from the team.</p>
+      </div>
+
+      <div class="form-field submit-btn-holder">
+        <input type="submit" class="button button--primary btn-quote cro-btn-submit" value="Send my quote request">
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<script src="{{ 'cro-12282.js' | asset_url }}" defer></script>
